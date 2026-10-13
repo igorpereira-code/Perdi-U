@@ -1,0 +1,248 @@
+// Perdi-U – Data model (1st deliverable, with fields ready for the next ones)
+// Database names are snake_case and plural; code names are camelCase and singular.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─────────────── Enums ───────────────
+
+enum Role {
+  COMMUNITY // Finder and Owner
+  WELFARE // Bienestar Estudiantil staff
+  ADMIN // Administrator (2nd deliverable)
+
+  @@map("role")
+}
+
+enum PlaceType {
+  BLOCK // Has classrooms
+  SPACE // No classrooms (library, terrace, restaurants)
+
+  @@map("place_type")
+}
+
+enum FoundItemStatus {
+  PENDING_DROP_OFF
+  IN_CUSTODY
+  PUBLISHED
+  DELIVERED
+
+  @@map("found_item_status")
+}
+
+enum Visibility {
+  VISIBLE
+  HIDDEN // 2nd deliverable
+
+  @@map("visibility")
+}
+
+enum LostReportStatus {
+  SEARCHING
+  HAS_MATCHES
+  PENDING_PICKUP
+  RECOVERED
+
+  @@map("lost_report_status")
+}
+
+enum MatchStatus {
+  SUGGESTED
+  WILL_PICK_UP // A pending pickup
+  DISMISSED
+
+  @@map("match_status")
+}
+
+// ─────────────── Users and roles ───────────────
+
+/// Profile created automatically on the first Google sign-in
+model User {
+  id        String   @id @db.Uuid /// Same id as the Supabase Auth user
+  name      String   @db.VarChar(150)
+  email     String   @unique @db.VarChar(150) /// Institutional email
+  photoUrl  String?  @map("photo_url")
+  role      Role     @default(COMMUNITY)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  foundItems           FoundItem[]  @relation("FoundItemFinder")
+  receivedItems        FoundItem[]  @relation("FoundItemReceivedBy")
+  publishedItems       FoundItem[]  @relation("FoundItemPublishedBy")
+  lostReports          LostReport[]
+  receivedDeliveries   Delivery[]   @relation("DeliveryRecipient")
+  registeredDeliveries Delivery[]   @relation("DeliveryRegisteredBy")
+
+  @@map("users")
+}
+
+/// Emails that get the WELFARE role when they sign in
+model WelfareEmail {
+  email     String   @id @db.VarChar(150)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("welfare_emails")
+}
+
+// ─────────────── Catalogs ───────────────
+
+model Category {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique @db.VarChar(80)
+  active Boolean @default(true)
+
+  foundItems  FoundItem[]
+  lostReports LostReport[]
+
+  @@map("categories")
+}
+
+model Place {
+  id     Int       @id @default(autoincrement())
+  name   String    @unique @db.VarChar(100)
+  type   PlaceType
+  active Boolean   @default(true)
+
+  classrooms       Classroom[]
+  foundItems       FoundItem[]
+  lostReportPlaces LostReportPlace[]
+
+  @@map("places")
+}
+
+model Classroom {
+  id      Int     @id @default(autoincrement())
+  placeId Int     @map("place_id")
+  name    String  @db.VarChar(50)
+  active  Boolean @default(true)
+
+  place            Place             @relation(fields: [placeId], references: [id])
+  foundItems       FoundItem[]
+  lostReportPlaces LostReportPlace[]
+
+  @@unique([placeId, name])
+  @@map("classrooms")
+}
+
+// ─────────────── Found items ───────────────
+
+model FoundItem {
+  id             String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code           String          @unique @default(dbgenerated("next_code('HZ-'::text, 'found_item_code_seq'::regclass)")) @db.VarChar(10) /// e.g. HZ-0001
+  description    String
+  photoUrl       String?         @map("photo_url") /// Path in Supabase Storage
+  categoryId     Int             @map("category_id")
+  placeId        Int             @map("place_id")
+  classroomId    Int?            @map("classroom_id")
+  placeReference String?         @map("place_reference") @db.VarChar(200)
+  foundAt        DateTime        @map("found_at")
+  status         FoundItemStatus @default(PENDING_DROP_OFF)
+  visibility     Visibility      @default(VISIBLE)
+  finderId       String?         @map("finder_id") @db.Uuid /// Null if Bienestar registered it without a prior report
+  receivedById   String?         @map("received_by_id") @db.Uuid
+  receivedAt     DateTime?       @map("received_at")
+  publishedById  String?         @map("published_by_id") @db.Uuid
+  publishedAt    DateTime?       @map("published_at")
+  createdAt      DateTime        @default(now()) @map("created_at")
+
+  category    Category   @relation(fields: [categoryId], references: [id])
+  place       Place      @relation(fields: [placeId], references: [id])
+  classroom   Classroom? @relation(fields: [classroomId], references: [id])
+  finder      User?      @relation("FoundItemFinder", fields: [finderId], references: [id])
+  receivedBy  User?      @relation("FoundItemReceivedBy", fields: [receivedById], references: [id])
+  publishedBy User?      @relation("FoundItemPublishedBy", fields: [publishedById], references: [id])
+  matches     Match[]
+  delivery    Delivery?
+
+  @@index([status])
+  @@index([categoryId])
+  @@map("found_items")
+}
+
+// ─────────────── Lost reports ───────────────
+
+/// Always private: only its owner and Bienestar can see it
+model LostReport {
+  id               String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code             String           @unique @default(dbgenerated("next_code('PR-'::text, 'lost_report_code_seq'::regclass)")) @db.VarChar(10) /// e.g. PR-0001
+  description      String
+  photoUrl         String?          @map("photo_url")
+  categoryId       Int              @map("category_id")
+  placeDescription String?          @map("place_description") @db.VarChar(300)
+  dateFrom         DateTime         @map("date_from") @db.Date
+  dateTo           DateTime         @map("date_to") @db.Date
+  status           LostReportStatus @default(SEARCHING)
+  ownerId          String           @map("owner_id") @db.Uuid
+  createdAt        DateTime         @default(now()) @map("created_at")
+
+  category Category          @relation(fields: [categoryId], references: [id])
+  owner    User              @relation(fields: [ownerId], references: [id])
+  places   LostReportPlace[]
+  matches  Match[]
+  delivery Delivery?
+
+  @@index([status])
+  @@index([ownerId])
+  @@map("lost_reports")
+}
+
+model LostReportPlace {
+  id           Int    @id @default(autoincrement())
+  lostReportId String @map("lost_report_id") @db.Uuid
+  placeId      Int    @map("place_id")
+  classroomId  Int?   @map("classroom_id")
+
+  lostReport LostReport @relation(fields: [lostReportId], references: [id], onDelete: Cascade)
+  place      Place      @relation(fields: [placeId], references: [id])
+  classroom  Classroom? @relation(fields: [classroomId], references: [id])
+
+  @@unique([lostReportId, placeId, classroomId])
+  @@map("lost_report_places")
+}
+
+// ─────────────── Matching ───────────────
+
+/// A pending pickup is a match with status WILL_PICK_UP
+model Match {
+  id           String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lostReportId String      @map("lost_report_id") @db.Uuid
+  foundItemId  String      @map("found_item_id") @db.Uuid
+  similarity   Int         @db.SmallInt /// 0 to 100
+  status       MatchStatus @default(SUGGESTED)
+  createdAt    DateTime    @default(now()) @map("created_at")
+  respondedAt  DateTime?   @map("responded_at")
+
+  lostReport LostReport @relation(fields: [lostReportId], references: [id], onDelete: Cascade)
+  foundItem  FoundItem  @relation(fields: [foundItemId], references: [id], onDelete: Cascade)
+
+  @@unique([lostReportId, foundItemId])
+  @@index([status])
+  @@map("matches")
+}
+
+// ─────────────── Deliveries ───────────────
+
+model Delivery {
+  id                      String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  foundItemId             String   @unique @map("found_item_id") @db.Uuid
+  lostReportId            String?  @unique @map("lost_report_id") @db.Uuid /// Null if the person had no lost report
+  recipientName           String   @map("recipient_name") @db.VarChar(150)
+  recipientEmail          String   @map("recipient_email") @db.VarChar(150)
+  recipientUniversityCode String   @map("recipient_university_code") @db.VarChar(20)
+  recipientUserId         String?  @map("recipient_user_id") @db.Uuid
+  registeredById          String   @map("registered_by_id") @db.Uuid
+  deliveredAt             DateTime @default(now()) @map("delivered_at")
+
+  foundItem     FoundItem   @relation(fields: [foundItemId], references: [id])
+  lostReport    LostReport? @relation(fields: [lostReportId], references: [id])
+  recipientUser User?       @relation("DeliveryRecipient", fields: [recipientUserId], references: [id])
+  registeredBy  User        @relation("DeliveryRegisteredBy", fields: [registeredById], references: [id])
+
+  @@map("deliveries")
+}

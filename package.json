@@ -1,0 +1,43 @@
+{
+  "name": "perdi-u",
+  "version": "1.0.0",
+  "private": true,
+  "description": "¿Lo perdi-U? ¡Lo encontr-U! Objetos perdidos y encontrados de la universidad",
+  "type": "module",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "test": "node ./script/tddScript.js",
+    "test:watch": "jest --watch",
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend",
+    "build": "npm run build -w frontend",
+    "typecheck": "npm run typecheck -w backend && npm run typecheck -w frontend",
+    "lint": "eslint .",
+    "cypress": "cypress open",
+    "cypress-run": "cypress run",
+    "postinstall": "git init && npx husky",
+    "semantic-commits-on": "node semantic-commits.js enable",
+    "semantic-commits-off": "node semantic-commits.js disabled"
+  },
+  "author": "Equipo Perdi-U",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-react": "^7.29.7",
+    "@babel/preset-typescript": "^7.29.7",
+    "@types/jest": "^29.5.14",
+    "babel-jest": "^29.7.0",
+    "cross-spawn": "^7.0.6",
+    "cypress": "^13.17.0",
+    "eslint": "^9.39.5",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.71.2"
+  }
+}
