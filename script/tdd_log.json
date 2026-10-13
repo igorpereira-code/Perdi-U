@@ -1,0 +1,16 @@
+[
+  {
+    "numPassedTests": 7,
+    "failedTests": 0,
+    "numTotalTests": 7,
+    "timestamp": 1791918629736,
+    "success": true,
+    "testId": 0
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: fijar las versiones de las librerías del proyecto",
+    "commitTimestamp": 1791918923731,
+    "testId": 0
+  }
+]

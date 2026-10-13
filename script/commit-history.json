@@ -1,0 +1,21 @@
+[
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-13T19:15:21.000Z",
+      "message": "chore: fijar las versiones de las librerías del proyecto",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 12369,
+      "additions": 12369,
+      "deletions": 0,
+      "date": "2026-10-13"
+    },
+    "coverage": 96.77,
+    "test_count": 7,
+    "failed_tests": 0,
+    "conclusion": "success"
+  }
+]
