@@ -28,9 +28,31 @@
     "testId": 2
   },
   {
-    "commitId": "HEAD",
+    "commitId": "32b047f443669afcf6ce5289cc0c6f19dad95369",
     "commitName": "chore: agregar íconos, la fuente Inter y los colores de estado",
     "commitTimestamp": 1792095812568,
     "testId": 2
+  },
+  {
+    "numPassedTests": 7,
+    "failedTests": 0,
+    "numTotalTests": 7,
+    "timestamp": 1792095968333,
+    "success": false,
+    "testId": 3
+  },
+  {
+    "numPassedTests": 9,
+    "failedTests": 0,
+    "numTotalTests": 9,
+    "timestamp": 1792096193731,
+    "success": true,
+    "testId": 3
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar el estado de objetos y reportes con etiquetas de colores",
+    "commitTimestamp": 1792096422932,
+    "testId": 3
   }
 ]

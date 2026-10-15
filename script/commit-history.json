@@ -38,12 +38,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "32b047f443669afcf6ce5289cc0c6f19dad95369",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T20:23:31.000Z",
       "message": "chore: agregar íconos, la fuente Inter y los colores de estado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/32b047f443669afcf6ce5289cc0c6f19dad95369"
     },
     "stats": {
       "total": 75,
@@ -53,6 +53,25 @@
     },
     "coverage": 96.77,
     "test_count": 7,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T20:33:41.000Z",
+      "message": "feat: mostrar el estado de objetos y reportes con etiquetas de colores",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 66,
+      "additions": 66,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 97.22,
+    "test_count": 9,
     "failed_tests": 0,
     "conclusion": "success"
   }
