@@ -19,17 +19,36 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "4525dd6a4aba05d90df38c195c5e712da020f62a",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T13:41:47.000Z",
       "message": "chore: revisar automáticamente los pull requests de cada historia",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/4525dd6a4aba05d90df38c195c5e712da020f62a"
     },
     "stats": {
       "total": 257,
       "additions": 256,
       "deletions": 1,
+      "date": "2026-10-15"
+    },
+    "coverage": 96.77,
+    "test_count": 7,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T20:23:31.000Z",
+      "message": "chore: agregar íconos, la fuente Inter y los colores de estado",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 75,
+      "additions": 57,
+      "deletions": 18,
       "date": "2026-10-15"
     },
     "coverage": 96.77,

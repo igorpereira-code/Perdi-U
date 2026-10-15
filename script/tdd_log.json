@@ -14,9 +14,23 @@
     "testId": 0
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4525dd6a4aba05d90df38c195c5e712da020f62a",
     "commitName": "chore: revisar automáticamente los pull requests de cada historia",
     "commitTimestamp": 1792071709486,
     "testId": 1
+  },
+  {
+    "numPassedTests": 7,
+    "failedTests": 0,
+    "numTotalTests": 7,
+    "timestamp": 1792095755903,
+    "success": true,
+    "testId": 2
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: agregar íconos, la fuente Inter y los colores de estado",
+    "commitTimestamp": 1792095812568,
+    "testId": 2
   }
 ]
