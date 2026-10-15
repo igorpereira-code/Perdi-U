@@ -304,17 +304,36 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "0ce409700c6cc257d31b4a64aae2b12966fab248",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T21:44:07.000Z",
       "message": "feat: permitir elegir una foto de la galería, verla antes de enviarla y quitarla",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0ce409700c6cc257d31b4a64aae2b12966fab248"
     },
     "stats": {
       "total": 90,
       "additions": 90,
       "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.68,
+    "test_count": 36,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T22:45:46.000Z",
+      "message": "chore: permitir usuarios de prueba solo cuando se active en el entorno local",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 5,
+      "additions": 3,
+      "deletions": 2,
       "date": "2026-10-15"
     },
     "coverage": 98.68,

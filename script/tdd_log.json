@@ -384,9 +384,23 @@
     "testId": 16
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0ce409700c6cc257d31b4a64aae2b12966fab248",
     "commitName": "feat: permitir elegir una foto de la galería, verla antes de enviarla y quitarla",
     "commitTimestamp": 1792100647816,
     "testId": 16
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 0,
+    "numTotalTests": 36,
+    "timestamp": 1792101976436,
+    "success": true,
+    "testId": 17
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: permitir usuarios de prueba solo cuando se active en el entorno local",
+    "commitTimestamp": 1792104347595,
+    "testId": 17
   }
 ]
