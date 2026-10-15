@@ -152,12 +152,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "96b3a619930cdab3b48fa852c13ff5077439f752",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T21:15:30.000Z",
       "message": "feat: mostrar avisos importantes al usuario en un recuadro amarillo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/96b3a619930cdab3b48fa852c13ff5077439f752"
     },
     "stats": {
       "total": 24,
@@ -167,6 +167,25 @@
     },
     "coverage": 98.08,
     "test_count": 24,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T21:18:13.000Z",
+      "message": "feat: avisar al usuario cuando una lista está vacía y qué puede hacer",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 32,
+      "additions": 32,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.11,
+    "test_count": 25,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -184,9 +184,31 @@
     "testId": 8
   },
   {
-    "commitId": "HEAD",
+    "commitId": "96b3a619930cdab3b48fa852c13ff5077439f752",
     "commitName": "feat: mostrar avisos importantes al usuario en un recuadro amarillo",
     "commitTimestamp": 1792098933095,
     "testId": 8
+  },
+  {
+    "numPassedTests": 24,
+    "failedTests": 1,
+    "numTotalTests": 25,
+    "timestamp": 1792099044417,
+    "success": false,
+    "testId": 9
+  },
+  {
+    "numPassedTests": 25,
+    "failedTests": 0,
+    "numTotalTests": 25,
+    "timestamp": 1792099077187,
+    "success": true,
+    "testId": 9
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: avisar al usuario cuando una lista está vacía y qué puede hacer",
+    "commitTimestamp": 1792099096047,
+    "testId": 9
   }
 ]
