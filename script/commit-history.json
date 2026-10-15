@@ -266,12 +266,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "cd59ca5e0a33e9d204809d2a94d7bbb4bbe7ba2f",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T21:40:21.000Z",
       "message": "feat: mostrar el logo con el nombre de la app",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/cd59ca5e0a33e9d204809d2a94d7bbb4bbe7ba2f"
     },
     "stats": {
       "total": 24,
@@ -281,6 +281,25 @@
     },
     "coverage": 98.46,
     "test_count": 32,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T21:42:00.000Z",
+      "message": "feat: agregar el encabezado de pantalla con botón para volver atrás",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 37,
+      "additions": 37,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.48,
+    "test_count": 33,
     "failed_tests": 0,
     "conclusion": "success"
   }

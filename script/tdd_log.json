@@ -332,9 +332,31 @@
     "testId": 14
   },
   {
-    "commitId": "HEAD",
+    "commitId": "cd59ca5e0a33e9d204809d2a94d7bbb4bbe7ba2f",
     "commitName": "feat: mostrar el logo con el nombre de la app",
     "commitTimestamp": 1792100422459,
     "testId": 14
+  },
+  {
+    "numPassedTests": 32,
+    "failedTests": 1,
+    "numTotalTests": 33,
+    "timestamp": 1792100491082,
+    "success": false,
+    "testId": 15
+  },
+  {
+    "numPassedTests": 33,
+    "failedTests": 0,
+    "numTotalTests": 33,
+    "timestamp": 1792100505645,
+    "success": true,
+    "testId": 15
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: agregar el encabezado de pantalla con botón para volver atrás",
+    "commitTimestamp": 1792100520783,
+    "testId": 15
   }
 ]
