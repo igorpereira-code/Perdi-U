@@ -133,12 +133,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "dc838ce1e49123666ffcdc35815078f7135ba041",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T21:08:32.000Z",
       "message": "feat: agregar el campo de formulario con su etiqueta, aviso de opcional y mensaje de error",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/dc838ce1e49123666ffcdc35815078f7135ba041"
     },
     "stats": {
       "total": 81,
@@ -148,6 +148,25 @@
     },
     "coverage": 98.04,
     "test_count": 23,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T21:15:30.000Z",
+      "message": "feat: mostrar avisos importantes al usuario en un recuadro amarillo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 24,
+      "additions": 24,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.08,
+    "test_count": 24,
     "failed_tests": 0,
     "conclusion": "success"
   }

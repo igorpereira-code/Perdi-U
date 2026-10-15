@@ -162,9 +162,31 @@
     "testId": 7
   },
   {
-    "commitId": "HEAD",
+    "commitId": "dc838ce1e49123666ffcdc35815078f7135ba041",
     "commitName": "feat: agregar el campo de formulario con su etiqueta, aviso de opcional y mensaje de error",
     "commitTimestamp": 1792098514971,
     "testId": 7
+  },
+  {
+    "numPassedTests": 23,
+    "failedTests": 1,
+    "numTotalTests": 24,
+    "timestamp": 1792098862628,
+    "success": false,
+    "testId": 8
+  },
+  {
+    "numPassedTests": 24,
+    "failedTests": 0,
+    "numTotalTests": 24,
+    "timestamp": 1792098898940,
+    "success": true,
+    "testId": 8
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar avisos importantes al usuario en un recuadro amarillo",
+    "commitTimestamp": 1792098933095,
+    "testId": 8
   }
 ]
