@@ -72,9 +72,39 @@
     "testId": 4
   },
   {
-    "commitId": "HEAD",
+    "commitId": "a2175fed08da130ed80e8ca2a3d920dc2d700b3c",
     "commitName": "refactor: separar qué significa cada estado de cómo se muestra en pantalla",
     "commitTimestamp": 1792097346455,
     "testId": 4
+  },
+  {
+    "numPassedTests": 12,
+    "failedTests": 3,
+    "numTotalTests": 15,
+    "timestamp": 1792097708851,
+    "success": false,
+    "testId": 5
+  },
+  {
+    "numPassedTests": 15,
+    "failedTests": 0,
+    "numTotalTests": 15,
+    "timestamp": 1792097770255,
+    "success": true,
+    "testId": 5
+  },
+  {
+    "numPassedTests": 15,
+    "failedTests": 0,
+    "numTotalTests": 15,
+    "timestamp": 1792097830013,
+    "success": true,
+    "testId": 5
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: agregar el botón con los estilos de la universidad",
+    "commitTimestamp": 1792097884733,
+    "testId": 5
   }
 ]

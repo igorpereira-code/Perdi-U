@@ -76,12 +76,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "a2175fed08da130ed80e8ca2a3d920dc2d700b3c",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T20:49:04.000Z",
       "message": "refactor: separar qué significa cada estado de cómo se muestra en pantalla",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a2175fed08da130ed80e8ca2a3d920dc2d700b3c"
     },
     "stats": {
       "total": 135,
@@ -91,6 +91,25 @@
     },
     "coverage": 97.44,
     "test_count": 12,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T20:58:02.000Z",
+      "message": "feat: agregar el botón con los estilos de la universidad",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 59,
+      "additions": 59,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 97.62,
+    "test_count": 15,
     "failed_tests": 0,
     "conclusion": "success"
   }
