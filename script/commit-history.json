@@ -57,12 +57,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "52a644689393fee37ac44f3afef774456844ba2c",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T20:33:41.000Z",
       "message": "feat: mostrar el estado de objetos y reportes con etiquetas de colores",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/52a644689393fee37ac44f3afef774456844ba2c"
     },
     "stats": {
       "total": 66,
@@ -72,6 +72,25 @@
     },
     "coverage": 97.22,
     "test_count": 9,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T20:49:04.000Z",
+      "message": "refactor: separar qué significa cada estado de cómo se muestra en pantalla",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 135,
+      "additions": 88,
+      "deletions": 47,
+      "date": "2026-10-15"
+    },
+    "coverage": 97.44,
+    "test_count": 12,
     "failed_tests": 0,
     "conclusion": "success"
   }

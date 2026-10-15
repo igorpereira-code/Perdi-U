@@ -50,9 +50,31 @@
     "testId": 3
   },
   {
-    "commitId": "HEAD",
+    "commitId": "52a644689393fee37ac44f3afef774456844ba2c",
     "commitName": "feat: mostrar el estado de objetos y reportes con etiquetas de colores",
     "commitTimestamp": 1792096422932,
     "testId": 3
+  },
+  {
+    "numPassedTests": 9,
+    "failedTests": 4,
+    "numTotalTests": 13,
+    "timestamp": 1792097192766,
+    "success": false,
+    "testId": 4
+  },
+  {
+    "numPassedTests": 12,
+    "failedTests": 0,
+    "numTotalTests": 12,
+    "timestamp": 1792097326675,
+    "success": true,
+    "testId": 4
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor: separar qué significa cada estado de cómo se muestra en pantalla",
+    "commitTimestamp": 1792097346455,
+    "testId": 4
   }
 ]
