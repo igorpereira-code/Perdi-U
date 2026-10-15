@@ -228,9 +228,39 @@
     "testId": 10
   },
   {
-    "commitId": "HEAD",
+    "commitId": "8a50303c254036a4b22992b7f12f3a362975964c",
     "commitName": "feat: mostrar los datos de un objeto o reporte como nombre y valor",
     "commitTimestamp": 1792099282484,
     "testId": 10
+  },
+  {
+    "numPassedTests": 26,
+    "failedTests": 1,
+    "numTotalTests": 27,
+    "timestamp": 1792099678330,
+    "success": false,
+    "testId": 11
+  },
+  {
+    "numPassedTests": 27,
+    "failedTests": 0,
+    "numTotalTests": 27,
+    "timestamp": 1792099713787,
+    "success": true,
+    "testId": 11
+  },
+  {
+    "numPassedTests": 27,
+    "failedTests": 0,
+    "numTotalTests": 27,
+    "timestamp": 1792099749169,
+    "success": true,
+    "testId": 11
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar dónde queda Bienestar Estudiantil y en qué horario atiende",
+    "commitTimestamp": 1792099770369,
+    "testId": 11
   }
 ]

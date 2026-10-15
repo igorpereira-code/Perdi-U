@@ -190,12 +190,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "8a50303c254036a4b22992b7f12f3a362975964c",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T21:21:20.000Z",
       "message": "feat: mostrar los datos de un objeto o reporte como nombre y valor",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/8a50303c254036a4b22992b7f12f3a362975964c"
     },
     "stats": {
       "total": 25,
@@ -205,6 +205,25 @@
     },
     "coverage": 98.15,
     "test_count": 26,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T21:29:28.000Z",
+      "message": "feat: mostrar dónde queda Bienestar Estudiantil y en qué horario atiende",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 37,
+      "additions": 37,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.25,
+    "test_count": 27,
     "failed_tests": 0,
     "conclusion": "success"
   }
