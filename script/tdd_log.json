@@ -398,9 +398,23 @@
     "testId": 17
   },
   {
-    "commitId": "HEAD",
+    "commitId": "aed848f7725e4d2b5e1bcb5d2adc4bb94056dcf0",
     "commitName": "chore: permitir usuarios de prueba solo cuando se active en el entorno local",
     "commitTimestamp": 1792104347595,
     "testId": 17
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 0,
+    "numTotalTests": 36,
+    "timestamp": 1792104354158,
+    "success": true,
+    "testId": 18
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: dejar vacíos los datos del proyecto en el archivo de ejemplo del entorno",
+    "commitTimestamp": 1792105282216,
+    "testId": 18
   }
 ]

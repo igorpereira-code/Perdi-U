@@ -323,16 +323,35 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "aed848f7725e4d2b5e1bcb5d2adc4bb94056dcf0",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T22:45:46.000Z",
       "message": "chore: permitir usuarios de prueba solo cuando se active en el entorno local",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/aed848f7725e4d2b5e1bcb5d2adc4bb94056dcf0"
     },
     "stats": {
       "total": 5,
       "additions": 3,
+      "deletions": 2,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.68,
+    "test_count": 36,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T23:01:21.000Z",
+      "message": "chore: dejar vacíos los datos del proyecto en el archivo de ejemplo del entorno",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
       "deletions": 2,
       "date": "2026-10-15"
     },
