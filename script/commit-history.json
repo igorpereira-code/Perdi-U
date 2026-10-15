@@ -285,12 +285,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ce16dbf0ff8f150e3818b9ccb89a2f225ce9b821",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T21:42:00.000Z",
       "message": "feat: agregar el encabezado de pantalla con botón para volver atrás",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ce16dbf0ff8f150e3818b9ccb89a2f225ce9b821"
     },
     "stats": {
       "total": 37,
@@ -300,6 +300,25 @@
     },
     "coverage": 98.48,
     "test_count": 33,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T21:44:07.000Z",
+      "message": "feat: permitir elegir una foto de la galería, verla antes de enviarla y quitarla",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 90,
+      "additions": 90,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.68,
+    "test_count": 36,
     "failed_tests": 0,
     "conclusion": "success"
   }

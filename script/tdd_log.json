@@ -354,9 +354,39 @@
     "testId": 15
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ce16dbf0ff8f150e3818b9ccb89a2f225ce9b821",
     "commitName": "feat: agregar el encabezado de pantalla con botón para volver atrás",
     "commitTimestamp": 1792100520783,
     "testId": 15
+  },
+  {
+    "numPassedTests": 33,
+    "failedTests": 3,
+    "numTotalTests": 36,
+    "timestamp": 1792100591822,
+    "success": false,
+    "testId": 16
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 0,
+    "numTotalTests": 36,
+    "timestamp": 1792100605552,
+    "success": true,
+    "testId": 16
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 0,
+    "numTotalTests": 36,
+    "timestamp": 1792100629786,
+    "success": true,
+    "testId": 16
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir elegir una foto de la galería, verla antes de enviarla y quitarla",
+    "commitTimestamp": 1792100647816,
+    "testId": 16
   }
 ]
