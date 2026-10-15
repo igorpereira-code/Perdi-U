@@ -247,12 +247,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "03ef304fb4ce1f08f9959238cf54ce94fd457023",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T21:35:38.000Z",
       "message": "feat: mostrar la foto del objeto o, si no tiene, el ícono de su categoría",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/03ef304fb4ce1f08f9959238cf54ce94fd457023"
     },
     "stats": {
       "total": 44,
@@ -262,6 +262,25 @@
     },
     "coverage": 98.44,
     "test_count": 31,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T21:40:21.000Z",
+      "message": "feat: mostrar el logo con el nombre de la app",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 24,
+      "additions": 24,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.46,
+    "test_count": 32,
     "failed_tests": 0,
     "conclusion": "success"
   }
