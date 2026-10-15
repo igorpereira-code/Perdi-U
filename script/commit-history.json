@@ -95,12 +95,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "99a35eaa37b4e921b833ede9233dabaa372cb2ef",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T20:58:02.000Z",
       "message": "feat: agregar el botón con los estilos de la universidad",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/99a35eaa37b4e921b833ede9233dabaa372cb2ef"
     },
     "stats": {
       "total": 59,
@@ -110,6 +110,25 @@
     },
     "coverage": 97.62,
     "test_count": 15,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T21:03:58.000Z",
+      "message": "feat: reconocer cuando el usuario deja un dato vacío en un formulario",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 28,
+      "additions": 28,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 97.87,
+    "test_count": 19,
     "failed_tests": 0,
     "conclusion": "success"
   }

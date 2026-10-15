@@ -102,9 +102,39 @@
     "testId": 5
   },
   {
-    "commitId": "HEAD",
+    "commitId": "99a35eaa37b4e921b833ede9233dabaa372cb2ef",
     "commitName": "feat: agregar el botón con los estilos de la universidad",
     "commitTimestamp": 1792097884733,
     "testId": 5
+  },
+  {
+    "numPassedTests": 16,
+    "failedTests": 3,
+    "numTotalTests": 19,
+    "timestamp": 1792098136571,
+    "success": false,
+    "testId": 6
+  },
+  {
+    "numPassedTests": 19,
+    "failedTests": 0,
+    "numTotalTests": 19,
+    "timestamp": 1792098172284,
+    "success": true,
+    "testId": 6
+  },
+  {
+    "numPassedTests": 19,
+    "failedTests": 0,
+    "numTotalTests": 19,
+    "timestamp": 1792098214620,
+    "success": true,
+    "testId": 6
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: reconocer cuando el usuario deja un dato vacío en un formulario",
+    "commitTimestamp": 1792098241023,
+    "testId": 6
   }
 ]
