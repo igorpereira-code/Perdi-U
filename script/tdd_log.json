@@ -258,9 +258,31 @@
     "testId": 11
   },
   {
-    "commitId": "HEAD",
+    "commitId": "cddd2126699c5f215dc72d785cc9e958a536e015",
     "commitName": "feat: mostrar dónde queda Bienestar Estudiantil y en qué horario atiende",
     "commitTimestamp": 1792099770369,
     "testId": 11
+  },
+  {
+    "numPassedTests": 27,
+    "failedTests": 2,
+    "numTotalTests": 29,
+    "timestamp": 1792099888683,
+    "success": false,
+    "testId": 12
+  },
+  {
+    "numPassedTests": 29,
+    "failedTests": 0,
+    "numTotalTests": 29,
+    "timestamp": 1792099928411,
+    "success": true,
+    "testId": 12
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: identificar cada categoría de objeto con su propio ícono",
+    "commitTimestamp": 1792099948460,
+    "testId": 12
   }
 ]
