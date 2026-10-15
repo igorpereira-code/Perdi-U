@@ -228,12 +228,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "25d6d1971d5b83e5beaa84bb807258160618095d",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T21:32:26.000Z",
       "message": "feat: identificar cada categoría de objeto con su propio ícono",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/25d6d1971d5b83e5beaa84bb807258160618095d"
     },
     "stats": {
       "total": 38,
@@ -243,6 +243,25 @@
     },
     "coverage": 98.31,
     "test_count": 29,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T21:35:38.000Z",
+      "message": "feat: mostrar la foto del objeto o, si no tiene, el ícono de su categoría",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 44,
+      "additions": 44,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.44,
+    "test_count": 31,
     "failed_tests": 0,
     "conclusion": "success"
   }

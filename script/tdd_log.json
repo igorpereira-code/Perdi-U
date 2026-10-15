@@ -280,9 +280,39 @@
     "testId": 12
   },
   {
-    "commitId": "HEAD",
+    "commitId": "25d6d1971d5b83e5beaa84bb807258160618095d",
     "commitName": "feat: identificar cada categoría de objeto con su propio ícono",
     "commitTimestamp": 1792099948460,
     "testId": 12
+  },
+  {
+    "numPassedTests": 29,
+    "failedTests": 2,
+    "numTotalTests": 31,
+    "timestamp": 1792100041229,
+    "success": false,
+    "testId": 13
+  },
+  {
+    "numPassedTests": 31,
+    "failedTests": 0,
+    "numTotalTests": 31,
+    "timestamp": 1792100086974,
+    "success": true,
+    "testId": 13
+  },
+  {
+    "numPassedTests": 31,
+    "failedTests": 0,
+    "numTotalTests": 31,
+    "timestamp": 1792100121177,
+    "success": true,
+    "testId": 13
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar la foto del objeto o, si no tiene, el ícono de su categoría",
+    "commitTimestamp": 1792100140523,
+    "testId": 13
   }
 ]
