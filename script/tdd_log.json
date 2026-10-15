@@ -132,9 +132,39 @@
     "testId": 6
   },
   {
-    "commitId": "HEAD",
+    "commitId": "9c919420b1c28e9dec55422ce48d32e648368b2e",
     "commitName": "feat: reconocer cuando el usuario deja un dato vacío en un formulario",
     "commitTimestamp": 1792098241023,
     "testId": 6
+  },
+  {
+    "numPassedTests": 20,
+    "failedTests": 3,
+    "numTotalTests": 23,
+    "timestamp": 1792098380278,
+    "success": false,
+    "testId": 7
+  },
+  {
+    "numPassedTests": 23,
+    "failedTests": 0,
+    "numTotalTests": 23,
+    "timestamp": 1792098432574,
+    "success": true,
+    "testId": 7
+  },
+  {
+    "numPassedTests": 23,
+    "failedTests": 0,
+    "numTotalTests": 23,
+    "timestamp": 1792098487015,
+    "success": true,
+    "testId": 7
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: agregar el campo de formulario con su etiqueta, aviso de opcional y mensaje de error",
+    "commitTimestamp": 1792098514971,
+    "testId": 7
   }
 ]

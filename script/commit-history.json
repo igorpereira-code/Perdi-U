@@ -114,12 +114,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "9c919420b1c28e9dec55422ce48d32e648368b2e",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T21:03:58.000Z",
       "message": "feat: reconocer cuando el usuario deja un dato vacío en un formulario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/9c919420b1c28e9dec55422ce48d32e648368b2e"
     },
     "stats": {
       "total": 28,
@@ -129,6 +129,25 @@
     },
     "coverage": 97.87,
     "test_count": 19,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T21:08:32.000Z",
+      "message": "feat: agregar el campo de formulario con su etiqueta, aviso de opcional y mensaje de error",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 81,
+      "additions": 81,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.04,
+    "test_count": 23,
     "failed_tests": 0,
     "conclusion": "success"
   }
