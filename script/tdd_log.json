@@ -8,9 +8,15 @@
     "testId": 0
   },
   {
-    "commitId": "HEAD",
+    "commitId": "772d504c6b1f7e2dcb88a0acc53e73b1770723a9",
     "commitName": "chore: fijar las versiones de las librerías del proyecto",
     "commitTimestamp": 1791918923731,
     "testId": 0
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: revisar automáticamente los pull requests de cada historia",
+    "commitTimestamp": 1792071709486,
+    "testId": 1
   }
 ]

@@ -1,17 +1,36 @@
 [
   {
-    "sha": "HEAD",
+    "sha": "772d504c6b1f7e2dcb88a0acc53e73b1770723a9",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-13T19:15:21.000Z",
       "message": "chore: fijar las versiones de las librerías del proyecto",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/772d504c6b1f7e2dcb88a0acc53e73b1770723a9"
     },
     "stats": {
       "total": 12369,
       "additions": 12369,
       "deletions": 0,
       "date": "2026-10-13"
+    },
+    "coverage": 96.77,
+    "test_count": 7,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T13:41:47.000Z",
+      "message": "chore: revisar automáticamente los pull requests de cada historia",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 257,
+      "additions": 256,
+      "deletions": 1,
+      "date": "2026-10-15"
     },
     "coverage": 96.77,
     "test_count": 7,
