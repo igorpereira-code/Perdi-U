@@ -206,9 +206,31 @@
     "testId": 9
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ddb15771a7fca84a40f797a0255a742c0f1a67cd",
     "commitName": "feat: avisar al usuario cuando una lista está vacía y qué puede hacer",
     "commitTimestamp": 1792099096047,
     "testId": 9
+  },
+  {
+    "numPassedTests": 25,
+    "failedTests": 1,
+    "numTotalTests": 26,
+    "timestamp": 1792099229485,
+    "success": false,
+    "testId": 10
+  },
+  {
+    "numPassedTests": 26,
+    "failedTests": 0,
+    "numTotalTests": 26,
+    "timestamp": 1792099262408,
+    "success": true,
+    "testId": 10
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar los datos de un objeto o reporte como nombre y valor",
+    "commitTimestamp": 1792099282484,
+    "testId": 10
   }
 ]

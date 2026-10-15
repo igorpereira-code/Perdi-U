@@ -171,12 +171,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ddb15771a7fca84a40f797a0255a742c0f1a67cd",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T21:18:13.000Z",
       "message": "feat: avisar al usuario cuando una lista está vacía y qué puede hacer",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ddb15771a7fca84a40f797a0255a742c0f1a67cd"
     },
     "stats": {
       "total": 32,
@@ -186,6 +186,25 @@
     },
     "coverage": 98.11,
     "test_count": 25,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-15T21:21:20.000Z",
+      "message": "feat: mostrar los datos de un objeto o reporte como nombre y valor",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 25,
+      "additions": 25,
+      "deletions": 0,
+      "date": "2026-10-15"
+    },
+    "coverage": 98.15,
+    "test_count": 26,
     "failed_tests": 0,
     "conclusion": "success"
   }
