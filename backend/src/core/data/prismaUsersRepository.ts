@@ -1,12 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { db } from './prisma';
 import type { UsersRepository } from './usersRepository';
-
-let prisma: PrismaClient | undefined;
-
-function db(): PrismaClient {
-  prisma ??= new PrismaClient();
-  return prisma;
-}
 
 const PROFILE_FIELDS = { id: true, name: true, email: true, photoUrl: true, role: true } as const;
 

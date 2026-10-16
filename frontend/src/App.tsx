@@ -6,8 +6,15 @@ import { AppLayout } from './core/presenter/AppLayout';
 import { HomePage } from './core/presenter/HomePage';
 import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
+import type { MatchesService } from './matching/data/matchesService';
+import { MatchesScreen } from './matching/presenter/MatchesScreen';
 
-export default function App({ authService }: { authService: AuthService }) {
+type AppProps = {
+  authService: AuthService;
+  matchesService: MatchesService;
+};
+
+export default function App({ authService, matchesService }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [notInstitutional, setNotInstitutional] = useState(false);
@@ -50,6 +57,12 @@ export default function App({ authService }: { authService: AuthService }) {
         path="/perfil"
         element={signedInPage((me) => (
           <ProfilePage user={me} onSignOut={handleSignOut} />
+        ))}
+      />
+      <Route
+        path="/mis-reportes/:code/coincidencias"
+        element={signedInPage(() => (
+          <MatchesScreen matchesService={matchesService} />
         ))}
       />
       <Route
