@@ -149,3 +149,11 @@ describe('Solo cuentas de la universidad', () => {
     expect(res.body).toEqual({ code: 'NOT_INSTITUTIONAL_EMAIL' });
   });
 });
+
+describe('Sin sesión', () => {
+  it('pide iniciar sesión cuando no hay sesión y los usuarios de prueba están apagados', async () => {
+    const res = await request(createApp({ allowSampleUsers: false })).get('/me');
+
+    expect(res.status).toBe(401);
+  });
+});

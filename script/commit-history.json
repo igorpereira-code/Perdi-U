@@ -494,12 +494,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "cd23f49a6ed3e075b4bde6460798837bc0289667",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T20:48:51.000Z",
       "message": "feat: permitir que el usuario cierre su sesión desde su perfil",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/cd23f49a6ed3e075b4bde6460798837bc0289667"
     },
     "stats": {
       "total": 115,
@@ -509,6 +509,25 @@
     },
     "coverage": 88.74,
     "test_count": 62,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T21:04:02.000Z",
+      "message": "feat: pedir que vuelva a iniciar sesión a quien cerró su sesión o no ha ingresado",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 84,
+      "additions": 66,
+      "deletions": 18,
+      "date": "2026-10-16"
+    },
+    "coverage": 89.24,
+    "test_count": 65,
     "failed_tests": 0,
     "conclusion": "success"
   }

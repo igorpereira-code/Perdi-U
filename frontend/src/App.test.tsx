@@ -28,10 +28,16 @@ function renderAt(path: string, user: AppUser | null | Error) {
 }
 
 describe('Navegación de la app', () => {
-  it('muestra la pantalla de ingreso en /ingresar', () => {
+  it('muestra la pantalla de ingreso en /ingresar', async () => {
     renderAt('/ingresar', null);
 
-    expect(screen.getByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+    expect(await screen.findByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+  });
+
+  it('manda a la pantalla de ingreso a quien no inició sesión', async () => {
+    renderAt('/', null);
+
+    expect(await screen.findByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
   });
 
   it('muestra la pantalla principal a quien ya ingresó', async () => {

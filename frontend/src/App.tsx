@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import { AppLayout } from './core/presenter/AppLayout';
@@ -8,8 +8,8 @@ import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
 
 export default function App({ authService }: { authService: AuthService }) {
-  const navigate = useNavigate();
-  const [user, setUser] = useState<AppUser | null>(null);
+  // undefined = still checking who is signed in; null = nobody is signed in.
+  const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [notInstitutional, setNotInstitutional] = useState(false);
 
   useEffect(() => {
@@ -17,22 +17,26 @@ export default function App({ authService }: { authService: AuthService }) {
       .getCurrentUser()
       .then(setUser)
       .catch((error: unknown) => {
-        if (error instanceof NotInstitutionalEmailError) {
-          setNotInstitutional(true);
-          navigate('/ingresar');
-        }
+        setNotInstitutional(error instanceof NotInstitutionalEmailError);
+        setUser(null);
       });
-  }, [authService, navigate]);
+  }, [authService]);
 
   async function handleSignOut() {
     await authService.signOut();
     setUser(null);
-    navigate('/ingresar');
   }
 
-  /** Pages for signed-in users: they go inside the blue header and the bottom menu. */
-  const signedInPage = (page: (me: AppUser) => ReactNode) =>
-    user ? <AppLayout>{page(user)}</AppLayout> : null;
+  /** Pages for signed-in users: inside the blue header and bottom menu. Without a session, go to sign in. */
+  const signedInPage = (page: (me: AppUser) => ReactNode) => {
+    if (user === undefined) {
+      return null;
+    }
+    if (user === null) {
+      return <Navigate to="/ingresar" replace />;
+    }
+    return <AppLayout>{page(user)}</AppLayout>;
+  };
 
   return (
     <Routes>

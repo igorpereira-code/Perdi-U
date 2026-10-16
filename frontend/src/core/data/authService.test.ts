@@ -60,4 +60,15 @@ describe('Saber quién inició sesión', () => {
 
     expect(auth.signOut).toHaveBeenCalled();
   });
+
+  it('cierra la sesión cuando ya no es válida, para que vuelva a ingresar', async () => {
+    const auth = fakeAuth({ access_token: 'expired-token' });
+    const fetchFn = jest
+      .fn()
+      .mockResolvedValue({ ok: false, status: 401, json: async () => ({ error: 'expired' }) });
+    const service = createAuthService({ auth, apiUrl: 'http://api', fetchFn });
+
+    await expect(service.getCurrentUser()).resolves.toBeNull();
+    expect(auth.signOut).toHaveBeenCalled();
+  });
 });

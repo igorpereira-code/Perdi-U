@@ -9,11 +9,12 @@ import type { UsersRepository } from './core/data/usersRepository';
 type AppOptions = {
   verifyToken?: VerifyToken;
   users?: UsersRepository;
+  allowSampleUsers?: boolean;
 };
-
 export function createApp({
   verifyToken = verifySupabaseToken,
   users = prismaUsersRepository,
+  allowSampleUsers = process.env.ALLOW_SAMPLE_USERS === 'true',
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -23,7 +24,7 @@ export function createApp({
     res.json({ status: 'ok', app: APP_NAME });
   });
 
-  app.use(createCurrentUser(verifyToken, users));
+  app.use(createCurrentUser(verifyToken, users, allowSampleUsers));
 
   app.get('/me', (req, res) => {
     res.json(getCurrentUser(req));

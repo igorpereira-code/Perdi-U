@@ -876,9 +876,63 @@
     "testId": 26
   },
   {
-    "commitId": "HEAD",
+    "commitId": "cd23f49a6ed3e075b4bde6460798837bc0289667",
     "commitName": "feat: permitir que el usuario cierre su sesión desde su perfil",
     "commitTimestamp": 1792183732045,
     "testId": 26
+  },
+  {
+    "numPassedTests": 62,
+    "failedTests": 1,
+    "numTotalTests": 63,
+    "timestamp": 1792183904541,
+    "success": false,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 63,
+    "failedTests": 0,
+    "numTotalTests": 63,
+    "timestamp": 1792184263928,
+    "success": true,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 63,
+    "failedTests": 1,
+    "numTotalTests": 64,
+    "timestamp": 1792184299466,
+    "success": false,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 64,
+    "failedTests": 0,
+    "numTotalTests": 64,
+    "timestamp": 1792184354452,
+    "success": true,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 64,
+    "failedTests": 1,
+    "numTotalTests": 65,
+    "timestamp": 1792184408379,
+    "success": false,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 65,
+    "failedTests": 0,
+    "numTotalTests": 65,
+    "timestamp": 1792184438801,
+    "success": true,
+    "testId": 27
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: pedir que vuelva a iniciar sesión a quien cerró su sesión o no ha ingresado",
+    "commitTimestamp": 1792184642808,
+    "testId": 27
   }
 ]

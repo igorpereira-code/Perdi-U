@@ -32,6 +32,10 @@ export function createAuthService({
       const response = await fetchFn(`${apiUrl}/me`, {
         headers: { Authorization: `Bearer ${data.session.access_token}` },
       });
+      if (response.status === 401) {
+        await auth.signOut();
+        return null;
+      }
       if (response.status === 403) {
         await auth.signOut();
         throw new NotInstitutionalEmailError();

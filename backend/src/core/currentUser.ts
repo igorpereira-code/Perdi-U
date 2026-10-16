@@ -71,16 +71,22 @@ async function findOrCreateProfile(
 /**
  * Finds out who is making the request:
  * - With `Authorization: Bearer <token>`, it is the user who signed in with Google.
- * - Otherwise, a sample user (header `x-sample-user: ana | luis | welfare`).
+ * - Otherwise, a sample user (header `x-sample-user: ana | luis | welfare`),
+ *   only if ALLOW_SAMPLE_USERS=true (local development). If not, the user must sign in.
  * Routes always use getCurrentUser(), so they never care which one it was.
  */
 export function createCurrentUser(
   verifyToken: VerifyToken,
   users: UsersRepository,
+  allowSampleUsers: boolean,
 ): RequestHandler {
   return async (req, res, next) => {
     const token = req.header('authorization')?.replace('Bearer ', '');
     if (!token) {
+      if (!allowSampleUsers) {
+        res.status(401).json({ error: 'Sign in to continue.' });
+        return;
+      }
       useSampleUser(req, res, next);
       return;
     }
@@ -100,7 +106,11 @@ export function createCurrentUser(
   };
 }
 
-export const currentUser = createCurrentUser(verifySupabaseToken, prismaUsersRepository);
+export const currentUser = createCurrentUser(
+  verifySupabaseToken,
+  prismaUsersRepository,
+  process.env.ALLOW_SAMPLE_USERS === 'true',
+);
 
 /** Returns the user making the request. Use it inside any route. */
 export function getCurrentUser(req: Request): CurrentUser {
