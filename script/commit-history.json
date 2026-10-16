@@ -513,12 +513,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "300d39b46db541b5e233b92e3d6c006a99faf5e2",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T21:04:02.000Z",
       "message": "feat: pedir que vuelva a iniciar sesión a quien cerró su sesión o no ha ingresado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/300d39b46db541b5e233b92e3d6c006a99faf5e2"
     },
     "stats": {
       "total": 84,
@@ -528,6 +528,158 @@
     },
     "coverage": 89.24,
     "test_count": 65,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "416d4d94d27d5281de167f5a126007bcd20c8ac4",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T22:50:55.000Z",
+      "message": "feat: mostrar al dueño los objetos publicados que se parecen a su reporte, del más parecido al menos parecido",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/416d4d94d27d5281de167f5a126007bcd20c8ac4"
+    },
+    "stats": {
+      "total": 667,
+      "additions": 651,
+      "deletions": 16,
+      "date": "2026-10-16"
+    },
+    "coverage": 86.75,
+    "test_count": 76,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "ae80729f634960496d371a011acb16cffa381847",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T22:58:25.000Z",
+      "message": "fix: avisar cuando el reporte no existe o no es del usuario, en vez de mostrar la pantalla rota",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ae80729f634960496d371a011acb16cffa381847"
+    },
+    "stats": {
+      "total": 45,
+      "additions": 41,
+      "deletions": 4,
+      "date": "2026-10-16"
+    },
+    "coverage": 86.96,
+    "test_count": 78,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "d77f43f36e55e680b9f0f1ba657a1a37d6aefd3f",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T23:02:20.000Z",
+      "message": "feat: avisar al dueño que su reporte sigue activo cuando todavía no hay objetos parecidos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d77f43f36e55e680b9f0f1ba657a1a37d6aefd3f"
+    },
+    "stats": {
+      "total": 20,
+      "additions": 20,
+      "deletions": 0,
+      "date": "2026-10-16"
+    },
+    "coverage": 87.06,
+    "test_count": 79,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "e8fc768f9791903807a855686f1a4d04586fef7d",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T23:06:36.000Z",
+      "message": "feat: permitir ir a los objetos parecidos desde el reporte de pérdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/e8fc768f9791903807a855686f1a4d04586fef7d"
+    },
+    "stats": {
+      "total": 33,
+      "additions": 33,
+      "deletions": 0,
+      "date": "2026-10-16"
+    },
+    "coverage": 87.11,
+    "test_count": 80,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "287a15d9f3ff530a248f294cde68bd1babd12fe7",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T23:12:28.000Z",
+      "message": "feat: mostrar la foto, la descripción y el código de cada objeto parecido",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/287a15d9f3ff530a248f294cde68bd1babd12fe7"
+    },
+    "stats": {
+      "total": 38,
+      "additions": 31,
+      "deletions": 7,
+      "date": "2026-10-16"
+    },
+    "coverage": 87.11,
+    "test_count": 81,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "bc5f00f6331c1b3c7dc270d01b4b5f0e46c63003",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T23:36:52.000Z",
+      "message": "feat: permitir que el dueño avise que pasará a recoger un objeto parecido, para que Bienestar lo sepa",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/bc5f00f6331c1b3c7dc270d01b4b5f0e46c63003"
+    },
+    "stats": {
+      "total": 214,
+      "additions": 173,
+      "deletions": 41,
+      "date": "2026-10-16"
+    },
+    "coverage": 86.93,
+    "test_count": 86,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "5677504fa0f5ee8b1e52754a56e20fadf69356b1",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T23:40:24.000Z",
+      "message": "feat: mostrar dónde y cuándo recoger el objeto, y que el dueño lleve el código de su reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/5677504fa0f5ee8b1e52754a56e20fadf69356b1"
+    },
+    "stats": {
+      "total": 83,
+      "additions": 64,
+      "deletions": 19,
+      "date": "2026-10-16"
+    },
+    "coverage": 87.06,
+    "test_count": 87,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T23:55:20.000Z",
+      "message": "feat: permitir que el dueño descarte un objeto que no es suyo para que deje de aparecer",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 153,
+      "additions": 130,
+      "deletions": 23,
+      "date": "2026-10-16"
+    },
+    "coverage": 87.21,
+    "test_count": 91,
     "failed_tests": 0,
     "conclusion": "success"
   }

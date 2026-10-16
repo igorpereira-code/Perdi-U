@@ -4,7 +4,20 @@ import { MemoryRouter } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import App from './App';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
+import type { MatchView } from '@shared/matching';
+import type { MatchesService } from './matching/data/matchesService';
 
+const phone: MatchView = {
+  id: 'match-1',
+  status: 'SUGGESTED',
+  similarity: 100,
+  foundItem: {
+    code: 'HZ-0001',
+    description: 'Celular Samsung con funda azul',
+    photoUrl: null,
+    category: 'Electrónicos',
+  },
+};
 const igor: AppUser = {
   id: 'google-1',
   name: 'Igor Pereira',
@@ -12,19 +25,24 @@ const igor: AppUser = {
   role: 'COMMUNITY',
 };
 
-function renderAt(path: string, user: AppUser | null | Error) {
+function renderAt(path: string, user: AppUser | null | Error, matches: MatchView[] | null = []) {
   const authService: AuthService = {
     getCurrentUser:
       user instanceof Error ? jest.fn().mockRejectedValue(user) : jest.fn().mockResolvedValue(user),
     signIn: jest.fn(),
     signOut: jest.fn(),
   };
+  const matchesService: MatchesService = {
+    getMatches: jest.fn().mockResolvedValue(matches),
+    pickUp: jest.fn(),
+    dismiss: jest.fn(),
+  };
   render(
     <MemoryRouter initialEntries={[path]}>
-      <App authService={authService} />
+      <App authService={authService} matchesService={matchesService} />
     </MemoryRouter>,
   );
-  return authService;
+  return { ...authService, ...matchesService };
 }
 
 describe('Navegación de la app', () => {
@@ -69,5 +87,39 @@ describe('Navegación de la app', () => {
       'Solo se permiten cuentas institucionales',
     );
     expect(screen.getByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+  });
+
+  it('muestra los objetos parecidos a su reporte en /mis-reportes/<código>/coincidencias', async () => {
+    renderAt('/mis-reportes/PR-0001/coincidencias', igor, [phone]);
+
+    expect(await screen.findByText('Celular Samsung con funda azul')).toBeInTheDocument();
+  });
+
+  it('avisa cuando el reporte no existe o no es suyo', async () => {
+    renderAt('/mis-reportes/PR-0002/coincidencias', igor, null);
+
+    expect(
+      await screen.findByRole('heading', { name: 'No encontramos este reporte' }),
+    ).toBeInTheDocument();
+  });
+
+  it('avisa a Bienestar al elegir "Pasaré a recoger" y lo muestra elegido', async () => {
+    const services = renderAt('/mis-reportes/PR-0001/coincidencias', igor, [phone]);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Pasaré a recoger' }));
+
+    expect(services.pickUp).toHaveBeenCalledWith('match-1');
+    expect(await screen.findByText('Pasarás a recoger este objeto')).toBeInTheDocument();
+  });
+
+  it('quita el objeto de la lista al elegir "No es mío"', async () => {
+    const services = renderAt('/mis-reportes/PR-0001/coincidencias', igor, [phone]);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'No es mío' }));
+
+    expect(services.dismiss).toHaveBeenCalledWith('match-1');
+    expect(
+      await screen.findByRole('heading', { name: 'Todavía no hay objetos parecidos' }),
+    ).toBeInTheDocument();
   });
 });
