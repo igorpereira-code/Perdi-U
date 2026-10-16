@@ -1,26 +1,21 @@
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { APP_NAME } from '@shared/constants';
-import { signInWithGoogle } from './core/data/auth';
-import { supabase } from './core/data/supabase';
+import type { AppUser } from '@shared/user';
+import type { AuthService } from './core/data/authService';
+import { HomePage } from './core/presenter/HomePage';
 import { LoginPage } from './core/presenter/LoginPage';
 
-function HomePage() {
-  return (
-    <main className="min-h-screen bg-neutral-50 p-4">
-      <h1 className="text-2xl font-bold text-blue-700">{APP_NAME}</h1>
-      <p className="text-neutral-500">¿Lo perdi-U? ¡Lo encontr-U!</p>
-    </main>
-  );
-}
+export default function App({ authService }: { authService: AuthService }) {
+  const [user, setUser] = useState<AppUser | null>(null);
 
-export default function App() {
+  useEffect(() => {
+    authService.getCurrentUser().then(setUser);
+  }, [authService]);
+
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route
-        path="/ingresar"
-        element={<LoginPage onGoogleLogin={() => signInWithGoogle(supabase.auth)} />}
-      />
+      <Route path="/" element={user ? <HomePage user={user} /> : null} />
+      <Route path="/ingresar" element={<LoginPage onGoogleLogin={authService.signIn} />} />
     </Routes>
   );
 }

@@ -488,9 +488,119 @@
     "testId": 20
   },
   {
-    "commitId": "HEAD",
+    "commitId": "87b5f5641f8b720e6de89080a06c6e27642734b4",
     "commitName": "feat: permitir elegir la cuenta Google de la universidad para ingresar",
     "commitTimestamp": 1792177835452,
     "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 1,
+    "numTotalTests": 40,
+    "timestamp": 1792178456233,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 40,
+    "failedTests": 0,
+    "numTotalTests": 40,
+    "timestamp": 1792178578223,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 40,
+    "failedTests": 1,
+    "numTotalTests": 41,
+    "timestamp": 1792178619655,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 41,
+    "failedTests": 0,
+    "numTotalTests": 41,
+    "timestamp": 1792178660627,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 41,
+    "failedTests": 0,
+    "numTotalTests": 41,
+    "timestamp": 1792178752471,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 41,
+    "failedTests": 1,
+    "numTotalTests": 42,
+    "timestamp": 1792178882190,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 42,
+    "failedTests": 0,
+    "numTotalTests": 42,
+    "timestamp": 1792178919186,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 42,
+    "failedTests": 1,
+    "numTotalTests": 43,
+    "timestamp": 1792178966708,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 43,
+    "failedTests": 0,
+    "numTotalTests": 43,
+    "timestamp": 1792179007940,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 43,
+    "failedTests": 1,
+    "numTotalTests": 44,
+    "timestamp": 1792179081470,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 44,
+    "failedTests": 0,
+    "numTotalTests": 44,
+    "timestamp": 1792179112308,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 43,
+    "failedTests": 1,
+    "numTotalTests": 44,
+    "timestamp": 1792179177464,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 44,
+    "failedTests": 0,
+    "numTotalTests": 44,
+    "timestamp": 1792179211974,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: dejar entrar a la pantalla principal a quien inicia sesión con su cuenta de la universidad",
+    "commitTimestamp": 1792179360346,
+    "testId": 21
   }
 ]

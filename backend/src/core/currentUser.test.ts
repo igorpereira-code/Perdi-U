@@ -44,3 +44,33 @@ describe('Restringir por rol (requireRole)', () => {
     expect(res.status).toBe(200);
   });
 });
+
+describe('Ingresar con una sesión de Google', () => {
+  const googleUser = { id: 'google-1', name: 'Igor Pereira', email: 'igor.pereira@ucb.edu.bo' };
+  const verifyToken = async (token: string) => (token === 'valid-token' ? googleUser : null);
+
+  it('reconoce al usuario que inició sesión con Google', async () => {
+    const res = await request(createApp({ verifyToken }))
+      .get('/me')
+      .set('Authorization', 'Bearer valid-token');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchObject({
+      name: 'Igor Pereira',
+      email: 'igor.pereira@ucb.edu.bo',
+      role: 'COMMUNITY',
+    });
+  });
+});
+
+describe('Rechazar sesiones que no son válidas', () => {
+  const verifyToken = async () => null;
+
+  it('no deja entrar con una sesión vencida o falsa', async () => {
+    const res = await request(createApp({ verifyToken }))
+      .get('/me')
+      .set('Authorization', 'Bearer fake-token');
+
+    expect(res.status).toBe(401);
+  });
+});

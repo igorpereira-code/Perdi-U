@@ -380,12 +380,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "87b5f5641f8b720e6de89080a06c6e27642734b4",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T19:10:34.000Z",
       "message": "feat: permitir elegir la cuenta Google de la universidad para ingresar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/87b5f5641f8b720e6de89080a06c6e27642734b4"
     },
     "stats": {
       "total": 79,
@@ -395,6 +395,25 @@
     },
     "coverage": 96.34,
     "test_count": 39,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T19:35:59.000Z",
+      "message": "feat: dejar entrar a la pantalla principal a quien inicia sesión con su cuenta de la universidad",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 293,
+      "additions": 256,
+      "deletions": 37,
+      "date": "2026-10-16"
+    },
+    "coverage": 90.09,
+    "test_count": 44,
     "failed_tests": 0,
     "conclusion": "success"
   }
