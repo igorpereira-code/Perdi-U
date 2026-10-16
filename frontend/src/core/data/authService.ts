@@ -2,6 +2,9 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import type { AppUser } from '@shared/user';
 import { signInWithGoogle } from './auth';
 
+/** The user signed in with a Google account that is not from the university. */
+export class NotInstitutionalEmailError extends Error {}
+
 export type AuthService = {
   getCurrentUser: () => Promise<AppUser | null>;
   signIn: () => Promise<void>;
@@ -28,6 +31,10 @@ export function createAuthService({
       const response = await fetchFn(`${apiUrl}/me`, {
         headers: { Authorization: `Bearer ${data.session.access_token}` },
       });
+      if (response.status === 403) {
+        await auth.signOut();
+        throw new NotInstitutionalEmailError();
+      }
       return response.json();
     },
     signIn: () => signInWithGoogle(auth),

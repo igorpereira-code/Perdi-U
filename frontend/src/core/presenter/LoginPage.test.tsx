@@ -12,4 +12,12 @@ describe('Pantalla de ingreso', () => {
     expect(screen.getByText('Usa tu correo @ucb.edu.bo')).toBeInTheDocument();
     expect(onGoogleLogin).toHaveBeenCalledTimes(1);
   });
+
+  it('avisa que solo se permiten cuentas de la universidad', () => {
+    render(<LoginPage onGoogleLogin={jest.fn()} notInstitutional />);
+
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'Solo se permiten cuentas institucionales (@ucb.edu.bo).',
+    );
+  });
 });

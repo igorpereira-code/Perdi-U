@@ -598,9 +598,87 @@
     "testId": 21
   },
   {
-    "commitId": "HEAD",
+    "commitId": "8db4a8756306b9dce7ebe3fe946ac730f91b4a0a",
     "commitName": "feat: dejar entrar a la pantalla principal a quien inicia sesión con su cuenta de la universidad",
     "commitTimestamp": 1792179360346,
     "testId": 21
+  },
+  {
+    "numPassedTests": 45,
+    "failedTests": 1,
+    "numTotalTests": 46,
+    "timestamp": 1792179733541,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 46,
+    "failedTests": 0,
+    "numTotalTests": 46,
+    "timestamp": 1792179750869,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 46,
+    "failedTests": 1,
+    "numTotalTests": 47,
+    "timestamp": 1792179783186,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 47,
+    "failedTests": 0,
+    "numTotalTests": 47,
+    "timestamp": 1792179981305,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 47,
+    "failedTests": 1,
+    "numTotalTests": 48,
+    "timestamp": 1792180102298,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 48,
+    "failedTests": 0,
+    "numTotalTests": 48,
+    "timestamp": 1792180179211,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 48,
+    "failedTests": 1,
+    "numTotalTests": 49,
+    "timestamp": 1792180239611,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 49,
+    "failedTests": 0,
+    "numTotalTests": 49,
+    "timestamp": 1792180293458,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 49,
+    "failedTests": 1,
+    "numTotalTests": 50,
+    "timestamp": 1792180340921,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: avisar que solo se permiten cuentas de la universidad cuando alguien ingresa con otra cuenta",
+    "commitTimestamp": 1792180587004,
+    "testId": 22
   }
 ]

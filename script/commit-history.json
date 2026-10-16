@@ -399,12 +399,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "8db4a8756306b9dce7ebe3fe946ac730f91b4a0a",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T19:35:59.000Z",
       "message": "feat: dejar entrar a la pantalla principal a quien inicia sesión con su cuenta de la universidad",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/8db4a8756306b9dce7ebe3fe946ac730f91b4a0a"
     },
     "stats": {
       "total": 293,
@@ -414,6 +414,25 @@
     },
     "coverage": 90.09,
     "test_count": 44,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T19:56:24.000Z",
+      "message": "feat: avisar que solo se permiten cuentas de la universidad cuando alguien ingresa con otra cuenta",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 139,
+      "additions": 121,
+      "deletions": 18,
+      "date": "2026-10-16"
+    },
+    "coverage": 91.06,
+    "test_count": 50,
     "failed_tests": 0,
     "conclusion": "success"
   }

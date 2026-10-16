@@ -2,6 +2,7 @@ import type { Request, RequestHandler } from 'express';
 import type { Role } from '@prisma/client';
 import { verifySupabaseToken } from './data/supabaseAuth';
 import { SAMPLE_USERS } from './sampleUsers';
+import { isInstitutionalEmail } from './logic/institutionalEmail';
 
 export type CurrentUser = {
   id: string;
@@ -62,6 +63,10 @@ export function createCurrentUser(verifyToken: VerifyToken): RequestHandler {
     const tokenUser = await verifyToken(token);
     if (!tokenUser) {
       res.status(401).json({ error: 'Your session is not valid. Sign in again.' });
+      return;
+    }
+    if (!isInstitutionalEmail(tokenUser.email)) {
+      res.status(403).json({ code: 'NOT_INSTITUTIONAL_EMAIL' });
       return;
     }
 

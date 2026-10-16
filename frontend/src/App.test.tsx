@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import App from './App';
-import type { AuthService } from './core/data/authService';
+import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 
 const igor: AppUser = {
   id: 'google-1',
@@ -11,9 +11,10 @@ const igor: AppUser = {
   role: 'COMMUNITY',
 };
 
-function renderAt(path: string, user: AppUser | null) {
+function renderAt(path: string, user: AppUser | null | Error) {
   const authService: AuthService = {
-    getCurrentUser: jest.fn().mockResolvedValue(user),
+    getCurrentUser:
+      user instanceof Error ? jest.fn().mockRejectedValue(user) : jest.fn().mockResolvedValue(user),
     signIn: jest.fn(),
   };
   render(
@@ -34,5 +35,14 @@ describe('Navegación de la app', () => {
     renderAt('/', igor);
 
     expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
+  });
+
+  it('devuelve a la pantalla de ingreso con un aviso si la cuenta no es de la universidad', async () => {
+    renderAt('/', new NotInstitutionalEmailError());
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      'Solo se permiten cuentas institucionales',
+    );
+    expect(screen.getByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
   });
 });

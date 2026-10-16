@@ -74,3 +74,16 @@ describe('Rechazar sesiones que no son válidas', () => {
     expect(res.status).toBe(401);
   });
 });
+
+describe('Solo cuentas de la universidad', () => {
+  const verifyToken = async () => ({ id: 'google-2', name: 'Igor', email: 'igor@gmail.com' });
+
+  it('no deja entrar a una cuenta que no es de la universidad', async () => {
+    const res = await request(createApp({ verifyToken }))
+      .get('/me')
+      .set('Authorization', 'Bearer gmail-token');
+
+    expect(res.status).toBe(403);
+    expect(res.body).toEqual({ code: 'NOT_INSTITUTIONAL_EMAIL' });
+  });
+});
