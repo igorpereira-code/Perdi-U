@@ -1172,9 +1172,31 @@
     "testId": 30
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d77f43f36e55e680b9f0f1ba657a1a37d6aefd3f",
     "commitName": "feat: avisar al dueño que su reporte sigue activo cuando todavía no hay objetos parecidos",
     "commitTimestamp": 1792191740787,
     "testId": 30
+  },
+  {
+    "numPassedTests": 79,
+    "failedTests": 1,
+    "numTotalTests": 80,
+    "timestamp": 1792191852855,
+    "success": false,
+    "testId": 31
+  },
+  {
+    "numPassedTests": 80,
+    "failedTests": 0,
+    "numTotalTests": 80,
+    "timestamp": 1792191866585,
+    "success": true,
+    "testId": 31
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir ir a los objetos parecidos desde el reporte de pérdida",
+    "commitTimestamp": 1792191997613,
+    "testId": 31
   }
 ]
