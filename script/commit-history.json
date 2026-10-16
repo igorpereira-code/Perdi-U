@@ -551,12 +551,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ae80729f634960496d371a011acb16cffa381847",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T22:58:25.000Z",
       "message": "fix: avisar cuando el reporte no existe o no es del usuario, en vez de mostrar la pantalla rota",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ae80729f634960496d371a011acb16cffa381847"
     },
     "stats": {
       "total": 45,
@@ -566,6 +566,25 @@
     },
     "coverage": 86.96,
     "test_count": 78,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T23:02:20.000Z",
+      "message": "feat: avisar al dueño que su reporte sigue activo cuando todavía no hay objetos parecidos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 20,
+      "additions": 20,
+      "deletions": 0,
+      "date": "2026-10-16"
+    },
+    "coverage": 87.06,
+    "test_count": 79,
     "failed_tests": 0,
     "conclusion": "success"
   }

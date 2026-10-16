@@ -1,4 +1,5 @@
 import type { MatchView } from '@shared/matching';
+import { EmptyState } from '../../core/presenter/EmptyState';
 
 type MatchesPageProps = {
   reportCode: string;
@@ -6,6 +7,14 @@ type MatchesPageProps = {
 };
 
 export function MatchesPage({ reportCode, matches }: MatchesPageProps) {
+  if (matches.length === 0) {
+    return (
+      <EmptyState
+        title="Todavía no hay objetos parecidos"
+        text={`Tu reporte ${reportCode} seguirá activo. Vuelve a revisarlo más adelante.`}
+      />
+    );
+  }
   return (
     <section className="space-y-4">
       <h1 className="text-lg font-semibold text-blue-700">

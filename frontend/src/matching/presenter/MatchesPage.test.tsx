@@ -27,4 +27,15 @@ describe('Objetos parecidos a mi reporte', () => {
     expect(items[0]).toHaveTextContent('Celular Samsung con funda azul');
     expect(items[1]).toHaveTextContent('Celular negro');
   });
+
+  it('avisa que su reporte seguirá activo cuando no hay objetos parecidos', () => {
+    render(<MatchesPage reportCode="PR-0003" matches={[]} />);
+
+    expect(
+      screen.getByRole('heading', { name: 'Todavía no hay objetos parecidos' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Tu reporte PR-0003 seguirá activo. Vuelve a revisarlo más adelante.'),
+    ).toBeInTheDocument();
+  });
 });

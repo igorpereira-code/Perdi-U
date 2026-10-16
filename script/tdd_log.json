@@ -1150,9 +1150,31 @@
     "testId": 29
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ae80729f634960496d371a011acb16cffa381847",
     "commitName": "fix: avisar cuando el reporte no existe o no es del usuario, en vez de mostrar la pantalla rota",
     "commitTimestamp": 1792191505877,
     "testId": 29
+  },
+  {
+    "numPassedTests": 78,
+    "failedTests": 1,
+    "numTotalTests": 79,
+    "timestamp": 1792191577381,
+    "success": false,
+    "testId": 30
+  },
+  {
+    "numPassedTests": 79,
+    "failedTests": 0,
+    "numTotalTests": 79,
+    "timestamp": 1792191629495,
+    "success": true,
+    "testId": 30
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: avisar al dueño que su reporte sigue activo cuando todavía no hay objetos parecidos",
+    "commitTimestamp": 1792191740787,
+    "testId": 30
   }
 ]
