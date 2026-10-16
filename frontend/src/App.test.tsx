@@ -36,6 +36,12 @@ describe('Navegación de la app', () => {
 
     expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
   });
+  it('muestra su perfil en /perfil', async () => {
+    renderAt('/perfil', igor);
+
+    expect(await screen.findByRole('heading', { name: 'Igor Pereira' })).toBeInTheDocument();
+    expect(screen.getByText('igor.pereira@ucb.edu.bo')).toBeInTheDocument();
+  });
 
   it('devuelve a la pantalla de ingreso con un aviso si la cuenta no es de la universidad', async () => {
     renderAt('/', new NotInstitutionalEmailError());

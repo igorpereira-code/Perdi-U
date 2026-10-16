@@ -738,9 +738,71 @@
     "testId": 23
   },
   {
-    "commitId": "HEAD",
+    "commitId": "3555cd6ebce7542a40fa4dba53f69ff31a06e64a",
     "commitName": "feat: crear el perfil del usuario automáticamente en su primer ingreso, sin formularios",
     "commitTimestamp": 1792182091341,
     "testId": 23
+  },
+  {
+    "numPassedTests": 54,
+    "failedTests": 2,
+    "numTotalTests": 56,
+    "timestamp": 1792182602231,
+    "success": false,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 56,
+    "failedTests": 0,
+    "numTotalTests": 56,
+    "timestamp": 1792182618173,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 56,
+    "failedTests": 1,
+    "numTotalTests": 57,
+    "timestamp": 1792182687063,
+    "success": false,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 57,
+    "failedTests": 0,
+    "numTotalTests": 57,
+    "timestamp": 1792182698164,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 57,
+    "failedTests": 0,
+    "numTotalTests": 57,
+    "timestamp": 1792182714394,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 57,
+    "failedTests": 1,
+    "numTotalTests": 58,
+    "timestamp": 1792182750373,
+    "success": false,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 58,
+    "failedTests": 0,
+    "numTotalTests": 58,
+    "timestamp": 1792182797281,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar el perfil del usuario con el nombre, correo y foto de su cuenta de Google",
+    "commitTimestamp": 1792182874687,
+    "testId": 24
   }
 ]

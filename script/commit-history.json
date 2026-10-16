@@ -437,12 +437,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "3555cd6ebce7542a40fa4dba53f69ff31a06e64a",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T20:21:30.000Z",
       "message": "feat: crear el perfil del usuario automáticamente en su primer ingreso, sin formularios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/3555cd6ebce7542a40fa4dba53f69ff31a06e64a"
     },
     "stats": {
       "total": 153,
@@ -452,6 +452,25 @@
     },
     "coverage": 87.77,
     "test_count": 54,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T20:34:33.000Z",
+      "message": "feat: mostrar el perfil del usuario con el nombre, correo y foto de su cuenta de Google",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 149,
+      "additions": 138,
+      "deletions": 11,
+      "date": "2026-10-16"
+    },
+    "coverage": 88.44,
+    "test_count": 58,
     "failed_tests": 0,
     "conclusion": "success"
   }
