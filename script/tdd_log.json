@@ -800,9 +800,31 @@
     "testId": 24
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b57e9dfa60e2432fa94d4268c8f7ad83e448aead",
     "commitName": "feat: mostrar el perfil del usuario con el nombre, correo y foto de su cuenta de Google",
     "commitTimestamp": 1792182874687,
     "testId": 24
+  },
+  {
+    "numPassedTests": 58,
+    "failedTests": 1,
+    "numTotalTests": 59,
+    "timestamp": 1792182953919,
+    "success": false,
+    "testId": 25
+  },
+  {
+    "numPassedTests": 59,
+    "failedTests": 0,
+    "numTotalTests": 59,
+    "timestamp": 1792183031296,
+    "success": true,
+    "testId": 25
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: usar siempre el mismo perfil del usuario en sus siguientes ingresos",
+    "commitTimestamp": 1792183129721,
+    "testId": 25
   }
 ]

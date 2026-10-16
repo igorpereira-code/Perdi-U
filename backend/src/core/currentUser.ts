@@ -51,18 +51,21 @@ const useSampleUser: RequestHandler = (req, res, next) => {
   next();
 };
 
-/** On the first sign-in, saves the user's profile with the data from Google. No form needed. */
-async function createProfileIfNew(
+/**
+ * Returns the user's saved profile.
+ * On the first sign-in it does not exist yet, so it is created with the data from Google. No form needed.
+ */
+async function findOrCreateProfile(
   tokenUser: TokenUser,
   users: UsersRepository,
 ): Promise<CurrentUser> {
-  const role = roleForEmail(tokenUser.email, await users.listWelfareEmails());
-  const profile = { ...tokenUser, photoUrl: tokenUser.photoUrl ?? null, role };
-
-  if (!(await users.findById(profile.id))) {
-    await users.create(profile);
+  const savedProfile = await users.findById(tokenUser.id);
+  if (savedProfile) {
+    return savedProfile;
   }
-  return profile;
+
+  const role = roleForEmail(tokenUser.email, await users.listWelfareEmails());
+  return users.create({ ...tokenUser, photoUrl: tokenUser.photoUrl ?? null, role });
 }
 
 /**
@@ -92,7 +95,7 @@ export function createCurrentUser(
       return;
     }
 
-    req.user = await createProfileIfNew(tokenUser, users);
+    req.user = await findOrCreateProfile(tokenUser, users);
     next();
   };
 }

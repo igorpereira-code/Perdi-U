@@ -456,12 +456,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b57e9dfa60e2432fa94d4268c8f7ad83e448aead",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T20:34:33.000Z",
       "message": "feat: mostrar el perfil del usuario con el nombre, correo y foto de su cuenta de Google",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b57e9dfa60e2432fa94d4268c8f7ad83e448aead"
     },
     "stats": {
       "total": 149,
@@ -471,6 +471,25 @@
     },
     "coverage": 88.44,
     "test_count": 58,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T20:38:49.000Z",
+      "message": "feat: usar siempre el mismo perfil del usuario en sus siguientes ingresos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 37,
+      "additions": 28,
+      "deletions": 9,
+      "date": "2026-10-16"
+    },
+    "coverage": 88.44,
+    "test_count": 59,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -81,6 +81,22 @@ describe('Ingresar con una sesión de Google', () => {
       role: 'COMMUNITY',
     });
   });
+  describe('Siguientes ingresos', () => {
+    const googleUser = { id: 'google-1', name: 'Igor Pereira', email: 'igor.pereira@ucb.edu.bo' };
+    const verifyToken = async () => googleUser;
+
+    it('sigue usando el mismo perfil y no crea otro', async () => {
+      const { users, saved } = fakeUsers();
+      saved.push({ ...googleUser, photoUrl: null, role: 'WELFARE' });
+
+      const res = await request(createApp({ verifyToken, users }))
+        .get('/me')
+        .set('Authorization', 'Bearer valid-token');
+
+      expect(res.body).toMatchObject({ id: 'google-1', role: 'WELFARE' });
+      expect(saved).toHaveLength(1);
+    });
+  });
 
   it('crea su perfil en su primer ingreso, sin pedirle ningún dato', async () => {
     const { users, saved } = fakeUsers();
