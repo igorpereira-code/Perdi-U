@@ -1294,9 +1294,31 @@
     "testId": 33
   },
   {
-    "commitId": "HEAD",
+    "commitId": "bc5f00f6331c1b3c7dc270d01b4b5f0e46c63003",
     "commitName": "feat: permitir que el dueño avise que pasará a recoger un objeto parecido, para que Bienestar lo sepa",
     "commitTimestamp": 1792193813913,
     "testId": 33
+  },
+  {
+    "numPassedTests": 86,
+    "failedTests": 1,
+    "numTotalTests": 87,
+    "timestamp": 1792193875849,
+    "success": false,
+    "testId": 34
+  },
+  {
+    "numPassedTests": 87,
+    "failedTests": 0,
+    "numTotalTests": 87,
+    "timestamp": 1792193935583,
+    "success": true,
+    "testId": 34
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar dónde y cuándo recoger el objeto, y que el dueño lleve el código de su reporte",
+    "commitTimestamp": 1792194025831,
+    "testId": 34
   }
 ]

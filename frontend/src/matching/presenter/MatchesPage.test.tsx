@@ -72,4 +72,16 @@ describe('Objetos parecidos a mi reporte', () => {
       within(second).queryByRole('button', { name: 'Pasaré a recoger' }),
     ).not.toBeInTheDocument();
   });
+
+  it('después de elegir "Pasaré a recoger", muestra dónde y cuándo ir, y que lleve el código de su reporte', () => {
+    renderPage(
+      [{ ...match('HZ-0001', 'Celular Samsung con funda azul'), status: 'WILL_PICK_UP' }],
+      'PR-0001',
+    );
+
+    const [item] = screen.getAllByRole('listitem');
+    expect(item).toHaveTextContent('Bienestar Estudiantil – Bloque C');
+    expect(item).toHaveTextContent('Lunes a viernes, de 08:30 a 16:00');
+    expect(item).toHaveTextContent('Lleva el código de tu reporte PR-0001 para recogerlo.');
+  });
 });

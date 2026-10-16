@@ -627,12 +627,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "bc5f00f6331c1b3c7dc270d01b4b5f0e46c63003",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T23:36:52.000Z",
       "message": "feat: permitir que el dueño avise que pasará a recoger un objeto parecido, para que Bienestar lo sepa",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/bc5f00f6331c1b3c7dc270d01b4b5f0e46c63003"
     },
     "stats": {
       "total": 214,
@@ -642,6 +642,25 @@
     },
     "coverage": 86.93,
     "test_count": 86,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T23:40:24.000Z",
+      "message": "feat: mostrar dónde y cuándo recoger el objeto, y que el dueño lleve el código de su reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 83,
+      "additions": 64,
+      "deletions": 19,
+      "date": "2026-10-16"
+    },
+    "coverage": 87.06,
+    "test_count": 87,
     "failed_tests": 0,
     "conclusion": "success"
   }
