@@ -676,9 +676,71 @@
     "testId": 22
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b1f221311b56ada225d198b3ec8adb4eb45d2e85",
     "commitName": "feat: avisar que solo se permiten cuentas de la universidad cuando alguien ingresa con otra cuenta",
     "commitTimestamp": 1792180587004,
     "testId": 22
+  },
+  {
+    "numPassedTests": 51,
+    "failedTests": 1,
+    "numTotalTests": 52,
+    "timestamp": 1792181142420,
+    "success": false,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 52,
+    "failedTests": 0,
+    "numTotalTests": 52,
+    "timestamp": 1792181165248,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 52,
+    "failedTests": 1,
+    "numTotalTests": 53,
+    "timestamp": 1792181296283,
+    "success": false,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 53,
+    "failedTests": 0,
+    "numTotalTests": 53,
+    "timestamp": 1792181581722,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 53,
+    "failedTests": 1,
+    "numTotalTests": 54,
+    "timestamp": 1792181697394,
+    "success": false,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 54,
+    "failedTests": 0,
+    "numTotalTests": 54,
+    "timestamp": 1792181757451,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 54,
+    "failedTests": 0,
+    "numTotalTests": 54,
+    "timestamp": 1792181854624,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: crear el perfil del usuario automáticamente en su primer ingreso, sin formularios",
+    "commitTimestamp": 1792182091341,
+    "testId": 23
   }
 ]

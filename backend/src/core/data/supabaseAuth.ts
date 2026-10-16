@@ -20,5 +20,6 @@ export async function verifySupabaseToken(token: string): Promise<TokenUser | nu
     id: data.user.id,
     name: profile.full_name ?? profile.name ?? data.user.email,
     email: data.user.email,
+    photoUrl: profile.avatar_url ?? profile.picture ?? null,
   };
 }

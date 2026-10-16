@@ -418,12 +418,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b1f221311b56ada225d198b3ec8adb4eb45d2e85",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T19:56:24.000Z",
       "message": "feat: avisar que solo se permiten cuentas de la universidad cuando alguien ingresa con otra cuenta",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b1f221311b56ada225d198b3ec8adb4eb45d2e85"
     },
     "stats": {
       "total": 139,
@@ -433,6 +433,25 @@
     },
     "coverage": 91.06,
     "test_count": 50,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T20:21:30.000Z",
+      "message": "feat: crear el perfil del usuario automáticamente en su primer ingreso, sin formularios",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 153,
+      "additions": 146,
+      "deletions": 7,
+      "date": "2026-10-16"
+    },
+    "coverage": 87.77,
+    "test_count": 54,
     "failed_tests": 0,
     "conclusion": "success"
   }

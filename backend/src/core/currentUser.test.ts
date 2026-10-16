@@ -2,6 +2,20 @@ import express from 'express';
 import request from 'supertest';
 import { createApp } from '../app';
 import { currentUser, requireRole } from './currentUser';
+import type { UserProfile, UsersRepository } from './data/usersRepository';
+
+function fakeUsers(welfareEmails: string[] = []) {
+  const saved: UserProfile[] = [];
+  const users: UsersRepository = {
+    findById: async (id) => saved.find((user) => user.id === id) ?? null,
+    create: async (profile) => {
+      saved.push(profile);
+      return profile;
+    },
+    listWelfareEmails: async () => welfareEmails,
+  };
+  return { users, saved };
+}
 
 describe('Ver el usuario actual (GET /me)', () => {
   it('devuelve a Ana como usuario de prueba por defecto', async () => {
@@ -46,11 +60,17 @@ describe('Restringir por rol (requireRole)', () => {
 });
 
 describe('Ingresar con una sesión de Google', () => {
-  const googleUser = { id: 'google-1', name: 'Igor Pereira', email: 'igor.pereira@ucb.edu.bo' };
+  const googleUser = {
+    id: 'google-1',
+    name: 'Igor Pereira',
+    email: 'igor.pereira@ucb.edu.bo',
+    photoUrl: 'https://foto.com/igor.jpg',
+  };
   const verifyToken = async (token: string) => (token === 'valid-token' ? googleUser : null);
 
   it('reconoce al usuario que inició sesión con Google', async () => {
-    const res = await request(createApp({ verifyToken }))
+    const { users } = fakeUsers();
+    const res = await request(createApp({ verifyToken, users }))
       .get('/me')
       .set('Authorization', 'Bearer valid-token');
 
@@ -60,6 +80,32 @@ describe('Ingresar con una sesión de Google', () => {
       email: 'igor.pereira@ucb.edu.bo',
       role: 'COMMUNITY',
     });
+  });
+
+  it('crea su perfil en su primer ingreso, sin pedirle ningún dato', async () => {
+    const { users, saved } = fakeUsers();
+
+    await request(createApp({ verifyToken, users }))
+      .get('/me')
+      .set('Authorization', 'Bearer valid-token');
+
+    expect(saved).toEqual([{ ...googleUser, role: 'COMMUNITY' }]);
+  });
+});
+
+describe('Perfil de Bienestar', () => {
+  const welfareUser = { id: 'google-3', name: 'Bienestar UCB', email: 'bienestar@ucb.edu.bo' };
+  const verifyToken = async () => welfareUser;
+
+  it('crea el perfil con el rol de Bienestar si su correo está registrado como Bienestar', async () => {
+    const { users, saved } = fakeUsers(['bienestar@ucb.edu.bo']);
+
+    const res = await request(createApp({ verifyToken, users }))
+      .get('/me')
+      .set('Authorization', 'Bearer welfare-token');
+
+    expect(res.body).toMatchObject({ role: 'WELFARE' });
+    expect(saved[0]).toMatchObject({ email: 'bienestar@ucb.edu.bo', role: 'WELFARE' });
   });
 });
 
