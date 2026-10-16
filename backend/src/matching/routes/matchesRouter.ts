@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import { Router, type RequestHandler } from 'express';
+import type { MatchStatus } from '@shared/statuses';
 import { getCurrentUser } from '../../core/currentUser';
 import type { MatchingRepository } from '../data/matchingRepository';
 import { findSimilarItems } from '../logic/findSimilarItems';
@@ -23,16 +24,22 @@ export function createMatchesRouter(matching: MatchingRepository): Router {
     res.json(matches.sort((a, b) => b.similarity - a.similarity));
   });
 
-  router.post('/matches/:id/pick-up', async (req, res) => {
-    const match = await matching.findOwnMatch(req.params.id, getCurrentUser(req).id);
-    if (!match) {
-      res.status(404).json({ error: 'Match not found' });
-      return;
-    }
+  /** The owner answers a match ("Pasaré a recoger" or "No es mío"). Only the owner of the report can. */
+  const answerMatch =
+    (status: MatchStatus, save: (matchId: string) => Promise<void>): RequestHandler =>
+    async (req, res) => {
+      const match = await matching.findOwnMatch(String(req.params.id), getCurrentUser(req).id);
+      if (!match) {
+        res.status(404).json({ error: 'Match not found' });
+        return;
+      }
 
-    await matching.markWillPickUp(match.id);
-    res.json({ status: 'WILL_PICK_UP' });
-  });
+      await save(match.id);
+      res.json({ status });
+    };
+
+  router.post('/matches/:id/pick-up', answerMatch('WILL_PICK_UP', matching.markWillPickUp));
+  router.post('/matches/:id/dismiss', answerMatch('DISMISSED', matching.dismiss));
 
   return router;
 }

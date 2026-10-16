@@ -78,4 +78,11 @@ export const prismaMatchingRepository: MatchingRepository = {
       data: { status: 'PENDING_PICKUP' },
     });
   },
+
+  dismiss: async (matchId) => {
+    await db().match.update({
+      where: { id: matchId },
+      data: { status: 'DISMISSED', respondedAt: new Date() },
+    });
+  },
 };

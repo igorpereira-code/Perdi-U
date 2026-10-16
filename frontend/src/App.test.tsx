@@ -35,6 +35,7 @@ function renderAt(path: string, user: AppUser | null | Error, matches: MatchView
   const matchesService: MatchesService = {
     getMatches: jest.fn().mockResolvedValue(matches),
     pickUp: jest.fn(),
+    dismiss: jest.fn(),
   };
   render(
     <MemoryRouter initialEntries={[path]}>
@@ -109,5 +110,16 @@ describe('Navegación de la app', () => {
 
     expect(services.pickUp).toHaveBeenCalledWith('match-1');
     expect(await screen.findByText('Pasarás a recoger este objeto')).toBeInTheDocument();
+  });
+
+  it('quita el objeto de la lista al elegir "No es mío"', async () => {
+    const services = renderAt('/mis-reportes/PR-0001/coincidencias', igor, [phone]);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'No es mío' }));
+
+    expect(services.dismiss).toHaveBeenCalledWith('match-1');
+    expect(
+      await screen.findByRole('heading', { name: 'Todavía no hay objetos parecidos' }),
+    ).toBeInTheDocument();
   });
 });

@@ -41,4 +41,13 @@ describe('Traer los objetos parecidos a un reporte', () => {
 
     expect(apiFetch).toHaveBeenCalledWith('/matches/match-1/pick-up', { method: 'POST' });
   });
+
+  it('avisa al backend que el objeto no es del dueño', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({ ok: true });
+    const service = createMatchesService(apiFetch);
+
+    await service.dismiss('match-1');
+
+    expect(apiFetch).toHaveBeenCalledWith('/matches/match-1/dismiss', { method: 'POST' });
+  });
 });

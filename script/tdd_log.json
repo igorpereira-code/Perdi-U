@@ -1316,9 +1316,95 @@
     "testId": 34
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5677504fa0f5ee8b1e52754a56e20fadf69356b1",
     "commitName": "feat: mostrar dónde y cuándo recoger el objeto, y que el dueño lleve el código de su reporte",
     "commitTimestamp": 1792194025831,
     "testId": 34
+  },
+  {
+    "numPassedTests": 83,
+    "failedTests": 0,
+    "numTotalTests": 83,
+    "timestamp": 1792194202253,
+    "success": false,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 87,
+    "failedTests": 1,
+    "numTotalTests": 88,
+    "timestamp": 1792194255551,
+    "success": false,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 88,
+    "failedTests": 0,
+    "numTotalTests": 88,
+    "timestamp": 1792194307273,
+    "success": true,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 88,
+    "failedTests": 0,
+    "numTotalTests": 88,
+    "timestamp": 1792194329264,
+    "success": true,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 88,
+    "failedTests": 1,
+    "numTotalTests": 89,
+    "timestamp": 1792194455988,
+    "success": false,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 89,
+    "failedTests": 0,
+    "numTotalTests": 89,
+    "timestamp": 1792194475504,
+    "success": true,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 89,
+    "failedTests": 1,
+    "numTotalTests": 90,
+    "timestamp": 1792194605173,
+    "success": false,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 90,
+    "failedTests": 0,
+    "numTotalTests": 90,
+    "timestamp": 1792194632506,
+    "success": true,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 90,
+    "failedTests": 1,
+    "numTotalTests": 91,
+    "timestamp": 1792194660186,
+    "success": false,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 91,
+    "failedTests": 0,
+    "numTotalTests": 91,
+    "timestamp": 1792194680620,
+    "success": true,
+    "testId": 35
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir que el dueño descarte un objeto que no es suyo para que deje de aparecer",
+    "commitTimestamp": 1792194921576,
+    "testId": 35
   }
 ]

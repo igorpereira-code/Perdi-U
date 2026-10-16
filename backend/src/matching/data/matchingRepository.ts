@@ -21,4 +21,7 @@ export type MatchingRepository = {
   ) => Promise<{ id: string; lostReportId: string } | null>;
   /** The owner will pick the item up: Bienestar sees it in pending pickups. */
   markWillPickUp: (matchId: string) => Promise<void>;
+
+  /** "No es mío": the item stops showing up for that report, even when matching runs again. */
+  dismiss: (matchId: string) => Promise<void>;
 };

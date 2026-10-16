@@ -105,4 +105,20 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
       expect(matches[0].status).toBe('SUGGESTED');
     });
   });
+
+  describe('No es mío (POST /matches/:id/dismiss)', () => {
+    it('quita el objeto de los parecidos a su reporte', async () => {
+      const { repository, matches } = fakeMatchingRepository([anasReport], items);
+      const app = createApp({ matching: repository });
+      await request(app).get('/lost-reports/PR-0001/matches');
+
+      const res = await request(app).post(`/matches/${matches[0].id}/dismiss`);
+      const after = await request(app).get('/lost-reports/PR-0001/matches');
+
+      expect(res.status).toBe(200);
+      expect(
+        after.body.map((match: { foundItem: { code: string } }) => match.foundItem.code),
+      ).toEqual(['HZ-0002']);
+    });
+  });
 });

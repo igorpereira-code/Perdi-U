@@ -8,6 +8,7 @@ type MatchesPageProps = {
   reportCode: string;
   matches: MatchView[];
   onPickUp: (matchId: string) => void;
+  onDismiss: (matchId: string) => void;
 };
 
 function PickUpInstructions({ reportCode }: { reportCode: string }) {
@@ -24,15 +25,14 @@ function PickUpInstructions({ reportCode }: { reportCode: string }) {
   );
 }
 
-function MatchCard({
-  match,
-  reportCode,
-  onPickUp,
-}: {
+type MatchCardProps = {
   match: MatchView;
   reportCode: string;
   onPickUp: () => void;
-}) {
+  onDismiss: () => void;
+};
+
+function MatchCard({ match, reportCode, onPickUp, onDismiss }: MatchCardProps) {
   const { foundItem } = match;
   return (
     <li className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-3">
@@ -46,15 +46,20 @@ function MatchCard({
       {match.status === 'WILL_PICK_UP' ? (
         <PickUpInstructions reportCode={reportCode} />
       ) : (
-        <Button onClick={onPickUp} className="w-full">
-          Pasaré a recoger
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={onDismiss} className="flex-1">
+            No es mío
+          </Button>
+          <Button onClick={onPickUp} className="flex-1">
+            Pasaré a recoger
+          </Button>
+        </div>
       )}
     </li>
   );
 }
 
-export function MatchesPage({ reportCode, matches, onPickUp }: MatchesPageProps) {
+export function MatchesPage({ reportCode, matches, onPickUp, onDismiss }: MatchesPageProps) {
   if (matches.length === 0) {
     return (
       <EmptyState
@@ -79,6 +84,7 @@ export function MatchesPage({ reportCode, matches, onPickUp }: MatchesPageProps)
             match={match}
             reportCode={reportCode}
             onPickUp={() => onPickUp(match.id)}
+            onDismiss={() => onDismiss(match.id)}
           />
         ))}
       </ul>

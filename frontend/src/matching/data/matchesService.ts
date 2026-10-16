@@ -5,6 +5,7 @@ export type MatchesService = {
   /** null when the report does not exist or belongs to someone else. */
   getMatches: (reportCode: string) => Promise<MatchView[] | null>;
   pickUp: (matchId: string) => Promise<void>;
+  dismiss: (matchId: string) => Promise<void>;
 };
 
 export function createMatchesService(apiFetch: ApiFetch): MatchesService {
@@ -18,6 +19,9 @@ export function createMatchesService(apiFetch: ApiFetch): MatchesService {
     },
     pickUp: async (matchId) => {
       await apiFetch(`/matches/${matchId}/pick-up`, { method: 'POST' });
+    },
+    dismiss: async (matchId) => {
+      await apiFetch(`/matches/${matchId}/dismiss`, { method: 'POST' });
     },
   };
 }

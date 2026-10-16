@@ -46,6 +46,10 @@ export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[])
     markWillPickUp: async (matchId) => {
       setStatus(matchId, 'WILL_PICK_UP');
     },
+
+    dismiss: async (matchId) => {
+      setStatus(matchId, 'DISMISSED');
+    },
   };
 
   function setStatus(matchId: string, status: MatchView['status']) {

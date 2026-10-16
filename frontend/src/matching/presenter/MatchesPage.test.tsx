@@ -12,8 +12,20 @@ function match(code: string, description: string, photoUrl: string | null = null
   };
 }
 
-function renderPage(matches: MatchView[], reportCode = 'PR-0001', onPickUp = jest.fn()) {
-  render(<MatchesPage reportCode={reportCode} matches={matches} onPickUp={onPickUp} />);
+function renderPage(
+  matches: MatchView[],
+  reportCode = 'PR-0001',
+  onPickUp = jest.fn(),
+  onDismiss = jest.fn(),
+) {
+  render(
+    <MatchesPage
+      reportCode={reportCode}
+      matches={matches}
+      onPickUp={onPickUp}
+      onDismiss={onDismiss}
+    />,
+  );
 }
 
 describe('Objetos parecidos a mi reporte', () => {
@@ -83,5 +95,19 @@ describe('Objetos parecidos a mi reporte', () => {
     expect(item).toHaveTextContent('Bienestar Estudiantil – Bloque C');
     expect(item).toHaveTextContent('Lunes a viernes, de 08:30 a 16:00');
     expect(item).toHaveTextContent('Lleva el código de tu reporte PR-0001 para recogerlo.');
+  });
+
+  it('permite elegir "No es mío" en un objeto', async () => {
+    const onDismiss = jest.fn();
+    renderPage(
+      [match('HZ-0001', 'Celular Samsung con funda azul')],
+      'PR-0001',
+      jest.fn(),
+      onDismiss,
+    );
+
+    await userEvent.click(screen.getByRole('button', { name: 'No es mío' }));
+
+    expect(onDismiss).toHaveBeenCalledWith('HZ-0001');
   });
 });
