@@ -930,9 +930,23 @@
     "testId": 27
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f4a4a9dc9e56fee047541d9c0b138838c693ae88",
     "commitName": "feat: pedir que vuelva a iniciar sesión a quien cerró su sesión o no ha ingresado",
     "commitTimestamp": 1792184642808,
     "testId": 27
+  },
+  {
+    "numPassedTests": 65,
+    "failedTests": 0,
+    "numTotalTests": 65,
+    "timestamp": 1792184654600,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "docs: finalizando rama core-matching-hu-1",
+    "commitTimestamp": 1792185244793,
+    "testId": 28
   }
 ]

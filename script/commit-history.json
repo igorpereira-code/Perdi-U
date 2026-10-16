@@ -513,17 +513,36 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f4a4a9dc9e56fee047541d9c0b138838c693ae88",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T21:04:02.000Z",
       "message": "feat: pedir que vuelva a iniciar sesión a quien cerró su sesión o no ha ingresado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f4a4a9dc9e56fee047541d9c0b138838c693ae88"
     },
     "stats": {
       "total": 84,
       "additions": 66,
       "deletions": 18,
+      "date": "2026-10-16"
+    },
+    "coverage": 89.24,
+    "test_count": 65,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T21:14:04.000Z",
+      "message": "docs: finalizando rama core-matching-hu-1",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
       "date": "2026-10-16"
     },
     "coverage": 89.24,
