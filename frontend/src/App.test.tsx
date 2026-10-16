@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import App from './App';
@@ -16,12 +17,14 @@ function renderAt(path: string, user: AppUser | null | Error) {
     getCurrentUser:
       user instanceof Error ? jest.fn().mockRejectedValue(user) : jest.fn().mockResolvedValue(user),
     signIn: jest.fn(),
+    signOut: jest.fn(),
   };
   render(
     <MemoryRouter initialEntries={[path]}>
       <App authService={authService} />
     </MemoryRouter>,
   );
+  return authService;
 }
 
 describe('Navegación de la app', () => {
@@ -36,11 +39,21 @@ describe('Navegación de la app', () => {
 
     expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
   });
+
   it('muestra su perfil en /perfil', async () => {
     renderAt('/perfil', igor);
 
     expect(await screen.findByRole('heading', { name: 'Igor Pereira' })).toBeInTheDocument();
     expect(screen.getByText('igor.pereira@ucb.edu.bo')).toBeInTheDocument();
+  });
+
+  it('cierra la sesión desde Mi perfil y vuelve a la pantalla de ingreso', async () => {
+    const authService = renderAt('/perfil', igor);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Cerrar sesión' }));
+
+    expect(authService.signOut).toHaveBeenCalled();
+    expect(await screen.findByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
   });
 
   it('devuelve a la pantalla de ingreso con un aviso si la cuenta no es de la universidad', async () => {

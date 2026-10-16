@@ -822,9 +822,63 @@
     "testId": 25
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c394ee497732634de85f8e2371373aa6e3c37ca9",
     "commitName": "feat: usar siempre el mismo perfil del usuario en sus siguientes ingresos",
     "commitTimestamp": 1792183129721,
     "testId": 25
+  },
+  {
+    "numPassedTests": 59,
+    "failedTests": 1,
+    "numTotalTests": 60,
+    "timestamp": 1792183491741,
+    "success": false,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 60,
+    "failedTests": 0,
+    "numTotalTests": 60,
+    "timestamp": 1792183510715,
+    "success": true,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 60,
+    "failedTests": 1,
+    "numTotalTests": 61,
+    "timestamp": 1792183580461,
+    "success": false,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 61,
+    "failedTests": 0,
+    "numTotalTests": 61,
+    "timestamp": 1792183594437,
+    "success": true,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 61,
+    "failedTests": 1,
+    "numTotalTests": 62,
+    "timestamp": 1792183648638,
+    "success": false,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 62,
+    "failedTests": 0,
+    "numTotalTests": 62,
+    "timestamp": 1792183681334,
+    "success": true,
+    "testId": 26
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir que el usuario cierre su sesión desde su perfil",
+    "commitTimestamp": 1792183732045,
+    "testId": 26
   }
 ]

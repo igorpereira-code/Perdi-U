@@ -41,16 +41,23 @@ describe('Saber quién inició sesión', () => {
 
   it('cierra la sesión y avisa cuando la cuenta no es de la universidad', async () => {
     const auth = fakeAuth({ access_token: 'gmail-token' });
-    const fetchFn = jest
-      .fn()
-      .mockResolvedValue({
-        ok: false,
-        status: 403,
-        json: async () => ({ code: 'NOT_INSTITUTIONAL_EMAIL' }),
-      });
+    const fetchFn = jest.fn().mockResolvedValue({
+      ok: false,
+      status: 403,
+      json: async () => ({ code: 'NOT_INSTITUTIONAL_EMAIL' }),
+    });
     const service = createAuthService({ auth, apiUrl: 'http://api', fetchFn });
 
     await expect(service.getCurrentUser()).rejects.toThrow(NotInstitutionalEmailError);
+    expect(auth.signOut).toHaveBeenCalled();
+  });
+
+  it('cierra la sesión cuando el usuario lo pide', async () => {
+    const auth = fakeAuth({ access_token: 'token-123' });
+    const service = createAuthService({ auth, apiUrl: 'http://api', fetchFn: jest.fn() });
+
+    await service.signOut();
+
     expect(auth.signOut).toHaveBeenCalled();
   });
 });

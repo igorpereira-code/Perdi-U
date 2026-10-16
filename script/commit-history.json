@@ -475,12 +475,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c394ee497732634de85f8e2371373aa6e3c37ca9",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T20:38:49.000Z",
       "message": "feat: usar siempre el mismo perfil del usuario en sus siguientes ingresos",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c394ee497732634de85f8e2371373aa6e3c37ca9"
     },
     "stats": {
       "total": 37,
@@ -490,6 +490,25 @@
     },
     "coverage": 88.44,
     "test_count": 59,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T20:48:51.000Z",
+      "message": "feat: permitir que el usuario cierre su sesión desde su perfil",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 115,
+      "additions": 84,
+      "deletions": 31,
+      "date": "2026-10-16"
+    },
+    "coverage": 88.74,
+    "test_count": 62,
     "failed_tests": 0,
     "conclusion": "success"
   }

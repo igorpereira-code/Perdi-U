@@ -24,6 +24,12 @@ export default function App({ authService }: { authService: AuthService }) {
       });
   }, [authService, navigate]);
 
+  async function handleSignOut() {
+    await authService.signOut();
+    setUser(null);
+    navigate('/ingresar');
+  }
+
   /** Pages for signed-in users: they go inside the blue header and the bottom menu. */
   const signedInPage = (page: (me: AppUser) => ReactNode) =>
     user ? <AppLayout>{page(user)}</AppLayout> : null;
@@ -39,7 +45,7 @@ export default function App({ authService }: { authService: AuthService }) {
       <Route
         path="/perfil"
         element={signedInPage((me) => (
-          <ProfilePage user={me} />
+          <ProfilePage user={me} onSignOut={handleSignOut} />
         ))}
       />
       <Route

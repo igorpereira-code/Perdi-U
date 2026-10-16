@@ -8,6 +8,7 @@ export class NotInstitutionalEmailError extends Error {}
 export type AuthService = {
   getCurrentUser: () => Promise<AppUser | null>;
   signIn: () => Promise<void>;
+  signOut: () => Promise<void>;
 };
 
 type AuthServiceDeps = {
@@ -38,5 +39,8 @@ export function createAuthService({
       return response.json();
     },
     signIn: () => signInWithGoogle(auth),
+    signOut: async () => {
+      await auth.signOut();
+    },
   };
 }
