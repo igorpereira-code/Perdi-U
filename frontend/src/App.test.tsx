@@ -4,6 +4,8 @@ import { MemoryRouter } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import App from './App';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
+import type { MatchView } from '@shared/matching';
+import type { MatchesService } from './matching/data/matchesService';
 
 const igor: AppUser = {
   id: 'google-1',
@@ -12,16 +14,17 @@ const igor: AppUser = {
   role: 'COMMUNITY',
 };
 
-function renderAt(path: string, user: AppUser | null | Error) {
+function renderAt(path: string, user: AppUser | null | Error, matches: MatchView[] = []) {
   const authService: AuthService = {
     getCurrentUser:
       user instanceof Error ? jest.fn().mockRejectedValue(user) : jest.fn().mockResolvedValue(user),
     signIn: jest.fn(),
     signOut: jest.fn(),
   };
+  const matchesService: MatchesService = { getMatches: jest.fn().mockResolvedValue(matches) };
   render(
     <MemoryRouter initialEntries={[path]}>
-      <App authService={authService} />
+      <App authService={authService} matchesService={matchesService} />
     </MemoryRouter>,
   );
   return authService;
@@ -69,5 +72,23 @@ describe('Navegación de la app', () => {
       'Solo se permiten cuentas institucionales',
     );
     expect(screen.getByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+  });
+
+  it('muestra los objetos parecidos a su reporte en /mis-reportes/<código>/coincidencias', async () => {
+    const phone: MatchView = {
+      id: 'match-1',
+      status: 'SUGGESTED',
+      similarity: 100,
+      foundItem: {
+        code: 'HZ-0001',
+        description: 'Celular Samsung con funda azul',
+        photoUrl: null,
+        category: 'Electrónicos',
+      },
+    };
+
+    renderAt('/mis-reportes/PR-0001/coincidencias', igor, [phone]);
+
+    expect(await screen.findByText('Celular Samsung con funda azul')).toBeInTheDocument();
   });
 });

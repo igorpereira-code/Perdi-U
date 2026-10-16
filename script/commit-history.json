@@ -513,12 +513,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "300d39b46db541b5e233b92e3d6c006a99faf5e2",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T21:04:02.000Z",
       "message": "feat: pedir que vuelva a iniciar sesión a quien cerró su sesión o no ha ingresado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/300d39b46db541b5e233b92e3d6c006a99faf5e2"
     },
     "stats": {
       "total": 84,
@@ -528,6 +528,25 @@
     },
     "coverage": 89.24,
     "test_count": 65,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T22:50:55.000Z",
+      "message": "feat: mostrar al dueño los objetos publicados que se parecen a su reporte, del más parecido al menos parecido",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 667,
+      "additions": 651,
+      "deletions": 16,
+      "date": "2026-10-16"
+    },
+    "coverage": 86.75,
+    "test_count": 76,
     "failed_tests": 0,
     "conclusion": "success"
   }

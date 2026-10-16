@@ -930,9 +930,191 @@
     "testId": 27
   },
   {
-    "commitId": "HEAD",
+    "commitId": "300d39b46db541b5e233b92e3d6c006a99faf5e2",
     "commitName": "feat: pedir que vuelva a iniciar sesión a quien cerró su sesión o no ha ingresado",
     "commitTimestamp": 1792184642808,
     "testId": 27
+  },
+  {
+    "numPassedTests": 65,
+    "failedTests": 1,
+    "numTotalTests": 66,
+    "timestamp": 1792189301240,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 66,
+    "failedTests": 0,
+    "numTotalTests": 66,
+    "timestamp": 1792189355005,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 66,
+    "failedTests": 1,
+    "numTotalTests": 67,
+    "timestamp": 1792189370303,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 67,
+    "failedTests": 0,
+    "numTotalTests": 67,
+    "timestamp": 1792189395505,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 67,
+    "failedTests": 1,
+    "numTotalTests": 68,
+    "timestamp": 1792189409496,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 68,
+    "failedTests": 0,
+    "numTotalTests": 68,
+    "timestamp": 1792189437908,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 68,
+    "failedTests": 1,
+    "numTotalTests": 69,
+    "timestamp": 1792189451665,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 69,
+    "failedTests": 0,
+    "numTotalTests": 69,
+    "timestamp": 1792189502052,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 69,
+    "failedTests": 0,
+    "numTotalTests": 69,
+    "timestamp": 1792189516425,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 69,
+    "failedTests": 1,
+    "numTotalTests": 70,
+    "timestamp": 1792189588883,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 70,
+    "failedTests": 0,
+    "numTotalTests": 70,
+    "timestamp": 1792189613084,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 70,
+    "failedTests": 2,
+    "numTotalTests": 72,
+    "timestamp": 1792190031129,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 72,
+    "failedTests": 0,
+    "numTotalTests": 72,
+    "timestamp": 1792190046784,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 72,
+    "failedTests": 1,
+    "numTotalTests": 73,
+    "timestamp": 1792190378878,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 73,
+    "failedTests": 0,
+    "numTotalTests": 73,
+    "timestamp": 1792190395129,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 73,
+    "failedTests": 0,
+    "numTotalTests": 73,
+    "timestamp": 1792190459894,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 73,
+    "failedTests": 0,
+    "numTotalTests": 73,
+    "timestamp": 1792190473361,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 74,
+    "failedTests": 0,
+    "numTotalTests": 74,
+    "timestamp": 1792190506984,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 74,
+    "failedTests": 1,
+    "numTotalTests": 75,
+    "timestamp": 1792190566330,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 75,
+    "failedTests": 0,
+    "numTotalTests": 75,
+    "timestamp": 1792190576745,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 75,
+    "failedTests": 1,
+    "numTotalTests": 76,
+    "timestamp": 1792190715120,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 76,
+    "failedTests": 0,
+    "numTotalTests": 76,
+    "timestamp": 1792190804550,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar al dueño los objetos publicados que se parecen a su reporte, del más parecido al menos parecido",
+    "commitTimestamp": 1792191056083,
+    "testId": 28
   }
 ]

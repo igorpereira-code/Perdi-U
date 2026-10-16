@@ -5,16 +5,21 @@ import { createCurrentUser, getCurrentUser, type VerifyToken } from './core/curr
 import { verifySupabaseToken } from './core/data/supabaseAuth';
 import { prismaUsersRepository } from './core/data/prismaUsersRepository';
 import type { UsersRepository } from './core/data/usersRepository';
+import type { MatchingRepository } from './matching/data/matchingRepository';
+import { prismaMatchingRepository } from './matching/data/prismaMatchingRepository';
+import { createMatchesRouter } from './matching/routes/matchesRouter';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
   users?: UsersRepository;
   allowSampleUsers?: boolean;
+  matching?: MatchingRepository;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
   users = prismaUsersRepository,
   allowSampleUsers = process.env.ALLOW_SAMPLE_USERS === 'true',
+  matching = prismaMatchingRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -29,6 +34,7 @@ export function createApp({
   app.get('/me', (req, res) => {
     res.json(getCurrentUser(req));
   });
+  app.use(createMatchesRouter(matching));
 
   return app;
 }
