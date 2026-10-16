@@ -8,9 +8,385 @@
     "testId": 0
   },
   {
-    "commitId": "HEAD",
+    "commitId": "772d504c6b1f7e2dcb88a0acc53e73b1770723a9",
     "commitName": "chore: fijar las versiones de las librerías del proyecto",
     "commitTimestamp": 1791918923731,
     "testId": 0
+  },
+  {
+    "commitId": "4525dd6a4aba05d90df38c195c5e712da020f62a",
+    "commitName": "chore: revisar automáticamente los pull requests de cada historia",
+    "commitTimestamp": 1792071709486,
+    "testId": 1
+  },
+  {
+    "numPassedTests": 7,
+    "failedTests": 0,
+    "numTotalTests": 7,
+    "timestamp": 1792095755903,
+    "success": true,
+    "testId": 2
+  },
+  {
+    "commitId": "32b047f443669afcf6ce5289cc0c6f19dad95369",
+    "commitName": "chore: agregar íconos, la fuente Inter y los colores de estado",
+    "commitTimestamp": 1792095812568,
+    "testId": 2
+  },
+  {
+    "numPassedTests": 7,
+    "failedTests": 0,
+    "numTotalTests": 7,
+    "timestamp": 1792095968333,
+    "success": false,
+    "testId": 3
+  },
+  {
+    "numPassedTests": 9,
+    "failedTests": 0,
+    "numTotalTests": 9,
+    "timestamp": 1792096193731,
+    "success": true,
+    "testId": 3
+  },
+  {
+    "commitId": "52a644689393fee37ac44f3afef774456844ba2c",
+    "commitName": "feat: mostrar el estado de objetos y reportes con etiquetas de colores",
+    "commitTimestamp": 1792096422932,
+    "testId": 3
+  },
+  {
+    "numPassedTests": 9,
+    "failedTests": 4,
+    "numTotalTests": 13,
+    "timestamp": 1792097192766,
+    "success": false,
+    "testId": 4
+  },
+  {
+    "numPassedTests": 12,
+    "failedTests": 0,
+    "numTotalTests": 12,
+    "timestamp": 1792097326675,
+    "success": true,
+    "testId": 4
+  },
+  {
+    "commitId": "a2175fed08da130ed80e8ca2a3d920dc2d700b3c",
+    "commitName": "refactor: separar qué significa cada estado de cómo se muestra en pantalla",
+    "commitTimestamp": 1792097346455,
+    "testId": 4
+  },
+  {
+    "numPassedTests": 12,
+    "failedTests": 3,
+    "numTotalTests": 15,
+    "timestamp": 1792097708851,
+    "success": false,
+    "testId": 5
+  },
+  {
+    "numPassedTests": 15,
+    "failedTests": 0,
+    "numTotalTests": 15,
+    "timestamp": 1792097770255,
+    "success": true,
+    "testId": 5
+  },
+  {
+    "numPassedTests": 15,
+    "failedTests": 0,
+    "numTotalTests": 15,
+    "timestamp": 1792097830013,
+    "success": true,
+    "testId": 5
+  },
+  {
+    "commitId": "99a35eaa37b4e921b833ede9233dabaa372cb2ef",
+    "commitName": "feat: agregar el botón con los estilos de la universidad",
+    "commitTimestamp": 1792097884733,
+    "testId": 5
+  },
+  {
+    "numPassedTests": 16,
+    "failedTests": 3,
+    "numTotalTests": 19,
+    "timestamp": 1792098136571,
+    "success": false,
+    "testId": 6
+  },
+  {
+    "numPassedTests": 19,
+    "failedTests": 0,
+    "numTotalTests": 19,
+    "timestamp": 1792098172284,
+    "success": true,
+    "testId": 6
+  },
+  {
+    "numPassedTests": 19,
+    "failedTests": 0,
+    "numTotalTests": 19,
+    "timestamp": 1792098214620,
+    "success": true,
+    "testId": 6
+  },
+  {
+    "commitId": "9c919420b1c28e9dec55422ce48d32e648368b2e",
+    "commitName": "feat: reconocer cuando el usuario deja un dato vacío en un formulario",
+    "commitTimestamp": 1792098241023,
+    "testId": 6
+  },
+  {
+    "numPassedTests": 20,
+    "failedTests": 3,
+    "numTotalTests": 23,
+    "timestamp": 1792098380278,
+    "success": false,
+    "testId": 7
+  },
+  {
+    "numPassedTests": 23,
+    "failedTests": 0,
+    "numTotalTests": 23,
+    "timestamp": 1792098432574,
+    "success": true,
+    "testId": 7
+  },
+  {
+    "numPassedTests": 23,
+    "failedTests": 0,
+    "numTotalTests": 23,
+    "timestamp": 1792098487015,
+    "success": true,
+    "testId": 7
+  },
+  {
+    "commitId": "dc838ce1e49123666ffcdc35815078f7135ba041",
+    "commitName": "feat: agregar el campo de formulario con su etiqueta, aviso de opcional y mensaje de error",
+    "commitTimestamp": 1792098514971,
+    "testId": 7
+  },
+  {
+    "numPassedTests": 23,
+    "failedTests": 1,
+    "numTotalTests": 24,
+    "timestamp": 1792098862628,
+    "success": false,
+    "testId": 8
+  },
+  {
+    "numPassedTests": 24,
+    "failedTests": 0,
+    "numTotalTests": 24,
+    "timestamp": 1792098898940,
+    "success": true,
+    "testId": 8
+  },
+  {
+    "commitId": "96b3a619930cdab3b48fa852c13ff5077439f752",
+    "commitName": "feat: mostrar avisos importantes al usuario en un recuadro amarillo",
+    "commitTimestamp": 1792098933095,
+    "testId": 8
+  },
+  {
+    "numPassedTests": 24,
+    "failedTests": 1,
+    "numTotalTests": 25,
+    "timestamp": 1792099044417,
+    "success": false,
+    "testId": 9
+  },
+  {
+    "numPassedTests": 25,
+    "failedTests": 0,
+    "numTotalTests": 25,
+    "timestamp": 1792099077187,
+    "success": true,
+    "testId": 9
+  },
+  {
+    "commitId": "ddb15771a7fca84a40f797a0255a742c0f1a67cd",
+    "commitName": "feat: avisar al usuario cuando una lista está vacía y qué puede hacer",
+    "commitTimestamp": 1792099096047,
+    "testId": 9
+  },
+  {
+    "numPassedTests": 25,
+    "failedTests": 1,
+    "numTotalTests": 26,
+    "timestamp": 1792099229485,
+    "success": false,
+    "testId": 10
+  },
+  {
+    "numPassedTests": 26,
+    "failedTests": 0,
+    "numTotalTests": 26,
+    "timestamp": 1792099262408,
+    "success": true,
+    "testId": 10
+  },
+  {
+    "commitId": "8a50303c254036a4b22992b7f12f3a362975964c",
+    "commitName": "feat: mostrar los datos de un objeto o reporte como nombre y valor",
+    "commitTimestamp": 1792099282484,
+    "testId": 10
+  },
+  {
+    "numPassedTests": 26,
+    "failedTests": 1,
+    "numTotalTests": 27,
+    "timestamp": 1792099678330,
+    "success": false,
+    "testId": 11
+  },
+  {
+    "numPassedTests": 27,
+    "failedTests": 0,
+    "numTotalTests": 27,
+    "timestamp": 1792099713787,
+    "success": true,
+    "testId": 11
+  },
+  {
+    "numPassedTests": 27,
+    "failedTests": 0,
+    "numTotalTests": 27,
+    "timestamp": 1792099749169,
+    "success": true,
+    "testId": 11
+  },
+  {
+    "commitId": "cddd2126699c5f215dc72d785cc9e958a536e015",
+    "commitName": "feat: mostrar dónde queda Bienestar Estudiantil y en qué horario atiende",
+    "commitTimestamp": 1792099770369,
+    "testId": 11
+  },
+  {
+    "numPassedTests": 27,
+    "failedTests": 2,
+    "numTotalTests": 29,
+    "timestamp": 1792099888683,
+    "success": false,
+    "testId": 12
+  },
+  {
+    "numPassedTests": 29,
+    "failedTests": 0,
+    "numTotalTests": 29,
+    "timestamp": 1792099928411,
+    "success": true,
+    "testId": 12
+  },
+  {
+    "commitId": "25d6d1971d5b83e5beaa84bb807258160618095d",
+    "commitName": "feat: identificar cada categoría de objeto con su propio ícono",
+    "commitTimestamp": 1792099948460,
+    "testId": 12
+  },
+  {
+    "numPassedTests": 29,
+    "failedTests": 2,
+    "numTotalTests": 31,
+    "timestamp": 1792100041229,
+    "success": false,
+    "testId": 13
+  },
+  {
+    "numPassedTests": 31,
+    "failedTests": 0,
+    "numTotalTests": 31,
+    "timestamp": 1792100086974,
+    "success": true,
+    "testId": 13
+  },
+  {
+    "numPassedTests": 31,
+    "failedTests": 0,
+    "numTotalTests": 31,
+    "timestamp": 1792100121177,
+    "success": true,
+    "testId": 13
+  },
+  {
+    "commitId": "03ef304fb4ce1f08f9959238cf54ce94fd457023",
+    "commitName": "feat: mostrar la foto del objeto o, si no tiene, el ícono de su categoría",
+    "commitTimestamp": 1792100140523,
+    "testId": 13
+  },
+  {
+    "numPassedTests": 31,
+    "failedTests": 1,
+    "numTotalTests": 32,
+    "timestamp": 1792100399595,
+    "success": false,
+    "testId": 14
+  },
+  {
+    "numPassedTests": 32,
+    "failedTests": 0,
+    "numTotalTests": 32,
+    "timestamp": 1792100413080,
+    "success": true,
+    "testId": 14
+  },
+  {
+    "commitId": "cd59ca5e0a33e9d204809d2a94d7bbb4bbe7ba2f",
+    "commitName": "feat: mostrar el logo con el nombre de la app",
+    "commitTimestamp": 1792100422459,
+    "testId": 14
+  },
+  {
+    "numPassedTests": 32,
+    "failedTests": 1,
+    "numTotalTests": 33,
+    "timestamp": 1792100491082,
+    "success": false,
+    "testId": 15
+  },
+  {
+    "numPassedTests": 33,
+    "failedTests": 0,
+    "numTotalTests": 33,
+    "timestamp": 1792100505645,
+    "success": true,
+    "testId": 15
+  },
+  {
+    "commitId": "ce16dbf0ff8f150e3818b9ccb89a2f225ce9b821",
+    "commitName": "feat: agregar el encabezado de pantalla con botón para volver atrás",
+    "commitTimestamp": 1792100520783,
+    "testId": 15
+  },
+  {
+    "numPassedTests": 33,
+    "failedTests": 3,
+    "numTotalTests": 36,
+    "timestamp": 1792100591822,
+    "success": false,
+    "testId": 16
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 0,
+    "numTotalTests": 36,
+    "timestamp": 1792100605552,
+    "success": true,
+    "testId": 16
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 0,
+    "numTotalTests": 36,
+    "timestamp": 1792100629786,
+    "success": true,
+    "testId": 16
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir elegir una foto de la galería, verla antes de enviarla y quitarla",
+    "commitTimestamp": 1792100647816,
+    "testId": 16
   }
 ]
