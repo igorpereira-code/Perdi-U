@@ -384,9 +384,555 @@
     "testId": 16
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0ce409700c6cc257d31b4a64aae2b12966fab248",
     "commitName": "feat: permitir elegir una foto de la galería, verla antes de enviarla y quitarla",
     "commitTimestamp": 1792100647816,
     "testId": 16
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 0,
+    "numTotalTests": 36,
+    "timestamp": 1792101976436,
+    "success": true,
+    "testId": 17
+  },
+  {
+    "commitId": "aed848f7725e4d2b5e1bcb5d2adc4bb94056dcf0",
+    "commitName": "chore: permitir usuarios de prueba solo cuando se active en el entorno local",
+    "commitTimestamp": 1792104347595,
+    "testId": 17
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 0,
+    "numTotalTests": 36,
+    "timestamp": 1792104354158,
+    "success": true,
+    "testId": 18
+  },
+  {
+    "commitId": "cddff898a055df5a7baabca4a6ed01c91ee847b2",
+    "commitName": "chore: dejar vacíos los datos del proyecto en el archivo de ejemplo del entorno",
+    "commitTimestamp": 1792105282216,
+    "testId": 18
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 1,
+    "numTotalTests": 37,
+    "timestamp": 1792176716575,
+    "success": false,
+    "testId": 19
+  },
+  {
+    "numPassedTests": 37,
+    "failedTests": 0,
+    "numTotalTests": 37,
+    "timestamp": 1792176786906,
+    "success": true,
+    "testId": 19
+  },
+  {
+    "commitId": "f649503a32824af8abd10ae747967df80e1f6073",
+    "commitName": "feat: abrir el selector de cuentas Google mostrando primero las de la universidad",
+    "commitTimestamp": 1792176923559,
+    "testId": 19
+  },
+  {
+    "numPassedTests": 37,
+    "failedTests": 1,
+    "numTotalTests": 38,
+    "timestamp": 1792177225926,
+    "success": false,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 38,
+    "failedTests": 0,
+    "numTotalTests": 38,
+    "timestamp": 1792177259161,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 38,
+    "failedTests": 1,
+    "numTotalTests": 39,
+    "timestamp": 1792177363908,
+    "success": false,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 0,
+    "numTotalTests": 39,
+    "timestamp": 1792177388311,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 0,
+    "numTotalTests": 39,
+    "timestamp": 1792177415952,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 0,
+    "numTotalTests": 39,
+    "timestamp": 1792177773547,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "commitId": "87b5f5641f8b720e6de89080a06c6e27642734b4",
+    "commitName": "feat: permitir elegir la cuenta Google de la universidad para ingresar",
+    "commitTimestamp": 1792177835452,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 1,
+    "numTotalTests": 40,
+    "timestamp": 1792178456233,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 40,
+    "failedTests": 0,
+    "numTotalTests": 40,
+    "timestamp": 1792178578223,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 40,
+    "failedTests": 1,
+    "numTotalTests": 41,
+    "timestamp": 1792178619655,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 41,
+    "failedTests": 0,
+    "numTotalTests": 41,
+    "timestamp": 1792178660627,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 41,
+    "failedTests": 0,
+    "numTotalTests": 41,
+    "timestamp": 1792178752471,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 41,
+    "failedTests": 1,
+    "numTotalTests": 42,
+    "timestamp": 1792178882190,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 42,
+    "failedTests": 0,
+    "numTotalTests": 42,
+    "timestamp": 1792178919186,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 42,
+    "failedTests": 1,
+    "numTotalTests": 43,
+    "timestamp": 1792178966708,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 43,
+    "failedTests": 0,
+    "numTotalTests": 43,
+    "timestamp": 1792179007940,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 43,
+    "failedTests": 1,
+    "numTotalTests": 44,
+    "timestamp": 1792179081470,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 44,
+    "failedTests": 0,
+    "numTotalTests": 44,
+    "timestamp": 1792179112308,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 43,
+    "failedTests": 1,
+    "numTotalTests": 44,
+    "timestamp": 1792179177464,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 44,
+    "failedTests": 0,
+    "numTotalTests": 44,
+    "timestamp": 1792179211974,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "commitId": "8db4a8756306b9dce7ebe3fe946ac730f91b4a0a",
+    "commitName": "feat: dejar entrar a la pantalla principal a quien inicia sesión con su cuenta de la universidad",
+    "commitTimestamp": 1792179360346,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 45,
+    "failedTests": 1,
+    "numTotalTests": 46,
+    "timestamp": 1792179733541,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 46,
+    "failedTests": 0,
+    "numTotalTests": 46,
+    "timestamp": 1792179750869,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 46,
+    "failedTests": 1,
+    "numTotalTests": 47,
+    "timestamp": 1792179783186,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 47,
+    "failedTests": 0,
+    "numTotalTests": 47,
+    "timestamp": 1792179981305,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 47,
+    "failedTests": 1,
+    "numTotalTests": 48,
+    "timestamp": 1792180102298,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 48,
+    "failedTests": 0,
+    "numTotalTests": 48,
+    "timestamp": 1792180179211,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 48,
+    "failedTests": 1,
+    "numTotalTests": 49,
+    "timestamp": 1792180239611,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 49,
+    "failedTests": 0,
+    "numTotalTests": 49,
+    "timestamp": 1792180293458,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 49,
+    "failedTests": 1,
+    "numTotalTests": 50,
+    "timestamp": 1792180340921,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "commitId": "b1f221311b56ada225d198b3ec8adb4eb45d2e85",
+    "commitName": "feat: avisar que solo se permiten cuentas de la universidad cuando alguien ingresa con otra cuenta",
+    "commitTimestamp": 1792180587004,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 51,
+    "failedTests": 1,
+    "numTotalTests": 52,
+    "timestamp": 1792181142420,
+    "success": false,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 52,
+    "failedTests": 0,
+    "numTotalTests": 52,
+    "timestamp": 1792181165248,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 52,
+    "failedTests": 1,
+    "numTotalTests": 53,
+    "timestamp": 1792181296283,
+    "success": false,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 53,
+    "failedTests": 0,
+    "numTotalTests": 53,
+    "timestamp": 1792181581722,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 53,
+    "failedTests": 1,
+    "numTotalTests": 54,
+    "timestamp": 1792181697394,
+    "success": false,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 54,
+    "failedTests": 0,
+    "numTotalTests": 54,
+    "timestamp": 1792181757451,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 54,
+    "failedTests": 0,
+    "numTotalTests": 54,
+    "timestamp": 1792181854624,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "commitId": "3555cd6ebce7542a40fa4dba53f69ff31a06e64a",
+    "commitName": "feat: crear el perfil del usuario automáticamente en su primer ingreso, sin formularios",
+    "commitTimestamp": 1792182091341,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 54,
+    "failedTests": 2,
+    "numTotalTests": 56,
+    "timestamp": 1792182602231,
+    "success": false,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 56,
+    "failedTests": 0,
+    "numTotalTests": 56,
+    "timestamp": 1792182618173,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 56,
+    "failedTests": 1,
+    "numTotalTests": 57,
+    "timestamp": 1792182687063,
+    "success": false,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 57,
+    "failedTests": 0,
+    "numTotalTests": 57,
+    "timestamp": 1792182698164,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 57,
+    "failedTests": 0,
+    "numTotalTests": 57,
+    "timestamp": 1792182714394,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 57,
+    "failedTests": 1,
+    "numTotalTests": 58,
+    "timestamp": 1792182750373,
+    "success": false,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 58,
+    "failedTests": 0,
+    "numTotalTests": 58,
+    "timestamp": 1792182797281,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "commitId": "b57e9dfa60e2432fa94d4268c8f7ad83e448aead",
+    "commitName": "feat: mostrar el perfil del usuario con el nombre, correo y foto de su cuenta de Google",
+    "commitTimestamp": 1792182874687,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 58,
+    "failedTests": 1,
+    "numTotalTests": 59,
+    "timestamp": 1792182953919,
+    "success": false,
+    "testId": 25
+  },
+  {
+    "numPassedTests": 59,
+    "failedTests": 0,
+    "numTotalTests": 59,
+    "timestamp": 1792183031296,
+    "success": true,
+    "testId": 25
+  },
+  {
+    "commitId": "c394ee497732634de85f8e2371373aa6e3c37ca9",
+    "commitName": "feat: usar siempre el mismo perfil del usuario en sus siguientes ingresos",
+    "commitTimestamp": 1792183129721,
+    "testId": 25
+  },
+  {
+    "numPassedTests": 59,
+    "failedTests": 1,
+    "numTotalTests": 60,
+    "timestamp": 1792183491741,
+    "success": false,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 60,
+    "failedTests": 0,
+    "numTotalTests": 60,
+    "timestamp": 1792183510715,
+    "success": true,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 60,
+    "failedTests": 1,
+    "numTotalTests": 61,
+    "timestamp": 1792183580461,
+    "success": false,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 61,
+    "failedTests": 0,
+    "numTotalTests": 61,
+    "timestamp": 1792183594437,
+    "success": true,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 61,
+    "failedTests": 1,
+    "numTotalTests": 62,
+    "timestamp": 1792183648638,
+    "success": false,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 62,
+    "failedTests": 0,
+    "numTotalTests": 62,
+    "timestamp": 1792183681334,
+    "success": true,
+    "testId": 26
+  },
+  {
+    "commitId": "cd23f49a6ed3e075b4bde6460798837bc0289667",
+    "commitName": "feat: permitir que el usuario cierre su sesión desde su perfil",
+    "commitTimestamp": 1792183732045,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 62,
+    "failedTests": 1,
+    "numTotalTests": 63,
+    "timestamp": 1792183904541,
+    "success": false,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 63,
+    "failedTests": 0,
+    "numTotalTests": 63,
+    "timestamp": 1792184263928,
+    "success": true,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 63,
+    "failedTests": 1,
+    "numTotalTests": 64,
+    "timestamp": 1792184299466,
+    "success": false,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 64,
+    "failedTests": 0,
+    "numTotalTests": 64,
+    "timestamp": 1792184354452,
+    "success": true,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 64,
+    "failedTests": 1,
+    "numTotalTests": 65,
+    "timestamp": 1792184408379,
+    "success": false,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 65,
+    "failedTests": 0,
+    "numTotalTests": 65,
+    "timestamp": 1792184438801,
+    "success": true,
+    "testId": 27
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: pedir que vuelva a iniciar sesión a quien cerró su sesión o no ha ingresado",
+    "commitTimestamp": 1792184642808,
+    "testId": 27
   }
 ]
