@@ -14,7 +14,7 @@ const igor: AppUser = {
   role: 'COMMUNITY',
 };
 
-function renderAt(path: string, user: AppUser | null | Error, matches: MatchView[] = []) {
+function renderAt(path: string, user: AppUser | null | Error, matches: MatchView[] | null = []) {
   const authService: AuthService = {
     getCurrentUser:
       user instanceof Error ? jest.fn().mockRejectedValue(user) : jest.fn().mockResolvedValue(user),
@@ -90,5 +90,13 @@ describe('Navegación de la app', () => {
     renderAt('/mis-reportes/PR-0001/coincidencias', igor, [phone]);
 
     expect(await screen.findByText('Celular Samsung con funda azul')).toBeInTheDocument();
+  });
+
+  it('avisa cuando el reporte no existe o no es suyo', async () => {
+    renderAt('/mis-reportes/PR-0002/coincidencias', igor, null);
+
+    expect(
+      await screen.findByRole('heading', { name: 'No encontramos este reporte' }),
+    ).toBeInTheDocument();
   });
 });

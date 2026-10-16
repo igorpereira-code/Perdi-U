@@ -532,12 +532,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "416d4d94d27d5281de167f5a126007bcd20c8ac4",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T22:50:55.000Z",
       "message": "feat: mostrar al dueño los objetos publicados que se parecen a su reporte, del más parecido al menos parecido",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/416d4d94d27d5281de167f5a126007bcd20c8ac4"
     },
     "stats": {
       "total": 667,
@@ -547,6 +547,25 @@
     },
     "coverage": 86.75,
     "test_count": 76,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T22:58:25.000Z",
+      "message": "fix: avisar cuando el reporte no existe o no es del usuario, en vez de mostrar la pantalla rota",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 45,
+      "additions": 41,
+      "deletions": 4,
+      "date": "2026-10-16"
+    },
+    "coverage": 86.96,
+    "test_count": 78,
     "failed_tests": 0,
     "conclusion": "success"
   }

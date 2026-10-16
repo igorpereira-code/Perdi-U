@@ -21,4 +21,17 @@ describe('Traer los objetos parecidos a un reporte', () => {
     await expect(service.getMatches('PR-0001')).resolves.toEqual([phone]);
     expect(apiFetch).toHaveBeenCalledWith('/lost-reports/PR-0001/matches');
   });
+
+  it('avisa que no encontró el reporte cuando no existe o es de otra persona', async () => {
+    const apiFetch = jest
+      .fn()
+      .mockResolvedValue({
+        ok: false,
+        status: 404,
+        json: async () => ({ error: 'Lost report not found' }),
+      });
+    const service = createMatchesService(apiFetch);
+
+    await expect(service.getMatches('PR-0002')).resolves.toBeNull();
+  });
 });

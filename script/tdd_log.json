@@ -1112,9 +1112,47 @@
     "testId": 28
   },
   {
-    "commitId": "HEAD",
+    "commitId": "416d4d94d27d5281de167f5a126007bcd20c8ac4",
     "commitName": "feat: mostrar al dueño los objetos publicados que se parecen a su reporte, del más parecido al menos parecido",
     "commitTimestamp": 1792191056083,
     "testId": 28
+  },
+  {
+    "numPassedTests": 76,
+    "failedTests": 1,
+    "numTotalTests": 77,
+    "timestamp": 1792191369372,
+    "success": false,
+    "testId": 29
+  },
+  {
+    "numPassedTests": 77,
+    "failedTests": 0,
+    "numTotalTests": 77,
+    "timestamp": 1792191392920,
+    "success": true,
+    "testId": 29
+  },
+  {
+    "numPassedTests": 77,
+    "failedTests": 1,
+    "numTotalTests": 78,
+    "timestamp": 1792191443098,
+    "success": false,
+    "testId": 29
+  },
+  {
+    "numPassedTests": 78,
+    "failedTests": 0,
+    "numTotalTests": 78,
+    "timestamp": 1792191467023,
+    "success": true,
+    "testId": 29
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix: avisar cuando el reporte no existe o no es del usuario, en vez de mostrar la pantalla rota",
+    "commitTimestamp": 1792191505877,
+    "testId": 29
   }
 ]
