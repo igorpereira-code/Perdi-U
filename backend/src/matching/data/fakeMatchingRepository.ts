@@ -34,8 +34,26 @@ export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[])
 
     listMatches: async (lostReportId) =>
       matches.filter((m) => m.lostReportId === lostReportId && m.status !== 'DISMISSED'),
+
+    findOwnMatch: async (matchId, ownerId) => {
+      const match = matches.find((m) => m.id === matchId);
+      const report = reports.find((r) => r.id === match?.lostReportId);
+      return match && report?.ownerId === ownerId
+        ? { id: match.id, lostReportId: match.lostReportId }
+        : null;
+    },
+
+    markWillPickUp: async (matchId) => {
+      setStatus(matchId, 'WILL_PICK_UP');
+    },
   };
 
+  function setStatus(matchId: string, status: MatchView['status']) {
+    const match = matches.find((m) => m.id === matchId);
+    if (match) {
+      match.status = status;
+    }
+  }
   function itemById(id: string): FakeItem {
     const item = items.find((i) => i.id === id);
     if (!item) {

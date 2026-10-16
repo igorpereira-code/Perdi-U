@@ -1,13 +1,15 @@
 import type { MatchView } from '@shared/matching';
+import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { Thumb } from '../../core/presenter/Thumb';
 
 type MatchesPageProps = {
   reportCode: string;
   matches: MatchView[];
+  onPickUp: (matchId: string) => void;
 };
 
-export function MatchesPage({ reportCode, matches }: MatchesPageProps) {
+export function MatchesPage({ reportCode, matches, onPickUp }: MatchesPageProps) {
   if (matches.length === 0) {
     return (
       <EmptyState
@@ -26,16 +28,24 @@ export function MatchesPage({ reportCode, matches }: MatchesPageProps) {
         Te mostramos objetos parecidos al tuyo. Revisa si alguno es tuyo.
       </p>
       <ul className="space-y-3">
-        {matches.map(({ id, foundItem }) => (
-          <li
-            key={id}
-            className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-3"
-          >
-            <Thumb category={foundItem.category} photoUrl={foundItem.photoUrl} />
-            <div className="min-w-0 space-y-1">
-              <p className="text-sm text-neutral-900">{foundItem.description}</p>
-              <p className="text-xs font-semibold text-blue-700">{foundItem.code}</p>
+        {matches.map(({ id, status, foundItem }) => (
+          <li key={id} className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-3">
+            <div className="flex gap-3">
+              <Thumb category={foundItem.category} photoUrl={foundItem.photoUrl} />
+              <div className="min-w-0 space-y-1">
+                <p className="text-sm text-neutral-900">{foundItem.description}</p>
+                <p className="text-xs font-semibold text-blue-700">{foundItem.code}</p>
+              </div>
             </div>
+            {status === 'WILL_PICK_UP' ? (
+              <p className="rounded-xl bg-success-50 p-2 text-sm font-medium text-success-700">
+                Pasarás a recoger este objeto
+              </p>
+            ) : (
+              <Button onClick={() => onPickUp(id)} className="w-full">
+                Pasaré a recoger
+              </Button>
+            )}
           </li>
         ))}
       </ul>

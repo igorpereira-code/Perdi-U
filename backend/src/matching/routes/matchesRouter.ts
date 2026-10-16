@@ -23,5 +23,16 @@ export function createMatchesRouter(matching: MatchingRepository): Router {
     res.json(matches.sort((a, b) => b.similarity - a.similarity));
   });
 
+  router.post('/matches/:id/pick-up', async (req, res) => {
+    const match = await matching.findOwnMatch(req.params.id, getCurrentUser(req).id);
+    if (!match) {
+      res.status(404).json({ error: 'Match not found' });
+      return;
+    }
+
+    await matching.markWillPickUp(match.id);
+    res.json({ status: 'WILL_PICK_UP' });
+  });
+
   return router;
 }

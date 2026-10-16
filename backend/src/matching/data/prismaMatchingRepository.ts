@@ -62,4 +62,20 @@ export const prismaMatchingRepository: MatchingRepository = {
       },
     }));
   },
+
+  findOwnMatch: async (matchId, ownerId) => {
+    const match = await db().match.findFirst({ where: { id: matchId, lostReport: { ownerId } } });
+    return match ? { id: match.id, lostReportId: match.lostReportId } : null;
+  },
+
+  markWillPickUp: async (matchId) => {
+    const match = await db().match.update({
+      where: { id: matchId },
+      data: { status: 'WILL_PICK_UP', respondedAt: new Date() },
+    });
+    await db().lostReport.update({
+      where: { id: match.lostReportId },
+      data: { status: 'PENDING_PICKUP' },
+    });
+  },
 };

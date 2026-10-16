@@ -79,4 +79,30 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
 
     expect(res.status).toBe(404);
   });
+
+  describe('Pasaré a recoger (POST /matches/:id/pick-up)', () => {
+    it('avisa a Bienestar que el dueño pasará a recoger el objeto', async () => {
+      const { repository, matches } = fakeMatchingRepository([anasReport], items);
+      const app = createApp({ matching: repository });
+      await request(app).get('/lost-reports/PR-0001/matches');
+
+      const res = await request(app).post(`/matches/${matches[0].id}/pick-up`);
+
+      expect(res.status).toBe(200);
+      expect(matches[0].status).toBe('WILL_PICK_UP');
+    });
+
+    it('no deja responder por una coincidencia del reporte de otra persona', async () => {
+      const { repository, matches } = fakeMatchingRepository([anasReport], items);
+      const app = createApp({ matching: repository });
+      await request(app).get('/lost-reports/PR-0001/matches');
+
+      const res = await request(app)
+        .post(`/matches/${matches[0].id}/pick-up`)
+        .set('x-sample-user', 'luis');
+
+      expect(res.status).toBe(404);
+      expect(matches[0].status).toBe('SUGGESTED');
+    });
+  });
 });

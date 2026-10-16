@@ -14,4 +14,11 @@ export type MatchingRepository = {
   saveSuggestions: (lostReportId: string, suggestions: Suggestion[]) => Promise<void>;
   /** The matches of a report that the owner did not dismiss. */
   listMatches: (lostReportId: string) => Promise<MatchView[]>;
+  /** The match, only if its lost report belongs to that user. */
+  findOwnMatch: (
+    matchId: string,
+    ownerId: string,
+  ) => Promise<{ id: string; lostReportId: string } | null>;
+  /** The owner will pick the item up: Bienestar sees it in pending pickups. */
+  markWillPickUp: (matchId: string) => Promise<void>;
 };

@@ -16,6 +16,12 @@ export function MatchesScreen({ matchesService }: { matchesService: MatchesServi
     matchesService.getMatches(code).then(setMatches);
   }, [matchesService, code]);
 
+  async function handlePickUp(matchId: string) {
+    await matchesService.pickUp(matchId);
+    setMatches((current) =>
+      current?.map((m) => (m.id === matchId ? { ...m, status: 'WILL_PICK_UP' } : m)),
+    );
+  }
   if (matches === undefined) {
     return <p className="text-sm text-neutral-500">Buscando objetos parecidos…</p>;
   }
@@ -28,5 +34,5 @@ export function MatchesScreen({ matchesService }: { matchesService: MatchesServi
       />
     );
   }
-  return <MatchesPage reportCode={code} matches={matches} />;
+  return <MatchesPage reportCode={code} matches={matches} onPickUp={handlePickUp} />;
 }

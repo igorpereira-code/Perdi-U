@@ -608,12 +608,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "287a15d9f3ff530a248f294cde68bd1babd12fe7",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T23:12:28.000Z",
       "message": "feat: mostrar la foto, la descripción y el código de cada objeto parecido",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/287a15d9f3ff530a248f294cde68bd1babd12fe7"
     },
     "stats": {
       "total": 38,
@@ -623,6 +623,25 @@
     },
     "coverage": 87.11,
     "test_count": 81,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T23:36:52.000Z",
+      "message": "feat: permitir que el dueño avise que pasará a recoger un objeto parecido, para que Bienestar lo sepa",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 214,
+      "additions": 173,
+      "deletions": 41,
+      "date": "2026-10-16"
+    },
+    "coverage": 86.93,
+    "test_count": 86,
     "failed_tests": 0,
     "conclusion": "success"
   }

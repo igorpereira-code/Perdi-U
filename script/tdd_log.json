@@ -1224,9 +1224,79 @@
     "testId": 32
   },
   {
-    "commitId": "HEAD",
+    "commitId": "287a15d9f3ff530a248f294cde68bd1babd12fe7",
     "commitName": "feat: mostrar la foto, la descripción y el código de cada objeto parecido",
     "commitTimestamp": 1792192349595,
     "testId": 32
+  },
+  {
+    "numPassedTests": 82,
+    "failedTests": 1,
+    "numTotalTests": 83,
+    "timestamp": 1792192918883,
+    "success": false,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 83,
+    "failedTests": 0,
+    "numTotalTests": 83,
+    "timestamp": 1792192966747,
+    "success": true,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 83,
+    "failedTests": 1,
+    "numTotalTests": 84,
+    "timestamp": 1792193295474,
+    "success": false,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 84,
+    "failedTests": 0,
+    "numTotalTests": 84,
+    "timestamp": 1792193321916,
+    "success": true,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 84,
+    "failedTests": 1,
+    "numTotalTests": 85,
+    "timestamp": 1792193402309,
+    "success": false,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 85,
+    "failedTests": 0,
+    "numTotalTests": 85,
+    "timestamp": 1792193417381,
+    "success": true,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 85,
+    "failedTests": 1,
+    "numTotalTests": 86,
+    "timestamp": 1792193616570,
+    "success": false,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 86,
+    "failedTests": 0,
+    "numTotalTests": 86,
+    "timestamp": 1792193692067,
+    "success": true,
+    "testId": 33
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir que el dueño avise que pasará a recoger un objeto parecido, para que Bienestar lo sepa",
+    "commitTimestamp": 1792193813913,
+    "testId": 33
   }
 ]

@@ -23,15 +23,22 @@ describe('Traer los objetos parecidos a un reporte', () => {
   });
 
   it('avisa que no encontró el reporte cuando no existe o es de otra persona', async () => {
-    const apiFetch = jest
-      .fn()
-      .mockResolvedValue({
-        ok: false,
-        status: 404,
-        json: async () => ({ error: 'Lost report not found' }),
-      });
+    const apiFetch = jest.fn().mockResolvedValue({
+      ok: false,
+      status: 404,
+      json: async () => ({ error: 'Lost report not found' }),
+    });
     const service = createMatchesService(apiFetch);
 
     await expect(service.getMatches('PR-0002')).resolves.toBeNull();
+  });
+
+  it('avisa al backend que el dueño pasará a recoger el objeto', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({ ok: true });
+    const service = createMatchesService(apiFetch);
+
+    await service.pickUp('match-1');
+
+    expect(apiFetch).toHaveBeenCalledWith('/matches/match-1/pick-up', { method: 'POST' });
   });
 });
