@@ -1,28 +1,38 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
   --color-blue-*: initial;
   --color-yellow-*: initial;
   --color-neutral-*: initial;
 
-  --color-blue-700: #0B274F;
+  --color-blue-700: #0b274f;
   --color-blue-500: #144177;
-  --color-blue-300: #2E6BA8;
-  --color-blue-200: #7FA6D6;
-  --color-blue-100: #E5EAF2;
-  --color-blue-50:  #EEF4FC;
+  --color-blue-300: #2e6ba8;
+  --color-blue-200: #7fa6d6;
+  --color-blue-100: #e5eaf2;
+  --color-blue-50: #eef4fc;
 
-  --color-yellow-500: #FAE442;
-  --color-yellow-200: #F3E58A;
-  --color-yellow-50:  #FFFDE6;
+  --color-yellow-500: #fae442;
+  --color-yellow-200: #f3e58a;
+  --color-yellow-50: #fffde6;
 
-  --color-neutral-0:   #FFFFFF;
-  --color-neutral-50:  #F9FAFB;
-  --color-neutral-100: #F3F4F6;
-  --color-neutral-200: #E5E7EB;
-  --color-neutral-300: #D1D5DB;
-  --color-neutral-500: #6B7280;
-  --color-neutral-600: #4B5563;
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
   --color-neutral-700: #374151;
   --color-neutral-900: #111827;
+
+  /* Status chips and messages */
+  --color-success-50: #dcf5e6;
+  --color-success-700: #145c33;
+  --color-warning-50: #fff4d6;
+  --color-warning-700: #7a4b00;
+  --color-danger-50: #fde4e4;
+  --color-danger-700: #8a1c1c;
 }

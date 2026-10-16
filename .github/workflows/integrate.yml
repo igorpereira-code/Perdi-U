@@ -4,7 +4,6 @@ on:
   push:
     branches: [main, final-test]
   pull_request:
-    branches: [main, master, final-test]
 
 permissions: write-all
 
