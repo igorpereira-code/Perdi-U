@@ -412,9 +412,31 @@
     "testId": 18
   },
   {
-    "commitId": "HEAD",
+    "commitId": "cddff898a055df5a7baabca4a6ed01c91ee847b2",
     "commitName": "chore: dejar vacíos los datos del proyecto en el archivo de ejemplo del entorno",
     "commitTimestamp": 1792105282216,
     "testId": 18
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 1,
+    "numTotalTests": 37,
+    "timestamp": 1792176716575,
+    "success": false,
+    "testId": 19
+  },
+  {
+    "numPassedTests": 37,
+    "failedTests": 0,
+    "numTotalTests": 37,
+    "timestamp": 1792176786906,
+    "success": true,
+    "testId": 19
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: abrir el selector de cuentas Google mostrando primero las de la universidad",
+    "commitTimestamp": 1792176923559,
+    "testId": 19
   }
 ]

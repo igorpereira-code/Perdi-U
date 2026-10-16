@@ -342,12 +342,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "cddff898a055df5a7baabca4a6ed01c91ee847b2",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-15T23:01:21.000Z",
       "message": "chore: dejar vacíos los datos del proyecto en el archivo de ejemplo del entorno",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/cddff898a055df5a7baabca4a6ed01c91ee847b2"
     },
     "stats": {
       "total": 4,
@@ -357,6 +357,25 @@
     },
     "coverage": 98.68,
     "test_count": 36,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T18:55:21.000Z",
+      "message": "feat: abrir el selector de cuentas Google mostrando primero las de la universidad",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 37,
+      "additions": 37,
+      "deletions": 0,
+      "date": "2026-10-16"
+    },
+    "coverage": 97.47,
+    "test_count": 37,
     "failed_tests": 0,
     "conclusion": "success"
   }
