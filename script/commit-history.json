@@ -361,12 +361,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f649503a32824af8abd10ae747967df80e1f6073",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T18:55:21.000Z",
       "message": "feat: abrir el selector de cuentas Google mostrando primero las de la universidad",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f649503a32824af8abd10ae747967df80e1f6073"
     },
     "stats": {
       "total": 37,
@@ -376,6 +376,25 @@
     },
     "coverage": 97.47,
     "test_count": 37,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T19:10:34.000Z",
+      "message": "feat: permitir elegir la cuenta Google de la universidad para ingresar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 79,
+      "additions": 76,
+      "deletions": 3,
+      "date": "2026-10-16"
+    },
+    "coverage": 96.34,
+    "test_count": 39,
     "failed_tests": 0,
     "conclusion": "success"
   }

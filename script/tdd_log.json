@@ -434,9 +434,63 @@
     "testId": 19
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f649503a32824af8abd10ae747967df80e1f6073",
     "commitName": "feat: abrir el selector de cuentas Google mostrando primero las de la universidad",
     "commitTimestamp": 1792176923559,
     "testId": 19
+  },
+  {
+    "numPassedTests": 37,
+    "failedTests": 1,
+    "numTotalTests": 38,
+    "timestamp": 1792177225926,
+    "success": false,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 38,
+    "failedTests": 0,
+    "numTotalTests": 38,
+    "timestamp": 1792177259161,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 38,
+    "failedTests": 1,
+    "numTotalTests": 39,
+    "timestamp": 1792177363908,
+    "success": false,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 0,
+    "numTotalTests": 39,
+    "timestamp": 1792177388311,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 0,
+    "numTotalTests": 39,
+    "timestamp": 1792177415952,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 0,
+    "numTotalTests": 39,
+    "timestamp": 1792177773547,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir elegir la cuenta Google de la universidad para ingresar",
+    "commitTimestamp": 1792177835452,
+    "testId": 20
   }
 ]
