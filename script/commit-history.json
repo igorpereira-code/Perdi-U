@@ -589,12 +589,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "e8fc768f9791903807a855686f1a4d04586fef7d",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T23:06:36.000Z",
       "message": "feat: permitir ir a los objetos parecidos desde el reporte de pérdida",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/e8fc768f9791903807a855686f1a4d04586fef7d"
     },
     "stats": {
       "total": 33,
@@ -604,6 +604,25 @@
     },
     "coverage": 87.11,
     "test_count": 80,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-16T23:12:28.000Z",
+      "message": "feat: mostrar la foto, la descripción y el código de cada objeto parecido",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 38,
+      "additions": 31,
+      "deletions": 7,
+      "date": "2026-10-16"
+    },
+    "coverage": 87.11,
+    "test_count": 81,
     "failed_tests": 0,
     "conclusion": "success"
   }

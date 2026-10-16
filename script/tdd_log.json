@@ -1194,9 +1194,39 @@
     "testId": 31
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e8fc768f9791903807a855686f1a4d04586fef7d",
     "commitName": "feat: permitir ir a los objetos parecidos desde el reporte de pérdida",
     "commitTimestamp": 1792191997613,
     "testId": 31
+  },
+  {
+    "numPassedTests": 78,
+    "failedTests": 0,
+    "numTotalTests": 78,
+    "timestamp": 1792192076131,
+    "success": false,
+    "testId": 32
+  },
+  {
+    "numPassedTests": 81,
+    "failedTests": 0,
+    "numTotalTests": 81,
+    "timestamp": 1792192124614,
+    "success": true,
+    "testId": 32
+  },
+  {
+    "numPassedTests": 81,
+    "failedTests": 0,
+    "numTotalTests": 81,
+    "timestamp": 1792192284863,
+    "success": true,
+    "testId": 32
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar la foto, la descripción y el código de cada objeto parecido",
+    "commitTimestamp": 1792192349595,
+    "testId": 32
   }
 ]

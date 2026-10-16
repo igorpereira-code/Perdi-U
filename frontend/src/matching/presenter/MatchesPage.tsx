@@ -1,5 +1,6 @@
 import type { MatchView } from '@shared/matching';
 import { EmptyState } from '../../core/presenter/EmptyState';
+import { Thumb } from '../../core/presenter/Thumb';
 
 type MatchesPageProps = {
   reportCode: string;
@@ -15,6 +16,7 @@ export function MatchesPage({ reportCode, matches }: MatchesPageProps) {
       />
     );
   }
+
   return (
     <section className="space-y-4">
       <h1 className="text-lg font-semibold text-blue-700">
@@ -24,12 +26,16 @@ export function MatchesPage({ reportCode, matches }: MatchesPageProps) {
         Te mostramos objetos parecidos al tuyo. Revisa si alguno es tuyo.
       </p>
       <ul className="space-y-3">
-        {matches.map((match) => (
+        {matches.map(({ id, foundItem }) => (
           <li
-            key={match.id}
-            className="rounded-2xl border border-neutral-200 bg-neutral-0 p-4 text-sm text-neutral-900"
+            key={id}
+            className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-3"
           >
-            {match.foundItem.description}
+            <Thumb category={foundItem.category} photoUrl={foundItem.photoUrl} />
+            <div className="min-w-0 space-y-1">
+              <p className="text-sm text-neutral-900">{foundItem.description}</p>
+              <p className="text-xs font-semibold text-blue-700">{foundItem.code}</p>
+            </div>
           </li>
         ))}
       </ul>

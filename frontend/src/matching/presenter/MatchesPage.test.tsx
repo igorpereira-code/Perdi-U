@@ -1,13 +1,13 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import type { MatchView } from '@shared/matching';
 import { MatchesPage } from './MatchesPage';
 
-function match(code: string, description: string): MatchView {
+function match(code: string, description: string, photoUrl: string | null = null): MatchView {
   return {
     id: code,
     status: 'SUGGESTED',
     similarity: 50,
-    foundItem: { code, description, photoUrl: null, category: 'Electrónicos' },
+    foundItem: { code, description, photoUrl, category: 'Electrónicos' },
   };
 }
 
@@ -37,5 +37,23 @@ describe('Objetos parecidos a mi reporte', () => {
     expect(
       screen.getByText('Tu reporte PR-0003 seguirá activo. Vuelve a revisarlo más adelante.'),
     ).toBeInTheDocument();
+  });
+
+  it('muestra la foto, la descripción y el código de cada objeto parecido', () => {
+    const matches = [
+      match('HZ-0001', 'Celular Samsung con funda azul', 'https://foto.com/celular.jpg'),
+      match('HZ-0002', 'Celular negro'),
+    ];
+
+    render(<MatchesPage reportCode="PR-0001" matches={matches} />);
+
+    const [first, second] = screen.getAllByRole('listitem');
+    expect(within(first).getByRole('img', { name: 'Foto del objeto' })).toHaveAttribute(
+      'src',
+      'https://foto.com/celular.jpg',
+    );
+    expect(first).toHaveTextContent('HZ-0001');
+    expect(within(second).getByRole('img', { name: 'Electrónicos' })).toBeInTheDocument();
+    expect(second).toHaveTextContent('HZ-0002');
   });
 });
