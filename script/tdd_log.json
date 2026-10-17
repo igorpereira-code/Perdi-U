@@ -1642,9 +1642,23 @@
     "testId": 39
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1aae028846aae6340153752bd629b5bc652b98cf",
     "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
     "commitTimestamp": 1792199780960,
     "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792199802118,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "docs: finalizando rama hu-10",
+    "commitTimestamp": 1792200782824,
+    "testId": 40
   }
 ]
