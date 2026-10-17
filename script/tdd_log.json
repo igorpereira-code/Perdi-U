@@ -1402,9 +1402,249 @@
     "testId": 35
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c008de064c4e386e94948422f57f042c784096f8",
     "commitName": "feat: permitir que el dueño descarte un objeto que no es suyo para que deje de aparecer",
     "commitTimestamp": 1792194921576,
     "testId": 35
+  },
+  {
+    "numPassedTests": 91,
+    "failedTests": 1,
+    "numTotalTests": 92,
+    "timestamp": 1792195877965,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 92,
+    "failedTests": 0,
+    "numTotalTests": 92,
+    "timestamp": 1792195895159,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 92,
+    "failedTests": 2,
+    "numTotalTests": 94,
+    "timestamp": 1792196150136,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 94,
+    "failedTests": 0,
+    "numTotalTests": 94,
+    "timestamp": 1792196171521,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 94,
+    "failedTests": 1,
+    "numTotalTests": 95,
+    "timestamp": 1792196367813,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 95,
+    "failedTests": 0,
+    "numTotalTests": 95,
+    "timestamp": 1792196392739,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 95,
+    "failedTests": 1,
+    "numTotalTests": 96,
+    "timestamp": 1792196456997,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 96,
+    "failedTests": 0,
+    "numTotalTests": 96,
+    "timestamp": 1792196474293,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "commitId": "41eaaf29b159fa8d741e4b6f02bcb2a59c56c394",
+    "commitName": "feat: permitir que Bienestar publique solo los objetos que ya recibió",
+    "commitTimestamp": 1792196669944,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 96,
+    "failedTests": 1,
+    "numTotalTests": 97,
+    "timestamp": 1792197132268,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 96,
+    "failedTests": 1,
+    "numTotalTests": 97,
+    "timestamp": 1792197209496,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 97,
+    "failedTests": 1,
+    "numTotalTests": 98,
+    "timestamp": 1792197369330,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 97,
+    "failedTests": 0,
+    "numTotalTests": 97,
+    "timestamp": 1792197397747,
+    "success": true,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 97,
+    "failedTests": 1,
+    "numTotalTests": 98,
+    "timestamp": 1792197441909,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 98,
+    "failedTests": 0,
+    "numTotalTests": 98,
+    "timestamp": 1792197463094,
+    "success": true,
+    "testId": 37
+  },
+  {
+    "commitId": "2c08917804bd64a186e763efee9250cb589c0c7e",
+    "commitName": "feat: publicar el objeto recibido para que la comunidad pueda verlo",
+    "commitTimestamp": 1792197727425,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 98,
+    "failedTests": 1,
+    "numTotalTests": 99,
+    "timestamp": 1792198054548,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 99,
+    "failedTests": 0,
+    "numTotalTests": 99,
+    "timestamp": 1792198082003,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 99,
+    "failedTests": 1,
+    "numTotalTests": 100,
+    "timestamp": 1792198334637,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 100,
+    "failedTests": 0,
+    "numTotalTests": 100,
+    "timestamp": 1792198391542,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 100,
+    "failedTests": 1,
+    "numTotalTests": 101,
+    "timestamp": 1792198463027,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 101,
+    "failedTests": 0,
+    "numTotalTests": 101,
+    "timestamp": 1792198484287,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 101,
+    "failedTests": 1,
+    "numTotalTests": 102,
+    "timestamp": 1792198553806,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 102,
+    "failedTests": 0,
+    "numTotalTests": 102,
+    "timestamp": 1792198574390,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 102,
+    "failedTests": 1,
+    "numTotalTests": 103,
+    "timestamp": 1792198607099,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 103,
+    "failedTests": 0,
+    "numTotalTests": 103,
+    "timestamp": 1792198665983,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "commitId": "ca98ff6a28b338b30ba557dd29934a7f83db09a6",
+    "commitName": "feat: mostrar a Bienestar cuántos reportes de pérdida se parecen al objeto que publica",
+    "commitTimestamp": 1792198885376,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 103,
+    "failedTests": 1,
+    "numTotalTests": 104,
+    "timestamp": 1792199394974,
+    "success": false,
+    "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792199425735,
+    "success": true,
+    "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792199440095,
+    "success": true,
+    "testId": 39
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
+    "commitTimestamp": 1792199780960,
+    "testId": 39
   }
 ]

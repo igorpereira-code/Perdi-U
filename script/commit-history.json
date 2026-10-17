@@ -665,12 +665,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c008de064c4e386e94948422f57f042c784096f8",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T23:55:20.000Z",
       "message": "feat: permitir que el dueño descarte un objeto que no es suyo para que deje de aparecer",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c008de064c4e386e94948422f57f042c784096f8"
     },
     "stats": {
       "total": 153,
@@ -680,6 +680,82 @@
     },
     "coverage": 87.21,
     "test_count": 91,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "41eaaf29b159fa8d741e4b6f02bcb2a59c56c394",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-17T00:24:28.000Z",
+      "message": "feat: permitir que Bienestar publique solo los objetos que ya recibió",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/41eaaf29b159fa8d741e4b6f02bcb2a59c56c394"
+    },
+    "stats": {
+      "total": 202,
+      "additions": 199,
+      "deletions": 3,
+      "date": "2026-10-17"
+    },
+    "coverage": 86.69,
+    "test_count": 96,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "2c08917804bd64a186e763efee9250cb589c0c7e",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-17T00:42:05.000Z",
+      "message": "feat: publicar el objeto recibido para que la comunidad pueda verlo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2c08917804bd64a186e763efee9250cb589c0c7e"
+    },
+    "stats": {
+      "total": 63,
+      "additions": 61,
+      "deletions": 2,
+      "date": "2026-10-17"
+    },
+    "coverage": 87.09,
+    "test_count": 98,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "ca98ff6a28b338b30ba557dd29934a7f83db09a6",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-17T01:01:24.000Z",
+      "message": "feat: mostrar a Bienestar cuántos reportes de pérdida se parecen al objeto que publica",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ca98ff6a28b338b30ba557dd29934a7f83db09a6"
+    },
+    "stats": {
+      "total": 179,
+      "additions": 169,
+      "deletions": 10,
+      "date": "2026-10-17"
+    },
+    "coverage": 86.93,
+    "test_count": 103,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-17T01:16:20.000Z",
+      "message": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 54,
+      "additions": 40,
+      "deletions": 14,
+      "date": "2026-10-17"
+    },
+    "coverage": 87.08,
+    "test_count": 104,
     "failed_tests": 0,
     "conclusion": "success"
   }

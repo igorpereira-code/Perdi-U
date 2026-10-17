@@ -50,4 +50,30 @@ describe('Traer los objetos parecidos a un reporte', () => {
 
     expect(apiFetch).toHaveBeenCalledWith('/matches/match-1/dismiss', { method: 'POST' });
   });
+
+  it('avisa que no se puede publicar un objeto que Bienestar todavía no recibió', async () => {
+    const apiFetch = jest
+      .fn()
+      .mockResolvedValue({ ok: false, status: 409, json: async () => ({ code: 'NOT_RECEIVED' }) });
+    const service = createMatchesService(apiFetch);
+
+    await expect(service.publish('HZ-0005')).resolves.toEqual({ status: 'NOT_RECEIVED' });
+    expect(apiFetch).toHaveBeenCalledWith('/found-items/HZ-0005/publish', { method: 'POST' });
+  });
+
+  it('trae cuántos reportes de pérdida se parecen al objeto publicado', async () => {
+    const apiFetch = jest
+      .fn()
+      .mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ code: 'HZ-0004', matchCount: 2 }),
+      });
+    const service = createMatchesService(apiFetch);
+
+    await expect(service.publish('HZ-0004')).resolves.toEqual({
+      status: 'PUBLISHED',
+      matchCount: 2,
+    });
+  });
 });
