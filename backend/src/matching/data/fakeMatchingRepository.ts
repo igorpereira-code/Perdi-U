@@ -1,18 +1,29 @@
 import type { MatchView } from '@shared/matching';
 import type { LostReportToMatch, MatchingRepository, PublishedItem } from './matchingRepository';
+import type { FoundItemStatus, LostReportStatus } from '@shared/statuses';
 
-export type FakeItem = PublishedItem & { code: string; photoUrl: string | null; category: string };
-export type FakeReport = LostReportToMatch & { ownerId: string };
+/** status is PUBLISHED when not given. */
+export type FakeItem = PublishedItem & {
+  code: string;
+  photoUrl: string | null;
+  category: string;
+  status?: FoundItemStatus;
+  publishedById?: string;
+};
+/** status is SEARCHING when not given. */
+export type FakeReport = LostReportToMatch & { ownerId: string; status?: LostReportStatus };
 
 /** In-memory matching repository for tests. It never touches the shared database. */
-export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[]) {
+export function fakeMatchingRepository(reports: FakeReport[], initialItems: FakeItem[]) {
+  // A copy, so a test that publishes an item does not change the items of the next test.
+  const items = initialItems.map((item) => ({ ...item }));
   const matches: (MatchView & { lostReportId: string })[] = [];
 
   const repository: MatchingRepository = {
     findOwnLostReport: async (code, ownerId) =>
       reports.find((report) => report.code === code && report.ownerId === ownerId) ?? null,
 
-    listPublishedItems: async () => items,
+    listPublishedItems: async () => items.filter((item) => statusOf(item) === 'PUBLISHED'),
 
     saveSuggestions: async (lostReportId, suggestions) => {
       for (const { foundItemId, similarity } of suggestions) {
@@ -50,6 +61,24 @@ export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[])
     dismiss: async (matchId) => {
       setStatus(matchId, 'DISMISSED');
     },
+
+    findFoundItemByCode: async (code) => {
+      const item = items.find((i) => i.code === code);
+      return item ? { ...item, status: statusOf(item) } : null;
+    },
+
+    publish: async (itemId, publishedById) => {
+      const item = items.find((i) => i.id === itemId);
+      if (item) {
+        item.status = 'PUBLISHED';
+        item.publishedById = publishedById;
+      }
+    },
+
+    listActiveLostReports: async () =>
+      reports.filter((report) =>
+        ['SEARCHING', 'HAS_MATCHES'].includes(report.status ?? 'SEARCHING'),
+      ),
   };
 
   function setStatus(matchId: string, status: MatchView['status']) {
@@ -66,5 +95,9 @@ export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[])
     return item;
   }
 
-  return { repository, matches };
+  function statusOf(item: FakeItem): FoundItemStatus {
+    return item.status ?? 'PUBLISHED';
+  }
+
+  return { repository, matches, items };
 }

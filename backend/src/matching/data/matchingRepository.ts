@@ -1,9 +1,11 @@
 import type { MatchView } from '@shared/matching';
 import type { FoundItemForMatching, LostReportForMatching } from '../logic/similarity';
+import type { FoundItemStatus } from '@shared/statuses';
 
 export type LostReportToMatch = LostReportForMatching & { id: string; code: string };
 export type PublishedItem = FoundItemForMatching & { id: string };
 export type Suggestion = { foundItemId: string; similarity: number };
+export type FoundItemToPublish = PublishedItem & { code: string; status: FoundItemStatus };
 
 /** Where lost reports, published items and matches are read and saved. Tests use a fake one. */
 export type MatchingRepository = {
@@ -24,4 +26,10 @@ export type MatchingRepository = {
 
   /** "No es mío": the item stops showing up for that report, even when matching runs again. */
   dismiss: (matchId: string) => Promise<void>;
+
+  findFoundItemByCode: (code: string) => Promise<FoundItemToPublish | null>;
+  /** The item becomes visible to the community. */
+  publish: (itemId: string, publishedById: string) => Promise<void>;
+  /** Lost reports whose owners are still looking: "Buscando" or "Con coincidencias". */
+  listActiveLostReports: () => Promise<LostReportToMatch[]>;
 };
