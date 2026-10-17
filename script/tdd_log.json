@@ -1612,9 +1612,39 @@
     "testId": 38
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ca98ff6a28b338b30ba557dd29934a7f83db09a6",
     "commitName": "feat: mostrar a Bienestar cuántos reportes de pérdida se parecen al objeto que publica",
     "commitTimestamp": 1792198885376,
     "testId": 38
+  },
+  {
+    "numPassedTests": 103,
+    "failedTests": 1,
+    "numTotalTests": 104,
+    "timestamp": 1792199394974,
+    "success": false,
+    "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792199425735,
+    "success": true,
+    "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792199440095,
+    "success": true,
+    "testId": 39
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
+    "commitTimestamp": 1792199780960,
+    "testId": 39
   }
 ]

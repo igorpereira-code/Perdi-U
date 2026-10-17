@@ -19,6 +19,17 @@ const keys: FakeItem = {
   category: 'Llaves',
 };
 
+const lostKeys: FakeReport = {
+  id: 'report-3',
+  code: 'PR-0003',
+  ownerId: SAMPLE_USERS.luis.id,
+  categoryId: 4,
+  dateFrom: new Date('2026-10-13'),
+  dateTo: new Date('2026-10-14'),
+  placeIds: [1],
+  description: 'Llaves de mi casa con llavero rojo',
+};
+
 describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () => {
   it('no publica un objeto que Bienestar todavía no recibió', async () => {
     const { repository } = fakeMatchingRepository([], [{ ...keys, status: 'PENDING_DROP_OFF' }]);
@@ -54,16 +65,6 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   });
 
   it('cuenta cuántos reportes de pérdida activos se parecen al objeto publicado', async () => {
-    const lostKeys: FakeReport = {
-      id: 'report-3',
-      code: 'PR-0003',
-      ownerId: SAMPLE_USERS.luis.id,
-      categoryId: 4,
-      dateFrom: new Date('2026-10-13'),
-      dateTo: new Date('2026-10-14'),
-      placeIds: [1],
-      description: 'Llaves de mi casa con llavero rojo',
-    };
     const reports = [
       lostKeys,
       { ...lostKeys, id: 'report-old', code: 'PR-0009', status: 'RECOVERED' as const },
@@ -76,5 +77,21 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
       .set('x-sample-user', 'welfare');
 
     expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1 });
+  });
+
+  it('deja el objeto como posible coincidencia en los reportes parecidos', async () => {
+    const { repository, matches } = fakeMatchingRepository([lostKeys], [keys]);
+
+    await request(createApp({ matching: repository }))
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(matches).toEqual([
+      expect.objectContaining({
+        lostReportId: 'report-3',
+        status: 'SUGGESTED',
+        foundItem: expect.objectContaining({ code: 'HZ-0004' }),
+      }),
+    ]);
   });
 });
