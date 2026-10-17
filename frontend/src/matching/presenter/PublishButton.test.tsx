@@ -25,4 +25,20 @@ describe('Botón para publicar un objeto (para el panel de Bienestar)', () => {
       'Este objeto todavía no fue recibido en Bienestar.',
     );
   });
+
+  it('avisa que la comunidad ya puede ver el objeto publicado', async () => {
+    render(
+      <PublishButton
+        itemCode="HZ-0004"
+        matchesService={fakeService({ status: 'PUBLISHED', matchCount: 0 })}
+      />,
+    );
+
+    await userEvent.click(screen.getByRole('button', { name: 'Publicar' }));
+
+    expect(await screen.findByRole('status')).toHaveTextContent(
+      'Publicado: la comunidad ya puede ver este objeto.',
+    );
+    expect(screen.queryByRole('button', { name: 'Publicar' })).not.toBeInTheDocument();
+  });
 });

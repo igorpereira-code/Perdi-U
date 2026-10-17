@@ -8,6 +8,7 @@ export type FakeItem = PublishedItem & {
   photoUrl: string | null;
   category: string;
   status?: FoundItemStatus;
+  publishedById?: string;
 };
 export type FakeReport = LostReportToMatch & { ownerId: string };
 
@@ -62,6 +63,14 @@ export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[])
       const item = items.find((i) => i.code === code);
       return item ? { ...item, status: statusOf(item) } : null;
     },
+
+    publish: async (itemId, publishedById) => {
+      const item = items.find((i) => i.id === itemId);
+      if (item) {
+        item.status = 'PUBLISHED';
+        item.publishedById = publishedById;
+      }
+    },
   };
 
   function setStatus(matchId: string, status: MatchView['status']) {
@@ -82,5 +91,5 @@ export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[])
     return item.status ?? 'PUBLISHED';
   }
 
-  return { repository, matches };
+  return { repository, matches, items };
 }

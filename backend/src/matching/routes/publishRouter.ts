@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { requireRole } from '../../core/currentUser';
+import { getCurrentUser, requireRole } from '../../core/currentUser';
 import type { MatchingRepository } from '../data/matchingRepository';
 import { canBePublished } from '../logic/canBePublished';
 
@@ -16,6 +16,7 @@ export function createPublishRouter(matching: MatchingRepository): Router {
       res.status(409).json({ code: 'NOT_RECEIVED' });
       return;
     }
+    await matching.publish(item.id, getCurrentUser(req).id);
 
     res.json({ code: item.code });
   });

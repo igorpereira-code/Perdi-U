@@ -1472,9 +1472,63 @@
     "testId": 36
   },
   {
-    "commitId": "HEAD",
+    "commitId": "41eaaf29b159fa8d741e4b6f02bcb2a59c56c394",
     "commitName": "feat: permitir que Bienestar publique solo los objetos que ya recibió",
     "commitTimestamp": 1792196669944,
     "testId": 36
+  },
+  {
+    "numPassedTests": 96,
+    "failedTests": 1,
+    "numTotalTests": 97,
+    "timestamp": 1792197132268,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 96,
+    "failedTests": 1,
+    "numTotalTests": 97,
+    "timestamp": 1792197209496,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 97,
+    "failedTests": 1,
+    "numTotalTests": 98,
+    "timestamp": 1792197369330,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 97,
+    "failedTests": 0,
+    "numTotalTests": 97,
+    "timestamp": 1792197397747,
+    "success": true,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 97,
+    "failedTests": 1,
+    "numTotalTests": 98,
+    "timestamp": 1792197441909,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 98,
+    "failedTests": 0,
+    "numTotalTests": 98,
+    "timestamp": 1792197463094,
+    "success": true,
+    "testId": 37
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: publicar el objeto recibido para que la comunidad pueda verlo",
+    "commitTimestamp": 1792197727425,
+    "testId": 37
   }
 ]

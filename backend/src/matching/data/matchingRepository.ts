@@ -28,4 +28,6 @@ export type MatchingRepository = {
   dismiss: (matchId: string) => Promise<void>;
 
   findFoundItemByCode: (code: string) => Promise<FoundItemToPublish | null>;
+  /** The item becomes visible to the community. */
+  publish: (itemId: string, publishedById: string) => Promise<void>;
 };

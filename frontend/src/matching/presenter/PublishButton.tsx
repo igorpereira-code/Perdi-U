@@ -16,6 +16,17 @@ export function PublishButton({ itemCode, matchesService }: PublishButtonProps) 
     setResult(await matchesService.publish(itemCode));
   }
 
+  if (result?.status === 'PUBLISHED') {
+    return (
+      <p
+        role="status"
+        className="rounded-xl bg-success-50 p-2 text-sm font-medium text-success-700"
+      >
+        Publicado: la comunidad ya puede ver este objeto.
+      </p>
+    );
+  }
+
   return (
     <div className="space-y-2">
       <Button onClick={handlePublish}>Publicar</Button>

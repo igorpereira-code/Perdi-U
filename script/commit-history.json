@@ -684,12 +684,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "41eaaf29b159fa8d741e4b6f02bcb2a59c56c394",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-17T00:24:28.000Z",
       "message": "feat: permitir que Bienestar publique solo los objetos que ya recibió",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/41eaaf29b159fa8d741e4b6f02bcb2a59c56c394"
     },
     "stats": {
       "total": 202,
@@ -699,6 +699,25 @@
     },
     "coverage": 86.69,
     "test_count": 96,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-17T00:42:05.000Z",
+      "message": "feat: publicar el objeto recibido para que la comunidad pueda verlo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 63,
+      "additions": 61,
+      "deletions": 2,
+      "date": "2026-10-17"
+    },
+    "coverage": 87.09,
+    "test_count": 98,
     "failed_tests": 0,
     "conclusion": "success"
   }

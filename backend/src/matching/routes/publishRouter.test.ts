@@ -1,5 +1,6 @@
 import request from 'supertest';
 import { createApp } from '../../app';
+import { SAMPLE_USERS } from '../../core/sampleUsers';
 import { fakeMatchingRepository, type FakeItem } from '../data/fakeMatchingRepository';
 
 const keys: FakeItem = {
@@ -34,5 +35,17 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
     );
 
     expect(res.status).toBe(403);
+  });
+
+  it('publica un objeto recibido para que la comunidad lo vea', async () => {
+    const { repository, items } = fakeMatchingRepository([], [keys]);
+
+    const res = await request(createApp({ matching: repository }))
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect((await repository.listPublishedItems()).map((item) => item.id)).toEqual(['item-4']);
+    expect(items[0].publishedById).toBe(SAMPLE_USERS.welfare.id);
   });
 });
