@@ -85,4 +85,41 @@ export const prismaMatchingRepository: MatchingRepository = {
       data: { status: 'DISMISSED', respondedAt: new Date() },
     });
   },
+
+  findFoundItemByCode: (code) =>
+    db().foundItem.findUnique({
+      where: { code },
+      select: {
+        id: true,
+        code: true,
+        status: true,
+        categoryId: true,
+        foundAt: true,
+        placeId: true,
+        description: true,
+      },
+    }),
+
+  publish: async (itemId, publishedById) => {
+    await db().foundItem.update({
+      where: { id: itemId },
+      data: { status: 'PUBLISHED', visibility: 'VISIBLE', publishedById, publishedAt: new Date() },
+    });
+  },
+
+  listActiveLostReports: async () => {
+    const reports = await db().lostReport.findMany({
+      where: { status: { in: ['SEARCHING', 'HAS_MATCHES'] } },
+      include: { places: true },
+    });
+    return reports.map((report) => ({
+      id: report.id,
+      code: report.code,
+      categoryId: report.categoryId,
+      dateFrom: report.dateFrom,
+      dateTo: report.dateTo,
+      description: report.description,
+      placeIds: report.places.map((place) => place.placeId),
+    }));
+  },
 };

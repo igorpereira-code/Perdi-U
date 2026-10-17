@@ -36,6 +36,7 @@ function renderAt(path: string, user: AppUser | null | Error, matches: MatchView
     getMatches: jest.fn().mockResolvedValue(matches),
     pickUp: jest.fn(),
     dismiss: jest.fn(),
+    publish: jest.fn(),
   };
   render(
     <MemoryRouter initialEntries={[path]}>

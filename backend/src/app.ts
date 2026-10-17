@@ -8,6 +8,7 @@ import type { UsersRepository } from './core/data/usersRepository';
 import type { MatchingRepository } from './matching/data/matchingRepository';
 import { prismaMatchingRepository } from './matching/data/prismaMatchingRepository';
 import { createMatchesRouter } from './matching/routes/matchesRouter';
+import { createPublishRouter } from './matching/routes/publishRouter';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -35,6 +36,7 @@ export function createApp({
     res.json(getCurrentUser(req));
   });
   app.use(createMatchesRouter(matching));
+  app.use(createPublishRouter(matching));
 
   return app;
 }

@@ -12,3 +12,8 @@ export type MatchView = {
     category: string;
   };
 };
+
+/** What Bienestar gets after trying to publish a found item. */
+export type PublishResult =
+  | { status: 'PUBLISHED'; matchCount: number }
+  | { status: 'NOT_RECEIVED' };
