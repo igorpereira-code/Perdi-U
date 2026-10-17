@@ -1,4 +1,4 @@
-import type { MatchView } from '@shared/matching';
+import type { MatchView, PublishResult } from '@shared/matching';
 import type { ApiFetch } from '../../core/data/api';
 
 export type MatchesService = {
@@ -6,6 +6,8 @@ export type MatchesService = {
   getMatches: (reportCode: string) => Promise<MatchView[] | null>;
   pickUp: (matchId: string) => Promise<void>;
   dismiss: (matchId: string) => Promise<void>;
+  /** Bienestar publishes a found item so the community can see it. */
+  publish: (itemCode: string) => Promise<PublishResult>;
 };
 
 export function createMatchesService(apiFetch: ApiFetch): MatchesService {
@@ -22,6 +24,13 @@ export function createMatchesService(apiFetch: ApiFetch): MatchesService {
     },
     dismiss: async (matchId) => {
       await apiFetch(`/matches/${matchId}/dismiss`, { method: 'POST' });
+    },
+    publish: async (itemCode) => {
+      const response = await apiFetch(`/found-items/${itemCode}/publish`, { method: 'POST' });
+      if (response.status === 409) {
+        return { status: 'NOT_RECEIVED' };
+      }
+      return { status: 'PUBLISHED', matchCount: 0 };
     },
   };
 }

@@ -1402,9 +1402,79 @@
     "testId": 35
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c008de064c4e386e94948422f57f042c784096f8",
     "commitName": "feat: permitir que el dueño descarte un objeto que no es suyo para que deje de aparecer",
     "commitTimestamp": 1792194921576,
     "testId": 35
+  },
+  {
+    "numPassedTests": 91,
+    "failedTests": 1,
+    "numTotalTests": 92,
+    "timestamp": 1792195877965,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 92,
+    "failedTests": 0,
+    "numTotalTests": 92,
+    "timestamp": 1792195895159,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 92,
+    "failedTests": 2,
+    "numTotalTests": 94,
+    "timestamp": 1792196150136,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 94,
+    "failedTests": 0,
+    "numTotalTests": 94,
+    "timestamp": 1792196171521,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 94,
+    "failedTests": 1,
+    "numTotalTests": 95,
+    "timestamp": 1792196367813,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 95,
+    "failedTests": 0,
+    "numTotalTests": 95,
+    "timestamp": 1792196392739,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 95,
+    "failedTests": 1,
+    "numTotalTests": 96,
+    "timestamp": 1792196456997,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 96,
+    "failedTests": 0,
+    "numTotalTests": 96,
+    "timestamp": 1792196474293,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir que Bienestar publique solo los objetos que ya recibió",
+    "commitTimestamp": 1792196669944,
+    "testId": 36
   }
 ]

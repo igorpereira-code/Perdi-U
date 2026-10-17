@@ -1,7 +1,14 @@
 import type { MatchView } from '@shared/matching';
 import type { LostReportToMatch, MatchingRepository, PublishedItem } from './matchingRepository';
+import type { FoundItemStatus } from '@shared/statuses';
 
-export type FakeItem = PublishedItem & { code: string; photoUrl: string | null; category: string };
+/** status is PUBLISHED when not given. */
+export type FakeItem = PublishedItem & {
+  code: string;
+  photoUrl: string | null;
+  category: string;
+  status?: FoundItemStatus;
+};
 export type FakeReport = LostReportToMatch & { ownerId: string };
 
 /** In-memory matching repository for tests. It never touches the shared database. */
@@ -12,7 +19,7 @@ export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[])
     findOwnLostReport: async (code, ownerId) =>
       reports.find((report) => report.code === code && report.ownerId === ownerId) ?? null,
 
-    listPublishedItems: async () => items,
+    listPublishedItems: async () => items.filter((item) => statusOf(item) === 'PUBLISHED'),
 
     saveSuggestions: async (lostReportId, suggestions) => {
       for (const { foundItemId, similarity } of suggestions) {
@@ -50,6 +57,11 @@ export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[])
     dismiss: async (matchId) => {
       setStatus(matchId, 'DISMISSED');
     },
+
+    findFoundItemByCode: async (code) => {
+      const item = items.find((i) => i.code === code);
+      return item ? { ...item, status: statusOf(item) } : null;
+    },
   };
 
   function setStatus(matchId: string, status: MatchView['status']) {
@@ -64,6 +76,10 @@ export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[])
       throw new Error(`Unknown item ${id}`);
     }
     return item;
+  }
+
+  function statusOf(item: FakeItem): FoundItemStatus {
+    return item.status ?? 'PUBLISHED';
   }
 
   return { repository, matches };

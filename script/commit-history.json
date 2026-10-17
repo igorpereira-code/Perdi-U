@@ -665,12 +665,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c008de064c4e386e94948422f57f042c784096f8",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-16T23:55:20.000Z",
       "message": "feat: permitir que el dueño descarte un objeto que no es suyo para que deje de aparecer",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c008de064c4e386e94948422f57f042c784096f8"
     },
     "stats": {
       "total": 153,
@@ -680,6 +680,25 @@
     },
     "coverage": 87.21,
     "test_count": 91,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-17T00:24:28.000Z",
+      "message": "feat: permitir que Bienestar publique solo los objetos que ya recibió",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 202,
+      "additions": 199,
+      "deletions": 3,
+      "date": "2026-10-17"
+    },
+    "coverage": 86.69,
+    "test_count": 96,
     "failed_tests": 0,
     "conclusion": "success"
   }

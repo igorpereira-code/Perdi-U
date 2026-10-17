@@ -85,4 +85,18 @@ export const prismaMatchingRepository: MatchingRepository = {
       data: { status: 'DISMISSED', respondedAt: new Date() },
     });
   },
+
+  findFoundItemByCode: (code) =>
+    db().foundItem.findUnique({
+      where: { code },
+      select: {
+        id: true,
+        code: true,
+        status: true,
+        categoryId: true,
+        foundAt: true,
+        placeId: true,
+        description: true,
+      },
+    }),
 };
