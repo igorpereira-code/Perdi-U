@@ -1,7 +1,11 @@
 import request from 'supertest';
 import { createApp } from '../../app';
 import { SAMPLE_USERS } from '../../core/sampleUsers';
-import { fakeMatchingRepository, type FakeItem } from '../data/fakeMatchingRepository';
+import {
+  fakeMatchingRepository,
+  type FakeItem,
+  type FakeReport,
+} from '../data/fakeMatchingRepository';
 
 const keys: FakeItem = {
   id: 'item-4',
@@ -47,5 +51,30 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
     expect(res.status).toBe(200);
     expect((await repository.listPublishedItems()).map((item) => item.id)).toEqual(['item-4']);
     expect(items[0].publishedById).toBe(SAMPLE_USERS.welfare.id);
+  });
+
+  it('cuenta cuántos reportes de pérdida activos se parecen al objeto publicado', async () => {
+    const lostKeys: FakeReport = {
+      id: 'report-3',
+      code: 'PR-0003',
+      ownerId: SAMPLE_USERS.luis.id,
+      categoryId: 4,
+      dateFrom: new Date('2026-10-13'),
+      dateTo: new Date('2026-10-14'),
+      placeIds: [1],
+      description: 'Llaves de mi casa con llavero rojo',
+    };
+    const reports = [
+      lostKeys,
+      { ...lostKeys, id: 'report-old', code: 'PR-0009', status: 'RECOVERED' as const },
+      { ...lostKeys, id: 'report-phone', code: 'PR-0010', categoryId: 1, description: 'Celular' },
+    ];
+    const { repository } = fakeMatchingRepository(reports, [keys]);
+
+    const res = await request(createApp({ matching: repository }))
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1 });
   });
 });

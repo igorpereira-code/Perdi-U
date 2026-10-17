@@ -1,6 +1,6 @@
 import type { MatchView } from '@shared/matching';
 import type { LostReportToMatch, MatchingRepository, PublishedItem } from './matchingRepository';
-import type { FoundItemStatus } from '@shared/statuses';
+import type { FoundItemStatus, LostReportStatus } from '@shared/statuses';
 
 /** status is PUBLISHED when not given. */
 export type FakeItem = PublishedItem & {
@@ -10,10 +10,13 @@ export type FakeItem = PublishedItem & {
   status?: FoundItemStatus;
   publishedById?: string;
 };
-export type FakeReport = LostReportToMatch & { ownerId: string };
+/** status is SEARCHING when not given. */
+export type FakeReport = LostReportToMatch & { ownerId: string; status?: LostReportStatus };
 
 /** In-memory matching repository for tests. It never touches the shared database. */
-export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[]) {
+export function fakeMatchingRepository(reports: FakeReport[], initialItems: FakeItem[]) {
+  // A copy, so a test that publishes an item does not change the items of the next test.
+  const items = initialItems.map((item) => ({ ...item }));
   const matches: (MatchView & { lostReportId: string })[] = [];
 
   const repository: MatchingRepository = {
@@ -71,6 +74,11 @@ export function fakeMatchingRepository(reports: FakeReport[], items: FakeItem[])
         item.publishedById = publishedById;
       }
     },
+
+    listActiveLostReports: async () =>
+      reports.filter((report) =>
+        ['SEARCHING', 'HAS_MATCHES'].includes(report.status ?? 'SEARCHING'),
+      ),
   };
 
   function setStatus(matchId: string, status: MatchView['status']) {

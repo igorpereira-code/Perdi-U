@@ -106,4 +106,20 @@ export const prismaMatchingRepository: MatchingRepository = {
       data: { status: 'PUBLISHED', visibility: 'VISIBLE', publishedById, publishedAt: new Date() },
     });
   },
+
+  listActiveLostReports: async () => {
+    const reports = await db().lostReport.findMany({
+      where: { status: { in: ['SEARCHING', 'HAS_MATCHES'] } },
+      include: { places: true },
+    });
+    return reports.map((report) => ({
+      id: report.id,
+      code: report.code,
+      categoryId: report.categoryId,
+      dateFrom: report.dateFrom,
+      dateTo: report.dateTo,
+      description: report.description,
+      placeIds: report.places.map((place) => place.placeId),
+    }));
+  },
 };

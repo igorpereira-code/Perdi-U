@@ -703,12 +703,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2c08917804bd64a186e763efee9250cb589c0c7e",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-17T00:42:05.000Z",
       "message": "feat: publicar el objeto recibido para que la comunidad pueda verlo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2c08917804bd64a186e763efee9250cb589c0c7e"
     },
     "stats": {
       "total": 63,
@@ -718,6 +718,25 @@
     },
     "coverage": 87.09,
     "test_count": 98,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-17T01:01:24.000Z",
+      "message": "feat: mostrar a Bienestar cuántos reportes de pérdida se parecen al objeto que publica",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 179,
+      "additions": 169,
+      "deletions": 10,
+      "date": "2026-10-17"
+    },
+    "coverage": 86.93,
+    "test_count": 103,
     "failed_tests": 0,
     "conclusion": "success"
   }

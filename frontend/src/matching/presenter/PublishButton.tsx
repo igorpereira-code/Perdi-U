@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { PublishResult } from '@shared/matching';
 import { Button } from '../../core/presenter/Button';
 import type { MatchesService } from '../data/matchesService';
+import { matchCountText } from '../logic/matchCountText';
 
 type PublishButtonProps = {
   itemCode: string;
@@ -18,12 +19,13 @@ export function PublishButton({ itemCode, matchesService }: PublishButtonProps) 
 
   if (result?.status === 'PUBLISHED') {
     return (
-      <p
+      <div
         role="status"
-        className="rounded-xl bg-success-50 p-2 text-sm font-medium text-success-700"
+        className="space-y-1 rounded-xl bg-success-50 p-2 text-sm text-success-700"
       >
-        Publicado: la comunidad ya puede ver este objeto.
-      </p>
+        <p className="font-medium">Publicado: la comunidad ya puede ver este objeto.</p>
+        <p>{matchCountText(result.matchCount)}</p>
+      </div>
     );
   }
 

@@ -41,4 +41,19 @@ describe('Botón para publicar un objeto (para el panel de Bienestar)', () => {
     );
     expect(screen.queryByRole('button', { name: 'Publicar' })).not.toBeInTheDocument();
   });
+
+  it('muestra cuántos reportes de pérdida se parecen al objeto publicado', async () => {
+    render(
+      <PublishButton
+        itemCode="HZ-0004"
+        matchesService={fakeService({ status: 'PUBLISHED', matchCount: 1 })}
+      />,
+    );
+
+    await userEvent.click(screen.getByRole('button', { name: 'Publicar' }));
+
+    expect(await screen.findByRole('status')).toHaveTextContent(
+      '1 reporte de pérdida se parece a este objeto.',
+    );
+  });
 });

@@ -30,7 +30,8 @@ export function createMatchesService(apiFetch: ApiFetch): MatchesService {
       if (response.status === 409) {
         return { status: 'NOT_RECEIVED' };
       }
-      return { status: 'PUBLISHED', matchCount: 0 };
+      const { matchCount } = await response.json();
+      return { status: 'PUBLISHED', matchCount };
     },
   };
 }

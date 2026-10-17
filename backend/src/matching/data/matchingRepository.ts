@@ -30,4 +30,6 @@ export type MatchingRepository = {
   findFoundItemByCode: (code: string) => Promise<FoundItemToPublish | null>;
   /** The item becomes visible to the community. */
   publish: (itemId: string, publishedById: string) => Promise<void>;
+  /** Lost reports whose owners are still looking: "Buscando" or "Con coincidencias". */
+  listActiveLostReports: () => Promise<LostReportToMatch[]>;
 };

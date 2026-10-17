@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { getCurrentUser, requireRole } from '../../core/currentUser';
 import type { MatchingRepository } from '../data/matchingRepository';
 import { canBePublished } from '../logic/canBePublished';
+import { findSimilarReports } from '../logic/findSimilarReports';
 
 export function createPublishRouter(matching: MatchingRepository): Router {
   const router = Router();
@@ -18,7 +19,8 @@ export function createPublishRouter(matching: MatchingRepository): Router {
     }
     await matching.publish(item.id, getCurrentUser(req).id);
 
-    res.json({ code: item.code });
+    const similarReports = findSimilarReports(item, await matching.listActiveLostReports());
+    res.json({ code: item.code, matchCount: similarReports.length });
   });
 
   return router;

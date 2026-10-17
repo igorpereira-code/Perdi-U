@@ -1526,9 +1526,95 @@
     "testId": 37
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2c08917804bd64a186e763efee9250cb589c0c7e",
     "commitName": "feat: publicar el objeto recibido para que la comunidad pueda verlo",
     "commitTimestamp": 1792197727425,
     "testId": 37
+  },
+  {
+    "numPassedTests": 98,
+    "failedTests": 1,
+    "numTotalTests": 99,
+    "timestamp": 1792198054548,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 99,
+    "failedTests": 0,
+    "numTotalTests": 99,
+    "timestamp": 1792198082003,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 99,
+    "failedTests": 1,
+    "numTotalTests": 100,
+    "timestamp": 1792198334637,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 100,
+    "failedTests": 0,
+    "numTotalTests": 100,
+    "timestamp": 1792198391542,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 100,
+    "failedTests": 1,
+    "numTotalTests": 101,
+    "timestamp": 1792198463027,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 101,
+    "failedTests": 0,
+    "numTotalTests": 101,
+    "timestamp": 1792198484287,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 101,
+    "failedTests": 1,
+    "numTotalTests": 102,
+    "timestamp": 1792198553806,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 102,
+    "failedTests": 0,
+    "numTotalTests": 102,
+    "timestamp": 1792198574390,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 102,
+    "failedTests": 1,
+    "numTotalTests": 103,
+    "timestamp": 1792198607099,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 103,
+    "failedTests": 0,
+    "numTotalTests": 103,
+    "timestamp": 1792198665983,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar a Bienestar cuántos reportes de pérdida se parecen al objeto que publica",
+    "commitTimestamp": 1792198885376,
+    "testId": 38
   }
 ]
