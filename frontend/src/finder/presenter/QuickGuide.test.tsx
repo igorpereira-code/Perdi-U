@@ -22,4 +22,12 @@ describe('Guía rápida de Perdi-U', () => {
 
   expect(onSkip).toHaveBeenCalledTimes(1);
 });
+it('muestra los cuatro pasos para recuperar un objeto encontrado', () => {
+  render(<QuickGuide onSkip={() => {}} />);
+
+  expect(screen.getByText('Encuentra el objeto')).toBeInTheDocument();
+  expect(screen.getByText('Reporta el hallazgo')).toBeInTheDocument();
+  expect(screen.getByText('Lleva el objeto a Bienestar Estudiantil')).toBeInTheDocument();
+  expect(screen.getByText('El dueño lo recoge en Bienestar')).toBeInTheDocument();
+});
 });

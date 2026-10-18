@@ -1712,9 +1712,39 @@
     "testId": 40
   },
   {
-    "commitId": "HEAD",
+    "commitId": "41a23e5703df19b5c4fb6b909a5d99ef07c38768",
     "commitName": "feat(finder): mostrar guía rápida y permitir volver al inicio",
     "commitTimestamp": 1792283574969,
     "testId": 40
+  },
+  {
+    "numPassedTests": 107,
+    "failedTests": 1,
+    "numTotalTests": 108,
+    "timestamp": 1792284145009,
+    "success": false,
+    "testId": 41
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 0,
+    "numTotalTests": 108,
+    "timestamp": 1792284226339,
+    "success": true,
+    "testId": 41
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 0,
+    "numTotalTests": 108,
+    "timestamp": 1792287402778,
+    "success": true,
+    "testId": 41
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): mostrar los cuatro pasos de la guía rápida",
+    "commitTimestamp": 1792288148311,
+    "testId": 41
   }
 ]
