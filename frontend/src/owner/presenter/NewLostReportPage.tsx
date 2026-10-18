@@ -1,16 +1,29 @@
+import { useState } from 'react';
 import { BackHeader } from '../../core/presenter/BackHeader';
+import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 
 type NewLostReportPageProps = {
   onBack: () => void;
 };
 
 export function NewLostReportPage({ onBack }: NewLostReportPageProps) {
+  const [description, setDescription] = useState('');
+
   return (
     <div className="min-h-screen bg-neutral-50 pb-20">
       <BackHeader title="Reportar objeto perdido" onBack={onBack} />
       <main className="p-4 max-w-lg mx-auto">
         <form aria-label="Reporte de pérdida" className="space-y-4">
-          {/* Los campos del formulario se agregarán en los siguientes criterios */}
+          <Field id="description" label="Descripción">
+            <textarea
+              id="description"
+              rows={3}
+              className={INPUT_CLASSES}
+              placeholder="Ej. Mochila negra con un llavero..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </Field>
         </form>
       </main>
     </div>

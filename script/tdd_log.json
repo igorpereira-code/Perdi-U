@@ -1694,9 +1694,31 @@
     "testId": 41
   },
   {
-    "commitId": "HEAD",
+    "commitId": "07ce2795dd4fadc869e0351aedac28c6831081c9",
     "commitName": "feat: abrir formulario para reportar objeto perdido",
     "commitTimestamp": 1792345353704,
     "testId": 41
+  },
+  {
+    "numPassedTests": 107,
+    "failedTests": 1,
+    "numTotalTests": 108,
+    "timestamp": 1792350613766,
+    "success": false,
+    "testId": 42
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 0,
+    "numTotalTests": 108,
+    "timestamp": 1792350633904,
+    "success": true,
+    "testId": 42
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir escribir la descripcion del objeto perdido",
+    "commitTimestamp": 1792350723613,
+    "testId": 42
   }
 ]
