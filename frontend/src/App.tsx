@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import { AppLayout } from './core/presenter/AppLayout';
@@ -9,6 +9,7 @@ import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
 import { FoundItemEntry } from './finder/presenter/FoundItemEntry';
+import { FoundItemForm } from './finder/presenter/FoundItemForm';
 
 type AppProps = {
   authService: AuthService;
@@ -16,6 +17,7 @@ type AppProps = {
 };
 
 export default function App({ authService, matchesService }: AppProps) {
+  const navigate = useNavigate();
   // undefined = still checking who is signed in; null = nobody is signed in.
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [notInstitutional, setNotInstitutional] = useState(false);
@@ -53,9 +55,13 @@ export default function App({ authService, matchesService }: AppProps) {
         element={signedInPage((me) => (
           <div className="space-y-6">
             <HomePage user={me} />
-            <FoundItemEntry onClick={() => { }} />
+            <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
           </div>
         ))}
+      />
+      <Route
+        path="/reportar-objeto"
+        element={signedInPage(() => <FoundItemForm />)}
       />
       <Route
         path="/perfil"

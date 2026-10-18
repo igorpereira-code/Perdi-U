@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
@@ -132,4 +132,26 @@ describe('Navegación de la app', () => {
     }),
   ).toBeInTheDocument();
 });
+
+  it('abre el formulario para reportar el objeto al elegir Encontré un objeto desde Inicio', async () => {
+    const user = userEvent.setup();
+    renderAt('/', igor);
+
+    await user.click(await screen.findByRole('button', { name: 'Encontré un objeto' }));
+
+    expect(
+      screen.queryByRole('form', { name: 'Reportar objeto encontrado' }),
+    ).toBeInTheDocument();
+  });
+
+  it('redirige al ingreso a quien abre /reportar-objeto sin sesión', async () => {
+    renderAt('/reportar-objeto', null);
+
+    await waitFor(() => {
+      expect(screen.queryByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+    });
+    expect(
+      screen.queryByRole('form', { name: 'Reportar objeto encontrado' }),
+    ).not.toBeInTheDocument();
+  });
 });

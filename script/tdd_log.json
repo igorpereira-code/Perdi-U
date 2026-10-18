@@ -1680,9 +1680,47 @@
     "testId": 40
   },
   {
-    "commitId": "HEAD",
+    "commitId": "894a2d22d1b2e3d5cfeddb1044d8bb4f279a2e2c",
     "commitName": "feat(finder): mostrar opción para reportar objeto encontrado",
     "commitTimestamp": 1792289681490,
     "testId": 40
+  },
+  {
+    "numPassedTests": 106,
+    "failedTests": 0,
+    "numTotalTests": 106,
+    "timestamp": 1792289569653,
+    "success": true,
+    "testId": 41
+  },
+  {
+    "numPassedTests": 106,
+    "failedTests": 2,
+    "numTotalTests": 108,
+    "timestamp": 1792292278883,
+    "success": false,
+    "testId": 41
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 0,
+    "numTotalTests": 108,
+    "timestamp": 1792292607028,
+    "success": true,
+    "testId": 41
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 0,
+    "numTotalTests": 108,
+    "timestamp": 1792292928638,
+    "success": true,
+    "testId": 41
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): abrir formulario para reportar objeto encontrado",
+    "commitTimestamp": 1792293356665,
+    "testId": 41
   }
 ]
