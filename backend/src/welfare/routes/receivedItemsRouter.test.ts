@@ -1,5 +1,6 @@
 import request from 'supertest';
 import { createApp } from '../../app';
+import { SAMPLE_USERS } from '../../core/sampleUsers';
 import { fakeWelfareRepository } from '../data/fakeWelfareRepository';
 
 const pendingItem = {
@@ -115,5 +116,77 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(409);
     expect(res.body).toEqual({ code: 'ALREADY_RECEIVED' });
+  });
+
+  it('confirma que Bienestar recibio el objeto', async () => {
+    const { repository } = fakeWelfareRepository([pendingItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/found-items/HZ-0005/receive')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual(expect.objectContaining({ code: 'HZ-0005', status: 'IN_CUSTODY' }));
+  });
+
+  it('registra quien y cuando lo recibio', async () => {
+    const { repository, items } = fakeWelfareRepository([pendingItem]);
+    await request(createApp({ welfare: repository }))
+      .post('/welfare/found-items/HZ-0005/receive')
+      .set('x-sample-user', 'welfare');
+
+    expect(items[0]).toEqual(
+      expect.objectContaining({
+        receivedById: SAMPLE_USERS.welfare.id,
+        receivedAt: expect.any(Date),
+      }),
+    );
+  });
+
+  it('deja el objeto en custodia', async () => {
+    const { repository, items } = fakeWelfareRepository([pendingItem]);
+    await request(createApp({ welfare: repository }))
+      .post('/welfare/found-items/HZ-0005/receive')
+      .set('x-sample-user', 'welfare');
+
+    expect(items[0].status).toBe('IN_CUSTODY');
+    await expect(repository.listPending()).resolves.toEqual([]);
+  });
+
+  it('no permite confirmar dos veces', async () => {
+    const { repository } = fakeWelfareRepository([pendingItem]);
+    const app = createApp({ welfare: repository });
+    await request(app)
+      .post('/welfare/found-items/HZ-0005/receive')
+      .set('x-sample-user', 'welfare');
+    const repeated = await request(app)
+      .post('/welfare/found-items/HZ-0005/receive')
+      .set('x-sample-user', 'welfare');
+
+    expect(repeated.status).toBe(409);
+    expect(repeated.body).toEqual({ code: 'ALREADY_RECEIVED' });
+  });
+
+  it('solo Bienestar puede confirmar', async () => {
+    const { repository } = fakeWelfareRepository([pendingItem]);
+    const res = await request(createApp({ welfare: repository })).post(
+      '/welfare/found-items/HZ-0005/receive',
+    );
+
+    expect(res.status).toBe(403);
+  });
+
+  it('solo una confirmacion simultanea puede actualizar el objeto', async () => {
+    const { repository } = fakeWelfareRepository([pendingItem]);
+    const app = createApp({ welfare: repository });
+    const responses = await Promise.all([
+      request(app)
+        .post('/welfare/found-items/HZ-0005/receive')
+        .set('x-sample-user', 'welfare'),
+      request(app)
+        .post('/welfare/found-items/HZ-0005/receive')
+        .set('x-sample-user', 'welfare'),
+    ]);
+
+    expect(responses.map((response) => response.status).sort()).toEqual([200, 409]);
   });
 });

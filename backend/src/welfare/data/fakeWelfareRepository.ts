@@ -13,6 +13,16 @@ export function fakeWelfareRepository(initialItems: WelfareFoundItem[]) {
       const item = items.find((candidate) => candidate.code === code);
       return item ? { ...item, finder: item.finder && { ...item.finder } } : null;
     },
+    receivePending: async (itemId, receivedById, receivedAt) => {
+      const item = items.find((candidate) => candidate.id === itemId);
+      if (!item || item.status !== 'PENDING_DROP_OFF') {
+        return false;
+      }
+      item.status = 'IN_CUSTODY';
+      item.receivedById = receivedById;
+      item.receivedAt = receivedAt;
+      return true;
+    },
   };
 
   return { repository, items };
