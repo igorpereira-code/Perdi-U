@@ -2180,9 +2180,179 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "46cda2183970e624d191255bbd76373c33df3581",
     "commitName": "fix(welfare): conservar la custodia ante errores de carga",
     "commitTimestamp": 1792347500326,
     "testId": 58
+  },
+  {
+    "numPassedTests": 140,
+    "failedTests": 0,
+    "numTotalTests": 140,
+    "timestamp": 1792348450144,
+    "success": true,
+    "testId": 59
+  },
+  {
+    "numPassedTests": 140,
+    "failedTests": 1,
+    "numTotalTests": 141,
+    "timestamp": 1792348505254,
+    "success": false,
+    "testId": 59
+  },
+  {
+    "numPassedTests": 141,
+    "failedTests": 0,
+    "numTotalTests": 141,
+    "timestamp": 1792348527204,
+    "success": true,
+    "testId": 59
+  },
+  {
+    "commitId": "1368f8dd40d029e6742aed57d453a5a3be7d9322",
+    "commitName": "feat(welfare): proteger los recojos pendientes",
+    "commitTimestamp": 1792348544063,
+    "testId": 59
+  },
+  {
+    "numPassedTests": 141,
+    "failedTests": 1,
+    "numTotalTests": 142,
+    "timestamp": 1792348585712,
+    "success": false,
+    "testId": 60
+  },
+  {
+    "numPassedTests": 142,
+    "failedTests": 0,
+    "numTotalTests": 142,
+    "timestamp": 1792348621387,
+    "success": true,
+    "testId": 60
+  },
+  {
+    "commitId": "dbbb5581134eb7a39151d7ba62ca4b945a78ea80",
+    "commitName": "feat(welfare): listar los recojos pendientes",
+    "commitTimestamp": 1792348638410,
+    "testId": 60
+  },
+  {
+    "numPassedTests": 142,
+    "failedTests": 1,
+    "numTotalTests": 143,
+    "timestamp": 1792348679234,
+    "success": false,
+    "testId": 61
+  },
+  {
+    "numPassedTests": 143,
+    "failedTests": 0,
+    "numTotalTests": 143,
+    "timestamp": 1792348702878,
+    "success": true,
+    "testId": 61
+  },
+  {
+    "numPassedTests": 143,
+    "failedTests": 0,
+    "numTotalTests": 143,
+    "timestamp": 1792348748558,
+    "success": true,
+    "testId": 61
+  },
+  {
+    "commitId": "d8e49cd3d5f13bc2284d0f4125dd22c1a5c945fd",
+    "commitName": "feat(welfare): consultar los recojos pendientes",
+    "commitTimestamp": 1792348776034,
+    "testId": 61
+  },
+  {
+    "numPassedTests": 143,
+    "failedTests": 1,
+    "numTotalTests": 144,
+    "timestamp": 1792348826140,
+    "success": false,
+    "testId": 62
+  },
+  {
+    "numPassedTests": 143,
+    "failedTests": 1,
+    "numTotalTests": 144,
+    "timestamp": 1792348865750,
+    "success": false,
+    "testId": 62
+  },
+  {
+    "numPassedTests": 144,
+    "failedTests": 0,
+    "numTotalTests": 144,
+    "timestamp": 1792348902623,
+    "success": true,
+    "testId": 62
+  },
+  {
+    "commitId": "3010bbaec3ed4c36530829c31920c440d296f21d",
+    "commitName": "feat(welfare): mostrar los recojos pendientes",
+    "commitTimestamp": 1792348933298,
+    "testId": 62
+  },
+  {
+    "numPassedTests": 144,
+    "failedTests": 1,
+    "numTotalTests": 145,
+    "timestamp": 1792349014859,
+    "success": false,
+    "testId": 63
+  },
+  {
+    "numPassedTests": 145,
+    "failedTests": 0,
+    "numTotalTests": 145,
+    "timestamp": 1792349057672,
+    "success": true,
+    "testId": 63
+  },
+  {
+    "commitId": "288694413bae8d25ae7625e2fd59ea28de96198b",
+    "commitName": "feat(welfare): mostrar recojos pendientes vacios",
+    "commitTimestamp": 1792349087967,
+    "testId": 63
+  },
+  {
+    "numPassedTests": 145,
+    "failedTests": 1,
+    "numTotalTests": 146,
+    "timestamp": 1792349139779,
+    "success": false,
+    "testId": 64
+  },
+  {
+    "numPassedTests": 146,
+    "failedTests": 0,
+    "numTotalTests": 146,
+    "timestamp": 1792349182187,
+    "success": true,
+    "testId": 64
+  },
+  {
+    "commitId": "83ff775d9287f7f0bccb1d5723cef9059a14c25c",
+    "commitName": "feat(welfare): avisar errores al cargar recojos",
+    "commitTimestamp": 1792349212006,
+    "testId": 64
+  },
+  {
+    "numPassedTests": 146,
+    "failedTests": 0,
+    "numTotalTests": 146,
+    "timestamp": 1792367101307,
+    "success": true,
+    "testId": 65
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "style(welfare): mostrar el resultado junto al buscador",
+    "commitTimestamp": 1792367137918,
+    "testId": 65
   }
 ]

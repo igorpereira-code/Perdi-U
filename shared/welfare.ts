@@ -12,3 +12,10 @@ export type WelfareFoundItemView = {
   status: FoundItemStatus;
   finder: { name: string; email: string } | null;
 };
+
+export type WelfarePendingPickupView = {
+  matchId: string;
+  owner: { name: string; email: string };
+  report: { code: string };
+  foundItem: { code: string; description: string };
+};

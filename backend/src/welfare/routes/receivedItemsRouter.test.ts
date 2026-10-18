@@ -38,7 +38,46 @@ const deliveredItem = {
   status: 'DELIVERED' as const,
 };
 
+const pendingPickup = {
+  matchId: 'match-1',
+  matchStatus: 'WILL_PICK_UP' as const,
+  reportStatus: 'PENDING_PICKUP' as const,
+  owner: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+  report: { code: 'PR-0001' },
+  foundItem: { code: 'HZ-0001', description: 'Celular Samsung con funda azul' },
+};
+
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('protege la lista de recojos pendientes para Bienestar', async () => {
+    const { repository } = fakeWelfareRepository([]);
+    const res = await request(createApp({ welfare: repository })).get(
+      '/welfare/pending-pickups',
+    );
+
+    expect(res.status).toBe(403);
+  });
+
+  it('lista solamente los propietarios que pasaran a recoger', async () => {
+    const { repository } = fakeWelfareRepository([], [
+      pendingPickup,
+      { ...pendingPickup, matchId: 'match-2', matchStatus: 'SUGGESTED' },
+      { ...pendingPickup, matchId: 'match-3', reportStatus: 'RECOVERED' },
+    ]);
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/pending-pickups')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual([
+      {
+        matchId: 'match-1',
+        owner: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+        report: { code: 'PR-0001' },
+        foundItem: { code: 'HZ-0001', description: 'Celular Samsung con funda azul' },
+      },
+    ]);
+  });
+
   it('lista solamente los objetos que siguen en la oficina', async () => {
     const { repository } = fakeWelfareRepository([
       pendingItem,
