@@ -14,6 +14,7 @@ export function WelfarePage({ welfareService }: { welfareService: WelfareService
   const [selected, setSelected] = useState<WelfareFoundItemView | null>(null);
   const [code, setCode] = useState('');
   const [message, setMessage] = useState<string | null>(null);
+  const [receiving, setReceiving] = useState(false);
 
   useEffect(() => {
     welfareService
@@ -42,6 +43,26 @@ export function WelfarePage({ welfareService }: { welfareService: WelfareService
       );
     } catch {
       setMessage('No pudimos buscar el objeto');
+    }
+  }
+
+  async function receive() {
+    if (!selected || receiving) return;
+    setReceiving(true);
+    setMessage(null);
+    try {
+      const result = await welfareService.receive(selected.code);
+      if (result.status !== 'FOUND') {
+        setMessage('Este objeto ya fue recibido');
+        return;
+      }
+      setItems((current) => current?.filter((item) => item.code !== selected.code) ?? []);
+      setSelected(null);
+      setMessage('Objeto recibido y puesto en custodia');
+    } catch {
+      setMessage('No pudimos confirmar la recepción');
+    } finally {
+      setReceiving(false);
     }
   }
 
@@ -87,6 +108,9 @@ export function WelfarePage({ welfareService }: { welfareService: WelfareService
             {selected.classroom && <InfoRow label="Aula" value={selected.classroom} />}
             {selected.finder && <><InfoRow label="Hallador" value={selected.finder.name} /><InfoRow label="Correo" value={selected.finder.email} /></>}
           </dl>
+          <Button onClick={receive} disabled={receiving} className="mt-4">
+            Confirmar recepción
+          </Button>
         </section>
       )}
     </main>

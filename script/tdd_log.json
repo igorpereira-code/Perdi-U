@@ -1882,9 +1882,63 @@
     "testId": 47
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c4e2d3418eaaa205579a6ee208e20578c39b979a",
     "commitName": "feat(welfare): consultar objetos pendientes y sus datos",
     "commitTimestamp": 1792308976209,
     "testId": 47
+  },
+  {
+    "numPassedTests": 130,
+    "failedTests": 0,
+    "numTotalTests": 130,
+    "timestamp": 1792309010141,
+    "success": true,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 130,
+    "failedTests": 0,
+    "numTotalTests": 130,
+    "timestamp": 1792309043759,
+    "success": true,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 130,
+    "failedTests": 5,
+    "numTotalTests": 135,
+    "timestamp": 1792309093876,
+    "success": false,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 134,
+    "failedTests": 1,
+    "numTotalTests": 135,
+    "timestamp": 1792309132994,
+    "success": false,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 135,
+    "failedTests": 0,
+    "numTotalTests": 135,
+    "timestamp": 1792309169950,
+    "success": true,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 135,
+    "failedTests": 0,
+    "numTotalTests": 135,
+    "timestamp": 1792309224393,
+    "success": true,
+    "testId": 48
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): registrar la recepcion desde el panel",
+    "commitTimestamp": 1792309277629,
+    "testId": 48
   }
 ]

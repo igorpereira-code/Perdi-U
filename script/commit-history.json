@@ -893,12 +893,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c4e2d3418eaaa205579a6ee208e20578c39b979a",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T07:36:14.000Z",
       "message": "feat(welfare): consultar objetos pendientes y sus datos",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c4e2d3418eaaa205579a6ee208e20578c39b979a"
     },
     "stats": {
       "total": 156,
@@ -908,6 +908,25 @@
     },
     "coverage": 87.25,
     "test_count": 130,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:41:15.000Z",
+      "message": "feat(welfare): registrar la recepcion desde el panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 96,
+      "additions": 92,
+      "deletions": 4,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.1,
+    "test_count": 135,
     "failed_tests": 0,
     "conclusion": "success"
   }

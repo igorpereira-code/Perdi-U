@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { WelfareFoundItemView } from '@shared/welfare';
-import type { WelfareService } from '../data/welfareService';
+import type { WelfareResult, WelfareService } from '../data/welfareService';
 import { WelfarePage } from './WelfarePage';
 
 const item: WelfareFoundItemView = {
@@ -58,5 +58,41 @@ describe('Panel de Bienestar', () => {
     render(<WelfarePage welfareService={service({ listPending: jest.fn().mockRejectedValue(new Error('network')) })} />);
     expect(await screen.findByText('No pudimos cargar los objetos pendientes')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Panel de Bienestar' })).toBeInTheDocument();
+  });
+
+  it('confirma la recepcion, muestra exito y quita el objeto pendiente', async () => {
+    const welfareService = service({
+      receive: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
+    });
+    render(<WelfarePage welfareService={welfareService} />);
+    await screen.findByText('Mochila negra con cuadernos');
+    await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
+
+    expect(welfareService.receive).toHaveBeenCalledWith('HZ-0005');
+    expect(await screen.findByText('Objeto recibido y puesto en custodia')).toBeInTheDocument();
+    expect(screen.queryByText('Mochila negra con cuadernos')).not.toBeInTheDocument();
+  });
+
+  it('evita confirmar dos veces mientras guarda', async () => {
+    const receive = jest.fn<Promise<WelfareResult>, [string]>(
+      () => new Promise<WelfareResult>(() => undefined),
+    );
+    render(<WelfarePage welfareService={service({ receive })} />);
+    await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
+    const button = await screen.findByRole('button', { name: 'Confirmar recepción' });
+    await userEvent.click(button);
+    expect(button).toBeDisabled();
+  });
+
+  it('conserva el objeto cuando falla la confirmacion', async () => {
+    render(<WelfarePage welfareService={service({ receive: jest.fn().mockRejectedValue(new Error('network')) })} />);
+    await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
+    expect(await screen.findByText('No pudimos confirmar la recepción')).toBeInTheDocument();
+    expect(screen.getAllByText('Mochila negra con cuadernos').length).toBeGreaterThan(0);
   });
 });
