@@ -8,6 +8,7 @@ import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
+import { FoundItemEntry } from './finder/presenter/FoundItemEntry';
 
 type AppProps = {
   authService: AuthService;
@@ -50,7 +51,10 @@ export default function App({ authService, matchesService }: AppProps) {
       <Route
         path="/"
         element={signedInPage((me) => (
-          <HomePage user={me} />
+          <div className="space-y-6">
+            <HomePage user={me} />
+            <FoundItemEntry onClick={() => { }} />
+          </div>
         ))}
       />
       <Route

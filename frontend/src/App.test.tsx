@@ -123,4 +123,13 @@ describe('Navegación de la app', () => {
       await screen.findByRole('heading', { name: 'Todavía no hay objetos parecidos' }),
     ).toBeInTheDocument();
   });
+  it('muestra Encontré un objeto en la pantalla principal', async () => {
+  renderAt('/', igor);
+
+  expect(
+    await screen.findByRole('button', {
+      name: 'Encontré un objeto',
+    }),
+  ).toBeInTheDocument();
+});
 });

@@ -1642,9 +1642,47 @@
     "testId": 39
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c5985f00979a4dfbadcf1f2681564c406d13e83f",
     "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
     "commitTimestamp": 1792199780960,
     "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 1,
+    "numTotalTests": 105,
+    "timestamp": 1792289117557,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 0,
+    "numTotalTests": 105,
+    "timestamp": 1792289198895,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 1,
+    "numTotalTests": 106,
+    "timestamp": 1792289326837,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 106,
+    "failedTests": 0,
+    "numTotalTests": 106,
+    "timestamp": 1792289569653,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): mostrar opción para reportar objeto encontrado",
+    "commitTimestamp": 1792289681490,
+    "testId": 40
   }
 ]
