@@ -271,3 +271,82 @@ describe('Ubicación del objeto encontrado', () => {
     expect(URL.revokeObjectURL).not.toHaveBeenCalled();
   });
 });
+
+describe('Referencia adicional del lugar del hallazgo', () => {
+  beforeEach(() => {
+    URL.createObjectURL = jest.fn(() => 'blob:foto-con-referencia');
+    URL.revokeObjectURL = jest.fn();
+  });
+
+  it('muestra un campo accesible de referencia del lugar, inicialmente vacío', () => {
+    render(<FoundItemForm />);
+
+    expect(screen.queryByRole('textbox', { name: 'Referencia del lugar' })).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: 'Referencia del lugar' })).toHaveValue('');
+    expect(screen.getByRole('textbox', { name: 'Referencia del lugar' })).not.toBeRequired();
+  });
+
+  it('permite escribir, editar y borrar libremente la referencia y conservarla al renderizar', async () => {
+    const user = userEvent.setup();
+    const { rerender } = render(<FoundItemForm />);
+
+    expect(screen.queryByRole('textbox', { name: 'Referencia del lugar' })).toBeInTheDocument();
+    const reference = screen.getByRole('textbox', { name: 'Referencia del lugar' });
+    await user.type(reference, 'Junto al aula A-12, cerca de la ventana.');
+    expect(reference).toHaveValue('Junto al aula A-12, cerca de la ventana.');
+
+    await user.clear(reference);
+    const editedReference = 'Sobre la mesa grande (junto a la puerta), 2.º piso.';
+    await user.type(reference, editedReference);
+    rerender(<FoundItemForm />);
+
+    expect(screen.getByRole('textbox', { name: 'Referencia del lugar' })).toHaveValue(editedReference);
+    await user.clear(screen.getByRole('textbox', { name: 'Referencia del lugar' }));
+    expect(screen.getByRole('textbox', { name: 'Referencia del lugar' })).toHaveValue('');
+  });
+
+  it('conserva la referencia, descripción y foto al cambiar aula, bloque, espacio o categoría', async () => {
+    const user = userEvent.setup();
+    const { rerender } = render(<FoundItemForm />);
+    const reference = 'En la mesa junto a la ventana, segundo piso.';
+    const description = 'Llaves con un llavero azul';
+    const photo = new File(['foto'], 'llaves.jpg', { type: 'image/jpeg' });
+
+    expect(screen.queryByRole('textbox', { name: 'Referencia del lugar' })).toBeInTheDocument();
+    await user.type(screen.getByRole('textbox', { name: 'Referencia del lugar' }), reference);
+    await user.type(screen.getByRole('textbox', { name: 'Descripción del objeto' }), description);
+    await user.upload(screen.getByLabelText('Foto del objeto'), photo);
+
+    function expectDraftKept() {
+      expect(screen.getByRole('textbox', { name: 'Referencia del lugar' })).toHaveValue(reference);
+      expect(screen.getByRole('textbox', { name: 'Descripción del objeto' })).toHaveValue(description);
+      expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
+        'src',
+        'blob:foto-con-referencia',
+      );
+      expect(screen.getByText(photo.name)).toBeInTheDocument();
+    }
+
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Bloque A');
+    expectDraftKept();
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula A-12');
+    expectDraftKept();
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula A-22');
+    expectDraftKept();
+    for (const category of ['Llaves', 'Otros']) {
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), category);
+      expectDraftKept();
+    }
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Bloque B');
+    expectDraftKept();
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula B-12');
+    expectDraftKept();
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Biblioteca');
+    rerender(<FoundItemForm />);
+
+    expectDraftKept();
+    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Otros');
+    expect(URL.createObjectURL).toHaveBeenCalledTimes(1);
+    expect(URL.revokeObjectURL).not.toHaveBeenCalled();
+  });
+});

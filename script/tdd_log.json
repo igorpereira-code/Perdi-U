@@ -1838,9 +1838,39 @@
     "testId": 45
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6251a540b1d994b8d8bea5899fb78962f7476ead",
     "commitName": "feat(finder): seleccionar ubicacion del objeto encontrado",
     "commitTimestamp": 1792342204612,
     "testId": 45
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 3,
+    "numTotalTests": 127,
+    "timestamp": 1792342708644,
+    "success": false,
+    "testId": 46
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792342792964,
+    "success": true,
+    "testId": 46
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792342911889,
+    "success": true,
+    "testId": 46
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): agregar referencia del lugar encontrado",
+    "commitTimestamp": 1792343569448,
+    "testId": 46
   }
 ]

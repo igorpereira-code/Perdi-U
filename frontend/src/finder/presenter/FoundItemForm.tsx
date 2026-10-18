@@ -10,6 +10,7 @@ export function FoundItemForm() {
   const [photo, setPhoto] = useState<File | null>(null);
   const [placeName, setPlaceName] = useState('');
   const [classroomName, setClassroomName] = useState('');
+  const [placeReference, setPlaceReference] = useState('');
   const selectedPlace = PROVISIONAL_FOUND_ITEM_PLACES.find((place) => place.name === placeName);
 
   function handlePlaceChange(name: string) {
@@ -89,6 +90,16 @@ export function FoundItemForm() {
           </select>
         </Field>
       )}
+      <Field id="found-item-place-reference" label="Referencia del lugar">
+        <input
+          id="found-item-place-reference"
+          name="placeReference"
+          type="text"
+          className={INPUT_CLASSES}
+          value={placeReference}
+          onChange={(event) => setPlaceReference(event.target.value)}
+        />
+      </Field>
     </form>
   );
 }
