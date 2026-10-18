@@ -988,17 +988,36 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "dfa3dc57a6e42ab2c0c959e8adcef595e7742970",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T20:09:10.000Z",
       "message": "feat: mostrar estado activo del reporte mientras no aparezca el objeto",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/dfa3dc57a6e42ab2c0c959e8adcef595e7742970"
     },
     "stats": {
       "total": 28,
       "additions": 26,
       "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.38,
+    "test_count": 118,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-18T21:16:49.000Z",
+      "message": "feat: mostrar ultimos objetos publicados en la pantalla de inicio",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
       "date": "2026-10-18"
     },
     "coverage": 87.38,

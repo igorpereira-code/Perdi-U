@@ -1968,9 +1968,23 @@
     "testId": 52
   },
   {
-    "commitId": "HEAD",
+    "commitId": "dfa3dc57a6e42ab2c0c959e8adcef595e7742970",
     "commitName": "feat: mostrar estado activo del reporte mientras no aparezca el objeto",
     "commitTimestamp": 1792354151323,
     "testId": 52
+  },
+  {
+    "numPassedTests": 118,
+    "failedTests": 0,
+    "numTotalTests": 118,
+    "timestamp": 1792358176900,
+    "success": true,
+    "testId": 53
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar ultimos objetos publicados en la pantalla de inicio",
+    "commitTimestamp": 1792358210902,
+    "testId": 53
   }
 ]
