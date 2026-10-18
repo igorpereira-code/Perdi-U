@@ -1966,9 +1966,31 @@
     "testId": 49
   },
   {
-    "commitId": "HEAD",
+    "commitId": "45062221330a1a3d826d43f91bf2eb409514e14f",
     "commitName": "style(welfare): cumplir el formato del panel",
     "commitTimestamp": 1792309479560,
     "testId": 49
+  },
+  {
+    "numPassedTests": 135,
+    "failedTests": 0,
+    "numTotalTests": 135,
+    "timestamp": 1792309568428,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 135,
+    "failedTests": 0,
+    "numTotalTests": 135,
+    "timestamp": 1792309652912,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): cerrar la promesa de confirmacion",
+    "commitTimestamp": 1792309681842,
+    "testId": 50
   }
 ]

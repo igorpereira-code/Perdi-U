@@ -931,16 +931,35 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "45062221330a1a3d826d43f91bf2eb409514e14f",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T07:44:38.000Z",
       "message": "style(welfare): cumplir el formato del panel",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/45062221330a1a3d826d43f91bf2eb409514e14f"
     },
     "stats": {
       "total": 4,
       "additions": 3,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.1,
+    "test_count": 135,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:48:00.000Z",
+      "message": "test(welfare): cerrar la promesa de confirmacion",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 5,
+      "additions": 4,
       "deletions": 1,
       "date": "2026-10-18"
     },

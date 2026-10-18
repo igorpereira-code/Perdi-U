@@ -76,8 +76,9 @@ describe('Panel de Bienestar', () => {
   });
 
   it('evita confirmar dos veces mientras guarda', async () => {
+    let resolveReceive!: (result: WelfareResult) => void;
     const receive = jest.fn<Promise<WelfareResult>, [string]>(
-      () => new Promise<WelfareResult>(() => undefined),
+      () => new Promise<WelfareResult>((resolve) => (resolveReceive = resolve)),
     );
     render(<WelfarePage welfareService={service({ receive })} />);
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
@@ -85,6 +86,8 @@ describe('Panel de Bienestar', () => {
     const button = await screen.findByRole('button', { name: 'Confirmar recepción' });
     await userEvent.click(button);
     expect(button).toBeDisabled();
+    resolveReceive({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } });
+    expect(await screen.findByText('Objeto recibido y puesto en custodia')).toBeInTheDocument();
   });
 
   it('conserva el objeto cuando falla la confirmacion', async () => {
