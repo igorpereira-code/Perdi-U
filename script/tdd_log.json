@@ -1642,9 +1642,23 @@
     "testId": 39
   },
   {
-    "commitId": "HEAD",
+    "commitId": "91a6ef6522e552e7e1731544af9a5cfca715fc76",
     "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
     "commitTimestamp": 1792199780960,
     "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792306427484,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "docs(welfare): definir diseño TDD de la HU-9",
+    "commitTimestamp": 1792307181197,
+    "testId": 40
   }
 ]
