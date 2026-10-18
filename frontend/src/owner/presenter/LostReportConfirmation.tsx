@@ -26,6 +26,10 @@ export function LostReportConfirmation({ reportCode, onGoHome }: LostReportConfi
         </span>
       </div>
 
+      <div className="p-3 bg-neutral-100 border border-neutral-200 rounded-lg text-xs text-neutral-600 text-left">
+        🔒 <strong>Reporte privado:</strong> Tu reporte es privado: solo lo ven tú y Bienestar Estudiantil.
+      </div>
+
       <div className="pt-2">
         <SeeMatchesLink reportCode={reportCode} />
       </div>

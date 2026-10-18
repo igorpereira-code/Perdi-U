@@ -1900,9 +1900,31 @@
     "testId": 50
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6d753d6f3fd090ad4d325d2ea1dfd34111744106",
     "commitName": "feat: mostrar codigo unico en confirmacion de reporte bien",
     "commitTimestamp": 1792353085360,
     "testId": 50
+  },
+  {
+    "numPassedTests": 116,
+    "failedTests": 1,
+    "numTotalTests": 117,
+    "timestamp": 1792353702706,
+    "success": false,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 117,
+    "failedTests": 0,
+    "numTotalTests": 117,
+    "timestamp": 1792353721723,
+    "success": true,
+    "testId": 51
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: indicar privacidad del reporte para el usuario y bienestar estudiantil",
+    "commitTimestamp": 1792353747326,
+    "testId": 51
   }
 ]
