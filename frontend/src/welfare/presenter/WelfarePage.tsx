@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import type { WelfareFoundItemView } from '@shared/welfare';
+import type { WelfareFoundItemView, WelfarePendingPickupView } from '@shared/welfare';
 import type { WelfareService } from '../data/welfareService';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
@@ -17,6 +17,7 @@ type WelfarePageProps = {
 };
 
 export function WelfarePage({ welfareService, matchesService }: WelfarePageProps) {
+  const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
   const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
   const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
   const [publishedCodes, setPublishedCodes] = useState<Set<string>>(new Set());
@@ -24,6 +25,13 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [code, setCode] = useState('');
   const [message, setMessage] = useState<string | null>(null);
   const [receiving, setReceiving] = useState(false);
+
+  useEffect(() => {
+    welfareService
+      .listPendingPickups()
+      .then(setPendingPickups)
+      .catch(() => setPendingPickups([]));
+  }, [welfareService]);
 
   useEffect(() => {
     welfareService
@@ -105,6 +113,25 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
         <Button type="submit">Buscar</Button>
       </form>
       {message && <Alert>{message}</Alert>}
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-blue-700">Recojos pendientes</h2>
+        {pendingPickups === null ? (
+          <p>Cargando recojos pendientes...</p>
+        ) : (
+          <div className="grid gap-3 md:grid-cols-2">
+            {pendingPickups.map((pickup) => (
+              <article key={pickup.matchId} className="space-y-1 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+                <strong>{pickup.owner.name}</strong>
+                <p>{pickup.owner.email}</p>
+                <p>Reporte: <span>{pickup.report.code}</span></p>
+                <p>Objeto: <span>{pickup.foundItem.code}</span></p>
+                <p>{pickup.foundItem.description}</p>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-blue-700">Objetos pendientes de recepción</h2>

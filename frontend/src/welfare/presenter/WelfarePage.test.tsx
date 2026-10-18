@@ -1,7 +1,7 @@
 import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { ComponentType } from 'react';
-import type { WelfareFoundItemView } from '@shared/welfare';
+import type { WelfareFoundItemView, WelfarePendingPickupView } from '@shared/welfare';
 import type { MatchesService } from '../../matching/data/matchesService';
 import type { WelfareResult, WelfareService } from '../data/welfareService';
 import { WelfarePage } from './WelfarePage';
@@ -25,6 +25,13 @@ const publishedItem: WelfareFoundItemView = {
   code: 'HZ-0003',
   description: 'Chamarra azul',
   status: 'PUBLISHED',
+};
+
+const pendingPickup: WelfarePendingPickupView = {
+  matchId: 'match-1',
+  owner: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+  report: { code: 'PR-0001' },
+  foundItem: { code: 'HZ-0001', description: 'Celular Samsung con funda azul' },
 };
 
 function service(overrides: Partial<WelfareService> = {}): WelfareService {
@@ -54,6 +61,20 @@ function renderPage(welfareService: WelfareService = service()) {
 }
 
 describe('Panel de Bienestar', () => {
+  it('muestra quien vendra, su reporte y el objeto que recogera', async () => {
+    renderPage(service({ listPendingPickups: jest.fn().mockResolvedValue([pendingPickup]) }));
+
+    const section = (await screen.findByRole('heading', { name: 'Recojos pendientes' })).closest(
+      'section',
+    );
+    expect(section).not.toBeNull();
+    expect(await within(section!).findByText('Ana Rojas')).toBeInTheDocument();
+    expect(within(section!).getByText('ana.rojas@ucb.edu.bo')).toBeInTheDocument();
+    expect(within(section!).getByText('PR-0001')).toBeInTheDocument();
+    expect(within(section!).getByText('HZ-0001')).toBeInTheDocument();
+    expect(within(section!).getByText('Celular Samsung con funda azul')).toBeInTheDocument();
+  });
+
   it('publica un objeto en custodia y muestra cuantos reportes se parecen', async () => {
     const matchesService = publishingService();
     const PageWithPublishing = WelfarePage as unknown as ComponentType<{

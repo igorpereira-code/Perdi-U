@@ -2262,9 +2262,39 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d8e49cd3d5f13bc2284d0f4125dd22c1a5c945fd",
     "commitName": "feat(welfare): consultar los recojos pendientes",
     "commitTimestamp": 1792348776034,
     "testId": 61
+  },
+  {
+    "numPassedTests": 143,
+    "failedTests": 1,
+    "numTotalTests": 144,
+    "timestamp": 1792348826140,
+    "success": false,
+    "testId": 62
+  },
+  {
+    "numPassedTests": 143,
+    "failedTests": 1,
+    "numTotalTests": 144,
+    "timestamp": 1792348865750,
+    "success": false,
+    "testId": 62
+  },
+  {
+    "numPassedTests": 144,
+    "failedTests": 0,
+    "numTotalTests": 144,
+    "timestamp": 1792348902623,
+    "success": true,
+    "testId": 62
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar los recojos pendientes",
+    "commitTimestamp": 1792348933298,
+    "testId": 62
   }
 ]
