@@ -1844,9 +1844,47 @@
     "testId": 46
   },
   {
-    "commitId": "HEAD",
+    "commitId": "078a00ed8b0cae602af6dce401a896dc10d3ac49",
     "commitName": "feat(welfare): conectar el panel con la recepcion de objetos",
     "commitTimestamp": 1792308794570,
     "testId": 46
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 0,
+    "numTotalTests": 124,
+    "timestamp": 1792308827570,
+    "success": true,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 0,
+    "numTotalTests": 124,
+    "timestamp": 1792308878231,
+    "success": false,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 6,
+    "numTotalTests": 130,
+    "timestamp": 1792308905674,
+    "success": false,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 130,
+    "failedTests": 0,
+    "numTotalTests": 130,
+    "timestamp": 1792308951451,
+    "success": true,
+    "testId": 47
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): consultar objetos pendientes y sus datos",
+    "commitTimestamp": 1792308976209,
+    "testId": 47
   }
 ]

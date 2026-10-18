@@ -1,0 +1,94 @@
+import { useEffect, useState, type FormEvent } from 'react';
+import type { WelfareFoundItemView } from '@shared/welfare';
+import type { WelfareService } from '../data/welfareService';
+import { Alert } from '../../core/presenter/Alert';
+import { Button } from '../../core/presenter/Button';
+import { EmptyState } from '../../core/presenter/EmptyState';
+import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
+import { InfoRow } from '../../core/presenter/InfoRow';
+import { StatusChip } from '../../core/presenter/StatusChip';
+import { Thumb } from '../../core/presenter/Thumb';
+
+export function WelfarePage({ welfareService }: { welfareService: WelfareService }) {
+  const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
+  const [selected, setSelected] = useState<WelfareFoundItemView | null>(null);
+  const [code, setCode] = useState('');
+  const [message, setMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    welfareService
+      .listPending()
+      .then(setItems)
+      .catch(() => {
+        setItems([]);
+        setMessage('No pudimos cargar los objetos pendientes');
+      });
+  }, [welfareService]);
+
+  async function search(event: FormEvent) {
+    event.preventDefault();
+    setMessage(null);
+    try {
+      const result = await welfareService.findByCode(code);
+      if (result.status === 'FOUND') {
+        setSelected(result.item);
+        return;
+      }
+      setSelected(null);
+      setMessage(
+        result.status === 'NOT_FOUND'
+          ? 'No encontramos un objeto con ese código'
+          : 'Este objeto ya fue recibido',
+      );
+    } catch {
+      setMessage('No pudimos buscar el objeto');
+    }
+  }
+
+  return (
+    <main className="mx-auto w-full max-w-6xl space-y-6 p-6">
+      <h1 className="text-2xl font-bold text-blue-700">Panel de Bienestar</h1>
+      <form onSubmit={search} className="flex items-end gap-3">
+        <div className="flex-1">
+          <Field id="found-item-code" label="Código del objeto">
+            <input id="found-item-code" className={INPUT_CLASSES} value={code} onChange={(event) => setCode(event.target.value)} />
+          </Field>
+        </div>
+        <Button type="submit">Buscar</Button>
+      </form>
+      {message && <Alert>{message}</Alert>}
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-blue-700">Objetos pendientes de recepción</h2>
+        {items === null ? (
+          <p>Cargando objetos pendientes...</p>
+        ) : items.length === 0 ? (
+          <EmptyState title="No hay objetos pendientes" text="No quedan objetos por recibir en la oficina." />
+        ) : (
+          <div className="grid gap-3 md:grid-cols-2">
+            {items.map((item) => (
+              <article key={item.code} className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+                <Thumb category={item.category} photoUrl={item.photoUrl} />
+                <div><strong>{item.code}</strong><p>{item.description}</p><StatusChip status={item.status} /></div>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {selected && (
+        <section className="rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
+          <h2 className="text-lg font-semibold text-blue-700">Detalle del objeto</h2>
+          <dl>
+            <InfoRow label="Código" value={selected.code} />
+            <InfoRow label="Descripción" value={selected.description} />
+            <InfoRow label="Categoría" value={selected.category} />
+            <InfoRow label="Lugar" value={selected.place} />
+            {selected.classroom && <InfoRow label="Aula" value={selected.classroom} />}
+            {selected.finder && <><InfoRow label="Hallador" value={selected.finder.name} /><InfoRow label="Correo" value={selected.finder.email} /></>}
+          </dl>
+        </section>
+      )}
+    </main>
+  );
+}
