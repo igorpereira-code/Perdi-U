@@ -1864,9 +1864,23 @@
     "testId": 48
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1e2eb3157ae02398276a14d588f11f5df96b0d07",
     "commitName": "feat: validar campos obligatorios antes de enviar el reporte",
     "commitTimestamp": 1792352830962,
     "testId": 48
+  },
+  {
+    "numPassedTests": 115,
+    "failedTests": 0,
+    "numTotalTests": 115,
+    "timestamp": 1792352941509,
+    "success": false,
+    "testId": 49
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar codigo unico en confirmacion de reporte",
+    "commitTimestamp": 1792352969987,
+    "testId": 49
   }
 ]
