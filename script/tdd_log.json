@@ -2034,9 +2034,31 @@
     "testId": 55
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b72377322fbc380f2aa48124fb505d38125b5fc5",
     "commitName": "feat: permitir filtrar objetos por categoria",
     "commitTimestamp": 1792359522159,
     "testId": 55
+  },
+  {
+    "numPassedTests": 121,
+    "failedTests": 2,
+    "numTotalTests": 123,
+    "timestamp": 1792359600515,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 123,
+    "failedTests": 0,
+    "numTotalTests": 123,
+    "timestamp": 1792359639164,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar detalle completo de un objeto encontrado",
+    "commitTimestamp": 1792359655887,
+    "testId": 56
   }
 ]
