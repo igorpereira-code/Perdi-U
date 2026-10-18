@@ -23,7 +23,8 @@ describe('NewLostReportPage', () => {
     const { container } = render(<NewLostReportPage onBack={() => {}} />);
 
     expect(screen.getByText(/foto de referencia/i)).toBeInTheDocument();
-    expect(screen.getByText(/\(opcional\)/i)).toBeInTheDocument();
+    const optionalLabels = screen.getAllByText(/\(opcional\)/i);
+    expect(optionalLabels.length).toBeGreaterThanOrEqual(1);
     const fileInput = container.querySelector('input[type="file"]');
     expect(fileInput).toBeInTheDocument();
   });
@@ -36,5 +37,33 @@ describe('NewLostReportPage', () => {
 
     fireEvent.change(categorySelect, { target: { value: 'Electrónicos' } });
     expect(categorySelect).toHaveValue('Electrónicos');
+  });
+
+  it('permite elegir uno o varios lugares con bloque y aula si corresponde', () => {
+    render(<NewLostReportPage onBack={() => {}} />);
+
+    // Verifica que exista el selector de bloque o espacio
+    const placeSelect = screen.getByLabelText(/bloque o espacio/i);
+    expect(placeSelect).toBeInTheDocument();
+
+    // Antes de seleccionar un bloque con aulas, no se muestra selector de aula
+    expect(screen.queryByLabelText(/^aula/i)).not.toBeInTheDocument();
+
+    // Selecciona Bloque A (id 1, tipo BLOCK)
+    fireEvent.change(placeSelect, { target: { value: '1' } });
+
+    // Ahora debe mostrarse el selector de aula
+    const classroomSelect = screen.getByLabelText(/^aula/i);
+    expect(classroomSelect).toBeInTheDocument();
+
+    fireEvent.change(classroomSelect, { target: { value: '101' } });
+    expect(classroomSelect).toHaveValue('101');
+
+    // Puede agregar otro lugar
+    const addPlaceBtn = screen.getByRole('button', { name: /\+ agregar otro lugar/i });
+    fireEvent.click(addPlaceBtn);
+
+    const placeSelects = screen.getAllByLabelText(/bloque o espacio/i);
+    expect(placeSelects).toHaveLength(2);
   });
 });

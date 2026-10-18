@@ -1768,9 +1768,39 @@
     "testId": 44
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7a7671d1b13a677e050b5023ad604e562f325d53",
     "commitName": "feat: permitir elegir la categoria del objeto perdido",
     "commitTimestamp": 1792351276265,
     "testId": 44
+  },
+  {
+    "numPassedTests": 110,
+    "failedTests": 1,
+    "numTotalTests": 111,
+    "timestamp": 1792351806342,
+    "success": false,
+    "testId": 45
+  },
+  {
+    "numPassedTests": 110,
+    "failedTests": 1,
+    "numTotalTests": 111,
+    "timestamp": 1792351837069,
+    "success": false,
+    "testId": 45
+  },
+  {
+    "numPassedTests": 111,
+    "failedTests": 0,
+    "numTotalTests": 111,
+    "timestamp": 1792351944366,
+    "success": true,
+    "testId": 45
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir elegir uno o varios lugares con bloque y aula",
+    "commitTimestamp": 1792351963919,
+    "testId": 45
   }
 ]

@@ -836,12 +836,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7a7671d1b13a677e050b5023ad604e562f325d53",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T19:21:15.000Z",
       "message": "feat: permitir elegir la categoria del objeto perdido",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7a7671d1b13a677e050b5023ad604e562f325d53"
     },
     "stats": {
       "total": 37,
@@ -851,6 +851,25 @@
     },
     "coverage": 87.36,
     "test_count": 110,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-18T19:32:42.000Z",
+      "message": "feat: permitir elegir uno o varios lugares con bloque y aula",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 172,
+      "additions": 170,
+      "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.37,
+    "test_count": 111,
     "failed_tests": 0,
     "conclusion": "success"
   }
