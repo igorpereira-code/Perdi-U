@@ -2114,9 +2114,31 @@
     "testId": 55
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f9ec5a53334808f920eec699a12c41eafe03bd19",
     "commitName": "fix(welfare): actualizar el estado al publicar",
     "commitTimestamp": 1792342495955,
     "testId": 55
+  },
+  {
+    "numPassedTests": 138,
+    "failedTests": 1,
+    "numTotalTests": 139,
+    "timestamp": 1792342543808,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342618716,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(welfare): mostrar el objeto recibido en custodia",
+    "commitTimestamp": 1792342644181,
+    "testId": 56
   }
 ]

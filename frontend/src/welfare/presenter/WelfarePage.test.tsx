@@ -131,13 +131,18 @@ describe('Panel de Bienestar', () => {
     });
     renderPage(welfareService);
     await screen.findByText('Mochila negra con cuadernos');
+    const pendingSection = screen
+      .getByRole('heading', { name: 'Objetos pendientes de recepción' })
+      .closest('section');
+    const officeSection = screen.getByRole('heading', { name: 'Objetos en la oficina' }).closest('section');
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
 
     expect(welfareService.receive).toHaveBeenCalledWith('HZ-0005');
     expect(await screen.findByText('Objeto recibido y puesto en custodia')).toBeInTheDocument();
-    expect(screen.queryByText('Mochila negra con cuadernos')).not.toBeInTheDocument();
+    expect(within(pendingSection!).queryByText('HZ-0005')).not.toBeInTheDocument();
+    expect(await within(officeSection!).findByText('HZ-0005')).toBeInTheDocument();
   });
 
   it('evita confirmar dos veces mientras guarda', async () => {

@@ -75,6 +75,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
         return;
       }
       setItems((current) => current?.filter((item) => item.code !== selected.code) ?? []);
+      setInOfficeItems((current) => [...(current ?? []), result.item]);
       setSelected(null);
       setMessage('Objeto recibido y puesto en custodia');
     } catch {

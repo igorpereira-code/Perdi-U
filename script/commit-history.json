@@ -1045,12 +1045,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f9ec5a53334808f920eec699a12c41eafe03bd19",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T16:54:54.000Z",
       "message": "fix(welfare): actualizar el estado al publicar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f9ec5a53334808f920eec699a12c41eafe03bd19"
     },
     "stats": {
       "total": 50,
@@ -1059,6 +1059,25 @@
       "date": "2026-10-18"
     },
     "coverage": 86.89,
+    "test_count": 139,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:57:23.000Z",
+      "message": "fix(welfare): mostrar el objeto recibido en custodia",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 7,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.94,
     "test_count": 139,
     "failed_tests": 0,
     "conclusion": "success"
