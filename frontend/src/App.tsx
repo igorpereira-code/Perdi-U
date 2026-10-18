@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import { AppLayout } from './core/presenter/AppLayout';
@@ -8,6 +8,7 @@ import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
+import { QuickGuide } from './finder/presenter/QuickGuide';
 
 type AppProps = {
   authService: AuthService;
@@ -16,6 +17,7 @@ type AppProps = {
 
 export default function App({ authService, matchesService }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
+  const navigate = useNavigate();
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [notInstitutional, setNotInstitutional] = useState(false);
 
@@ -66,6 +68,13 @@ export default function App({ authService, matchesService }: AppProps) {
         ))}
       />
       <Route
+        path="/guia-rapida"
+        element={signedInPage(() => (
+          <QuickGuide onSkip={() => navigate('/')} />
+        ))}
+/>
+      <Route
+        
         path="/ingresar"
         element={
           <LoginPage onGoogleLogin={authService.signIn} notInstitutional={notInstitutional} />

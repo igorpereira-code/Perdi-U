@@ -113,14 +113,35 @@ describe('Navegación de la app', () => {
     expect(await screen.findByText('Pasarás a recoger este objeto')).toBeInTheDocument();
   });
 
-  it('quita el objeto de la lista al elegir "No es mío"', async () => {
+    it('quita el objeto de la lista al elegir "No es mío"', async () => {
     const services = renderAt('/mis-reportes/PR-0001/coincidencias', igor, [phone]);
 
-    await userEvent.click(await screen.findByRole('button', { name: 'No es mío' }));
+    await userEvent.click(
+      await screen.findByRole('button', { name: 'No es mío' }),
+    );
 
     expect(services.dismiss).toHaveBeenCalledWith('match-1');
+
     expect(
-      await screen.findByRole('heading', { name: 'Todavía no hay objetos parecidos' }),
+      await screen.findByRole('heading', {
+        name: 'Todavía no hay objetos parecidos',
+      }),
+    ).toBeInTheDocument();
+  });
+
+  it('vuelve al inicio cuando el usuario salta la guía rápida', async () => {
+    renderAt('/guia-rapida', igor);
+
+    const boton = await screen.findByRole('button', {
+      name: 'Saltar guía',
+    });
+
+    await userEvent.click(boton);
+
+    expect(
+      await screen.findByRole('heading', {
+        name: 'Hola, Igor Pereira',
+      }),
     ).toBeInTheDocument();
   });
 });

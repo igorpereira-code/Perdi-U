@@ -1642,9 +1642,79 @@
     "testId": 39
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c5985f00979a4dfbadcf1f2681564c406d13e83f",
     "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
     "commitTimestamp": 1792199780960,
     "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792280167450,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 1,
+    "numTotalTests": 105,
+    "timestamp": 1792281366950,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 0,
+    "numTotalTests": 105,
+    "timestamp": 1792281454068,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 106,
+    "failedTests": 0,
+    "numTotalTests": 106,
+    "timestamp": 1792281721452,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 1,
+    "numTotalTests": 106,
+    "timestamp": 1792282721848,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 1,
+    "numTotalTests": 106,
+    "timestamp": 1792282922856,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 1,
+    "numTotalTests": 106,
+    "timestamp": 1792283083549,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 107,
+    "failedTests": 0,
+    "numTotalTests": 107,
+    "timestamp": 1792283226668,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): mostrar guía rápida y permitir volver al inicio",
+    "commitTimestamp": 1792283574969,
+    "testId": 40
   }
 ]
