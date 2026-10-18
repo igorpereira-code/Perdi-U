@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
@@ -6,6 +6,7 @@ import App from './App';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import type { MatchView } from '@shared/matching';
 import type { MatchesService } from './matching/data/matchesService';
+import type { GuideService } from './finder/data/guideService';
 
 const phone: MatchView = {
   id: 'match-1',
@@ -23,9 +24,15 @@ const igor: AppUser = {
   name: 'Igor Pereira',
   email: 'igor.pereira@ucb.edu.bo',
   role: 'COMMUNITY',
+  hasSeenGuide: true,
 };
 
-function renderAt(path: string, user: AppUser | null | Error, matches: MatchView[] | null = []) {
+function renderAt(
+  path: string,
+  user: AppUser | null | Error,
+  matches: MatchView[] | null = [],
+  guideService: GuideService = { markSeen: jest.fn().mockResolvedValue(undefined) },
+) {
   const authService: AuthService = {
     getCurrentUser:
       user instanceof Error ? jest.fn().mockRejectedValue(user) : jest.fn().mockResolvedValue(user),
@@ -38,12 +45,12 @@ function renderAt(path: string, user: AppUser | null | Error, matches: MatchView
     dismiss: jest.fn(),
     publish: jest.fn(),
   };
-  render(
+  const rendered = render(
     <MemoryRouter initialEntries={[path]}>
-      <App authService={authService} matchesService={matchesService} />
+      <App authService={authService} matchesService={matchesService} guideService={guideService} />
     </MemoryRouter>,
   );
-  return { ...authService, ...matchesService };
+  return { ...rendered, ...authService, ...matchesService, ...guideService };
 }
 
 describe('Navegación de la app', () => {
@@ -143,5 +150,68 @@ describe('Navegación de la app', () => {
         name: 'Hola, Igor Pereira',
       }),
     ).toBeInTheDocument();
+  });
+});
+
+describe('Salir de la guía rápida con la decisión guardada', () => {
+  it.each(['Saltar guía', 'Empezar a usar Perdi-U'])(
+    'guarda la decisión antes de continuar con «%s»',
+    async (action) => {
+      const service = renderAt('/guia-rapida', igor);
+
+      await userEvent.click(await screen.findByRole('button', { name: action }));
+
+      expect(service.markSeen).toHaveBeenCalledTimes(1);
+      expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
+    },
+  );
+
+  it('espera la confirmación del servidor y evita solicitudes duplicadas', async () => {
+    let resolveSave!: () => void;
+    const guideService = {
+      markSeen: jest.fn(() => new Promise<void>((resolve) => { resolveSave = resolve; })),
+    };
+    renderAt('/guia-rapida', igor, [], guideService);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Saltar guía' }));
+
+    expect(screen.getByRole('heading', { name: 'Bienvenido a Perdi-U' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Saltar guía' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Empezar a usar Perdi-U' })).toBeDisabled();
+    await userEvent.click(screen.getByRole('button', { name: 'Saltar guía' }));
+    expect(guideService.markSeen).toHaveBeenCalledTimes(1);
+
+    await act(async () => { resolveSave(); });
+    expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
+  });
+
+  it.each(['Saltar guía', 'Empezar a usar Perdi-U'])(
+    'muestra el error, mantiene la guía y permite reintentar «%s»',
+    async (action) => {
+      const guideService = {
+        markSeen: jest.fn().mockRejectedValueOnce(new Error('Sin conexión')).mockResolvedValue(undefined),
+      };
+      renderAt('/guia-rapida', igor, [], guideService);
+
+      await userEvent.click(await screen.findByRole('button', { name: action }));
+
+      expect(await screen.findByRole('alert')).toHaveTextContent(
+        'No pudimos guardar tu decisión. Inténtalo de nuevo.',
+      );
+      expect(screen.getByRole('heading', { name: 'Bienvenido a Perdi-U' })).toBeInTheDocument();
+      expect(screen.queryByRole('heading', { name: 'Hola, Igor Pereira' })).not.toBeInTheDocument();
+
+      await userEvent.click(screen.getByRole('button', { name: action }));
+
+      await waitFor(() => expect(guideService.markSeen).toHaveBeenCalledTimes(2));
+      expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
+    },
+  );
+
+  it('protege la guía cuando no hay una sesión iniciada', async () => {
+    const service = renderAt('/guia-rapida', null);
+
+    expect(await screen.findByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+    expect(service.markSeen).not.toHaveBeenCalled();
   });
 });

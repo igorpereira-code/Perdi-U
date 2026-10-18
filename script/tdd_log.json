@@ -1748,9 +1748,39 @@
     "testId": 41
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6b9b123e916c3b4b2afac85a295b47a7b98193b6",
     "commitName": "feat(finder): agregar campo para registrar guia vista",
     "commitTimestamp": 1792337561616,
     "testId": 42
+  },
+  {
+    "numPassedTests": 113,
+    "failedTests": 14,
+    "numTotalTests": 127,
+    "timestamp": 1792338331360,
+    "success": false,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792338419559,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792338494133,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): persistir la guia al completarla u omitirla",
+    "commitTimestamp": 1792338828173,
+    "testId": 43
   }
 ]

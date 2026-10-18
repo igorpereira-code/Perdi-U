@@ -8,14 +8,16 @@ import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
-import { QuickGuide } from './finder/presenter/QuickGuide';
+import type { GuideService } from './finder/data/guideService';
+import { QuickGuideScreen } from './finder/presenter/QuickGuideScreen';
 
 type AppProps = {
   authService: AuthService;
   matchesService: MatchesService;
+  guideService: GuideService;
 };
 
-export default function App({ authService, matchesService }: AppProps) {
+export default function App({ authService, matchesService, guideService }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
@@ -36,6 +38,11 @@ export default function App({ authService, matchesService }: AppProps) {
     setUser(null);
   }
 
+  function handleGuideSeen() {
+    setUser((current) => (current ? { ...current, hasSeenGuide: true } : current));
+    navigate('/', { replace: true });
+  }
+
   /** Pages for signed-in users: inside the blue header and bottom menu. Without a session, go to sign in. */
   const signedInPage = (page: (me: AppUser) => ReactNode) => {
     if (user === undefined) {
@@ -51,9 +58,7 @@ export default function App({ authService, matchesService }: AppProps) {
     <Routes>
       <Route
         path="/"
-        element={signedInPage((me) => (
-          <HomePage user={me} />
-        ))}
+        element={signedInPage((me) => <HomePage user={me} />)}
       />
       <Route
         path="/perfil"
@@ -63,18 +68,15 @@ export default function App({ authService, matchesService }: AppProps) {
       />
       <Route
         path="/mis-reportes/:code/coincidencias"
-        element={signedInPage(() => (
-          <MatchesScreen matchesService={matchesService} />
-        ))}
+        element={signedInPage(() => <MatchesScreen matchesService={matchesService} />)}
       />
       <Route
         path="/guia-rapida"
         element={signedInPage(() => (
-          <QuickGuide onSkip={() => navigate('/')} />
+          <QuickGuideScreen guideService={guideService} onSeen={handleGuideSeen} />
         ))}
-/>
+      />
       <Route
-        
         path="/ingresar"
         element={
           <LoginPage onGoogleLogin={authService.signIn} notInstitutional={notInstitutional} />

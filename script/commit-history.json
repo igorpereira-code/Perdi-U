@@ -798,12 +798,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6b9b123e916c3b4b2afac85a295b47a7b98193b6",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-18T15:32:38.000Z",
       "message": "feat(finder): agregar campo para registrar guia vista",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6b9b123e916c3b4b2afac85a295b47a7b98193b6"
     },
     "stats": {
       "total": 3,
@@ -813,6 +813,25 @@
     },
     "coverage": 87.26,
     "test_count": 108,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T15:53:45.000Z",
+      "message": "feat(finder): persistir la guia al completarla u omitirla",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 479,
+      "additions": 417,
+      "deletions": 62,
+      "date": "2026-10-18"
+    },
+    "coverage": 88.27,
+    "test_count": 127,
     "failed_tests": 0,
     "conclusion": "success"
   }
