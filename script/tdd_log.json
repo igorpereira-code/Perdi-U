@@ -1642,9 +1642,39 @@
     "testId": 39
   },
   {
-    "commitId": "HEAD",
+    "commitId": "9bc040c3e22047725637763ebca383f3cfc705f9",
     "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
     "commitTimestamp": 1792199780960,
     "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792342151865,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 1,
+    "numTotalTests": 105,
+    "timestamp": 1792344678358,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 0,
+    "numTotalTests": 105,
+    "timestamp": 1792344984717,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: agregar opcion de perdi un objeto en la pantalla principal",
+    "commitTimestamp": 1792345009248,
+    "testId": 40
   }
 ]
