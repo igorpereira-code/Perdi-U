@@ -1700,9 +1700,47 @@
     "testId": 42
   },
   {
-    "commitId": "HEAD",
+    "commitId": "512f373b8607523aef4a2a443fdf80b224330db1",
     "commitName": "feat(welfare): listar objetos pendientes de recepcion",
     "commitTimestamp": 1792308242905,
     "testId": 42
+  },
+  {
+    "numPassedTests": 107,
+    "failedTests": 0,
+    "numTotalTests": 107,
+    "timestamp": 1792308265296,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 4,
+    "numTotalTests": 112,
+    "timestamp": 1792308297250,
+    "success": false,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 112,
+    "failedTests": 0,
+    "numTotalTests": 112,
+    "timestamp": 1792308324117,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 112,
+    "failedTests": 0,
+    "numTotalTests": 112,
+    "timestamp": 1792308341954,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): buscar objetos pendientes por codigo",
+    "commitTimestamp": 1792308359664,
+    "testId": 43
   }
 ]
