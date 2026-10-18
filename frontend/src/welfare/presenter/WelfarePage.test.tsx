@@ -153,6 +153,26 @@ describe('Panel de Bienestar', () => {
     expect(within(officeSection!).getByText('HZ-0005')).toBeInTheDocument();
   });
 
+  it('conserva el objeto recibido si falla la carga inicial de la oficina', async () => {
+    let rejectInOffice!: (error: Error) => void;
+    const listInOffice = jest.fn(
+      () => new Promise<WelfareFoundItemView[]>((_, reject) => (rejectInOffice = reject)),
+    );
+    const welfareService = service({
+      listInOffice,
+      receive: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
+    });
+    renderPage(welfareService);
+    const officeSection = screen.getByRole('heading', { name: 'Objetos en la oficina' }).closest('section');
+    await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
+    expect(await within(officeSection!).findByText('HZ-0005')).toBeInTheDocument();
+
+    await act(async () => rejectInOffice(new Error('network')));
+    expect(within(officeSection!).getByText('HZ-0005')).toBeInTheDocument();
+  });
+
   it('evita confirmar dos veces mientras guarda', async () => {
     let resolveReceive!: (result: WelfareResult) => void;
     const receive = jest.fn<Promise<WelfareResult>, [string]>(

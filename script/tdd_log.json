@@ -2158,9 +2158,31 @@
     "testId": 57
   },
   {
-    "commitId": "HEAD",
+    "commitId": "df3803cd7bf93d07cfd524492f047ef2dce607ae",
     "commitName": "fix(welfare): conservar objetos recibidos durante la carga",
     "commitTimestamp": 1792342868470,
     "testId": 57
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 1,
+    "numTotalTests": 140,
+    "timestamp": 1792347455988,
+    "success": false,
+    "testId": 58
+  },
+  {
+    "numPassedTests": 140,
+    "failedTests": 0,
+    "numTotalTests": 140,
+    "timestamp": 1792347479113,
+    "success": true,
+    "testId": 58
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(welfare): conservar la custodia ante errores de carga",
+    "commitTimestamp": 1792347500326,
+    "testId": 58
   }
 ]

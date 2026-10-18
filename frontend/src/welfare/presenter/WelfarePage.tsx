@@ -47,7 +47,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
           return [...loadedItems.filter((item) => !currentCodes.has(item.code)), ...current];
         }),
       )
-      .catch(() => setInOfficeItems([]));
+      .catch(() => setInOfficeItems((current) => current ?? []));
   }, [welfareService]);
 
   async function search(event: FormEvent) {
