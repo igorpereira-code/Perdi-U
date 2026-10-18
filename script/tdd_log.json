@@ -1936,9 +1936,39 @@
     "testId": 48
   },
   {
-    "commitId": "HEAD",
+    "commitId": "3c2d22b3bff52d7b637ec4a1a6422f344bd13089",
     "commitName": "feat(welfare): registrar la recepcion desde el panel",
     "commitTimestamp": 1792309277629,
     "testId": 48
+  },
+  {
+    "numPassedTests": 135,
+    "failedTests": 0,
+    "numTotalTests": 135,
+    "timestamp": 1792309314894,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 135,
+    "failedTests": 0,
+    "numTotalTests": 135,
+    "timestamp": 1792309345125,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 135,
+    "failedTests": 0,
+    "numTotalTests": 135,
+    "timestamp": 1792309383691,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "style(welfare): cumplir el formato del panel",
+    "commitTimestamp": 1792309479560,
+    "testId": 49
   }
 ]

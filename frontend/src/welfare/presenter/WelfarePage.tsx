@@ -47,7 +47,9 @@ export function WelfarePage({ welfareService }: { welfareService: WelfareService
   }
 
   async function receive() {
-    if (!selected || receiving) return;
+    if (!selected || receiving) {
+      return;
+    }
     setReceiving(true);
     setMessage(null);
     try {
