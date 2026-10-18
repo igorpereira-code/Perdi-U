@@ -1746,9 +1746,31 @@
     "testId": 43
   },
   {
-    "commitId": "HEAD",
+    "commitId": "9158228a86f245c0bb546aa2cbab4440d02055e5",
     "commitName": "feat: permitir subir foto de referencia opcional",
     "commitTimestamp": 1792350827095,
     "testId": 43
+  },
+  {
+    "numPassedTests": 109,
+    "failedTests": 1,
+    "numTotalTests": 110,
+    "timestamp": 1792351238255,
+    "success": false,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 110,
+    "failedTests": 0,
+    "numTotalTests": 110,
+    "timestamp": 1792351262790,
+    "success": true,
+    "testId": 44
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir elegir la categoria del objeto perdido",
+    "commitTimestamp": 1792351276265,
+    "testId": 44
   }
 ]

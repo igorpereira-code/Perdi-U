@@ -27,4 +27,14 @@ describe('NewLostReportPage', () => {
     const fileInput = container.querySelector('input[type="file"]');
     expect(fileInput).toBeInTheDocument();
   });
+
+  it('permite elegir la categoría del objeto', () => {
+    render(<NewLostReportPage onBack={() => {}} />);
+
+    const categorySelect = screen.getByLabelText(/categoría/i);
+    expect(categorySelect).toBeInTheDocument();
+
+    fireEvent.change(categorySelect, { target: { value: 'Electrónicos' } });
+    expect(categorySelect).toHaveValue('Electrónicos');
+  });
 });
