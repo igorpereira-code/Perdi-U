@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
+import { PhotoInput } from '../../core/presenter/PhotoInput';
 
 export function FoundItemForm() {
   const [description, setDescription] = useState('');
+  const [photo, setPhoto] = useState<File | null>(null);
 
   return (
     <form aria-labelledby="found-item-form-title" className="mx-auto max-w-lg space-y-4">
@@ -19,6 +21,13 @@ export function FoundItemForm() {
           onChange={(event) => setDescription(event.target.value)}
         />
       </Field>
+      <fieldset className="space-y-2">
+        <legend className="text-sm font-medium text-neutral-700">
+          Fotografía <span className="font-normal text-neutral-500">(opcional)</span>
+        </legend>
+        <PhotoInput onChange={setPhoto} />
+        {photo && <p className="text-sm text-neutral-500">{photo.name}</p>}
+      </fieldset>
     </form>
   );
 }
