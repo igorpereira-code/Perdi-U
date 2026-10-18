@@ -371,7 +371,7 @@ describe('Fecha y hora del hallazgo', () => {
     expect(time).toHaveValue('');
     expect(date).toHaveAccessibleDescription(/aunque lo reportes otro día/i);
     expect(time).toHaveAccessibleDescription(/aunque lo reportes otro día/i);
-    expect(date).not.toBeRequired();
+    expect(date).toBeRequired();
     expect(time).not.toBeRequired();
   });
 
@@ -461,5 +461,162 @@ describe('Fecha y hora del hallazgo', () => {
     expect(screen.getByText(photo.name)).toBeInTheDocument();
     expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('2025-05-16');
     expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('08:15');
+  });
+});
+
+describe('Validación del formulario de hallazgo', () => {
+  const originalFetch = globalThis.fetch;
+
+  beforeEach(() => {
+    globalThis.fetch = jest.fn();
+    URL.createObjectURL = jest.fn(() => 'blob:foto-con-validacion');
+    URL.revokeObjectURL = jest.fn();
+  });
+
+  afterEach(() => {
+    globalThis.fetch = originalFetch;
+  });
+
+  async function fillRequiredFields(user: ReturnType<typeof userEvent.setup>, place = 'Biblioteca') {
+    await user.type(screen.getByLabelText('Descripción del objeto'), 'Llaves con llavero azul');
+    await user.selectOptions(screen.getByLabelText('Categoría'), 'Llaves');
+    await user.selectOptions(screen.getByLabelText('Bloque o espacio'), place);
+    fireEvent.change(screen.getByLabelText('Fecha del hallazgo'), { target: { value: '2025-05-14' } });
+  }
+
+  it('ofrece un botón de envío y señala únicamente los cuatro campos obligatorios sin errores iniciales', () => {
+    render(<FoundItemForm />);
+
+    expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Reportar objeto encontrado' })).toHaveAttribute(
+      'type',
+      'submit',
+    );
+    for (const label of ['Descripción del objeto', 'Categoría', 'Bloque o espacio', 'Fecha del hallazgo']) {
+      expect(screen.getByLabelText(label)).toBeRequired();
+    }
+    for (const label of ['Foto del objeto', 'Referencia del lugar', 'Hora del hallazgo']) {
+      expect(screen.getByLabelText(label)).not.toBeRequired();
+    }
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+
+  it('impide enviar el formulario vacío y muestra errores accesibles junto a cada campo obligatorio', async () => {
+    const user = userEvent.setup();
+    render(<FoundItemForm />);
+
+    expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+
+    expect(screen.getAllByRole('alert')).toHaveLength(4);
+    for (const [label, message] of [
+      ['Descripción del objeto', 'Escribe una descripción del objeto.'],
+      ['Categoría', 'Selecciona una categoría.'],
+      ['Bloque o espacio', 'Selecciona un bloque o espacio.'],
+      ['Fecha del hallazgo', 'Indica la fecha del hallazgo.'],
+    ]) {
+      const field = screen.getByLabelText(label);
+      expect(field).toHaveAttribute('aria-invalid', 'true');
+      expect(within(field.parentElement!).getByRole('alert')).toHaveTextContent(message);
+    }
+    expect(screen.getByLabelText('Descripción del objeto')).toHaveFocus();
+    expect(globalThis.fetch).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['Descripción del objeto', 'Escribe una descripción del objeto.'],
+    ['Categoría', 'Selecciona una categoría.'],
+    ['Bloque o espacio', 'Selecciona un bloque o espacio.'],
+    ['Fecha del hallazgo', 'Indica la fecha del hallazgo.'],
+  ])('impide enviar cuando solo falta %s', async (label, message) => {
+    const user = userEvent.setup();
+    render(<FoundItemForm />);
+    await fillRequiredFields(user);
+    fireEvent.change(screen.getByLabelText(label), { target: { value: '' } });
+
+    expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+
+    expect(screen.getAllByRole('alert')).toHaveLength(1);
+    expect(screen.getByRole('alert')).toHaveTextContent(message);
+    expect(screen.getByLabelText(label)).toHaveAttribute('aria-invalid', 'true');
+    expect(screen.getByLabelText(label)).toHaveFocus();
+    expect(globalThis.fetch).not.toHaveBeenCalled();
+  });
+
+  it.each(['Biblioteca', 'Bloque A'])('supera la validación en %s sin hora, aula, foto ni referencia y sin registrar el reporte', async (place) => {
+    const user = userEvent.setup();
+    render(<FoundItemForm />);
+
+    expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    expect(screen.getAllByRole('alert')).toHaveLength(4);
+    await fillRequiredFields(user, place);
+
+    expect(fireEvent.submit(screen.getByRole('form', { name: 'Reportar objeto encontrado' }))).toBe(false);
+
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    for (const label of ['Descripción del objeto', 'Categoría', 'Bloque o espacio', 'Fecha del hallazgo']) {
+      expect(screen.getByLabelText(label)).not.toHaveAttribute('aria-invalid', 'true');
+    }
+    expect(screen.getByLabelText('Descripción del objeto')).toHaveValue('Llaves con llavero azul');
+    expect(screen.getByLabelText('Bloque o espacio')).toHaveValue(place);
+    expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('2025-05-14');
+    expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('');
+    expect(screen.getByLabelText('Referencia del lugar')).toHaveValue('');
+    const classroom = screen.queryByLabelText('Aula');
+    if (classroom) {
+      expect(classroom).toHaveValue('');
+      expect(classroom).not.toBeRequired();
+    }
+    expect(screen.queryByRole('status')).not.toBeInTheDocument();
+    expect(screen.queryByText(/reporte (registrado|enviado)|HZ-/i)).not.toBeInTheDocument();
+    expect(globalThis.fetch).not.toHaveBeenCalled();
+  });
+
+  it('conserva todos los datos y la fotografía tras un error y permite corregir el campo faltante', async () => {
+    const user = userEvent.setup();
+    const { rerender } = render(<FoundItemForm />);
+    const photo = new File(['foto'], 'llaves.jpg', { type: 'image/jpeg' });
+    const description = '   ';
+    const reference = 'Sobre la mesa junto a la ventana';
+    await user.type(screen.getByLabelText('Descripción del objeto'), description);
+    await user.selectOptions(screen.getByLabelText('Categoría'), 'Llaves');
+    await user.selectOptions(screen.getByLabelText('Bloque o espacio'), 'Bloque A');
+    await user.selectOptions(screen.getByLabelText('Aula'), 'Aula A-12');
+    await user.type(screen.getByLabelText('Referencia del lugar'), reference);
+    await user.upload(screen.getByLabelText('Foto del objeto'), photo);
+    fireEvent.change(screen.getByLabelText('Fecha del hallazgo'), { target: { value: '2025-05-14' } });
+    fireEvent.change(screen.getByLabelText('Hora del hallazgo'), { target: { value: '08:15' } });
+
+    expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    rerender(<FoundItemForm />);
+
+    expect(screen.getAllByRole('alert')).toHaveLength(1);
+    expect(screen.getByRole('alert')).toHaveTextContent('Escribe una descripción del objeto.');
+    expect(screen.getByLabelText('Descripción del objeto')).toHaveValue(description);
+    expect(screen.getByLabelText('Categoría')).toHaveValue('Llaves');
+    expect(screen.getByLabelText('Bloque o espacio')).toHaveValue('Bloque A');
+    expect(screen.getByLabelText('Aula')).toHaveValue('Aula A-12');
+    expect(screen.getByLabelText('Referencia del lugar')).toHaveValue(reference);
+    expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('2025-05-14');
+    expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('08:15');
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
+      'src',
+      'blob:foto-con-validacion',
+    );
+    expect(screen.getByText(photo.name)).toBeInTheDocument();
+    expect(URL.createObjectURL).toHaveBeenCalledTimes(1);
+    expect(URL.revokeObjectURL).not.toHaveBeenCalled();
+
+    await user.clear(screen.getByLabelText('Descripción del objeto'));
+    await user.type(screen.getByLabelText('Descripción del objeto'), 'Llaves con llavero azul');
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeInTheDocument();
+    expect(screen.queryByText(/reporte (registrado|enviado)|HZ-/i)).not.toBeInTheDocument();
+    expect(globalThis.fetch).not.toHaveBeenCalled();
   });
 });

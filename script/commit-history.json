@@ -893,12 +893,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "551775be37e8b56cf46a7ccc6f031702e93043b5",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-18T17:28:01.000Z",
       "message": "feat(finder): permitir indicar fecha y hora del hallazgo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/551775be37e8b56cf46a7ccc6f031702e93043b5"
     },
     "stats": {
       "total": 145,
@@ -908,6 +908,25 @@
     },
     "coverage": 88.02,
     "test_count": 130,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T19:38:35.000Z",
+      "message": "feat(finder): validar campos obligatorios del reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 272,
+      "additions": 265,
+      "deletions": 7,
+      "date": "2026-10-18"
+    },
+    "coverage": 88.59,
+    "test_count": 146,
     "failed_tests": 0,
     "conclusion": "success"
   }
