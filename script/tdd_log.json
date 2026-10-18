@@ -2012,9 +2012,31 @@
     "testId": 54
   },
   {
-    "commitId": "HEAD",
+    "commitId": "8ddc0d8fdff7577c9a50e2896d17abaa63894e3c",
     "commitName": "feat: permitir buscar objetos por palabras clave",
     "commitTimestamp": 1792359404079,
     "testId": 54
+  },
+  {
+    "numPassedTests": 120,
+    "failedTests": 1,
+    "numTotalTests": 121,
+    "timestamp": 1792359484765,
+    "success": false,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 121,
+    "failedTests": 0,
+    "numTotalTests": 121,
+    "timestamp": 1792359506312,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir filtrar objetos por categoria",
+    "commitTimestamp": 1792359522159,
+    "testId": 55
   }
 ]

@@ -87,4 +87,47 @@ describe('HomeScreen', () => {
     expect(screen.getByText('Mochila negra con llavero')).toBeInTheDocument();
     expect(screen.queryByText('Termo metálico azul')).not.toBeInTheDocument();
   });
+
+it('permite filtrar los objetos por categoría', () => {
+    const mockObjects = [
+      {
+        id: '1',
+        code: 'EN-0001',
+        description: 'Mochila negra con llavero',
+        category: 'Mochilas y bolsos',
+        place: 'Biblioteca',
+        foundDate: '2026-10-17',
+      },
+      {
+        id: '2',
+        code: 'EN-0002',
+        description: 'Termo metálico azul',
+        category: 'Botellas y termos',
+        place: 'Bloque A',
+        foundDate: '2026-10-18',
+      },
+    ];
+
+    render(
+      <HomeScreen
+        onNavigateToLost={() => {}}
+        onNavigateToFound={() => {}}
+        recentFoundObjects={mockObjects}
+      />,
+    );
+
+    const categorySelect = screen.getByLabelText(/filtrar por categoría/i);
+    expect(categorySelect).toBeInTheDocument();
+
+    fireEvent.change(categorySelect, { target: { value: 'Botellas y termos' } });
+
+    expect(screen.getByText('Termo metálico azul')).toBeInTheDocument();
+    expect(screen.queryByText('Mochila negra con llavero')).not.toBeInTheDocument();
+  });
+
+
+
+
+
+
 });

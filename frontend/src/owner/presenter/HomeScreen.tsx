@@ -2,6 +2,16 @@ import { useState } from 'react';
 import { Button } from '../../core/presenter/Button';
 import { INPUT_CLASSES } from '../../core/presenter/Field';
 
+const CATEGORIES = [
+  'Electrónicos',
+  'Mochilas y bolsos',
+  'Ropa y accesorios',
+  'Llaves',
+  'Botellas y termos',
+  'Útiles y libros',
+  'Documentos y carnets',
+];
+
 export type FoundObjectSummary = {
   id: string;
   code: string;
@@ -27,8 +37,12 @@ export function HomeScreen({
   onSelectObject,
 }: HomeScreenProps) {
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const filteredObjects = recentFoundObjects.filter((item) => {
+    const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
+    if (!matchesCategory) return false;
+
     if (!searchQuery.trim()) return true;
     const query = searchQuery.toLowerCase().trim();
     return (
@@ -53,7 +67,7 @@ export function HomeScreen({
           Últimos objetos publicados
         </h2>
 
-        <div>
+        <div className="space-y-2">
           <input
             type="search"
             aria-label="Buscar objetos"
@@ -62,11 +76,25 @@ export function HomeScreen({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
+
+          <select
+            aria-label="Filtrar por categoría"
+            className={INPUT_CLASSES}
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option value="">Todas las categorías</option>
+            {CATEGORIES.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
         </div>
 
         {filteredObjects.length === 0 ? (
           <p className="text-sm text-neutral-500 py-4 text-center">
-            {searchQuery
+            {searchQuery || selectedCategory
               ? 'No se encontraron objetos que coincidan con la búsqueda.'
               : 'No hay objetos publicados recientemente.'}
           </p>
