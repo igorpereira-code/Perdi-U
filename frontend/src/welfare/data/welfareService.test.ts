@@ -1,4 +1,4 @@
-import type { WelfareFoundItemView } from '@shared/welfare';
+import type { WelfareFoundItemView, WelfarePendingPickupView } from '@shared/welfare';
 import { createWelfareService } from './welfareService';
 
 const item: WelfareFoundItemView = {
@@ -9,6 +9,19 @@ const item: WelfareFoundItemView = {
 };
 
 describe('Servicio de recepcion de Bienestar', () => {
+  it('trae los recojos pendientes', async () => {
+    const pickup: WelfarePendingPickupView = {
+      matchId: 'match-1',
+      owner: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+      report: { code: 'PR-0001' },
+      foundItem: { code: 'HZ-0001', description: 'Celular Samsung con funda azul' },
+    };
+    const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => [pickup] });
+
+    await expect(createWelfareService(apiFetch).listPendingPickups()).resolves.toEqual([pickup]);
+    expect(apiFetch).toHaveBeenCalledWith('/welfare/pending-pickups');
+  });
+
   it('trae los objetos que siguen en la oficina', async () => {
     const inOffice = { ...item, status: 'IN_CUSTODY' as const };
     const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => [inOffice] });

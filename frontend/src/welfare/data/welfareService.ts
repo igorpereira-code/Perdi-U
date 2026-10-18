@@ -1,4 +1,4 @@
-import type { WelfareFoundItemView } from '@shared/welfare';
+import type { WelfareFoundItemView, WelfarePendingPickupView } from '@shared/welfare';
 import type { ApiFetch } from '../../core/data/api';
 
 export type WelfareResult =
@@ -7,6 +7,7 @@ export type WelfareResult =
   | { status: 'ALREADY_RECEIVED' };
 
 export type WelfareService = {
+  listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItemView[]>;
   listInOffice: () => Promise<WelfareFoundItemView[]>;
   findByCode: (code: string) => Promise<WelfareResult>;
@@ -32,6 +33,13 @@ async function itemResult(response: Response): Promise<WelfareResult> {
 
 export function createWelfareService(apiFetch: ApiFetch): WelfareService {
   return {
+    listPendingPickups: async () => {
+      const response = await apiFetch('/welfare/pending-pickups');
+      if (!response.ok) {
+        throw new Error('No se pudo consultar Bienestar');
+      }
+      return response.json();
+    },
     listPending: async () => {
       const response = await apiFetch('/welfare/found-items/pending');
       if (!response.ok) {

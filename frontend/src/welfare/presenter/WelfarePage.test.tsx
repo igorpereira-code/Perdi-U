@@ -29,6 +29,7 @@ const publishedItem: WelfareFoundItemView = {
 
 function service(overrides: Partial<WelfareService> = {}): WelfareService {
   return {
+    listPendingPickups: jest.fn().mockResolvedValue([]),
     listPending: jest.fn().mockResolvedValue([item]),
     listInOffice: jest.fn().mockResolvedValue([inCustodyItem, publishedItem]),
     findByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
