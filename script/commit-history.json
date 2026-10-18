@@ -779,12 +779,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "a46cadd5e696c7c16357b1fb507b298cb0e9a98a",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T07:17:43.000Z",
       "message": "docs(welfare): planificar la implementacion TDD de la HU-9",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a46cadd5e696c7c16357b1fb507b298cb0e9a98a"
     },
     "stats": {
       "total": 295,
@@ -794,6 +794,25 @@
     },
     "coverage": 87.04,
     "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:24:01.000Z",
+      "message": "feat(welfare): listar objetos pendientes de recepcion",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 135,
+      "additions": 135,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.57,
+    "test_count": 107,
     "failed_tests": 0,
     "conclusion": "success"
   }

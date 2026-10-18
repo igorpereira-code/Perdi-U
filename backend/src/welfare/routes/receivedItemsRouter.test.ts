@@ -1,0 +1,60 @@
+import request from 'supertest';
+import { createApp } from '../../app';
+import { fakeWelfareRepository } from '../data/fakeWelfareRepository';
+
+const pendingItem = {
+  id: 'item-5',
+  code: 'HZ-0005',
+  description: 'Mochila negra con cuadernos',
+  photoUrl: null,
+  category: 'Mochilas',
+  place: 'Bloque A',
+  classroom: 'Aula 3',
+  placeReference: 'Debajo de una mesa',
+  foundAt: new Date('2026-10-15T14:00:00Z'),
+  status: 'PENDING_DROP_OFF' as const,
+  finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+};
+
+const receivedItem = {
+  ...pendingItem,
+  id: 'item-4',
+  code: 'HZ-0004',
+  status: 'IN_CUSTODY' as const,
+};
+
+describe('Recibir objetos encontrados en Bienestar', () => {
+  it('lista los objetos que aun no fueron entregados', async () => {
+    const { repository } = fakeWelfareRepository([pendingItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/found-items/pending')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual([
+      expect.objectContaining({
+        code: 'HZ-0005',
+        description: 'Mochila negra con cuadernos',
+        finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+      }),
+    ]);
+  });
+
+  it('no incluye objetos que ya estan en custodia', async () => {
+    const { repository } = fakeWelfareRepository([pendingItem, receivedItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/found-items/pending')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body.map((item: { code: string }) => item.code)).toEqual(['HZ-0005']);
+  });
+
+  it('solo Bienestar puede consultar los pendientes', async () => {
+    const { repository } = fakeWelfareRepository([pendingItem]);
+    const res = await request(createApp({ welfare: repository })).get(
+      '/welfare/found-items/pending',
+    );
+
+    expect(res.status).toBe(403);
+  });
+});
