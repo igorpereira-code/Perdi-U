@@ -779,12 +779,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "83fb13e5277bf87414c3330bc721c922cdf891fc",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-18T03:15:54.000Z",
       "message": "feat(finder): abrir formulario para reportar objeto encontrado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/83fb13e5277bf87414c3330bc721c922cdf891fc"
     },
     "stats": {
       "total": 43,
@@ -794,6 +794,25 @@
     },
     "coverage": 87.22,
     "test_count": 108,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T03:28:45.000Z",
+      "message": "feat(finder): permitir ingresar la descripción del objeto encontrado",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 43,
+      "additions": 42,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.29,
+    "test_count": 110,
     "failed_tests": 0,
     "conclusion": "success"
   }
