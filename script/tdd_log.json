@@ -1716,9 +1716,39 @@
     "testId": 42
   },
   {
-    "commitId": "HEAD",
+    "commitId": "53bb053ae62bb80ae5b1bc9e1b99b590ee2ee191",
     "commitName": "feat: permitir escribir la descripcion del objeto perdido",
     "commitTimestamp": 1792350723613,
     "testId": 42
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 1,
+    "numTotalTests": 109,
+    "timestamp": 1792350776067,
+    "success": false,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 1,
+    "numTotalTests": 109,
+    "timestamp": 1792350795592,
+    "success": false,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 109,
+    "failedTests": 0,
+    "numTotalTests": 109,
+    "timestamp": 1792350812248,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir subir foto de referencia opcional",
+    "commitTimestamp": 1792350827095,
+    "testId": 43
   }
 ]

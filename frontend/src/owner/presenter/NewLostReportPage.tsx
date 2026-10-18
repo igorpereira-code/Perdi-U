@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BackHeader } from '../../core/presenter/BackHeader';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
+import { PhotoInput } from '../../core/presenter/PhotoInput';
 
 type NewLostReportPageProps = {
   onBack: () => void;
@@ -8,6 +9,7 @@ type NewLostReportPageProps = {
 
 export function NewLostReportPage({ onBack }: NewLostReportPageProps) {
   const [description, setDescription] = useState('');
+  const [_photo, setPhoto] = useState<File | null>(null);
 
   return (
     <div className="min-h-screen bg-neutral-50 pb-20">
@@ -23,6 +25,10 @@ export function NewLostReportPage({ onBack }: NewLostReportPageProps) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+          </Field>
+
+          <Field id="photo" label="Foto de referencia" optional>
+            <PhotoInput onChange={setPhoto} />
           </Field>
         </form>
       </main>

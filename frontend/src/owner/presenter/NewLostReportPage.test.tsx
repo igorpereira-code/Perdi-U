@@ -18,4 +18,13 @@ describe('NewLostReportPage', () => {
     fireEvent.change(descriptionInput, { target: { value: 'Mochila negra con un llavero de gato' } });
     expect(descriptionInput).toHaveValue('Mochila negra con un llavero de gato');
   });
+
+  it('permite subir una foto de referencia de manera opcional', () => {
+    const { container } = render(<NewLostReportPage onBack={() => {}} />);
+
+    expect(screen.getByText(/foto de referencia/i)).toBeInTheDocument();
+    expect(screen.getByText(/\(opcional\)/i)).toBeInTheDocument();
+    const fileInput = container.querySelector('input[type="file"]');
+    expect(fileInput).toBeInTheDocument();
+  });
 });

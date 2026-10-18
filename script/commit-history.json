@@ -798,12 +798,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "53bb053ae62bb80ae5b1bc9e1b99b590ee2ee191",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T19:12:02.000Z",
       "message": "feat: permitir escribir la descripcion del objeto perdido",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/53bb053ae62bb80ae5b1bc9e1b99b590ee2ee191"
     },
     "stats": {
       "total": 27,
@@ -813,6 +813,25 @@
     },
     "coverage": 87.19,
     "test_count": 108,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-18T19:13:46.000Z",
+      "message": "feat: permitir subir foto de referencia opcional",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 15,
+      "additions": 15,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.22,
+    "test_count": 109,
     "failed_tests": 0,
     "conclusion": "success"
   }
