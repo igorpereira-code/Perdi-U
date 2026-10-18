@@ -11,6 +11,8 @@ export function FoundItemForm() {
   const [placeName, setPlaceName] = useState('');
   const [classroomName, setClassroomName] = useState('');
   const [placeReference, setPlaceReference] = useState('');
+  const [foundDate, setFoundDate] = useState('');
+  const [foundTime, setFoundTime] = useState('');
   const selectedPlace = PROVISIONAL_FOUND_ITEM_PLACES.find((place) => place.name === placeName);
 
   function handlePlaceChange(name: string) {
@@ -100,6 +102,34 @@ export function FoundItemForm() {
           onChange={(event) => setPlaceReference(event.target.value)}
         />
       </Field>
+      <fieldset className="space-y-4">
+        <legend className="text-sm font-medium text-neutral-700">Fecha y hora del hallazgo</legend>
+        <p id="found-item-found-at-help" className="text-sm text-neutral-500">
+          Indica cuándo encontraste el objeto, aunque lo reportes otro día.
+        </p>
+        <Field id="found-item-found-date" label="Fecha del hallazgo">
+          <input
+            id="found-item-found-date"
+            name="foundDate"
+            type="date"
+            aria-describedby="found-item-found-at-help"
+            className={INPUT_CLASSES}
+            value={foundDate}
+            onChange={(event) => setFoundDate(event.target.value)}
+          />
+        </Field>
+        <Field id="found-item-found-time" label="Hora del hallazgo">
+          <input
+            id="found-item-found-time"
+            name="foundTime"
+            type="time"
+            aria-describedby="found-item-found-at-help"
+            className={INPUT_CLASSES}
+            value={foundTime}
+            onChange={(event) => setFoundTime(event.target.value)}
+          />
+        </Field>
+      </fieldset>
     </form>
   );
 }

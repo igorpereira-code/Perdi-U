@@ -874,12 +874,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b5c724814871b788724b9196ebcfa8bc5143a548",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-18T17:12:47.000Z",
       "message": "feat(finder): agregar referencia del lugar encontrado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b5c724814871b788724b9196ebcfa8bc5143a548"
     },
     "stats": {
       "total": 90,
@@ -889,6 +889,25 @@
     },
     "coverage": 87.89,
     "test_count": 127,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T17:28:01.000Z",
+      "message": "feat(finder): permitir indicar fecha y hora del hallazgo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 145,
+      "additions": 144,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 88.02,
+    "test_count": 130,
     "failed_tests": 0,
     "conclusion": "success"
   }

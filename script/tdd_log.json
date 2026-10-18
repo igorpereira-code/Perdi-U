@@ -1868,9 +1868,39 @@
     "testId": 46
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b5c724814871b788724b9196ebcfa8bc5143a548",
     "commitName": "feat(finder): agregar referencia del lugar encontrado",
     "commitTimestamp": 1792343569448,
     "testId": 46
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 3,
+    "numTotalTests": 130,
+    "timestamp": 1792344064861,
+    "success": false,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 130,
+    "failedTests": 0,
+    "numTotalTests": 130,
+    "timestamp": 1792344119032,
+    "success": true,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 130,
+    "failedTests": 0,
+    "numTotalTests": 130,
+    "timestamp": 1792344194883,
+    "success": true,
+    "testId": 47
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir indicar fecha y hora del hallazgo",
+    "commitTimestamp": 1792344484094,
+    "testId": 47
   }
 ]

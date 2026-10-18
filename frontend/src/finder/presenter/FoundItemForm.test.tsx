@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CATEGORIES, PLACES } from '../../../../backend/prisma/seed/catalogs';
 import { FoundItemForm } from './FoundItemForm';
@@ -348,5 +348,118 @@ describe('Referencia adicional del lugar del hallazgo', () => {
     expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Otros');
     expect(URL.createObjectURL).toHaveBeenCalledTimes(1);
     expect(URL.revokeObjectURL).not.toHaveBeenCalled();
+  });
+});
+
+describe('Fecha y hora del hallazgo', () => {
+  beforeEach(() => {
+    URL.createObjectURL = jest.fn(() => 'blob:foto-con-fecha');
+    URL.revokeObjectURL = jest.fn();
+  });
+
+  it('muestra controles accesibles vacíos para la fecha y hora del hallazgo, distintas de la creación del reporte', () => {
+    render(<FoundItemForm />);
+
+    expect(screen.queryByLabelText('Fecha del hallazgo')).toBeInTheDocument();
+    expect(screen.queryByLabelText('Hora del hallazgo')).toBeInTheDocument();
+    const date = screen.getByLabelText('Fecha del hallazgo');
+    const time = screen.getByLabelText('Hora del hallazgo');
+
+    expect(date).toHaveAttribute('type', 'date');
+    expect(time).toHaveAttribute('type', 'time');
+    expect(date).toHaveValue('');
+    expect(time).toHaveValue('');
+    expect(date).toHaveAccessibleDescription(/aunque lo reportes otro día/i);
+    expect(time).toHaveAccessibleDescription(/aunque lo reportes otro día/i);
+    expect(date).not.toBeRequired();
+    expect(time).not.toBeRequired();
+  });
+
+  it('permite editar y borrar fecha y hora por separado sin sustituir la fecha elegida por la actual', () => {
+    const { rerender } = render(<FoundItemForm />);
+
+    expect(screen.queryByLabelText('Fecha del hallazgo')).toBeInTheDocument();
+    const date = screen.getByLabelText('Fecha del hallazgo');
+    const time = screen.getByLabelText('Hora del hallazgo');
+    fireEvent.change(date, { target: { value: '2025-05-14' } });
+    fireEvent.change(time, { target: { value: '13:40' } });
+    expect(date).toHaveValue('2025-05-14');
+    expect(time).toHaveValue('13:40');
+
+    fireEvent.change(date, { target: { value: '2025-05-16' } });
+    expect(time).toHaveValue('13:40');
+    fireEvent.change(time, { target: { value: '08:15' } });
+    rerender(<FoundItemForm />);
+
+    expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('2025-05-16');
+    expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('08:15');
+
+    fireEvent.change(date, { target: { value: '' } });
+    expect(time).toHaveValue('08:15');
+    fireEvent.change(time, { target: { value: '' } });
+    rerender(<FoundItemForm />);
+
+    expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('');
+    expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('');
+  });
+
+  it('conserva fecha y hora al modificar descripción, fotografía, categoría, bloque, aula y referencia', async () => {
+    const user = userEvent.setup();
+    const { rerender } = render(<FoundItemForm />);
+    const description = 'Llaves con llavero azul';
+    const reference = 'Sobre la mesa junto a la ventana';
+    const photo = new File(['foto'], 'llaves.jpg', { type: 'image/jpeg' });
+
+    expect(screen.queryByLabelText('Fecha del hallazgo')).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText('Fecha del hallazgo'), { target: { value: '2025-05-14' } });
+    fireEvent.change(screen.getByLabelText('Hora del hallazgo'), { target: { value: '13:40' } });
+
+    function expectFoundDateTimeKept() {
+      expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('2025-05-14');
+      expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('13:40');
+    }
+
+    await user.type(screen.getByRole('textbox', { name: 'Descripción del objeto' }), description);
+    expectFoundDateTimeKept();
+    await user.upload(screen.getByLabelText('Foto del objeto'), photo);
+    expectFoundDateTimeKept();
+    await user.click(screen.getByRole('button', { name: 'Quitar foto' }));
+    expectFoundDateTimeKept();
+    await user.upload(screen.getByLabelText('Foto del objeto'), photo);
+    expectFoundDateTimeKept();
+    for (const category of ['Llaves', 'Otros']) {
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), category);
+      expectFoundDateTimeKept();
+    }
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Bloque A');
+    expectFoundDateTimeKept();
+    for (const classroom of ['Aula A-12', 'Aula A-22']) {
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), classroom);
+      expectFoundDateTimeKept();
+    }
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Bloque B');
+    expectFoundDateTimeKept();
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula B-12');
+    expectFoundDateTimeKept();
+    await user.type(screen.getByRole('textbox', { name: 'Referencia del lugar' }), reference);
+    expectFoundDateTimeKept();
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Biblioteca');
+    rerender(<FoundItemForm />);
+    expectFoundDateTimeKept();
+
+    fireEvent.change(screen.getByLabelText('Fecha del hallazgo'), { target: { value: '2025-05-16' } });
+    fireEvent.change(screen.getByLabelText('Hora del hallazgo'), { target: { value: '08:15' } });
+
+    expect(screen.getByRole('textbox', { name: 'Descripción del objeto' })).toHaveValue(description);
+    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Otros');
+    expect(screen.getByRole('combobox', { name: 'Bloque o espacio' })).toHaveValue('Biblioteca');
+    expect(screen.getByRole('textbox', { name: 'Referencia del lugar' })).toHaveValue(reference);
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
+      'src',
+      'blob:foto-con-fecha',
+    );
+    expect(screen.getByText(photo.name)).toBeInTheDocument();
+    expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('2025-05-16');
+    expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('08:15');
   });
 });
