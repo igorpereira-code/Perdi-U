@@ -8,6 +8,7 @@ export type WelfareResult =
 
 export type WelfareService = {
   listPending: () => Promise<WelfareFoundItemView[]>;
+  listInOffice: () => Promise<WelfareFoundItemView[]>;
   findByCode: (code: string) => Promise<WelfareResult>;
   receive: (code: string) => Promise<WelfareResult>;
 };
@@ -33,6 +34,13 @@ export function createWelfareService(apiFetch: ApiFetch): WelfareService {
   return {
     listPending: async () => {
       const response = await apiFetch('/welfare/found-items/pending');
+      if (!response.ok) {
+        throw new Error('No se pudo consultar Bienestar');
+      }
+      return response.json();
+    },
+    listInOffice: async () => {
+      const response = await apiFetch('/welfare/found-items/in-office');
       if (!response.ok) {
         throw new Error('No se pudo consultar Bienestar');
       }

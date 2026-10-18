@@ -1994,9 +1994,39 @@
     "testId": 50
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7fd1f64edb63dac4598377fb99c7440a845d6169",
     "commitName": "feat(welfare): listar objetos que siguen en la oficina",
     "commitTimestamp": 1792341797354,
     "testId": 51
+  },
+  {
+    "numPassedTests": 136,
+    "failedTests": 1,
+    "numTotalTests": 137,
+    "timestamp": 1792341856588,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 0,
+    "numTotalTests": 137,
+    "timestamp": 1792341877688,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 0,
+    "numTotalTests": 137,
+    "timestamp": 1792341899837,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): consultar objetos que siguen en la oficina",
+    "commitTimestamp": 1792341917971,
+    "testId": 52
   }
 ]

@@ -9,6 +9,18 @@ const item: WelfareFoundItemView = {
 };
 
 describe('Servicio de recepcion de Bienestar', () => {
+  it('trae los objetos que siguen en la oficina', async () => {
+    const inOffice = { ...item, status: 'IN_CUSTODY' as const };
+    const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => [inOffice] });
+    const welfareService = createWelfareService(apiFetch);
+
+    const result = welfareService.listInOffice();
+
+    expect(result).toBeDefined();
+    await expect(result).resolves.toEqual([inOffice]);
+    expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/in-office');
+  });
+
   it('trae los objetos pendientes', async () => {
     const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => [item] });
     await expect(createWelfareService(apiFetch).listPending()).resolves.toEqual([item]);

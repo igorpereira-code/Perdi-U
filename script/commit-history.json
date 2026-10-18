@@ -969,12 +969,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7fd1f64edb63dac4598377fb99c7440a845d6169",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T16:43:16.000Z",
       "message": "feat(welfare): listar objetos que siguen en la oficina",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7fd1f64edb63dac4598377fb99c7440a845d6169"
     },
     "stats": {
       "total": 50,
@@ -984,6 +984,25 @@
     },
     "coverage": 86.86,
     "test_count": 136,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:45:16.000Z",
+      "message": "feat(welfare): consultar objetos que siguen en la oficina",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 20,
+      "additions": 20,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.76,
+    "test_count": 137,
     "failed_tests": 0,
     "conclusion": "success"
   }
