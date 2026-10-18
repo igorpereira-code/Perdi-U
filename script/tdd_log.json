@@ -2056,9 +2056,39 @@
     "testId": 56
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f870ed4eb5d409deede5b41a5da5c3d3ab7c67d3",
     "commitName": "feat: mostrar detalle completo de un objeto encontrado",
     "commitTimestamp": 1792359655887,
     "testId": 56
+  },
+  {
+    "numPassedTests": 123,
+    "failedTests": 1,
+    "numTotalTests": 124,
+    "timestamp": 1792360062064,
+    "success": false,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 122,
+    "failedTests": 2,
+    "numTotalTests": 124,
+    "timestamp": 1792360080399,
+    "success": false,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 0,
+    "numTotalTests": 124,
+    "timestamp": 1792360184441,
+    "success": true,
+    "testId": 57
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar ubicacion y horario de bienestar estudiantil en el detalle",
+    "commitTimestamp": 1792360234463,
+    "testId": 57
   }
 ]

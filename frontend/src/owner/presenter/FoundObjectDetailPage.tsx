@@ -79,6 +79,23 @@ export function FoundObjectDetailPage({ object, onBack }: FoundObjectDetailPageP
             </span>
           </div>
         </div>
+
+        <section className="bg-blue-50 border border-blue-200 rounded-2xl p-4 space-y-2 text-left">
+          <h3 className="text-sm font-semibold text-blue-900 flex items-center gap-1.5">
+            ¿Es tuyo este objeto?
+          </h3>
+          <p className="text-xs text-blue-800">
+            Para reclamarlo, dirígete a la oficina de <strong>Bienestar Estudiantil</strong> con tu carnet o credencial universitaria indicando el código <strong>{object.code}</strong>.
+          </p>
+          <div className="text-xs text-blue-900 pt-2 space-y-1 border-t border-blue-200">
+            <p>
+              📍 <strong>Ubicación:</strong> Bloque B, Planta Baja (Oficina de Bienestar Estudiantil)
+            </p>
+            <p>
+              ⏰ <strong>Horario de atención:</strong> Lunes a Viernes de 08:00 a 18:00
+            </p>
+          </div>
+        </section>
       </main>
     </div>
   );
