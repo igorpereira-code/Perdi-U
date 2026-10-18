@@ -80,4 +80,23 @@ describe('NewLostReportPage', () => {
       'En las gradas hacia el segundo piso o cerca de las jardineras',
     );
   });
+
+it('permite indicar el rango de fechas en que pudo perderlo', () => {
+    render(<NewLostReportPage onBack={() => {}} />);
+
+    const dateFromInput = screen.getByLabelText(/fecha desde|desde/i);
+    const dateToInput = screen.getByLabelText(/fecha hasta|hasta/i);
+
+    expect(dateFromInput).toBeInTheDocument();
+    expect(dateToInput).toBeInTheDocument();
+
+    fireEvent.change(dateFromInput, { target: { value: '2026-10-15' } });
+    fireEvent.change(dateToInput, { target: { value: '2026-10-18' } });
+
+    expect(dateFromInput).toHaveValue('2026-10-15');
+    expect(dateToInput).toHaveValue('2026-10-18');
+  });
+
+
+
 });

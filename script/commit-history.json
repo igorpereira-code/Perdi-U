@@ -874,12 +874,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "53f2844195407a55592a3de1457c3a42cbfcbc0c",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T19:37:20.000Z",
       "message": "feat: permitir describir en texto el lugar de perdida",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/53f2844195407a55592a3de1457c3a42cbfcbc0c"
     },
     "stats": {
       "total": 30,
@@ -889,6 +889,25 @@
     },
     "coverage": 87.44,
     "test_count": 112,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-18T19:39:29.000Z",
+      "message": "feat: permitir indicar el rango de fechas en que pudo perderse el objeto",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 43,
+      "additions": 43,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.56,
+    "test_count": 113,
     "failed_tests": 0,
     "conclusion": "success"
   }

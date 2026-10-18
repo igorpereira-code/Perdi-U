@@ -1820,9 +1820,31 @@
     "testId": 46
   },
   {
-    "commitId": "HEAD",
+    "commitId": "53f2844195407a55592a3de1457c3a42cbfcbc0c",
     "commitName": "feat: permitir describir en texto el lugar de perdida",
     "commitTimestamp": 1792352240962,
     "testId": 46
+  },
+  {
+    "numPassedTests": 112,
+    "failedTests": 1,
+    "numTotalTests": 113,
+    "timestamp": 1792352319140,
+    "success": false,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 113,
+    "failedTests": 0,
+    "numTotalTests": 113,
+    "timestamp": 1792352339352,
+    "success": true,
+    "testId": 47
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir indicar el rango de fechas en que pudo perderse el objeto",
+    "commitTimestamp": 1792352370486,
+    "testId": 47
   }
 ]

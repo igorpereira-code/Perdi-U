@@ -75,6 +75,8 @@ export function NewLostReportPage({
   const [description, setDescription] = useState('');
   const [_photo, setPhoto] = useState<File | null>(null);
   const [category, setCategory] = useState('');
+  const [dateFrom, setDateFrom] = useState('');
+  const [dateTo, setDateTo] = useState('');
   const [places, setPlaces] = useState<PlaceSelection[]>([{ placeId: '', classroomId: '' }]);
   const [placeDescription, setPlaceDescription] = useState('');
 
@@ -129,6 +131,28 @@ export function NewLostReportPage({
               ))}
             </select>
           </Field>
+
+          <div className="grid grid-cols-2 gap-3">
+            <Field id="dateFrom" label="Fecha desde">
+              <input
+                id="dateFrom"
+                type="date"
+                className={INPUT_CLASSES}
+                value={dateFrom}
+                onChange={(e) => setDateFrom(e.target.value)}
+              />
+            </Field>
+
+            <Field id="dateTo" label="Fecha hasta">
+              <input
+                id="dateTo"
+                type="date"
+                className={INPUT_CLASSES}
+                value={dateTo}
+                onChange={(e) => setDateTo(e.target.value)}
+              />
+            </Field>
+          </div>
 
           <div className="space-y-3">
             <div className="flex items-center justify-between">
