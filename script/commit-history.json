@@ -1007,12 +1007,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7833fbafd2df9118c133c581ae0ed8bf20fa39de",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T21:16:49.000Z",
       "message": "feat: mostrar ultimos objetos publicados en la pantalla de inicio",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7833fbafd2df9118c133c581ae0ed8bf20fa39de"
     },
     "stats": {
       "total": 0,
@@ -1022,6 +1022,25 @@
     },
     "coverage": 87.38,
     "test_count": 118,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-18T21:36:43.000Z",
+      "message": "feat: permitir buscar objetos por palabras clave",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 152,
+      "additions": 150,
+      "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.41,
+    "test_count": 120,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -1982,9 +1982,39 @@
     "testId": 53
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7833fbafd2df9118c133c581ae0ed8bf20fa39de",
     "commitName": "feat: mostrar ultimos objetos publicados en la pantalla de inicio",
     "commitTimestamp": 1792358210902,
     "testId": 53
+  },
+  {
+    "numPassedTests": 118,
+    "failedTests": 0,
+    "numTotalTests": 118,
+    "timestamp": 1792359349270,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 119,
+    "failedTests": 1,
+    "numTotalTests": 120,
+    "timestamp": 1792359367060,
+    "success": false,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 120,
+    "failedTests": 0,
+    "numTotalTests": 120,
+    "timestamp": 1792359385737,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir buscar objetos por palabras clave",
+    "commitTimestamp": 1792359404079,
+    "testId": 54
   }
 ]
