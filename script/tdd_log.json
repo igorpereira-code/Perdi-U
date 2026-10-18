@@ -1878,9 +1878,31 @@
     "testId": 49
   },
   {
-    "commitId": "HEAD",
+    "commitId": "10740bcb44e4ab5bda17f637cbdef1561a2283fe",
     "commitName": "feat: mostrar codigo unico en confirmacion de reporte",
     "commitTimestamp": 1792352969987,
     "testId": 49
+  },
+  {
+    "numPassedTests": 115,
+    "failedTests": 1,
+    "numTotalTests": 116,
+    "timestamp": 1792353000532,
+    "success": false,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 116,
+    "failedTests": 0,
+    "numTotalTests": 116,
+    "timestamp": 1792353061166,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar codigo unico en confirmacion de reporte bien",
+    "commitTimestamp": 1792353085360,
+    "testId": 50
   }
 ]

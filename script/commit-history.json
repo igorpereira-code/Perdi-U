@@ -931,12 +931,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "10740bcb44e4ab5bda17f637cbdef1561a2283fe",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T19:49:29.000Z",
       "message": "feat: mostrar codigo unico en confirmacion de reporte",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/10740bcb44e4ab5bda17f637cbdef1561a2283fe"
     },
     "stats": {
       "total": 51,
@@ -948,5 +948,24 @@
     "test_count": 116,
     "failed_tests": 1,
     "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-18T19:51:24.000Z",
+      "message": "feat: mostrar codigo unico en confirmacion de reporte bien",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 7,
+      "additions": 6,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.38,
+    "test_count": 116,
+    "failed_tests": 0,
+    "conclusion": "success"
   }
 ]
