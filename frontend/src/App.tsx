@@ -8,13 +8,16 @@ import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
+import type { WelfareService } from './welfare/data/welfareService';
+import { WelfarePage } from './welfare/presenter/WelfarePage';
 
 type AppProps = {
   authService: AuthService;
   matchesService: MatchesService;
+  welfareService: WelfareService;
 };
 
-export default function App({ authService, matchesService }: AppProps) {
+export default function App({ authService, matchesService, welfareService }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [notInstitutional, setNotInstitutional] = useState(false);
@@ -64,6 +67,12 @@ export default function App({ authService, matchesService }: AppProps) {
         element={signedInPage(() => (
           <MatchesScreen matchesService={matchesService} />
         ))}
+      />
+      <Route
+        path="/bienestar"
+        element={signedInPage((me) =>
+          me.role === 'WELFARE' ? <WelfarePage welfareService={welfareService} /> : <Navigate to="/" replace />,
+        )}
       />
       <Route
         path="/ingresar"
