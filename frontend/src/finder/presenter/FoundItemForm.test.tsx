@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { CATEGORIES } from '../../../../backend/prisma/seed/catalogs';
 import { FoundItemForm } from './FoundItemForm';
 
 describe('Descripción del objeto encontrado', () => {
@@ -81,5 +82,62 @@ describe('Fotografía opcional del objeto encontrado', () => {
     expect(screen.queryByText(photo.name)).not.toBeInTheDocument();
     expect(screen.getByLabelText('Foto del objeto')).not.toBeRequired();
     expect(screen.getByRole('textbox', { name: 'Descripción del objeto' })).toHaveValue(description);
+  });
+});
+
+describe('Categoría del objeto encontrado', () => {
+  beforeEach(() => {
+    URL.createObjectURL = jest.fn(() => 'blob:foto-con-categoria');
+    URL.revokeObjectURL = jest.fn();
+  });
+
+  it('muestra un selector accesible con las categorías definidas en el proyecto', () => {
+    render(<FoundItemForm />);
+
+    expect(screen.queryByRole('combobox', { name: 'Categoría' })).toBeInTheDocument();
+
+    const categorySelect = screen.getByRole('combobox', { name: 'Categoría' });
+    const options = within(categorySelect)
+      .getAllByRole('option')
+      .filter((option) => option.getAttribute('value') !== '');
+
+    expect(options.map((option) => option.textContent)).toEqual(CATEGORIES);
+    expect(options.map((option) => option.getAttribute('value'))).toEqual(CATEGORIES);
+  });
+
+  it('permite seleccionar y cambiar la categoría y conserva la selección al renderizar', async () => {
+    const user = userEvent.setup();
+    const { rerender } = render(<FoundItemForm />);
+
+    expect(screen.queryByRole('combobox', { name: 'Categoría' })).toBeInTheDocument();
+
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), 'Llaves');
+    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Llaves');
+
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), 'Otros');
+    rerender(<FoundItemForm />);
+
+    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Otros');
+  });
+
+  it('conserva la descripción y la fotografía al seleccionar una categoría', async () => {
+    const user = userEvent.setup();
+    render(<FoundItemForm />);
+    const description = 'Llaves con un llavero azul';
+    const photo = new File(['foto'], 'llaves.jpg', { type: 'image/jpeg' });
+
+    await user.type(screen.getByRole('textbox', { name: 'Descripción del objeto' }), description);
+    await user.upload(screen.getByLabelText('Foto del objeto'), photo);
+    expect(screen.queryByRole('combobox', { name: 'Categoría' })).toBeInTheDocument();
+
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), 'Llaves');
+
+    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Llaves');
+    expect(screen.getByRole('textbox', { name: 'Descripción del objeto' })).toHaveValue(description);
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
+      'src',
+      'blob:foto-con-categoria',
+    );
+    expect(screen.getByText(photo.name)).toBeInTheDocument();
   });
 });

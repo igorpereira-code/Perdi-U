@@ -1778,9 +1778,39 @@
     "testId": 43
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7dd60602899e97074008e4bae65adf68d20ddcef",
     "commitName": "feat(finder): permitir agregar fotografía opcional al reporte",
     "commitTimestamp": 1792295492993,
     "testId": 43
+  },
+  {
+    "numPassedTests": 113,
+    "failedTests": 3,
+    "numTotalTests": 116,
+    "timestamp": 1792296471512,
+    "success": false,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 116,
+    "failedTests": 0,
+    "numTotalTests": 116,
+    "timestamp": 1792296535948,
+    "success": true,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 116,
+    "failedTests": 0,
+    "numTotalTests": 116,
+    "timestamp": 1792296577391,
+    "success": true,
+    "testId": 44
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir seleccionar categoria del objeto encontrado",
+    "commitTimestamp": 1792299970179,
+    "testId": 44
   }
 ]
