@@ -118,6 +118,11 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
         <h2 className="text-lg font-semibold text-blue-700">Recojos pendientes</h2>
         {pendingPickups === null ? (
           <p>Cargando recojos pendientes...</p>
+        ) : pendingPickups.length === 0 ? (
+          <EmptyState
+            title="No hay recojos pendientes"
+            text="Ningún propietario indicó que pasará a recoger un objeto."
+          />
         ) : (
           <div className="grid gap-3 md:grid-cols-2">
             {pendingPickups.map((pickup) => (

@@ -75,6 +75,14 @@ describe('Panel de Bienestar', () => {
     expect(within(section!).getByText('Celular Samsung con funda azul')).toBeInTheDocument();
   });
 
+  it('muestra un estado vacio cuando no hay recojos pendientes', async () => {
+    renderPage(service({ listPendingPickups: jest.fn().mockResolvedValue([]) }));
+
+    expect(
+      await screen.findByRole('heading', { name: 'No hay recojos pendientes' }),
+    ).toBeInTheDocument();
+  });
+
   it('publica un objeto en custodia y muestra cuantos reportes se parecen', async () => {
     const matchesService = publishingService();
     const PageWithPublishing = WelfarePage as unknown as ComponentType<{
