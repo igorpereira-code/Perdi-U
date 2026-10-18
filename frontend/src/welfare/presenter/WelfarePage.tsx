@@ -38,7 +38,15 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   useEffect(() => {
     welfareService
       .listInOffice()
-      .then(setInOfficeItems)
+      .then((loadedItems) =>
+        setInOfficeItems((current) => {
+          if (current === null) {
+            return loadedItems;
+          }
+          const currentCodes = new Set(current.map((item) => item.code));
+          return [...loadedItems.filter((item) => !currentCodes.has(item.code)), ...current];
+        }),
+      )
       .catch(() => setInOfficeItems([]));
   }, [welfareService]);
 

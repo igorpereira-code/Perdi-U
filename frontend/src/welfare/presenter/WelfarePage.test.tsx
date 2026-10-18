@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { ComponentType } from 'react';
 import type { WelfareFoundItemView } from '@shared/welfare';
@@ -126,7 +126,12 @@ describe('Panel de Bienestar', () => {
   });
 
   it('confirma la recepcion, muestra exito y quita el objeto pendiente', async () => {
+    let resolveInOffice!: (items: WelfareFoundItemView[]) => void;
+    const listInOffice = jest.fn(
+      () => new Promise<WelfareFoundItemView[]>((resolve) => (resolveInOffice = resolve)),
+    );
     const welfareService = service({
+      listInOffice,
       receive: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
     });
     renderPage(welfareService);
@@ -143,6 +148,9 @@ describe('Panel de Bienestar', () => {
     expect(await screen.findByText('Objeto recibido y puesto en custodia')).toBeInTheDocument();
     expect(within(pendingSection!).queryByText('HZ-0005')).not.toBeInTheDocument();
     expect(await within(officeSection!).findByText('HZ-0005')).toBeInTheDocument();
+
+    await act(async () => resolveInOffice([inCustodyItem, publishedItem]));
+    expect(within(officeSection!).getByText('HZ-0005')).toBeInTheDocument();
   });
 
   it('evita confirmar dos veces mientras guarda', async () => {

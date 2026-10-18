@@ -2136,9 +2136,31 @@
     "testId": 56
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2d05fd464bbe5b63acc3e81ebfc6352caa930b3a",
     "commitName": "fix(welfare): mostrar el objeto recibido en custodia",
     "commitTimestamp": 1792342644181,
     "testId": 56
+  },
+  {
+    "numPassedTests": 138,
+    "failedTests": 1,
+    "numTotalTests": 139,
+    "timestamp": 1792342809716,
+    "success": false,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342841720,
+    "success": true,
+    "testId": 57
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(welfare): conservar objetos recibidos durante la carga",
+    "commitTimestamp": 1792342868470,
+    "testId": 57
   }
 ]
