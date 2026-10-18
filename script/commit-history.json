@@ -1216,17 +1216,36 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "83ff775d9287f7f0bccb1d5723cef9059a14c25c",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T18:46:50.000Z",
       "message": "feat(welfare): avisar errores al cargar recojos",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/83ff775d9287f7f0bccb1d5723cef9059a14c25c"
     },
     "stats": {
       "total": 23,
       "additions": 21,
       "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.04,
+    "test_count": 146,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T23:45:35.000Z",
+      "message": "style(welfare): mostrar el resultado junto al buscador",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 33,
+      "additions": 17,
+      "deletions": 16,
       "date": "2026-10-18"
     },
     "coverage": 87.04,

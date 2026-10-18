@@ -118,6 +118,23 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       </form>
       {message && <Alert>{message}</Alert>}
 
+      {selected && (
+        <section className="rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
+          <h2 className="text-lg font-semibold text-blue-700">Detalle del objeto</h2>
+          <dl>
+            <InfoRow label="Código" value={selected.code} />
+            <InfoRow label="Descripción" value={selected.description} />
+            <InfoRow label="Categoría" value={selected.category} />
+            <InfoRow label="Lugar" value={selected.place} />
+            {selected.classroom && <InfoRow label="Aula" value={selected.classroom} />}
+            {selected.finder && <><InfoRow label="Hallador" value={selected.finder.name} /><InfoRow label="Correo" value={selected.finder.email} /></>}
+          </dl>
+          <Button onClick={receive} disabled={receiving} className="mt-4">
+            Confirmar recepción
+          </Button>
+        </section>
+      )}
+
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-blue-700">Recojos pendientes</h2>
         {pendingPickupsError ? (
@@ -197,22 +214,6 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
         )}
       </section>
 
-      {selected && (
-        <section className="rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
-          <h2 className="text-lg font-semibold text-blue-700">Detalle del objeto</h2>
-          <dl>
-            <InfoRow label="Código" value={selected.code} />
-            <InfoRow label="Descripción" value={selected.description} />
-            <InfoRow label="Categoría" value={selected.category} />
-            <InfoRow label="Lugar" value={selected.place} />
-            {selected.classroom && <InfoRow label="Aula" value={selected.classroom} />}
-            {selected.finder && <><InfoRow label="Hallador" value={selected.finder.name} /><InfoRow label="Correo" value={selected.finder.email} /></>}
-          </dl>
-          <Button onClick={receive} disabled={receiving} className="mt-4">
-            Confirmar recepción
-          </Button>
-        </section>
-      )}
     </main>
   );
 }
