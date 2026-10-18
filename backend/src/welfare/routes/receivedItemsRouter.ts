@@ -15,6 +15,10 @@ function normalizeCode(value: unknown): string {
 export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
   const router = Router();
 
+  router.get('/welfare/pending-pickups', requireRole('WELFARE'), async (_req, res) => {
+    res.json([]);
+  });
+
   router.get('/welfare/found-items/pending', requireRole('WELFARE'), async (_req, res) => {
     res.json((await welfare.listPending()).map(toView));
   });

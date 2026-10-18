@@ -1102,12 +1102,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "46cda2183970e624d191255bbd76373c33df3581",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T18:18:17.000Z",
       "message": "fix(welfare): conservar la custodia ante errores de carga",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/46cda2183970e624d191255bbd76373c33df3581"
     },
     "stats": {
       "total": 22,
@@ -1117,6 +1117,25 @@
     },
     "coverage": 87.35,
     "test_count": 140,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T18:35:42.000Z",
+      "message": "feat(welfare): proteger los recojos pendientes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 13,
+      "additions": 13,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.2,
+    "test_count": 141,
     "failed_tests": 0,
     "conclusion": "success"
   }

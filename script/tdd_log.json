@@ -2180,9 +2180,39 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "46cda2183970e624d191255bbd76373c33df3581",
     "commitName": "fix(welfare): conservar la custodia ante errores de carga",
     "commitTimestamp": 1792347500326,
     "testId": 58
+  },
+  {
+    "numPassedTests": 140,
+    "failedTests": 0,
+    "numTotalTests": 140,
+    "timestamp": 1792348450144,
+    "success": true,
+    "testId": 59
+  },
+  {
+    "numPassedTests": 140,
+    "failedTests": 1,
+    "numTotalTests": 141,
+    "timestamp": 1792348505254,
+    "success": false,
+    "testId": 59
+  },
+  {
+    "numPassedTests": 141,
+    "failedTests": 0,
+    "numTotalTests": 141,
+    "timestamp": 1792348527204,
+    "success": true,
+    "testId": 59
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): proteger los recojos pendientes",
+    "commitTimestamp": 1792348544063,
+    "testId": 59
   }
 ]

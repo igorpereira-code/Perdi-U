@@ -39,6 +39,15 @@ const deliveredItem = {
 };
 
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('protege la lista de recojos pendientes para Bienestar', async () => {
+    const { repository } = fakeWelfareRepository([]);
+    const res = await request(createApp({ welfare: repository })).get(
+      '/welfare/pending-pickups',
+    );
+
+    expect(res.status).toBe(403);
+  });
+
   it('lista solamente los objetos que siguen en la oficina', async () => {
     const { repository } = fakeWelfareRepository([
       pendingItem,
