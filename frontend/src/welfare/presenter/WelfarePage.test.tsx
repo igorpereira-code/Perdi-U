@@ -67,6 +67,9 @@ describe('Panel de Bienestar', () => {
 
     expect(await within(custodyCard!).findByText('Publicado: la comunidad ya puede ver este objeto.')).toBeInTheDocument();
     expect(within(custodyCard!).getByText('2 reportes de pérdida se parecen a este objeto.')).toBeInTheDocument();
+    expect(within(custodyCard!).queryByText('En custodia')).not.toBeInTheDocument();
+    expect(within(custodyCard!).queryByText('No publicado')).not.toBeInTheDocument();
+    expect(within(custodyCard!).getAllByText('Publicado')).toHaveLength(2);
   });
 
   it('muestra codigo, estado y publicacion de los objetos que estan en la oficina', async () => {

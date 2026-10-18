@@ -19,6 +19,7 @@ type WelfarePageProps = {
 export function WelfarePage({ welfareService, matchesService }: WelfarePageProps) {
   const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
   const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
+  const [publishedCodes, setPublishedCodes] = useState<Set<string>>(new Set());
   const [selected, setSelected] = useState<WelfareFoundItemView | null>(null);
   const [code, setCode] = useState('');
   const [message, setMessage] = useState<string | null>(null);
@@ -122,20 +123,29 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
           <EmptyState title="No hay objetos en la oficina" text="No quedan objetos bajo custodia." />
         ) : (
           <div className="grid gap-3 md:grid-cols-2">
-            {inOfficeItems.map((item) => (
-              <article key={item.code} className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
-                <Thumb category={item.category} photoUrl={item.photoUrl} />
-                <div>
-                  <strong>{item.code}</strong>
-                  <p>{item.description}</p>
-                  <StatusChip status={item.status} />
-                  <p>{item.status === 'PUBLISHED' ? 'Publicado' : 'No publicado'}</p>
-                  {item.status === 'IN_CUSTODY' && (
-                    <PublishButton itemCode={item.code} matchesService={matchesService} />
-                  )}
-                </div>
-              </article>
-            ))}
+            {inOfficeItems.map((item) => {
+              const displayedStatus = publishedCodes.has(item.code) ? 'PUBLISHED' : item.status;
+              return (
+                <article key={item.code} className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+                  <Thumb category={item.category} photoUrl={item.photoUrl} />
+                  <div>
+                    <strong>{item.code}</strong>
+                    <p>{item.description}</p>
+                    <StatusChip status={displayedStatus} />
+                    <p>{displayedStatus === 'PUBLISHED' ? 'Publicado' : 'No publicado'}</p>
+                    {item.status === 'IN_CUSTODY' && (
+                      <PublishButton
+                        itemCode={item.code}
+                        matchesService={matchesService}
+                        onPublished={() =>
+                          setPublishedCodes((current) => new Set(current).add(item.code))
+                        }
+                      />
+                    )}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         )}
       </section>

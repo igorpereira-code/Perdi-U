@@ -2084,9 +2084,39 @@
     "testId": 54
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7bf40dc112ae47db8ac20b9bb24fe5d26efb0f87",
     "commitName": "feat(welfare): publicar objetos desde el panel",
     "commitTimestamp": 1792342214051,
     "testId": 54
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342293282,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 138,
+    "failedTests": 1,
+    "numTotalTests": 139,
+    "timestamp": 1792342440948,
+    "success": false,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342473225,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(welfare): actualizar el estado al publicar",
+    "commitTimestamp": 1792342495955,
+    "testId": 55
   }
 ]
