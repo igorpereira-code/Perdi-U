@@ -29,7 +29,7 @@ const igor: AppUser = {
 
 function renderAt(
   path: string,
-  user: AppUser | null | Error,
+  user: AppUser | null | Error | Promise<AppUser | null>,
   matches: MatchView[] | null = [],
   guideService: GuideService = { markSeen: jest.fn().mockResolvedValue(undefined) },
 ) {
@@ -213,5 +213,97 @@ describe('Salir de la guía rápida con la decisión guardada', () => {
 
     expect(await screen.findByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
     expect(service.markSeen).not.toHaveBeenCalled();
+  });
+});
+
+describe('Guía automática durante el primer ingreso', () => {
+  const firstVisit: AppUser = { ...igor, hasSeenGuide: false };
+
+  it.each(['/', '/perfil', '/mis-reportes/PR-0001/coincidencias', '/guia-rapida', '/ingresar'])(
+    'muestra los cuatro pasos y la advertencia al ingresar por %s con la guía pendiente',
+    async (path) => {
+      const service = renderAt(path, firstVisit);
+
+      expect(await screen.findByRole('heading', { name: 'Bienvenido a Perdi-U' })).toBeInTheDocument();
+      expect(screen.getAllByRole('listitem')).toHaveLength(4);
+      expect(screen.getByText('Encuentra el objeto')).toBeInTheDocument();
+      expect(screen.getByText('Reporta el hallazgo')).toBeInTheDocument();
+      expect(screen.getByText('Lleva el objeto a Bienestar Estudiantil')).toBeInTheDocument();
+      expect(screen.getByText('El dueño lo recoge en Bienestar')).toBeInTheDocument();
+      expect(screen.getByRole('note')).toHaveTextContent('No debes entregarlo directamente a su dueño.');
+      expect(service.markSeen).not.toHaveBeenCalled();
+      expect(service.getMatches).not.toHaveBeenCalled();
+    },
+  );
+
+  it('espera a conocer el perfil antes de decidir si muestra la guía', async () => {
+    let resolveUser!: (user: AppUser) => void;
+    const pendingUser = new Promise<AppUser>((resolve) => {
+      resolveUser = resolve;
+    });
+    renderAt('/', pendingUser);
+
+    expect(screen.queryByRole('heading')).not.toBeInTheDocument();
+    await act(async () => { resolveUser(firstVisit); });
+
+    expect(await screen.findByRole('heading', { name: 'Bienvenido a Perdi-U' })).toBeInTheDocument();
+  });
+
+  it.each(['Saltar guía', 'Empezar a usar Perdi-U'])(
+    'permite navegar y no repite la guía en el siguiente ingreso después de «%s»',
+    async (action) => {
+      let persistedUser = { ...firstVisit };
+      const guideService = {
+        markSeen: jest.fn(async () => {
+          persistedUser = { ...persistedUser, hasSeenGuide: true };
+        }),
+      };
+      const firstLogin = renderAt('/', persistedUser, [], guideService);
+
+      await userEvent.click(await screen.findByRole('button', { name: action }));
+
+      expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
+      await userEvent.click(screen.getByRole('link', { name: 'Mi perfil' }));
+      expect(await screen.findByRole('heading', { name: 'Igor Pereira' })).toBeInTheDocument();
+      expect(firstLogin.getCurrentUser).toHaveBeenCalledTimes(1);
+
+      firstLogin.unmount();
+      const nextLogin = renderAt('/', persistedUser, [], guideService);
+
+      expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
+      expect(screen.queryByRole('heading', { name: 'Bienvenido a Perdi-U' })).not.toBeInTheDocument();
+      expect(guideService.markSeen).toHaveBeenCalledTimes(1);
+      expect(nextLogin.getCurrentUser).toHaveBeenCalledTimes(1);
+    },
+  );
+
+  it('mantiene pendiente la guía tras un error y permite continuar al reintentar', async () => {
+    const guideService = {
+      markSeen: jest.fn().mockRejectedValueOnce(new Error('Sin conexión')).mockResolvedValue(undefined),
+    };
+    renderAt('/', firstVisit, [], guideService);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Saltar guía' }));
+    expect(await screen.findByRole('alert')).toHaveTextContent('No pudimos guardar tu decisión.');
+    await userEvent.click(screen.getByRole('link', { name: 'Inicio' }));
+
+    expect(await screen.findByRole('heading', { name: 'Bienvenido a Perdi-U' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Hola, Igor Pereira' })).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Saltar guía' }));
+
+    expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
+    expect(guideService.markSeen).toHaveBeenCalledTimes(2);
+  });
+
+  it('vuelve a mostrar la guía si se cierra la app sin completarla ni omitirla', async () => {
+    const firstLogin = renderAt('/', firstVisit);
+    expect(await screen.findByRole('heading', { name: 'Bienvenido a Perdi-U' })).toBeInTheDocument();
+    firstLogin.unmount();
+
+    const nextLogin = renderAt('/', firstVisit);
+
+    expect(await screen.findByRole('heading', { name: 'Bienvenido a Perdi-U' })).toBeInTheDocument();
+    expect(firstLogin.markSeen).not.toHaveBeenCalled();
+    expect(nextLogin.markSeen).not.toHaveBeenCalled();
   });
 });

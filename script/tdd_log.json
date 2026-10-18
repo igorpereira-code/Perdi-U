@@ -1778,9 +1778,39 @@
     "testId": 43
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2840883a7b237738708d38d0014aa99d1e249dc0",
     "commitName": "feat(finder): persistir la guia al completarla u omitirla",
     "commitTimestamp": 1792338828173,
     "testId": 43
+  },
+  {
+    "numPassedTests": 128,
+    "failedTests": 9,
+    "numTotalTests": 137,
+    "timestamp": 1792338951091,
+    "success": false,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 0,
+    "numTotalTests": 137,
+    "timestamp": 1792339014424,
+    "success": true,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 0,
+    "numTotalTests": 137,
+    "timestamp": 1792339067479,
+    "success": true,
+    "testId": 44
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): mostrar la guía automáticamente en el primer ingreso",
+    "commitTimestamp": 1792339348174,
+    "testId": 44
   }
 ]

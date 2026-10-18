@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import { AppLayout } from './core/presenter/AppLayout';
@@ -20,8 +20,10 @@ type AppProps = {
 export default function App({ authService, matchesService, guideService }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [notInstitutional, setNotInstitutional] = useState(false);
+  const guidePending = user ? !user.hasSeenGuide : false;
 
   useEffect(() => {
     authService
@@ -51,6 +53,9 @@ export default function App({ authService, matchesService, guideService }: AppPr
     if (user === null) {
       return <Navigate to="/ingresar" replace />;
     }
+    if (guidePending && pathname !== '/guia-rapida') {
+      return <Navigate to="/guia-rapida" replace />;
+    }
     return <AppLayout>{page(user)}</AppLayout>;
   };
 
@@ -79,7 +84,11 @@ export default function App({ authService, matchesService, guideService }: AppPr
       <Route
         path="/ingresar"
         element={
-          <LoginPage onGoogleLogin={authService.signIn} notInstitutional={notInstitutional} />
+          guidePending ? (
+            <Navigate to="/guia-rapida" replace />
+          ) : (
+            <LoginPage onGoogleLogin={authService.signIn} notInstitutional={notInstitutional} />
+          )
         }
       />
     </Routes>

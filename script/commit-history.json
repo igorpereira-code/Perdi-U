@@ -817,12 +817,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2840883a7b237738708d38d0014aa99d1e249dc0",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-18T15:53:45.000Z",
       "message": "feat(finder): persistir la guia al completarla u omitirla",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2840883a7b237738708d38d0014aa99d1e249dc0"
     },
     "stats": {
       "total": 479,
@@ -832,6 +832,25 @@
     },
     "coverage": 88.27,
     "test_count": 127,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T16:02:25.000Z",
+      "message": "feat(finder): mostrar la guía automáticamente en el primer ingreso",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 107,
+      "additions": 104,
+      "deletions": 3,
+      "date": "2026-10-18"
+    },
+    "coverage": 88.38,
+    "test_count": 137,
     "failed_tests": 0,
     "conclusion": "success"
   }
