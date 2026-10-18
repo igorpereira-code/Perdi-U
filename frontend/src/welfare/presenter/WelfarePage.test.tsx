@@ -1,6 +1,8 @@
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import type { ComponentType } from 'react';
 import type { WelfareFoundItemView } from '@shared/welfare';
+import type { MatchesService } from '../../matching/data/matchesService';
 import type { WelfareResult, WelfareService } from '../data/welfareService';
 import { WelfarePage } from './WelfarePage';
 
@@ -35,9 +37,40 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
   };
 }
 
+function publishingService(): MatchesService {
+  return {
+    getMatches: jest.fn(),
+    pickUp: jest.fn(),
+    dismiss: jest.fn(),
+    publish: jest.fn().mockResolvedValue({ status: 'PUBLISHED', matchCount: 2 }),
+  };
+}
+
+function renderPage(welfareService: WelfareService = service()) {
+  return render(
+    <WelfarePage welfareService={welfareService} matchesService={publishingService()} />,
+  );
+}
+
 describe('Panel de Bienestar', () => {
+  it('publica un objeto en custodia y muestra cuantos reportes se parecen', async () => {
+    const matchesService = publishingService();
+    const PageWithPublishing = WelfarePage as unknown as ComponentType<{
+      welfareService: WelfareService;
+      matchesService: MatchesService;
+    }>;
+    render(<PageWithPublishing welfareService={service()} matchesService={matchesService} />);
+
+    const custodyCard = (await screen.findByText('HZ-0004')).closest('article');
+    expect(custodyCard).not.toBeNull();
+    await userEvent.click(within(custodyCard!).getByRole('button', { name: 'Publicar' }));
+
+    expect(await within(custodyCard!).findByText('Publicado: la comunidad ya puede ver este objeto.')).toBeInTheDocument();
+    expect(within(custodyCard!).getByText('2 reportes de pérdida se parecen a este objeto.')).toBeInTheDocument();
+  });
+
   it('muestra codigo, estado y publicacion de los objetos que estan en la oficina', async () => {
-    render(<WelfarePage welfareService={service()} />);
+    renderPage();
 
     expect(await screen.findByRole('heading', { name: 'Objetos en la oficina' })).toBeInTheDocument();
     const custodyCard = (await screen.findByText('HZ-0004')).closest('article');
@@ -51,19 +84,19 @@ describe('Panel de Bienestar', () => {
   });
 
   it('muestra la carga y luego los objetos pendientes', async () => {
-    render(<WelfarePage welfareService={service()} />);
+    renderPage();
     expect(screen.getByText('Cargando objetos pendientes...')).toBeInTheDocument();
     expect(await screen.findByText('Mochila negra con cuadernos')).toBeInTheDocument();
   });
 
   it('muestra un estado vacio cuando no hay pendientes', async () => {
-    render(<WelfarePage welfareService={service({ listPending: jest.fn().mockResolvedValue([]) })} />);
+    renderPage(service({ listPending: jest.fn().mockResolvedValue([]) }));
     expect(await screen.findByRole('heading', { name: 'No hay objetos pendientes' })).toBeInTheDocument();
   });
 
   it('busca por codigo y muestra los datos del objeto y del Hallador', async () => {
     const welfareService = service();
-    render(<WelfarePage welfareService={welfareService} />);
+    renderPage(welfareService);
     await userEvent.type(screen.getByLabelText('Código del objeto'), ' hz-0005 ');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
 
@@ -77,14 +110,14 @@ describe('Panel de Bienestar', () => {
     ['NOT_FOUND', 'No encontramos un objeto con ese código'],
     ['ALREADY_RECEIVED', 'Este objeto ya fue recibido'],
   ] as const)('muestra el resultado %s', async (status, message) => {
-    render(<WelfarePage welfareService={service({ findByCode: jest.fn().mockResolvedValue({ status }) })} />);
+    renderPage(service({ findByCode: jest.fn().mockResolvedValue({ status }) }));
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-9999');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     expect(await screen.findByText(message)).toBeInTheDocument();
   });
 
   it('muestra un error sin perder la pantalla', async () => {
-    render(<WelfarePage welfareService={service({ listPending: jest.fn().mockRejectedValue(new Error('network')) })} />);
+    renderPage(service({ listPending: jest.fn().mockRejectedValue(new Error('network')) }));
     expect(await screen.findByText('No pudimos cargar los objetos pendientes')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Panel de Bienestar' })).toBeInTheDocument();
   });
@@ -93,7 +126,7 @@ describe('Panel de Bienestar', () => {
     const welfareService = service({
       receive: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
     });
-    render(<WelfarePage welfareService={welfareService} />);
+    renderPage(welfareService);
     await screen.findByText('Mochila negra con cuadernos');
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
@@ -109,7 +142,7 @@ describe('Panel de Bienestar', () => {
     const receive = jest.fn<Promise<WelfareResult>, [string]>(
       () => new Promise<WelfareResult>((resolve) => (resolveReceive = resolve)),
     );
-    render(<WelfarePage welfareService={service({ receive })} />);
+    renderPage(service({ receive }));
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     const button = await screen.findByRole('button', { name: 'Confirmar recepción' });
@@ -120,7 +153,7 @@ describe('Panel de Bienestar', () => {
   });
 
   it('conserva el objeto cuando falla la confirmacion', async () => {
-    render(<WelfarePage welfareService={service({ receive: jest.fn().mockRejectedValue(new Error('network')) })} />);
+    renderPage(service({ receive: jest.fn().mockRejectedValue(new Error('network')) }));
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));

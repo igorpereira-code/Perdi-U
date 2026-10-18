@@ -1007,12 +1007,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "480337c633153e9d6986f6e874ca37fadd2f1637",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T16:47:20.000Z",
       "message": "feat(welfare): mostrar objetos que estan en la oficina",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/480337c633153e9d6986f6e874ca37fadd2f1637"
     },
     "stats": {
       "total": 63,
@@ -1022,6 +1022,25 @@
     },
     "coverage": 86.69,
     "test_count": 138,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:50:12.000Z",
+      "message": "feat(welfare): publicar objetos desde el panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 69,
+      "additions": 58,
+      "deletions": 11,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.69,
+    "test_count": 139,
     "failed_tests": 0,
     "conclusion": "success"
   }

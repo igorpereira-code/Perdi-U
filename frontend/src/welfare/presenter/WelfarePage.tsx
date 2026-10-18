@@ -8,8 +8,15 @@ import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { InfoRow } from '../../core/presenter/InfoRow';
 import { StatusChip } from '../../core/presenter/StatusChip';
 import { Thumb } from '../../core/presenter/Thumb';
+import type { MatchesService } from '../../matching/data/matchesService';
+import { PublishButton } from '../../matching/presenter/PublishButton';
 
-export function WelfarePage({ welfareService }: { welfareService: WelfareService }) {
+type WelfarePageProps = {
+  welfareService: WelfareService;
+  matchesService: MatchesService;
+};
+
+export function WelfarePage({ welfareService, matchesService }: WelfarePageProps) {
   const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
   const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
   const [selected, setSelected] = useState<WelfareFoundItemView | null>(null);
@@ -123,6 +130,9 @@ export function WelfarePage({ welfareService }: { welfareService: WelfareService
                   <p>{item.description}</p>
                   <StatusChip status={item.status} />
                   <p>{item.status === 'PUBLISHED' ? 'Publicado' : 'No publicado'}</p>
+                  {item.status === 'IN_CUSTODY' && (
+                    <PublishButton itemCode={item.code} matchesService={matchesService} />
+                  )}
                 </div>
               </article>
             ))}

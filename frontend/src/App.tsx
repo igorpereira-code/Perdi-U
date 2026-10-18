@@ -71,7 +71,11 @@ export default function App({ authService, matchesService, welfareService }: App
       <Route
         path="/bienestar"
         element={signedInPage((me) =>
-          me.role === 'WELFARE' ? <WelfarePage welfareService={welfareService} /> : <Navigate to="/" replace />,
+          me.role === 'WELFARE' ? (
+            <WelfarePage welfareService={welfareService} matchesService={matchesService} />
+          ) : (
+            <Navigate to="/" replace />
+          ),
         )}
       />
       <Route

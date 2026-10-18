@@ -2054,9 +2054,39 @@
     "testId": 53
   },
   {
-    "commitId": "HEAD",
+    "commitId": "480337c633153e9d6986f6e874ca37fadd2f1637",
     "commitName": "feat(welfare): mostrar objetos que estan en la oficina",
     "commitTimestamp": 1792342042025,
     "testId": 53
+  },
+  {
+    "numPassedTests": 138,
+    "failedTests": 1,
+    "numTotalTests": 139,
+    "timestamp": 1792342088227,
+    "success": false,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342118407,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342182450,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): publicar objetos desde el panel",
+    "commitTimestamp": 1792342214051,
+    "testId": 54
   }
 ]
