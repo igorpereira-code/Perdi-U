@@ -11,6 +11,7 @@ import { Thumb } from '../../core/presenter/Thumb';
 
 export function WelfarePage({ welfareService }: { welfareService: WelfareService }) {
   const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
+  const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
   const [selected, setSelected] = useState<WelfareFoundItemView | null>(null);
   const [code, setCode] = useState('');
   const [message, setMessage] = useState<string | null>(null);
@@ -24,6 +25,13 @@ export function WelfarePage({ welfareService }: { welfareService: WelfareService
         setItems([]);
         setMessage('No pudimos cargar los objetos pendientes');
       });
+  }, [welfareService]);
+
+  useEffect(() => {
+    welfareService
+      .listInOffice()
+      .then(setInOfficeItems)
+      .catch(() => setInOfficeItems([]));
   }, [welfareService]);
 
   async function search(event: FormEvent) {
@@ -93,6 +101,29 @@ export function WelfarePage({ welfareService }: { welfareService: WelfareService
               <article key={item.code} className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
                 <Thumb category={item.category} photoUrl={item.photoUrl} />
                 <div><strong>{item.code}</strong><p>{item.description}</p><StatusChip status={item.status} /></div>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-blue-700">Objetos en la oficina</h2>
+        {inOfficeItems === null ? (
+          <p>Cargando objetos en la oficina...</p>
+        ) : inOfficeItems.length === 0 ? (
+          <EmptyState title="No hay objetos en la oficina" text="No quedan objetos bajo custodia." />
+        ) : (
+          <div className="grid gap-3 md:grid-cols-2">
+            {inOfficeItems.map((item) => (
+              <article key={item.code} className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+                <Thumb category={item.category} photoUrl={item.photoUrl} />
+                <div>
+                  <strong>{item.code}</strong>
+                  <p>{item.description}</p>
+                  <StatusChip status={item.status} />
+                  <p>{item.status === 'PUBLISHED' ? 'Publicado' : 'No publicado'}</p>
+                </div>
               </article>
             ))}
           </div>

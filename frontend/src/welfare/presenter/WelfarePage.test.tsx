@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { WelfareFoundItemView } from '@shared/welfare';
 import type { WelfareResult, WelfareService } from '../data/welfareService';
@@ -11,9 +11,24 @@ const item: WelfareFoundItemView = {
   status: 'PENDING_DROP_OFF', finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
 
+const inCustodyItem: WelfareFoundItemView = {
+  ...item,
+  code: 'HZ-0004',
+  description: 'Calculadora gris',
+  status: 'IN_CUSTODY',
+};
+
+const publishedItem: WelfareFoundItemView = {
+  ...item,
+  code: 'HZ-0003',
+  description: 'Chamarra azul',
+  status: 'PUBLISHED',
+};
+
 function service(overrides: Partial<WelfareService> = {}): WelfareService {
   return {
     listPending: jest.fn().mockResolvedValue([item]),
+    listInOffice: jest.fn().mockResolvedValue([inCustodyItem, publishedItem]),
     findByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
     receive: jest.fn(),
     ...overrides,
@@ -21,6 +36,20 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
 }
 
 describe('Panel de Bienestar', () => {
+  it('muestra codigo, estado y publicacion de los objetos que estan en la oficina', async () => {
+    render(<WelfarePage welfareService={service()} />);
+
+    expect(await screen.findByRole('heading', { name: 'Objetos en la oficina' })).toBeInTheDocument();
+    const custodyCard = (await screen.findByText('HZ-0004')).closest('article');
+    const publishedCard = screen.getByText('HZ-0003').closest('article');
+
+    expect(custodyCard).not.toBeNull();
+    expect(within(custodyCard!).getByText('En custodia')).toBeInTheDocument();
+    expect(within(custodyCard!).getByText('No publicado')).toBeInTheDocument();
+    expect(publishedCard).not.toBeNull();
+    expect(within(publishedCard!).getAllByText('Publicado')).toHaveLength(2);
+  });
+
   it('muestra la carga y luego los objetos pendientes', async () => {
     render(<WelfarePage welfareService={service()} />);
     expect(screen.getByText('Cargando objetos pendientes...')).toBeInTheDocument();
