@@ -836,12 +836,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6d1b52ee0a3ae8806814b4fce246bcff3401edaa",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T07:28:12.000Z",
       "message": "feat(welfare): confirmar la recepcion de un objeto",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6d1b52ee0a3ae8806814b4fce246bcff3401edaa"
     },
     "stats": {
       "total": 111,
@@ -850,6 +850,25 @@
       "date": "2026-10-18"
     },
     "coverage": 88.09,
+    "test_count": 118,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:30:14.000Z",
+      "message": "feat(welfare): guardar la recepcion en la base de datos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 75,
+      "additions": 71,
+      "deletions": 4,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.62,
     "test_count": 118,
     "failed_tests": 0,
     "conclusion": "success"

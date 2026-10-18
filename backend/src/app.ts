@@ -11,6 +11,7 @@ import { createMatchesRouter } from './matching/routes/matchesRouter';
 import { createPublishRouter } from './matching/routes/publishRouter';
 import type { WelfareRepository } from './welfare/data/welfareRepository';
 import { createReceivedItemsRouter } from './welfare/routes/receivedItemsRouter';
+import { prismaWelfareRepository } from './welfare/data/prismaWelfareRepository';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -24,7 +25,7 @@ export function createApp({
   users = prismaUsersRepository,
   allowSampleUsers = process.env.ALLOW_SAMPLE_USERS === 'true',
   matching = prismaMatchingRepository,
-  welfare,
+  welfare = prismaWelfareRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -41,9 +42,7 @@ export function createApp({
   });
   app.use(createMatchesRouter(matching));
   app.use(createPublishRouter(matching));
-  if (welfare) {
-    app.use(createReceivedItemsRouter(welfare));
-  }
+  app.use(createReceivedItemsRouter(welfare));
 
   return app;
 }
