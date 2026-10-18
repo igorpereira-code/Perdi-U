@@ -1806,9 +1806,47 @@
     "testId": 45
   },
   {
-    "commitId": "HEAD",
+    "commitId": "97a27381e4fd673122f4b5967398f3da383534cf",
     "commitName": "feat(welfare): guardar la recepcion en la base de datos",
     "commitTimestamp": 1792308615563,
     "testId": 45
+  },
+  {
+    "numPassedTests": 118,
+    "failedTests": 0,
+    "numTotalTests": 118,
+    "timestamp": 1792308639097,
+    "success": true,
+    "testId": 46
+  },
+  {
+    "numPassedTests": 118,
+    "failedTests": 0,
+    "numTotalTests": 118,
+    "timestamp": 1792308688658,
+    "success": false,
+    "testId": 46
+  },
+  {
+    "numPassedTests": 118,
+    "failedTests": 6,
+    "numTotalTests": 124,
+    "timestamp": 1792308726303,
+    "success": false,
+    "testId": 46
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 0,
+    "numTotalTests": 124,
+    "timestamp": 1792308765009,
+    "success": true,
+    "testId": 46
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): conectar el panel con la recepcion de objetos",
+    "commitTimestamp": 1792308794570,
+    "testId": 46
   }
 ]
