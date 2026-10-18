@@ -1672,9 +1672,31 @@
     "testId": 40
   },
   {
-    "commitId": "HEAD",
+    "commitId": "bdf16550e0889fcee588152bc171a8d652bf00a9",
     "commitName": "feat: agregar opcion de perdi un objeto en la pantalla principal",
     "commitTimestamp": 1792345009248,
     "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 0,
+    "numTotalTests": 105,
+    "timestamp": 1792345308124,
+    "success": false,
+    "testId": 41
+  },
+  {
+    "numPassedTests": 107,
+    "failedTests": 0,
+    "numTotalTests": 107,
+    "timestamp": 1792345337636,
+    "success": true,
+    "testId": 41
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: abrir formulario para reportar objeto perdido",
+    "commitTimestamp": 1792345353704,
+    "testId": 41
   }
 ]

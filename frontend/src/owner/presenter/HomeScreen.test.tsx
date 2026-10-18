@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { HomeScreen } from './HomeScreen';
 
 describe('HomeScreen', () => {
@@ -7,5 +7,13 @@ describe('HomeScreen', () => {
 
     const lostButton = screen.getByRole('button', { name: /perdí un objeto/i });
     expect(lostButton).toBeInTheDocument();
+  });
+
+  it('llama a la navegación al presionar el botón de perdí un objeto', () => {
+    const onNavigateToLost = jest.fn();
+    render(<HomeScreen onNavigateToLost={onNavigateToLost} onNavigateToFound={() => {}} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /perdí un objeto/i }));
+    expect(onNavigateToLost).toHaveBeenCalledTimes(1);
   });
 });
