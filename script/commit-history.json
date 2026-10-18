@@ -836,12 +836,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "cbb63e8af1def43481cb5169032944f0cbb887da",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-18T05:06:08.000Z",
       "message": "feat(finder): permitir seleccionar categoria del objeto encontrado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/cbb63e8af1def43481cb5169032944f0cbb887da"
     },
     "stats": {
       "total": 89,
@@ -851,6 +851,25 @@
     },
     "coverage": 87.47,
     "test_count": 116,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T16:50:02.000Z",
+      "message": "feat(finder): seleccionar ubicacion del objeto encontrado",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 190,
+      "additions": 189,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.83,
+    "test_count": 124,
     "failed_tests": 0,
     "conclusion": "success"
   }

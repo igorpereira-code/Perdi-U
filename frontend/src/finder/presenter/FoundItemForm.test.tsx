@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { CATEGORIES } from '../../../../backend/prisma/seed/catalogs';
+import { CATEGORIES, PLACES } from '../../../../backend/prisma/seed/catalogs';
 import { FoundItemForm } from './FoundItemForm';
 
 describe('Descripción del objeto encontrado', () => {
@@ -139,5 +139,135 @@ describe('Categoría del objeto encontrado', () => {
       'blob:foto-con-categoria',
     );
     expect(screen.getByText(photo.name)).toBeInTheDocument();
+  });
+});
+
+describe('Ubicación del objeto encontrado', () => {
+  const blocks = PLACES.filter((place) => place.type === 'BLOCK');
+  const spaces = PLACES.filter((place) => place.type === 'SPACE');
+
+  beforeEach(() => {
+    URL.createObjectURL = jest.fn(() => 'blob:foto-con-ubicacion');
+    URL.revokeObjectURL = jest.fn();
+  });
+
+  it('ofrece primero los bloques y espacios del catálogo provisional, sin mostrar aulas', () => {
+    render(<FoundItemForm />);
+
+    expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
+    const placeSelect = screen.getByRole('combobox', { name: 'Bloque o espacio' });
+    const options = within(placeSelect)
+      .getAllByRole('option')
+      .filter((option) => option.getAttribute('value') !== '');
+
+    expect(options.map((option) => option.textContent)).toEqual(PLACES.map((place) => place.name));
+    expect(options.map((option) => option.getAttribute('value'))).toEqual(
+      PLACES.map((place) => place.name),
+    );
+    expect(placeSelect).toHaveValue('');
+    expect(screen.queryByRole('combobox', { name: 'Aula' })).not.toBeInTheDocument();
+  });
+
+  it.each(blocks)('permite seleccionar únicamente las aulas de $name y conserva la selección', async (block) => {
+    const user = userEvent.setup();
+    const { rerender } = render(<FoundItemForm />);
+
+    expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), block.name);
+    const classroomSelect = screen.getByRole('combobox', { name: 'Aula' });
+    const options = within(classroomSelect)
+      .getAllByRole('option')
+      .filter((option) => option.getAttribute('value') !== '');
+
+    expect(options.map((option) => option.textContent)).toEqual(block.classrooms);
+    expect(options.map((option) => option.getAttribute('value'))).toEqual(block.classrooms);
+    expect(classroomSelect).toHaveValue('');
+
+    await user.selectOptions(classroomSelect, block.classrooms![0]);
+    rerender(<FoundItemForm />);
+
+    expect(screen.getByRole('combobox', { name: 'Bloque o espacio' })).toHaveValue(block.name);
+    expect(screen.getByRole('combobox', { name: 'Aula' })).toHaveValue(block.classrooms![0]);
+  });
+
+  it('no muestra el selector de aula en ninguno de los espacios del catálogo', async () => {
+    const user = userEvent.setup();
+    render(<FoundItemForm />);
+
+    expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
+    for (const space of spaces) {
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), space.name);
+
+      expect(screen.getByRole('combobox', { name: 'Bloque o espacio' })).toHaveValue(space.name);
+      expect(screen.queryByRole('combobox', { name: 'Aula' })).not.toBeInTheDocument();
+    }
+  });
+
+  it('limpia el aula al cambiar de bloque y no recupera una selección anterior al volver', async () => {
+    const user = userEvent.setup();
+    render(<FoundItemForm />);
+
+    expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
+    const placeSelect = screen.getByRole('combobox', { name: 'Bloque o espacio' });
+    await user.selectOptions(placeSelect, 'Bloque A');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula A-12');
+    await user.selectOptions(placeSelect, 'Bloque B');
+
+    expect(screen.getByRole('combobox', { name: 'Aula' })).toHaveValue('');
+    expect(
+      within(screen.getByRole('combobox', { name: 'Aula' })).queryByRole('option', { name: 'Aula A-12' }),
+    ).not.toBeInTheDocument();
+
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula B-12');
+    await user.selectOptions(placeSelect, 'Bloque A');
+
+    expect(screen.getByRole('combobox', { name: 'Aula' })).toHaveValue('');
+  });
+
+  it('limpia el aula al seleccionar un espacio o dejar la ubicación sin seleccionar', async () => {
+    const user = userEvent.setup();
+    render(<FoundItemForm />);
+
+    expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
+    const placeSelect = screen.getByRole('combobox', { name: 'Bloque o espacio' });
+    for (const nextPlace of ['Biblioteca', '']) {
+      await user.selectOptions(placeSelect, 'Bloque A');
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula A-12');
+      await user.selectOptions(placeSelect, nextPlace);
+
+      expect(screen.queryByRole('combobox', { name: 'Aula' })).not.toBeInTheDocument();
+      await user.selectOptions(placeSelect, 'Bloque A');
+      expect(screen.getByRole('combobox', { name: 'Aula' })).toHaveValue('');
+    }
+  });
+
+  it('conserva la descripción, categoría y fotografía al cambiar de bloque, aula o espacio', async () => {
+    const user = userEvent.setup();
+    const { rerender } = render(<FoundItemForm />);
+    const description = 'Llaves con un llavero azul';
+    const photo = new File(['foto'], 'llaves.jpg', { type: 'image/jpeg' });
+
+    await user.type(screen.getByRole('textbox', { name: 'Descripción del objeto' }), description);
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), 'Llaves');
+    await user.upload(screen.getByLabelText('Foto del objeto'), photo);
+
+    expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
+    for (const place of PLACES) {
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), place.name);
+      if (place.type === 'BLOCK') {
+        await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), place.classrooms![0]);
+      }
+      rerender(<FoundItemForm />);
+
+      expect(screen.getByRole('textbox', { name: 'Descripción del objeto' })).toHaveValue(description);
+      expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Llaves');
+      expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
+        'src',
+        'blob:foto-con-ubicacion',
+      );
+      expect(screen.getByText(photo.name)).toBeInTheDocument();
+    }
+    expect(URL.createObjectURL).toHaveBeenCalledTimes(1);
+    expect(URL.revokeObjectURL).not.toHaveBeenCalled();
   });
 });
