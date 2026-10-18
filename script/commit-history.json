@@ -1083,12 +1083,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "9091a3763515fc5e699b51f00a239903f09ebb5b",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T21:50:33.000Z",
       "message": "feat: mostrar ubicacion y horario de bienestar estudiantil en el detalle",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/9091a3763515fc5e699b51f00a239903f09ebb5b"
     },
     "stats": {
       "total": 37,
@@ -1098,6 +1098,25 @@
     },
     "coverage": 87.64,
     "test_count": 124,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-18T21:52:57.000Z",
+      "message": "feat: excluir objetos entregados del catalogo de exploracion",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 54,
+      "additions": 44,
+      "deletions": 10,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.67,
+    "test_count": 125,
     "failed_tests": 0,
     "conclusion": "success"
   }

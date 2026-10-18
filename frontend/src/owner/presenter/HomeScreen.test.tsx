@@ -125,7 +125,39 @@ it('permite filtrar los objetos por categoría', () => {
     expect(screen.queryByText('Mochila negra con llavero')).not.toBeInTheDocument();
   });
 
+it('no muestra los objetos que ya fueron entregados', () => {
+    const mockObjects = [
+      {
+        id: '1',
+        code: 'EN-0001',
+        description: 'Mochila negra con llavero',
+        category: 'Mochilas y bolsos',
+        place: 'Biblioteca',
+        foundDate: '2026-10-17',
+        status: 'PUBLISHED',
+      },
+      {
+        id: '2',
+        code: 'EN-0002',
+        description: 'Celular Samsung plateado',
+        category: 'Electrónicos',
+        place: 'Bloque C',
+        foundDate: '2026-10-16',
+        status: 'DELIVERED',
+      },
+    ];
 
+    render(
+      <HomeScreen
+        onNavigateToLost={() => {}}
+        onNavigateToFound={() => {}}
+        recentFoundObjects={mockObjects}
+      />,
+    );
+
+    expect(screen.getByText('Mochila negra con llavero')).toBeInTheDocument();
+    expect(screen.queryByText('Celular Samsung plateado')).not.toBeInTheDocument();
+  });
 
 
 

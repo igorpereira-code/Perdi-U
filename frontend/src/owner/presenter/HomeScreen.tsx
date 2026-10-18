@@ -39,17 +39,19 @@ export function HomeScreen({
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
 
-  const filteredObjects = recentFoundObjects.filter((item) => {
-    const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
-    if (!matchesCategory) return false;
+  const filteredObjects = recentFoundObjects
+    .filter((item) => item.status !== 'DELIVERED')
+    .filter((item) => {
+      const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
+      if (!matchesCategory) return false;
 
-    if (!searchQuery.trim()) return true;
-    const query = searchQuery.toLowerCase().trim();
-    return (
-      item.description.toLowerCase().includes(query) ||
-      item.category.toLowerCase().includes(query)
-    );
-  });
+      if (!searchQuery.trim()) return true;
+      const query = searchQuery.toLowerCase().trim();
+      return (
+        item.description.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query)
+      );
+    });
 
   return (
     <main className="p-4 space-y-6 max-w-lg mx-auto">

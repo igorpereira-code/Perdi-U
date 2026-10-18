@@ -2086,9 +2086,31 @@
     "testId": 57
   },
   {
-    "commitId": "HEAD",
+    "commitId": "9091a3763515fc5e699b51f00a239903f09ebb5b",
     "commitName": "feat: mostrar ubicacion y horario de bienestar estudiantil en el detalle",
     "commitTimestamp": 1792360234463,
     "testId": 57
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 1,
+    "numTotalTests": 125,
+    "timestamp": 1792360276619,
+    "success": false,
+    "testId": 58
+  },
+  {
+    "numPassedTests": 125,
+    "failedTests": 0,
+    "numTotalTests": 125,
+    "timestamp": 1792360291805,
+    "success": true,
+    "testId": 58
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: excluir objetos entregados del catalogo de exploracion",
+    "commitTimestamp": 1792360378438,
+    "testId": 58
   }
 ]
