@@ -83,6 +83,19 @@ describe('Panel de Bienestar', () => {
     ).toBeInTheDocument();
   });
 
+  it('muestra un aviso cuando no puede cargar los recojos pendientes', async () => {
+    renderPage(
+      service({ listPendingPickups: jest.fn().mockRejectedValue(new Error('network')) }),
+    );
+
+    expect(
+      await screen.findByText('No pudimos cargar los recojos pendientes'),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole('heading', { name: 'No hay recojos pendientes' }),
+    ).not.toBeInTheDocument();
+  });
+
   it('publica un objeto en custodia y muestra cuantos reportes se parecen', async () => {
     const matchesService = publishingService();
     const PageWithPublishing = WelfarePage as unknown as ComponentType<{

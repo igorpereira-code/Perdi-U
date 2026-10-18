@@ -18,6 +18,7 @@ type WelfarePageProps = {
 
 export function WelfarePage({ welfareService, matchesService }: WelfarePageProps) {
   const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
+  const [pendingPickupsError, setPendingPickupsError] = useState(false);
   const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
   const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
   const [publishedCodes, setPublishedCodes] = useState<Set<string>>(new Set());
@@ -30,7 +31,10 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     welfareService
       .listPendingPickups()
       .then(setPendingPickups)
-      .catch(() => setPendingPickups([]));
+      .catch(() => {
+        setPendingPickups([]);
+        setPendingPickupsError(true);
+      });
   }, [welfareService]);
 
   useEffect(() => {
@@ -116,7 +120,9 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-blue-700">Recojos pendientes</h2>
-        {pendingPickups === null ? (
+        {pendingPickupsError ? (
+          <Alert>No pudimos cargar los recojos pendientes</Alert>
+        ) : pendingPickups === null ? (
           <p>Cargando recojos pendientes...</p>
         ) : pendingPickups.length === 0 ? (
           <EmptyState

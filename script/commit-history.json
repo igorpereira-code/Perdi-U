@@ -1197,12 +1197,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "288694413bae8d25ae7625e2fd59ea28de96198b",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T18:44:46.000Z",
       "message": "feat(welfare): mostrar recojos pendientes vacios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/288694413bae8d25ae7625e2fd59ea28de96198b"
     },
     "stats": {
       "total": 13,
@@ -1212,6 +1212,25 @@
     },
     "coverage": 86.8,
     "test_count": 145,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T18:46:50.000Z",
+      "message": "feat(welfare): avisar errores al cargar recojos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 21,
+      "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.04,
+    "test_count": 146,
     "failed_tests": 0,
     "conclusion": "success"
   }
