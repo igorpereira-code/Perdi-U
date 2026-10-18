@@ -1,4 +1,5 @@
 import type { FoundItemStatus } from '@shared/statuses';
+import type { WelfarePendingPickupView } from '@shared/welfare';
 
 export type WelfareFoundItem = {
   id: string;
@@ -18,6 +19,7 @@ export type WelfareFoundItem = {
 
 /** Objects Bienestar can inspect and receive. Tests use an in-memory implementation. */
 export type WelfareRepository = {
+  listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItem[]>;
   listInOffice: () => Promise<WelfareFoundItem[]>;
   findByCode: (code: string) => Promise<WelfareFoundItem | null>;
