@@ -1742,9 +1742,15 @@
     "testId": 41
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e559cc530a4552f66974a8b304c1230aaf3c6aaf",
     "commitName": "feat(finder): mostrar los cuatro pasos de la guía rápida",
     "commitTimestamp": 1792288148311,
     "testId": 41
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): agregar campo para registrar guia vista",
+    "commitTimestamp": 1792337561616,
+    "testId": 42
   }
 ]
