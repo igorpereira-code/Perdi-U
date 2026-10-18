@@ -1798,9 +1798,31 @@
     "testId": 45
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c30435bb807be12be4664ca0deaaa4187e9fdb2f",
     "commitName": "feat: permitir elegir uno o varios lugares con bloque y aula",
     "commitTimestamp": 1792351963919,
     "testId": 45
+  },
+  {
+    "numPassedTests": 111,
+    "failedTests": 1,
+    "numTotalTests": 112,
+    "timestamp": 1792352053376,
+    "success": false,
+    "testId": 46
+  },
+  {
+    "numPassedTests": 112,
+    "failedTests": 0,
+    "numTotalTests": 112,
+    "timestamp": 1792352224555,
+    "success": true,
+    "testId": 46
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: permitir describir en texto el lugar de perdida",
+    "commitTimestamp": 1792352240962,
+    "testId": 46
   }
 ]

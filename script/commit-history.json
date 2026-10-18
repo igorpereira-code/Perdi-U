@@ -855,12 +855,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c30435bb807be12be4664ca0deaaa4187e9fdb2f",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T19:32:42.000Z",
       "message": "feat: permitir elegir uno o varios lugares con bloque y aula",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c30435bb807be12be4664ca0deaaa4187e9fdb2f"
     },
     "stats": {
       "total": 172,
@@ -870,6 +870,25 @@
     },
     "coverage": 87.37,
     "test_count": 111,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-18T19:37:20.000Z",
+      "message": "feat: permitir describir en texto el lugar de perdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 30,
+      "additions": 29,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.44,
+    "test_count": 112,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -76,6 +76,7 @@ export function NewLostReportPage({
   const [_photo, setPhoto] = useState<File | null>(null);
   const [category, setCategory] = useState('');
   const [places, setPlaces] = useState<PlaceSelection[]>([{ placeId: '', classroomId: '' }]);
+  const [placeDescription, setPlaceDescription] = useState('');
 
   const handlePlaceChange = (index: number, placeId: string) => {
     const updated = [...places];
@@ -139,7 +140,8 @@ export function NewLostReportPage({
 
             {places.map((item, index) => {
               const selectedPlace = availablePlaces.find((p) => p.id === Number(item.placeId));
-              const hasClassrooms = selectedPlace?.type === 'BLOCK' && (selectedPlace.classrooms?.length ?? 0) > 0;
+              const hasClassrooms =
+                selectedPlace?.type === 'BLOCK' && (selectedPlace.classrooms?.length ?? 0) > 0;
 
               return (
                 <div key={index} className="p-3 bg-white rounded-lg border border-neutral-200 space-y-3">
@@ -192,6 +194,18 @@ export function NewLostReportPage({
               );
             })}
           </div>
+
+          <Field id="placeDescription" label="Referencia del lugar" optional>
+            <input
+              id="placeDescription"
+              type="text"
+              className={INPUT_CLASSES}
+              placeholder="Ej. En las gradas hacia el segundo piso o cerca de las jardineras..."
+              value={placeDescription}
+              onChange={(e) => setPlaceDescription(e.target.value)}
+              maxLength={300}
+            />
+          </Field>
 
           <Field id="photo" label="Foto de referencia" optional>
             <PhotoInput onChange={setPhoto} />

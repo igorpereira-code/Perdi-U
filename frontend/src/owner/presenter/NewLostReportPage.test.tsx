@@ -66,4 +66,18 @@ describe('NewLostReportPage', () => {
     const placeSelects = screen.getAllByLabelText(/bloque o espacio/i);
     expect(placeSelects).toHaveLength(2);
   });
+
+  it('permite describir en texto una referencia de por dónde pudo perderlo', () => {
+    render(<NewLostReportPage onBack={() => {}} />);
+
+    const placeDescriptionInput = screen.getByLabelText(/referencia del lugar/i);
+    expect(placeDescriptionInput).toBeInTheDocument();
+
+    fireEvent.change(placeDescriptionInput, {
+      target: { value: 'En las gradas hacia el segundo piso o cerca de las jardineras' },
+    });
+    expect(placeDescriptionInput).toHaveValue(
+      'En las gradas hacia el segundo piso o cerca de las jardineras',
+    );
+  });
 });
