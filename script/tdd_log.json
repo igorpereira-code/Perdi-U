@@ -1842,9 +1842,31 @@
     "testId": 47
   },
   {
-    "commitId": "HEAD",
+    "commitId": "58cb10f47abd38ddf92e986c62b30bef72209c43",
     "commitName": "feat: permitir indicar el rango de fechas en que pudo perderse el objeto",
     "commitTimestamp": 1792352370486,
     "testId": 47
+  },
+  {
+    "numPassedTests": 113,
+    "failedTests": 2,
+    "numTotalTests": 115,
+    "timestamp": 1792352686475,
+    "success": false,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 115,
+    "failedTests": 0,
+    "numTotalTests": 115,
+    "timestamp": 1792352789593,
+    "success": true,
+    "testId": 48
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: validar campos obligatorios antes de enviar el reporte",
+    "commitTimestamp": 1792352830962,
+    "testId": 48
   }
 ]

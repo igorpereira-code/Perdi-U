@@ -97,6 +97,49 @@ it('permite indicar el rango de fechas en que pudo perderlo', () => {
     expect(dateToInput).toHaveValue('2026-10-18');
   });
 
+it('no puede enviar el reporte si faltan campos obligatorios', () => {
+    const onSubmit = jest.fn();
+    render(<NewLostReportPage onBack={() => {}} onSubmit={onSubmit} />);
 
+    const submitBtn = screen.getByRole('button', { name: /enviar reporte/i });
+    fireEvent.click(submitBtn);
+
+    expect(onSubmit).not.toHaveBeenCalled();
+    expect(screen.getByText(/la descripción es obligatoria/i)).toBeInTheDocument();
+    expect(screen.getByText(/la categoría es obligatoria/i)).toBeInTheDocument();
+    expect(screen.getByText(/la fecha inicial es obligatoria/i)).toBeInTheDocument();
+    expect(screen.getByText(/la fecha final es obligatoria/i)).toBeInTheDocument();
+  });
+
+  it('permite enviar el reporte si los campos obligatorios están completos', () => {
+    const onSubmit = jest.fn();
+    render(<NewLostReportPage onBack={() => {}} onSubmit={onSubmit} />);
+
+    fireEvent.change(screen.getByLabelText(/descripción/i), {
+      target: { value: 'Billetera de cuero marrón' },
+    });
+    fireEvent.change(screen.getByLabelText(/categoría/i), {
+      target: { value: 'Documentos y carnets' },
+    });
+    fireEvent.change(screen.getByLabelText(/fecha desde/i), {
+      target: { value: '2026-10-15' },
+    });
+    fireEvent.change(screen.getByLabelText(/fecha hasta/i), {
+      target: { value: '2026-10-18' },
+    });
+
+    const submitBtn = screen.getByRole('button', { name: /enviar reporte/i });
+    fireEvent.click(submitBtn);
+
+    expect(onSubmit).toHaveBeenCalledTimes(1);
+  });
+
+
+
+
+
+
+
+  
 
 });

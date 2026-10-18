@@ -893,12 +893,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "58cb10f47abd38ddf92e986c62b30bef72209c43",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T19:39:29.000Z",
       "message": "feat: permitir indicar el rango de fechas en que pudo perderse el objeto",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/58cb10f47abd38ddf92e986c62b30bef72209c43"
     },
     "stats": {
       "total": 43,
@@ -908,6 +908,25 @@
     },
     "coverage": 87.56,
     "test_count": 113,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-18T19:47:10.000Z",
+      "message": "feat: validar campos obligatorios antes de enviar el reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 141,
+      "additions": 131,
+      "deletions": 10,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.35,
+    "test_count": 115,
     "failed_tests": 0,
     "conclusion": "success"
   }
