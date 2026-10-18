@@ -24,7 +24,39 @@ const receivedItem = {
   status: 'IN_CUSTODY' as const,
 };
 
+const publishedItem = {
+  ...pendingItem,
+  id: 'item-3',
+  code: 'HZ-0003',
+  status: 'PUBLISHED' as const,
+};
+
+const deliveredItem = {
+  ...pendingItem,
+  id: 'item-2',
+  code: 'HZ-0002',
+  status: 'DELIVERED' as const,
+};
+
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('lista solamente los objetos que siguen en la oficina', async () => {
+    const { repository } = fakeWelfareRepository([
+      pendingItem,
+      receivedItem,
+      publishedItem,
+      deliveredItem,
+    ]);
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/found-items/in-office')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body.map((item: { code: string }) => item.code)).toEqual([
+      'HZ-0004',
+      'HZ-0003',
+    ]);
+  });
+
   it('lista los objetos que aun no fueron entregados', async () => {
     const { repository } = fakeWelfareRepository([pendingItem]);
     const res = await request(createApp({ welfare: repository }))

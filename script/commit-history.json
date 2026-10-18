@@ -950,12 +950,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6704f9a2865604479f7af801cd3a39c380672970",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T07:48:00.000Z",
       "message": "test(welfare): cerrar la promesa de confirmacion",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6704f9a2865604479f7af801cd3a39c380672970"
     },
     "stats": {
       "total": 5,
@@ -965,6 +965,25 @@
     },
     "coverage": 87.1,
     "test_count": 135,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:43:16.000Z",
+      "message": "feat(welfare): listar objetos que siguen en la oficina",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 50,
+      "additions": 50,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.86,
+    "test_count": 136,
     "failed_tests": 0,
     "conclusion": "success"
   }

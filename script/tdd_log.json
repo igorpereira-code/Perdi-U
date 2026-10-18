@@ -1988,9 +1988,15 @@
     "testId": 50
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6704f9a2865604479f7af801cd3a39c380672970",
     "commitName": "test(welfare): cerrar la promesa de confirmacion",
     "commitTimestamp": 1792309681842,
     "testId": 50
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): listar objetos que siguen en la oficina",
+    "commitTimestamp": 1792341797354,
+    "testId": 51
   }
 ]

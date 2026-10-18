@@ -53,6 +53,15 @@ export const prismaWelfareRepository = {
     return rows.map(toWelfareItem);
   },
 
+  listInOffice: async () => {
+    const rows = await db().foundItem.findMany({
+      where: { status: { in: ['IN_CUSTODY', 'PUBLISHED'] } },
+      include: itemRelations,
+      orderBy: { receivedAt: 'asc' },
+    });
+    return rows.map(toWelfareItem);
+  },
+
   findByCode: async (code) => {
     const row = await db().foundItem.findUnique({ where: { code }, include: itemRelations });
     return row ? toWelfareItem(row) : null;
