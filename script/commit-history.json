@@ -969,12 +969,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f290f5c2c5e6c5af1b770f0d64aee54a8d6146f0",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T20:02:26.000Z",
       "message": "feat: indicar privacidad del reporte para el usuario y bienestar estudiantil",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f290f5c2c5e6c5af1b770f0d64aee54a8d6146f0"
     },
     "stats": {
       "total": 16,
@@ -984,6 +984,25 @@
     },
     "coverage": 87.38,
     "test_count": 117,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-18T20:09:10.000Z",
+      "message": "feat: mostrar estado activo del reporte mientras no aparezca el objeto",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 28,
+      "additions": 26,
+      "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.38,
+    "test_count": 118,
     "failed_tests": 0,
     "conclusion": "success"
   }

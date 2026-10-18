@@ -1,4 +1,5 @@
 import { Button } from '../../core/presenter/Button';
+import { StatusChip } from '../../core/presenter/StatusChip';
 import { SeeMatchesLink } from '../../matching/presenter/SeeMatchesLink';
 
 type LostReportConfirmationProps = {
@@ -20,10 +21,18 @@ export function LostReportConfirmation({ reportCode, onGoHome }: LostReportConfi
         </p>
       </div>
 
-      <div className="p-4 bg-white border border-neutral-200 rounded-xl shadow-sm inline-block">
-        <span className="text-2xl font-mono font-bold text-blue-700 tracking-wider">
+      <div className="p-4 bg-white border border-neutral-200 rounded-xl shadow-sm inline-block space-y-2">
+        <span className="text-2xl font-mono font-bold text-blue-700 tracking-wider block">
           {reportCode}
         </span>
+        <div className="flex items-center justify-center gap-2 pt-1 text-xs text-neutral-500">
+          <span>Estado:</span>
+          <StatusChip status="SEARCHING" />
+        </div>
+      </div>
+
+      <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-800 text-left">
+        ℹ️ El reporte sigue activo aunque todavía no aparezca tu objeto. El sistema te notificará cuando haya coincidencias.
       </div>
 
       <div className="p-3 bg-neutral-100 border border-neutral-200 rounded-lg text-xs text-neutral-600 text-left">

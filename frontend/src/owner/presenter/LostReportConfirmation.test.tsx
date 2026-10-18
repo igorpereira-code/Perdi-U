@@ -25,4 +25,19 @@ describe('LostReportConfirmation', () => {
       screen.getByText(/solo lo ven tú y bienestar estudiantil|solo lo ven él y bienestar estudiantil/i),
     ).toBeInTheDocument();
   });
+
+  it('muestra que el reporte queda activo en búsqueda aunque todavía no aparezca el objeto', () => {
+    render(
+      <MemoryRouter>
+        <LostReportConfirmation reportCode="PR-0001" onGoHome={() => {}} />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText(/estado:/i)).toBeInTheDocument();
+    const statusMatches = screen.getAllByText(/activo|buscando/i);
+    expect(statusMatches.length).toBeGreaterThanOrEqual(1);
+    expect(
+      screen.getByText(/el reporte sigue activo aunque todavía no aparezca tu objeto/i),
+    ).toBeInTheDocument();
+  });
 });

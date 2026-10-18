@@ -1922,9 +1922,55 @@
     "testId": 51
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f290f5c2c5e6c5af1b770f0d64aee54a8d6146f0",
     "commitName": "feat: indicar privacidad del reporte para el usuario y bienestar estudiantil",
     "commitTimestamp": 1792353747326,
     "testId": 51
+  },
+  {
+    "numPassedTests": 117,
+    "failedTests": 1,
+    "numTotalTests": 118,
+    "timestamp": 1792353788057,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 117,
+    "failedTests": 1,
+    "numTotalTests": 118,
+    "timestamp": 1792353810726,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 117,
+    "failedTests": 1,
+    "numTotalTests": 118,
+    "timestamp": 1792353983851,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 117,
+    "failedTests": 1,
+    "numTotalTests": 118,
+    "timestamp": 1792354019883,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 118,
+    "failedTests": 0,
+    "numTotalTests": 118,
+    "timestamp": 1792354130346,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar estado activo del reporte mientras no aparezca el objeto",
+    "commitTimestamp": 1792354151323,
+    "testId": 52
   }
 ]
