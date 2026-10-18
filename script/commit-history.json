@@ -950,12 +950,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6704f9a2865604479f7af801cd3a39c380672970",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T07:48:00.000Z",
       "message": "test(welfare): cerrar la promesa de confirmacion",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6704f9a2865604479f7af801cd3a39c380672970"
     },
     "stats": {
       "total": 5,
@@ -965,6 +965,158 @@
     },
     "coverage": 87.1,
     "test_count": 135,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "7fd1f64edb63dac4598377fb99c7440a845d6169",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:43:16.000Z",
+      "message": "feat(welfare): listar objetos que siguen en la oficina",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7fd1f64edb63dac4598377fb99c7440a845d6169"
+    },
+    "stats": {
+      "total": 50,
+      "additions": 50,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.86,
+    "test_count": 136,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "df7846245edea0810f877bd9f6976b07187d2e4f",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:45:16.000Z",
+      "message": "feat(welfare): consultar objetos que siguen en la oficina",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/df7846245edea0810f877bd9f6976b07187d2e4f"
+    },
+    "stats": {
+      "total": 20,
+      "additions": 20,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.76,
+    "test_count": 137,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "480337c633153e9d6986f6e874ca37fadd2f1637",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:47:20.000Z",
+      "message": "feat(welfare): mostrar objetos que estan en la oficina",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/480337c633153e9d6986f6e874ca37fadd2f1637"
+    },
+    "stats": {
+      "total": 63,
+      "additions": 62,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.69,
+    "test_count": 138,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "7bf40dc112ae47db8ac20b9bb24fe5d26efb0f87",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:50:12.000Z",
+      "message": "feat(welfare): publicar objetos desde el panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7bf40dc112ae47db8ac20b9bb24fe5d26efb0f87"
+    },
+    "stats": {
+      "total": 69,
+      "additions": 58,
+      "deletions": 11,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.69,
+    "test_count": 139,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "f9ec5a53334808f920eec699a12c41eafe03bd19",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:54:54.000Z",
+      "message": "fix(welfare): actualizar el estado al publicar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f9ec5a53334808f920eec699a12c41eafe03bd19"
+    },
+    "stats": {
+      "total": 50,
+      "additions": 34,
+      "deletions": 16,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.89,
+    "test_count": 139,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "2d05fd464bbe5b63acc3e81ebfc6352caa930b3a",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:57:23.000Z",
+      "message": "fix(welfare): mostrar el objeto recibido en custodia",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2d05fd464bbe5b63acc3e81ebfc6352caa930b3a"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 7,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.94,
+    "test_count": 139,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "df3803cd7bf93d07cfd524492f047ef2dce607ae",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T17:01:06.000Z",
+      "message": "fix(welfare): conservar objetos recibidos durante la carga",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/df3803cd7bf93d07cfd524492f047ef2dce607ae"
+    },
+    "stats": {
+      "total": 20,
+      "additions": 18,
+      "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.12,
+    "test_count": 139,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T18:18:17.000Z",
+      "message": "fix(welfare): conservar la custodia ante errores de carga",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 22,
+      "additions": 21,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.35,
+    "test_count": 140,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -1988,9 +1988,201 @@
     "testId": 50
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6704f9a2865604479f7af801cd3a39c380672970",
     "commitName": "test(welfare): cerrar la promesa de confirmacion",
     "commitTimestamp": 1792309681842,
     "testId": 50
+  },
+  {
+    "commitId": "7fd1f64edb63dac4598377fb99c7440a845d6169",
+    "commitName": "feat(welfare): listar objetos que siguen en la oficina",
+    "commitTimestamp": 1792341797354,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 136,
+    "failedTests": 1,
+    "numTotalTests": 137,
+    "timestamp": 1792341856588,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 0,
+    "numTotalTests": 137,
+    "timestamp": 1792341877688,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 0,
+    "numTotalTests": 137,
+    "timestamp": 1792341899837,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "commitId": "df7846245edea0810f877bd9f6976b07187d2e4f",
+    "commitName": "feat(welfare): consultar objetos que siguen en la oficina",
+    "commitTimestamp": 1792341917971,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 1,
+    "numTotalTests": 138,
+    "timestamp": 1792341960309,
+    "success": false,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 136,
+    "failedTests": 2,
+    "numTotalTests": 138,
+    "timestamp": 1792341987495,
+    "success": false,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 138,
+    "failedTests": 0,
+    "numTotalTests": 138,
+    "timestamp": 1792342024697,
+    "success": true,
+    "testId": 53
+  },
+  {
+    "commitId": "480337c633153e9d6986f6e874ca37fadd2f1637",
+    "commitName": "feat(welfare): mostrar objetos que estan en la oficina",
+    "commitTimestamp": 1792342042025,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 138,
+    "failedTests": 1,
+    "numTotalTests": 139,
+    "timestamp": 1792342088227,
+    "success": false,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342118407,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342182450,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "commitId": "7bf40dc112ae47db8ac20b9bb24fe5d26efb0f87",
+    "commitName": "feat(welfare): publicar objetos desde el panel",
+    "commitTimestamp": 1792342214051,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342293282,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 138,
+    "failedTests": 1,
+    "numTotalTests": 139,
+    "timestamp": 1792342440948,
+    "success": false,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342473225,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "commitId": "f9ec5a53334808f920eec699a12c41eafe03bd19",
+    "commitName": "fix(welfare): actualizar el estado al publicar",
+    "commitTimestamp": 1792342495955,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 138,
+    "failedTests": 1,
+    "numTotalTests": 139,
+    "timestamp": 1792342543808,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342618716,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "commitId": "2d05fd464bbe5b63acc3e81ebfc6352caa930b3a",
+    "commitName": "fix(welfare): mostrar el objeto recibido en custodia",
+    "commitTimestamp": 1792342644181,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 138,
+    "failedTests": 1,
+    "numTotalTests": 139,
+    "timestamp": 1792342809716,
+    "success": false,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 0,
+    "numTotalTests": 139,
+    "timestamp": 1792342841720,
+    "success": true,
+    "testId": 57
+  },
+  {
+    "commitId": "df3803cd7bf93d07cfd524492f047ef2dce607ae",
+    "commitName": "fix(welfare): conservar objetos recibidos durante la carga",
+    "commitTimestamp": 1792342868470,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 139,
+    "failedTests": 1,
+    "numTotalTests": 140,
+    "timestamp": 1792347455988,
+    "success": false,
+    "testId": 58
+  },
+  {
+    "numPassedTests": 140,
+    "failedTests": 0,
+    "numTotalTests": 140,
+    "timestamp": 1792347479113,
+    "success": true,
+    "testId": 58
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(welfare): conservar la custodia ante errores de carga",
+    "commitTimestamp": 1792347500326,
+    "testId": 58
   }
 ]

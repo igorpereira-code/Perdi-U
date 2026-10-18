@@ -19,6 +19,10 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
     res.json((await welfare.listPending()).map(toView));
   });
 
+  router.get('/welfare/found-items/in-office', requireRole('WELFARE'), async (_req, res) => {
+    res.json((await welfare.listInOffice()).map(toView));
+  });
+
   router.get('/welfare/found-items/:code', requireRole('WELFARE'), async (req, res) => {
     const code = normalizeCode(req.params.code);
     const item = await welfare.findByCode(code);

@@ -42,6 +42,7 @@ function renderAt(path: string, user: AppUser | null | Error, matches: MatchView
   };
   const welfareService: WelfareService = {
     listPending: jest.fn().mockResolvedValue([]),
+    listInOffice: jest.fn().mockResolvedValue([]),
     findByCode: jest.fn(),
     receive: jest.fn(),
   };

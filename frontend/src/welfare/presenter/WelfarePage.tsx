@@ -8,9 +8,18 @@ import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { InfoRow } from '../../core/presenter/InfoRow';
 import { StatusChip } from '../../core/presenter/StatusChip';
 import { Thumb } from '../../core/presenter/Thumb';
+import type { MatchesService } from '../../matching/data/matchesService';
+import { PublishButton } from '../../matching/presenter/PublishButton';
 
-export function WelfarePage({ welfareService }: { welfareService: WelfareService }) {
+type WelfarePageProps = {
+  welfareService: WelfareService;
+  matchesService: MatchesService;
+};
+
+export function WelfarePage({ welfareService, matchesService }: WelfarePageProps) {
   const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
+  const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
+  const [publishedCodes, setPublishedCodes] = useState<Set<string>>(new Set());
   const [selected, setSelected] = useState<WelfareFoundItemView | null>(null);
   const [code, setCode] = useState('');
   const [message, setMessage] = useState<string | null>(null);
@@ -24,6 +33,21 @@ export function WelfarePage({ welfareService }: { welfareService: WelfareService
         setItems([]);
         setMessage('No pudimos cargar los objetos pendientes');
       });
+  }, [welfareService]);
+
+  useEffect(() => {
+    welfareService
+      .listInOffice()
+      .then((loadedItems) =>
+        setInOfficeItems((current) => {
+          if (current === null) {
+            return loadedItems;
+          }
+          const currentCodes = new Set(current.map((item) => item.code));
+          return [...loadedItems.filter((item) => !currentCodes.has(item.code)), ...current];
+        }),
+      )
+      .catch(() => setInOfficeItems((current) => current ?? []));
   }, [welfareService]);
 
   async function search(event: FormEvent) {
@@ -59,6 +83,7 @@ export function WelfarePage({ welfareService }: { welfareService: WelfareService
         return;
       }
       setItems((current) => current?.filter((item) => item.code !== selected.code) ?? []);
+      setInOfficeItems((current) => [...(current ?? []), result.item]);
       setSelected(null);
       setMessage('Objeto recibido y puesto en custodia');
     } catch {
@@ -95,6 +120,41 @@ export function WelfarePage({ welfareService }: { welfareService: WelfareService
                 <div><strong>{item.code}</strong><p>{item.description}</p><StatusChip status={item.status} /></div>
               </article>
             ))}
+          </div>
+        )}
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-blue-700">Objetos en la oficina</h2>
+        {inOfficeItems === null ? (
+          <p>Cargando objetos en la oficina...</p>
+        ) : inOfficeItems.length === 0 ? (
+          <EmptyState title="No hay objetos en la oficina" text="No quedan objetos bajo custodia." />
+        ) : (
+          <div className="grid gap-3 md:grid-cols-2">
+            {inOfficeItems.map((item) => {
+              const displayedStatus = publishedCodes.has(item.code) ? 'PUBLISHED' : item.status;
+              return (
+                <article key={item.code} className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+                  <Thumb category={item.category} photoUrl={item.photoUrl} />
+                  <div>
+                    <strong>{item.code}</strong>
+                    <p>{item.description}</p>
+                    <StatusChip status={displayedStatus} />
+                    <p>{displayedStatus === 'PUBLISHED' ? 'Publicado' : 'No publicado'}</p>
+                    {item.status === 'IN_CUSTODY' && (
+                      <PublishButton
+                        itemCode={item.code}
+                        matchesService={matchesService}
+                        onPublished={() =>
+                          setPublishedCodes((current) => new Set(current).add(item.code))
+                        }
+                      />
+                    )}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         )}
       </section>

@@ -1,6 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import type { ComponentType } from 'react';
 import type { WelfareFoundItemView } from '@shared/welfare';
+import type { MatchesService } from '../../matching/data/matchesService';
 import type { WelfareResult, WelfareService } from '../data/welfareService';
 import { WelfarePage } from './WelfarePage';
 
@@ -11,30 +13,93 @@ const item: WelfareFoundItemView = {
   status: 'PENDING_DROP_OFF', finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
 
+const inCustodyItem: WelfareFoundItemView = {
+  ...item,
+  code: 'HZ-0004',
+  description: 'Calculadora gris',
+  status: 'IN_CUSTODY',
+};
+
+const publishedItem: WelfareFoundItemView = {
+  ...item,
+  code: 'HZ-0003',
+  description: 'Chamarra azul',
+  status: 'PUBLISHED',
+};
+
 function service(overrides: Partial<WelfareService> = {}): WelfareService {
   return {
     listPending: jest.fn().mockResolvedValue([item]),
+    listInOffice: jest.fn().mockResolvedValue([inCustodyItem, publishedItem]),
     findByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
     receive: jest.fn(),
     ...overrides,
   };
 }
 
+function publishingService(): MatchesService {
+  return {
+    getMatches: jest.fn(),
+    pickUp: jest.fn(),
+    dismiss: jest.fn(),
+    publish: jest.fn().mockResolvedValue({ status: 'PUBLISHED', matchCount: 2 }),
+  };
+}
+
+function renderPage(welfareService: WelfareService = service()) {
+  return render(
+    <WelfarePage welfareService={welfareService} matchesService={publishingService()} />,
+  );
+}
+
 describe('Panel de Bienestar', () => {
+  it('publica un objeto en custodia y muestra cuantos reportes se parecen', async () => {
+    const matchesService = publishingService();
+    const PageWithPublishing = WelfarePage as unknown as ComponentType<{
+      welfareService: WelfareService;
+      matchesService: MatchesService;
+    }>;
+    render(<PageWithPublishing welfareService={service()} matchesService={matchesService} />);
+
+    const custodyCard = (await screen.findByText('HZ-0004')).closest('article');
+    expect(custodyCard).not.toBeNull();
+    await userEvent.click(within(custodyCard!).getByRole('button', { name: 'Publicar' }));
+
+    expect(await within(custodyCard!).findByText('Publicado: la comunidad ya puede ver este objeto.')).toBeInTheDocument();
+    expect(within(custodyCard!).getByText('2 reportes de pérdida se parecen a este objeto.')).toBeInTheDocument();
+    expect(within(custodyCard!).queryByText('En custodia')).not.toBeInTheDocument();
+    expect(within(custodyCard!).queryByText('No publicado')).not.toBeInTheDocument();
+    expect(within(custodyCard!).getAllByText('Publicado')).toHaveLength(2);
+  });
+
+  it('muestra codigo, estado y publicacion de los objetos que estan en la oficina', async () => {
+    renderPage();
+
+    expect(await screen.findByRole('heading', { name: 'Objetos en la oficina' })).toBeInTheDocument();
+    const custodyCard = (await screen.findByText('HZ-0004')).closest('article');
+    const publishedCard = screen.getByText('HZ-0003').closest('article');
+
+    expect(custodyCard).not.toBeNull();
+    expect(within(custodyCard!).getByText('En custodia')).toBeInTheDocument();
+    expect(within(custodyCard!).getByText('No publicado')).toBeInTheDocument();
+    expect(publishedCard).not.toBeNull();
+    expect(within(publishedCard!).getAllByText('Publicado')).toHaveLength(2);
+  });
+
   it('muestra la carga y luego los objetos pendientes', async () => {
-    render(<WelfarePage welfareService={service()} />);
+    renderPage();
     expect(screen.getByText('Cargando objetos pendientes...')).toBeInTheDocument();
     expect(await screen.findByText('Mochila negra con cuadernos')).toBeInTheDocument();
   });
 
   it('muestra un estado vacio cuando no hay pendientes', async () => {
-    render(<WelfarePage welfareService={service({ listPending: jest.fn().mockResolvedValue([]) })} />);
+    renderPage(service({ listPending: jest.fn().mockResolvedValue([]) }));
     expect(await screen.findByRole('heading', { name: 'No hay objetos pendientes' })).toBeInTheDocument();
   });
 
   it('busca por codigo y muestra los datos del objeto y del Hallador', async () => {
     const welfareService = service();
-    render(<WelfarePage welfareService={welfareService} />);
+    renderPage(welfareService);
     await userEvent.type(screen.getByLabelText('Código del objeto'), ' hz-0005 ');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
 
@@ -48,31 +113,64 @@ describe('Panel de Bienestar', () => {
     ['NOT_FOUND', 'No encontramos un objeto con ese código'],
     ['ALREADY_RECEIVED', 'Este objeto ya fue recibido'],
   ] as const)('muestra el resultado %s', async (status, message) => {
-    render(<WelfarePage welfareService={service({ findByCode: jest.fn().mockResolvedValue({ status }) })} />);
+    renderPage(service({ findByCode: jest.fn().mockResolvedValue({ status }) }));
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-9999');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     expect(await screen.findByText(message)).toBeInTheDocument();
   });
 
   it('muestra un error sin perder la pantalla', async () => {
-    render(<WelfarePage welfareService={service({ listPending: jest.fn().mockRejectedValue(new Error('network')) })} />);
+    renderPage(service({ listPending: jest.fn().mockRejectedValue(new Error('network')) }));
     expect(await screen.findByText('No pudimos cargar los objetos pendientes')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Panel de Bienestar' })).toBeInTheDocument();
   });
 
   it('confirma la recepcion, muestra exito y quita el objeto pendiente', async () => {
+    let resolveInOffice!: (items: WelfareFoundItemView[]) => void;
+    const listInOffice = jest.fn(
+      () => new Promise<WelfareFoundItemView[]>((resolve) => (resolveInOffice = resolve)),
+    );
     const welfareService = service({
+      listInOffice,
       receive: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
     });
-    render(<WelfarePage welfareService={welfareService} />);
+    renderPage(welfareService);
     await screen.findByText('Mochila negra con cuadernos');
+    const pendingSection = screen
+      .getByRole('heading', { name: 'Objetos pendientes de recepción' })
+      .closest('section');
+    const officeSection = screen.getByRole('heading', { name: 'Objetos en la oficina' }).closest('section');
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
 
     expect(welfareService.receive).toHaveBeenCalledWith('HZ-0005');
     expect(await screen.findByText('Objeto recibido y puesto en custodia')).toBeInTheDocument();
-    expect(screen.queryByText('Mochila negra con cuadernos')).not.toBeInTheDocument();
+    expect(within(pendingSection!).queryByText('HZ-0005')).not.toBeInTheDocument();
+    expect(await within(officeSection!).findByText('HZ-0005')).toBeInTheDocument();
+
+    await act(async () => resolveInOffice([inCustodyItem, publishedItem]));
+    expect(within(officeSection!).getByText('HZ-0005')).toBeInTheDocument();
+  });
+
+  it('conserva el objeto recibido si falla la carga inicial de la oficina', async () => {
+    let rejectInOffice!: (error: Error) => void;
+    const listInOffice = jest.fn(
+      () => new Promise<WelfareFoundItemView[]>((_, reject) => (rejectInOffice = reject)),
+    );
+    const welfareService = service({
+      listInOffice,
+      receive: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
+    });
+    renderPage(welfareService);
+    const officeSection = screen.getByRole('heading', { name: 'Objetos en la oficina' }).closest('section');
+    await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
+    expect(await within(officeSection!).findByText('HZ-0005')).toBeInTheDocument();
+
+    await act(async () => rejectInOffice(new Error('network')));
+    expect(within(officeSection!).getByText('HZ-0005')).toBeInTheDocument();
   });
 
   it('evita confirmar dos veces mientras guarda', async () => {
@@ -80,7 +178,7 @@ describe('Panel de Bienestar', () => {
     const receive = jest.fn<Promise<WelfareResult>, [string]>(
       () => new Promise<WelfareResult>((resolve) => (resolveReceive = resolve)),
     );
-    render(<WelfarePage welfareService={service({ receive })} />);
+    renderPage(service({ receive }));
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     const button = await screen.findByRole('button', { name: 'Confirmar recepción' });
@@ -91,7 +189,7 @@ describe('Panel de Bienestar', () => {
   });
 
   it('conserva el objeto cuando falla la confirmacion', async () => {
-    render(<WelfarePage welfareService={service({ receive: jest.fn().mockRejectedValue(new Error('network')) })} />);
+    renderPage(service({ receive: jest.fn().mockRejectedValue(new Error('network')) }));
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));

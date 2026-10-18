@@ -19,6 +19,7 @@ export type WelfareFoundItem = {
 /** Objects Bienestar can inspect and receive. Tests use an in-memory implementation. */
 export type WelfareRepository = {
   listPending: () => Promise<WelfareFoundItem[]>;
+  listInOffice: () => Promise<WelfareFoundItem[]>;
   findByCode: (code: string) => Promise<WelfareFoundItem | null>;
   receivePending: (itemId: string, receivedById: string, receivedAt: Date) => Promise<boolean>;
 };

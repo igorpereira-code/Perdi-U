@@ -7,14 +7,19 @@ import { matchCountText } from '../logic/matchCountText';
 type PublishButtonProps = {
   itemCode: string;
   matchesService: MatchesService;
+  onPublished?: () => void;
 };
 
 /** "Publicar" button for Bienestar's panel (Chiqui). It publishes the item and shows the result. */
-export function PublishButton({ itemCode, matchesService }: PublishButtonProps) {
+export function PublishButton({ itemCode, matchesService, onPublished }: PublishButtonProps) {
   const [result, setResult] = useState<PublishResult | null>(null);
 
   async function handlePublish() {
-    setResult(await matchesService.publish(itemCode));
+    const nextResult = await matchesService.publish(itemCode);
+    setResult(nextResult);
+    if (nextResult.status === 'PUBLISHED') {
+      onPublished?.();
+    }
   }
 
   if (result?.status === 'PUBLISHED') {
