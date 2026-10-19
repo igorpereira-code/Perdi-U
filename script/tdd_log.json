@@ -2762,9 +2762,31 @@
     "testId": 83
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b0d38732fe6e836be59958d3fff9f0d8e81d8d0d",
     "commitName": "feat(welfare): mostrar reportes de perdida activos",
     "commitTimestamp": 1792374631946,
     "testId": 83
+  },
+  {
+    "numPassedTests": 165,
+    "failedTests": 1,
+    "numTotalTests": 166,
+    "timestamp": 1792374689485,
+    "success": false,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 166,
+    "failedTests": 0,
+    "numTotalTests": 166,
+    "timestamp": 1792374789541,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): buscar reportes de perdida en el panel",
+    "commitTimestamp": 1792374826511,
+    "testId": 84
   }
 ]

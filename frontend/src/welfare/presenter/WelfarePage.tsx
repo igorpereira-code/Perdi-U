@@ -23,6 +23,11 @@ type WelfarePageProps = {
 export function WelfarePage({ welfareService, matchesService }: WelfarePageProps) {
   const [lostReports, setLostReports] = useState<WelfareLostReportView[] | null>(null);
   const [lostReportsError, setLostReportsError] = useState(false);
+  const [lostReportCode, setLostReportCode] = useState('');
+  const [selectedLostReport, setSelectedLostReport] = useState<WelfareLostReportView | null>(
+    null,
+  );
+  const [lostReportMessage, setLostReportMessage] = useState<string | null>(null);
   const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
   const [pendingPickupsError, setPendingPickupsError] = useState(false);
   const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
@@ -44,6 +49,23 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
         setLostReportsError(true);
       });
   }, [welfareService]);
+
+  async function searchLostReport(event: FormEvent) {
+    event.preventDefault();
+    setLostReportMessage(null);
+    try {
+      const result = await welfareService.findLostReportByCode(lostReportCode);
+      if (result.status === 'FOUND') {
+        setSelectedLostReport(result.report);
+        return;
+      }
+      setSelectedLostReport(null);
+      setLostReportMessage('No encontramos un reporte activo con ese código');
+    } catch {
+      setSelectedLostReport(null);
+      setLostReportMessage('No pudimos buscar el reporte');
+    }
+  }
 
   function startPickupDelivery(pickup: WelfarePendingPickupView) {
     setDeliveryDraft({
@@ -267,6 +289,33 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-blue-700">Reportes de pérdida activos</h2>
+        <form onSubmit={searchLostReport} className="flex items-end gap-3">
+          <div className="flex-1">
+            <Field id="lost-report-code" label="Código del reporte">
+              <input
+                id="lost-report-code"
+                className={INPUT_CLASSES}
+                value={lostReportCode}
+                onChange={(event) => setLostReportCode(event.target.value)}
+              />
+            </Field>
+          </div>
+          <Button type="submit">Buscar reporte</Button>
+        </form>
+        {lostReportMessage && <Alert>{lostReportMessage}</Alert>}
+        {selectedLostReport && (
+          <section className="rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
+            <h3 className="text-lg font-semibold text-blue-700">Detalle del reporte</h3>
+            <dl>
+              <InfoRow label="Código" value={selectedLostReport.code} />
+              <InfoRow label="Descripción" value={selectedLostReport.description} />
+              <InfoRow label="Categoría" value={selectedLostReport.category} />
+              <InfoRow label="Propietario" value={selectedLostReport.owner.name} />
+              <InfoRow label="Correo" value={selectedLostReport.owner.email} />
+            </dl>
+            <StatusChip status={selectedLostReport.status} />
+          </section>
+        )}
         {lostReportsError ? (
           <Alert>No pudimos cargar los reportes de pérdida</Alert>
         ) : lostReports === null ? (

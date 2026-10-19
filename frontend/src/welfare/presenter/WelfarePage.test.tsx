@@ -79,6 +79,28 @@ function renderPage(welfareService: WelfareService = service()) {
 }
 
 describe('Panel de Bienestar', () => {
+  it('busca un reporte por codigo y muestra sus datos y propietario', async () => {
+    const findLostReportByCode = jest.fn().mockResolvedValue({
+      status: 'FOUND',
+      report: activeLostReport,
+    });
+    renderPage(service({ findLostReportByCode }));
+
+    await userEvent.type(screen.getByLabelText('Código del reporte'), ' pr-0001 ');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar reporte' }));
+
+    expect(findLostReportByCode).toHaveBeenCalledWith(' pr-0001 ');
+    const detail = (await screen.findByRole('heading', { name: 'Detalle del reporte' })).closest(
+      'section',
+    );
+    expect(detail).not.toBeNull();
+    expect(within(detail!).getByText('PR-0001')).toBeInTheDocument();
+    expect(within(detail!).getByText('Celular Samsung con funda azul')).toBeInTheDocument();
+    expect(within(detail!).getByText('Electrónicos')).toBeInTheDocument();
+    expect(within(detail!).getByText('Ana Rojas')).toBeInTheDocument();
+    expect(within(detail!).getByText('ana.rojas@ucb.edu.bo')).toBeInTheDocument();
+  });
+
   it('muestra los reportes de perdida activos y sus propietarios', async () => {
     renderPage(
       service({ listActiveLostReports: jest.fn().mockResolvedValue([activeLostReport]) }),
