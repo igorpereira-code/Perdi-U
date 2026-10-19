@@ -62,6 +62,41 @@ function renderPage(welfareService: WelfareService = service()) {
 }
 
 describe('Panel de Bienestar', () => {
+  it('confirma la entrega y retira el recojo y el objeto de la oficina', async () => {
+    const pickupItem = {
+      ...publishedItem,
+      code: pendingPickup.foundItem.code,
+      description: pendingPickup.foundItem.description,
+    };
+    const deliver = jest.fn().mockResolvedValue({
+      status: 'DELIVERED',
+      foundItemCode: pickupItem.code,
+    });
+    const welfareService = service({
+      listPendingPickups: jest.fn().mockResolvedValue([pendingPickup]),
+      listInOffice: jest.fn().mockResolvedValue([pickupItem]),
+      deliver,
+    });
+    renderPage(welfareService);
+    const pickupCard = (await screen.findByText('PR-0001')).closest('article');
+    await userEvent.click(
+      within(pickupCard!).getByRole('button', { name: 'Registrar entrega' }),
+    );
+    await userEvent.type(screen.getByLabelText('Código universitario'), '20205678');
+    await userEvent.click(screen.getByRole('button', { name: 'Confirmar entrega' }));
+
+    expect(deliver).toHaveBeenCalledWith({
+      foundItemCode: 'HZ-0001',
+      lostReportCode: 'PR-0001',
+      recipientName: 'Ana Rojas',
+      recipientEmail: 'ana.rojas@ucb.edu.bo',
+      recipientUniversityCode: '20205678',
+    });
+    expect(await screen.findByText('Entrega registrada correctamente')).toBeInTheDocument();
+    expect(screen.queryByLabelText('Código universitario')).not.toBeInTheDocument();
+    expect(screen.queryByText('HZ-0001')).not.toBeInTheDocument();
+  });
+
   it('permite elegir un objeto de la oficina y llenar una entrega sin reporte', async () => {
     renderPage();
     const itemCard = (await screen.findByText('HZ-0003')).closest('article');

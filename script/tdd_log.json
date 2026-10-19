@@ -2534,9 +2534,31 @@
     "testId": 73
   },
   {
-    "commitId": "HEAD",
+    "commitId": "db17e50c0a3f24743388d494d6bd900e323ede6f",
     "commitName": "feat(welfare): elegir un objeto para entregar",
     "commitTimestamp": 1792369226044,
     "testId": 73
+  },
+  {
+    "numPassedTests": 154,
+    "failedTests": 1,
+    "numTotalTests": 155,
+    "timestamp": 1792369273202,
+    "success": false,
+    "testId": 74
+  },
+  {
+    "numPassedTests": 155,
+    "failedTests": 0,
+    "numTotalTests": 155,
+    "timestamp": 1792369323539,
+    "success": true,
+    "testId": 74
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): confirmar entrega desde el panel",
+    "commitTimestamp": 1792369351385,
+    "testId": 74
   }
 ]

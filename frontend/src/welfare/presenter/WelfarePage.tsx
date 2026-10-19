@@ -27,6 +27,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [message, setMessage] = useState<string | null>(null);
   const [receiving, setReceiving] = useState(false);
   const [deliveryDraft, setDeliveryDraft] = useState<DeliveryInput | null>(null);
+  const [delivering, setDelivering] = useState(false);
 
   function startPickupDelivery(pickup: WelfarePendingPickupView) {
     setDeliveryDraft({
@@ -50,6 +51,42 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
 
   function updateDelivery(field: keyof DeliveryInput, value: string) {
     setDeliveryDraft((current) => (current ? { ...current, [field]: value } : current));
+  }
+
+  async function confirmDelivery(event: FormEvent) {
+    event.preventDefault();
+    if (!deliveryDraft || delivering) {
+      return;
+    }
+    setDelivering(true);
+    setMessage(null);
+    try {
+      const result = await welfareService.deliver(deliveryDraft);
+      if (result.status !== 'DELIVERED') {
+        setMessage(
+          result.status === 'REPORT_NOT_ELIGIBLE'
+            ? 'El reporte no corresponde a este objeto o propietario'
+            : result.status === 'ITEM_NOT_AVAILABLE'
+              ? 'El objeto ya no está disponible para entrega'
+              : result.status === 'INVALID_RECIPIENT_EMAIL'
+                ? 'Ingresa un correo institucional válido'
+                : 'Completa todos los datos obligatorios',
+        );
+        return;
+      }
+      setPendingPickups((current) =>
+        current?.filter((pickup) => pickup.foundItem.code !== result.foundItemCode) ?? [],
+      );
+      setInOfficeItems((current) =>
+        current?.filter((item) => item.code !== result.foundItemCode) ?? [],
+      );
+      setDeliveryDraft(null);
+      setMessage('Entrega registrada correctamente');
+    } catch {
+      setMessage('No pudimos registrar la entrega');
+    } finally {
+      setDelivering(false);
+    }
   }
 
   useEffect(() => {
@@ -144,7 +181,10 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       {message && <Alert>{message}</Alert>}
 
       {deliveryDraft && (
-        <section className="space-y-4 rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
+        <form
+          onSubmit={confirmDelivery}
+          className="space-y-4 rounded-2xl border border-neutral-200 bg-neutral-0 p-5"
+        >
           <h2 className="text-lg font-semibold text-blue-700">Registrar entrega</h2>
           <Field id="delivery-item-code" label="Código del objeto a entregar">
             <input
@@ -186,7 +226,10 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
               onChange={(event) => updateDelivery('recipientUniversityCode', event.target.value)}
             />
           </Field>
-        </section>
+          <Button type="submit" disabled={delivering}>
+            Confirmar entrega
+          </Button>
+        </form>
       )}
 
       {selected && (
