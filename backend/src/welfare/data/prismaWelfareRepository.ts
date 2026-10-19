@@ -94,4 +94,41 @@ export const prismaWelfareRepository = {
     });
     return result.count === 1;
   },
+
+  deliver: async (delivery) =>
+    db().$transaction(async (transaction) => {
+      const item = await transaction.foundItem.findFirst({
+        where: {
+          code: delivery.foundItemCode,
+          status: { in: ['IN_CUSTODY', 'PUBLISHED'] },
+          delivery: null,
+        },
+        select: { id: true, code: true },
+      });
+      if (!item) {
+        return { status: 'ITEM_NOT_AVAILABLE' } as const;
+      }
+
+      const recipient = await transaction.user.findUnique({
+        where: { email: delivery.recipientEmail },
+        select: { id: true },
+      });
+      await transaction.delivery.create({
+        data: {
+          foundItemId: item.id,
+          recipientName: delivery.recipientName,
+          recipientEmail: delivery.recipientEmail,
+          recipientUniversityCode: delivery.recipientUniversityCode,
+          recipientUserId: recipient?.id,
+          registeredById: delivery.registeredById,
+          deliveredAt: delivery.deliveredAt,
+        },
+      });
+      await transaction.foundItem.update({
+        where: { id: item.id },
+        data: { status: 'DELIVERED', visibility: 'HIDDEN' },
+      });
+
+      return { status: 'DELIVERED', foundItemCode: item.code } as const;
+    }),
 } satisfies WelfareRepository;

@@ -19,8 +19,21 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
     res.json(await welfare.listPendingPickups());
   });
 
-  router.post('/welfare/deliveries', requireRole('WELFARE'), async (_req, res) => {
-    res.status(501).json({ code: 'NOT_IMPLEMENTED' });
+  router.post('/welfare/deliveries', requireRole('WELFARE'), async (req, res) => {
+    const result = await welfare.deliver({
+      foundItemCode: normalizeCode(req.body.foundItemCode),
+      lostReportCode: null,
+      recipientName: String(req.body.recipientName).trim(),
+      recipientEmail: String(req.body.recipientEmail).trim().toLowerCase(),
+      recipientUniversityCode: String(req.body.recipientUniversityCode).trim(),
+      registeredById: getCurrentUser(req).id,
+      deliveredAt: new Date(),
+    });
+    if (result.status === 'ITEM_NOT_AVAILABLE') {
+      res.status(409).json({ code: result.status });
+      return;
+    }
+    res.status(201).json(result);
   });
 
   router.get('/welfare/found-items/pending', requireRole('WELFARE'), async (_req, res) => {

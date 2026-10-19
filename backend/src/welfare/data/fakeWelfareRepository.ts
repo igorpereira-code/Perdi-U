@@ -1,4 +1,8 @@
-import type { WelfareFoundItem, WelfareRepository } from './welfareRepository';
+import type {
+  DeliveryRegistration,
+  WelfareFoundItem,
+  WelfareRepository,
+} from './welfareRepository';
 import type { LostReportStatus, MatchStatus } from '@shared/statuses';
 import type { WelfarePendingPickupView } from '@shared/welfare';
 
@@ -13,6 +17,7 @@ export function fakeWelfareRepository(
   initialPickups: FakePendingPickup[] = [],
 ) {
   const items = initialItems.map((item) => ({ ...item, finder: item.finder && { ...item.finder } }));
+  const deliveries: DeliveryRegistration[] = [];
 
   const repository: WelfareRepository = {
     listPendingPickups: async () =>
@@ -44,7 +49,16 @@ export function fakeWelfareRepository(
       item.receivedAt = receivedAt;
       return true;
     },
+    deliver: async (delivery) => {
+      const item = items.find((candidate) => candidate.code === delivery.foundItemCode);
+      if (!item || !['IN_CUSTODY', 'PUBLISHED'].includes(item.status)) {
+        return { status: 'ITEM_NOT_AVAILABLE' };
+      }
+      item.status = 'DELIVERED';
+      deliveries.push({ ...delivery });
+      return { status: 'DELIVERED', foundItemCode: item.code };
+    },
   };
 
-  return { repository, items };
+  return { repository, items, deliveries };
 }

@@ -2380,9 +2380,31 @@
     "testId": 66
   },
   {
-    "commitId": "HEAD",
+    "commitId": "472e68dadf3d4364b4c321804bd26cb44569ff4c",
     "commitName": "test(welfare): proteger el registro de entregas",
     "commitTimestamp": 1792368364847,
     "testId": 66
+  },
+  {
+    "numPassedTests": 147,
+    "failedTests": 1,
+    "numTotalTests": 148,
+    "timestamp": 1792368421560,
+    "success": false,
+    "testId": 67
+  },
+  {
+    "numPassedTests": 148,
+    "failedTests": 0,
+    "numTotalTests": 148,
+    "timestamp": 1792368466321,
+    "success": true,
+    "testId": 67
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): registrar entregas sin reporte",
+    "commitTimestamp": 1792368487045,
+    "testId": 67
   }
 ]

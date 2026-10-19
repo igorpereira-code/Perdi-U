@@ -1254,12 +1254,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "472e68dadf3d4364b4c321804bd26cb44569ff4c",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-19T00:06:03.000Z",
       "message": "test(welfare): proteger el registro de entregas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/472e68dadf3d4364b4c321804bd26cb44569ff4c"
     },
     "stats": {
       "total": 11,
@@ -1269,6 +1269,25 @@
     },
     "coverage": 86.9,
     "test_count": 147,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:08:05.000Z",
+      "message": "feat(welfare): registrar entregas sin reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 116,
+      "additions": 112,
+      "deletions": 4,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.53,
+    "test_count": 148,
     "failed_tests": 0,
     "conclusion": "success"
   }
