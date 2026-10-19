@@ -59,7 +59,18 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       const result = await welfareService.findLostReportByCode(lostReportCode);
       if (result.status === 'FOUND') {
         setSelectedLostReport(result.report);
-        setLostReportMatches(await matchesService.getMatches(result.report.code));
+        try {
+          const matches = await matchesService.getMatches(result.report.code);
+          if (matches === null) {
+            setLostReportMatches(null);
+            setLostReportMessage('No pudimos cargar los objetos parecidos');
+          } else {
+            setLostReportMatches(matches);
+          }
+        } catch {
+          setLostReportMatches(null);
+          setLostReportMessage('No pudimos cargar los objetos parecidos');
+        }
         return;
       }
       setSelectedLostReport(null);

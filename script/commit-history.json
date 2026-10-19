@@ -1615,12 +1615,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "fb71badb2dbbafa011150a6dddf0ba7e81e9921b",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-19T01:56:08.000Z",
       "message": "feat(welfare): mostrar objetos parecidos de un reporte",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fb71badb2dbbafa011150a6dddf0ba7e81e9921b"
     },
     "stats": {
       "total": 75,
@@ -1630,6 +1630,25 @@
     },
     "coverage": 83.41,
     "test_count": 167,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T01:59:21.000Z",
+      "message": "fix(welfare): conservar el reporte si fallan sus coincidencias",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 67,
+      "additions": 66,
+      "deletions": 1,
+      "date": "2026-10-19"
+    },
+    "coverage": 83.73,
+    "test_count": 170,
     "failed_tests": 0,
     "conclusion": "success"
   }

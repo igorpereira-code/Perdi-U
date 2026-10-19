@@ -82,6 +82,60 @@ function renderPage(
 }
 
 describe('Panel de Bienestar', () => {
+  it('explica cuando el codigo no corresponde a un reporte activo', async () => {
+    const getMatches = jest.fn();
+    renderPage(
+      service({
+        findLostReportByCode: jest.fn().mockResolvedValue({ status: 'NOT_FOUND' }),
+      }),
+      { ...publishingService(), getMatches },
+    );
+
+    await userEvent.type(screen.getByLabelText('Código del reporte'), 'PR-9999');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar reporte' }));
+
+    expect(
+      await screen.findByText('No encontramos un reporte activo con ese código'),
+    ).toBeInTheDocument();
+    expect(getMatches).not.toHaveBeenCalled();
+  });
+
+  it('explica cuando el reporte no tiene objetos parecidos', async () => {
+    renderPage(
+      service({
+        findLostReportByCode: jest
+          .fn()
+          .mockResolvedValue({ status: 'FOUND', report: activeLostReport }),
+      }),
+    );
+
+    await userEvent.type(screen.getByLabelText('Código del reporte'), 'PR-0001');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar reporte' }));
+
+    expect(await screen.findByText('No hay objetos parecidos')).toBeInTheDocument();
+  });
+
+  it('conserva el reporte y explica si no puede cargar sus objetos parecidos', async () => {
+    renderPage(
+      service({
+        findLostReportByCode: jest
+          .fn()
+          .mockResolvedValue({ status: 'FOUND', report: activeLostReport }),
+      }),
+      {
+        ...publishingService(),
+        getMatches: jest.fn().mockRejectedValue(new Error('network error')),
+      },
+    );
+
+    await userEvent.type(screen.getByLabelText('Código del reporte'), 'PR-0001');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar reporte' }));
+
+    expect(await screen.findByText('No pudimos cargar los objetos parecidos')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Detalle del reporte' })).toBeInTheDocument();
+    expect(screen.getByText('PR-0001')).toBeInTheDocument();
+  });
+
   it('muestra los objetos parecidos del reporte consultado', async () => {
     const getMatches = jest.fn().mockResolvedValue([
       {

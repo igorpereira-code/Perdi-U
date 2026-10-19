@@ -2806,9 +2806,39 @@
     "testId": 85
   },
   {
-    "commitId": "HEAD",
+    "commitId": "fb71badb2dbbafa011150a6dddf0ba7e81e9921b",
     "commitName": "feat(welfare): mostrar objetos parecidos de un reporte",
     "commitTimestamp": 1792374969767,
     "testId": 85
+  },
+  {
+    "numPassedTests": 167,
+    "failedTests": 1,
+    "numTotalTests": 168,
+    "timestamp": 1792375026518,
+    "success": false,
+    "testId": 86
+  },
+  {
+    "numPassedTests": 168,
+    "failedTests": 0,
+    "numTotalTests": 168,
+    "timestamp": 1792375074037,
+    "success": true,
+    "testId": 86
+  },
+  {
+    "numPassedTests": 170,
+    "failedTests": 0,
+    "numTotalTests": 170,
+    "timestamp": 1792375125755,
+    "success": true,
+    "testId": 86
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(welfare): conservar el reporte si fallan sus coincidencias",
+    "commitTimestamp": 1792375162141,
+    "testId": 86
   }
 ]
