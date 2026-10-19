@@ -2402,9 +2402,31 @@
     "testId": 67
   },
   {
-    "commitId": "HEAD",
+    "commitId": "48357ec745a10380bc0547b807d0409e80484993",
     "commitName": "feat(welfare): registrar entregas sin reporte",
     "commitTimestamp": 1792368487045,
     "testId": 67
+  },
+  {
+    "numPassedTests": 148,
+    "failedTests": 1,
+    "numTotalTests": 149,
+    "timestamp": 1792368528872,
+    "success": false,
+    "testId": 68
+  },
+  {
+    "numPassedTests": 149,
+    "failedTests": 0,
+    "numTotalTests": 149,
+    "timestamp": 1792368565795,
+    "success": true,
+    "testId": 68
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): recuperar el reporte al entregar",
+    "commitTimestamp": 1792368591098,
+    "testId": 68
   }
 ]

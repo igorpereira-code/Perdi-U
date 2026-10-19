@@ -22,14 +22,14 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
   router.post('/welfare/deliveries', requireRole('WELFARE'), async (req, res) => {
     const result = await welfare.deliver({
       foundItemCode: normalizeCode(req.body.foundItemCode),
-      lostReportCode: null,
+      lostReportCode: req.body.lostReportCode ? normalizeCode(req.body.lostReportCode) : null,
       recipientName: String(req.body.recipientName).trim(),
       recipientEmail: String(req.body.recipientEmail).trim().toLowerCase(),
       recipientUniversityCode: String(req.body.recipientUniversityCode).trim(),
       registeredById: getCurrentUser(req).id,
       deliveredAt: new Date(),
     });
-    if (result.status === 'ITEM_NOT_AVAILABLE') {
+    if (result.status !== 'DELIVERED') {
       res.status(409).json({ code: result.status });
       return;
     }

@@ -48,6 +48,32 @@ const pendingPickup = {
 };
 
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('entrega con su reporte relacionado y lo marca como recuperado', async () => {
+    const pickupForItem = {
+      ...pendingPickup,
+      foundItem: { code: 'HZ-0003', description: publishedItem.description },
+    };
+    const { repository, items, pickups, deliveries } = fakeWelfareRepository(
+      [publishedItem],
+      [pickupForItem],
+    );
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        foundItemCode: 'HZ-0003',
+        lostReportCode: ' pr-0001 ',
+        recipientName: 'Ana Rojas',
+        recipientEmail: 'ana.rojas@ucb.edu.bo',
+        recipientUniversityCode: '20205678',
+      });
+
+    expect(res.status).toBe(201);
+    expect(items[0].status).toBe('DELIVERED');
+    expect(pickups[0].reportStatus).toBe('RECOVERED');
+    expect(deliveries[0]).toEqual(expect.objectContaining({ lostReportCode: 'PR-0001' }));
+  });
+
   it('registra una entrega sin reporte y marca el objeto como entregado', async () => {
     const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))

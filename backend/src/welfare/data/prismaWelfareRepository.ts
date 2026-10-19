@@ -109,6 +109,24 @@ export const prismaWelfareRepository = {
         return { status: 'ITEM_NOT_AVAILABLE' } as const;
       }
 
+      const report = delivery.lostReportCode
+        ? await transaction.lostReport.findFirst({
+            where: {
+              code: delivery.lostReportCode,
+              status: 'PENDING_PICKUP',
+              delivery: null,
+              owner: { email: delivery.recipientEmail },
+              matches: {
+                some: { foundItemId: item.id, status: 'WILL_PICK_UP' },
+              },
+            },
+            select: { id: true },
+          })
+        : null;
+      if (delivery.lostReportCode && !report) {
+        return { status: 'REPORT_NOT_ELIGIBLE' } as const;
+      }
+
       const recipient = await transaction.user.findUnique({
         where: { email: delivery.recipientEmail },
         select: { id: true },
@@ -116,6 +134,7 @@ export const prismaWelfareRepository = {
       await transaction.delivery.create({
         data: {
           foundItemId: item.id,
+          lostReportId: report?.id,
           recipientName: delivery.recipientName,
           recipientEmail: delivery.recipientEmail,
           recipientUniversityCode: delivery.recipientUniversityCode,
@@ -128,6 +147,12 @@ export const prismaWelfareRepository = {
         where: { id: item.id },
         data: { status: 'DELIVERED', visibility: 'HIDDEN' },
       });
+      if (report) {
+        await transaction.lostReport.update({
+          where: { id: report.id },
+          data: { status: 'RECOVERED' },
+        });
+      }
 
       return { status: 'DELIVERED', foundItemCode: item.code } as const;
     }),

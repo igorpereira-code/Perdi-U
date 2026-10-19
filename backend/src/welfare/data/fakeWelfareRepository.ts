@@ -17,11 +17,17 @@ export function fakeWelfareRepository(
   initialPickups: FakePendingPickup[] = [],
 ) {
   const items = initialItems.map((item) => ({ ...item, finder: item.finder && { ...item.finder } }));
+  const pickups = initialPickups.map((pickup) => ({
+    ...pickup,
+    owner: { ...pickup.owner },
+    report: { ...pickup.report },
+    foundItem: { ...pickup.foundItem },
+  }));
   const deliveries: DeliveryRegistration[] = [];
 
   const repository: WelfareRepository = {
     listPendingPickups: async () =>
-      initialPickups
+      pickups
         .filter(
           (pickup) =>
             pickup.matchStatus === 'WILL_PICK_UP' && pickup.reportStatus === 'PENDING_PICKUP',
@@ -54,11 +60,27 @@ export function fakeWelfareRepository(
       if (!item || !['IN_CUSTODY', 'PUBLISHED'].includes(item.status)) {
         return { status: 'ITEM_NOT_AVAILABLE' };
       }
+      const pickup = delivery.lostReportCode
+        ? pickups.find(
+            (candidate) =>
+              candidate.report.code === delivery.lostReportCode &&
+              candidate.foundItem.code === item.code &&
+              candidate.owner.email.toLowerCase() === delivery.recipientEmail &&
+              candidate.matchStatus === 'WILL_PICK_UP' &&
+              candidate.reportStatus === 'PENDING_PICKUP',
+          )
+        : null;
+      if (delivery.lostReportCode && !pickup) {
+        return { status: 'REPORT_NOT_ELIGIBLE' };
+      }
       item.status = 'DELIVERED';
+      if (pickup) {
+        pickup.reportStatus = 'RECOVERED';
+      }
       deliveries.push({ ...delivery });
       return { status: 'DELIVERED', foundItemCode: item.code };
     },
   };
 
-  return { repository, items, deliveries };
+  return { repository, items, pickups, deliveries };
 }
