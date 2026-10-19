@@ -13,6 +13,26 @@ const item: WelfareFoundItemView = {
 };
 
 describe('Servicio de recepcion de Bienestar', () => {
+  it('busca un reporte de perdida con el codigo normalizado', async () => {
+    const report: WelfareLostReportView = {
+      code: 'PR-0001',
+      description: 'Celular Samsung con funda azul',
+      photoUrl: null,
+      category: 'Electrónicos',
+      dateFrom: '2026-10-10T00:00:00.000Z',
+      dateTo: '2026-10-11T00:00:00.000Z',
+      status: 'HAS_MATCHES',
+      owner: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+    };
+    const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => report });
+
+    await expect(createWelfareService(apiFetch).findLostReportByCode(' pr-0001 ')).resolves.toEqual({
+      status: 'FOUND',
+      report,
+    });
+    expect(apiFetch).toHaveBeenCalledWith('/welfare/lost-reports/PR-0001');
+  });
+
   it('trae los reportes de perdida activos', async () => {
     const report: WelfareLostReportView = {
       code: 'PR-0001',

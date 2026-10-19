@@ -37,6 +37,7 @@ const pendingPickup: WelfarePendingPickupView = {
 function service(overrides: Partial<WelfareService> = {}): WelfareService {
   return {
     listActiveLostReports: jest.fn().mockResolvedValue([]),
+    findLostReportByCode: jest.fn(),
     listPendingPickups: jest.fn().mockResolvedValue([]),
     listPending: jest.fn().mockResolvedValue([item]),
     listInOffice: jest.fn().mockResolvedValue([inCustodyItem, publishedItem]),

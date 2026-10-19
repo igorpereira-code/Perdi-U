@@ -25,8 +25,13 @@ export type DeliveryResult =
   | { status: 'INVALID_DELIVERY_DATA' }
   | { status: 'INVALID_RECIPIENT_EMAIL' };
 
+export type WelfareLostReportResult =
+  | { status: 'FOUND'; report: WelfareLostReportView }
+  | { status: 'NOT_FOUND' };
+
 export type WelfareService = {
   listActiveLostReports: () => Promise<WelfareLostReportView[]>;
+  findLostReportByCode: (code: string) => Promise<WelfareLostReportResult>;
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItemView[]>;
   listInOffice: () => Promise<WelfareFoundItemView[]>;
@@ -60,6 +65,16 @@ export function createWelfareService(apiFetch: ApiFetch): WelfareService {
         throw new Error('No se pudieron consultar los reportes de pérdida');
       }
       return response.json();
+    },
+    findLostReportByCode: async (code) => {
+      const response = await apiFetch(`/welfare/lost-reports/${normalizeCode(code)}`);
+      if (response.ok) {
+        return { status: 'FOUND', report: await response.json() };
+      }
+      if (response.status === 404) {
+        return { status: 'NOT_FOUND' };
+      }
+      throw new Error('No se pudo consultar el reporte de pérdida');
     },
     listPendingPickups: async () => {
       const response = await apiFetch('/welfare/pending-pickups');

@@ -2710,9 +2710,31 @@
     "testId": 81
   },
   {
-    "commitId": "HEAD",
+    "commitId": "15db924b6de0500c93601829e4b78f35f44be108",
     "commitName": "feat(welfare): consultar reportes activos desde el frontend",
     "commitTimestamp": 1792374348641,
     "testId": 81
+  },
+  {
+    "numPassedTests": 163,
+    "failedTests": 1,
+    "numTotalTests": 164,
+    "timestamp": 1792374388100,
+    "success": false,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 164,
+    "failedTests": 0,
+    "numTotalTests": 164,
+    "timestamp": 1792374431464,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): buscar reportes desde el frontend",
+    "commitTimestamp": 1792374456145,
+    "testId": 82
   }
 ]
