@@ -1,6 +1,7 @@
 import type {
   DeliveryRegistration,
   WelfareFoundItem,
+  WelfareLostReport,
   WelfareRepository,
 } from './welfareRepository';
 import type { LostReportStatus, MatchStatus } from '@shared/statuses';
@@ -15,6 +16,7 @@ type FakePendingPickup = WelfarePendingPickupView & {
 export function fakeWelfareRepository(
   initialItems: WelfareFoundItem[],
   initialPickups: FakePendingPickup[] = [],
+  initialReports: WelfareLostReport[] = [],
 ) {
   const items = initialItems.map((item) => ({ ...item, finder: item.finder && { ...item.finder } }));
   const pickups = initialPickups.map((pickup) => ({
@@ -24,8 +26,13 @@ export function fakeWelfareRepository(
     foundItem: { ...pickup.foundItem },
   }));
   const deliveries: DeliveryRegistration[] = [];
+  const reports = initialReports.map((report) => ({ ...report, owner: { ...report.owner } }));
 
   const repository: WelfareRepository = {
+    listActiveLostReports: async () =>
+      reports
+        .filter((report) => report.status !== 'RECOVERED')
+        .map((report) => ({ ...report, owner: { ...report.owner } })),
     listPendingPickups: async () =>
       pickups
         .filter(

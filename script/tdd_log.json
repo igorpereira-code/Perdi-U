@@ -2644,9 +2644,31 @@
     "testId": 78
   },
   {
-    "commitId": "HEAD",
+    "commitId": "746d331e7ec4df2a897e014d49a6cd2d0bd85de1",
     "commitName": "feat(welfare): consultar coincidencias de otros reportes",
     "commitTimestamp": 1792374016189,
     "testId": 78
+  },
+  {
+    "numPassedTests": 160,
+    "failedTests": 1,
+    "numTotalTests": 161,
+    "timestamp": 1792374058050,
+    "success": false,
+    "testId": 79
+  },
+  {
+    "numPassedTests": 161,
+    "failedTests": 0,
+    "numTotalTests": 161,
+    "timestamp": 1792374100843,
+    "success": true,
+    "testId": 79
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): listar reportes de perdida activos",
+    "commitTimestamp": 1792374125683,
+    "testId": 79
   }
 ]
