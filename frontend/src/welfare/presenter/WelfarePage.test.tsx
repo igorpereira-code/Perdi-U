@@ -1,7 +1,11 @@
 import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { ComponentType } from 'react';
-import type { WelfareFoundItemView, WelfarePendingPickupView } from '@shared/welfare';
+import type {
+  WelfareFoundItemView,
+  WelfareLostReportView,
+  WelfarePendingPickupView,
+} from '@shared/welfare';
 import type { MatchesService } from '../../matching/data/matchesService';
 import type { WelfareResult, WelfareService } from '../data/welfareService';
 import { WelfarePage } from './WelfarePage';
@@ -34,6 +38,17 @@ const pendingPickup: WelfarePendingPickupView = {
   foundItem: { code: 'HZ-0001', description: 'Celular Samsung con funda azul' },
 };
 
+const activeLostReport: WelfareLostReportView = {
+  code: 'PR-0001',
+  description: 'Celular Samsung con funda azul',
+  photoUrl: null,
+  category: 'Electrónicos',
+  dateFrom: '2026-10-10T00:00:00.000Z',
+  dateTo: '2026-10-11T00:00:00.000Z',
+  status: 'HAS_MATCHES',
+  owner: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+};
+
 function service(overrides: Partial<WelfareService> = {}): WelfareService {
   return {
     listActiveLostReports: jest.fn().mockResolvedValue([]),
@@ -64,6 +79,22 @@ function renderPage(welfareService: WelfareService = service()) {
 }
 
 describe('Panel de Bienestar', () => {
+  it('muestra los reportes de perdida activos y sus propietarios', async () => {
+    renderPage(
+      service({ listActiveLostReports: jest.fn().mockResolvedValue([activeLostReport]) }),
+    );
+
+    const section = (await screen.findByRole('heading', {
+      name: 'Reportes de pérdida activos',
+    })).closest('section');
+    expect(section).not.toBeNull();
+    expect(await within(section!).findByText('PR-0001')).toBeInTheDocument();
+    expect(within(section!).getByText('Celular Samsung con funda azul')).toBeInTheDocument();
+    expect(within(section!).getByText('Ana Rojas')).toBeInTheDocument();
+    expect(within(section!).getByText('ana.rojas@ucb.edu.bo')).toBeInTheDocument();
+    expect(within(section!).getByText('Con coincidencias')).toBeInTheDocument();
+  });
+
   it('mantiene el formulario y explica si el reporte no corresponde', async () => {
     renderPage(
       service({

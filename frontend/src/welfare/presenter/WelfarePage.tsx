@@ -1,5 +1,9 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import type { WelfareFoundItemView, WelfarePendingPickupView } from '@shared/welfare';
+import type {
+  WelfareFoundItemView,
+  WelfareLostReportView,
+  WelfarePendingPickupView,
+} from '@shared/welfare';
 import type { DeliveryInput, WelfareService } from '../data/welfareService';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
@@ -17,6 +21,8 @@ type WelfarePageProps = {
 };
 
 export function WelfarePage({ welfareService, matchesService }: WelfarePageProps) {
+  const [lostReports, setLostReports] = useState<WelfareLostReportView[] | null>(null);
+  const [lostReportsError, setLostReportsError] = useState(false);
   const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
   const [pendingPickupsError, setPendingPickupsError] = useState(false);
   const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
@@ -28,6 +34,16 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [receiving, setReceiving] = useState(false);
   const [deliveryDraft, setDeliveryDraft] = useState<DeliveryInput | null>(null);
   const [delivering, setDelivering] = useState(false);
+
+  useEffect(() => {
+    welfareService
+      .listActiveLostReports()
+      .then(setLostReports)
+      .catch(() => {
+        setLostReports([]);
+        setLostReportsError(true);
+      });
+  }, [welfareService]);
 
   function startPickupDelivery(pickup: WelfarePendingPickupView) {
     setDeliveryDraft({
@@ -248,6 +264,38 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
           </Button>
         </section>
       )}
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-blue-700">Reportes de pérdida activos</h2>
+        {lostReportsError ? (
+          <Alert>No pudimos cargar los reportes de pérdida</Alert>
+        ) : lostReports === null ? (
+          <p>Cargando reportes de pérdida...</p>
+        ) : lostReports.length === 0 ? (
+          <EmptyState
+            title="No hay reportes de pérdida activos"
+            text="No hay propietarios buscando objetos en este momento."
+          />
+        ) : (
+          <div className="grid gap-3 md:grid-cols-2">
+            {lostReports.map((report) => (
+              <article
+                key={report.code}
+                className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4"
+              >
+                <Thumb category={report.category} photoUrl={report.photoUrl} />
+                <div className="space-y-1">
+                  <strong>{report.code}</strong>
+                  <p>{report.description}</p>
+                  <StatusChip status={report.status} />
+                  <p>{report.owner.name}</p>
+                  <p>{report.owner.email}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-blue-700">Recojos pendientes</h2>

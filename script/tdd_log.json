@@ -2732,9 +2732,39 @@
     "testId": 82
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1d7434bd6b190db4c15fc5a3ce8059cc69cac5ac",
     "commitName": "feat(welfare): buscar reportes desde el frontend",
     "commitTimestamp": 1792374456145,
     "testId": 82
+  },
+  {
+    "numPassedTests": 164,
+    "failedTests": 1,
+    "numTotalTests": 165,
+    "timestamp": 1792374503205,
+    "success": false,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 164,
+    "failedTests": 1,
+    "numTotalTests": 165,
+    "timestamp": 1792374550033,
+    "success": false,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 165,
+    "failedTests": 0,
+    "numTotalTests": 165,
+    "timestamp": 1792374592660,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar reportes de perdida activos",
+    "commitTimestamp": 1792374631946,
+    "testId": 83
   }
 ]
