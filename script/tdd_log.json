@@ -1928,9 +1928,39 @@
     "testId": 48
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0334bc174dc2541d20d0c831bbb32562e4884d06",
     "commitName": "feat(finder): validar campos obligatorios del reporte",
     "commitTimestamp": 1792352317773,
     "testId": 48
+  },
+  {
+    "numPassedTests": 150,
+    "failedTests": 53,
+    "numTotalTests": 203,
+    "timestamp": 1792433898149,
+    "success": false,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 215,
+    "failedTests": 0,
+    "numTotalTests": 215,
+    "timestamp": 1792434031081,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 215,
+    "failedTests": 0,
+    "numTotalTests": 215,
+    "timestamp": 1792434129167,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): implementar backend de reporte encontrado",
+    "commitTimestamp": 1792434427175,
+    "testId": 49
   }
 ]
