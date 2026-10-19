@@ -1642,9 +1642,15 @@
     "testId": 39
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5a6e080ddc3eaf22246b69e54bd3d814a4b4d1b9",
     "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
     "commitTimestamp": 1792199780960,
     "testId": 39
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: permite abrir cualquier pantalla al recargar en producción",
+    "commitTimestamp": 1792376448779,
+    "testId": 40
   }
 ]
