@@ -25,7 +25,8 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
   });
 
   router.post('/welfare/deliveries', requireRole('WELFARE'), async (req, res) => {
-    const foundItemCode = normalizeCode(req.body.foundItemCode);
+    const rawFoundItemCode = requiredText(req.body.foundItemCode);
+    const foundItemCode = rawFoundItemCode ? normalizeCode(rawFoundItemCode) : '';
     const recipientName = requiredText(req.body.recipientName);
     const recipientEmail = requiredText(req.body.recipientEmail).toLowerCase();
     const recipientUniversityCode = requiredText(req.body.recipientUniversityCode);

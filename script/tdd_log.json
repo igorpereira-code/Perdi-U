@@ -2576,9 +2576,47 @@
     "testId": 75
   },
   {
-    "commitId": "HEAD",
+    "commitId": "70476201075b983bd503b426606a45821e1c7610",
     "commitName": "test(welfare): actualizar el doble del servicio",
     "commitTimestamp": 1792369559319,
     "testId": 76
+  },
+  {
+    "numPassedTests": 158,
+    "failedTests": 0,
+    "numTotalTests": 158,
+    "timestamp": 1792369617384,
+    "success": true,
+    "testId": 77
+  },
+  {
+    "numPassedTests": 158,
+    "failedTests": 0,
+    "numTotalTests": 158,
+    "timestamp": 1792369662932,
+    "success": true,
+    "testId": 77
+  },
+  {
+    "numPassedTests": 158,
+    "failedTests": 1,
+    "numTotalTests": 159,
+    "timestamp": 1792369942701,
+    "success": false,
+    "testId": 77
+  },
+  {
+    "numPassedTests": 159,
+    "failedTests": 0,
+    "numTotalTests": 159,
+    "timestamp": 1792369974997,
+    "success": true,
+    "testId": 77
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): validar el codigo al entregar",
+    "commitTimestamp": 1792370007142,
+    "testId": 77
   }
 ]

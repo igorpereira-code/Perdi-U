@@ -48,6 +48,22 @@ const pendingPickup = {
 };
 
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('rechaza una entrega sin codigo de objeto', async () => {
+    const { repository, deliveries } = fakeWelfareRepository([publishedItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        recipientName: 'Ana Rojas',
+        recipientEmail: 'ana.rojas@ucb.edu.bo',
+        recipientUniversityCode: '20205678',
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ code: 'INVALID_DELIVERY_DATA' });
+    expect(deliveries).toEqual([]);
+  });
+
   it('no entrega si el reporte no corresponde al objeto y propietario', async () => {
     const { repository, items, deliveries } = fakeWelfareRepository(
       [publishedItem],
