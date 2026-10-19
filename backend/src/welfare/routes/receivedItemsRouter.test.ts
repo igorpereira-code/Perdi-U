@@ -48,6 +48,19 @@ const pendingPickup = {
 };
 
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('rechaza una entrega si faltan los datos obligatorios del receptor', async () => {
+    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({ foundItemCode: 'HZ-0003', recipientName: 'Ana Rojas' });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ code: 'INVALID_DELIVERY_DATA' });
+    expect(items[0].status).toBe('PUBLISHED');
+    expect(deliveries).toEqual([]);
+  });
+
   it('entrega con su reporte relacionado y lo marca como recuperado', async () => {
     const pickupForItem = {
       ...pendingPickup,

@@ -12,6 +12,10 @@ function normalizeCode(value: unknown): string {
   return String(value).trim().toUpperCase();
 }
 
+function requiredText(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
 export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
   const router = Router();
 
@@ -20,12 +24,20 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
   });
 
   router.post('/welfare/deliveries', requireRole('WELFARE'), async (req, res) => {
+    const foundItemCode = normalizeCode(req.body.foundItemCode);
+    const recipientName = requiredText(req.body.recipientName);
+    const recipientEmail = requiredText(req.body.recipientEmail).toLowerCase();
+    const recipientUniversityCode = requiredText(req.body.recipientUniversityCode);
+    if (!foundItemCode || !recipientName || !recipientEmail || !recipientUniversityCode) {
+      res.status(400).json({ code: 'INVALID_DELIVERY_DATA' });
+      return;
+    }
     const result = await welfare.deliver({
-      foundItemCode: normalizeCode(req.body.foundItemCode),
+      foundItemCode,
       lostReportCode: req.body.lostReportCode ? normalizeCode(req.body.lostReportCode) : null,
-      recipientName: String(req.body.recipientName).trim(),
-      recipientEmail: String(req.body.recipientEmail).trim().toLowerCase(),
-      recipientUniversityCode: String(req.body.recipientUniversityCode).trim(),
+      recipientName,
+      recipientEmail,
+      recipientUniversityCode,
       registeredById: getCurrentUser(req).id,
       deliveredAt: new Date(),
     });

@@ -1292,12 +1292,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "dbd0cd8bca6772766a2fac44be3dd4f390f82651",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-19T00:09:49.000Z",
       "message": "feat(welfare): recuperar el reporte al entregar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/dbd0cd8bca6772766a2fac44be3dd4f390f82651"
     },
     "stats": {
       "total": 81,
@@ -1307,6 +1307,25 @@
     },
     "coverage": 84.78,
     "test_count": 149,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:11:39.000Z",
+      "message": "test(welfare): validar datos obligatorios de entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 33,
+      "additions": 29,
+      "deletions": 4,
+      "date": "2026-10-19"
+    },
+    "coverage": 85,
+    "test_count": 150,
     "failed_tests": 0,
     "conclusion": "success"
   }

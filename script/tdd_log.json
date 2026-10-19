@@ -2424,9 +2424,31 @@
     "testId": 68
   },
   {
-    "commitId": "HEAD",
+    "commitId": "dbd0cd8bca6772766a2fac44be3dd4f390f82651",
     "commitName": "feat(welfare): recuperar el reporte al entregar",
     "commitTimestamp": 1792368591098,
     "testId": 68
+  },
+  {
+    "numPassedTests": 149,
+    "failedTests": 1,
+    "numTotalTests": 150,
+    "timestamp": 1792368635374,
+    "success": false,
+    "testId": 69
+  },
+  {
+    "numPassedTests": 150,
+    "failedTests": 0,
+    "numTotalTests": 150,
+    "timestamp": 1792368671379,
+    "success": true,
+    "testId": 69
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): validar datos obligatorios de entrega",
+    "commitTimestamp": 1792368700375,
+    "testId": 69
   }
 ]
