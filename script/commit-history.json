@@ -1311,12 +1311,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6e799242ea91efcfb87d7efbd6098844baab694f",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-19T00:11:39.000Z",
       "message": "test(welfare): validar datos obligatorios de entrega",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6e799242ea91efcfb87d7efbd6098844baab694f"
     },
     "stats": {
       "total": 33,
@@ -1326,6 +1326,25 @@
     },
     "coverage": 85,
     "test_count": 150,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:14:01.000Z",
+      "message": "test(welfare): exigir correo institucional al entregar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 23,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.08,
+    "test_count": 151,
     "failed_tests": 0,
     "conclusion": "success"
   }

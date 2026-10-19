@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import type { WelfareFoundItemView } from '@shared/welfare';
 import { getCurrentUser, requireRole } from '../../core/currentUser';
+import { isInstitutionalEmail } from '../../core/logic/institutionalEmail';
 import type { WelfareFoundItem, WelfareRepository } from '../data/welfareRepository';
 
 function toView(item: WelfareFoundItem): WelfareFoundItemView {
@@ -30,6 +31,10 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
     const recipientUniversityCode = requiredText(req.body.recipientUniversityCode);
     if (!foundItemCode || !recipientName || !recipientEmail || !recipientUniversityCode) {
       res.status(400).json({ code: 'INVALID_DELIVERY_DATA' });
+      return;
+    }
+    if (!isInstitutionalEmail(recipientEmail)) {
+      res.status(400).json({ code: 'INVALID_RECIPIENT_EMAIL' });
       return;
     }
     const result = await welfare.deliver({

@@ -48,6 +48,24 @@ const pendingPickup = {
 };
 
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('rechaza un correo no institucional para la entrega', async () => {
+    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        foundItemCode: 'HZ-0003',
+        recipientName: 'Ana Rojas',
+        recipientEmail: 'ana@gmail.com',
+        recipientUniversityCode: '20205678',
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ code: 'INVALID_RECIPIENT_EMAIL' });
+    expect(items[0].status).toBe('PUBLISHED');
+    expect(deliveries).toEqual([]);
+  });
+
   it('rechaza una entrega si faltan los datos obligatorios del receptor', async () => {
     const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))

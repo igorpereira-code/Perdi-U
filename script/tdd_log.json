@@ -2446,9 +2446,31 @@
     "testId": 69
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6e799242ea91efcfb87d7efbd6098844baab694f",
     "commitName": "test(welfare): validar datos obligatorios de entrega",
     "commitTimestamp": 1792368700375,
     "testId": 69
+  },
+  {
+    "numPassedTests": 150,
+    "failedTests": 1,
+    "numTotalTests": 151,
+    "timestamp": 1792368764791,
+    "success": false,
+    "testId": 70
+  },
+  {
+    "numPassedTests": 151,
+    "failedTests": 0,
+    "numTotalTests": 151,
+    "timestamp": 1792368807035,
+    "success": true,
+    "testId": 70
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): exigir correo institucional al entregar",
+    "commitTimestamp": 1792368842571,
+    "testId": 70
   }
 ]
