@@ -9,6 +9,35 @@ const item: WelfareFoundItemView = {
 };
 
 describe('Servicio de recepcion de Bienestar', () => {
+  it('registra una entrega con los datos del receptor y reporte opcional', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ status: 'DELIVERED', foundItemCode: 'HZ-0003' }),
+    });
+    const delivery = {
+      foundItemCode: ' hz-0003 ',
+      lostReportCode: ' pr-0001 ',
+      recipientName: 'Ana Rojas',
+      recipientEmail: 'ANA.ROJAS@UCB.EDU.BO',
+      recipientUniversityCode: '20205678',
+    };
+
+    await expect(createWelfareService(apiFetch).deliver(delivery)).resolves.toEqual({
+      status: 'DELIVERED',
+      foundItemCode: 'HZ-0003',
+    });
+    expect(apiFetch).toHaveBeenCalledWith('/welfare/deliveries', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...delivery,
+        foundItemCode: 'HZ-0003',
+        lostReportCode: 'PR-0001',
+        recipientEmail: 'ana.rojas@ucb.edu.bo',
+      }),
+    });
+  });
+
   it('trae los recojos pendientes', async () => {
     const pickup: WelfarePendingPickupView = {
       matchId: 'match-1',

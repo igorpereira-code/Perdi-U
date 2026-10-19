@@ -41,6 +41,7 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
     listInOffice: jest.fn().mockResolvedValue([inCustodyItem, publishedItem]),
     findByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
     receive: jest.fn(),
+    deliver: jest.fn(),
     ...overrides,
   };
 }
