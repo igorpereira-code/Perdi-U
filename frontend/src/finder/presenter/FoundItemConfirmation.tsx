@@ -1,4 +1,5 @@
 import { Alert } from '../../core/presenter/Alert';
+import { WelfareCard } from '../../core/presenter/WelfareCard';
 
 export function FoundItemConfirmation({ code }: { code: string }) {
   return (
@@ -12,6 +13,7 @@ export function FoundItemConfirmation({ code }: { code: string }) {
       <Alert>
         No entregues el objeto directamente a su dueño. Debes llevarlo a Bienestar Estudiantil
       </Alert>
+      <WelfareCard />
     </section>
   );
 }

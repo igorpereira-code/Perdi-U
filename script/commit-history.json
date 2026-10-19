@@ -988,12 +988,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "e2be32d7a14cdc7307df0626ace859cfd1e19c06",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-19T22:52:40.000Z",
       "message": "feat(finder): advertir entrega del objeto en Bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/e2be32d7a14cdc7307df0626ace859cfd1e19c06"
     },
     "stats": {
       "total": 44,
@@ -1003,6 +1003,25 @@
     },
     "coverage": 90.87,
     "test_count": 298,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-19T23:00:46.000Z",
+      "message": "feat(finder): mostrar ubicación y horario de Bienestar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 31,
+      "additions": 26,
+      "deletions": 5,
+      "date": "2026-10-19"
+    },
+    "coverage": 90.87,
+    "test_count": 300,
     "failed_tests": 0,
     "conclusion": "success"
   }

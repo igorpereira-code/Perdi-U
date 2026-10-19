@@ -2080,9 +2080,39 @@
     "testId": 52
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e2be32d7a14cdc7307df0626ace859cfd1e19c06",
     "commitName": "feat(finder): advertir entrega del objeto en Bienestar",
     "commitTimestamp": 1792450362316,
     "testId": 52
+  },
+  {
+    "numPassedTests": 298,
+    "failedTests": 2,
+    "numTotalTests": 300,
+    "timestamp": 1792450439848,
+    "success": false,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 300,
+    "failedTests": 0,
+    "numTotalTests": 300,
+    "timestamp": 1792450501036,
+    "success": true,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 300,
+    "failedTests": 0,
+    "numTotalTests": 300,
+    "timestamp": 1792450559549,
+    "success": true,
+    "testId": 53
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): mostrar ubicación y horario de Bienestar",
+    "commitTimestamp": 1792450848026,
+    "testId": 53
   }
 ]

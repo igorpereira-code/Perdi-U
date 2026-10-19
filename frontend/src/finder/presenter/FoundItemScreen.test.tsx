@@ -1,5 +1,6 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { WELFARE_OFFICE } from '@shared/constants';
 import type { FoundItemsService } from '../data/foundItemsService';
 import { FoundItemScreen } from './FoundItemScreen';
 
@@ -16,7 +17,7 @@ function fakeService(): jest.Mocked<FoundItemsService> {
   };
 }
 
-async function fillForm(user: ReturnType<typeof userEvent.setup>) {
+async function fillForm(user: ReturnType<typeof userEvent.setup>, withPhoto = false) {
   await screen.findByRole('option', { name: 'Llaves reales' });
   await user.type(screen.getByLabelText('Descripción del objeto'), 'Llaves azules');
   await user.selectOptions(screen.getByLabelText('Categoría'), '47');
@@ -24,6 +25,9 @@ async function fillForm(user: ReturnType<typeof userEvent.setup>) {
   await user.selectOptions(screen.getByLabelText('Aula'), '216');
   await user.type(screen.getByLabelText('Referencia del lugar'), 'Sobre la mesa');
   fireEvent.change(screen.getByLabelText('Fecha del hallazgo'), { target: { value: '2026-10-19' } });
+  if (withPhoto) {
+    await user.upload(screen.getByLabelText('Foto del objeto'), new File(['imagen'], 'llaves.png', { type: 'image/png' }));
+  }
 }
 
 beforeEach(() => {
@@ -135,10 +139,7 @@ describe('Instrucciones de entrega después del registro (CA11)', () => {
     const service = fakeService();
     service.create.mockResolvedValue({ code, status: 'PENDING_DROP_OFF' });
     render(<FoundItemScreen foundItemsService={service} />);
-    await fillForm(user);
-    if (withPhoto) {
-      await user.upload(screen.getByLabelText('Foto del objeto'), new File(['imagen'], 'llaves.png', { type: 'image/png' }));
-    }
+    await fillForm(user, withPhoto);
 
     await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
 
@@ -213,5 +214,23 @@ describe('Advertencia de entrega a Bienestar Estudiantil (CA12)', () => {
     expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
     expect(screen.getByRole('note')).toHaveTextContent(warningText);
     expect(service.create).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe('Ubicación y horario de Bienestar después del registro (CA13)', () => {
+  it.each([false, true])('muestra dónde y cuándo entregar el objeto tras guardar, con fotografía: %s', async (withPhoto) => {
+    const user = userEvent.setup();
+    const service = fakeService();
+    render(<FoundItemScreen foundItemsService={service} />);
+    await fillForm(user, withPhoto);
+    expect(screen.queryByText(WELFARE_OFFICE.place)).not.toBeInTheDocument();
+    expect(screen.queryByText(WELFARE_OFFICE.hours)).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+
+    expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
+    expect(screen.getByText(WELFARE_OFFICE.place)).toBeVisible();
+    expect(screen.getByText(WELFARE_OFFICE.hours)).toBeVisible();
+    expect(screen.getByRole('status')).toHaveTextContent('HZ-7325');
   });
 });
