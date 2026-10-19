@@ -41,6 +41,7 @@ function renderAt(path: string, user: AppUser | null | Error, matches: MatchView
     publish: jest.fn(),
   };
   const welfareService: WelfareService = {
+    listActiveLostReports: jest.fn().mockResolvedValue([]),
     listPendingPickups: jest.fn().mockResolvedValue([]),
     listPending: jest.fn().mockResolvedValue([]),
     listInOffice: jest.fn().mockResolvedValue([]),

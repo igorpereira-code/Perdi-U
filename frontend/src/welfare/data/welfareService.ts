@@ -1,4 +1,8 @@
-import type { WelfareFoundItemView, WelfarePendingPickupView } from '@shared/welfare';
+import type {
+  WelfareFoundItemView,
+  WelfareLostReportView,
+  WelfarePendingPickupView,
+} from '@shared/welfare';
 import type { ApiFetch } from '../../core/data/api';
 
 export type WelfareResult =
@@ -22,6 +26,7 @@ export type DeliveryResult =
   | { status: 'INVALID_RECIPIENT_EMAIL' };
 
 export type WelfareService = {
+  listActiveLostReports: () => Promise<WelfareLostReportView[]>;
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItemView[]>;
   listInOffice: () => Promise<WelfareFoundItemView[]>;
@@ -49,6 +54,13 @@ async function itemResult(response: Response): Promise<WelfareResult> {
 
 export function createWelfareService(apiFetch: ApiFetch): WelfareService {
   return {
+    listActiveLostReports: async () => {
+      const response = await apiFetch('/welfare/lost-reports');
+      if (!response.ok) {
+        throw new Error('No se pudieron consultar los reportes de pérdida');
+      }
+      return response.json();
+    },
     listPendingPickups: async () => {
       const response = await apiFetch('/welfare/pending-pickups');
       if (!response.ok) {
