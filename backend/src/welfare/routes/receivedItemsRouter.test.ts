@@ -60,6 +60,28 @@ const activeLostReport = {
 };
 
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('impide que una cuenta de comunidad consulte reportes desde Bienestar', async () => {
+    const { repository } = fakeWelfareRepository([], [], [activeLostReport]);
+
+    const res = await request(createApp({ welfare: repository })).get(
+      '/welfare/lost-reports',
+    );
+
+    expect(res.status).toBe(403);
+  });
+
+  it('responde que no existe si el reporte no esta activo', async () => {
+    const { repository } = fakeWelfareRepository([], [], [
+      { ...activeLostReport, status: 'RECOVERED' },
+    ]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/lost-reports/PR-0001')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(404);
+  });
+
   it('busca un reporte activo por codigo y muestra sus datos y propietario', async () => {
     const { repository } = fakeWelfareRepository([], [], [activeLostReport]);
     const res = await request(createApp({ welfare: repository }))

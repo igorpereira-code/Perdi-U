@@ -1634,12 +1634,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f30878f56a303ee1ffc4bdb960be9c62472293a9",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-19T01:59:21.000Z",
       "message": "fix(welfare): conservar el reporte si fallan sus coincidencias",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f30878f56a303ee1ffc4bdb960be9c62472293a9"
     },
     "stats": {
       "total": 67,
@@ -1649,6 +1649,25 @@
     },
     "coverage": 83.73,
     "test_count": 170,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T02:01:42.000Z",
+      "message": "test(welfare): verificar acceso a reportes activos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 22,
+      "additions": 22,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.02,
+    "test_count": 172,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -2836,9 +2836,23 @@
     "testId": 86
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f30878f56a303ee1ffc4bdb960be9c62472293a9",
     "commitName": "fix(welfare): conservar el reporte si fallan sus coincidencias",
     "commitTimestamp": 1792375162141,
     "testId": 86
+  },
+  {
+    "numPassedTests": 172,
+    "failedTests": 0,
+    "numTotalTests": 172,
+    "timestamp": 1792375234942,
+    "success": true,
+    "testId": 87
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): verificar acceso a reportes activos",
+    "commitTimestamp": 1792375303466,
+    "testId": 87
   }
 ]
