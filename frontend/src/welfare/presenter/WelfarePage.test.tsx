@@ -65,20 +65,58 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
 
 function publishingService(): MatchesService {
   return {
-    getMatches: jest.fn(),
+    getMatches: jest.fn().mockResolvedValue([]),
     pickUp: jest.fn(),
     dismiss: jest.fn(),
     publish: jest.fn().mockResolvedValue({ status: 'PUBLISHED', matchCount: 2 }),
   };
 }
 
-function renderPage(welfareService: WelfareService = service()) {
+function renderPage(
+  welfareService: WelfareService = service(),
+  matchesService: MatchesService = publishingService(),
+) {
   return render(
-    <WelfarePage welfareService={welfareService} matchesService={publishingService()} />,
+    <WelfarePage welfareService={welfareService} matchesService={matchesService} />,
   );
 }
 
 describe('Panel de Bienestar', () => {
+  it('muestra los objetos parecidos del reporte consultado', async () => {
+    const getMatches = jest.fn().mockResolvedValue([
+      {
+        id: 'match-1',
+        status: 'SUGGESTED',
+        similarity: 0.86,
+        foundItem: {
+          code: 'HZ-0001',
+          description: 'Celular Samsung con funda azul',
+          photoUrl: null,
+          category: 'Electrónicos',
+        },
+      },
+    ]);
+    renderPage(
+      service({
+        findLostReportByCode: jest
+          .fn()
+          .mockResolvedValue({ status: 'FOUND', report: activeLostReport }),
+      }),
+      { ...publishingService(), getMatches },
+    );
+
+    await userEvent.type(screen.getByLabelText('Código del reporte'), 'PR-0001');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar reporte' }));
+
+    expect(getMatches).toHaveBeenCalledWith('PR-0001');
+    const matches = (await screen.findByRole('heading', {
+      name: 'Objetos parecidos',
+    })).closest('section');
+    expect(matches).not.toBeNull();
+    expect(within(matches!).getByText('HZ-0001')).toBeInTheDocument();
+    expect(within(matches!).getByText('Celular Samsung con funda azul')).toBeInTheDocument();
+  });
+
   it('busca un reporte por codigo y muestra sus datos y propietario', async () => {
     const findLostReportByCode = jest.fn().mockResolvedValue({
       status: 'FOUND',

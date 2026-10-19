@@ -13,6 +13,7 @@ import { InfoRow } from '../../core/presenter/InfoRow';
 import { StatusChip } from '../../core/presenter/StatusChip';
 import { Thumb } from '../../core/presenter/Thumb';
 import type { MatchesService } from '../../matching/data/matchesService';
+import type { MatchView } from '@shared/matching';
 import { PublishButton } from '../../matching/presenter/PublishButton';
 
 type WelfarePageProps = {
@@ -28,6 +29,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     null,
   );
   const [lostReportMessage, setLostReportMessage] = useState<string | null>(null);
+  const [lostReportMatches, setLostReportMatches] = useState<MatchView[] | null>(null);
   const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
   const [pendingPickupsError, setPendingPickupsError] = useState(false);
   const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
@@ -57,12 +59,15 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       const result = await welfareService.findLostReportByCode(lostReportCode);
       if (result.status === 'FOUND') {
         setSelectedLostReport(result.report);
+        setLostReportMatches(await matchesService.getMatches(result.report.code));
         return;
       }
       setSelectedLostReport(null);
+      setLostReportMatches(null);
       setLostReportMessage('No encontramos un reporte activo con ese código');
     } catch {
       setSelectedLostReport(null);
+      setLostReportMatches(null);
       setLostReportMessage('No pudimos buscar el reporte');
     }
   }
@@ -314,6 +319,32 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
               <InfoRow label="Correo" value={selectedLostReport.owner.email} />
             </dl>
             <StatusChip status={selectedLostReport.status} />
+          </section>
+        )}
+        {selectedLostReport && lostReportMatches !== null && (
+          <section className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
+            <h3 className="text-lg font-semibold text-blue-700">Objetos parecidos</h3>
+            {lostReportMatches.length === 0 ? (
+              <EmptyState
+                title="No hay objetos parecidos"
+                text="Todavía no encontramos objetos relacionados con este reporte."
+              />
+            ) : (
+              <div className="grid gap-3 md:grid-cols-2">
+                {lostReportMatches.map((match) => (
+                  <article key={match.id} className="flex gap-3 rounded-xl bg-neutral-50 p-4">
+                    <Thumb
+                      category={match.foundItem.category}
+                      photoUrl={match.foundItem.photoUrl}
+                    />
+                    <div>
+                      <strong>{match.foundItem.code}</strong>
+                      <p>{match.foundItem.description}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
           </section>
         )}
         {lostReportsError ? (

@@ -2784,9 +2784,31 @@
     "testId": 84
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b142d955143ff97eccd478ece039a49c68478be6",
     "commitName": "feat(welfare): buscar reportes de perdida en el panel",
     "commitTimestamp": 1792374826511,
     "testId": 84
+  },
+  {
+    "numPassedTests": 166,
+    "failedTests": 1,
+    "numTotalTests": 167,
+    "timestamp": 1792374882033,
+    "success": false,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 167,
+    "failedTests": 0,
+    "numTotalTests": 167,
+    "timestamp": 1792374931984,
+    "success": true,
+    "testId": 85
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar objetos parecidos de un reporte",
+    "commitTimestamp": 1792374969767,
+    "testId": 85
   }
 ]
