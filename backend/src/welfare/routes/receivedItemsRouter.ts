@@ -35,6 +35,15 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
     res.json((await welfare.listActiveLostReports()).map(toLostReportView));
   });
 
+  router.get('/welfare/lost-reports/:code', requireRole('WELFARE'), async (req, res) => {
+    const report = await welfare.findActiveLostReportByCode(normalizeCode(req.params.code));
+    if (!report) {
+      res.status(404).json({ code: 'LOST_REPORT_NOT_FOUND' });
+      return;
+    }
+    res.json(toLostReportView(report));
+  });
+
   router.get('/welfare/pending-pickups', requireRole('WELFARE'), async (_req, res) => {
     res.json(await welfare.listPendingPickups());
   });

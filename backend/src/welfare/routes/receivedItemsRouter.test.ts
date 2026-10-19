@@ -60,6 +60,25 @@ const activeLostReport = {
 };
 
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('busca un reporte activo por codigo y muestra sus datos y propietario', async () => {
+    const { repository } = fakeWelfareRepository([], [], [activeLostReport]);
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/lost-reports/%20pr-0001%20')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      code: 'PR-0001',
+      description: 'Celular Samsung con funda azul',
+      photoUrl: null,
+      category: 'Electrónicos',
+      dateFrom: '2026-10-10T00:00:00.000Z',
+      dateTo: '2026-10-11T00:00:00.000Z',
+      status: 'HAS_MATCHES',
+      owner: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+    });
+  });
+
   it('lista solamente los reportes de perdida activos para Bienestar', async () => {
     const { repository } = fakeWelfareRepository([], [], [
       activeLostReport,

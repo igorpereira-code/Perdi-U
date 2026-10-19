@@ -47,6 +47,7 @@ export type WelfareLostReport = {
 /** Objects Bienestar can inspect and receive. Tests use an in-memory implementation. */
 export type WelfareRepository = {
   listActiveLostReports: () => Promise<WelfareLostReport[]>;
+  findActiveLostReportByCode: (code: string) => Promise<WelfareLostReport | null>;
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItem[]>;
   listInOffice: () => Promise<WelfareFoundItem[]>;

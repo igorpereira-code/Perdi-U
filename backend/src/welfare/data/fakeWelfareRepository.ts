@@ -33,6 +33,12 @@ export function fakeWelfareRepository(
       reports
         .filter((report) => report.status !== 'RECOVERED')
         .map((report) => ({ ...report, owner: { ...report.owner } })),
+    findActiveLostReportByCode: async (code) => {
+      const report = reports.find(
+        (candidate) => candidate.code === code && candidate.status !== 'RECOVERED',
+      );
+      return report ? { ...report, owner: { ...report.owner } } : null;
+    },
     listPendingPickups: async () =>
       pickups
         .filter(
