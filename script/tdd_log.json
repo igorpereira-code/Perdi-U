@@ -2614,9 +2614,39 @@
     "testId": 77
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d61f961af9113a125b007ddfd0dc3088dba55294",
     "commitName": "test(welfare): validar el codigo al entregar",
     "commitTimestamp": 1792370007142,
     "testId": 77
+  },
+  {
+    "numPassedTests": 159,
+    "failedTests": 0,
+    "numTotalTests": 159,
+    "timestamp": 1792373907220,
+    "success": true,
+    "testId": 78
+  },
+  {
+    "numPassedTests": 159,
+    "failedTests": 1,
+    "numTotalTests": 160,
+    "timestamp": 1792373953088,
+    "success": false,
+    "testId": 78
+  },
+  {
+    "numPassedTests": 160,
+    "failedTests": 0,
+    "numTotalTests": 160,
+    "timestamp": 1792373990754,
+    "success": true,
+    "testId": 78
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): consultar coincidencias de otros reportes",
+    "commitTimestamp": 1792374016189,
+    "testId": 78
   }
 ]
