@@ -2880,9 +2880,31 @@
     "testId": 88
   },
   {
-    "commitId": "HEAD",
+    "commitId": "eda5cb6c5a7d070323f34d8a2788e5ec8f95bca6",
     "commitName": "feat(welfare): completar detalle del reporte consultado",
     "commitTimestamp": 1792375613339,
     "testId": 88
+  },
+  {
+    "numPassedTests": 172,
+    "failedTests": 1,
+    "numTotalTests": 173,
+    "timestamp": 1792375654845,
+    "success": false,
+    "testId": 89
+  },
+  {
+    "numPassedTests": 173,
+    "failedTests": 0,
+    "numTotalTests": 173,
+    "timestamp": 1792375701100,
+    "success": true,
+    "testId": 89
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(welfare): excluir reportes recuperados de coincidencias",
+    "commitTimestamp": 1792375738185,
+    "testId": 89
   }
 ]

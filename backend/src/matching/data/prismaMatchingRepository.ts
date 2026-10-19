@@ -22,8 +22,8 @@ export const prismaMatchingRepository: MatchingRepository = {
   },
 
   findLostReportByCode: async (code) => {
-    const report = await db().lostReport.findUnique({
-      where: { code },
+    const report = await db().lostReport.findFirst({
+      where: { code, status: { not: 'RECOVERED' } },
       include: { places: true },
     });
     if (!report) {

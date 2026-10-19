@@ -53,6 +53,19 @@ const items: FakeItem[] = [
 ];
 
 describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matches)', () => {
+  it('no permite que Bienestar consulte coincidencias de un reporte recuperado', async () => {
+    const { repository } = fakeMatchingRepository(
+      [{ ...anasReport, status: 'RECOVERED' }],
+      items,
+    );
+
+    const res = await request(createApp({ matching: repository }))
+      .get('/lost-reports/PR-0001/matches')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(404);
+  });
+
   it('permite que Bienestar consulte el reporte de otra persona', async () => {
     const { repository } = fakeMatchingRepository([anasReport], items);
 

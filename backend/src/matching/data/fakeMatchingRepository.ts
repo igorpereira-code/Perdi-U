@@ -24,7 +24,9 @@ export function fakeMatchingRepository(reports: FakeReport[], initialItems: Fake
       reports.find((report) => report.code === code && report.ownerId === ownerId) ?? null,
 
     findLostReportByCode: async (code) =>
-      reports.find((report) => report.code === code) ?? null,
+      reports.find(
+        (report) => report.code === code && report.status !== 'RECOVERED',
+      ) ?? null,
 
     listPublishedItems: async () => items.filter((item) => statusOf(item) === 'PUBLISHED'),
 
