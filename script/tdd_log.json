@@ -2614,9 +2614,297 @@
     "testId": 77
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d61f961af9113a125b007ddfd0dc3088dba55294",
     "commitName": "test(welfare): validar el codigo al entregar",
     "commitTimestamp": 1792370007142,
     "testId": 77
+  },
+  {
+    "numPassedTests": 159,
+    "failedTests": 0,
+    "numTotalTests": 159,
+    "timestamp": 1792373907220,
+    "success": true,
+    "testId": 78
+  },
+  {
+    "numPassedTests": 159,
+    "failedTests": 1,
+    "numTotalTests": 160,
+    "timestamp": 1792373953088,
+    "success": false,
+    "testId": 78
+  },
+  {
+    "numPassedTests": 160,
+    "failedTests": 0,
+    "numTotalTests": 160,
+    "timestamp": 1792373990754,
+    "success": true,
+    "testId": 78
+  },
+  {
+    "commitId": "746d331e7ec4df2a897e014d49a6cd2d0bd85de1",
+    "commitName": "feat(welfare): consultar coincidencias de otros reportes",
+    "commitTimestamp": 1792374016189,
+    "testId": 78
+  },
+  {
+    "numPassedTests": 160,
+    "failedTests": 1,
+    "numTotalTests": 161,
+    "timestamp": 1792374058050,
+    "success": false,
+    "testId": 79
+  },
+  {
+    "numPassedTests": 161,
+    "failedTests": 0,
+    "numTotalTests": 161,
+    "timestamp": 1792374100843,
+    "success": true,
+    "testId": 79
+  },
+  {
+    "commitId": "cd80b3aaa36191f700812f527f4c6ea7db8a6a06",
+    "commitName": "feat(welfare): listar reportes de perdida activos",
+    "commitTimestamp": 1792374125683,
+    "testId": 79
+  },
+  {
+    "numPassedTests": 161,
+    "failedTests": 1,
+    "numTotalTests": 162,
+    "timestamp": 1792374160863,
+    "success": false,
+    "testId": 80
+  },
+  {
+    "numPassedTests": 162,
+    "failedTests": 0,
+    "numTotalTests": 162,
+    "timestamp": 1792374204356,
+    "success": true,
+    "testId": 80
+  },
+  {
+    "commitId": "530a71dd1443da31af3861cafc19eccf4cc29298",
+    "commitName": "feat(welfare): buscar reportes activos por codigo",
+    "commitTimestamp": 1792374227315,
+    "testId": 80
+  },
+  {
+    "numPassedTests": 162,
+    "failedTests": 1,
+    "numTotalTests": 163,
+    "timestamp": 1792374267651,
+    "success": false,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 163,
+    "failedTests": 0,
+    "numTotalTests": 163,
+    "timestamp": 1792374325028,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "commitId": "15db924b6de0500c93601829e4b78f35f44be108",
+    "commitName": "feat(welfare): consultar reportes activos desde el frontend",
+    "commitTimestamp": 1792374348641,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 163,
+    "failedTests": 1,
+    "numTotalTests": 164,
+    "timestamp": 1792374388100,
+    "success": false,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 164,
+    "failedTests": 0,
+    "numTotalTests": 164,
+    "timestamp": 1792374431464,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "commitId": "1d7434bd6b190db4c15fc5a3ce8059cc69cac5ac",
+    "commitName": "feat(welfare): buscar reportes desde el frontend",
+    "commitTimestamp": 1792374456145,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 164,
+    "failedTests": 1,
+    "numTotalTests": 165,
+    "timestamp": 1792374503205,
+    "success": false,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 164,
+    "failedTests": 1,
+    "numTotalTests": 165,
+    "timestamp": 1792374550033,
+    "success": false,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 165,
+    "failedTests": 0,
+    "numTotalTests": 165,
+    "timestamp": 1792374592660,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "commitId": "b0d38732fe6e836be59958d3fff9f0d8e81d8d0d",
+    "commitName": "feat(welfare): mostrar reportes de perdida activos",
+    "commitTimestamp": 1792374631946,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 165,
+    "failedTests": 1,
+    "numTotalTests": 166,
+    "timestamp": 1792374689485,
+    "success": false,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 166,
+    "failedTests": 0,
+    "numTotalTests": 166,
+    "timestamp": 1792374789541,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "commitId": "b142d955143ff97eccd478ece039a49c68478be6",
+    "commitName": "feat(welfare): buscar reportes de perdida en el panel",
+    "commitTimestamp": 1792374826511,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 166,
+    "failedTests": 1,
+    "numTotalTests": 167,
+    "timestamp": 1792374882033,
+    "success": false,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 167,
+    "failedTests": 0,
+    "numTotalTests": 167,
+    "timestamp": 1792374931984,
+    "success": true,
+    "testId": 85
+  },
+  {
+    "commitId": "fb71badb2dbbafa011150a6dddf0ba7e81e9921b",
+    "commitName": "feat(welfare): mostrar objetos parecidos de un reporte",
+    "commitTimestamp": 1792374969767,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 167,
+    "failedTests": 1,
+    "numTotalTests": 168,
+    "timestamp": 1792375026518,
+    "success": false,
+    "testId": 86
+  },
+  {
+    "numPassedTests": 168,
+    "failedTests": 0,
+    "numTotalTests": 168,
+    "timestamp": 1792375074037,
+    "success": true,
+    "testId": 86
+  },
+  {
+    "numPassedTests": 170,
+    "failedTests": 0,
+    "numTotalTests": 170,
+    "timestamp": 1792375125755,
+    "success": true,
+    "testId": 86
+  },
+  {
+    "commitId": "f30878f56a303ee1ffc4bdb960be9c62472293a9",
+    "commitName": "fix(welfare): conservar el reporte si fallan sus coincidencias",
+    "commitTimestamp": 1792375162141,
+    "testId": 86
+  },
+  {
+    "numPassedTests": 172,
+    "failedTests": 0,
+    "numTotalTests": 172,
+    "timestamp": 1792375234942,
+    "success": true,
+    "testId": 87
+  },
+  {
+    "commitId": "b223ad48ccef5b5f07e8248fafec5a9cfa4ba8c2",
+    "commitName": "test(welfare): verificar acceso a reportes activos",
+    "commitTimestamp": 1792375303466,
+    "testId": 87
+  },
+  {
+    "numPassedTests": 172,
+    "failedTests": 0,
+    "numTotalTests": 172,
+    "timestamp": 1792375411201,
+    "success": true,
+    "testId": 88
+  },
+  {
+    "numPassedTests": 171,
+    "failedTests": 1,
+    "numTotalTests": 172,
+    "timestamp": 1792375530353,
+    "success": false,
+    "testId": 88
+  },
+  {
+    "numPassedTests": 172,
+    "failedTests": 0,
+    "numTotalTests": 172,
+    "timestamp": 1792375575669,
+    "success": true,
+    "testId": 88
+  },
+  {
+    "commitId": "eda5cb6c5a7d070323f34d8a2788e5ec8f95bca6",
+    "commitName": "feat(welfare): completar detalle del reporte consultado",
+    "commitTimestamp": 1792375613339,
+    "testId": 88
+  },
+  {
+    "numPassedTests": 172,
+    "failedTests": 1,
+    "numTotalTests": 173,
+    "timestamp": 1792375654845,
+    "success": false,
+    "testId": 89
+  },
+  {
+    "numPassedTests": 173,
+    "failedTests": 0,
+    "numTotalTests": 173,
+    "timestamp": 1792375701100,
+    "success": true,
+    "testId": 89
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(welfare): excluir reportes recuperados de coincidencias",
+    "commitTimestamp": 1792375738185,
+    "testId": 89
   }
 ]

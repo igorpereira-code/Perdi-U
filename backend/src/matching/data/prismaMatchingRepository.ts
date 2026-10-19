@@ -21,6 +21,25 @@ export const prismaMatchingRepository: MatchingRepository = {
     };
   },
 
+  findLostReportByCode: async (code) => {
+    const report = await db().lostReport.findFirst({
+      where: { code, status: { not: 'RECOVERED' } },
+      include: { places: true },
+    });
+    if (!report) {
+      return null;
+    }
+    return {
+      id: report.id,
+      code: report.code,
+      categoryId: report.categoryId,
+      dateFrom: report.dateFrom,
+      dateTo: report.dateTo,
+      description: report.description,
+      placeIds: report.places.map((place) => place.placeId),
+    };
+  },
+
   listPublishedItems: () =>
     db().foundItem.findMany({
       where: { status: 'PUBLISHED', visibility: 'VISIBLE' },

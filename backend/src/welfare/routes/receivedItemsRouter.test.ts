@@ -47,7 +47,77 @@ const pendingPickup = {
   foundItem: { code: 'HZ-0001', description: 'Celular Samsung con funda azul' },
 };
 
+const activeLostReport = {
+  id: 'report-1',
+  code: 'PR-0001',
+  description: 'Celular Samsung con funda azul',
+  photoUrl: null,
+  category: 'Electrónicos',
+  dateFrom: new Date('2026-10-10'),
+  dateTo: new Date('2026-10-11'),
+  status: 'HAS_MATCHES' as const,
+  owner: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+};
+
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('impide que una cuenta de comunidad consulte reportes desde Bienestar', async () => {
+    const { repository } = fakeWelfareRepository([], [], [activeLostReport]);
+
+    const res = await request(createApp({ welfare: repository })).get(
+      '/welfare/lost-reports',
+    );
+
+    expect(res.status).toBe(403);
+  });
+
+  it('responde que no existe si el reporte no esta activo', async () => {
+    const { repository } = fakeWelfareRepository([], [], [
+      { ...activeLostReport, status: 'RECOVERED' },
+    ]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/lost-reports/PR-0001')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(404);
+  });
+
+  it('busca un reporte activo por codigo y muestra sus datos y propietario', async () => {
+    const { repository } = fakeWelfareRepository([], [], [activeLostReport]);
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/lost-reports/%20pr-0001%20')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      code: 'PR-0001',
+      description: 'Celular Samsung con funda azul',
+      photoUrl: null,
+      category: 'Electrónicos',
+      dateFrom: '2026-10-10T00:00:00.000Z',
+      dateTo: '2026-10-11T00:00:00.000Z',
+      status: 'HAS_MATCHES',
+      owner: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+    });
+  });
+
+  it('lista solamente los reportes de perdida activos para Bienestar', async () => {
+    const { repository } = fakeWelfareRepository([], [], [
+      activeLostReport,
+      { ...activeLostReport, id: 'report-2', code: 'PR-0002', status: 'PENDING_PICKUP' },
+      { ...activeLostReport, id: 'report-3', code: 'PR-0003', status: 'RECOVERED' },
+    ]);
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/lost-reports')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body.map((report: { code: string }) => report.code)).toEqual([
+      'PR-0001',
+      'PR-0002',
+    ]);
+  });
+
   it('rechaza una entrega sin codigo de objeto', async () => {
     const { repository, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))

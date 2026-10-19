@@ -1,4 +1,4 @@
-import type { FoundItemStatus } from '@shared/statuses';
+import type { FoundItemStatus, LostReportStatus } from '@shared/statuses';
 import type { WelfarePendingPickupView } from '@shared/welfare';
 
 export type WelfareFoundItem = {
@@ -32,8 +32,22 @@ export type DeliveryResult =
   | { status: 'ITEM_NOT_AVAILABLE' }
   | { status: 'REPORT_NOT_ELIGIBLE' };
 
+export type WelfareLostReport = {
+  id: string;
+  code: string;
+  description: string;
+  photoUrl: string | null;
+  category: string;
+  dateFrom: Date;
+  dateTo: Date;
+  status: LostReportStatus;
+  owner: { name: string; email: string };
+};
+
 /** Objects Bienestar can inspect and receive. Tests use an in-memory implementation. */
 export type WelfareRepository = {
+  listActiveLostReports: () => Promise<WelfareLostReport[]>;
+  findActiveLostReportByCode: (code: string) => Promise<WelfareLostReport | null>;
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItem[]>;
   listInOffice: () => Promise<WelfareFoundItem[]>;

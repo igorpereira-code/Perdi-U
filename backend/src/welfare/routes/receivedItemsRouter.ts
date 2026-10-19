@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import type { WelfareFoundItemView } from '@shared/welfare';
+import type { WelfareFoundItemView, WelfareLostReportView } from '@shared/welfare';
 import { getCurrentUser, requireRole } from '../../core/currentUser';
 import { isInstitutionalEmail } from '../../core/logic/institutionalEmail';
 import type { WelfareFoundItem, WelfareRepository } from '../data/welfareRepository';
@@ -7,6 +7,17 @@ import type { WelfareFoundItem, WelfareRepository } from '../data/welfareReposit
 function toView(item: WelfareFoundItem): WelfareFoundItemView {
   const { id: _id, receivedById: _receivedById, receivedAt: _receivedAt, ...view } = item;
   return { ...view, foundAt: item.foundAt.toISOString() };
+}
+
+function toLostReportView(
+  report: Awaited<ReturnType<WelfareRepository['listActiveLostReports']>>[number],
+): WelfareLostReportView {
+  const { id: _id, ...view } = report;
+  return {
+    ...view,
+    dateFrom: report.dateFrom.toISOString(),
+    dateTo: report.dateTo.toISOString(),
+  };
 }
 
 function normalizeCode(value: unknown): string {
@@ -19,6 +30,19 @@ function requiredText(value: unknown): string {
 
 export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
   const router = Router();
+
+  router.get('/welfare/lost-reports', requireRole('WELFARE'), async (_req, res) => {
+    res.json((await welfare.listActiveLostReports()).map(toLostReportView));
+  });
+
+  router.get('/welfare/lost-reports/:code', requireRole('WELFARE'), async (req, res) => {
+    const report = await welfare.findActiveLostReportByCode(normalizeCode(req.params.code));
+    if (!report) {
+      res.status(404).json({ code: 'LOST_REPORT_NOT_FOUND' });
+      return;
+    }
+    res.json(toLostReportView(report));
+  });
 
   router.get('/welfare/pending-pickups', requireRole('WELFARE'), async (_req, res) => {
     res.json(await welfare.listPendingPickups());

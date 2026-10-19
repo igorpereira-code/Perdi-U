@@ -1,4 +1,4 @@
-import type { FoundItemStatus } from './statuses';
+import type { FoundItemStatus, LostReportStatus } from './statuses';
 
 export type WelfareFoundItemView = {
   code: string;
@@ -18,4 +18,15 @@ export type WelfarePendingPickupView = {
   owner: { name: string; email: string };
   report: { code: string };
   foundItem: { code: string; description: string };
+};
+
+export type WelfareLostReportView = {
+  code: string;
+  description: string;
+  photoUrl: string | null;
+  category: string;
+  dateFrom: string;
+  dateTo: string;
+  status: LostReportStatus;
+  owner: { name: string; email: string };
 };

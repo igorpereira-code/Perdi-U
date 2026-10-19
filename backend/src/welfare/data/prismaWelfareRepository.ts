@@ -44,6 +44,46 @@ function toWelfareItem(row: ItemRow): WelfareFoundItem {
 }
 
 export const prismaWelfareRepository = {
+  listActiveLostReports: async () =>
+    db().lostReport.findMany({
+      where: { status: { not: 'RECOVERED' } },
+      select: {
+        id: true,
+        code: true,
+        description: true,
+        photoUrl: true,
+        dateFrom: true,
+        dateTo: true,
+        status: true,
+        category: { select: { name: true } },
+        owner: { select: { name: true, email: true } },
+      },
+      orderBy: { createdAt: 'asc' },
+    }).then((reports) =>
+      reports.map((report) => ({
+        ...report,
+        category: report.category.name,
+      })),
+    ),
+
+  findActiveLostReportByCode: async (code) => {
+    const report = await db().lostReport.findFirst({
+      where: { code, status: { not: 'RECOVERED' } },
+      select: {
+        id: true,
+        code: true,
+        description: true,
+        photoUrl: true,
+        dateFrom: true,
+        dateTo: true,
+        status: true,
+        category: { select: { name: true } },
+        owner: { select: { name: true, email: true } },
+      },
+    });
+    return report ? { ...report, category: report.category.name } : null;
+  },
+
   listPendingPickups: async () => {
     const rows = await db().match.findMany({
       where: { status: 'WILL_PICK_UP', lostReport: { status: 'PENDING_PICKUP' } },
