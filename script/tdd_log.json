@@ -2350,9 +2350,273 @@
     "testId": 65
   },
   {
-    "commitId": "HEAD",
+    "commitId": "502050a420e122a703b7917c99fdb4befb1f719e",
     "commitName": "style(welfare): mostrar el resultado junto al buscador",
     "commitTimestamp": 1792367137918,
     "testId": 65
+  },
+  {
+    "numPassedTests": 146,
+    "failedTests": 0,
+    "numTotalTests": 146,
+    "timestamp": 1792368075338,
+    "success": true,
+    "testId": 66
+  },
+  {
+    "numPassedTests": 146,
+    "failedTests": 1,
+    "numTotalTests": 147,
+    "timestamp": 1792368164993,
+    "success": false,
+    "testId": 66
+  },
+  {
+    "numPassedTests": 147,
+    "failedTests": 0,
+    "numTotalTests": 147,
+    "timestamp": 1792368326361,
+    "success": true,
+    "testId": 66
+  },
+  {
+    "commitId": "472e68dadf3d4364b4c321804bd26cb44569ff4c",
+    "commitName": "test(welfare): proteger el registro de entregas",
+    "commitTimestamp": 1792368364847,
+    "testId": 66
+  },
+  {
+    "numPassedTests": 147,
+    "failedTests": 1,
+    "numTotalTests": 148,
+    "timestamp": 1792368421560,
+    "success": false,
+    "testId": 67
+  },
+  {
+    "numPassedTests": 148,
+    "failedTests": 0,
+    "numTotalTests": 148,
+    "timestamp": 1792368466321,
+    "success": true,
+    "testId": 67
+  },
+  {
+    "commitId": "48357ec745a10380bc0547b807d0409e80484993",
+    "commitName": "feat(welfare): registrar entregas sin reporte",
+    "commitTimestamp": 1792368487045,
+    "testId": 67
+  },
+  {
+    "numPassedTests": 148,
+    "failedTests": 1,
+    "numTotalTests": 149,
+    "timestamp": 1792368528872,
+    "success": false,
+    "testId": 68
+  },
+  {
+    "numPassedTests": 149,
+    "failedTests": 0,
+    "numTotalTests": 149,
+    "timestamp": 1792368565795,
+    "success": true,
+    "testId": 68
+  },
+  {
+    "commitId": "dbd0cd8bca6772766a2fac44be3dd4f390f82651",
+    "commitName": "feat(welfare): recuperar el reporte al entregar",
+    "commitTimestamp": 1792368591098,
+    "testId": 68
+  },
+  {
+    "numPassedTests": 149,
+    "failedTests": 1,
+    "numTotalTests": 150,
+    "timestamp": 1792368635374,
+    "success": false,
+    "testId": 69
+  },
+  {
+    "numPassedTests": 150,
+    "failedTests": 0,
+    "numTotalTests": 150,
+    "timestamp": 1792368671379,
+    "success": true,
+    "testId": 69
+  },
+  {
+    "commitId": "6e799242ea91efcfb87d7efbd6098844baab694f",
+    "commitName": "test(welfare): validar datos obligatorios de entrega",
+    "commitTimestamp": 1792368700375,
+    "testId": 69
+  },
+  {
+    "numPassedTests": 150,
+    "failedTests": 1,
+    "numTotalTests": 151,
+    "timestamp": 1792368764791,
+    "success": false,
+    "testId": 70
+  },
+  {
+    "numPassedTests": 151,
+    "failedTests": 0,
+    "numTotalTests": 151,
+    "timestamp": 1792368807035,
+    "success": true,
+    "testId": 70
+  },
+  {
+    "commitId": "68de56d1d188b21618c075c34b84917f329e1cba",
+    "commitName": "test(welfare): exigir correo institucional al entregar",
+    "commitTimestamp": 1792368842571,
+    "testId": 70
+  },
+  {
+    "numPassedTests": 151,
+    "failedTests": 1,
+    "numTotalTests": 152,
+    "timestamp": 1792368905733,
+    "success": false,
+    "testId": 71
+  },
+  {
+    "numPassedTests": 152,
+    "failedTests": 0,
+    "numTotalTests": 152,
+    "timestamp": 1792368947460,
+    "success": true,
+    "testId": 71
+  },
+  {
+    "commitId": "fac8e484586be51cd8eee90ff0a9814fcef78f01",
+    "commitName": "feat(welfare): conectar el registro de entregas",
+    "commitTimestamp": 1792368978770,
+    "testId": 71
+  },
+  {
+    "numPassedTests": 152,
+    "failedTests": 1,
+    "numTotalTests": 153,
+    "timestamp": 1792369029207,
+    "success": false,
+    "testId": 72
+  },
+  {
+    "numPassedTests": 153,
+    "failedTests": 0,
+    "numTotalTests": 153,
+    "timestamp": 1792369080102,
+    "success": true,
+    "testId": 72
+  },
+  {
+    "commitId": "a492185f8ef2af369f0250e5554e56c886a93156",
+    "commitName": "feat(welfare): preparar entrega desde un recojo",
+    "commitTimestamp": 1792369111342,
+    "testId": 72
+  },
+  {
+    "numPassedTests": 153,
+    "failedTests": 1,
+    "numTotalTests": 154,
+    "timestamp": 1792369155896,
+    "success": false,
+    "testId": 73
+  },
+  {
+    "numPassedTests": 154,
+    "failedTests": 0,
+    "numTotalTests": 154,
+    "timestamp": 1792369193556,
+    "success": true,
+    "testId": 73
+  },
+  {
+    "commitId": "db17e50c0a3f24743388d494d6bd900e323ede6f",
+    "commitName": "feat(welfare): elegir un objeto para entregar",
+    "commitTimestamp": 1792369226044,
+    "testId": 73
+  },
+  {
+    "numPassedTests": 154,
+    "failedTests": 1,
+    "numTotalTests": 155,
+    "timestamp": 1792369273202,
+    "success": false,
+    "testId": 74
+  },
+  {
+    "numPassedTests": 155,
+    "failedTests": 0,
+    "numTotalTests": 155,
+    "timestamp": 1792369323539,
+    "success": true,
+    "testId": 74
+  },
+  {
+    "commitId": "958cee668b6853aa30119fc556cd4d0dd958c5e6",
+    "commitName": "feat(welfare): confirmar entrega desde el panel",
+    "commitTimestamp": 1792369351385,
+    "testId": 74
+  },
+  {
+    "numPassedTests": 158,
+    "failedTests": 0,
+    "numTotalTests": 158,
+    "timestamp": 1792369412558,
+    "success": true,
+    "testId": 75
+  },
+  {
+    "commitId": "a2a164f25e1407a49f391b145d717f52299d16c6",
+    "commitName": "test(welfare): cubrir rechazos de entrega",
+    "commitTimestamp": 1792369444174,
+    "testId": 75
+  },
+  {
+    "commitId": "70476201075b983bd503b426606a45821e1c7610",
+    "commitName": "test(welfare): actualizar el doble del servicio",
+    "commitTimestamp": 1792369559319,
+    "testId": 76
+  },
+  {
+    "numPassedTests": 158,
+    "failedTests": 0,
+    "numTotalTests": 158,
+    "timestamp": 1792369617384,
+    "success": true,
+    "testId": 77
+  },
+  {
+    "numPassedTests": 158,
+    "failedTests": 0,
+    "numTotalTests": 158,
+    "timestamp": 1792369662932,
+    "success": true,
+    "testId": 77
+  },
+  {
+    "numPassedTests": 158,
+    "failedTests": 1,
+    "numTotalTests": 159,
+    "timestamp": 1792369942701,
+    "success": false,
+    "testId": 77
+  },
+  {
+    "numPassedTests": 159,
+    "failedTests": 0,
+    "numTotalTests": 159,
+    "timestamp": 1792369974997,
+    "success": true,
+    "testId": 77
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): validar el codigo al entregar",
+    "commitTimestamp": 1792370007142,
+    "testId": 77
   }
 ]

@@ -1235,12 +1235,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "502050a420e122a703b7917c99fdb4befb1f719e",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-18T23:45:35.000Z",
       "message": "style(welfare): mostrar el resultado junto al buscador",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/502050a420e122a703b7917c99fdb4befb1f719e"
     },
     "stats": {
       "total": 33,
@@ -1250,6 +1250,234 @@
     },
     "coverage": 87.04,
     "test_count": 146,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "472e68dadf3d4364b4c321804bd26cb44569ff4c",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:06:03.000Z",
+      "message": "test(welfare): proteger el registro de entregas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/472e68dadf3d4364b4c321804bd26cb44569ff4c"
+    },
+    "stats": {
+      "total": 11,
+      "additions": 11,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 86.9,
+    "test_count": 147,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "48357ec745a10380bc0547b807d0409e80484993",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:08:05.000Z",
+      "message": "feat(welfare): registrar entregas sin reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/48357ec745a10380bc0547b807d0409e80484993"
+    },
+    "stats": {
+      "total": 116,
+      "additions": 112,
+      "deletions": 4,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.53,
+    "test_count": 148,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "dbd0cd8bca6772766a2fac44be3dd4f390f82651",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:09:49.000Z",
+      "message": "feat(welfare): recuperar el reporte al entregar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/dbd0cd8bca6772766a2fac44be3dd4f390f82651"
+    },
+    "stats": {
+      "total": 81,
+      "additions": 77,
+      "deletions": 4,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.78,
+    "test_count": 149,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "6e799242ea91efcfb87d7efbd6098844baab694f",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:11:39.000Z",
+      "message": "test(welfare): validar datos obligatorios de entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6e799242ea91efcfb87d7efbd6098844baab694f"
+    },
+    "stats": {
+      "total": 33,
+      "additions": 29,
+      "deletions": 4,
+      "date": "2026-10-19"
+    },
+    "coverage": 85,
+    "test_count": 150,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "68de56d1d188b21618c075c34b84917f329e1cba",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:14:01.000Z",
+      "message": "test(welfare): exigir correo institucional al entregar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/68de56d1d188b21618c075c34b84917f329e1cba"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 23,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.08,
+    "test_count": 151,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "fac8e484586be51cd8eee90ff0a9814fcef78f01",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:16:17.000Z",
+      "message": "feat(welfare): conectar el registro de entregas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fac8e484586be51cd8eee90ff0a9814fcef78f01"
+    },
+    "stats": {
+      "total": 64,
+      "additions": 64,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.01,
+    "test_count": 152,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "a492185f8ef2af369f0250e5554e56c886a93156",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:18:30.000Z",
+      "message": "feat(welfare): preparar entrega desde un recojo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a492185f8ef2af369f0250e5554e56c886a93156"
+    },
+    "stats": {
+      "total": 83,
+      "additions": 82,
+      "deletions": 1,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.06,
+    "test_count": 153,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "db17e50c0a3f24743388d494d6bd900e323ede6f",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:20:24.000Z",
+      "message": "feat(welfare): elegir un objeto para entregar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/db17e50c0a3f24743388d494d6bd900e323ede6f"
+    },
+    "stats": {
+      "total": 27,
+      "additions": 27,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.11,
+    "test_count": 154,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "958cee668b6853aa30119fc556cd4d0dd958c5e6",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:22:29.000Z",
+      "message": "feat(welfare): confirmar entrega desde el panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/958cee668b6853aa30119fc556cd4d0dd958c5e6"
+    },
+    "stats": {
+      "total": 82,
+      "additions": 80,
+      "deletions": 2,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.5,
+    "test_count": 155,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "a2a164f25e1407a49f391b145d717f52299d16c6",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:24:03.000Z",
+      "message": "test(welfare): cubrir rechazos de entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a2a164f25e1407a49f391b145d717f52299d16c6"
+    },
+    "stats": {
+      "total": 60,
+      "additions": 60,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.5,
+    "test_count": 158,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "70476201075b983bd503b426606a45821e1c7610",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:25:58.000Z",
+      "message": "test(welfare): actualizar el doble del servicio",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/70476201075b983bd503b426606a45821e1c7610"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 2,
+      "deletions": 1,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.5,
+    "test_count": 158,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:33:24.000Z",
+      "message": "test(welfare): validar el codigo al entregar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 19,
+      "additions": 18,
+      "deletions": 1,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.52,
+    "test_count": 159,
     "failed_tests": 0,
     "conclusion": "success"
   }

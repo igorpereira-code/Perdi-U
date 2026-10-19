@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import type { WelfareFoundItemView, WelfarePendingPickupView } from '@shared/welfare';
-import type { WelfareService } from '../data/welfareService';
+import type { DeliveryInput, WelfareService } from '../data/welfareService';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
@@ -26,6 +26,68 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [code, setCode] = useState('');
   const [message, setMessage] = useState<string | null>(null);
   const [receiving, setReceiving] = useState(false);
+  const [deliveryDraft, setDeliveryDraft] = useState<DeliveryInput | null>(null);
+  const [delivering, setDelivering] = useState(false);
+
+  function startPickupDelivery(pickup: WelfarePendingPickupView) {
+    setDeliveryDraft({
+      foundItemCode: pickup.foundItem.code,
+      lostReportCode: pickup.report.code,
+      recipientName: pickup.owner.name,
+      recipientEmail: pickup.owner.email,
+      recipientUniversityCode: '',
+    });
+  }
+
+  function startItemDelivery(item: WelfareFoundItemView) {
+    setDeliveryDraft({
+      foundItemCode: item.code,
+      lostReportCode: '',
+      recipientName: '',
+      recipientEmail: '',
+      recipientUniversityCode: '',
+    });
+  }
+
+  function updateDelivery(field: keyof DeliveryInput, value: string) {
+    setDeliveryDraft((current) => (current ? { ...current, [field]: value } : current));
+  }
+
+  async function confirmDelivery(event: FormEvent) {
+    event.preventDefault();
+    if (!deliveryDraft || delivering) {
+      return;
+    }
+    setDelivering(true);
+    setMessage(null);
+    try {
+      const result = await welfareService.deliver(deliveryDraft);
+      if (result.status !== 'DELIVERED') {
+        setMessage(
+          result.status === 'REPORT_NOT_ELIGIBLE'
+            ? 'El reporte no corresponde a este objeto o propietario'
+            : result.status === 'ITEM_NOT_AVAILABLE'
+              ? 'El objeto ya no está disponible para entrega'
+              : result.status === 'INVALID_RECIPIENT_EMAIL'
+                ? 'Ingresa un correo institucional válido'
+                : 'Completa todos los datos obligatorios',
+        );
+        return;
+      }
+      setPendingPickups((current) =>
+        current?.filter((pickup) => pickup.foundItem.code !== result.foundItemCode) ?? [],
+      );
+      setInOfficeItems((current) =>
+        current?.filter((item) => item.code !== result.foundItemCode) ?? [],
+      );
+      setDeliveryDraft(null);
+      setMessage('Entrega registrada correctamente');
+    } catch {
+      setMessage('No pudimos registrar la entrega');
+    } finally {
+      setDelivering(false);
+    }
+  }
 
   useEffect(() => {
     welfareService
@@ -118,6 +180,58 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       </form>
       {message && <Alert>{message}</Alert>}
 
+      {deliveryDraft && (
+        <form
+          onSubmit={confirmDelivery}
+          className="space-y-4 rounded-2xl border border-neutral-200 bg-neutral-0 p-5"
+        >
+          <h2 className="text-lg font-semibold text-blue-700">Registrar entrega</h2>
+          <Field id="delivery-item-code" label="Código del objeto a entregar">
+            <input
+              id="delivery-item-code"
+              className={INPUT_CLASSES}
+              value={deliveryDraft.foundItemCode}
+              onChange={(event) => updateDelivery('foundItemCode', event.target.value)}
+            />
+          </Field>
+          <Field id="delivery-report-code" label="Código del reporte (opcional)">
+            <input
+              id="delivery-report-code"
+              className={INPUT_CLASSES}
+              value={deliveryDraft.lostReportCode ?? ''}
+              onChange={(event) => updateDelivery('lostReportCode', event.target.value)}
+            />
+          </Field>
+          <Field id="delivery-recipient-name" label="Nombre de quien recibe">
+            <input
+              id="delivery-recipient-name"
+              className={INPUT_CLASSES}
+              value={deliveryDraft.recipientName}
+              onChange={(event) => updateDelivery('recipientName', event.target.value)}
+            />
+          </Field>
+          <Field id="delivery-recipient-email" label="Correo institucional">
+            <input
+              id="delivery-recipient-email"
+              className={INPUT_CLASSES}
+              value={deliveryDraft.recipientEmail}
+              onChange={(event) => updateDelivery('recipientEmail', event.target.value)}
+            />
+          </Field>
+          <Field id="delivery-recipient-code" label="Código universitario">
+            <input
+              id="delivery-recipient-code"
+              className={INPUT_CLASSES}
+              value={deliveryDraft.recipientUniversityCode}
+              onChange={(event) => updateDelivery('recipientUniversityCode', event.target.value)}
+            />
+          </Field>
+          <Button type="submit" disabled={delivering}>
+            Confirmar entrega
+          </Button>
+        </form>
+      )}
+
       {selected && (
         <section className="rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
           <h2 className="text-lg font-semibold text-blue-700">Detalle del objeto</h2>
@@ -155,6 +269,9 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
                 <p>Reporte: <span>{pickup.report.code}</span></p>
                 <p>Objeto: <span>{pickup.foundItem.code}</span></p>
                 <p>{pickup.foundItem.description}</p>
+                <Button onClick={() => startPickupDelivery(pickup)} className="mt-3">
+                  Registrar entrega
+                </Button>
               </article>
             ))}
           </div>
@@ -206,6 +323,9 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
                         }
                       />
                     )}
+                    <Button onClick={() => startItemDelivery(item)} className="mt-3">
+                      Registrar entrega
+                    </Button>
                   </div>
                 </article>
               );

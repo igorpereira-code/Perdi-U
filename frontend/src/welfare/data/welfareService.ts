@@ -6,12 +6,28 @@ export type WelfareResult =
   | { status: 'NOT_FOUND' }
   | { status: 'ALREADY_RECEIVED' };
 
+export type DeliveryInput = {
+  foundItemCode: string;
+  lostReportCode?: string;
+  recipientName: string;
+  recipientEmail: string;
+  recipientUniversityCode: string;
+};
+
+export type DeliveryResult =
+  | { status: 'DELIVERED'; foundItemCode: string }
+  | { status: 'ITEM_NOT_AVAILABLE' }
+  | { status: 'REPORT_NOT_ELIGIBLE' }
+  | { status: 'INVALID_DELIVERY_DATA' }
+  | { status: 'INVALID_RECIPIENT_EMAIL' };
+
 export type WelfareService = {
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItemView[]>;
   listInOffice: () => Promise<WelfareFoundItemView[]>;
   findByCode: (code: string) => Promise<WelfareResult>;
   receive: (code: string) => Promise<WelfareResult>;
+  deliver: (delivery: DeliveryInput) => Promise<DeliveryResult>;
 };
 
 function normalizeCode(code: string): string {
@@ -60,5 +76,23 @@ export function createWelfareService(apiFetch: ApiFetch): WelfareService {
       itemResult(
         await apiFetch(`/welfare/found-items/${normalizeCode(code)}/receive`, { method: 'POST' }),
       ),
+    deliver: async (delivery) => {
+      const response = await apiFetch('/welfare/deliveries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...delivery,
+          foundItemCode: normalizeCode(delivery.foundItemCode),
+          lostReportCode: delivery.lostReportCode
+            ? normalizeCode(delivery.lostReportCode)
+            : undefined,
+          recipientEmail: delivery.recipientEmail.trim().toLowerCase(),
+        }),
+      });
+      if (response.ok || response.status === 400 || response.status === 409) {
+        return response.json();
+      }
+      throw new Error('No se pudo registrar la entrega');
+    },
   };
 }

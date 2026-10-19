@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import type { WelfareFoundItemView } from '@shared/welfare';
 import { getCurrentUser, requireRole } from '../../core/currentUser';
+import { isInstitutionalEmail } from '../../core/logic/institutionalEmail';
 import type { WelfareFoundItem, WelfareRepository } from '../data/welfareRepository';
 
 function toView(item: WelfareFoundItem): WelfareFoundItemView {
@@ -12,11 +13,45 @@ function normalizeCode(value: unknown): string {
   return String(value).trim().toUpperCase();
 }
 
+function requiredText(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
 export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
   const router = Router();
 
   router.get('/welfare/pending-pickups', requireRole('WELFARE'), async (_req, res) => {
     res.json(await welfare.listPendingPickups());
+  });
+
+  router.post('/welfare/deliveries', requireRole('WELFARE'), async (req, res) => {
+    const rawFoundItemCode = requiredText(req.body.foundItemCode);
+    const foundItemCode = rawFoundItemCode ? normalizeCode(rawFoundItemCode) : '';
+    const recipientName = requiredText(req.body.recipientName);
+    const recipientEmail = requiredText(req.body.recipientEmail).toLowerCase();
+    const recipientUniversityCode = requiredText(req.body.recipientUniversityCode);
+    if (!foundItemCode || !recipientName || !recipientEmail || !recipientUniversityCode) {
+      res.status(400).json({ code: 'INVALID_DELIVERY_DATA' });
+      return;
+    }
+    if (!isInstitutionalEmail(recipientEmail)) {
+      res.status(400).json({ code: 'INVALID_RECIPIENT_EMAIL' });
+      return;
+    }
+    const result = await welfare.deliver({
+      foundItemCode,
+      lostReportCode: req.body.lostReportCode ? normalizeCode(req.body.lostReportCode) : null,
+      recipientName,
+      recipientEmail,
+      recipientUniversityCode,
+      registeredById: getCurrentUser(req).id,
+      deliveredAt: new Date(),
+    });
+    if (result.status !== 'DELIVERED') {
+      res.status(409).json({ code: result.status });
+      return;
+    }
+    res.status(201).json(result);
   });
 
   router.get('/welfare/found-items/pending', requireRole('WELFARE'), async (_req, res) => {

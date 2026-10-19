@@ -48,6 +48,153 @@ const pendingPickup = {
 };
 
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('rechaza una entrega sin codigo de objeto', async () => {
+    const { repository, deliveries } = fakeWelfareRepository([publishedItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        recipientName: 'Ana Rojas',
+        recipientEmail: 'ana.rojas@ucb.edu.bo',
+        recipientUniversityCode: '20205678',
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ code: 'INVALID_DELIVERY_DATA' });
+    expect(deliveries).toEqual([]);
+  });
+
+  it('no entrega si el reporte no corresponde al objeto y propietario', async () => {
+    const { repository, items, deliveries } = fakeWelfareRepository(
+      [publishedItem],
+      [pendingPickup],
+    );
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        foundItemCode: 'HZ-0003',
+        lostReportCode: 'PR-0001',
+        recipientName: 'Otra Persona',
+        recipientEmail: 'otra.persona@ucb.edu.bo',
+        recipientUniversityCode: '20209999',
+      });
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ code: 'REPORT_NOT_ELIGIBLE' });
+    expect(items[0].status).toBe('PUBLISHED');
+    expect(deliveries).toEqual([]);
+  });
+
+  it('no permite entregar un objeto que ya fue entregado', async () => {
+    const { repository, deliveries } = fakeWelfareRepository([deliveredItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        foundItemCode: 'HZ-0002',
+        recipientName: 'Ana Rojas',
+        recipientEmail: 'ana.rojas@ucb.edu.bo',
+        recipientUniversityCode: '20205678',
+      });
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ code: 'ITEM_NOT_AVAILABLE' });
+    expect(deliveries).toEqual([]);
+  });
+
+  it('rechaza un correo no institucional para la entrega', async () => {
+    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        foundItemCode: 'HZ-0003',
+        recipientName: 'Ana Rojas',
+        recipientEmail: 'ana@gmail.com',
+        recipientUniversityCode: '20205678',
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ code: 'INVALID_RECIPIENT_EMAIL' });
+    expect(items[0].status).toBe('PUBLISHED');
+    expect(deliveries).toEqual([]);
+  });
+
+  it('rechaza una entrega si faltan los datos obligatorios del receptor', async () => {
+    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({ foundItemCode: 'HZ-0003', recipientName: 'Ana Rojas' });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ code: 'INVALID_DELIVERY_DATA' });
+    expect(items[0].status).toBe('PUBLISHED');
+    expect(deliveries).toEqual([]);
+  });
+
+  it('entrega con su reporte relacionado y lo marca como recuperado', async () => {
+    const pickupForItem = {
+      ...pendingPickup,
+      foundItem: { code: 'HZ-0003', description: publishedItem.description },
+    };
+    const { repository, items, pickups, deliveries } = fakeWelfareRepository(
+      [publishedItem],
+      [pickupForItem],
+    );
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        foundItemCode: 'HZ-0003',
+        lostReportCode: ' pr-0001 ',
+        recipientName: 'Ana Rojas',
+        recipientEmail: 'ana.rojas@ucb.edu.bo',
+        recipientUniversityCode: '20205678',
+      });
+
+    expect(res.status).toBe(201);
+    expect(items[0].status).toBe('DELIVERED');
+    expect(pickups[0].reportStatus).toBe('RECOVERED');
+    expect(deliveries[0]).toEqual(expect.objectContaining({ lostReportCode: 'PR-0001' }));
+  });
+
+  it('registra una entrega sin reporte y marca el objeto como entregado', async () => {
+    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        foundItemCode: ' hz-0003 ',
+        recipientName: 'Luis Mamani',
+        recipientEmail: 'luis.mamani@ucb.edu.bo',
+        recipientUniversityCode: '20201234',
+      });
+
+    expect(res.status).toBe(201);
+    expect(res.body).toEqual({ status: 'DELIVERED', foundItemCode: 'HZ-0003' });
+    expect(items[0].status).toBe('DELIVERED');
+    expect(deliveries).toEqual([
+      expect.objectContaining({
+        foundItemCode: 'HZ-0003',
+        lostReportCode: null,
+        recipientName: 'Luis Mamani',
+        recipientEmail: 'luis.mamani@ucb.edu.bo',
+        recipientUniversityCode: '20201234',
+        registeredById: SAMPLE_USERS.welfare.id,
+        deliveredAt: expect.any(Date),
+      }),
+    ]);
+  });
+
+  it('protege el registro de entregas para Bienestar', async () => {
+    const { repository } = fakeWelfareRepository([]);
+    const res = await request(createApp({ welfare: repository })).post('/welfare/deliveries');
+
+    expect(res.status).toBe(403);
+  });
+
   it('protege la lista de recojos pendientes para Bienestar', async () => {
     const { repository } = fakeWelfareRepository([]);
     const res = await request(createApp({ welfare: repository })).get(
