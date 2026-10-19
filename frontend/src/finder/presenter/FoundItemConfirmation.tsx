@@ -1,3 +1,5 @@
+import { Alert } from '../../core/presenter/Alert';
+
 export function FoundItemConfirmation({ code }: { code: string }) {
   return (
     <section className="mx-auto max-w-lg space-y-4">
@@ -7,6 +9,9 @@ export function FoundItemConfirmation({ code }: { code: string }) {
       </p>
       <p className="text-sm text-neutral-700">Lleva el objeto a Bienestar Estudiantil.</p>
       <p className="text-sm text-neutral-700">Muestra el código {code} al entregar el objeto.</p>
+      <Alert>
+        No entregues el objeto directamente a su dueño. Debes llevarlo a Bienestar Estudiantil
+      </Alert>
     </section>
   );
 }

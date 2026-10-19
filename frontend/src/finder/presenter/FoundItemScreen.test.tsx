@@ -176,3 +176,42 @@ describe('Instrucciones de entrega después del registro (CA11)', () => {
     expect(screen.getByRole('button', { name: 'Reportar objeto encontrado' })).toBeEnabled();
   });
 });
+
+describe('Advertencia de entrega a Bienestar Estudiantil (CA12)', () => {
+  const warningText = 'No entregues el objeto directamente a su dueño. Debes llevarlo a Bienestar Estudiantil';
+
+  it('advierte expresamente que el objeto no se entrega al dueño y debe llevarse a Bienestar', async () => {
+    const user = userEvent.setup();
+    const service = fakeService();
+    render(<FoundItemScreen foundItemsService={service} />);
+    await fillForm(user);
+
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+
+    expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
+    expect(screen.getByRole('note')).toHaveTextContent(warningText);
+    expect(screen.getByRole('status')).toHaveTextContent('HZ-7325');
+  });
+
+  it('conserva el error y muestra el aviso de entrega después de un reintento exitoso', async () => {
+    const user = userEvent.setup();
+    const service = fakeService();
+    service.create.mockRejectedValueOnce(new Error('No se pudo registrar el objeto encontrado. Intenta nuevamente.'));
+    render(<FoundItemScreen foundItemsService={service} />);
+    await fillForm(user);
+    expect(screen.queryByText(/No entregues el objeto directamente a su dueño/)).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('No se pudo registrar el objeto encontrado.');
+    expect(screen.queryByText(/No entregues el objeto directamente a su dueño/)).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Reporte registrado' })).not.toBeInTheDocument();
+    expect(screen.getByLabelText('Descripción del objeto')).toHaveValue('Llaves azules');
+
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+
+    expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
+    expect(screen.getByRole('note')).toHaveTextContent(warningText);
+    expect(service.create).toHaveBeenCalledTimes(2);
+  });
+});
