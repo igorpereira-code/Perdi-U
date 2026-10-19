@@ -2,6 +2,10 @@ import { db } from '../../core/data/prisma';
 import type { FoundItemsRepository } from './foundItemsRepository';
 
 export const prismaFoundItemsRepository: FoundItemsRepository = {
+  getPhotoByCode: (code) => db().foundItem.findUnique({
+    where: { code },
+    select: { finderId: true, photoUrl: true, status: true, visibility: true },
+  }),
   getCatalogs: async () => {
     const [categories, places] = await Promise.all([
       db().category.findMany({

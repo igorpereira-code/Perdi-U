@@ -6,6 +6,7 @@ import App from './App';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import type { MatchView } from '@shared/matching';
 import type { MatchesService } from './matching/data/matchesService';
+import type { FoundItemsService } from './finder/data/foundItemsService';
 
 const phone: MatchView = {
   id: 'match-1',
@@ -38,12 +39,17 @@ function renderAt(path: string, user: AppUser | null | Error, matches: MatchView
     dismiss: jest.fn(),
     publish: jest.fn(),
   };
+  const foundItemsService: FoundItemsService = {
+    getCatalogs: jest.fn().mockResolvedValue({ categories: [], places: [] }),
+    create: jest.fn(),
+    getPhotoUrl: jest.fn(),
+  };
   render(
     <MemoryRouter initialEntries={[path]}>
-      <App authService={authService} matchesService={matchesService} />
+      <App authService={authService} matchesService={matchesService} foundItemsService={foundItemsService} />
     </MemoryRouter>,
   );
-  return { ...authService, ...matchesService };
+  return { ...authService, ...matchesService, ...foundItemsService };
 }
 
 describe('Navegación de la app', () => {
@@ -140,7 +146,7 @@ describe('Navegación de la app', () => {
     await user.click(await screen.findByRole('button', { name: 'Encontré un objeto' }));
 
     expect(
-      screen.queryByRole('form', { name: 'Reportar objeto encontrado' }),
+      await screen.findByRole('form', { name: 'Reportar objeto encontrado' }),
     ).toBeInTheDocument();
   });
 

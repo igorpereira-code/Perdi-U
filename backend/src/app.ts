@@ -12,6 +12,8 @@ import { createPublishRouter } from './matching/routes/publishRouter';
 import type { FoundItemsRepository } from './finder/data/foundItemsRepository';
 import { prismaFoundItemsRepository } from './finder/data/prismaFoundItemsRepository';
 import { createFoundItemsRouter } from './finder/routes/foundItemsRouter';
+import type { FoundItemPhotoStorage } from './finder/data/foundItemPhotoStorage';
+import { supabaseFoundItemPhotoStorage } from './finder/data/supabaseFoundItemPhotoStorage';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -19,6 +21,7 @@ type AppOptions = {
   allowSampleUsers?: boolean;
   matching?: MatchingRepository;
   foundItems?: FoundItemsRepository;
+  foundItemPhotos?: FoundItemPhotoStorage;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
@@ -26,6 +29,7 @@ export function createApp({
   allowSampleUsers = process.env.ALLOW_SAMPLE_USERS === 'true',
   matching = prismaMatchingRepository,
   foundItems = prismaFoundItemsRepository,
+  foundItemPhotos = supabaseFoundItemPhotoStorage,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -42,7 +46,7 @@ export function createApp({
   });
   app.use(createMatchesRouter(matching));
   app.use(createPublishRouter(matching));
-  app.use(createFoundItemsRouter(foundItems));
+  app.use(createFoundItemsRouter(foundItems, foundItemPhotos));
 
   return app;
 }

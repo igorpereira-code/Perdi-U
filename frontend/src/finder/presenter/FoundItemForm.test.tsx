@@ -3,16 +3,36 @@ import userEvent from '@testing-library/user-event';
 import { CATEGORIES, PLACES } from '../../../../backend/prisma/seed/catalogs';
 import { FoundItemForm } from './FoundItemForm';
 
+const catalogs = {
+  categories: CATEGORIES.map((name, index) => ({ id: 100 + index, name })),
+  places: PLACES.map((place, index) => ({
+    ...place,
+    id: 1000 + index,
+    classrooms: (place.classrooms ?? []).map((name, classroomIndex) => ({
+      id: 10000 + index * 100 + classroomIndex, name,
+    })),
+  })),
+};
+
+function idForName(name: string): string {
+  if (!name) { return ''; }
+  const options = [...catalogs.categories, ...catalogs.places, ...catalogs.places.flatMap((place) => place.classrooms)];
+  const option = options.find((candidate) => candidate.name === name);
+  if (!option) { throw new Error('Nombre de prueba desconocido: ' + name); }
+  return String(option.id);
+}
+
+
 describe('Descripción del objeto encontrado', () => {
   it('muestra un campo accesible para ingresar la descripción del objeto', () => {
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('textbox', { name: 'Descripción del objeto' })).toBeInTheDocument();
   });
 
   it('permite escribir y conservar la descripción al volver a renderizar el formulario', async () => {
     const user = userEvent.setup();
-    const { rerender } = render(<FoundItemForm />);
+    const { rerender } = render(<FoundItemForm catalogs={catalogs} />);
     const description = 'Teléfono con funda azul y una marca en la esquina.';
 
     await user.type(screen.getByRole('textbox', { name: 'Descripción del objeto' }), description);
@@ -20,7 +40,7 @@ describe('Descripción del objeto encontrado', () => {
     expect(screen.getByRole('textbox', { name: 'Descripción del objeto' })).toHaveValue(description);
 
     await user.tab();
-    rerender(<FoundItemForm />);
+    rerender(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.getByRole('textbox', { name: 'Descripción del objeto' })).toHaveValue(description);
   });
@@ -36,7 +56,7 @@ describe('Fotografía opcional del objeto encontrado', () => {
 
   it('permite seleccionar una fotografía desde el formulario y ver su vista previa', async () => {
     const user = userEvent.setup();
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByLabelText('Foto del objeto')).toBeInTheDocument();
 
@@ -51,7 +71,7 @@ describe('Fotografía opcional del objeto encontrado', () => {
 
   it('indica que la fotografía es opcional y permite escribir la descripción sin seleccionarla', async () => {
     const user = userEvent.setup();
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('group', { name: 'Fotografía (opcional)' })).toBeInTheDocument();
 
@@ -69,7 +89,7 @@ describe('Fotografía opcional del objeto encontrado', () => {
 
   it('permite quitar la fotografía seleccionada sin perder la descripción', async () => {
     const user = userEvent.setup();
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
     const description = 'Llaves con un llavero azul';
 
     await user.type(screen.getByRole('textbox', { name: 'Descripción del objeto' }), description);
@@ -92,7 +112,7 @@ describe('Categoría del objeto encontrado', () => {
   });
 
   it('muestra un selector accesible con las categorías definidas en el proyecto', () => {
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('combobox', { name: 'Categoría' })).toBeInTheDocument();
 
@@ -102,27 +122,27 @@ describe('Categoría del objeto encontrado', () => {
       .filter((option) => option.getAttribute('value') !== '');
 
     expect(options.map((option) => option.textContent)).toEqual(CATEGORIES);
-    expect(options.map((option) => option.getAttribute('value'))).toEqual(CATEGORIES);
+    expect(options.map((option) => option.getAttribute('value'))).toEqual(catalogs.categories.map((category) => String(category.id)));
   });
 
   it('permite seleccionar y cambiar la categoría y conserva la selección al renderizar', async () => {
     const user = userEvent.setup();
-    const { rerender } = render(<FoundItemForm />);
+    const { rerender } = render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('combobox', { name: 'Categoría' })).toBeInTheDocument();
 
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), 'Llaves');
-    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Llaves');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), idForName('Llaves'));
+    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue(idForName('Llaves'));
 
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), 'Otros');
-    rerender(<FoundItemForm />);
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), idForName('Otros'));
+    rerender(<FoundItemForm catalogs={catalogs} />);
 
-    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Otros');
+    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue(idForName('Otros'));
   });
 
   it('conserva la descripción y la fotografía al seleccionar una categoría', async () => {
     const user = userEvent.setup();
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
     const description = 'Llaves con un llavero azul';
     const photo = new File(['foto'], 'llaves.jpg', { type: 'image/jpeg' });
 
@@ -130,9 +150,9 @@ describe('Categoría del objeto encontrado', () => {
     await user.upload(screen.getByLabelText('Foto del objeto'), photo);
     expect(screen.queryByRole('combobox', { name: 'Categoría' })).toBeInTheDocument();
 
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), 'Llaves');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), idForName('Llaves'));
 
-    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Llaves');
+    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue(idForName('Llaves'));
     expect(screen.getByRole('textbox', { name: 'Descripción del objeto' })).toHaveValue(description);
     expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
       'src',
@@ -151,8 +171,8 @@ describe('Ubicación del objeto encontrado', () => {
     URL.revokeObjectURL = jest.fn();
   });
 
-  it('ofrece primero los bloques y espacios del catálogo provisional, sin mostrar aulas', () => {
-    render(<FoundItemForm />);
+  it('ofrece primero los bloques y espacios del catálogo recibido, sin mostrar aulas', () => {
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
     const placeSelect = screen.getByRole('combobox', { name: 'Bloque o espacio' });
@@ -162,7 +182,7 @@ describe('Ubicación del objeto encontrado', () => {
 
     expect(options.map((option) => option.textContent)).toEqual(PLACES.map((place) => place.name));
     expect(options.map((option) => option.getAttribute('value'))).toEqual(
-      PLACES.map((place) => place.name),
+      catalogs.places.map((place) => String(place.id)),
     );
     expect(placeSelect).toHaveValue('');
     expect(screen.queryByRole('combobox', { name: 'Aula' })).not.toBeInTheDocument();
@@ -170,97 +190,97 @@ describe('Ubicación del objeto encontrado', () => {
 
   it.each(blocks)('permite seleccionar únicamente las aulas de $name y conserva la selección', async (block) => {
     const user = userEvent.setup();
-    const { rerender } = render(<FoundItemForm />);
+    const { rerender } = render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), block.name);
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), idForName(block.name));
     const classroomSelect = screen.getByRole('combobox', { name: 'Aula' });
     const options = within(classroomSelect)
       .getAllByRole('option')
       .filter((option) => option.getAttribute('value') !== '');
 
     expect(options.map((option) => option.textContent)).toEqual(block.classrooms);
-    expect(options.map((option) => option.getAttribute('value'))).toEqual(block.classrooms);
+    expect(options.map((option) => option.getAttribute('value'))).toEqual(block.classrooms?.map(idForName));
     expect(classroomSelect).toHaveValue('');
 
-    await user.selectOptions(classroomSelect, block.classrooms![0]);
-    rerender(<FoundItemForm />);
+    await user.selectOptions(classroomSelect, idForName(block.classrooms![0]));
+    rerender(<FoundItemForm catalogs={catalogs} />);
 
-    expect(screen.getByRole('combobox', { name: 'Bloque o espacio' })).toHaveValue(block.name);
-    expect(screen.getByRole('combobox', { name: 'Aula' })).toHaveValue(block.classrooms![0]);
+    expect(screen.getByRole('combobox', { name: 'Bloque o espacio' })).toHaveValue(idForName(block.name));
+    expect(screen.getByRole('combobox', { name: 'Aula' })).toHaveValue(idForName(block.classrooms![0]));
   });
 
   it('no muestra el selector de aula en ninguno de los espacios del catálogo', async () => {
     const user = userEvent.setup();
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
     for (const space of spaces) {
-      await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), space.name);
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), idForName(space.name));
 
-      expect(screen.getByRole('combobox', { name: 'Bloque o espacio' })).toHaveValue(space.name);
+      expect(screen.getByRole('combobox', { name: 'Bloque o espacio' })).toHaveValue(idForName(space.name));
       expect(screen.queryByRole('combobox', { name: 'Aula' })).not.toBeInTheDocument();
     }
   });
 
   it('limpia el aula al cambiar de bloque y no recupera una selección anterior al volver', async () => {
     const user = userEvent.setup();
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
     const placeSelect = screen.getByRole('combobox', { name: 'Bloque o espacio' });
-    await user.selectOptions(placeSelect, 'Bloque A');
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula A-12');
-    await user.selectOptions(placeSelect, 'Bloque B');
+    await user.selectOptions(placeSelect, idForName('Bloque A'));
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), idForName('Aula A-12'));
+    await user.selectOptions(placeSelect, idForName('Bloque B'));
 
     expect(screen.getByRole('combobox', { name: 'Aula' })).toHaveValue('');
     expect(
       within(screen.getByRole('combobox', { name: 'Aula' })).queryByRole('option', { name: 'Aula A-12' }),
     ).not.toBeInTheDocument();
 
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula B-12');
-    await user.selectOptions(placeSelect, 'Bloque A');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), idForName('Aula B-12'));
+    await user.selectOptions(placeSelect, idForName('Bloque A'));
 
     expect(screen.getByRole('combobox', { name: 'Aula' })).toHaveValue('');
   });
 
   it('limpia el aula al seleccionar un espacio o dejar la ubicación sin seleccionar', async () => {
     const user = userEvent.setup();
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
     const placeSelect = screen.getByRole('combobox', { name: 'Bloque o espacio' });
     for (const nextPlace of ['Biblioteca', '']) {
-      await user.selectOptions(placeSelect, 'Bloque A');
-      await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula A-12');
-      await user.selectOptions(placeSelect, nextPlace);
+      await user.selectOptions(placeSelect, idForName('Bloque A'));
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), idForName('Aula A-12'));
+      await user.selectOptions(placeSelect, idForName(nextPlace));
 
       expect(screen.queryByRole('combobox', { name: 'Aula' })).not.toBeInTheDocument();
-      await user.selectOptions(placeSelect, 'Bloque A');
+      await user.selectOptions(placeSelect, idForName('Bloque A'));
       expect(screen.getByRole('combobox', { name: 'Aula' })).toHaveValue('');
     }
   });
 
   it('conserva la descripción, categoría y fotografía al cambiar de bloque, aula o espacio', async () => {
     const user = userEvent.setup();
-    const { rerender } = render(<FoundItemForm />);
+    const { rerender } = render(<FoundItemForm catalogs={catalogs} />);
     const description = 'Llaves con un llavero azul';
     const photo = new File(['foto'], 'llaves.jpg', { type: 'image/jpeg' });
 
     await user.type(screen.getByRole('textbox', { name: 'Descripción del objeto' }), description);
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), 'Llaves');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), idForName('Llaves'));
     await user.upload(screen.getByLabelText('Foto del objeto'), photo);
 
     expect(screen.queryByRole('combobox', { name: 'Bloque o espacio' })).toBeInTheDocument();
     for (const place of PLACES) {
-      await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), place.name);
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), idForName(place.name));
       if (place.type === 'BLOCK') {
-        await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), place.classrooms![0]);
+        await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), idForName(place.classrooms![0]));
       }
-      rerender(<FoundItemForm />);
+      rerender(<FoundItemForm catalogs={catalogs} />);
 
       expect(screen.getByRole('textbox', { name: 'Descripción del objeto' })).toHaveValue(description);
-      expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Llaves');
+      expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue(idForName('Llaves'));
       expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
         'src',
         'blob:foto-con-ubicacion',
@@ -279,7 +299,7 @@ describe('Referencia adicional del lugar del hallazgo', () => {
   });
 
   it('muestra un campo accesible de referencia del lugar, inicialmente vacío', () => {
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('textbox', { name: 'Referencia del lugar' })).toBeInTheDocument();
     expect(screen.getByRole('textbox', { name: 'Referencia del lugar' })).toHaveValue('');
@@ -288,7 +308,7 @@ describe('Referencia adicional del lugar del hallazgo', () => {
 
   it('permite escribir, editar y borrar libremente la referencia y conservarla al renderizar', async () => {
     const user = userEvent.setup();
-    const { rerender } = render(<FoundItemForm />);
+    const { rerender } = render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('textbox', { name: 'Referencia del lugar' })).toBeInTheDocument();
     const reference = screen.getByRole('textbox', { name: 'Referencia del lugar' });
@@ -298,7 +318,7 @@ describe('Referencia adicional del lugar del hallazgo', () => {
     await user.clear(reference);
     const editedReference = 'Sobre la mesa grande (junto a la puerta), 2.º piso.';
     await user.type(reference, editedReference);
-    rerender(<FoundItemForm />);
+    rerender(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.getByRole('textbox', { name: 'Referencia del lugar' })).toHaveValue(editedReference);
     await user.clear(screen.getByRole('textbox', { name: 'Referencia del lugar' }));
@@ -307,7 +327,7 @@ describe('Referencia adicional del lugar del hallazgo', () => {
 
   it('conserva la referencia, descripción y foto al cambiar aula, bloque, espacio o categoría', async () => {
     const user = userEvent.setup();
-    const { rerender } = render(<FoundItemForm />);
+    const { rerender } = render(<FoundItemForm catalogs={catalogs} />);
     const reference = 'En la mesa junto a la ventana, segundo piso.';
     const description = 'Llaves con un llavero azul';
     const photo = new File(['foto'], 'llaves.jpg', { type: 'image/jpeg' });
@@ -327,25 +347,25 @@ describe('Referencia adicional del lugar del hallazgo', () => {
       expect(screen.getByText(photo.name)).toBeInTheDocument();
     }
 
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Bloque A');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), idForName('Bloque A'));
     expectDraftKept();
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula A-12');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), idForName('Aula A-12'));
     expectDraftKept();
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula A-22');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), idForName('Aula A-22'));
     expectDraftKept();
     for (const category of ['Llaves', 'Otros']) {
-      await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), category);
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), idForName(category));
       expectDraftKept();
     }
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Bloque B');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), idForName('Bloque B'));
     expectDraftKept();
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula B-12');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), idForName('Aula B-12'));
     expectDraftKept();
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Biblioteca');
-    rerender(<FoundItemForm />);
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), idForName('Biblioteca'));
+    rerender(<FoundItemForm catalogs={catalogs} />);
 
     expectDraftKept();
-    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Otros');
+    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue(idForName('Otros'));
     expect(URL.createObjectURL).toHaveBeenCalledTimes(1);
     expect(URL.revokeObjectURL).not.toHaveBeenCalled();
   });
@@ -358,7 +378,7 @@ describe('Fecha y hora del hallazgo', () => {
   });
 
   it('muestra controles accesibles vacíos para la fecha y hora del hallazgo, distintas de la creación del reporte', () => {
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByLabelText('Fecha del hallazgo')).toBeInTheDocument();
     expect(screen.queryByLabelText('Hora del hallazgo')).toBeInTheDocument();
@@ -376,7 +396,7 @@ describe('Fecha y hora del hallazgo', () => {
   });
 
   it('permite editar y borrar fecha y hora por separado sin sustituir la fecha elegida por la actual', () => {
-    const { rerender } = render(<FoundItemForm />);
+    const { rerender } = render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByLabelText('Fecha del hallazgo')).toBeInTheDocument();
     const date = screen.getByLabelText('Fecha del hallazgo');
@@ -389,7 +409,7 @@ describe('Fecha y hora del hallazgo', () => {
     fireEvent.change(date, { target: { value: '2025-05-16' } });
     expect(time).toHaveValue('13:40');
     fireEvent.change(time, { target: { value: '08:15' } });
-    rerender(<FoundItemForm />);
+    rerender(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('2025-05-16');
     expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('08:15');
@@ -397,7 +417,7 @@ describe('Fecha y hora del hallazgo', () => {
     fireEvent.change(date, { target: { value: '' } });
     expect(time).toHaveValue('08:15');
     fireEvent.change(time, { target: { value: '' } });
-    rerender(<FoundItemForm />);
+    rerender(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('');
     expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('');
@@ -405,7 +425,7 @@ describe('Fecha y hora del hallazgo', () => {
 
   it('conserva fecha y hora al modificar descripción, fotografía, categoría, bloque, aula y referencia', async () => {
     const user = userEvent.setup();
-    const { rerender } = render(<FoundItemForm />);
+    const { rerender } = render(<FoundItemForm catalogs={catalogs} />);
     const description = 'Llaves con llavero azul';
     const reference = 'Sobre la mesa junto a la ventana';
     const photo = new File(['foto'], 'llaves.jpg', { type: 'image/jpeg' });
@@ -428,31 +448,31 @@ describe('Fecha y hora del hallazgo', () => {
     await user.upload(screen.getByLabelText('Foto del objeto'), photo);
     expectFoundDateTimeKept();
     for (const category of ['Llaves', 'Otros']) {
-      await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), category);
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Categoría' }), idForName(category));
       expectFoundDateTimeKept();
     }
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Bloque A');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), idForName('Bloque A'));
     expectFoundDateTimeKept();
     for (const classroom of ['Aula A-12', 'Aula A-22']) {
-      await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), classroom);
+      await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), idForName(classroom));
       expectFoundDateTimeKept();
     }
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Bloque B');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), idForName('Bloque B'));
     expectFoundDateTimeKept();
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), 'Aula B-12');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Aula' }), idForName('Aula B-12'));
     expectFoundDateTimeKept();
     await user.type(screen.getByRole('textbox', { name: 'Referencia del lugar' }), reference);
     expectFoundDateTimeKept();
-    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), 'Biblioteca');
-    rerender(<FoundItemForm />);
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Bloque o espacio' }), idForName('Biblioteca'));
+    rerender(<FoundItemForm catalogs={catalogs} />);
     expectFoundDateTimeKept();
 
     fireEvent.change(screen.getByLabelText('Fecha del hallazgo'), { target: { value: '2025-05-16' } });
     fireEvent.change(screen.getByLabelText('Hora del hallazgo'), { target: { value: '08:15' } });
 
     expect(screen.getByRole('textbox', { name: 'Descripción del objeto' })).toHaveValue(description);
-    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue('Otros');
-    expect(screen.getByRole('combobox', { name: 'Bloque o espacio' })).toHaveValue('Biblioteca');
+    expect(screen.getByRole('combobox', { name: 'Categoría' })).toHaveValue(idForName('Otros'));
+    expect(screen.getByRole('combobox', { name: 'Bloque o espacio' })).toHaveValue(idForName('Biblioteca'));
     expect(screen.getByRole('textbox', { name: 'Referencia del lugar' })).toHaveValue(reference);
     expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
       'src',
@@ -479,13 +499,13 @@ describe('Validación del formulario de hallazgo', () => {
 
   async function fillRequiredFields(user: ReturnType<typeof userEvent.setup>, place = 'Biblioteca') {
     await user.type(screen.getByLabelText('Descripción del objeto'), 'Llaves con llavero azul');
-    await user.selectOptions(screen.getByLabelText('Categoría'), 'Llaves');
-    await user.selectOptions(screen.getByLabelText('Bloque o espacio'), place);
+    await user.selectOptions(screen.getByLabelText('Categoría'), idForName('Llaves'));
+    await user.selectOptions(screen.getByLabelText('Bloque o espacio'), idForName(place));
     fireEvent.change(screen.getByLabelText('Fecha del hallazgo'), { target: { value: '2025-05-14' } });
   }
 
   it('ofrece un botón de envío y señala únicamente los cuatro campos obligatorios sin errores iniciales', () => {
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Reportar objeto encontrado' })).toHaveAttribute(
@@ -503,7 +523,7 @@ describe('Validación del formulario de hallazgo', () => {
 
   it('impide enviar el formulario vacío y muestra errores accesibles junto a cada campo obligatorio', async () => {
     const user = userEvent.setup();
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
@@ -530,7 +550,7 @@ describe('Validación del formulario de hallazgo', () => {
     ['Fecha del hallazgo', 'Indica la fecha del hallazgo.'],
   ])('impide enviar cuando solo falta %s', async (label, message) => {
     const user = userEvent.setup();
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
     await fillRequiredFields(user);
     fireEvent.change(screen.getByLabelText(label), { target: { value: '' } });
 
@@ -546,7 +566,7 @@ describe('Validación del formulario de hallazgo', () => {
 
   it.each(['Biblioteca', 'Bloque A'])('supera la validación en %s sin hora, aula, foto ni referencia y sin registrar el reporte', async (place) => {
     const user = userEvent.setup();
-    render(<FoundItemForm />);
+    render(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
@@ -560,7 +580,7 @@ describe('Validación del formulario de hallazgo', () => {
       expect(screen.getByLabelText(label)).not.toHaveAttribute('aria-invalid', 'true');
     }
     expect(screen.getByLabelText('Descripción del objeto')).toHaveValue('Llaves con llavero azul');
-    expect(screen.getByLabelText('Bloque o espacio')).toHaveValue(place);
+    expect(screen.getByLabelText('Bloque o espacio')).toHaveValue(idForName(place));
     expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('2025-05-14');
     expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('');
     expect(screen.getByLabelText('Referencia del lugar')).toHaveValue('');
@@ -576,14 +596,14 @@ describe('Validación del formulario de hallazgo', () => {
 
   it('conserva todos los datos y la fotografía tras un error y permite corregir el campo faltante', async () => {
     const user = userEvent.setup();
-    const { rerender } = render(<FoundItemForm />);
+    const { rerender } = render(<FoundItemForm catalogs={catalogs} />);
     const photo = new File(['foto'], 'llaves.jpg', { type: 'image/jpeg' });
     const description = '   ';
     const reference = 'Sobre la mesa junto a la ventana';
     await user.type(screen.getByLabelText('Descripción del objeto'), description);
-    await user.selectOptions(screen.getByLabelText('Categoría'), 'Llaves');
-    await user.selectOptions(screen.getByLabelText('Bloque o espacio'), 'Bloque A');
-    await user.selectOptions(screen.getByLabelText('Aula'), 'Aula A-12');
+    await user.selectOptions(screen.getByLabelText('Categoría'), idForName('Llaves'));
+    await user.selectOptions(screen.getByLabelText('Bloque o espacio'), idForName('Bloque A'));
+    await user.selectOptions(screen.getByLabelText('Aula'), idForName('Aula A-12'));
     await user.type(screen.getByLabelText('Referencia del lugar'), reference);
     await user.upload(screen.getByLabelText('Foto del objeto'), photo);
     fireEvent.change(screen.getByLabelText('Fecha del hallazgo'), { target: { value: '2025-05-14' } });
@@ -591,14 +611,14 @@ describe('Validación del formulario de hallazgo', () => {
 
     expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
-    rerender(<FoundItemForm />);
+    rerender(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.getAllByRole('alert')).toHaveLength(1);
     expect(screen.getByRole('alert')).toHaveTextContent('Escribe una descripción del objeto.');
     expect(screen.getByLabelText('Descripción del objeto')).toHaveValue(description);
-    expect(screen.getByLabelText('Categoría')).toHaveValue('Llaves');
-    expect(screen.getByLabelText('Bloque o espacio')).toHaveValue('Bloque A');
-    expect(screen.getByLabelText('Aula')).toHaveValue('Aula A-12');
+    expect(screen.getByLabelText('Categoría')).toHaveValue(idForName('Llaves'));
+    expect(screen.getByLabelText('Bloque o espacio')).toHaveValue(idForName('Bloque A'));
+    expect(screen.getByLabelText('Aula')).toHaveValue(idForName('Aula A-12'));
     expect(screen.getByLabelText('Referencia del lugar')).toHaveValue(reference);
     expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('2025-05-14');
     expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('08:15');

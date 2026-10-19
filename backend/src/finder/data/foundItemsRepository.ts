@@ -27,7 +27,15 @@ export type CreatedFoundItem = {
   status: FoundItemStatus;
 };
 
+export type FoundItemPhotoAccess = {
+  finderId: string | null;
+  photoUrl: string | null;
+  status: FoundItemStatus;
+  visibility: 'VISIBLE' | 'HIDDEN';
+};
+
 export type FoundItemsRepository = {
   getCatalogs: () => Promise<FoundItemCatalogs>;
   create: (item: NewFoundItem) => Promise<CreatedFoundItem>;
+  getPhotoByCode: (code: string) => Promise<FoundItemPhotoAccess | null>;
 };

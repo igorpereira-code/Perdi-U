@@ -9,14 +9,16 @@ import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
 import { FoundItemEntry } from './finder/presenter/FoundItemEntry';
-import { FoundItemForm } from './finder/presenter/FoundItemForm';
+import { FoundItemScreen } from './finder/presenter/FoundItemScreen';
+import type { FoundItemsService } from './finder/data/foundItemsService';
 
 type AppProps = {
   authService: AuthService;
   matchesService: MatchesService;
+  foundItemsService: FoundItemsService;
 };
 
-export default function App({ authService, matchesService }: AppProps) {
+export default function App({ authService, matchesService, foundItemsService }: AppProps) {
   const navigate = useNavigate();
   // undefined = still checking who is signed in; null = nobody is signed in.
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
@@ -61,7 +63,7 @@ export default function App({ authService, matchesService }: AppProps) {
       />
       <Route
         path="/reportar-objeto"
-        element={signedInPage(() => <FoundItemForm />)}
+        element={signedInPage(() => <FoundItemScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/perfil"

@@ -7,6 +7,7 @@ jest.mock('../../core/data/prisma', () => ({ db: jest.fn() }));
 const categoryFindMany = jest.fn();
 const placeFindMany = jest.fn();
 const foundItemCreate = jest.fn();
+const foundItemFindUnique = jest.fn();
 const item: NewFoundItem = {
   description: 'Llaves con llavero azul',
   categoryId: 47,
@@ -22,8 +23,21 @@ beforeEach(() => {
   jest.mocked(db).mockReturnValue({
     category: { findMany: categoryFindMany },
     place: { findMany: placeFindMany },
-    foundItem: { create: foundItemCreate },
+    foundItem: { create: foundItemCreate, findUnique: foundItemFindUnique },
   } as unknown as ReturnType<typeof db>);
+});
+
+describe('Datos para autorizar la consulta de fotografías', () => {
+  it('obtiene propietario, estado, visibilidad y ruta por código sin generar una URL', async () => {
+    const photo = { finderId: item.finderId, photoUrl: 'usuario/archivo.png', status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' };
+    foundItemFindUnique.mockResolvedValue(photo);
+
+    await expect(prismaFoundItemsRepository.getPhotoByCode('HZ-7325')).resolves.toEqual(photo);
+    expect(foundItemFindUnique).toHaveBeenCalledWith({
+      where: { code: 'HZ-7325' },
+      select: { finderId: true, photoUrl: true, status: true, visibility: true },
+    });
+  });
 });
 
 describe('Catálogos de Finder mediante Prisma', () => {

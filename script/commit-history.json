@@ -931,12 +931,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "531c2fcd3057cf808eaa1343ebab2a0223bbc819",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-19T18:27:04.000Z",
       "message": "feat(finder): implementar backend de reporte encontrado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/531c2fcd3057cf808eaa1343ebab2a0223bbc819"
     },
     "stats": {
       "total": 747,
@@ -946,6 +946,25 @@
     },
     "coverage": 90.11,
     "test_count": 215,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-19T21:51:17.000Z",
+      "message": "feat(finder): completar reporte con fotografías privadas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 1317,
+      "additions": 1149,
+      "deletions": 168,
+      "date": "2026-10-19"
+    },
+    "coverage": 90.85,
+    "test_count": 293,
     "failed_tests": 0,
     "conclusion": "success"
   }

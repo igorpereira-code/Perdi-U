@@ -1958,9 +1958,63 @@
     "testId": 49
   },
   {
-    "commitId": "HEAD",
+    "commitId": "531c2fcd3057cf808eaa1343ebab2a0223bbc819",
     "commitName": "feat(finder): implementar backend de reporte encontrado",
     "commitTimestamp": 1792434427175,
     "testId": 49
+  },
+  {
+    "numPassedTests": 223,
+    "failedTests": 64,
+    "numTotalTests": 287,
+    "timestamp": 1792437468290,
+    "success": false,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 287,
+    "failedTests": 0,
+    "numTotalTests": 287,
+    "timestamp": 1792437672311,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 293,
+    "failedTests": 0,
+    "numTotalTests": 293,
+    "timestamp": 1792437876872,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 292,
+    "failedTests": 1,
+    "numTotalTests": 293,
+    "timestamp": 1792438176073,
+    "success": false,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 293,
+    "failedTests": 0,
+    "numTotalTests": 293,
+    "timestamp": 1792438271624,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 293,
+    "failedTests": 0,
+    "numTotalTests": 293,
+    "timestamp": 1792438333855,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): completar reporte con fotografías privadas",
+    "commitTimestamp": 1792446680029,
+    "testId": 50
   }
 ]

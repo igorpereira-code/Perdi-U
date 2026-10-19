@@ -1,31 +1,43 @@
-import { useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
+import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { PhotoInput } from '../../core/presenter/PhotoInput';
-import { FOUND_ITEM_CATEGORIES } from '../data/foundItemCategories';
-import { PROVISIONAL_FOUND_ITEM_PLACES } from '../data/foundItemPlaces';
+import type { FoundItemCatalogs, FoundItemCreated, FoundItemsService } from '../data/foundItemsService';
+import { foundAtFromForm } from '../logic/foundAtFromForm';
 import { validateFoundItemForm, type FoundItemFormErrors } from '../logic/validateFoundItemForm';
 
-export function FoundItemForm() {
+type FoundItemFormProps = {
+  catalogs: FoundItemCatalogs;
+  onCreate?: FoundItemsService['create'];
+};
+
+export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [photo, setPhoto] = useState<File | null>(null);
-  const [placeName, setPlaceName] = useState('');
-  const [classroomName, setClassroomName] = useState('');
+  const [placeId, setPlaceId] = useState('');
+  const [classroomId, setClassroomId] = useState('');
   const [placeReference, setPlaceReference] = useState('');
   const [foundDate, setFoundDate] = useState('');
   const [foundTime, setFoundTime] = useState('');
   const [errors, setErrors] = useState<FoundItemFormErrors>({});
-  const selectedPlace = PROVISIONAL_FOUND_ITEM_PLACES.find((place) => place.name === placeName);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [created, setCreated] = useState<FoundItemCreated | null>(null);
+  const submitLocked = useRef(false);
+  const selectedPlace = catalogs.places.find((place) => String(place.id) === placeId);
 
-  function handlePlaceChange(name: string) {
-    setPlaceName(name);
-    setClassroomName('');
+  function handlePlaceChange(id: string) {
+    setPlaceId(id);
+    setClassroomId('');
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const nextErrors = validateFoundItemForm({ description, category, place: placeName, foundDate });
+    if (submitLocked.current) { return; }
+    setSubmitError(null);
+    const nextErrors = validateFoundItemForm({ description, category, place: placeId, foundDate });
     setErrors(nextErrors);
 
     const firstInvalidField = Object.keys(nextErrors)[0];
@@ -34,8 +46,36 @@ export function FoundItemForm() {
       if (field instanceof HTMLElement) {
         field.focus();
       }
+      return;
     }
-    // CA9 solo valida el borrador; el envío al backend corresponde a CA10.
+    if (!onCreate) { return; }
+    submitLocked.current = true;
+    setSubmitting(true);
+    try {
+      const result = await onCreate({
+        description: description.trim(),
+        categoryId: Number(category),
+        placeId: Number(placeId),
+        classroomId: classroomId ? Number(classroomId) : null,
+        placeReference: placeReference.trim() || null,
+        foundAt: foundAtFromForm(foundDate, foundTime),
+      }, photo);
+      setCreated(result);
+    } catch (error) {
+      submitLocked.current = false;
+      setSubmitError(error instanceof Error ? error.message : 'No se pudo enviar el reporte. Intenta nuevamente.');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  if (created) {
+    return <section className="mx-auto max-w-lg space-y-4">
+      <h1 className="text-lg font-semibold text-blue-700">Reporte registrado</h1>
+      <p role="status" className="rounded-xl border border-blue-200 bg-blue-50 p-4 text-blue-700">
+        Tu código de reporte es <strong className="block text-2xl">{created.code}</strong>
+      </p>
+    </section>;
   }
 
   return (
@@ -48,6 +88,8 @@ export function FoundItemForm() {
       <h1 id="found-item-form-title" className="text-lg font-semibold text-blue-700">
         Reportar objeto encontrado
       </h1>
+      {submitError && <div role="alert"><Alert>{submitError}</Alert></div>}
+      <fieldset disabled={submitting} className="space-y-4">
       <Field id="found-item-description" label="Descripción del objeto" error={errors.description}>
         <textarea
           id="found-item-description"
@@ -71,9 +113,9 @@ export function FoundItemForm() {
           onChange={(event) => setCategory(event.target.value)}
         >
           <option value="">Selecciona una categoría</option>
-          {FOUND_ITEM_CATEGORIES.map((categoryName) => (
-            <option key={categoryName} value={categoryName}>
-              {categoryName}
+          {catalogs.categories.map((categoryOption) => (
+            <option key={categoryOption.id} value={categoryOption.id}>
+              {categoryOption.name}
             </option>
           ))}
         </select>
@@ -83,6 +125,7 @@ export function FoundItemForm() {
           Fotografía <span className="font-normal text-neutral-500">(opcional)</span>
         </legend>
         <PhotoInput onChange={setPhoto} />
+        <p className="text-sm text-neutral-500">JPEG, PNG o WebP, máximo 5 MiB.</p>
         {photo && <p className="text-sm text-neutral-500">{photo.name}</p>}
       </fieldset>
       <Field id="found-item-place" label="Bloque o espacio" error={errors.place}>
@@ -92,12 +135,12 @@ export function FoundItemForm() {
           required
           aria-invalid={Boolean(errors.place)}
           className={INPUT_CLASSES}
-          value={placeName}
+          value={placeId}
           onChange={(event) => handlePlaceChange(event.target.value)}
         >
           <option value="">Selecciona un bloque o espacio</option>
-          {PROVISIONAL_FOUND_ITEM_PLACES.map((place) => (
-            <option key={place.name} value={place.name}>
+          {catalogs.places.map((place) => (
+            <option key={place.id} value={place.id}>
               {place.name}
             </option>
           ))}
@@ -109,13 +152,13 @@ export function FoundItemForm() {
             id="found-item-classroom"
             name="classroom"
             className={INPUT_CLASSES}
-            value={classroomName}
-            onChange={(event) => setClassroomName(event.target.value)}
+            value={classroomId}
+            onChange={(event) => setClassroomId(event.target.value)}
           >
             <option value="">Selecciona un aula</option>
             {selectedPlace.classrooms.map((classroom) => (
-              <option key={classroom} value={classroom}>
-                {classroom}
+              <option key={classroom.id} value={classroom.id}>
+                {classroom.name}
               </option>
             ))}
           </select>
@@ -126,6 +169,7 @@ export function FoundItemForm() {
           id="found-item-place-reference"
           name="placeReference"
           type="text"
+          maxLength={200}
           className={INPUT_CLASSES}
           value={placeReference}
           onChange={(event) => setPlaceReference(event.target.value)}
@@ -161,9 +205,10 @@ export function FoundItemForm() {
           />
         </Field>
       </fieldset>
-      <Button type="submit" className="w-full">
-        Reportar objeto encontrado
+      <Button type="submit" className="w-full" disabled={submitting}>
+        {submitting ? 'Enviando…' : 'Reportar objeto encontrado'}
       </Button>
+      </fieldset>
     </form>
   );
 }
