@@ -1368,12 +1368,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "a492185f8ef2af369f0250e5554e56c886a93156",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-19T00:18:30.000Z",
       "message": "feat(welfare): preparar entrega desde un recojo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a492185f8ef2af369f0250e5554e56c886a93156"
     },
     "stats": {
       "total": 83,
@@ -1383,6 +1383,25 @@
     },
     "coverage": 84.06,
     "test_count": 153,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:20:24.000Z",
+      "message": "feat(welfare): elegir un objeto para entregar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 27,
+      "additions": 27,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.11,
+    "test_count": 154,
     "failed_tests": 0,
     "conclusion": "success"
   }

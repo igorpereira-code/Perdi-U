@@ -2512,9 +2512,31 @@
     "testId": 72
   },
   {
-    "commitId": "HEAD",
+    "commitId": "a492185f8ef2af369f0250e5554e56c886a93156",
     "commitName": "feat(welfare): preparar entrega desde un recojo",
     "commitTimestamp": 1792369111342,
     "testId": 72
+  },
+  {
+    "numPassedTests": 153,
+    "failedTests": 1,
+    "numTotalTests": 154,
+    "timestamp": 1792369155896,
+    "success": false,
+    "testId": 73
+  },
+  {
+    "numPassedTests": 154,
+    "failedTests": 0,
+    "numTotalTests": 154,
+    "timestamp": 1792369193556,
+    "success": true,
+    "testId": 73
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): elegir un objeto para entregar",
+    "commitTimestamp": 1792369226044,
+    "testId": 73
   }
 ]

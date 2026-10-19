@@ -38,6 +38,16 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     });
   }
 
+  function startItemDelivery(item: WelfareFoundItemView) {
+    setDeliveryDraft({
+      foundItemCode: item.code,
+      lostReportCode: '',
+      recipientName: '',
+      recipientEmail: '',
+      recipientUniversityCode: '',
+    });
+  }
+
   function updateDelivery(field: keyof DeliveryInput, value: string) {
     setDeliveryDraft((current) => (current ? { ...current, [field]: value } : current));
   }
@@ -270,6 +280,9 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
                         }
                       />
                     )}
+                    <Button onClick={() => startItemDelivery(item)} className="mt-3">
+                      Registrar entrega
+                    </Button>
                   </div>
                 </article>
               );

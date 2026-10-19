@@ -62,6 +62,20 @@ function renderPage(welfareService: WelfareService = service()) {
 }
 
 describe('Panel de Bienestar', () => {
+  it('permite elegir un objeto de la oficina y llenar una entrega sin reporte', async () => {
+    renderPage();
+    const itemCard = (await screen.findByText('HZ-0003')).closest('article');
+
+    await userEvent.click(
+      within(itemCard!).getByRole('button', { name: 'Registrar entrega' }),
+    );
+
+    expect(screen.getByLabelText('Código del objeto a entregar')).toHaveValue('HZ-0003');
+    expect(screen.getByLabelText('Código del reporte (opcional)')).toHaveValue('');
+    expect(screen.getByLabelText('Nombre de quien recibe')).toHaveValue('');
+    expect(screen.getByLabelText('Correo institucional')).toHaveValue('');
+  });
+
   it('inicia una entrega desde un recojo y precarga objeto reporte y propietario', async () => {
     renderPage(service({ listPendingPickups: jest.fn().mockResolvedValue([pendingPickup]) }));
     const pickupCard = (await screen.findByText('PR-0001')).closest('article');
