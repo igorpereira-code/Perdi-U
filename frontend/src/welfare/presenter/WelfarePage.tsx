@@ -21,6 +21,11 @@ type WelfarePageProps = {
   matchesService: MatchesService;
 };
 
+function formatDate(value: string): string {
+  const [year, month, day] = value.slice(0, 10).split('-');
+  return `${day}/${month}/${year}`;
+}
+
 export function WelfarePage({ welfareService, matchesService }: WelfarePageProps) {
   const [lostReports, setLostReports] = useState<WelfareLostReportView[] | null>(null);
   const [lostReportsError, setLostReportsError] = useState(false);
@@ -322,14 +327,24 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
         {selectedLostReport && (
           <section className="rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
             <h3 className="text-lg font-semibold text-blue-700">Detalle del reporte</h3>
-            <dl>
-              <InfoRow label="Código" value={selectedLostReport.code} />
-              <InfoRow label="Descripción" value={selectedLostReport.description} />
-              <InfoRow label="Categoría" value={selectedLostReport.category} />
-              <InfoRow label="Propietario" value={selectedLostReport.owner.name} />
-              <InfoRow label="Correo" value={selectedLostReport.owner.email} />
-            </dl>
-            <StatusChip status={selectedLostReport.status} />
+            <div className="mt-3 flex gap-4">
+              <Thumb
+                category={selectedLostReport.category}
+                photoUrl={selectedLostReport.photoUrl}
+              />
+              <div className="min-w-0 flex-1">
+                <dl>
+                  <InfoRow label="Código" value={selectedLostReport.code} />
+                  <InfoRow label="Descripción" value={selectedLostReport.description} />
+                  <InfoRow label="Categoría" value={selectedLostReport.category} />
+                  <InfoRow label="Perdido desde" value={formatDate(selectedLostReport.dateFrom)} />
+                  <InfoRow label="Perdido hasta" value={formatDate(selectedLostReport.dateTo)} />
+                  <InfoRow label="Propietario" value={selectedLostReport.owner.name} />
+                  <InfoRow label="Correo" value={selectedLostReport.owner.email} />
+                </dl>
+                <StatusChip status={selectedLostReport.status} />
+              </div>
+            </div>
           </section>
         )}
         {selectedLostReport && lostReportMatches !== null && (

@@ -172,9 +172,13 @@ describe('Panel de Bienestar', () => {
   });
 
   it('busca un reporte por codigo y muestra sus datos y propietario', async () => {
+    const reportWithPhoto = {
+      ...activeLostReport,
+      photoUrl: 'https://example.com/lost-phone.jpg',
+    };
     const findLostReportByCode = jest.fn().mockResolvedValue({
       status: 'FOUND',
-      report: activeLostReport,
+      report: reportWithPhoto,
     });
     renderPage(service({ findLostReportByCode }));
 
@@ -191,6 +195,12 @@ describe('Panel de Bienestar', () => {
     expect(within(detail!).getByText('Electrónicos')).toBeInTheDocument();
     expect(within(detail!).getByText('Ana Rojas')).toBeInTheDocument();
     expect(within(detail!).getByText('ana.rojas@ucb.edu.bo')).toBeInTheDocument();
+    expect(within(detail!).getByText('10/10/2026')).toBeInTheDocument();
+    expect(within(detail!).getByText('11/10/2026')).toBeInTheDocument();
+    expect(within(detail!).getByRole('img', { name: 'Foto del objeto' })).toHaveAttribute(
+      'src',
+      reportWithPhoto.photoUrl,
+    );
   });
 
   it('muestra los reportes de perdida activos y sus propietarios', async () => {

@@ -2850,9 +2850,39 @@
     "testId": 87
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b223ad48ccef5b5f07e8248fafec5a9cfa4ba8c2",
     "commitName": "test(welfare): verificar acceso a reportes activos",
     "commitTimestamp": 1792375303466,
     "testId": 87
+  },
+  {
+    "numPassedTests": 172,
+    "failedTests": 0,
+    "numTotalTests": 172,
+    "timestamp": 1792375411201,
+    "success": true,
+    "testId": 88
+  },
+  {
+    "numPassedTests": 171,
+    "failedTests": 1,
+    "numTotalTests": 172,
+    "timestamp": 1792375530353,
+    "success": false,
+    "testId": 88
+  },
+  {
+    "numPassedTests": 172,
+    "failedTests": 0,
+    "numTotalTests": 172,
+    "timestamp": 1792375575669,
+    "success": true,
+    "testId": 88
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): completar detalle del reporte consultado",
+    "commitTimestamp": 1792375613339,
+    "testId": 88
   }
 ]
