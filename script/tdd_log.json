@@ -2570,9 +2570,15 @@
     "testId": 75
   },
   {
-    "commitId": "HEAD",
+    "commitId": "a2a164f25e1407a49f391b145d717f52299d16c6",
     "commitName": "test(welfare): cubrir rechazos de entrega",
     "commitTimestamp": 1792369444174,
     "testId": 75
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): actualizar el doble del servicio",
+    "commitTimestamp": 1792369559319,
+    "testId": 76
   }
 ]

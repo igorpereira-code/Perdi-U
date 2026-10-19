@@ -1425,17 +1425,36 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "a2a164f25e1407a49f391b145d717f52299d16c6",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-19T00:24:03.000Z",
       "message": "test(welfare): cubrir rechazos de entrega",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a2a164f25e1407a49f391b145d717f52299d16c6"
     },
     "stats": {
       "total": 60,
       "additions": 60,
       "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.5,
+    "test_count": 158,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:25:58.000Z",
+      "message": "test(welfare): actualizar el doble del servicio",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 2,
+      "deletions": 1,
       "date": "2026-10-19"
     },
     "coverage": 85.5,
