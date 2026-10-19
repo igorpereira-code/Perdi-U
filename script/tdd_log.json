@@ -2350,9 +2350,39 @@
     "testId": 65
   },
   {
-    "commitId": "HEAD",
+    "commitId": "502050a420e122a703b7917c99fdb4befb1f719e",
     "commitName": "style(welfare): mostrar el resultado junto al buscador",
     "commitTimestamp": 1792367137918,
     "testId": 65
+  },
+  {
+    "numPassedTests": 146,
+    "failedTests": 0,
+    "numTotalTests": 146,
+    "timestamp": 1792368075338,
+    "success": true,
+    "testId": 66
+  },
+  {
+    "numPassedTests": 146,
+    "failedTests": 1,
+    "numTotalTests": 147,
+    "timestamp": 1792368164993,
+    "success": false,
+    "testId": 66
+  },
+  {
+    "numPassedTests": 147,
+    "failedTests": 0,
+    "numTotalTests": 147,
+    "timestamp": 1792368326361,
+    "success": true,
+    "testId": 66
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): proteger el registro de entregas",
+    "commitTimestamp": 1792368364847,
+    "testId": 66
   }
 ]

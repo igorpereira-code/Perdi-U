@@ -19,6 +19,10 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
     res.json(await welfare.listPendingPickups());
   });
 
+  router.post('/welfare/deliveries', requireRole('WELFARE'), async (_req, res) => {
+    res.status(501).json({ code: 'NOT_IMPLEMENTED' });
+  });
+
   router.get('/welfare/found-items/pending', requireRole('WELFARE'), async (_req, res) => {
     res.json((await welfare.listPending()).map(toView));
   });
