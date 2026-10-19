@@ -1349,12 +1349,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "fac8e484586be51cd8eee90ff0a9814fcef78f01",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-19T00:16:17.000Z",
       "message": "feat(welfare): conectar el registro de entregas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fac8e484586be51cd8eee90ff0a9814fcef78f01"
     },
     "stats": {
       "total": 64,
@@ -1364,6 +1364,25 @@
     },
     "coverage": 85.01,
     "test_count": 152,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:18:30.000Z",
+      "message": "feat(welfare): preparar entrega desde un recojo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 83,
+      "additions": 82,
+      "deletions": 1,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.06,
+    "test_count": 153,
     "failed_tests": 0,
     "conclusion": "success"
   }

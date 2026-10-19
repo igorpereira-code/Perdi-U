@@ -2490,9 +2490,31 @@
     "testId": 71
   },
   {
-    "commitId": "HEAD",
+    "commitId": "fac8e484586be51cd8eee90ff0a9814fcef78f01",
     "commitName": "feat(welfare): conectar el registro de entregas",
     "commitTimestamp": 1792368978770,
     "testId": 71
+  },
+  {
+    "numPassedTests": 152,
+    "failedTests": 1,
+    "numTotalTests": 153,
+    "timestamp": 1792369029207,
+    "success": false,
+    "testId": 72
+  },
+  {
+    "numPassedTests": 153,
+    "failedTests": 0,
+    "numTotalTests": 153,
+    "timestamp": 1792369080102,
+    "success": true,
+    "testId": 72
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): preparar entrega desde un recojo",
+    "commitTimestamp": 1792369111342,
+    "testId": 72
   }
 ]

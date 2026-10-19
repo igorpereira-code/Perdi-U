@@ -62,6 +62,23 @@ function renderPage(welfareService: WelfareService = service()) {
 }
 
 describe('Panel de Bienestar', () => {
+  it('inicia una entrega desde un recojo y precarga objeto reporte y propietario', async () => {
+    renderPage(service({ listPendingPickups: jest.fn().mockResolvedValue([pendingPickup]) }));
+    const pickupCard = (await screen.findByText('PR-0001')).closest('article');
+
+    await userEvent.click(
+      within(pickupCard!).getByRole('button', { name: 'Registrar entrega' }),
+    );
+
+    expect(screen.getByLabelText('Código del objeto a entregar')).toHaveValue('HZ-0001');
+    expect(screen.getByLabelText('Código del reporte (opcional)')).toHaveValue('PR-0001');
+    expect(screen.getByLabelText('Nombre de quien recibe')).toHaveValue('Ana Rojas');
+    expect(screen.getByLabelText('Correo institucional')).toHaveValue(
+      'ana.rojas@ucb.edu.bo',
+    );
+    expect(screen.getByLabelText('Código universitario')).toHaveValue('');
+  });
+
   it('muestra quien vendra, su reporte y el objeto que recogera', async () => {
     renderPage(service({ listPendingPickups: jest.fn().mockResolvedValue([pendingPickup]) }));
 
