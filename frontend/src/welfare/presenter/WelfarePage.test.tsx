@@ -62,6 +62,27 @@ function renderPage(welfareService: WelfareService = service()) {
 }
 
 describe('Panel de Bienestar', () => {
+  it('mantiene el formulario y explica si el reporte no corresponde', async () => {
+    renderPage(
+      service({
+        listPendingPickups: jest.fn().mockResolvedValue([pendingPickup]),
+        deliver: jest.fn().mockResolvedValue({ status: 'REPORT_NOT_ELIGIBLE' }),
+      }),
+    );
+    const pickupCard = (await screen.findByText('PR-0001')).closest('article');
+    await userEvent.click(
+      within(pickupCard!).getByRole('button', { name: 'Registrar entrega' }),
+    );
+    await userEvent.type(screen.getByLabelText('Código universitario'), '20205678');
+    await userEvent.click(screen.getByRole('button', { name: 'Confirmar entrega' }));
+
+    expect(
+      await screen.findByText('El reporte no corresponde a este objeto o propietario'),
+    ).toBeInTheDocument();
+    expect(screen.getByLabelText('Código universitario')).toHaveValue('20205678');
+    expect(screen.getByText('PR-0001')).toBeInTheDocument();
+  });
+
   it('confirma la entrega y retira el recojo y el objeto de la oficina', async () => {
     const pickupItem = {
       ...publishedItem,

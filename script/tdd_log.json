@@ -2556,9 +2556,23 @@
     "testId": 74
   },
   {
-    "commitId": "HEAD",
+    "commitId": "958cee668b6853aa30119fc556cd4d0dd958c5e6",
     "commitName": "feat(welfare): confirmar entrega desde el panel",
     "commitTimestamp": 1792369351385,
     "testId": 74
+  },
+  {
+    "numPassedTests": 158,
+    "failedTests": 0,
+    "numTotalTests": 158,
+    "timestamp": 1792369412558,
+    "success": true,
+    "testId": 75
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): cubrir rechazos de entrega",
+    "commitTimestamp": 1792369444174,
+    "testId": 75
   }
 ]

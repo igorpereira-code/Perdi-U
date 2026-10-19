@@ -1406,12 +1406,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "958cee668b6853aa30119fc556cd4d0dd958c5e6",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-19T00:22:29.000Z",
       "message": "feat(welfare): confirmar entrega desde el panel",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/958cee668b6853aa30119fc556cd4d0dd958c5e6"
     },
     "stats": {
       "total": 82,
@@ -1421,6 +1421,25 @@
     },
     "coverage": 84.5,
     "test_count": 155,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:24:03.000Z",
+      "message": "test(welfare): cubrir rechazos de entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 60,
+      "additions": 60,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.5,
+    "test_count": 158,
     "failed_tests": 0,
     "conclusion": "success"
   }
