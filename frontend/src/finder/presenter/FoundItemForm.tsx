@@ -6,6 +6,7 @@ import { PhotoInput } from '../../core/presenter/PhotoInput';
 import type { FoundItemCatalogs, FoundItemCreated, FoundItemsService } from '../data/foundItemsService';
 import { foundAtFromForm } from '../logic/foundAtFromForm';
 import { validateFoundItemForm, type FoundItemFormErrors } from '../logic/validateFoundItemForm';
+import { FoundItemConfirmation } from './FoundItemConfirmation';
 
 type FoundItemFormProps = {
   catalogs: FoundItemCatalogs;
@@ -70,12 +71,7 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
   }
 
   if (created) {
-    return <section className="mx-auto max-w-lg space-y-4">
-      <h1 className="text-lg font-semibold text-blue-700">Reporte registrado</h1>
-      <p role="status" className="rounded-xl border border-blue-200 bg-blue-50 p-4 text-blue-700">
-        Tu código de reporte es <strong className="block text-2xl">{created.code}</strong>
-      </p>
-    </section>;
+    return <FoundItemConfirmation code={created.code} />;
   }
 
   return (

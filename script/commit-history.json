@@ -950,12 +950,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "0914938816ecf78a12b2a32520b4825491152964",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-19T21:51:17.000Z",
       "message": "feat(finder): completar reporte con fotografías privadas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0914938816ecf78a12b2a32520b4825491152964"
     },
     "stats": {
       "total": 1317,
@@ -965,6 +965,25 @@
     },
     "coverage": 90.85,
     "test_count": 293,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-19T22:45:44.000Z",
+      "message": "feat(finder): indicar entrega del objeto en Bienestar Estudiantil",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 73,
+      "additions": 66,
+      "deletions": 7,
+      "date": "2026-10-19"
+    },
+    "coverage": 90.87,
+    "test_count": 296,
     "failed_tests": 0,
     "conclusion": "success"
   }

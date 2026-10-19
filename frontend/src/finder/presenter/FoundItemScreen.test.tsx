@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { FoundItemsService } from '../data/foundItemsService';
 import { FoundItemScreen } from './FoundItemScreen';
@@ -123,5 +123,56 @@ describe('Envío del formulario de hallazgo con catálogos reales', () => {
     await waitFor(() => expect(screen.getByText('HZ-7325')).toBeInTheDocument());
     expect(service.create).toHaveBeenCalledTimes(2);
     expect(service.create.mock.calls[1][1]).toBe(photo);
+  });
+});
+
+describe('Instrucciones de entrega después del registro (CA11)', () => {
+  it.each([
+    { withPhoto: false, code: 'HZ-31072' },
+    { withPhoto: true, code: 'HZ-92648' },
+  ])('indica llevar el objeto a Bienestar y mostrar el código confirmado $code, con fotografía: $withPhoto', async ({ withPhoto, code }) => {
+    const user = userEvent.setup();
+    const service = fakeService();
+    service.create.mockResolvedValue({ code, status: 'PENDING_DROP_OFF' });
+    render(<FoundItemScreen foundItemsService={service} />);
+    await fillForm(user);
+    if (withPhoto) {
+      await user.upload(screen.getByLabelText('Foto del objeto'), new File(['imagen'], 'llaves.png', { type: 'image/png' }));
+    }
+
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+
+    expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent(code);
+    expect(screen.getByText('Lleva el objeto a Bienestar Estudiantil.')).toBeInTheDocument();
+    expect(screen.getByText(`Muestra el código ${code} al entregar el objeto.`)).toBeInTheDocument();
+    expect(screen.queryByRole('form')).not.toBeInTheDocument();
+  });
+
+  it('mantiene oculta la confirmación antes de enviar, mientras guarda y si el guardado falla', async () => {
+    const user = userEvent.setup();
+    const service = fakeService();
+    let rejectCreate!: (error: Error) => void;
+    service.create.mockImplementation(() => new Promise((_resolve, reject) => { rejectCreate = reject; }));
+    render(<FoundItemScreen foundItemsService={service} />);
+    await fillForm(user);
+
+    function expectNoConfirmation() {
+      expect(screen.queryByRole('heading', { name: 'Reporte registrado' })).not.toBeInTheDocument();
+      expect(screen.queryByText('Lleva el objeto a Bienestar Estudiantil.')).not.toBeInTheDocument();
+      expect(screen.queryByText(/Muestra el código HZ-/)).not.toBeInTheDocument();
+      expect(screen.queryByText(/HZ-/)).not.toBeInTheDocument();
+    }
+
+    expectNoConfirmation();
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    expect(screen.getByRole('button', { name: 'Enviando…' })).toBeDisabled();
+    expectNoConfirmation();
+    await act(async () => { rejectCreate(new Error('No se pudo registrar el objeto encontrado. Intenta nuevamente.')); });
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('No se pudo registrar el objeto encontrado.');
+    expectNoConfirmation();
+    expect(screen.getByLabelText('Descripción del objeto')).toHaveValue('Llaves azules');
+    expect(screen.getByRole('button', { name: 'Reportar objeto encontrado' })).toBeEnabled();
   });
 });
