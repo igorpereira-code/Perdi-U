@@ -9,6 +9,12 @@ import type { MatchingRepository } from './matching/data/matchingRepository';
 import { prismaMatchingRepository } from './matching/data/prismaMatchingRepository';
 import { createMatchesRouter } from './matching/routes/matchesRouter';
 import { createPublishRouter } from './matching/routes/publishRouter';
+import { createGuideRouter } from './finder/routes/guideRouter';
+import type { FoundItemsRepository } from './finder/data/foundItemsRepository';
+import { prismaFoundItemsRepository } from './finder/data/prismaFoundItemsRepository';
+import { createFoundItemsRouter } from './finder/routes/foundItemsRouter';
+import type { FoundItemPhotoStorage } from './finder/data/foundItemPhotoStorage';
+import { supabaseFoundItemPhotoStorage } from './finder/data/supabaseFoundItemPhotoStorage';
 import type { WelfareRepository } from './welfare/data/welfareRepository';
 import { createReceivedItemsRouter } from './welfare/routes/receivedItemsRouter';
 import { prismaWelfareRepository } from './welfare/data/prismaWelfareRepository';
@@ -18,6 +24,8 @@ type AppOptions = {
   users?: UsersRepository;
   allowSampleUsers?: boolean;
   matching?: MatchingRepository;
+  foundItems?: FoundItemsRepository;
+  foundItemPhotos?: FoundItemPhotoStorage;
   welfare?: WelfareRepository;
 };
 export function createApp({
@@ -25,6 +33,8 @@ export function createApp({
   users = prismaUsersRepository,
   allowSampleUsers = process.env.ALLOW_SAMPLE_USERS === 'true',
   matching = prismaMatchingRepository,
+  foundItems = prismaFoundItemsRepository,
+  foundItemPhotos = supabaseFoundItemPhotoStorage,
   welfare = prismaWelfareRepository,
 }: AppOptions = {}) {
   const app = express();
@@ -40,8 +50,10 @@ export function createApp({
   app.get('/me', (req, res) => {
     res.json(getCurrentUser(req));
   });
+  app.use(createGuideRouter(users));
   app.use(createMatchesRouter(matching));
   app.use(createPublishRouter(matching));
+  app.use(createFoundItemsRouter(foundItems, foundItemPhotos));
   app.use(createReceivedItemsRouter(welfare));
 
   return app;

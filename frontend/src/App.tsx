@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import { AppLayout } from './core/presenter/AppLayout';
@@ -8,19 +8,37 @@ import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
+import type { GuideService } from './finder/data/guideService';
+import { QuickGuideScreen } from './finder/presenter/QuickGuideScreen';
+import { FoundItemEntry } from './finder/presenter/FoundItemEntry';
+import { FoundItemScreen } from './finder/presenter/FoundItemScreen';
+import type { FoundItemsService } from './finder/data/foundItemsService';
+import { MyFoundItemsScreen } from './finder/presenter/MyFoundItemsScreen';
+import { MyFoundItemScreen } from './finder/presenter/MyFoundItemScreen';
 import type { WelfareService } from './welfare/data/welfareService';
 import { WelfarePage } from './welfare/presenter/WelfarePage';
 
 type AppProps = {
   authService: AuthService;
   matchesService: MatchesService;
+  guideService: GuideService;
+  foundItemsService: FoundItemsService;
   welfareService: WelfareService;
 };
 
-export default function App({ authService, matchesService, welfareService }: AppProps) {
+export default function App({
+  authService,
+  matchesService,
+  guideService,
+  foundItemsService,
+  welfareService,
+}: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [notInstitutional, setNotInstitutional] = useState(false);
+  const guidePending = user ? !user.hasSeenGuide : false;
 
   useEffect(() => {
     authService
@@ -37,6 +55,11 @@ export default function App({ authService, matchesService, welfareService }: App
     setUser(null);
   }
 
+  function handleGuideSeen() {
+    setUser((current) => (current ? { ...current, hasSeenGuide: true } : current));
+    navigate('/', { replace: true });
+  }
+
   /** Pages for signed-in users: inside the blue header and bottom menu. Without a session, go to sign in. */
   const signedInPage = (page: (me: AppUser) => ReactNode) => {
     if (user === undefined) {
@@ -44,6 +67,9 @@ export default function App({ authService, matchesService, welfareService }: App
     }
     if (user === null) {
       return <Navigate to="/ingresar" replace />;
+    }
+    if (guidePending && pathname !== '/guia-rapida') {
+      return <Navigate to="/guia-rapida" replace />;
     }
     return <AppLayout role={user.role}>{page(user)}</AppLayout>;
   };
@@ -53,7 +79,22 @@ export default function App({ authService, matchesService, welfareService }: App
       <Route
         path="/"
         element={signedInPage((me) => (
-          <HomePage user={me} />
+          <div className="space-y-6">
+            <HomePage user={me} />
+            <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
+            <Link
+              to="/mis-reportes"
+              className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700"
+            >
+              Mis reportes
+            </Link>
+          </div>
+        ))}
+      />
+      <Route
+        path="/reportar-objeto"
+        element={signedInPage(() => (
+          <FoundItemScreen foundItemsService={foundItemsService} />
         ))}
       />
       <Route
@@ -63,9 +104,27 @@ export default function App({ authService, matchesService, welfareService }: App
         ))}
       />
       <Route
+        path="/mis-reportes"
+        element={signedInPage(() => (
+          <MyFoundItemsScreen foundItemsService={foundItemsService} />
+        ))}
+      />
+      <Route
+        path="/mis-reportes/encontrados/:code"
+        element={signedInPage(() => (
+          <MyFoundItemScreen foundItemsService={foundItemsService} />
+        ))}
+      />
+      <Route
         path="/mis-reportes/:code/coincidencias"
         element={signedInPage(() => (
           <MatchesScreen matchesService={matchesService} />
+        ))}
+      />
+      <Route
+        path="/guia-rapida"
+        element={signedInPage(() => (
+          <QuickGuideScreen guideService={guideService} onSeen={handleGuideSeen} />
         ))}
       />
       <Route
@@ -81,7 +140,11 @@ export default function App({ authService, matchesService, welfareService }: App
       <Route
         path="/ingresar"
         element={
-          <LoginPage onGoogleLogin={authService.signIn} notInstitutional={notInstitutional} />
+          guidePending ? (
+            <Navigate to="/guia-rapida" replace />
+          ) : (
+            <LoginPage onGoogleLogin={authService.signIn} notInstitutional={notInstitutional} />
+          )
         }
       />
     </Routes>
