@@ -2223,6 +2223,25 @@
     "conclusion": "success"
   },
   {
+    "sha": "f5d56d553d33733372649f0ab1042d40956aa135",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-20T00:48:33.000Z",
+      "message": "chore: integra los últimos cambios de final-test en core-matching",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f5d56d553d33733372649f0ab1042d40956aa135"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-10-20"
+    },
+    "coverage": 87.04,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
     "sha": "e56c7f72772b08fb6cb16445afd2b9373fe8f401",
     "author": "igorpereira-code",
     "commit": {
@@ -2245,8 +2264,8 @@
     "sha": "HEAD",
     "author": "igorpereira-code",
     "commit": {
-      "date": "2026-10-20T00:48:33.000Z",
-      "message": "chore: integra los últimos cambios de final-test en core-matching",
+      "date": "2026-10-20T03:35:14.000Z",
+      "message": "chore: integra los últimos cambios de final-test en welfare",
       "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
     },
     "stats": {
@@ -2255,8 +2274,8 @@
       "deletions": 0,
       "date": "2026-10-20"
     },
-    "coverage": 87.04,
-    "test_count": 104,
+    "coverage": 84.07,
+    "test_count": 173,
     "failed_tests": 0,
     "conclusion": "success"
   },
@@ -2281,20 +2300,20 @@
   },
   {
     "sha": "HEAD",
-    "author": "igorpereira-code",
+    "author": "CodexSandboxOffline",
     "commit": {
-      "date": "2026-10-20T03:35:14.000Z",
-      "message": "chore: integra los últimos cambios de final-test en welfare",
+      "date": "2026-10-20T03:56:09.000Z",
+      "message": "style(welfare): actualizar solo el diseño visual del panel",
       "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
     },
     "stats": {
-      "total": 0,
-      "additions": 0,
-      "deletions": 0,
+      "total": 781,
+      "additions": 514,
+      "deletions": 267,
       "date": "2026-10-20"
     },
-    "coverage": 84.07,
-    "test_count": 173,
+    "coverage": 83.98,
+    "test_count": 174,
     "failed_tests": 0,
     "conclusion": "success"
   },
@@ -2390,6 +2409,25 @@
     },
     "coverage": 84.66,
     "test_count": 198,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-20T20:47:39.000Z",
+      "message": "chore: integra los últimos cambios de final-test en el revert",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 452,
+      "additions": 38,
+      "deletions": 414,
+      "date": "2026-10-20"
+    },
+    "coverage": 83.98,
+    "test_count": 177,
     "failed_tests": 0,
     "conclusion": "success"
   }
