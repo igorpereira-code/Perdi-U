@@ -53,6 +53,33 @@ const items: FakeItem[] = [
 ];
 
 describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matches)', () => {
+  it('no permite que Bienestar consulte coincidencias de un reporte recuperado', async () => {
+    const { repository } = fakeMatchingRepository(
+      [{ ...anasReport, status: 'RECOVERED' }],
+      items,
+    );
+
+    const res = await request(createApp({ matching: repository }))
+      .get('/lost-reports/PR-0001/matches')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(404);
+  });
+
+  it('permite que Bienestar consulte el reporte de otra persona', async () => {
+    const { repository } = fakeMatchingRepository([anasReport], items);
+
+    const res = await request(createApp({ matching: repository }))
+      .get('/lost-reports/PR-0001/matches')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body.map((match: { foundItem: { code: string } }) => match.foundItem.code)).toEqual([
+      'HZ-0001',
+      'HZ-0002',
+    ]);
+  });
+
   it('muestra los objetos publicados parecidos, del más parecido al menos parecido', async () => {
     const { repository } = fakeMatchingRepository([anasReport], items);
 
