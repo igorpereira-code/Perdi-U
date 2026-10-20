@@ -1,5 +1,6 @@
 import type { Request, RequestHandler } from 'express';
 import type { Role } from '@prisma/client';
+import type { AppUser } from '@shared/user';
 import { verifySupabaseToken } from './data/supabaseAuth';
 import { SAMPLE_USERS } from './sampleUsers';
 import { isInstitutionalEmail } from './logic/institutionalEmail';
@@ -7,13 +8,7 @@ import { prismaUsersRepository } from './data/prismaUsersRepository';
 import type { UsersRepository } from './data/usersRepository';
 import { roleForEmail } from './logic/roleForEmail';
 
-export type CurrentUser = {
-  id: string;
-  name: string;
-  email: string;
-  photoUrl?: string | null;
-  role: Role;
-};
+export type CurrentUser = AppUser;
 
 declare global {
   namespace Express {

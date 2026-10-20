@@ -9,6 +9,7 @@ import type { MatchingRepository } from './matching/data/matchingRepository';
 import { prismaMatchingRepository } from './matching/data/prismaMatchingRepository';
 import { createMatchesRouter } from './matching/routes/matchesRouter';
 import { createPublishRouter } from './matching/routes/publishRouter';
+import { createGuideRouter } from './finder/routes/guideRouter';
 import type { FoundItemsRepository } from './finder/data/foundItemsRepository';
 import { prismaFoundItemsRepository } from './finder/data/prismaFoundItemsRepository';
 import { createFoundItemsRouter } from './finder/routes/foundItemsRouter';
@@ -44,6 +45,7 @@ export function createApp({
   app.get('/me', (req, res) => {
     res.json(getCurrentUser(req));
   });
+  app.use(createGuideRouter(users));
   app.use(createMatchesRouter(matching));
   app.use(createPublishRouter(matching));
   app.use(createFoundItemsRouter(foundItems, foundItemPhotos));

@@ -760,6 +760,44 @@
     "conclusion": "success"
   },
   {
+    "sha": "41a23e5703df19b5c4fb6b909a5d99ef07c38768",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T00:32:52.000Z",
+      "message": "feat(finder): mostrar guía rápida y permitir volver al inicio",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/41a23e5703df19b5c4fb6b909a5d99ef07c38768"
+    },
+    "stats": {
+      "total": 92,
+      "additions": 87,
+      "deletions": 5,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.19,
+    "test_count": 107,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "e559cc530a4552f66974a8b304c1230aaf3c6aaf",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T01:49:06.000Z",
+      "message": "feat(finder): mostrar los cuatro pasos de la guía rápida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/e559cc530a4552f66974a8b304c1230aaf3c6aaf"
+    },
+    "stats": {
+      "total": 97,
+      "additions": 84,
+      "deletions": 13,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.26,
+    "test_count": 108,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
     "sha": "894a2d22d1b2e3d5cfeddb1044d8bb4f279a2e2c",
     "author": "Mateo Rojas Campos",
     "commit": {
@@ -851,6 +889,63 @@
     },
     "coverage": 87.47,
     "test_count": 116,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "6b9b123e916c3b4b2afac85a295b47a7b98193b6",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T15:32:38.000Z",
+      "message": "feat(finder): agregar campo para registrar guia vista",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6b9b123e916c3b4b2afac85a295b47a7b98193b6"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 3,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.26,
+    "test_count": 108,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "2840883a7b237738708d38d0014aa99d1e249dc0",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T15:53:45.000Z",
+      "message": "feat(finder): persistir la guia al completarla u omitirla",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2840883a7b237738708d38d0014aa99d1e249dc0"
+    },
+    "stats": {
+      "total": 479,
+      "additions": 417,
+      "deletions": 62,
+      "date": "2026-10-18"
+    },
+    "coverage": 88.27,
+    "test_count": 127,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "5145ccdf3b4df470318570191632add9a9361fe0",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-18T16:02:25.000Z",
+      "message": "feat(finder): mostrar la guía automáticamente en el primer ingreso",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 107,
+      "additions": 104,
+      "deletions": 3,
+      "date": "2026-10-18"
+    },
+    "coverage": 88.38,
+    "test_count": 137,
     "failed_tests": 0,
     "conclusion": "success"
   },
@@ -1026,7 +1121,7 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "5e661eb3ca3603ccded1df8bb59dd923cf59cfae",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-20T01:13:40.000Z",
@@ -1041,6 +1136,25 @@
     },
     "coverage": 90.87,
     "test_count": 303,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-20T03:47:55.000Z",
+      "message": "chore: integra la HU anterior de finder",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 2868,
+      "additions": 2863,
+      "deletions": 5,
+      "date": "2026-10-20"
+    },
+    "coverage": 91.4,
+    "test_count": 336,
     "failed_tests": 0,
     "conclusion": "success"
   }

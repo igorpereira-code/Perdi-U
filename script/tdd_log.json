@@ -1649,6 +1649,172 @@
   },
   {
     "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792280167450,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 1,
+    "numTotalTests": 105,
+    "timestamp": 1792281366950,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 0,
+    "numTotalTests": 105,
+    "timestamp": 1792281454068,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 106,
+    "failedTests": 0,
+    "numTotalTests": 106,
+    "timestamp": 1792281721452,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 1,
+    "numTotalTests": 106,
+    "timestamp": 1792282721848,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 1,
+    "numTotalTests": 106,
+    "timestamp": 1792282922856,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 1,
+    "numTotalTests": 106,
+    "timestamp": 1792283083549,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 107,
+    "failedTests": 0,
+    "numTotalTests": 107,
+    "timestamp": 1792283226668,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "commitId": "41a23e5703df19b5c4fb6b909a5d99ef07c38768",
+    "commitName": "feat(finder): mostrar guía rápida y permitir volver al inicio",
+    "commitTimestamp": 1792283574969,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 107,
+    "failedTests": 1,
+    "numTotalTests": 108,
+    "timestamp": 1792284145009,
+    "success": false,
+    "testId": 41
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 0,
+    "numTotalTests": 108,
+    "timestamp": 1792284226339,
+    "success": true,
+    "testId": 41
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 0,
+    "numTotalTests": 108,
+    "timestamp": 1792287402778,
+    "success": true,
+    "testId": 41
+  },
+  {
+    "commitId": "e559cc530a4552f66974a8b304c1230aaf3c6aaf",
+    "commitName": "feat(finder): mostrar los cuatro pasos de la guía rápida",
+    "commitTimestamp": 1792288148311,
+    "testId": 41
+  },
+  {
+    "commitId": "6b9b123e916c3b4b2afac85a295b47a7b98193b6",
+    "commitName": "feat(finder): agregar campo para registrar guia vista",
+    "commitTimestamp": 1792337561616,
+    "testId": 42
+  },
+  {
+    "numPassedTests": 113,
+    "failedTests": 14,
+    "numTotalTests": 127,
+    "timestamp": 1792338331360,
+    "success": false,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792338419559,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792338494133,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "commitId": "2840883a7b237738708d38d0014aa99d1e249dc0",
+    "commitName": "feat(finder): persistir la guia al completarla u omitirla",
+    "commitTimestamp": 1792338828173,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 128,
+    "failedTests": 9,
+    "numTotalTests": 137,
+    "timestamp": 1792338951091,
+    "success": false,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 0,
+    "numTotalTests": 137,
+    "timestamp": 1792339014424,
+    "success": true,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 0,
+    "numTotalTests": 137,
+    "timestamp": 1792339067479,
+    "success": true,
+    "testId": 44
+  },
+  {
+    "commitId": "5145ccdf3b4df470318570191632add9a9361fe0",
+    "commitName": "feat(finder): mostrar la guía automáticamente en el primer ingreso",
+    "commitTimestamp": 1792339348174,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 104,
     "failedTests": 1,
     "numTotalTests": 105,
     "timestamp": 1792289117557,
@@ -2140,9 +2306,31 @@
     "testId": 54
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5e661eb3ca3603ccded1df8bb59dd923cf59cfae",
     "commitName": "feat(finder): informar privacidad del reporte hasta su recepcion",
     "commitTimestamp": 1792458822940,
     "testId": 54
+  },
+  {
+    "numPassedTests": 336,
+    "failedTests": 0,
+    "numTotalTests": 336,
+    "timestamp": 1792466064728,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 336,
+    "failedTests": 0,
+    "numTotalTests": 336,
+    "timestamp": 1792466880389,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: integra la HU anterior de finder",
+    "commitTimestamp": 1792468077480,
+    "testId": 55
   }
 ]

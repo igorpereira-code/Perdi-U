@@ -97,6 +97,7 @@ describe('Autenticación del hallador (POST /found-items)', () => {
     const users: UsersRepository = {
       findById: jest.fn().mockResolvedValue(profile),
       create: jest.fn(),
+      markGuideSeen: jest.fn().mockResolvedValue(undefined),
       listWelfareEmails: jest.fn(),
     };
 
