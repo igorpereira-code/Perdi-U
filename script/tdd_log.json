@@ -1672,7 +1672,7 @@
     "testId": 40
   },
   {
-    "commitId": "HEAD",
+    "commitId": "96477f3046daf215beb38d641ae6c2365cf974d2",
     "commitName": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
     "commitTimestamp": 1792435668352,
     "testId": 41
@@ -1682,5 +1682,11 @@
     "commitName": "chore: integra los últimos cambios de final-test en core-matching",
     "commitTimestamp": 1792457314026,
     "testId": 42
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: cambios de rama core-matching",
+    "commitTimestamp": 1792457610601,
+    "testId": 43
   }
 ]
