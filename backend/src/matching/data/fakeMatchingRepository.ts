@@ -23,6 +23,11 @@ export function fakeMatchingRepository(reports: FakeReport[], initialItems: Fake
     findOwnLostReport: async (code, ownerId) =>
       reports.find((report) => report.code === code && report.ownerId === ownerId) ?? null,
 
+    findLostReportByCode: async (code) =>
+      reports.find(
+        (report) => report.code === code && report.status !== 'RECOVERED',
+      ) ?? null,
+
     listPublishedItems: async () => items.filter((item) => statusOf(item) === 'PUBLISHED'),
 
     saveSuggestions: async (lostReportId, suggestions) => {

@@ -741,6 +741,25 @@
     "conclusion": "success"
   },
   {
+    "sha": "91a6ef6522e552e7e1731544af9a5cfca715fc76",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-17T01:16:20.000Z",
+      "message": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/91a6ef6522e552e7e1731544af9a5cfca715fc76"
+    },
+    "stats": {
+      "total": 54,
+      "additions": 40,
+      "deletions": 14,
+      "date": "2026-10-17"
+    },
+    "coverage": 87.08,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
     "sha": "5a6e080ddc3eaf22246b69e54bd3d814a4b4d1b9",
     "author": "igorpereira-code",
     "commit": {
@@ -760,12 +779,962 @@
     "conclusion": "success"
   },
   {
-    "sha": "243b84f8aca876db499e37a790a59ee987f54d49",
+    "sha": "8e8cdcce5fa21f8f5ca946ec35a7932ba521bfa3",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:06:18.000Z",
+      "message": "docs(welfare): definir diseño TDD de la HU-9",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/8e8cdcce5fa21f8f5ca946ec35a7932ba521bfa3"
+    },
+    "stats": {
+      "total": 115,
+      "additions": 115,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.04,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "a46cadd5e696c7c16357b1fb507b298cb0e9a98a",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:17:43.000Z",
+      "message": "docs(welfare): planificar la implementacion TDD de la HU-9",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a46cadd5e696c7c16357b1fb507b298cb0e9a98a"
+    },
+    "stats": {
+      "total": 295,
+      "additions": 295,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.04,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "512f373b8607523aef4a2a443fdf80b224330db1",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:24:01.000Z",
+      "message": "feat(welfare): listar objetos pendientes de recepcion",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/512f373b8607523aef4a2a443fdf80b224330db1"
+    },
+    "stats": {
+      "total": 135,
+      "additions": 135,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.57,
+    "test_count": 107,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "31e03acae0218fa7070dce92920f2760967e6569",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:25:58.000Z",
+      "message": "feat(welfare): buscar objetos pendientes por codigo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/31e03acae0218fa7070dce92920f2760967e6569"
+    },
+    "stats": {
+      "total": 78,
+      "additions": 78,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.99,
+    "test_count": 112,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "6d1b52ee0a3ae8806814b4fce246bcff3401edaa",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:28:12.000Z",
+      "message": "feat(welfare): confirmar la recepcion de un objeto",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6d1b52ee0a3ae8806814b4fce246bcff3401edaa"
+    },
+    "stats": {
+      "total": 111,
+      "additions": 108,
+      "deletions": 3,
+      "date": "2026-10-18"
+    },
+    "coverage": 88.09,
+    "test_count": 118,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "97a27381e4fd673122f4b5967398f3da383534cf",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:30:14.000Z",
+      "message": "feat(welfare): guardar la recepcion en la base de datos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/97a27381e4fd673122f4b5967398f3da383534cf"
+    },
+    "stats": {
+      "total": 75,
+      "additions": 71,
+      "deletions": 4,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.62,
+    "test_count": 118,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "078a00ed8b0cae602af6dce401a896dc10d3ac49",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:33:13.000Z",
+      "message": "feat(welfare): conectar el panel con la recepcion de objetos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/078a00ed8b0cae602af6dce401a896dc10d3ac49"
+    },
+    "stats": {
+      "total": 90,
+      "additions": 90,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.85,
+    "test_count": 124,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "c4e2d3418eaaa205579a6ee208e20578c39b979a",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:36:14.000Z",
+      "message": "feat(welfare): consultar objetos pendientes y sus datos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c4e2d3418eaaa205579a6ee208e20578c39b979a"
+    },
+    "stats": {
+      "total": 156,
+      "additions": 156,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.25,
+    "test_count": 130,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "3c2d22b3bff52d7b637ec4a1a6422f344bd13089",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:41:15.000Z",
+      "message": "feat(welfare): registrar la recepcion desde el panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/3c2d22b3bff52d7b637ec4a1a6422f344bd13089"
+    },
+    "stats": {
+      "total": 96,
+      "additions": 92,
+      "deletions": 4,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.1,
+    "test_count": 135,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "45062221330a1a3d826d43f91bf2eb409514e14f",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:44:38.000Z",
+      "message": "style(welfare): cumplir el formato del panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/45062221330a1a3d826d43f91bf2eb409514e14f"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 3,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.1,
+    "test_count": 135,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "6704f9a2865604479f7af801cd3a39c380672970",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T07:48:00.000Z",
+      "message": "test(welfare): cerrar la promesa de confirmacion",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6704f9a2865604479f7af801cd3a39c380672970"
+    },
+    "stats": {
+      "total": 5,
+      "additions": 4,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.1,
+    "test_count": 135,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "7fd1f64edb63dac4598377fb99c7440a845d6169",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:43:16.000Z",
+      "message": "feat(welfare): listar objetos que siguen en la oficina",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7fd1f64edb63dac4598377fb99c7440a845d6169"
+    },
+    "stats": {
+      "total": 50,
+      "additions": 50,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.86,
+    "test_count": 136,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "df7846245edea0810f877bd9f6976b07187d2e4f",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:45:16.000Z",
+      "message": "feat(welfare): consultar objetos que siguen en la oficina",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/df7846245edea0810f877bd9f6976b07187d2e4f"
+    },
+    "stats": {
+      "total": 20,
+      "additions": 20,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.76,
+    "test_count": 137,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "480337c633153e9d6986f6e874ca37fadd2f1637",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:47:20.000Z",
+      "message": "feat(welfare): mostrar objetos que estan en la oficina",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/480337c633153e9d6986f6e874ca37fadd2f1637"
+    },
+    "stats": {
+      "total": 63,
+      "additions": 62,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.69,
+    "test_count": 138,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "7bf40dc112ae47db8ac20b9bb24fe5d26efb0f87",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:50:12.000Z",
+      "message": "feat(welfare): publicar objetos desde el panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7bf40dc112ae47db8ac20b9bb24fe5d26efb0f87"
+    },
+    "stats": {
+      "total": 69,
+      "additions": 58,
+      "deletions": 11,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.69,
+    "test_count": 139,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "f9ec5a53334808f920eec699a12c41eafe03bd19",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:54:54.000Z",
+      "message": "fix(welfare): actualizar el estado al publicar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f9ec5a53334808f920eec699a12c41eafe03bd19"
+    },
+    "stats": {
+      "total": 50,
+      "additions": 34,
+      "deletions": 16,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.89,
+    "test_count": 139,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "2d05fd464bbe5b63acc3e81ebfc6352caa930b3a",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T16:57:23.000Z",
+      "message": "fix(welfare): mostrar el objeto recibido en custodia",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2d05fd464bbe5b63acc3e81ebfc6352caa930b3a"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 7,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.94,
+    "test_count": 139,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "df3803cd7bf93d07cfd524492f047ef2dce607ae",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T17:01:06.000Z",
+      "message": "fix(welfare): conservar objetos recibidos durante la carga",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/df3803cd7bf93d07cfd524492f047ef2dce607ae"
+    },
+    "stats": {
+      "total": 20,
+      "additions": 18,
+      "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.12,
+    "test_count": 139,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "46cda2183970e624d191255bbd76373c33df3581",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T18:18:17.000Z",
+      "message": "fix(welfare): conservar la custodia ante errores de carga",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/46cda2183970e624d191255bbd76373c33df3581"
+    },
+    "stats": {
+      "total": 22,
+      "additions": 21,
+      "deletions": 1,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.35,
+    "test_count": 140,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "1368f8dd40d029e6742aed57d453a5a3be7d9322",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T18:35:42.000Z",
+      "message": "feat(welfare): proteger los recojos pendientes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/1368f8dd40d029e6742aed57d453a5a3be7d9322"
+    },
+    "stats": {
+      "total": 13,
+      "additions": 13,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.2,
+    "test_count": 141,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "dbbb5581134eb7a39151d7ba62ca4b945a78ea80",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T18:37:17.000Z",
+      "message": "feat(welfare): listar los recojos pendientes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/dbbb5581134eb7a39151d7ba62ca4b945a78ea80"
+    },
+    "stats": {
+      "total": 80,
+      "additions": 78,
+      "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.96,
+    "test_count": 142,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "d8e49cd3d5f13bc2284d0f4125dd22c1a5c945fd",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T18:39:34.000Z",
+      "message": "feat(welfare): consultar los recojos pendientes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d8e49cd3d5f13bc2284d0f4125dd22c1a5c945fd"
+    },
+    "stats": {
+      "total": 27,
+      "additions": 25,
+      "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.86,
+    "test_count": 143,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "3010bbaec3ed4c36530829c31920c440d296f21d",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T18:42:12.000Z",
+      "message": "feat(welfare): mostrar los recojos pendientes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/3010bbaec3ed4c36530829c31920c440d296f21d"
+    },
+    "stats": {
+      "total": 52,
+      "additions": 50,
+      "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.8,
+    "test_count": 144,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "288694413bae8d25ae7625e2fd59ea28de96198b",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T18:44:46.000Z",
+      "message": "feat(welfare): mostrar recojos pendientes vacios",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/288694413bae8d25ae7625e2fd59ea28de96198b"
+    },
+    "stats": {
+      "total": 13,
+      "additions": 13,
+      "deletions": 0,
+      "date": "2026-10-18"
+    },
+    "coverage": 86.8,
+    "test_count": 145,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "83ff775d9287f7f0bccb1d5723cef9059a14c25c",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T18:46:50.000Z",
+      "message": "feat(welfare): avisar errores al cargar recojos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/83ff775d9287f7f0bccb1d5723cef9059a14c25c"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 21,
+      "deletions": 2,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.04,
+    "test_count": 146,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "502050a420e122a703b7917c99fdb4befb1f719e",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-18T23:45:35.000Z",
+      "message": "style(welfare): mostrar el resultado junto al buscador",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/502050a420e122a703b7917c99fdb4befb1f719e"
+    },
+    "stats": {
+      "total": 33,
+      "additions": 17,
+      "deletions": 16,
+      "date": "2026-10-18"
+    },
+    "coverage": 87.04,
+    "test_count": 146,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "472e68dadf3d4364b4c321804bd26cb44569ff4c",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:06:03.000Z",
+      "message": "test(welfare): proteger el registro de entregas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/472e68dadf3d4364b4c321804bd26cb44569ff4c"
+    },
+    "stats": {
+      "total": 11,
+      "additions": 11,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 86.9,
+    "test_count": 147,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "48357ec745a10380bc0547b807d0409e80484993",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:08:05.000Z",
+      "message": "feat(welfare): registrar entregas sin reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/48357ec745a10380bc0547b807d0409e80484993"
+    },
+    "stats": {
+      "total": 116,
+      "additions": 112,
+      "deletions": 4,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.53,
+    "test_count": 148,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "dbd0cd8bca6772766a2fac44be3dd4f390f82651",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:09:49.000Z",
+      "message": "feat(welfare): recuperar el reporte al entregar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/dbd0cd8bca6772766a2fac44be3dd4f390f82651"
+    },
+    "stats": {
+      "total": 81,
+      "additions": 77,
+      "deletions": 4,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.78,
+    "test_count": 149,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "6e799242ea91efcfb87d7efbd6098844baab694f",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:11:39.000Z",
+      "message": "test(welfare): validar datos obligatorios de entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6e799242ea91efcfb87d7efbd6098844baab694f"
+    },
+    "stats": {
+      "total": 33,
+      "additions": 29,
+      "deletions": 4,
+      "date": "2026-10-19"
+    },
+    "coverage": 85,
+    "test_count": 150,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "68de56d1d188b21618c075c34b84917f329e1cba",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:14:01.000Z",
+      "message": "test(welfare): exigir correo institucional al entregar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/68de56d1d188b21618c075c34b84917f329e1cba"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 23,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.08,
+    "test_count": 151,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "fac8e484586be51cd8eee90ff0a9814fcef78f01",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:16:17.000Z",
+      "message": "feat(welfare): conectar el registro de entregas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fac8e484586be51cd8eee90ff0a9814fcef78f01"
+    },
+    "stats": {
+      "total": 64,
+      "additions": 64,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.01,
+    "test_count": 152,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "a492185f8ef2af369f0250e5554e56c886a93156",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:18:30.000Z",
+      "message": "feat(welfare): preparar entrega desde un recojo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a492185f8ef2af369f0250e5554e56c886a93156"
+    },
+    "stats": {
+      "total": 83,
+      "additions": 82,
+      "deletions": 1,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.06,
+    "test_count": 153,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "db17e50c0a3f24743388d494d6bd900e323ede6f",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:20:24.000Z",
+      "message": "feat(welfare): elegir un objeto para entregar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/db17e50c0a3f24743388d494d6bd900e323ede6f"
+    },
+    "stats": {
+      "total": 27,
+      "additions": 27,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.11,
+    "test_count": 154,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "958cee668b6853aa30119fc556cd4d0dd958c5e6",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:22:29.000Z",
+      "message": "feat(welfare): confirmar entrega desde el panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/958cee668b6853aa30119fc556cd4d0dd958c5e6"
+    },
+    "stats": {
+      "total": 82,
+      "additions": 80,
+      "deletions": 2,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.5,
+    "test_count": 155,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "a2a164f25e1407a49f391b145d717f52299d16c6",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:24:03.000Z",
+      "message": "test(welfare): cubrir rechazos de entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a2a164f25e1407a49f391b145d717f52299d16c6"
+    },
+    "stats": {
+      "total": 60,
+      "additions": 60,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.5,
+    "test_count": 158,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "70476201075b983bd503b426606a45821e1c7610",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:25:58.000Z",
+      "message": "test(welfare): actualizar el doble del servicio",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/70476201075b983bd503b426606a45821e1c7610"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 2,
+      "deletions": 1,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.5,
+    "test_count": 158,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "d61f961af9113a125b007ddfd0dc3088dba55294",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T00:33:24.000Z",
+      "message": "test(welfare): validar el codigo al entregar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d61f961af9113a125b007ddfd0dc3088dba55294"
+    },
+    "stats": {
+      "total": 19,
+      "additions": 18,
+      "deletions": 1,
+      "date": "2026-10-19"
+    },
+    "coverage": 85.52,
+    "test_count": 159,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "746d331e7ec4df2a897e014d49a6cd2d0bd85de1",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T01:40:15.000Z",
+      "message": "feat(welfare): consultar coincidencias de otros reportes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/746d331e7ec4df2a897e014d49a6cd2d0bd85de1"
+    },
+    "stats": {
+      "total": 44,
+      "additions": 43,
+      "deletions": 1,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.89,
+    "test_count": 160,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "cd80b3aaa36191f700812f527f4c6ea7db8a6a06",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T01:42:04.000Z",
+      "message": "feat(welfare): listar reportes de perdida activos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/cd80b3aaa36191f700812f527f4c6ea7db8a6a06"
+    },
+    "stats": {
+      "total": 103,
+      "additions": 100,
+      "deletions": 3,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.7,
+    "test_count": 161,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "530a71dd1443da31af3861cafc19eccf4cc29298",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T01:43:46.000Z",
+      "message": "feat(welfare): buscar reportes activos por codigo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/530a71dd1443da31af3861cafc19eccf4cc29298"
+    },
+    "stats": {
+      "total": 53,
+      "additions": 53,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.34,
+    "test_count": 162,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "15db924b6de0500c93601829e4b78f35f44be108",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T01:45:47.000Z",
+      "message": "feat(welfare): consultar reportes activos desde el frontend",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/15db924b6de0500c93601829e4b78f35f44be108"
+    },
+    "stats": {
+      "total": 39,
+      "additions": 37,
+      "deletions": 2,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.28,
+    "test_count": 163,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "1d7434bd6b190db4c15fc5a3ce8059cc69cac5ac",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T01:47:34.000Z",
+      "message": "feat(welfare): buscar reportes desde el frontend",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/1d7434bd6b190db4c15fc5a3ce8059cc69cac5ac"
+    },
+    "stats": {
+      "total": 37,
+      "additions": 37,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 83.96,
+    "test_count": 164,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "b0d38732fe6e836be59958d3fff9f0d8e81d8d0d",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T01:50:29.000Z",
+      "message": "feat(welfare): mostrar reportes de perdida activos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b0d38732fe6e836be59958d3fff9f0d8e81d8d0d"
+    },
+    "stats": {
+      "total": 83,
+      "additions": 81,
+      "deletions": 2,
+      "date": "2026-10-19"
+    },
+    "coverage": 83.82,
+    "test_count": 165,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "b142d955143ff97eccd478ece039a49c68478be6",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T01:53:45.000Z",
+      "message": "feat(welfare): buscar reportes de perdida en el panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b142d955143ff97eccd478ece039a49c68478be6"
+    },
+    "stats": {
+      "total": 71,
+      "additions": 71,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 83.58,
+    "test_count": 166,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "fb71badb2dbbafa011150a6dddf0ba7e81e9921b",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T01:56:08.000Z",
+      "message": "feat(welfare): mostrar objetos parecidos de un reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fb71badb2dbbafa011150a6dddf0ba7e81e9921b"
+    },
+    "stats": {
+      "total": 75,
+      "additions": 72,
+      "deletions": 3,
+      "date": "2026-10-19"
+    },
+    "coverage": 83.41,
+    "test_count": 167,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "f30878f56a303ee1ffc4bdb960be9c62472293a9",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T01:59:21.000Z",
+      "message": "fix(welfare): conservar el reporte si fallan sus coincidencias",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f30878f56a303ee1ffc4bdb960be9c62472293a9"
+    },
+    "stats": {
+      "total": 67,
+      "additions": 66,
+      "deletions": 1,
+      "date": "2026-10-19"
+    },
+    "coverage": 83.73,
+    "test_count": 170,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "b223ad48ccef5b5f07e8248fafec5a9cfa4ba8c2",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T02:01:42.000Z",
+      "message": "test(welfare): verificar acceso a reportes activos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b223ad48ccef5b5f07e8248fafec5a9cfa4ba8c2"
+    },
+    "stats": {
+      "total": 22,
+      "additions": 22,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.02,
+    "test_count": 172,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "eda5cb6c5a7d070323f34d8a2788e5ec8f95bca6",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T02:06:52.000Z",
+      "message": "feat(welfare): completar detalle del reporte consultado",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/eda5cb6c5a7d070323f34d8a2788e5ec8f95bca6"
+    },
+    "stats": {
+      "total": 43,
+      "additions": 34,
+      "deletions": 9,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.07,
+    "test_count": 172,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "0163eee41e88780bdb83273b7ab479b8de25da24",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-19T02:08:57.000Z",
+      "message": "fix(welfare): excluir reportes recuperados de coincidencias",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0163eee41e88780bdb83273b7ab479b8de25da24"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 19,
+      "deletions": 4,
+      "date": "2026-10-19"
+    },
+    "coverage": 84.07,
+    "test_count": 173,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "1d63dc89809f133fa80f887a87afc6f2086ede7a",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-19T02:20:47.000Z",
       "message": "chore: permite abrir cualquier pantalla al recargar en producción",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/243b84f8aca876db499e37a790a59ee987f54d49"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/1d63dc89809f133fa80f887a87afc6f2086ede7a"
     },
     "stats": {
       "total": 3,
@@ -779,12 +1748,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "1d63dc89809f133fa80f887a87afc6f2086ede7a",
+    "sha": "243b84f8aca876db499e37a790a59ee987f54d49",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-19T02:20:47.000Z",
       "message": "chore: permite abrir cualquier pantalla al recargar en producción",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/1d63dc89809f133fa80f887a87afc6f2086ede7a"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/243b84f8aca876db499e37a790a59ee987f54d49"
     },
     "stats": {
       "total": 3,
@@ -817,12 +1786,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "d1dabb614071416d5aca5af38892862887957d5f",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-19T18:47:47.000Z",
       "message": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d1dabb614071416d5aca5af38892862887957d5f"
     },
     "stats": {
       "total": 1,
@@ -832,6 +1801,25 @@
     },
     "coverage": 87.04,
     "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-20T00:15:02.000Z",
+      "message": "chore: integra los últimos cambios de final-test en welfare",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 4,
+      "deletions": 0,
+      "date": "2026-10-20"
+    },
+    "coverage": 84.07,
+    "test_count": 173,
     "failed_tests": 0,
     "conclusion": "success"
   },
@@ -870,6 +1858,25 @@
     },
     "coverage": 87.04,
     "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-20T03:35:14.000Z",
+      "message": "chore: integra los últimos cambios de final-test en welfare",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-10-20"
+    },
+    "coverage": 84.07,
+    "test_count": 173,
     "failed_tests": 0,
     "conclusion": "success"
   }

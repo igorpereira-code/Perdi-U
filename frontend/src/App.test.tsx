@@ -6,6 +6,7 @@ import App from './App';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import type { MatchView } from '@shared/matching';
 import type { MatchesService } from './matching/data/matchesService';
+import type { WelfareService } from './welfare/data/welfareService';
 
 const phone: MatchView = {
   id: 'match-1',
@@ -24,6 +25,7 @@ const igor: AppUser = {
   email: 'igor.pereira@ucb.edu.bo',
   role: 'COMMUNITY',
 };
+const welfareUser: AppUser = { ...igor, id: 'google-2', role: 'WELFARE', name: 'Chiqui' };
 
 function renderAt(path: string, user: AppUser | null | Error, matches: MatchView[] | null = []) {
   const authService: AuthService = {
@@ -38,9 +40,19 @@ function renderAt(path: string, user: AppUser | null | Error, matches: MatchView
     dismiss: jest.fn(),
     publish: jest.fn(),
   };
+  const welfareService: WelfareService = {
+    listActiveLostReports: jest.fn().mockResolvedValue([]),
+    findLostReportByCode: jest.fn(),
+    listPendingPickups: jest.fn().mockResolvedValue([]),
+    listPending: jest.fn().mockResolvedValue([]),
+    listInOffice: jest.fn().mockResolvedValue([]),
+    findByCode: jest.fn(),
+    receive: jest.fn(),
+    deliver: jest.fn(),
+  };
   render(
     <MemoryRouter initialEntries={[path]}>
-      <App authService={authService} matchesService={matchesService} />
+      <App authService={authService} matchesService={matchesService} welfareService={welfareService} />
     </MemoryRouter>,
   );
   return { ...authService, ...matchesService };
@@ -102,6 +114,16 @@ describe('Navegación de la app', () => {
     expect(
       await screen.findByRole('heading', { name: 'No encontramos este reporte' }),
     ).toBeInTheDocument();
+  });
+
+  it('muestra el panel de Bienestar al personal autorizado', async () => {
+    renderAt('/bienestar', welfareUser);
+    expect(await screen.findByRole('heading', { name: 'Panel de Bienestar' })).toBeInTheDocument();
+  });
+
+  it('impide que la comunidad abra el panel de Bienestar', async () => {
+    renderAt('/bienestar', igor);
+    expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
   });
 
   it('avisa a Bienestar al elegir "Pasaré a recoger" y lo muestra elegido', async () => {
