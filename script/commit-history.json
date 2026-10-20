@@ -1805,12 +1805,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "500cb3b0464bd2d3200b2d98100ba9d838d053e4",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-20T00:15:02.000Z",
       "message": "chore: integra los últimos cambios de final-test en welfare",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/500cb3b0464bd2d3200b2d98100ba9d838d053e4"
     },
     "stats": {
       "total": 4,
@@ -1877,6 +1877,25 @@
     },
     "coverage": 84.07,
     "test_count": 173,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-20T03:56:09.000Z",
+      "message": "style(welfare): actualizar solo el diseño visual del panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 781,
+      "additions": 514,
+      "deletions": 267,
+      "date": "2026-10-20"
+    },
+    "coverage": 83.98,
+    "test_count": 174,
     "failed_tests": 0,
     "conclusion": "success"
   }

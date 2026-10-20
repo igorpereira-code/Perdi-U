@@ -81,6 +81,10 @@ function renderPage(
   );
 }
 
+async function openRequests() {
+  await userEvent.click(screen.getByRole('button', { name: /^Solicitudes de hallazgo/ }));
+}
+
 describe('Panel de Bienestar', () => {
   it('explica cuando el codigo no corresponde a un reporte activo', async () => {
     const getMatches = jest.fn();
@@ -226,6 +230,7 @@ describe('Panel de Bienestar', () => {
         deliver: jest.fn().mockResolvedValue({ status: 'REPORT_NOT_ELIGIBLE' }),
       }),
     );
+    await userEvent.click(screen.getByRole('button', { name: /^Recojos pendientes/ }));
     const pickupCard = (await screen.findByText('PR-0001')).closest('article');
     await userEvent.click(
       within(pickupCard!).getByRole('button', { name: 'Registrar entrega' }),
@@ -256,6 +261,7 @@ describe('Panel de Bienestar', () => {
       deliver,
     });
     renderPage(welfareService);
+    await userEvent.click(screen.getByRole('button', { name: /^Recojos pendientes/ }));
     const pickupCard = (await screen.findByText('PR-0001')).closest('article');
     await userEvent.click(
       within(pickupCard!).getByRole('button', { name: 'Registrar entrega' }),
@@ -277,6 +283,7 @@ describe('Panel de Bienestar', () => {
 
   it('permite elegir un objeto de la oficina y llenar una entrega sin reporte', async () => {
     renderPage();
+    await userEvent.click(screen.getByRole('button', { name: 'Objetos en custodia' }));
     const itemCard = (await screen.findByText('HZ-0003')).closest('article');
 
     await userEvent.click(
@@ -291,6 +298,7 @@ describe('Panel de Bienestar', () => {
 
   it('inicia una entrega desde un recojo y precarga objeto reporte y propietario', async () => {
     renderPage(service({ listPendingPickups: jest.fn().mockResolvedValue([pendingPickup]) }));
+    await userEvent.click(screen.getByRole('button', { name: /^Recojos pendientes/ }));
     const pickupCard = (await screen.findByText('PR-0001')).closest('article');
 
     await userEvent.click(
@@ -308,6 +316,7 @@ describe('Panel de Bienestar', () => {
 
   it('muestra quien vendra, su reporte y el objeto que recogera', async () => {
     renderPage(service({ listPendingPickups: jest.fn().mockResolvedValue([pendingPickup]) }));
+    await userEvent.click(screen.getByRole('button', { name: /^Recojos pendientes/ }));
 
     const section = (await screen.findByRole('heading', { name: 'Recojos pendientes' })).closest(
       'section',
@@ -322,6 +331,7 @@ describe('Panel de Bienestar', () => {
 
   it('muestra un estado vacio cuando no hay recojos pendientes', async () => {
     renderPage(service({ listPendingPickups: jest.fn().mockResolvedValue([]) }));
+    await userEvent.click(screen.getByRole('button', { name: 'Recojos pendientes' }));
 
     expect(
       await screen.findByRole('heading', { name: 'No hay recojos pendientes' }),
@@ -332,6 +342,7 @@ describe('Panel de Bienestar', () => {
     renderPage(
       service({ listPendingPickups: jest.fn().mockRejectedValue(new Error('network')) }),
     );
+    await userEvent.click(screen.getByRole('button', { name: 'Recojos pendientes' }));
 
     expect(
       await screen.findByText('No pudimos cargar los recojos pendientes'),
@@ -349,6 +360,8 @@ describe('Panel de Bienestar', () => {
     }>;
     render(<PageWithPublishing welfareService={service()} matchesService={matchesService} />);
 
+    await userEvent.click(screen.getByRole('button', { name: 'Objetos en custodia' }));
+
     const custodyCard = (await screen.findByText('HZ-0004')).closest('article');
     expect(custodyCard).not.toBeNull();
     await userEvent.click(within(custodyCard!).getByRole('button', { name: 'Publicar' }));
@@ -360,10 +373,29 @@ describe('Panel de Bienestar', () => {
     expect(within(custodyCard!).getAllByText('Publicado')).toHaveLength(2);
   });
 
+  it('conserva una entrega en curso al cambiar de seccion', async () => {
+    renderPage(service({ listPendingPickups: jest.fn().mockResolvedValue([pendingPickup]) }));
+    await userEvent.click(screen.getByRole('button', { name: /^Recojos pendientes/ }));
+    const pickupCard = (await screen.findByText('PR-0001')).closest('article');
+    await userEvent.click(
+      within(pickupCard!).getByRole('button', { name: 'Registrar entrega' }),
+    );
+    await userEvent.type(screen.getByLabelText('Código universitario'), '20205678');
+
+    await userEvent.click(screen.getByRole('button', { name: /^Solicitudes de hallazgo/ }));
+    const navigation = screen.getByRole('navigation', { name: 'Secciones de Bienestar' });
+    await userEvent.click(within(navigation).getByRole('button', { name: 'Registrar entrega' }));
+
+    expect(screen.getByLabelText('Código del objeto a entregar')).toHaveValue('HZ-0001');
+    expect(screen.getByLabelText('Código del reporte (opcional)')).toHaveValue('PR-0001');
+    expect(screen.getByLabelText('Código universitario')).toHaveValue('20205678');
+  });
+
   it('muestra codigo, estado y publicacion de los objetos que estan en la oficina', async () => {
     renderPage();
 
-    expect(await screen.findByRole('heading', { name: 'Objetos en la oficina' })).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Objetos en custodia' }));
+    expect(await screen.findByRole('heading', { name: 'Objetos en custodia' })).toBeInTheDocument();
     const custodyCard = (await screen.findByText('HZ-0004')).closest('article');
     const publishedCard = screen.getByText('HZ-0003').closest('article');
 
@@ -375,26 +407,37 @@ describe('Panel de Bienestar', () => {
   });
 
   it('muestra la carga y luego los objetos pendientes', async () => {
-    renderPage();
+    let resolvePending!: (items: WelfareFoundItemView[]) => void;
+    const listPending = jest.fn(
+      () => new Promise<WelfareFoundItemView[]>((resolve) => (resolvePending = resolve)),
+    );
+    renderPage(service({ listPending }));
+    await openRequests();
     expect(screen.getByText('Cargando objetos pendientes...')).toBeInTheDocument();
+
+    await act(async () => resolvePending([item]));
     expect(await screen.findByText('Mochila negra con cuadernos')).toBeInTheDocument();
   });
 
   it('muestra un estado vacio cuando no hay pendientes', async () => {
     renderPage(service({ listPending: jest.fn().mockResolvedValue([]) }));
+    await openRequests();
     expect(await screen.findByRole('heading', { name: 'No hay objetos pendientes' })).toBeInTheDocument();
   });
 
   it('busca por codigo y muestra los datos del objeto y del Hallador', async () => {
     const welfareService = service();
     renderPage(welfareService);
+    await openRequests();
     await userEvent.type(screen.getByLabelText('Código del objeto'), ' hz-0005 ');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
 
     expect(welfareService.findByCode).toHaveBeenCalledWith(' hz-0005 ');
-    expect(await screen.findByText('Ana Rojas')).toBeInTheDocument();
-    expect(screen.getByText('ana.rojas@ucb.edu.bo')).toBeInTheDocument();
-    expect(screen.getByText('Aula 3')).toBeInTheDocument();
+    const detail = (await screen.findByRole('heading', { name: 'HZ-0005' })).closest('section');
+    expect(detail).not.toBeNull();
+    expect(within(detail!).getByText('Ana Rojas')).toBeInTheDocument();
+    expect(within(detail!).getByText('ana.rojas@ucb.edu.bo')).toBeInTheDocument();
+    expect(within(detail!).getByText('Aula 3')).toBeInTheDocument();
   });
 
   it.each([
@@ -402,6 +445,7 @@ describe('Panel de Bienestar', () => {
     ['ALREADY_RECEIVED', 'Este objeto ya fue recibido'],
   ] as const)('muestra el resultado %s', async (status, message) => {
     renderPage(service({ findByCode: jest.fn().mockResolvedValue({ status }) }));
+    await openRequests();
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-9999');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     expect(await screen.findByText(message)).toBeInTheDocument();
@@ -423,11 +467,11 @@ describe('Panel de Bienestar', () => {
       receive: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
     });
     renderPage(welfareService);
+    await openRequests();
     await screen.findByText('Mochila negra con cuadernos');
     const pendingSection = screen
       .getByRole('heading', { name: 'Objetos pendientes de recepción' })
       .closest('section');
-    const officeSection = screen.getByRole('heading', { name: 'Objetos en la oficina' }).closest('section');
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
@@ -435,6 +479,10 @@ describe('Panel de Bienestar', () => {
     expect(welfareService.receive).toHaveBeenCalledWith('HZ-0005');
     expect(await screen.findByText('Objeto recibido y puesto en custodia')).toBeInTheDocument();
     expect(within(pendingSection!).queryByText('HZ-0005')).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Objetos en custodia' }));
+    const officeSection = screen
+      .getByRole('heading', { name: 'Objetos en custodia' })
+      .closest('section');
     expect(await within(officeSection!).findByText('HZ-0005')).toBeInTheDocument();
 
     await act(async () => resolveInOffice([inCustodyItem, publishedItem]));
@@ -451,10 +499,14 @@ describe('Panel de Bienestar', () => {
       receive: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
     });
     renderPage(welfareService);
-    const officeSection = screen.getByRole('heading', { name: 'Objetos en la oficina' }).closest('section');
+    await openRequests();
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Objetos en custodia' }));
+    const officeSection = screen
+      .getByRole('heading', { name: 'Objetos en custodia' })
+      .closest('section');
     expect(await within(officeSection!).findByText('HZ-0005')).toBeInTheDocument();
 
     await act(async () => rejectInOffice(new Error('network')));
@@ -467,6 +519,7 @@ describe('Panel de Bienestar', () => {
       () => new Promise<WelfareResult>((resolve) => (resolveReceive = resolve)),
     );
     renderPage(service({ receive }));
+    await openRequests();
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     const button = await screen.findByRole('button', { name: 'Confirmar recepción' });
@@ -478,6 +531,7 @@ describe('Panel de Bienestar', () => {
 
   it('conserva el objeto cuando falla la confirmacion', async () => {
     renderPage(service({ receive: jest.fn().mockRejectedValue(new Error('network')) }));
+    await openRequests();
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
