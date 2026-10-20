@@ -1843,12 +1843,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "e56c7f72772b08fb6cb16445afd2b9373fe8f401",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-20T00:48:33.000Z",
       "message": "chore: integra los últimos cambios de final-test en core-matching",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/e56c7f72772b08fb6cb16445afd2b9373fe8f401"
     },
     "stats": {
       "total": 0,
@@ -1896,6 +1896,25 @@
     },
     "coverage": 83.98,
     "test_count": 174,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "CodexSandboxOffline",
+    "commit": {
+      "date": "2026-10-20T13:29:45.000Z",
+      "message": "feat(welfare): mostrar acceso en la barra por rol",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 42,
+      "additions": 38,
+      "deletions": 4,
+      "date": "2026-10-20"
+    },
+    "coverage": 83.98,
+    "test_count": 177,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -2950,7 +2950,7 @@
     "testId": 42
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e56c7f72772b08fb6cb16445afd2b9373fe8f401",
     "commitName": "chore: integra los últimos cambios de final-test en core-matching",
     "commitTimestamp": 1792457314026,
     "testId": 42
@@ -2966,5 +2966,11 @@
     "commitName": "style(welfare): actualizar solo el diseño visual del panel",
     "commitTimestamp": 1792468570160,
     "testId": 44
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar acceso en la barra por rol",
+    "commitTimestamp": 1792502988248,
+    "testId": 45
   }
 ]
