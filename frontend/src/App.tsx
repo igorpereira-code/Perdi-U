@@ -10,14 +10,18 @@ import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
 import type { GuideService } from './finder/data/guideService';
 import { QuickGuideScreen } from './finder/presenter/QuickGuideScreen';
+import { FoundItemEntry } from './finder/presenter/FoundItemEntry';
+import { FoundItemScreen } from './finder/presenter/FoundItemScreen';
+import type { FoundItemsService } from './finder/data/foundItemsService';
 
 type AppProps = {
   authService: AuthService;
   matchesService: MatchesService;
   guideService: GuideService;
+  foundItemsService: FoundItemsService;
 };
 
-export default function App({ authService, matchesService, guideService }: AppProps) {
+export default function App({ authService, matchesService, guideService, foundItemsService }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -63,7 +67,16 @@ export default function App({ authService, matchesService, guideService }: AppPr
     <Routes>
       <Route
         path="/"
-        element={signedInPage((me) => <HomePage user={me} />)}
+        element={signedInPage((me) => (
+          <div className="space-y-6">
+            <HomePage user={me} />
+            <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
+          </div>
+        ))}
+      />
+      <Route
+        path="/reportar-objeto"
+        element={signedInPage(() => <FoundItemScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/perfil"

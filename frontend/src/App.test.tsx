@@ -7,6 +7,7 @@ import { NotInstitutionalEmailError, type AuthService } from './core/data/authSe
 import type { MatchView } from '@shared/matching';
 import type { MatchesService } from './matching/data/matchesService';
 import type { GuideService } from './finder/data/guideService';
+import type { FoundItemsService } from './finder/data/foundItemsService';
 
 const phone: MatchView = {
   id: 'match-1',
@@ -45,12 +46,22 @@ function renderAt(
     dismiss: jest.fn(),
     publish: jest.fn(),
   };
+  const foundItemsService: FoundItemsService = {
+    getCatalogs: jest.fn().mockResolvedValue({ categories: [], places: [] }),
+    create: jest.fn(),
+    getPhotoUrl: jest.fn(),
+  };
   const rendered = render(
     <MemoryRouter initialEntries={[path]}>
-      <App authService={authService} matchesService={matchesService} guideService={guideService} />
+      <App
+        authService={authService}
+        matchesService={matchesService}
+        guideService={guideService}
+        foundItemsService={foundItemsService}
+      />
     </MemoryRouter>,
   );
-  return { ...rendered, ...authService, ...matchesService, ...guideService };
+  return { ...rendered, ...authService, ...matchesService, ...guideService, ...foundItemsService };
 }
 
 describe('Navegación de la app', () => {
@@ -150,6 +161,37 @@ describe('Navegación de la app', () => {
         name: 'Hola, Igor Pereira',
       }),
     ).toBeInTheDocument();
+  });
+  it('muestra Encontré un objeto en la pantalla principal', async () => {
+  renderAt('/', igor);
+
+  expect(
+    await screen.findByRole('button', {
+      name: 'Encontré un objeto',
+    }),
+  ).toBeInTheDocument();
+});
+
+  it('abre el formulario para reportar el objeto al elegir Encontré un objeto desde Inicio', async () => {
+    const user = userEvent.setup();
+    renderAt('/', igor);
+
+    await user.click(await screen.findByRole('button', { name: 'Encontré un objeto' }));
+
+    expect(
+      await screen.findByRole('form', { name: 'Reportar objeto encontrado' }),
+    ).toBeInTheDocument();
+  });
+
+  it('redirige al ingreso a quien abre /reportar-objeto sin sesión', async () => {
+    renderAt('/reportar-objeto', null);
+
+    await waitFor(() => {
+      expect(screen.queryByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+    });
+    expect(
+      screen.queryByRole('form', { name: 'Reportar objeto encontrado' }),
+    ).not.toBeInTheDocument();
   });
 });
 
