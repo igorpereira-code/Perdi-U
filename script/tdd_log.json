@@ -2902,9 +2902,33 @@
     "testId": 89
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0163eee41e88780bdb83273b7ab479b8de25da24",
     "commitName": "fix(welfare): excluir reportes recuperados de coincidencias",
     "commitTimestamp": 1792375738185,
     "testId": 89
+  },
+  {
+    "commitId": "5a6e080ddc3eaf22246b69e54bd3d814a4b4d1b9",
+    "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
+    "commitTimestamp": 1792199780960,
+    "testId": 39
+  },
+  {
+    "commitId": "1d63dc89809f133fa80f887a87afc6f2086ede7a",
+    "commitName": "chore: permite abrir cualquier pantalla al recargar en producción",
+    "commitTimestamp": 1792376448779,
+    "testId": 40
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
+    "commitTimestamp": 1792435668352,
+    "testId": 41
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: integra los últimos cambios de final-test en welfare",
+    "commitTimestamp": 1792455304868,
+    "testId": 42
   }
 ]

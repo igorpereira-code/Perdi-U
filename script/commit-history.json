@@ -760,6 +760,25 @@
     "conclusion": "success"
   },
   {
+    "sha": "5a6e080ddc3eaf22246b69e54bd3d814a4b4d1b9",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-17T01:16:20.000Z",
+      "message": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/5a6e080ddc3eaf22246b69e54bd3d814a4b4d1b9"
+    },
+    "stats": {
+      "total": 54,
+      "additions": 40,
+      "deletions": 14,
+      "date": "2026-10-17"
+    },
+    "coverage": 87.08,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
     "sha": "8e8cdcce5fa21f8f5ca946ec35a7932ba521bfa3",
     "author": "CodexSandboxOffline",
     "commit": {
@@ -1691,18 +1710,75 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "0163eee41e88780bdb83273b7ab479b8de25da24",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-19T02:08:57.000Z",
       "message": "fix(welfare): excluir reportes recuperados de coincidencias",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0163eee41e88780bdb83273b7ab479b8de25da24"
     },
     "stats": {
       "total": 23,
       "additions": 19,
       "deletions": 4,
       "date": "2026-10-19"
+    },
+    "coverage": 84.07,
+    "test_count": 173,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "1d63dc89809f133fa80f887a87afc6f2086ede7a",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-19T02:20:47.000Z",
+      "message": "chore: permite abrir cualquier pantalla al recargar en producción",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/1d63dc89809f133fa80f887a87afc6f2086ede7a"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 3,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 87.04,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-19T18:47:47.000Z",
+      "message": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 1,
+      "additions": 1,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 87.04,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-20T00:15:02.000Z",
+      "message": "chore: integra los últimos cambios de final-test en welfare",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 4,
+      "deletions": 0,
+      "date": "2026-10-20"
     },
     "coverage": 84.07,
     "test_count": 173,
