@@ -1648,6 +1648,24 @@
     "testId": 39
   },
   {
+    "commitId": "243b84f8aca876db499e37a790a59ee987f54d49",
+    "commitName": "chore: permite abrir cualquier pantalla al recargar en producción",
+    "commitTimestamp": 1792376448779,
+    "testId": 40
+  },
+  {
+    "commitId": "09c6be4927e1d57e24823079505f21aa232dbbe0",
+    "commitName": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
+    "commitTimestamp": 1792435477583,
+    "testId": 41
+  },
+  {
+    "commitId": "281ecf4561a94fb1b6ffdcbb41591c41f15b041c",
+    "commitName": "chore: permite abrir cualquier pantalla al recargar en producción",
+    "commitTimestamp": 1792457048609,
+    "testId": 42
+  },
+  {
     "commitId": "1d63dc89809f133fa80f887a87afc6f2086ede7a",
     "commitName": "chore: permite abrir cualquier pantalla al recargar en producción",
     "commitTimestamp": 1792376448779,
@@ -1658,5 +1676,11 @@
     "commitName": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
     "commitTimestamp": 1792435668352,
     "testId": 41
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: integra los últimos cambios de final-test en core-matching",
+    "commitTimestamp": 1792457314026,
+    "testId": 42
   }
 ]

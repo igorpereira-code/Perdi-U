@@ -760,6 +760,25 @@
     "conclusion": "success"
   },
   {
+    "sha": "243b84f8aca876db499e37a790a59ee987f54d49",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-19T02:20:47.000Z",
+      "message": "chore: permite abrir cualquier pantalla al recargar en producción",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/243b84f8aca876db499e37a790a59ee987f54d49"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 3,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 87.04,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
     "sha": "1d63dc89809f133fa80f887a87afc6f2086ede7a",
     "author": "igorpereira-code",
     "commit": {
@@ -770,6 +789,25 @@
     "stats": {
       "total": 3,
       "additions": 3,
+      "deletions": 0,
+      "date": "2026-10-19"
+    },
+    "coverage": 87.04,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "09c6be4927e1d57e24823079505f21aa232dbbe0",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-19T18:44:36.000Z",
+      "message": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/09c6be4927e1d57e24823079505f21aa232dbbe0"
+    },
+    "stats": {
+      "total": 1,
+      "additions": 1,
       "deletions": 0,
       "date": "2026-10-19"
     },
@@ -791,6 +829,44 @@
       "additions": 1,
       "deletions": 0,
       "date": "2026-10-19"
+    },
+    "coverage": 87.04,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "281ecf4561a94fb1b6ffdcbb41591c41f15b041c",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-20T00:44:07.000Z",
+      "message": "chore: permite abrir cualquier pantalla al recargar en producción",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/281ecf4561a94fb1b6ffdcbb41591c41f15b041c"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-10-20"
+    },
+    "coverage": 87.04,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-20T00:48:33.000Z",
+      "message": "chore: integra los últimos cambios de final-test en core-matching",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-10-20"
     },
     "coverage": 87.04,
     "test_count": 104,
