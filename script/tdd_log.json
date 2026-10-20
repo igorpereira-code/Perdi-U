@@ -2956,7 +2956,7 @@
     "testId": 42
   },
   {
-    "commitId": "HEAD",
+    "commitId": "592ffa6b8954b21516481823ea50ef7aab98cf05",
     "commitName": "chore: integra los últimos cambios de final-test en welfare",
     "commitTimestamp": 1792467315567,
     "testId": 43
@@ -2972,5 +2972,11 @@
     "commitName": "feat(welfare): mostrar acceso en la barra por rol",
     "commitTimestamp": 1792502988248,
     "testId": 45
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(docs): retirar planes de bienestar",
+    "commitTimestamp": 1792504236519,
+    "testId": 46
   }
 ]
