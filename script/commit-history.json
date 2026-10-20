@@ -1140,7 +1140,7 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c4f5e941212147e4cf2c69f25844d832ab7e48a2",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-20T03:47:55.000Z",
@@ -1155,6 +1155,25 @@
     },
     "coverage": 91.4,
     "test_count": 336,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-20T19:37:31.000Z",
+      "message": "feat(finder): implementar HU-4 consulta de reportes propios",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 1043,
+      "additions": 1037,
+      "deletions": 6,
+      "date": "2026-10-20"
+    },
+    "coverage": 92.61,
+    "test_count": 408,
     "failed_tests": 0,
     "conclusion": "success"
   }

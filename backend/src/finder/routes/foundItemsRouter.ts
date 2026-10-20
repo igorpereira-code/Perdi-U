@@ -13,6 +13,34 @@ const PHOTO_URL_TTL_SECONDS = 60;
 export function createFoundItemsRouter(foundItems: FoundItemsRepository, photos: FoundItemPhotoStorage): Router {
   const router = Router();
 
+  router.get('/my-found-items', async (req, res) => {
+    res.set('Cache-Control', 'private, no-store');
+    try {
+      res.json(await foundItems.listMine(getCurrentUser(req).id));
+    } catch {
+      res.status(503).json({ error: 'No se pudieron cargar tus reportes. Intenta nuevamente.' });
+    }
+  });
+
+  router.get('/my-found-items/:code', async (req, res) => {
+    res.set('Cache-Control', 'private, no-store');
+    const code = String(req.params.code);
+    if (!/^HZ-\d+$/.test(code)) {
+      res.status(404).json({ error: 'No encontramos este reporte.' });
+      return;
+    }
+    try {
+      const item = await foundItems.getMineByCode(getCurrentUser(req).id, code);
+      if (!item) {
+        res.status(404).json({ error: 'No encontramos este reporte.' });
+        return;
+      }
+      res.json(item);
+    } catch {
+      res.status(503).json({ error: 'No se pudo cargar el reporte. Intenta nuevamente.' });
+    }
+  });
+
   router.get('/found-items/:code/photo', async (req, res) => {
     res.set('Cache-Control', 'private, no-store');
     try {

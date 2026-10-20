@@ -12,6 +12,8 @@ const created = { code: 'HZ-7325', status: 'PENDING_DROP_OFF' };
 
 function setup() {
   const foundItems: jest.Mocked<FoundItemsRepository> = {
+    listMine: jest.fn().mockResolvedValue([]),
+    getMineByCode: jest.fn().mockResolvedValue(null),
     getCatalogs: jest.fn().mockResolvedValue({
       categories: [{ id: 47, name: 'Llaves' }],
       places: [{ id: 83, name: 'Biblioteca', type: 'SPACE', classrooms: [] }],

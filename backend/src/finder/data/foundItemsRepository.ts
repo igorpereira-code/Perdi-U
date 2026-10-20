@@ -34,7 +34,19 @@ export type FoundItemPhotoAccess = {
   visibility: 'VISIBLE' | 'HIDDEN';
 };
 
+export type MyFoundItem = {
+  code: string;
+  description: string;
+  category: string;
+  foundAt: Date;
+  hasPhoto: boolean;
+  status: FoundItemStatus;
+  receivedAt: Date | null;
+};
+
 export type FoundItemsRepository = {
+  listMine: (finderId: string) => Promise<MyFoundItem[]>;
+  getMineByCode: (finderId: string, code: string) => Promise<MyFoundItem | null>;
   getCatalogs: () => Promise<FoundItemCatalogs>;
   create: (item: NewFoundItem) => Promise<CreatedFoundItem>;
   getPhotoByCode: (code: string) => Promise<FoundItemPhotoAccess | null>;

@@ -8,6 +8,8 @@ const categoryFindMany = jest.fn();
 const placeFindMany = jest.fn();
 const foundItemCreate = jest.fn();
 const foundItemFindUnique = jest.fn();
+const foundItemFindMany = jest.fn();
+const foundItemFindFirst = jest.fn();
 const item: NewFoundItem = {
   description: 'Llaves con llavero azul',
   categoryId: 47,
@@ -23,8 +25,82 @@ beforeEach(() => {
   jest.mocked(db).mockReturnValue({
     category: { findMany: categoryFindMany },
     place: { findMany: placeFindMany },
-    foundItem: { create: foundItemCreate, findUnique: foundItemFindUnique },
+    foundItem: { create: foundItemCreate, findUnique: foundItemFindUnique,
+      findMany: foundItemFindMany, findFirst: foundItemFindFirst },
   } as unknown as ReturnType<typeof db>);
+});
+
+describe('Mis reportes mediante Prisma', () => {
+  it('consulta un detalle por código y hallador en la misma consulta sin exponer su ruta privada', async () => {
+    foundItemFindFirst.mockResolvedValue({ code: 'HZ-7325', description: 'Llaves azules',
+      category: { name: 'Llaves' }, foundAt: item.foundAt, photoUrl: 'usuario/foto.png',
+      status: 'PENDING_DROP_OFF', receivedAt: null });
+
+    await expect(prismaFoundItemsRepository.getMineByCode(item.finderId, 'HZ-7325')).resolves.toEqual({
+      code: 'HZ-7325', description: 'Llaves azules', category: 'Llaves', foundAt: item.foundAt,
+      hasPhoto: true, status: 'PENDING_DROP_OFF', receivedAt: null,
+    });
+    expect(foundItemFindFirst).toHaveBeenCalledWith({
+      where: { finderId: item.finderId, code: 'HZ-7325' },
+      select: { code: true, description: true, category: { select: { name: true } }, foundAt: true,
+        photoUrl: true, status: true, receivedAt: true },
+    });
+  });
+
+  it('devuelve null cuando no existe un reporte propio con ese código', async () => {
+    foundItemFindFirst.mockResolvedValue(null);
+
+    await expect(prismaFoundItemsRepository.getMineByCode(item.finderId, 'HZ-9999')).resolves.toBeNull();
+  });
+
+  it('propaga el error de consulta del detalle sin inventar un reporte', async () => {
+    foundItemFindFirst.mockRejectedValue(new Error('Sin conexión'));
+
+    await expect(prismaFoundItemsRepository.getMineByCode(item.finderId, 'HZ-7325')).rejects.toThrow('Sin conexión');
+  });
+
+  it('filtra por hallador sin excluir estados ni limitar la cantidad de reportes', async () => {
+    const reports = [{ code: 'HZ-7325', description: 'Llaves azules', category: { name: 'Llaves' },
+      foundAt: item.foundAt, photoUrl: 'usuario/foto.png', status: 'PENDING_DROP_OFF', receivedAt: null }];
+    foundItemFindMany.mockResolvedValue(reports);
+
+    await expect(prismaFoundItemsRepository.listMine(item.finderId)).resolves.toEqual([
+      { code: 'HZ-7325', description: 'Llaves azules', category: 'Llaves', foundAt: item.foundAt,
+        hasPhoto: true, status: 'PENDING_DROP_OFF', receivedAt: null },
+    ]);
+    expect(foundItemFindMany).toHaveBeenCalledWith({
+      where: { finderId: item.finderId },
+      select: { code: true, description: true, category: { select: { name: true } }, foundAt: true,
+        photoUrl: true, status: true, receivedAt: true },
+      orderBy: [{ createdAt: 'desc' }, { code: 'desc' }],
+    });
+  });
+
+  it.each([null, 'usuario/foto.png'])('devuelve categoría y fecha sin exponer la ruta privada %s', async (photoUrl) => {
+    foundItemFindMany.mockResolvedValue([{ code: 'HZ-7325', description: 'Llaves azules',
+      category: { name: 'Llaves' }, foundAt: item.foundAt, photoUrl, status: 'PENDING_DROP_OFF', receivedAt: null }]);
+
+    const reports = await prismaFoundItemsRepository.listMine(item.finderId);
+
+    expect(reports).toEqual([{ code: 'HZ-7325', description: 'Llaves azules',
+      category: 'Llaves', foundAt: item.foundAt, hasPhoto: photoUrl !== null, status: 'PENDING_DROP_OFF', receivedAt: null }]);
+    expect(reports[0]).not.toHaveProperty('photoUrl');
+  });
+
+  it('conserva el estado real y la fecha de recepción de todos los reportes', async () => {
+    const receivedAt = new Date('2026-10-19T14:30:00.000Z');
+    const statuses = ['PENDING_DROP_OFF', 'IN_CUSTODY', 'PUBLISHED', 'DELIVERED'] as const;
+    const records = statuses.map((status, index) => ({ code: `HZ-732${index}`,
+      description: 'Llaves azules', category: { name: 'Llaves' }, foundAt: item.foundAt,
+      photoUrl: null, status, receivedAt: status === 'PENDING_DROP_OFF' ? null : receivedAt }));
+    foundItemFindMany.mockResolvedValue(records);
+
+    const reports = await prismaFoundItemsRepository.listMine(item.finderId);
+
+    expect(reports).toEqual(records.map(({ category, photoUrl: _photo, ...record }) => ({
+      ...record, category: category.name, hasPhoto: false,
+    })));
+  });
 });
 
 describe('Datos para autorizar la consulta de fotografías', () => {
