@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import { AppLayout } from './core/presenter/AppLayout';
@@ -8,13 +8,18 @@ import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
+import { FoundItemEntry } from './finder/presenter/FoundItemEntry';
+import { FoundItemScreen } from './finder/presenter/FoundItemScreen';
+import type { FoundItemsService } from './finder/data/foundItemsService';
 
 type AppProps = {
   authService: AuthService;
   matchesService: MatchesService;
+  foundItemsService: FoundItemsService;
 };
 
-export default function App({ authService, matchesService }: AppProps) {
+export default function App({ authService, matchesService, foundItemsService }: AppProps) {
+  const navigate = useNavigate();
   // undefined = still checking who is signed in; null = nobody is signed in.
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [notInstitutional, setNotInstitutional] = useState(false);
@@ -50,8 +55,15 @@ export default function App({ authService, matchesService }: AppProps) {
       <Route
         path="/"
         element={signedInPage((me) => (
-          <HomePage user={me} />
+          <div className="space-y-6">
+            <HomePage user={me} />
+            <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
+          </div>
         ))}
+      />
+      <Route
+        path="/reportar-objeto"
+        element={signedInPage(() => <FoundItemScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/perfil"

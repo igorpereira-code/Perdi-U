@@ -9,18 +9,27 @@ import type { MatchingRepository } from './matching/data/matchingRepository';
 import { prismaMatchingRepository } from './matching/data/prismaMatchingRepository';
 import { createMatchesRouter } from './matching/routes/matchesRouter';
 import { createPublishRouter } from './matching/routes/publishRouter';
+import type { FoundItemsRepository } from './finder/data/foundItemsRepository';
+import { prismaFoundItemsRepository } from './finder/data/prismaFoundItemsRepository';
+import { createFoundItemsRouter } from './finder/routes/foundItemsRouter';
+import type { FoundItemPhotoStorage } from './finder/data/foundItemPhotoStorage';
+import { supabaseFoundItemPhotoStorage } from './finder/data/supabaseFoundItemPhotoStorage';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
   users?: UsersRepository;
   allowSampleUsers?: boolean;
   matching?: MatchingRepository;
+  foundItems?: FoundItemsRepository;
+  foundItemPhotos?: FoundItemPhotoStorage;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
   users = prismaUsersRepository,
   allowSampleUsers = process.env.ALLOW_SAMPLE_USERS === 'true',
   matching = prismaMatchingRepository,
+  foundItems = prismaFoundItemsRepository,
+  foundItemPhotos = supabaseFoundItemPhotoStorage,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -37,6 +46,7 @@ export function createApp({
   });
   app.use(createMatchesRouter(matching));
   app.use(createPublishRouter(matching));
+  app.use(createFoundItemsRouter(foundItems, foundItemPhotos));
 
   return app;
 }
