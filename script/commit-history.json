@@ -1102,12 +1102,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "16226f1f18c7970d255770ec1185acb4c7d0b5bf",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T21:52:57.000Z",
       "message": "feat: excluir objetos entregados del catalogo de exploracion",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/16226f1f18c7970d255770ec1185acb4c7d0b5bf"
     },
     "stats": {
       "total": 54,
@@ -1117,6 +1117,25 @@
     },
     "coverage": 87.67,
     "test_count": 125,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-20T01:20:51.000Z",
+      "message": "feat: mostrar listado de reportes de perdida del usuario",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 67,
+      "additions": 67,
+      "deletions": 0,
+      "date": "2026-10-20"
+    },
+    "coverage": 87.73,
+    "test_count": 126,
     "failed_tests": 0,
     "conclusion": "success"
   }

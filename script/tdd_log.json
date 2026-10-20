@@ -2108,9 +2108,23 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "16226f1f18c7970d255770ec1185acb4c7d0b5bf",
     "commitName": "feat: excluir objetos entregados del catalogo de exploracion",
     "commitTimestamp": 1792360378438,
     "testId": 58
+  },
+  {
+    "numPassedTests": 126,
+    "failedTests": 0,
+    "numTotalTests": 126,
+    "timestamp": 1792459122077,
+    "success": true,
+    "testId": 59
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar listado de reportes de perdida del usuario",
+    "commitTimestamp": 1792459252494,
+    "testId": 59
   }
 ]
