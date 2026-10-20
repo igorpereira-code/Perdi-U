@@ -7,7 +7,7 @@ import { NotInstitutionalEmailError, type AuthService } from './core/data/authSe
 import type { MatchView } from '@shared/matching';
 import type { MatchesService } from './matching/data/matchesService';
 import type { GuideService } from './finder/data/guideService';
-import type { FoundItemsService } from './finder/data/foundItemsService';
+import type { FoundItemsService, MyFoundItem } from './finder/data/foundItemsService';
 
 const phone: MatchView = {
   id: 'match-1',
@@ -27,12 +27,15 @@ const igor: AppUser = {
   role: 'COMMUNITY',
   hasSeenGuide: true,
 };
+const foundReport: MyFoundItem = { code: 'HZ-7325', description: 'Llaves azules', category: 'Llaves',
+  foundAt: '2026-10-18T12:15:00.000Z', hasPhoto: false, status: 'PENDING_DROP_OFF', receivedAt: null };
 
 function renderAt(
   path: string,
   user: AppUser | null | Error | Promise<AppUser | null>,
   matches: MatchView[] | null = [],
   guideService: GuideService = { markSeen: jest.fn().mockResolvedValue(undefined) },
+  foundItemsOverrides: Partial<FoundItemsService> = {},
 ) {
   const authService: AuthService = {
     getCurrentUser:
@@ -47,9 +50,12 @@ function renderAt(
     publish: jest.fn(),
   };
   const foundItemsService: FoundItemsService = {
+    listMine: jest.fn().mockResolvedValue([]),
+    getMineByCode: jest.fn().mockResolvedValue(null),
     getCatalogs: jest.fn().mockResolvedValue({ categories: [], places: [] }),
     create: jest.fn(),
     getPhotoUrl: jest.fn(),
+    ...foundItemsOverrides,
   };
   const rendered = render(
     <MemoryRouter initialEntries={[path]}>
@@ -65,6 +71,62 @@ function renderAt(
 }
 
 describe('Navegación de la app', () => {
+  it('abre un reporte propio desde Mis reportes', async () => {
+    const service = renderAt('/mis-reportes', igor, [], undefined, {
+      listMine: jest.fn().mockResolvedValue([foundReport]),
+      getMineByCode: jest.fn().mockResolvedValue(foundReport),
+    });
+
+    await userEvent.click(await screen.findByRole('link', { name: 'Ver reporte HZ-7325' }));
+
+    expect(await screen.findByRole('heading', { name: 'Detalle del reporte' })).toBeInTheDocument();
+    expect(screen.getByText(foundReport.code)).toBeInTheDocument();
+    expect(service.getMineByCode).toHaveBeenCalledWith(foundReport.code);
+  });
+
+  it('recupera el código desde una URL directa y después de volver a cargar la app', async () => {
+    for (let visit = 0; visit < 2; visit++) {
+      const service = renderAt('/mis-reportes/encontrados/HZ-7325', igor, [], undefined, {
+        getMineByCode: jest.fn().mockResolvedValue(foundReport),
+      });
+
+      expect(await screen.findByText(foundReport.code)).toBeInTheDocument();
+      expect(service.getMineByCode).toHaveBeenCalledWith(foundReport.code);
+      expect(service.listMine).not.toHaveBeenCalled();
+      service.unmount();
+    }
+  });
+
+  it('protege el detalle de un reporte encontrado cuando no hay sesión', async () => {
+    const service = renderAt('/mis-reportes/encontrados/HZ-7325', null);
+
+    expect(await screen.findByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+    expect(service.getMineByCode).not.toHaveBeenCalled();
+  });
+
+  it('muestra el aviso de reporte inexistente o ajeno al abrir un detalle no autorizado', async () => {
+    renderAt('/mis-reportes/encontrados/HZ-9999', igor);
+
+    expect(await screen.findByRole('heading', { name: 'No encontramos este reporte' })).toBeInTheDocument();
+    expect(screen.queryByText(foundReport.description)).not.toBeInTheDocument();
+  });
+
+  it('abre Mis reportes desde Inicio para el hallador autenticado', async () => {
+    const service = renderAt('/', igor);
+
+    await userEvent.click(await screen.findByRole('link', { name: 'Mis reportes' }));
+
+    expect(await screen.findByRole('heading', { name: 'Mis reportes' })).toBeInTheDocument();
+    expect(service.listMine).toHaveBeenCalledTimes(1);
+  });
+
+  it('protege Mis reportes cuando no hay sesión', async () => {
+    const service = renderAt('/mis-reportes', null);
+
+    expect(await screen.findByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+    expect(service.listMine).not.toHaveBeenCalled();
+  });
+
   it('muestra la pantalla de ingreso en /ingresar', async () => {
     renderAt('/ingresar', null);
 

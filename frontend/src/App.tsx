@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import type { AppUser } from '@shared/user';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import { AppLayout } from './core/presenter/AppLayout';
@@ -13,6 +13,8 @@ import { QuickGuideScreen } from './finder/presenter/QuickGuideScreen';
 import { FoundItemEntry } from './finder/presenter/FoundItemEntry';
 import { FoundItemScreen } from './finder/presenter/FoundItemScreen';
 import type { FoundItemsService } from './finder/data/foundItemsService';
+import { MyFoundItemsScreen } from './finder/presenter/MyFoundItemsScreen';
+import { MyFoundItemScreen } from './finder/presenter/MyFoundItemScreen';
 
 type AppProps = {
   authService: AuthService;
@@ -71,6 +73,7 @@ export default function App({ authService, matchesService, guideService, foundIt
           <div className="space-y-6">
             <HomePage user={me} />
             <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
+            <Link to="/mis-reportes" className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700">Mis reportes</Link>
           </div>
         ))}
       />
@@ -83,6 +86,14 @@ export default function App({ authService, matchesService, guideService, foundIt
         element={signedInPage((me) => (
           <ProfilePage user={me} onSignOut={handleSignOut} />
         ))}
+      />
+      <Route
+        path="/mis-reportes"
+        element={signedInPage(() => <MyFoundItemsScreen foundItemsService={foundItemsService} />)}
+      />
+      <Route
+        path="/mis-reportes/encontrados/:code"
+        element={signedInPage(() => <MyFoundItemScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/mis-reportes/:code/coincidencias"

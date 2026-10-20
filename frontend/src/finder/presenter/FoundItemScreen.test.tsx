@@ -11,6 +11,8 @@ const catalogs = {
 
 function fakeService(): jest.Mocked<FoundItemsService> {
   return {
+    listMine: jest.fn().mockResolvedValue([]),
+    getMineByCode: jest.fn().mockResolvedValue(null),
     getCatalogs: jest.fn().mockResolvedValue(catalogs),
     create: jest.fn().mockResolvedValue({ code: 'HZ-7325', status: 'PENDING_DROP_OFF' }),
     getPhotoUrl: jest.fn(),

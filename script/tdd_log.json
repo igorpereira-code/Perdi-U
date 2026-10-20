@@ -2328,9 +2328,159 @@
     "testId": 55
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c4f5e941212147e4cf2c69f25844d832ab7e48a2",
     "commitName": "chore: integra la HU anterior de finder",
     "commitTimestamp": 1792468077480,
     "testId": 55
+  },
+  {
+    "numPassedTests": 337,
+    "failedTests": 13,
+    "numTotalTests": 350,
+    "timestamp": 1792502670424,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 350,
+    "failedTests": 0,
+    "numTotalTests": 350,
+    "timestamp": 1792502790587,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 350,
+    "failedTests": 0,
+    "numTotalTests": 350,
+    "timestamp": 1792502850126,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 350,
+    "failedTests": 0,
+    "numTotalTests": 350,
+    "timestamp": 1792503043866,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 349,
+    "failedTests": 16,
+    "numTotalTests": 365,
+    "timestamp": 1792503218896,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 365,
+    "failedTests": 0,
+    "numTotalTests": 365,
+    "timestamp": 1792503299649,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 365,
+    "failedTests": 0,
+    "numTotalTests": 365,
+    "timestamp": 1792503351421,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 365,
+    "failedTests": 13,
+    "numTotalTests": 378,
+    "timestamp": 1792503533416,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 378,
+    "failedTests": 0,
+    "numTotalTests": 378,
+    "timestamp": 1792503816851,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 378,
+    "failedTests": 0,
+    "numTotalTests": 378,
+    "timestamp": 1792503917729,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 381,
+    "failedTests": 23,
+    "numTotalTests": 404,
+    "timestamp": 1792504136599,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 404,
+    "failedTests": 0,
+    "numTotalTests": 404,
+    "timestamp": 1792504242564,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 404,
+    "failedTests": 0,
+    "numTotalTests": 404,
+    "timestamp": 1792504341204,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 404,
+    "failedTests": 4,
+    "numTotalTests": 408,
+    "timestamp": 1792504487498,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 408,
+    "failedTests": 0,
+    "numTotalTests": 408,
+    "timestamp": 1792504572378,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 408,
+    "failedTests": 0,
+    "numTotalTests": 408,
+    "timestamp": 1792504669480,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 408,
+    "failedTests": 0,
+    "numTotalTests": 408,
+    "timestamp": 1792524570583,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 408,
+    "failedTests": 0,
+    "numTotalTests": 408,
+    "timestamp": 1792524922970,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): implementar HU-4 consulta de reportes propios",
+    "commitTimestamp": 1792525054093,
+    "testId": 56
   }
 ]
