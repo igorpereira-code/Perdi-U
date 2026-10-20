@@ -1140,12 +1140,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c2de1800d3bccbecdea54327524a43b365672746",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-20T01:22:18.000Z",
       "message": "feat: mostrar el codigo y el estado visual de cada reporte de perdida",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c2de1800d3bccbecdea54327524a43b365672746"
     },
     "stats": {
       "total": 65,
@@ -1155,6 +1155,25 @@
     },
     "coverage": 87.78,
     "test_count": 127,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-20T01:25:20.000Z",
+      "message": "feat: crear vista de detalles de un reporte de perdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 125,
+      "additions": 125,
+      "deletions": 0,
+      "date": "2026-10-20"
+    },
+    "coverage": 87.87,
+    "test_count": 129,
     "failed_tests": 0,
     "conclusion": "success"
   }
