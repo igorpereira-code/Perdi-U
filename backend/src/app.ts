@@ -15,6 +15,9 @@ import { prismaFoundItemsRepository } from './finder/data/prismaFoundItemsReposi
 import { createFoundItemsRouter } from './finder/routes/foundItemsRouter';
 import type { FoundItemPhotoStorage } from './finder/data/foundItemPhotoStorage';
 import { supabaseFoundItemPhotoStorage } from './finder/data/supabaseFoundItemPhotoStorage';
+import type { WelfareRepository } from './welfare/data/welfareRepository';
+import { createReceivedItemsRouter } from './welfare/routes/receivedItemsRouter';
+import { prismaWelfareRepository } from './welfare/data/prismaWelfareRepository';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -23,6 +26,7 @@ type AppOptions = {
   matching?: MatchingRepository;
   foundItems?: FoundItemsRepository;
   foundItemPhotos?: FoundItemPhotoStorage;
+  welfare?: WelfareRepository;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
@@ -31,6 +35,7 @@ export function createApp({
   matching = prismaMatchingRepository,
   foundItems = prismaFoundItemsRepository,
   foundItemPhotos = supabaseFoundItemPhotoStorage,
+  welfare = prismaWelfareRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -49,6 +54,7 @@ export function createApp({
   app.use(createMatchesRouter(matching));
   app.use(createPublishRouter(matching));
   app.use(createFoundItemsRouter(foundItems, foundItemPhotos));
+  app.use(createReceivedItemsRouter(welfare));
 
   return app;
 }

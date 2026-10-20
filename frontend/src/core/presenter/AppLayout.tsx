@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
-import { House, UserRound, type LucideIcon } from 'lucide-react';
+import { HandHeart, House, UserRound, type LucideIcon } from 'lucide-react';
+import type { Role } from '@shared/user';
 import { Logo } from './Logo';
 
 function NavItem({ to, icon: Icon, label }: { to: string; icon: LucideIcon; label: string }) {
@@ -18,7 +19,7 @@ function NavItem({ to, icon: Icon, label }: { to: string; icon: LucideIcon; labe
   );
 }
 
-export function AppLayout({ children }: { children: ReactNode }) {
+export function AppLayout({ children, role }: { children: ReactNode; role: Role }) {
   return (
     <div className="min-h-screen bg-neutral-50 pb-20">
       <header className="bg-blue-700 px-4 py-3 text-neutral-0">
@@ -27,6 +28,9 @@ export function AppLayout({ children }: { children: ReactNode }) {
       <main className="p-4">{children}</main>
       <nav className="fixed inset-x-0 bottom-0 flex border-t border-neutral-200 bg-neutral-0">
         <NavItem to="/" icon={House} label="Inicio" />
+        {role === 'WELFARE' && (
+          <NavItem to="/bienestar" icon={HandHeart} label="Bienestar" />
+        )}
         <NavItem to="/perfil" icon={UserRound} label="Mi perfil" />
       </nav>
     </div>

@@ -8,7 +8,11 @@ export function createMatchesRouter(matching: MatchingRepository): Router {
   const router = Router();
 
   router.get('/lost-reports/:code/matches', async (req, res) => {
-    const report = await matching.findOwnLostReport(req.params.code, getCurrentUser(req).id);
+    const user = getCurrentUser(req);
+    const report =
+      user.role === 'WELFARE'
+        ? await matching.findLostReportByCode(req.params.code)
+        : await matching.findOwnLostReport(req.params.code, user.id);
     if (!report) {
       res.status(404).json({ error: 'Lost report not found' });
       return;

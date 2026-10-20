@@ -10,6 +10,7 @@ import { supabase } from './core/data/supabase';
 import { createMatchesService } from './matching/data/matchesService';
 import { createGuideService } from './finder/data/guideService';
 import { createFoundItemsService } from './finder/data/foundItemsService';
+import { createWelfareService } from './welfare/data/welfareService';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const authService = createAuthService({ auth: supabase.auth, apiUrl });
@@ -17,6 +18,7 @@ const apiFetch = createApiFetch({ auth: supabase.auth, apiUrl });
 const matchesService = createMatchesService(apiFetch);
 const guideService = createGuideService(apiFetch);
 const foundItemsService = createFoundItemsService(apiFetch);
+const welfareService = createWelfareService(apiFetch);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -26,6 +28,7 @@ createRoot(document.getElementById('root')!).render(
         matchesService={matchesService}
         guideService={guideService}
         foundItemsService={foundItemsService}
+        welfareService={welfareService}
       />
     </BrowserRouter>
   </StrictMode>,
