@@ -1654,9 +1654,15 @@
     "testId": 40
   },
   {
-    "commitId": "HEAD",
+    "commitId": "09c6be4927e1d57e24823079505f21aa232dbbe0",
     "commitName": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
     "commitTimestamp": 1792435477583,
     "testId": 41
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: permite abrir cualquier pantalla al recargar en producción",
+    "commitTimestamp": 1792457048609,
+    "testId": 42
   }
 ]

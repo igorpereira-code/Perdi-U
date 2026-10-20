@@ -779,18 +779,37 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "09c6be4927e1d57e24823079505f21aa232dbbe0",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-19T18:44:36.000Z",
       "message": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/09c6be4927e1d57e24823079505f21aa232dbbe0"
     },
     "stats": {
       "total": 1,
       "additions": 1,
       "deletions": 0,
       "date": "2026-10-19"
+    },
+    "coverage": 87.04,
+    "test_count": 104,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-20T00:44:07.000Z",
+      "message": "chore: permite abrir cualquier pantalla al recargar en producción",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-10-20"
     },
     "coverage": 87.04,
     "test_count": 104,
