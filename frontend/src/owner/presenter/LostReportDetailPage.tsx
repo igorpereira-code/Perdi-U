@@ -84,6 +84,17 @@ export function LostReportDetailPage({ report, onBack }: LostReportDetailPagePro
             </div>
           </div>
         </div>
+
+        <section className="bg-blue-50 border border-blue-200 rounded-2xl p-6 text-center space-y-4">
+          <p className="text-sm font-semibold text-blue-900">
+            Muestra este código en Bienestar Estudiantil
+          </p>
+          <div className="bg-white border-2 border-blue-200 py-4 px-6 rounded-xl inline-block shadow-sm">
+            <span className="text-3xl font-mono font-bold text-blue-700 tracking-widest">
+              {report.code}
+            </span>
+          </div>
+        </section>
       </main>
     </div>
   );

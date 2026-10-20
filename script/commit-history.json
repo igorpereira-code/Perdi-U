@@ -1159,12 +1159,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "0d1123c0a4d2b59f4ae6cc9dae740fbd4beacaf0",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-20T01:25:20.000Z",
       "message": "feat: crear vista de detalles de un reporte de perdida",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0d1123c0a4d2b59f4ae6cc9dae740fbd4beacaf0"
     },
     "stats": {
       "total": 125,
@@ -1174,6 +1174,25 @@
     },
     "coverage": 87.87,
     "test_count": 129,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-20T01:31:54.000Z",
+      "message": "feat: mostrar tarjeta destacada con el codigo para presentar en bienestar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 25,
+      "additions": 24,
+      "deletions": 1,
+      "date": "2026-10-20"
+    },
+    "coverage": 87.87,
+    "test_count": 130,
     "failed_tests": 0,
     "conclusion": "success"
   }

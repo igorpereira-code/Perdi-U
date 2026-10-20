@@ -15,7 +15,9 @@ describe('LostReportDetailPage', () => {
   it('muestra todos los detalles del reporte de pérdida', () => {
     render(<LostReportDetailPage report={sampleReport} onBack={() => {}} />);
 
-    expect(screen.getByText('PR-0001')).toBeInTheDocument();
+    const codeMatches = screen.getAllByText('PR-0001');
+    expect(codeMatches.length).toBeGreaterThanOrEqual(1);
+    
     expect(screen.getByText('Mochila negra con llavero')).toBeInTheDocument();
     expect(screen.getByText('Mochilas y bolsos')).toBeInTheDocument();
     expect(screen.getByText('Biblioteca')).toBeInTheDocument();
@@ -31,5 +33,15 @@ describe('LostReportDetailPage', () => {
     fireEvent.click(backButton);
 
     expect(onBack).toHaveBeenCalledTimes(1);
+  });
+
+  it('muestra una sección destacada para presentar el código en Bienestar Estudiantil', () => {
+    render(<LostReportDetailPage report={sampleReport} onBack={() => {}} />);
+
+    expect(screen.getByText(/muestra este código en bienestar estudiantil/i)).toBeInTheDocument();
+    
+    // Verificamos que el código aparezca más de una vez (en los detalles y en la tarjeta grande)
+    const codeMatches = screen.getAllByText('PR-0001');
+    expect(codeMatches.length).toBeGreaterThanOrEqual(2);
   });
 });

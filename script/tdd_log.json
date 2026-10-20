@@ -2166,9 +2166,39 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0d1123c0a4d2b59f4ae6cc9dae740fbd4beacaf0",
     "commitName": "feat: crear vista de detalles de un reporte de perdida",
     "commitTimestamp": 1792459521852,
     "testId": 61
+  },
+  {
+    "numPassedTests": 129,
+    "failedTests": 1,
+    "numTotalTests": 130,
+    "timestamp": 1792459784276,
+    "success": false,
+    "testId": 62
+  },
+  {
+    "numPassedTests": 129,
+    "failedTests": 1,
+    "numTotalTests": 130,
+    "timestamp": 1792459837502,
+    "success": false,
+    "testId": 62
+  },
+  {
+    "numPassedTests": 130,
+    "failedTests": 0,
+    "numTotalTests": 130,
+    "timestamp": 1792459898541,
+    "success": true,
+    "testId": 62
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar tarjeta destacada con el codigo para presentar en bienestar",
+    "commitTimestamp": 1792459915712,
+    "testId": 62
   }
 ]
