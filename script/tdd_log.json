@@ -2122,9 +2122,31 @@
     "testId": 59
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b936512dba2a63d7427359ab23bc8161b5ceae0a",
     "commitName": "feat: mostrar listado de reportes de perdida del usuario",
     "commitTimestamp": 1792459252494,
     "testId": 59
+  },
+  {
+    "numPassedTests": 126,
+    "failedTests": 1,
+    "numTotalTests": 127,
+    "timestamp": 1792459305980,
+    "success": false,
+    "testId": 60
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792459325645,
+    "success": true,
+    "testId": 60
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: mostrar el codigo y el estado visual de cada reporte de perdida",
+    "commitTimestamp": 1792459339450,
+    "testId": 60
   }
 ]
