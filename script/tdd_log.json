@@ -384,9 +384,1279 @@
     "testId": 16
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0ce409700c6cc257d31b4a64aae2b12966fab248",
     "commitName": "feat: permitir elegir una foto de la galería, verla antes de enviarla y quitarla",
     "commitTimestamp": 1792100647816,
     "testId": 16
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 0,
+    "numTotalTests": 36,
+    "timestamp": 1792101976436,
+    "success": true,
+    "testId": 17
+  },
+  {
+    "commitId": "aed848f7725e4d2b5e1bcb5d2adc4bb94056dcf0",
+    "commitName": "chore: permitir usuarios de prueba solo cuando se active en el entorno local",
+    "commitTimestamp": 1792104347595,
+    "testId": 17
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 0,
+    "numTotalTests": 36,
+    "timestamp": 1792104354158,
+    "success": true,
+    "testId": 18
+  },
+  {
+    "commitId": "cddff898a055df5a7baabca4a6ed01c91ee847b2",
+    "commitName": "chore: dejar vacíos los datos del proyecto en el archivo de ejemplo del entorno",
+    "commitTimestamp": 1792105282216,
+    "testId": 18
+  },
+  {
+    "numPassedTests": 36,
+    "failedTests": 1,
+    "numTotalTests": 37,
+    "timestamp": 1792176716575,
+    "success": false,
+    "testId": 19
+  },
+  {
+    "numPassedTests": 37,
+    "failedTests": 0,
+    "numTotalTests": 37,
+    "timestamp": 1792176786906,
+    "success": true,
+    "testId": 19
+  },
+  {
+    "commitId": "f649503a32824af8abd10ae747967df80e1f6073",
+    "commitName": "feat: abrir el selector de cuentas Google mostrando primero las de la universidad",
+    "commitTimestamp": 1792176923559,
+    "testId": 19
+  },
+  {
+    "numPassedTests": 37,
+    "failedTests": 1,
+    "numTotalTests": 38,
+    "timestamp": 1792177225926,
+    "success": false,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 38,
+    "failedTests": 0,
+    "numTotalTests": 38,
+    "timestamp": 1792177259161,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 38,
+    "failedTests": 1,
+    "numTotalTests": 39,
+    "timestamp": 1792177363908,
+    "success": false,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 0,
+    "numTotalTests": 39,
+    "timestamp": 1792177388311,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 0,
+    "numTotalTests": 39,
+    "timestamp": 1792177415952,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 0,
+    "numTotalTests": 39,
+    "timestamp": 1792177773547,
+    "success": true,
+    "testId": 20
+  },
+  {
+    "commitId": "87b5f5641f8b720e6de89080a06c6e27642734b4",
+    "commitName": "feat: permitir elegir la cuenta Google de la universidad para ingresar",
+    "commitTimestamp": 1792177835452,
+    "testId": 20
+  },
+  {
+    "numPassedTests": 39,
+    "failedTests": 1,
+    "numTotalTests": 40,
+    "timestamp": 1792178456233,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 40,
+    "failedTests": 0,
+    "numTotalTests": 40,
+    "timestamp": 1792178578223,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 40,
+    "failedTests": 1,
+    "numTotalTests": 41,
+    "timestamp": 1792178619655,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 41,
+    "failedTests": 0,
+    "numTotalTests": 41,
+    "timestamp": 1792178660627,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 41,
+    "failedTests": 0,
+    "numTotalTests": 41,
+    "timestamp": 1792178752471,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 41,
+    "failedTests": 1,
+    "numTotalTests": 42,
+    "timestamp": 1792178882190,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 42,
+    "failedTests": 0,
+    "numTotalTests": 42,
+    "timestamp": 1792178919186,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 42,
+    "failedTests": 1,
+    "numTotalTests": 43,
+    "timestamp": 1792178966708,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 43,
+    "failedTests": 0,
+    "numTotalTests": 43,
+    "timestamp": 1792179007940,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 43,
+    "failedTests": 1,
+    "numTotalTests": 44,
+    "timestamp": 1792179081470,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 44,
+    "failedTests": 0,
+    "numTotalTests": 44,
+    "timestamp": 1792179112308,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 43,
+    "failedTests": 1,
+    "numTotalTests": 44,
+    "timestamp": 1792179177464,
+    "success": false,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 44,
+    "failedTests": 0,
+    "numTotalTests": 44,
+    "timestamp": 1792179211974,
+    "success": true,
+    "testId": 21
+  },
+  {
+    "commitId": "8db4a8756306b9dce7ebe3fe946ac730f91b4a0a",
+    "commitName": "feat: dejar entrar a la pantalla principal a quien inicia sesión con su cuenta de la universidad",
+    "commitTimestamp": 1792179360346,
+    "testId": 21
+  },
+  {
+    "numPassedTests": 45,
+    "failedTests": 1,
+    "numTotalTests": 46,
+    "timestamp": 1792179733541,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 46,
+    "failedTests": 0,
+    "numTotalTests": 46,
+    "timestamp": 1792179750869,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 46,
+    "failedTests": 1,
+    "numTotalTests": 47,
+    "timestamp": 1792179783186,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 47,
+    "failedTests": 0,
+    "numTotalTests": 47,
+    "timestamp": 1792179981305,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 47,
+    "failedTests": 1,
+    "numTotalTests": 48,
+    "timestamp": 1792180102298,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 48,
+    "failedTests": 0,
+    "numTotalTests": 48,
+    "timestamp": 1792180179211,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 48,
+    "failedTests": 1,
+    "numTotalTests": 49,
+    "timestamp": 1792180239611,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 49,
+    "failedTests": 0,
+    "numTotalTests": 49,
+    "timestamp": 1792180293458,
+    "success": true,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 49,
+    "failedTests": 1,
+    "numTotalTests": 50,
+    "timestamp": 1792180340921,
+    "success": false,
+    "testId": 22
+  },
+  {
+    "commitId": "b1f221311b56ada225d198b3ec8adb4eb45d2e85",
+    "commitName": "feat: avisar que solo se permiten cuentas de la universidad cuando alguien ingresa con otra cuenta",
+    "commitTimestamp": 1792180587004,
+    "testId": 22
+  },
+  {
+    "numPassedTests": 51,
+    "failedTests": 1,
+    "numTotalTests": 52,
+    "timestamp": 1792181142420,
+    "success": false,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 52,
+    "failedTests": 0,
+    "numTotalTests": 52,
+    "timestamp": 1792181165248,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 52,
+    "failedTests": 1,
+    "numTotalTests": 53,
+    "timestamp": 1792181296283,
+    "success": false,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 53,
+    "failedTests": 0,
+    "numTotalTests": 53,
+    "timestamp": 1792181581722,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 53,
+    "failedTests": 1,
+    "numTotalTests": 54,
+    "timestamp": 1792181697394,
+    "success": false,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 54,
+    "failedTests": 0,
+    "numTotalTests": 54,
+    "timestamp": 1792181757451,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 54,
+    "failedTests": 0,
+    "numTotalTests": 54,
+    "timestamp": 1792181854624,
+    "success": true,
+    "testId": 23
+  },
+  {
+    "commitId": "3555cd6ebce7542a40fa4dba53f69ff31a06e64a",
+    "commitName": "feat: crear el perfil del usuario automáticamente en su primer ingreso, sin formularios",
+    "commitTimestamp": 1792182091341,
+    "testId": 23
+  },
+  {
+    "numPassedTests": 54,
+    "failedTests": 2,
+    "numTotalTests": 56,
+    "timestamp": 1792182602231,
+    "success": false,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 56,
+    "failedTests": 0,
+    "numTotalTests": 56,
+    "timestamp": 1792182618173,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 56,
+    "failedTests": 1,
+    "numTotalTests": 57,
+    "timestamp": 1792182687063,
+    "success": false,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 57,
+    "failedTests": 0,
+    "numTotalTests": 57,
+    "timestamp": 1792182698164,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 57,
+    "failedTests": 0,
+    "numTotalTests": 57,
+    "timestamp": 1792182714394,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 57,
+    "failedTests": 1,
+    "numTotalTests": 58,
+    "timestamp": 1792182750373,
+    "success": false,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 58,
+    "failedTests": 0,
+    "numTotalTests": 58,
+    "timestamp": 1792182797281,
+    "success": true,
+    "testId": 24
+  },
+  {
+    "commitId": "b57e9dfa60e2432fa94d4268c8f7ad83e448aead",
+    "commitName": "feat: mostrar el perfil del usuario con el nombre, correo y foto de su cuenta de Google",
+    "commitTimestamp": 1792182874687,
+    "testId": 24
+  },
+  {
+    "numPassedTests": 58,
+    "failedTests": 1,
+    "numTotalTests": 59,
+    "timestamp": 1792182953919,
+    "success": false,
+    "testId": 25
+  },
+  {
+    "numPassedTests": 59,
+    "failedTests": 0,
+    "numTotalTests": 59,
+    "timestamp": 1792183031296,
+    "success": true,
+    "testId": 25
+  },
+  {
+    "commitId": "c394ee497732634de85f8e2371373aa6e3c37ca9",
+    "commitName": "feat: usar siempre el mismo perfil del usuario en sus siguientes ingresos",
+    "commitTimestamp": 1792183129721,
+    "testId": 25
+  },
+  {
+    "numPassedTests": 59,
+    "failedTests": 1,
+    "numTotalTests": 60,
+    "timestamp": 1792183491741,
+    "success": false,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 60,
+    "failedTests": 0,
+    "numTotalTests": 60,
+    "timestamp": 1792183510715,
+    "success": true,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 60,
+    "failedTests": 1,
+    "numTotalTests": 61,
+    "timestamp": 1792183580461,
+    "success": false,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 61,
+    "failedTests": 0,
+    "numTotalTests": 61,
+    "timestamp": 1792183594437,
+    "success": true,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 61,
+    "failedTests": 1,
+    "numTotalTests": 62,
+    "timestamp": 1792183648638,
+    "success": false,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 62,
+    "failedTests": 0,
+    "numTotalTests": 62,
+    "timestamp": 1792183681334,
+    "success": true,
+    "testId": 26
+  },
+  {
+    "commitId": "cd23f49a6ed3e075b4bde6460798837bc0289667",
+    "commitName": "feat: permitir que el usuario cierre su sesión desde su perfil",
+    "commitTimestamp": 1792183732045,
+    "testId": 26
+  },
+  {
+    "numPassedTests": 62,
+    "failedTests": 1,
+    "numTotalTests": 63,
+    "timestamp": 1792183904541,
+    "success": false,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 63,
+    "failedTests": 0,
+    "numTotalTests": 63,
+    "timestamp": 1792184263928,
+    "success": true,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 63,
+    "failedTests": 1,
+    "numTotalTests": 64,
+    "timestamp": 1792184299466,
+    "success": false,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 64,
+    "failedTests": 0,
+    "numTotalTests": 64,
+    "timestamp": 1792184354452,
+    "success": true,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 64,
+    "failedTests": 1,
+    "numTotalTests": 65,
+    "timestamp": 1792184408379,
+    "success": false,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 65,
+    "failedTests": 0,
+    "numTotalTests": 65,
+    "timestamp": 1792184438801,
+    "success": true,
+    "testId": 27
+  },
+  {
+    "commitId": "300d39b46db541b5e233b92e3d6c006a99faf5e2",
+    "commitName": "feat: pedir que vuelva a iniciar sesión a quien cerró su sesión o no ha ingresado",
+    "commitTimestamp": 1792184642808,
+    "testId": 27
+  },
+  {
+    "numPassedTests": 65,
+    "failedTests": 1,
+    "numTotalTests": 66,
+    "timestamp": 1792189301240,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 66,
+    "failedTests": 0,
+    "numTotalTests": 66,
+    "timestamp": 1792189355005,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 66,
+    "failedTests": 1,
+    "numTotalTests": 67,
+    "timestamp": 1792189370303,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 67,
+    "failedTests": 0,
+    "numTotalTests": 67,
+    "timestamp": 1792189395505,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 67,
+    "failedTests": 1,
+    "numTotalTests": 68,
+    "timestamp": 1792189409496,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 68,
+    "failedTests": 0,
+    "numTotalTests": 68,
+    "timestamp": 1792189437908,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 68,
+    "failedTests": 1,
+    "numTotalTests": 69,
+    "timestamp": 1792189451665,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 69,
+    "failedTests": 0,
+    "numTotalTests": 69,
+    "timestamp": 1792189502052,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 69,
+    "failedTests": 0,
+    "numTotalTests": 69,
+    "timestamp": 1792189516425,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 69,
+    "failedTests": 1,
+    "numTotalTests": 70,
+    "timestamp": 1792189588883,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 70,
+    "failedTests": 0,
+    "numTotalTests": 70,
+    "timestamp": 1792189613084,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 70,
+    "failedTests": 2,
+    "numTotalTests": 72,
+    "timestamp": 1792190031129,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 72,
+    "failedTests": 0,
+    "numTotalTests": 72,
+    "timestamp": 1792190046784,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 72,
+    "failedTests": 1,
+    "numTotalTests": 73,
+    "timestamp": 1792190378878,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 73,
+    "failedTests": 0,
+    "numTotalTests": 73,
+    "timestamp": 1792190395129,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 73,
+    "failedTests": 0,
+    "numTotalTests": 73,
+    "timestamp": 1792190459894,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 73,
+    "failedTests": 0,
+    "numTotalTests": 73,
+    "timestamp": 1792190473361,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 74,
+    "failedTests": 0,
+    "numTotalTests": 74,
+    "timestamp": 1792190506984,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 74,
+    "failedTests": 1,
+    "numTotalTests": 75,
+    "timestamp": 1792190566330,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 75,
+    "failedTests": 0,
+    "numTotalTests": 75,
+    "timestamp": 1792190576745,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 75,
+    "failedTests": 1,
+    "numTotalTests": 76,
+    "timestamp": 1792190715120,
+    "success": false,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 76,
+    "failedTests": 0,
+    "numTotalTests": 76,
+    "timestamp": 1792190804550,
+    "success": true,
+    "testId": 28
+  },
+  {
+    "commitId": "416d4d94d27d5281de167f5a126007bcd20c8ac4",
+    "commitName": "feat: mostrar al dueño los objetos publicados que se parecen a su reporte, del más parecido al menos parecido",
+    "commitTimestamp": 1792191056083,
+    "testId": 28
+  },
+  {
+    "numPassedTests": 76,
+    "failedTests": 1,
+    "numTotalTests": 77,
+    "timestamp": 1792191369372,
+    "success": false,
+    "testId": 29
+  },
+  {
+    "numPassedTests": 77,
+    "failedTests": 0,
+    "numTotalTests": 77,
+    "timestamp": 1792191392920,
+    "success": true,
+    "testId": 29
+  },
+  {
+    "numPassedTests": 77,
+    "failedTests": 1,
+    "numTotalTests": 78,
+    "timestamp": 1792191443098,
+    "success": false,
+    "testId": 29
+  },
+  {
+    "numPassedTests": 78,
+    "failedTests": 0,
+    "numTotalTests": 78,
+    "timestamp": 1792191467023,
+    "success": true,
+    "testId": 29
+  },
+  {
+    "commitId": "ae80729f634960496d371a011acb16cffa381847",
+    "commitName": "fix: avisar cuando el reporte no existe o no es del usuario, en vez de mostrar la pantalla rota",
+    "commitTimestamp": 1792191505877,
+    "testId": 29
+  },
+  {
+    "numPassedTests": 78,
+    "failedTests": 1,
+    "numTotalTests": 79,
+    "timestamp": 1792191577381,
+    "success": false,
+    "testId": 30
+  },
+  {
+    "numPassedTests": 79,
+    "failedTests": 0,
+    "numTotalTests": 79,
+    "timestamp": 1792191629495,
+    "success": true,
+    "testId": 30
+  },
+  {
+    "commitId": "d77f43f36e55e680b9f0f1ba657a1a37d6aefd3f",
+    "commitName": "feat: avisar al dueño que su reporte sigue activo cuando todavía no hay objetos parecidos",
+    "commitTimestamp": 1792191740787,
+    "testId": 30
+  },
+  {
+    "numPassedTests": 79,
+    "failedTests": 1,
+    "numTotalTests": 80,
+    "timestamp": 1792191852855,
+    "success": false,
+    "testId": 31
+  },
+  {
+    "numPassedTests": 80,
+    "failedTests": 0,
+    "numTotalTests": 80,
+    "timestamp": 1792191866585,
+    "success": true,
+    "testId": 31
+  },
+  {
+    "commitId": "e8fc768f9791903807a855686f1a4d04586fef7d",
+    "commitName": "feat: permitir ir a los objetos parecidos desde el reporte de pérdida",
+    "commitTimestamp": 1792191997613,
+    "testId": 31
+  },
+  {
+    "numPassedTests": 78,
+    "failedTests": 0,
+    "numTotalTests": 78,
+    "timestamp": 1792192076131,
+    "success": false,
+    "testId": 32
+  },
+  {
+    "numPassedTests": 81,
+    "failedTests": 0,
+    "numTotalTests": 81,
+    "timestamp": 1792192124614,
+    "success": true,
+    "testId": 32
+  },
+  {
+    "numPassedTests": 81,
+    "failedTests": 0,
+    "numTotalTests": 81,
+    "timestamp": 1792192284863,
+    "success": true,
+    "testId": 32
+  },
+  {
+    "commitId": "287a15d9f3ff530a248f294cde68bd1babd12fe7",
+    "commitName": "feat: mostrar la foto, la descripción y el código de cada objeto parecido",
+    "commitTimestamp": 1792192349595,
+    "testId": 32
+  },
+  {
+    "numPassedTests": 82,
+    "failedTests": 1,
+    "numTotalTests": 83,
+    "timestamp": 1792192918883,
+    "success": false,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 83,
+    "failedTests": 0,
+    "numTotalTests": 83,
+    "timestamp": 1792192966747,
+    "success": true,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 83,
+    "failedTests": 1,
+    "numTotalTests": 84,
+    "timestamp": 1792193295474,
+    "success": false,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 84,
+    "failedTests": 0,
+    "numTotalTests": 84,
+    "timestamp": 1792193321916,
+    "success": true,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 84,
+    "failedTests": 1,
+    "numTotalTests": 85,
+    "timestamp": 1792193402309,
+    "success": false,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 85,
+    "failedTests": 0,
+    "numTotalTests": 85,
+    "timestamp": 1792193417381,
+    "success": true,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 85,
+    "failedTests": 1,
+    "numTotalTests": 86,
+    "timestamp": 1792193616570,
+    "success": false,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 86,
+    "failedTests": 0,
+    "numTotalTests": 86,
+    "timestamp": 1792193692067,
+    "success": true,
+    "testId": 33
+  },
+  {
+    "commitId": "bc5f00f6331c1b3c7dc270d01b4b5f0e46c63003",
+    "commitName": "feat: permitir que el dueño avise que pasará a recoger un objeto parecido, para que Bienestar lo sepa",
+    "commitTimestamp": 1792193813913,
+    "testId": 33
+  },
+  {
+    "numPassedTests": 86,
+    "failedTests": 1,
+    "numTotalTests": 87,
+    "timestamp": 1792193875849,
+    "success": false,
+    "testId": 34
+  },
+  {
+    "numPassedTests": 87,
+    "failedTests": 0,
+    "numTotalTests": 87,
+    "timestamp": 1792193935583,
+    "success": true,
+    "testId": 34
+  },
+  {
+    "commitId": "5677504fa0f5ee8b1e52754a56e20fadf69356b1",
+    "commitName": "feat: mostrar dónde y cuándo recoger el objeto, y que el dueño lleve el código de su reporte",
+    "commitTimestamp": 1792194025831,
+    "testId": 34
+  },
+  {
+    "numPassedTests": 83,
+    "failedTests": 0,
+    "numTotalTests": 83,
+    "timestamp": 1792194202253,
+    "success": false,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 87,
+    "failedTests": 1,
+    "numTotalTests": 88,
+    "timestamp": 1792194255551,
+    "success": false,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 88,
+    "failedTests": 0,
+    "numTotalTests": 88,
+    "timestamp": 1792194307273,
+    "success": true,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 88,
+    "failedTests": 0,
+    "numTotalTests": 88,
+    "timestamp": 1792194329264,
+    "success": true,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 88,
+    "failedTests": 1,
+    "numTotalTests": 89,
+    "timestamp": 1792194455988,
+    "success": false,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 89,
+    "failedTests": 0,
+    "numTotalTests": 89,
+    "timestamp": 1792194475504,
+    "success": true,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 89,
+    "failedTests": 1,
+    "numTotalTests": 90,
+    "timestamp": 1792194605173,
+    "success": false,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 90,
+    "failedTests": 0,
+    "numTotalTests": 90,
+    "timestamp": 1792194632506,
+    "success": true,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 90,
+    "failedTests": 1,
+    "numTotalTests": 91,
+    "timestamp": 1792194660186,
+    "success": false,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 91,
+    "failedTests": 0,
+    "numTotalTests": 91,
+    "timestamp": 1792194680620,
+    "success": true,
+    "testId": 35
+  },
+  {
+    "commitId": "c008de064c4e386e94948422f57f042c784096f8",
+    "commitName": "feat: permitir que el dueño descarte un objeto que no es suyo para que deje de aparecer",
+    "commitTimestamp": 1792194921576,
+    "testId": 35
+  },
+  {
+    "numPassedTests": 91,
+    "failedTests": 1,
+    "numTotalTests": 92,
+    "timestamp": 1792195877965,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 92,
+    "failedTests": 0,
+    "numTotalTests": 92,
+    "timestamp": 1792195895159,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 92,
+    "failedTests": 2,
+    "numTotalTests": 94,
+    "timestamp": 1792196150136,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 94,
+    "failedTests": 0,
+    "numTotalTests": 94,
+    "timestamp": 1792196171521,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 94,
+    "failedTests": 1,
+    "numTotalTests": 95,
+    "timestamp": 1792196367813,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 95,
+    "failedTests": 0,
+    "numTotalTests": 95,
+    "timestamp": 1792196392739,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 95,
+    "failedTests": 1,
+    "numTotalTests": 96,
+    "timestamp": 1792196456997,
+    "success": false,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 96,
+    "failedTests": 0,
+    "numTotalTests": 96,
+    "timestamp": 1792196474293,
+    "success": true,
+    "testId": 36
+  },
+  {
+    "commitId": "41eaaf29b159fa8d741e4b6f02bcb2a59c56c394",
+    "commitName": "feat: permitir que Bienestar publique solo los objetos que ya recibió",
+    "commitTimestamp": 1792196669944,
+    "testId": 36
+  },
+  {
+    "numPassedTests": 96,
+    "failedTests": 1,
+    "numTotalTests": 97,
+    "timestamp": 1792197132268,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 96,
+    "failedTests": 1,
+    "numTotalTests": 97,
+    "timestamp": 1792197209496,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 97,
+    "failedTests": 1,
+    "numTotalTests": 98,
+    "timestamp": 1792197369330,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 97,
+    "failedTests": 0,
+    "numTotalTests": 97,
+    "timestamp": 1792197397747,
+    "success": true,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 97,
+    "failedTests": 1,
+    "numTotalTests": 98,
+    "timestamp": 1792197441909,
+    "success": false,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 98,
+    "failedTests": 0,
+    "numTotalTests": 98,
+    "timestamp": 1792197463094,
+    "success": true,
+    "testId": 37
+  },
+  {
+    "commitId": "2c08917804bd64a186e763efee9250cb589c0c7e",
+    "commitName": "feat: publicar el objeto recibido para que la comunidad pueda verlo",
+    "commitTimestamp": 1792197727425,
+    "testId": 37
+  },
+  {
+    "numPassedTests": 98,
+    "failedTests": 1,
+    "numTotalTests": 99,
+    "timestamp": 1792198054548,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 99,
+    "failedTests": 0,
+    "numTotalTests": 99,
+    "timestamp": 1792198082003,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 99,
+    "failedTests": 1,
+    "numTotalTests": 100,
+    "timestamp": 1792198334637,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 100,
+    "failedTests": 0,
+    "numTotalTests": 100,
+    "timestamp": 1792198391542,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 100,
+    "failedTests": 1,
+    "numTotalTests": 101,
+    "timestamp": 1792198463027,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 101,
+    "failedTests": 0,
+    "numTotalTests": 101,
+    "timestamp": 1792198484287,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 101,
+    "failedTests": 1,
+    "numTotalTests": 102,
+    "timestamp": 1792198553806,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 102,
+    "failedTests": 0,
+    "numTotalTests": 102,
+    "timestamp": 1792198574390,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 102,
+    "failedTests": 1,
+    "numTotalTests": 103,
+    "timestamp": 1792198607099,
+    "success": false,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 103,
+    "failedTests": 0,
+    "numTotalTests": 103,
+    "timestamp": 1792198665983,
+    "success": true,
+    "testId": 38
+  },
+  {
+    "commitId": "ca98ff6a28b338b30ba557dd29934a7f83db09a6",
+    "commitName": "feat: mostrar a Bienestar cuántos reportes de pérdida se parecen al objeto que publica",
+    "commitTimestamp": 1792198885376,
+    "testId": 38
+  },
+  {
+    "numPassedTests": 103,
+    "failedTests": 1,
+    "numTotalTests": 104,
+    "timestamp": 1792199394974,
+    "success": false,
+    "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792199425735,
+    "success": true,
+    "testId": 39
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792199440095,
+    "success": true,
+    "testId": 39
+  },
+  {
+    "commitId": "5a6e080ddc3eaf22246b69e54bd3d814a4b4d1b9",
+    "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
+    "commitTimestamp": 1792199780960,
+    "testId": 39
+  },
+  {
+    "commitId": "1d63dc89809f133fa80f887a87afc6f2086ede7a",
+    "commitName": "chore: permite abrir cualquier pantalla al recargar en producción",
+    "commitTimestamp": 1792376448779,
+    "testId": 40
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
+    "commitTimestamp": 1792435668352,
+    "testId": 41
   }
 ]

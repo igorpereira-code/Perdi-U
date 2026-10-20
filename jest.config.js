@@ -8,6 +8,7 @@ export default {
       displayName: 'backend',
       testEnvironment: 'node',
       roots: ['<rootDir>/backend/src'],
+      setupFiles: ['<rootDir>/backend/src/setupTests.ts'],
       moduleNameMapper: shared,
     },
     {
@@ -24,6 +25,7 @@ export default {
     'shared/**/*.ts',
     '!**/*.test.{ts,tsx}',
     '!backend/src/server.ts',
+    '!backend/src/setupTests.ts',
     '!frontend/src/main.tsx',
     '!frontend/src/setupTests.ts',
   ],
