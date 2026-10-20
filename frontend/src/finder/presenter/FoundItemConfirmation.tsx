@@ -11,7 +11,10 @@ export function FoundItemConfirmation({ code }: { code: string }) {
       <p className="text-sm text-neutral-700">Lleva el objeto a Bienestar Estudiantil.</p>
       <p className="text-sm text-neutral-700">Muestra el código {code} al entregar el objeto.</p>
       <Alert>
-        No entregues el objeto directamente a su dueño. Debes llevarlo a Bienestar Estudiantil
+        <div className="space-y-2">
+          <p>No entregues el objeto directamente a su dueño. Debes llevarlo a Bienestar Estudiantil</p>
+          <p>Tu reporte permanecerá privado hasta que entregues el objeto a Bienestar Estudiantil y se confirme su recepción.</p>
+        </div>
       </Alert>
       <WelfareCard />
     </section>

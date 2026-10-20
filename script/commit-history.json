@@ -1007,12 +1007,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "e55b066d6e342850582bc34a835ddbd1a605a662",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-10-19T23:00:46.000Z",
       "message": "feat(finder): mostrar ubicación y horario de Bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/e55b066d6e342850582bc34a835ddbd1a605a662"
     },
     "stats": {
       "total": 31,
@@ -1022,6 +1022,25 @@
     },
     "coverage": 90.87,
     "test_count": 300,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-10-20T01:13:40.000Z",
+      "message": "feat(finder): informar privacidad del reporte hasta su recepcion",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 44,
+      "additions": 43,
+      "deletions": 1,
+      "date": "2026-10-20"
+    },
+    "coverage": 90.87,
+    "test_count": 303,
     "failed_tests": 0,
     "conclusion": "success"
   }

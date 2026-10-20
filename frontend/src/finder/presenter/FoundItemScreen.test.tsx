@@ -234,3 +234,42 @@ describe('Ubicación y horario de Bienestar después del registro (CA13)', () =>
     expect(screen.getByRole('status')).toHaveTextContent('HZ-7325');
   });
 });
+
+describe('Privacidad del reporte hasta su recepción en Bienestar (CA14)', () => {
+  const privacyNotice = 'Tu reporte permanecerá privado hasta que entregues el objeto a Bienestar Estudiantil y se confirme su recepción.';
+
+  it.each([false, true])('informa que el reporte confirmado permanece privado hasta su recepción, con fotografía: %s', async (withPhoto) => {
+    const user = userEvent.setup();
+    const service = fakeService();
+    render(<FoundItemScreen foundItemsService={service} />);
+    await fillForm(user, withPhoto);
+
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+
+    expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
+    expect(screen.getByText(privacyNotice)).toBeVisible();
+    expect(screen.getByRole('note')).toHaveTextContent(privacyNotice);
+    expect(screen.getByRole('status')).toHaveTextContent('HZ-7325');
+  });
+
+  it('no afirma que existe un reporte privado antes de guardar, mientras espera ni si el guardado falla', async () => {
+    const user = userEvent.setup();
+    const service = fakeService();
+    let rejectCreate!: (error: Error) => void;
+    service.create.mockImplementation(() => new Promise((_resolve, reject) => { rejectCreate = reject; }));
+    render(<FoundItemScreen foundItemsService={service} />);
+    await fillForm(user);
+    expect(screen.queryByText(privacyNotice)).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+
+    expect(screen.getByRole('button', { name: 'Enviando…' })).toBeDisabled();
+    expect(screen.queryByText(privacyNotice)).not.toBeInTheDocument();
+    await act(async () => { rejectCreate(new Error('No se pudo registrar el objeto encontrado. Intenta nuevamente.')); });
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('No se pudo registrar el objeto encontrado.');
+    expect(screen.queryByText(privacyNotice)).not.toBeInTheDocument();
+    expect(screen.getByLabelText('Descripción del objeto')).toHaveValue('Llaves azules');
+    expect(screen.getByRole('button', { name: 'Reportar objeto encontrado' })).toBeEnabled();
+  });
+});

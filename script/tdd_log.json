@@ -2110,9 +2110,39 @@
     "testId": 53
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e55b066d6e342850582bc34a835ddbd1a605a662",
     "commitName": "feat(finder): mostrar ubicación y horario de Bienestar",
     "commitTimestamp": 1792450848026,
     "testId": 53
+  },
+  {
+    "numPassedTests": 301,
+    "failedTests": 2,
+    "numTotalTests": 303,
+    "timestamp": 1792458235526,
+    "success": false,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 303,
+    "failedTests": 0,
+    "numTotalTests": 303,
+    "timestamp": 1792458315300,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 303,
+    "failedTests": 0,
+    "numTotalTests": 303,
+    "timestamp": 1792458361631,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): informar privacidad del reporte hasta su recepcion",
+    "commitTimestamp": 1792458822940,
+    "testId": 54
   }
 ]
