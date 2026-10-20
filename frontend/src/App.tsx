@@ -45,7 +45,7 @@ export default function App({ authService, matchesService, welfareService }: App
     if (user === null) {
       return <Navigate to="/ingresar" replace />;
     }
-    return <AppLayout>{page(user)}</AppLayout>;
+    return <AppLayout role={user.role}>{page(user)}</AppLayout>;
   };
 
   return (
