@@ -17,6 +17,9 @@ import { MyFoundItemsScreen } from './finder/presenter/MyFoundItemsScreen';
 import { MyFoundItemScreen } from './finder/presenter/MyFoundItemScreen';
 import type { WelfareService } from './welfare/data/welfareService';
 import { WelfarePage } from './welfare/presenter/WelfarePage';
+import type { LostReportsService } from './owner/data/lostReportsService';
+import { LostItemEntry } from './owner/presenter/LostItemEntry';
+import { LostReportScreen } from './owner/presenter/LostReportScreen';
 
 type AppProps = {
   authService: AuthService;
@@ -24,6 +27,7 @@ type AppProps = {
   guideService: GuideService;
   foundItemsService: FoundItemsService;
   welfareService: WelfareService;
+  lostReportsService: LostReportsService;
 };
 
 export default function App({
@@ -32,6 +36,7 @@ export default function App({
   guideService,
   foundItemsService,
   welfareService,
+  lostReportsService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
@@ -79,22 +84,24 @@ export default function App({
       <Route
         path="/"
         element={signedInPage((me) => (
-          <div className="space-y-6">
+          <div className="mx-auto max-w-xl space-y-6">
             <HomePage user={me} />
-            <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
-            <Link
-              to="/mis-reportes"
-              className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700"
-            >
-              Mis reportes
-            </Link>
+            <div className="grid grid-cols-2 gap-3">
+              <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
+              <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
+            </div>
+            <Link to="/mis-reportes" className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700">Mis reportes</Link>
           </div>
         ))}
       />
       <Route
         path="/reportar-objeto"
+        element={signedInPage(() => <FoundItemScreen foundItemsService={foundItemsService} />)}
+      />
+      <Route
+        path="/reportar-perdida"
         element={signedInPage(() => (
-          <FoundItemScreen foundItemsService={foundItemsService} />
+          <LostReportScreen foundItemsService={foundItemsService} lostReportsService={lostReportsService} />
         ))}
       />
       <Route
@@ -105,21 +112,15 @@ export default function App({
       />
       <Route
         path="/mis-reportes"
-        element={signedInPage(() => (
-          <MyFoundItemsScreen foundItemsService={foundItemsService} />
-        ))}
+        element={signedInPage(() => <MyFoundItemsScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/mis-reportes/encontrados/:code"
-        element={signedInPage(() => (
-          <MyFoundItemScreen foundItemsService={foundItemsService} />
-        ))}
+        element={signedInPage(() => <MyFoundItemScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/mis-reportes/:code/coincidencias"
-        element={signedInPage(() => (
-          <MatchesScreen matchesService={matchesService} />
-        ))}
+        element={signedInPage(() => <MatchesScreen matchesService={matchesService} />)}
       />
       <Route
         path="/guia-rapida"

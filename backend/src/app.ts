@@ -18,6 +18,9 @@ import { supabaseFoundItemPhotoStorage } from './finder/data/supabaseFoundItemPh
 import type { WelfareRepository } from './welfare/data/welfareRepository';
 import { createReceivedItemsRouter } from './welfare/routes/receivedItemsRouter';
 import { prismaWelfareRepository } from './welfare/data/prismaWelfareRepository';
+import type { LostReportsRepository } from './owner/data/lostReportsRepository';
+import { prismaLostReportsRepository } from './owner/data/prismaLostReportsRepository';
+import { createLostReportsRouter } from './owner/routes/lostReportsRouter';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -27,6 +30,7 @@ type AppOptions = {
   foundItems?: FoundItemsRepository;
   foundItemPhotos?: FoundItemPhotoStorage;
   welfare?: WelfareRepository;
+  lostReports?: LostReportsRepository;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
@@ -36,6 +40,7 @@ export function createApp({
   foundItems = prismaFoundItemsRepository,
   foundItemPhotos = supabaseFoundItemPhotoStorage,
   welfare = prismaWelfareRepository,
+  lostReports = prismaLostReportsRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -55,6 +60,7 @@ export function createApp({
   app.use(createPublishRouter(matching));
   app.use(createFoundItemsRouter(foundItems, foundItemPhotos));
   app.use(createReceivedItemsRouter(welfare));
+  app.use(createLostReportsRouter(lostReports, () => foundItems.getCatalogs(), foundItemPhotos));
 
   return app;
 }
