@@ -2755,12 +2755,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "63599295538466250b4d0a5743530bba54a9374d",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-20T13:18:06.000Z",
       "message": "chore: integra los últimos cambios de final-test en owner",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/63599295538466250b4d0a5743530bba54a9374d"
     },
     "stats": {
       "total": 3002,
@@ -2922,6 +2922,25 @@
     },
     "coverage": 89.32,
     "test_count": 488,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T13:23:36.000Z",
+      "message": "feat(owner): permitir escribir la descripción del objeto perdido",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 48,
+      "additions": 48,
+      "deletions": 0,
+      "date": "2026-10-21"
+    },
+    "coverage": 89.34,
+    "test_count": 489,
     "failed_tests": 0,
     "conclusion": "success"
   }

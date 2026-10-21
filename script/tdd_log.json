@@ -3828,7 +3828,7 @@
     "testId": 44
   },
   {
-    "commitId": "HEAD",
+    "commitId": "63599295538466250b4d0a5743530bba54a9374d",
     "commitName": "feat(welfare): mostrar acceso en la barra por rol",
     "commitTimestamp": 1792502988248,
     "testId": 45
@@ -4410,5 +4410,27 @@
     "commitName": "feat(owner): abrir el formulario para reportar un objeto perdido",
     "commitTimestamp": 1792588842459,
     "testId": 50
+  },
+  {
+    "numPassedTests": 488,
+    "failedTests": 1,
+    "numTotalTests": 489,
+    "timestamp": 1792588934368,
+    "success": false,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 489,
+    "failedTests": 0,
+    "numTotalTests": 489,
+    "timestamp": 1792588977386,
+    "success": true,
+    "testId": 51
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir escribir la descripción del objeto perdido",
+    "commitTimestamp": 1792589017168,
+    "testId": 51
   }
 ]
