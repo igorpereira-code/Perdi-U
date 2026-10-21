@@ -18,6 +18,7 @@ import { MyFoundItemScreen } from './finder/presenter/MyFoundItemScreen';
 import type { WelfareService } from './welfare/data/welfareService';
 import { WelfarePage } from './welfare/presenter/WelfarePage';
 import { LostItemEntry } from './owner/presenter/LostItemEntry';
+import { LostReportScreen } from './owner/presenter/LostReportScreen';
 
 type AppProps = {
   authService: AuthService;
@@ -91,6 +92,10 @@ export default function App({
       <Route
         path="/reportar-objeto"
         element={signedInPage(() => <FoundItemScreen foundItemsService={foundItemsService} />)}
+      />
+      <Route
+        path="/reportar-perdida"
+        element={signedInPage(() => <LostReportScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/perfil"

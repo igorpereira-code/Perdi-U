@@ -487,4 +487,24 @@ describe('Opción Perdí un objeto en el inicio', () => {
   });
 });
 
+describe('Abrir el formulario de pérdida desde el inicio', () => {
+  it('abre el formulario al elegir Perdí un objeto', async () => {
+    renderAt('/', igor);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Perdí un objeto' }));
+
+    expect(await screen.findByRole('form', { name: 'Reportar objeto perdido' })).toBeInTheDocument();
+  });
+
+  it('pide iniciar sesión a quien abre /reportar-perdida sin sesión', async () => {
+    renderAt('/reportar-perdida', null);
+
+    expect(await screen.findByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+  });
+});
+
+
+
+
+
 });

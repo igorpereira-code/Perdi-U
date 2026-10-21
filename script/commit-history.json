@@ -2717,12 +2717,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "fe9c787a6c0f86709996365991596901f3553ee8",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-20T03:56:09.000Z",
       "message": "style(welfare): actualizar solo el diseño visual del panel",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fe9c787a6c0f86709996365991596901f3553ee8"
     },
     "stats": {
       "total": 781,
@@ -2903,6 +2903,25 @@
     },
     "coverage": 89.02,
     "test_count": 484,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T13:20:41.000Z",
+      "message": "feat(owner): abrir el formulario para reportar un objeto perdido",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 129,
+      "additions": 129,
+      "deletions": 0,
+      "date": "2026-10-21"
+    },
+    "coverage": 89.32,
+    "test_count": 488,
     "failed_tests": 0,
     "conclusion": "success"
   }
