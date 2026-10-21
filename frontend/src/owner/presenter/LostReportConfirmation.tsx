@@ -1,3 +1,5 @@
+import { CheckCircle2, ShieldCheck } from 'lucide-react';
+import { BackHeader } from '../../core/presenter/BackHeader';
 import { Button } from '../../core/presenter/Button';
 import { StatusChip } from '../../core/presenter/StatusChip';
 import { SeeMatchesLink } from '../../matching/presenter/SeeMatchesLink';
@@ -9,45 +11,51 @@ type LostReportConfirmationProps = {
 
 export function LostReportConfirmation({ reportCode, onGoHome }: LostReportConfirmationProps) {
   return (
-    <main className="p-4 max-w-lg mx-auto text-center space-y-6 pt-10">
-      <div className="w-16 h-16 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
-        ✓
-      </div>
+    <div className="min-h-screen bg-neutral-50 pb-20">
+      <BackHeader title="Reporte de pérdida" onBack={onGoHome} />
 
-      <div className="space-y-2">
-        <h1 className="text-xl font-bold text-neutral-900">Reporte registrado con éxito</h1>
-        <p className="text-sm text-neutral-500">
-          Guarda este código para hacerle seguimiento a tu objeto:
-        </p>
-      </div>
-
-      <div className="p-4 bg-white border border-neutral-200 rounded-xl shadow-sm inline-block space-y-2">
-        <span className="text-2xl font-mono font-bold text-blue-700 tracking-wider block">
-          {reportCode}
-        </span>
-        <div className="flex items-center justify-center gap-2 pt-1 text-xs text-neutral-500">
-          <span>Estado:</span>
-          <StatusChip status="SEARCHING" />
+      <main className="p-4 max-w-lg mx-auto space-y-4">
+        {/* Aviso de éxito */}
+        <div
+          role="status"
+          className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-[#d9f5e3] text-[#14532d] text-sm"
+        >
+          <CheckCircle2 className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+          <span>Reporte enviado correctamente</span>
         </div>
-      </div>
 
-      <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-800 text-left">
-        ℹ️ El reporte sigue activo aunque todavía no aparezca tu objeto. El sistema te notificará cuando haya coincidencias.
-      </div>
+        {/* Código del reporte */}
+        <section className="p-6 bg-white border border-neutral-200 rounded-2xl text-center space-y-3">
+          <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+            ID de tu reporte
+          </p>
+          <span className="block text-4xl font-mono font-bold tracking-wider text-[#14407a]">
+            {reportCode}
+          </span>
+          <p className="text-sm text-neutral-500">
+            Guarda este código para hacerle seguimiento a tu objeto.
+          </p>
+          <div className="flex items-center justify-center gap-2 text-xs text-neutral-500">
+            <span>Estado:</span>
+            <StatusChip status="SEARCHING" />
+          </div>
+        </section>
 
-      <div className="p-3 bg-neutral-100 border border-neutral-200 rounded-lg text-xs text-neutral-600 text-left">
-        🔒 <strong>Reporte privado:</strong> Tu reporte es privado: solo lo ven tú y Bienestar Estudiantil.
-      </div>
+        {/* Aviso de privacidad */}
+        <div className="flex items-start gap-3 p-4 bg-[#fffbe0] border border-[#fde68a] rounded-2xl text-sm text-[#0f2a52]">
+          <ShieldCheck className="h-5 w-5 flex-shrink-0 mt-0.5" aria-hidden="true" />
+          <p>
+            Tu reporte es privado: solo lo ven tú y Bienestar Estudiantil. Quedará activo aunque
+            todavía no aparezca tu objeto, y el sistema te notificará cuando haya coincidencias.
+          </p>
+        </div>
 
-      <div className="pt-2">
         <SeeMatchesLink reportCode={reportCode} />
-      </div>
 
-      <div className="pt-4">
         <Button variant="outline" className="w-full" onClick={onGoHome}>
           Volver al inicio
         </Button>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }

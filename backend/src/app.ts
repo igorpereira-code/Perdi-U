@@ -10,12 +10,16 @@ import { prismaMatchingRepository } from './matching/data/prismaMatchingReposito
 import { createMatchesRouter } from './matching/routes/matchesRouter';
 import { createPublishRouter } from './matching/routes/publishRouter';
 
+// NUEVA IMPORTACIÓN
+import { createLostReportsRouter } from './owner/routes/lostReportsRouter';
+
 type AppOptions = {
   verifyToken?: VerifyToken;
   users?: UsersRepository;
   allowSampleUsers?: boolean;
   matching?: MatchingRepository;
 };
+
 export function createApp({
   verifyToken = verifySupabaseToken,
   users = prismaUsersRepository,
@@ -35,8 +39,12 @@ export function createApp({
   app.get('/me', (req, res) => {
     res.json(getCurrentUser(req));
   });
+  
   app.use(createMatchesRouter(matching));
   app.use(createPublishRouter(matching));
+  
+  // NUEVO ENRUTADOR REGISTRADO
+  app.use(createLostReportsRouter());
 
   return app;
 }

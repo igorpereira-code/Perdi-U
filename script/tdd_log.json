@@ -2196,9 +2196,15 @@
     "testId": 62
   },
   {
-    "commitId": "HEAD",
+    "commitId": "60f4939d67d43bbc821530f3130a65ebeb50f8d0",
     "commitName": "feat: mostrar tarjeta destacada con el codigo para presentar en bienestar",
     "commitTimestamp": 1792459915712,
     "testId": 62
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: actualizar diseño de HomeScreen y unificar rutas principales",
+    "commitTimestamp": 1792553769098,
+    "testId": 63
   }
 ]

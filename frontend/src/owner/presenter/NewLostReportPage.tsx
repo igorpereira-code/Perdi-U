@@ -1,4 +1,14 @@
 import { useState } from 'react';
+import {
+  Smartphone,
+  Backpack,
+  Shirt,
+  KeyRound,
+  CupSoda,
+  BookOpen,
+  IdCard,
+  type LucideIcon,
+} from 'lucide-react';
 import { BackHeader } from '../../core/presenter/BackHeader';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
@@ -14,6 +24,17 @@ const CATEGORIES = [
   'Útiles y libros',
   'Documentos y carnets',
 ];
+
+// Solo visual: ícono que se muestra en cada categoría
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  Electrónicos: Smartphone,
+  'Mochilas y bolsos': Backpack,
+  'Ropa y accesorios': Shirt,
+  Llaves: KeyRound,
+  'Botellas y termos': CupSoda,
+  'Útiles y libros': BookOpen,
+  'Documentos y carnets': IdCard,
+};
 
 export type CampusPlace = {
   id: number;
@@ -90,7 +111,7 @@ export function NewLostReportPage({
   const [category, setCategory] = useState('');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
-  const [places, setPlaces] = useState<PlaceSelection[]>([{ placeId: '', classroomId: '' }]);
+  const [places, setPlaces] = useState<PlaceSelection[]>([]);
   const [placeDescription, setPlaceDescription] = useState('');
 
   const [errors, setErrors] = useState<{
@@ -100,24 +121,20 @@ export function NewLostReportPage({
     dateTo?: string;
   }>({});
 
-  const handlePlaceChange = (index: number, placeId: string) => {
-    const updated = [...places];
-    updated[index] = { placeId, classroomId: '' };
-    setPlaces(updated);
+  // Los lugares ahora se eligen con chips: tocar un chip lo agrega o lo quita.
+  // Los datos resultantes (placeId + classroomId) son los mismos de antes.
+  const handleTogglePlace = (placeId: string) => {
+    setPlaces((prev) =>
+      prev.some((p) => p.placeId === placeId)
+        ? prev.filter((p) => p.placeId !== placeId)
+        : [...prev, { placeId, classroomId: '' }]
+    );
   };
 
   const handleClassroomChange = (index: number, classroomId: string) => {
     const updated = [...places];
     updated[index] = { ...updated[index], classroomId };
     setPlaces(updated);
-  };
-
-  const handleAddPlace = () => {
-    setPlaces([...places, { placeId: '', classroomId: '' }]);
-  };
-
-  const handleRemovePlace = (index: number) => {
-    setPlaces(places.filter((_, i) => i !== index));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -162,15 +179,19 @@ export function NewLostReportPage({
 
   return (
     <div className="min-h-screen bg-neutral-50 pb-20">
-      <BackHeader title="Reportar objeto perdido" onBack={onBack} />
+      <BackHeader title="Perdí un objeto" onBack={onBack} />
       <main className="p-4 max-w-lg mx-auto">
-        <form aria-label="Reporte de pérdida" className="space-y-4" onSubmit={handleSubmit}>
+        <form aria-label="Reporte de pérdida" className="space-y-5" onSubmit={handleSubmit}>
+          <Field id="photo" label="Foto de referencia" optional>
+            <PhotoInput onChange={setPhoto} />
+          </Field>
+
           <Field id="description" label="Descripción" error={errors.description}>
             <textarea
               id="description"
-              rows={3}
+              rows={4}
               className={INPUT_CLASSES}
-              placeholder="Ej. Mochila negra con un llavero..."
+              placeholder="Ej. Llaves con llavero rojo de la universidad"
               value={description}
               onChange={(e) => {
                 setDescription(e.target.value);
@@ -180,132 +201,140 @@ export function NewLostReportPage({
           </Field>
 
           <Field id="category" label="Categoría" error={errors.category}>
-            <select
+            <div
               id="category"
-              className={INPUT_CLASSES}
-              value={category}
-              onChange={(e) => {
-                setCategory(e.target.value);
-                if (errors.category) setErrors({ ...errors, category: undefined });
-              }}
+              role="radiogroup"
+              aria-label="Categoría"
+              className="grid grid-cols-4 gap-2"
             >
-              <option value="">Selecciona una categoría</option>
-              {CATEGORIES.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
+              {CATEGORIES.map((cat) => {
+                const Icon = CATEGORY_ICONS[cat];
+                const isSelected = category === cat;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    role="radio"
+                    aria-checked={isSelected}
+                    onClick={() => {
+                      setCategory(cat);
+                      if (errors.category) setErrors({ ...errors, category: undefined });
+                    }}
+                    className={`flex flex-col items-center justify-start gap-1.5 px-1 py-3 rounded-2xl border text-center text-xs leading-tight transition ${
+                      isSelected
+                        ? 'border-[#14407a] bg-[#eaf1fb] text-[#14407a] font-semibold'
+                        : 'border-neutral-200 bg-white text-neutral-600 hover:border-[#14407a]'
+                    }`}
+                  >
+                    {Icon && <Icon className="h-5 w-5" aria-hidden="true" />}
+                    <span>{cat}</span>
+                  </button>
+                );
+              })}
+            </div>
           </Field>
 
-          <div className="grid grid-cols-2 gap-3">
-            <Field id="dateFrom" label="Fecha desde" error={errors.dateFrom}>
-              <input
-                id="dateFrom"
-                type="date"
-                className={INPUT_CLASSES}
-                value={dateFrom}
-                onChange={(e) => {
-                  setDateFrom(e.target.value);
-                  if (errors.dateFrom) setErrors({ ...errors, dateFrom: undefined });
-                }}
-              />
-            </Field>
-
-            <Field id="dateTo" label="Fecha hasta" error={errors.dateTo}>
-              <input
-                id="dateTo"
-                type="date"
-                className={INPUT_CLASSES}
-                value={dateTo}
-                onChange={(e) => {
-                  setDateTo(e.target.value);
-                  if (errors.dateTo) setErrors({ ...errors, dateTo: undefined });
-                }}
-              />
-            </Field>
-          </div>
-
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-neutral-700">Lugares posibles (opcional)</span>
-              <Button type="button" variant="ghost" onClick={handleAddPlace}>
-                + Agregar otro lugar
-              </Button>
+          <div className="space-y-2">
+            <span className="block text-sm font-medium text-neutral-700">
+              ¿Dónde pudiste perderlo?{' '}
+              <span className="font-normal text-neutral-500">(opcional)</span>
+            </span>
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Lugares posibles">
+              {availablePlaces.map((p) => {
+                const isSelected = places.some((item) => item.placeId === String(p.id));
+                return (
+                  <button
+                    key={p.id}
+                    type="button"
+                    aria-pressed={isSelected}
+                    onClick={() => handleTogglePlace(String(p.id))}
+                    className={`px-3.5 py-1.5 rounded-full border text-sm transition ${
+                      isSelected
+                        ? 'border-[#14407a] bg-[#14407a] text-white'
+                        : 'border-neutral-200 bg-white text-neutral-600 hover:border-[#14407a]'
+                    }`}
+                  >
+                    {p.name}
+                  </button>
+                );
+              })}
             </div>
-
-            {places.map((item, index) => {
-              const selectedPlace = availablePlaces.find((p) => p.id === Number(item.placeId));
-              const hasClassrooms =
-                selectedPlace?.type === 'BLOCK' && (selectedPlace.classrooms?.length ?? 0) > 0;
-
-              return (
-                <div key={index} className="p-3 bg-white rounded-lg border border-neutral-200 space-y-3">
-                  <Field id={`place-${index}`} label="Bloque o espacio">
-                    <select
-                      id={`place-${index}`}
-                      className={INPUT_CLASSES}
-                      value={item.placeId}
-                      onChange={(e) => handlePlaceChange(index, e.target.value)}
-                    >
-                      <option value="">Selecciona un bloque o espacio</option>
-                      {availablePlaces.map((p) => (
-                        <option key={p.id} value={p.id}>
-                          {p.name}
-                        </option>
-                      ))}
-                    </select>
-                  </Field>
-
-                  {hasClassrooms && (
-                    <Field id={`classroom-${index}`} label="Aula">
-                      <select
-                        id={`classroom-${index}`}
-                        className={INPUT_CLASSES}
-                        value={item.classroomId}
-                        onChange={(e) => handleClassroomChange(index, e.target.value)}
-                      >
-                        <option value="">Selecciona un aula</option>
-                        {selectedPlace?.classrooms?.map((c) => (
-                          <option key={c.id} value={c.id}>
-                            {c.name}
-                          </option>
-                        ))}
-                      </select>
-                    </Field>
-                  )}
-
-                  {places.length > 1 && (
-                    <div className="flex justify-end">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        onClick={() => handleRemovePlace(index)}
-                      >
-                        Quitar lugar
-                      </Button>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
           </div>
 
-          <Field id="placeDescription" label="Referencia del lugar" optional>
+          {/* Aula: solo aparece para los bloques seleccionados que tienen aulas */}
+          {places.map((item, index) => {
+            const selectedPlace = availablePlaces.find((p) => p.id === Number(item.placeId));
+            const hasClassrooms =
+              selectedPlace?.type === 'BLOCK' && (selectedPlace.classrooms?.length ?? 0) > 0;
+            if (!selectedPlace || !hasClassrooms) return null;
+
+            return (
+              <Field
+                key={item.placeId}
+                id={`classroom-${index}`}
+                label={`Aula en ${selectedPlace.name}`}
+              >
+                <select
+                  id={`classroom-${index}`}
+                  className={INPUT_CLASSES}
+                  value={item.classroomId}
+                  onChange={(e) => handleClassroomChange(index, e.target.value)}
+                >
+                  <option value="">Selecciona un aula</option>
+                  {selectedPlace.classrooms?.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+            );
+          })}
+
+          <Field id="placeDescription" label="Describe por dónde pudiste extraviarlo" optional>
             <input
               id="placeDescription"
               type="text"
               className={INPUT_CLASSES}
-              placeholder="Ej. En las gradas hacia el segundo piso o cerca de las jardineras..."
+              placeholder="Ej. Fui de la biblioteca a la cafetería"
               value={placeDescription}
               onChange={(e) => setPlaceDescription(e.target.value)}
               maxLength={300}
             />
           </Field>
 
-          <Field id="photo" label="Foto de referencia" optional>
-            <PhotoInput onChange={setPhoto} />
-          </Field>
+          <div className="space-y-2">
+            <span className="block text-sm font-medium text-neutral-700">
+              ¿Cuándo pudiste perderlo?
+            </span>
+            <div className="grid grid-cols-2 gap-3">
+              <Field id="dateFrom" label="Fecha desde" error={errors.dateFrom}>
+                <input
+                  id="dateFrom"
+                  type="date"
+                  className={INPUT_CLASSES}
+                  value={dateFrom}
+                  onChange={(e) => {
+                    setDateFrom(e.target.value);
+                    if (errors.dateFrom) setErrors({ ...errors, dateFrom: undefined });
+                  }}
+                />
+              </Field>
+
+              <Field id="dateTo" label="Fecha hasta" error={errors.dateTo}>
+                <input
+                  id="dateTo"
+                  type="date"
+                  className={INPUT_CLASSES}
+                  value={dateTo}
+                  onChange={(e) => {
+                    setDateTo(e.target.value);
+                    if (errors.dateTo) setErrors({ ...errors, dateTo: undefined });
+                  }}
+                />
+              </Field>
+            </div>
+          </div>
 
           <div className="pt-2">
             <Button type="submit" variant="primary" className="w-full">

@@ -38,9 +38,14 @@ function renderAt(path: string, user: AppUser | null | Error, matches: MatchView
     dismiss: jest.fn(),
     publish: jest.fn(),
   };
+
+  const ownerService: any = {
+    createLostReport: jest.fn(),
+    getMyLostReports: jest.fn().mockResolvedValue([]),
+  };
   render(
     <MemoryRouter initialEntries={[path]}>
-      <App authService={authService} matchesService={matchesService} />
+      <App authService={authService} matchesService={matchesService} ownerService={ownerService} />
     </MemoryRouter>,
   );
   return { ...authService, ...matchesService };

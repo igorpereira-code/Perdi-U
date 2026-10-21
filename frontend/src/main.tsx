@@ -8,16 +8,22 @@ import { createApiFetch } from './core/data/api';
 import { createAuthService } from './core/data/authService';
 import { supabase } from './core/data/supabase';
 import { createMatchesService } from './matching/data/matchesService';
+import { createOwnerService } from './owner/data/ownerService';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const authService = createAuthService({ auth: supabase.auth, apiUrl });
 const apiFetch = createApiFetch({ auth: supabase.auth, apiUrl });
 const matchesService = createMatchesService(apiFetch);
+const ownerService = createOwnerService(apiFetch);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <App authService={authService} matchesService={matchesService} />
+      <App 
+        authService={authService} 
+        matchesService={matchesService} 
+        ownerService={ownerService} 
+      />
     </BrowserRouter>
   </StrictMode>,
 );
