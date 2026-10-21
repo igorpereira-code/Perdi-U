@@ -116,8 +116,13 @@ export function createWelfareService(apiFetch: ApiFetch): WelfareService {
           recipientEmail: delivery.recipientEmail.trim().toLowerCase(),
         }),
       });
-      if (response.ok || response.status === 400 || response.status === 409) {
+      if (response.ok) {
         return response.json();
+      }
+      if (response.status === 400 || response.status === 409) {
+        // The backend explains the rejection in `code`; the screen reads it as `status`.
+        const body = await response.json();
+        return { status: body.code };
       }
       throw new Error('No se pudo registrar la entrega');
     },

@@ -4502,7 +4502,7 @@
     "testId": 54
   },
   {
-    "commitId": "HEAD",
+    "commitId": "79f408959adecbf5634fb262365c39d21af9700d",
     "commitName": "feat(owner): permitir describir por dónde pudo perderse el objeto",
     "commitTimestamp": 1792594366380,
     "testId": 54
@@ -4692,5 +4692,11 @@
     "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
     "commitTimestamp": 1792601341695,
     "testId": 61
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+    "commitTimestamp": 1792613220007,
+    "testId": 62
   }
 ]
