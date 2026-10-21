@@ -4578,7 +4578,7 @@
     "testId": 56
   },
   {
-    "commitId": "HEAD",
+    "commitId": "a4d4e077d8f019c3c5bee602723cbfae4966fefe",
     "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
     "commitTimestamp": 1792597534262,
     "testId": 56
@@ -4736,5 +4736,27 @@
     "commitName": "feat(owner): mostrar los últimos objetos publicados en la pantalla de inicio",
     "commitTimestamp": 1792625262277,
     "testId": 63
+  },
+  {
+    "numPassedTests": 542,
+    "failedTests": 1,
+    "numTotalTests": 543,
+    "timestamp": 1792625827266,
+    "success": false,
+    "testId": 64
+  },
+  {
+    "numPassedTests": 543,
+    "failedTests": 0,
+    "numTotalTests": 543,
+    "timestamp": 1792625994205,
+    "success": true,
+    "testId": 64
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ocultar del catálogo los objetos ya entregados",
+    "commitTimestamp": 1792626142532,
+    "testId": 64
   }
 ]

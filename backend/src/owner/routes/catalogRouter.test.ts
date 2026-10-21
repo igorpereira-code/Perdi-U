@@ -61,3 +61,17 @@ describe('Ver los objetos publicados (GET /catalog)', () => {
     expect(res.body).toEqual({ error: 'No se pudieron cargar los objetos encontrados. Intenta nuevamente.' });
   });
 });
+
+describe('Los objetos entregados no aparecen (GET /catalog)', () => {
+  it('no muestra los objetos ya entregados ni los ocultos', async () => {
+    const delivered: CatalogItem = { ...backpack, code: 'HZ-0008', status: 'DELIVERED', visibility: 'HIDDEN' };
+    const hidden: CatalogItem = { ...backpack, code: 'HZ-0009', visibility: 'HIDDEN' };
+    const inCustody: CatalogItem = { ...backpack, code: 'HZ-0010', status: 'IN_CUSTODY' };
+    const catalog = fakeCatalog([backpack, delivered, hidden, inCustody]);
+
+    const res = await request(createApp({ catalog })).get('/catalog');
+
+    expect(res.status).toBe(200);
+    expect(res.body.map((item: { code: string }) => item.code)).toEqual(['HZ-0007']);
+  });
+});
