@@ -25,3 +25,13 @@ describe('Buscar objetos por palabras clave', () => {
     expect(filterCatalog(items, { query: 'paraguas' })).toEqual([]);
   });
 });
+
+describe('Filtrar objetos por categoría', () => {
+  it('muestra solo los objetos de la categoría elegida', () => {
+    expect(filterCatalog(items, { query: '', category: 'Botellas y termos' })).toEqual([thermos]);
+  });
+
+  it('combina la categoría con las palabras escritas', () => {
+    expect(filterCatalog(items, { query: 'negra', category: 'Electrónicos' })).toEqual([phone]);
+  });
+});

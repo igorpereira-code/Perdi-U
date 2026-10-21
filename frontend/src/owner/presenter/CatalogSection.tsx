@@ -37,6 +37,7 @@ export function CatalogSection({ catalogService, foundItemsService }: CatalogSec
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     let active = true;
@@ -59,7 +60,8 @@ export function CatalogSection({ catalogService, foundItemsService }: CatalogSec
     };
   }, [catalogService, attempt]);
 
-  const visible = items ? filterCatalog(items, { query }) : [];
+  const categories = items ? [...new Set(items.map((item) => item.category))].sort() : [];
+  const visible = items ? filterCatalog(items, { query, category }) : [];
 
   return (
     <section aria-labelledby="catalog-title" className="space-y-3">
@@ -88,7 +90,7 @@ export function CatalogSection({ catalogService, foundItemsService }: CatalogSec
         />
       ) : (
         <>
-          <div>
+          <div className="grid gap-2 sm:grid-cols-2">
             <div>
               <label htmlFor="catalog-search" className="sr-only">
                 Buscar objetos
@@ -102,11 +104,29 @@ export function CatalogSection({ catalogService, foundItemsService }: CatalogSec
                 onChange={(event) => setQuery(event.target.value)}
               />
             </div>
+            <div>
+              <label htmlFor="catalog-category" className="sr-only">
+                Categoría
+              </label>
+              <select
+                id="catalog-category"
+                className={INPUT_CLASSES}
+                value={category}
+                onChange={(event) => setCategory(event.target.value)}
+              >
+                <option value="">Todas las categorías</option>
+                {categories.map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           {visible.length === 0 ? (
             <EmptyState
               title="No encontramos objetos con esa búsqueda"
-              text="Prueba con otras palabras."
+              text="Prueba con otras palabras o con otra categoría."
             />
           ) : (
             <ul aria-label="Objetos encontrados" className="space-y-3">

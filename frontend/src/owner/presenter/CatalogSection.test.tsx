@@ -63,3 +63,14 @@ describe('Buscar en los objetos publicados', () => {
     expect(screen.getByRole('heading', { name: 'No encontramos objetos con esa búsqueda' })).toBeInTheDocument();
   });
 });
+
+describe('Filtrar los objetos publicados por categoría', () => {
+  it('muestra solo los objetos de la categoría elegida', async () => {
+    renderSection(jest.fn().mockResolvedValue([backpack, thermos]));
+
+    await userEvent.selectOptions(await screen.findByLabelText('Categoría'), 'Botellas y termos');
+
+    expect(screen.getByText('Termo metálico azul')).toBeInTheDocument();
+    expect(screen.queryByText('Mochila negra con llavero')).not.toBeInTheDocument();
+  });
+});
