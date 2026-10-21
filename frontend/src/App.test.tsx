@@ -477,4 +477,14 @@ describe('Guía automática durante el primer ingreso', () => {
     expect(firstLogin.markSeen).not.toHaveBeenCalled();
     expect(nextLogin.markSeen).not.toHaveBeenCalled();
   });
+
+
+describe('Opción Perdí un objeto en el inicio', () => {
+  it('muestra Perdí un objeto en la pantalla principal', async () => {
+    renderAt('/', igor);
+
+    expect(await screen.findByRole('button', { name: 'Perdí un objeto' })).toBeInTheDocument();
+  });
+});
+
 });

@@ -2660,12 +2660,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c66c9d37a1deb3e8f5f9cce7890e8d2278543244",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-20T03:35:14.000Z",
       "message": "chore: integra los últimos cambios de final-test en welfare",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c66c9d37a1deb3e8f5f9cce7890e8d2278543244"
     },
     "stats": {
       "total": 0,
@@ -2884,6 +2884,25 @@
     },
     "coverage": 89.08,
     "test_count": 481,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T13:09:52.000Z",
+      "message": "feat(owner): agregar la opción Perdí un objeto en la pantalla principal",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 74,
+      "additions": 55,
+      "deletions": 19,
+      "date": "2026-10-21"
+    },
+    "coverage": 89.02,
+    "test_count": 484,
     "failed_tests": 0,
     "conclusion": "success"
   }
