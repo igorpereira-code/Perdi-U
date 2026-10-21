@@ -4312,7 +4312,7 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6cfd72ad3f485fc33234dd9ed5bd5b93a69d7d5c",
     "commitName": "chore: integra los últimos cambios de final-test en owner",
     "commitTimestamp": 1792502287696,
     "testId": 45
@@ -4454,5 +4454,27 @@
     "commitName": "feat(owner): permitir elegir la categoría del objeto perdido",
     "commitTimestamp": 1792589269115,
     "testId": 52
+  },
+  {
+    "numPassedTests": 490,
+    "failedTests": 3,
+    "numTotalTests": 493,
+    "timestamp": 1792590638001,
+    "success": false,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 493,
+    "failedTests": 0,
+    "numTotalTests": 493,
+    "timestamp": 1792590798145,
+    "success": true,
+    "testId": 53
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir elegir uno o varios lugares donde pudo perderse",
+    "commitTimestamp": 1792590838451,
+    "testId": 53
   }
 ]

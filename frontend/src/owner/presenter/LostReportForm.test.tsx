@@ -44,3 +44,37 @@ describe('Categoría del objeto perdido', () => {
     expect(screen.getByRole('radio', { name: 'Electrónicos' })).toHaveAttribute('aria-checked', 'false');
   });
 });
+
+describe('Lugares donde pudo perderlo', () => {
+  it('permite elegir varios lugares', async () => {
+    renderForm();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Bloque A' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Biblioteca' }));
+
+    expect(screen.getByRole('button', { name: 'Bloque A' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'Biblioteca' })).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  it('al elegir un bloque permite elegir el aula, y en un espacio no', async () => {
+    renderForm();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Biblioteca' }));
+    expect(screen.queryByLabelText(/Aula en/)).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Bloque A' }));
+    await userEvent.selectOptions(screen.getByLabelText(/Aula en Bloque A/), 'Aula A-12');
+
+    expect(screen.getByLabelText(/Aula en Bloque A/)).toHaveValue('216');
+  });
+
+  it('permite quitar un lugar elegido', async () => {
+    renderForm();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Bloque A' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Bloque A' }));
+
+    expect(screen.getByRole('button', { name: 'Bloque A' })).toHaveAttribute('aria-pressed', 'false');
+    expect(screen.queryByLabelText(/Aula en Bloque A/)).not.toBeInTheDocument();
+  });
+});
