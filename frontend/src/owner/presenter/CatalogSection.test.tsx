@@ -44,3 +44,22 @@ describe('Últimos objetos publicados en el inicio', () => {
     expect(await screen.findByText('Mochila negra con llavero')).toBeInTheDocument();
   });
 });
+
+describe('Buscar en los objetos publicados', () => {
+  it('muestra solo los objetos que coinciden con lo escrito', async () => {
+    renderSection(jest.fn().mockResolvedValue([backpack, thermos]));
+
+    await userEvent.type(await screen.findByLabelText('Buscar objetos'), 'mochila negra');
+
+    expect(screen.getByText('Mochila negra con llavero')).toBeInTheDocument();
+    expect(screen.queryByText('Termo metálico azul')).not.toBeInTheDocument();
+  });
+
+  it('avisa cuando ningún objeto coincide con la búsqueda', async () => {
+    renderSection(jest.fn().mockResolvedValue([backpack, thermos]));
+
+    await userEvent.type(await screen.findByLabelText('Buscar objetos'), 'paraguas');
+
+    expect(screen.getByRole('heading', { name: 'No encontramos objetos con esa búsqueda' })).toBeInTheDocument();
+  });
+});

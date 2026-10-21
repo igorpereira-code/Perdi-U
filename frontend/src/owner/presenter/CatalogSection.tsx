@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
+import { INPUT_CLASSES } from '../../core/presenter/Field';
 import type { FoundItemsService } from '../../finder/data/foundItemsService';
 import { formatReportDate } from '../../finder/logic/formatReportDate';
 import { FoundItemPhoto } from '../../finder/presenter/FoundItemPhoto';
 import type { CatalogItem, CatalogService } from '../data/catalogService';
+import { filterCatalog } from '../logic/filterCatalog';
 
 type CatalogSectionProps = {
   catalogService: Pick<CatalogService, 'list'>;
@@ -34,6 +36,7 @@ export function CatalogSection({ catalogService, foundItemsService }: CatalogSec
   const [items, setItems] = useState<CatalogItem[] | null>(null);
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     let active = true;
@@ -56,6 +59,7 @@ export function CatalogSection({ catalogService, foundItemsService }: CatalogSec
     };
   }, [catalogService, attempt]);
 
+  const visible = items ? filterCatalog(items, { query }) : [];
 
   return (
     <section aria-labelledby="catalog-title" className="space-y-3">
@@ -83,13 +87,37 @@ export function CatalogSection({ catalogService, foundItemsService }: CatalogSec
           text="Cuando Bienestar publique un objeto encontrado, aparecerá aquí."
         />
       ) : (
-        <ul aria-label="Objetos encontrados" className="space-y-3">
-          {items.map((item) => (
-            <li key={item.code}>
-              <CatalogCard item={item} foundItemsService={foundItemsService} />
-            </li>
-          ))}
-        </ul>
+        <>
+          <div>
+            <div>
+              <label htmlFor="catalog-search" className="sr-only">
+                Buscar objetos
+              </label>
+              <input
+                id="catalog-search"
+                type="search"
+                className={INPUT_CLASSES}
+                placeholder="Buscar, por ejemplo: mochila negra"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+              />
+            </div>
+          </div>
+          {visible.length === 0 ? (
+            <EmptyState
+              title="No encontramos objetos con esa búsqueda"
+              text="Prueba con otras palabras."
+            />
+          ) : (
+            <ul aria-label="Objetos encontrados" className="space-y-3">
+              {visible.map((item) => (
+                <li key={item.code}>
+                  <CatalogCard item={item} foundItemsService={foundItemsService} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </>
       )}
     </section>
   );

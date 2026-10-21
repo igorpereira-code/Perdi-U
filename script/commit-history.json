@@ -3040,12 +3040,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "84c6b6eccaa6488a2ec19bb6a58c35fca21466d2",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T15:50:08.000Z",
       "message": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/84c6b6eccaa6488a2ec19bb6a58c35fca21466d2"
     },
     "stats": {
       "total": 101,
@@ -3188,6 +3188,25 @@
     },
     "coverage": 90,
     "test_count": 543,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T23:50:22.000Z",
+      "message": "feat(owner): buscar objetos encontrados por palabras clave",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 107,
+      "additions": 100,
+      "deletions": 7,
+      "date": "2026-10-21"
+    },
+    "coverage": 90.06,
+    "test_count": 549,
     "failed_tests": 0,
     "conclusion": "success"
   }

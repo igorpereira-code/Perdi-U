@@ -4600,7 +4600,7 @@
     "testId": 57
   },
   {
-    "commitId": "HEAD",
+    "commitId": "84c6b6eccaa6488a2ec19bb6a58c35fca21466d2",
     "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
     "commitTimestamp": 1792597809312,
     "testId": 57
@@ -4758,5 +4758,27 @@
     "commitName": "feat(owner): ocultar del catálogo los objetos ya entregados",
     "commitTimestamp": 1792626142532,
     "testId": 64
+  },
+  {
+    "numPassedTests": 544,
+    "failedTests": 5,
+    "numTotalTests": 549,
+    "timestamp": 1792626503651,
+    "success": false,
+    "testId": 65
+  },
+  {
+    "numPassedTests": 549,
+    "failedTests": 0,
+    "numTotalTests": 549,
+    "timestamp": 1792626580974,
+    "success": true,
+    "testId": 65
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): buscar objetos encontrados por palabras clave",
+    "commitTimestamp": 1792626623530,
+    "testId": 65
   }
 ]
