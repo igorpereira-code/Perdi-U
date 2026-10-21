@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react';
+import { PackageSearch } from 'lucide-react';
 
 type LostItemEntryProps = { onClick: () => void };
 
@@ -8,10 +8,12 @@ export function LostItemEntry({ onClick }: LostItemEntryProps) {
     <button
       type="button"
       onClick={onClick}
-      className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-4 text-sm font-semibold text-neutral-0 hover:bg-blue-500"
+      className="flex w-full flex-col items-start gap-4 rounded-2xl border border-neutral-200 bg-neutral-0 p-4 text-left transition hover:border-blue-300"
     >
-      <Search className="h-5 w-5" aria-hidden="true" />
-      Perdí un objeto
+      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500 text-neutral-0">
+        <PackageSearch className="h-7 w-7" aria-hidden="true" />
+      </span>
+      <span className="text-base font-semibold text-blue-700">Perdí un objeto</span>
     </button>
   );
 }

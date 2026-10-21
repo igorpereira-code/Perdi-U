@@ -4472,7 +4472,7 @@
     "testId": 53
   },
   {
-    "commitId": "HEAD",
+    "commitId": "19955906ff934ae9b7183b76489cd312389e6451",
     "commitName": "feat(owner): permitir elegir uno o varios lugares donde pudo perderse",
     "commitTimestamp": 1792590838451,
     "testId": 53
@@ -4670,5 +4670,27 @@
     "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
     "commitTimestamp": 1792599791806,
     "testId": 60
+  },
+  {
+    "numPassedTests": 529,
+    "failedTests": 0,
+    "numTotalTests": 529,
+    "timestamp": 1792599999536,
+    "success": true,
+    "testId": 61
+  },
+  {
+    "numPassedTests": 529,
+    "failedTests": 0,
+    "numTotalTests": 529,
+    "timestamp": 1792601229073,
+    "success": true,
+    "testId": 61
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
+    "commitTimestamp": 1792601341695,
+    "testId": 61
   }
 ]

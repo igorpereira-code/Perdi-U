@@ -84,10 +84,12 @@ export default function App({
       <Route
         path="/"
         element={signedInPage((me) => (
-          <div className="space-y-6">
+          <div className="mx-auto max-w-xl space-y-6">
             <HomePage user={me} />
-            <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
-            <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
+            <div className="grid grid-cols-2 gap-3">
+              <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
+              <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
+            </div>
             <Link to="/mis-reportes" className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700">Mis reportes</Link>
           </div>
         ))}

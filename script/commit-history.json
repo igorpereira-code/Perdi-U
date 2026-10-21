@@ -2964,12 +2964,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "19955906ff934ae9b7183b76489cd312389e6451",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T13:53:57.000Z",
       "message": "feat(owner): permitir elegir uno o varios lugares donde pudo perderse",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/19955906ff934ae9b7183b76489cd312389e6451"
     },
     "stats": {
       "total": 99,
@@ -3107,6 +3107,25 @@
     "stats": {
       "total": 152,
       "additions": 139,
+      "deletions": 13,
+      "date": "2026-10-21"
+    },
+    "coverage": 90.04,
+    "test_count": 529,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T16:49:00.000Z",
+      "message": "style(owner): mostrar las opciones del inicio como tarjetas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 36,
+      "additions": 23,
       "deletions": 13,
       "date": "2026-10-21"
     },
