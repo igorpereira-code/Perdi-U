@@ -4384,7 +4384,7 @@
     "testId": 49
   },
   {
-    "commitId": "HEAD",
+    "commitId": "a934102e2f6e5cfff3dcf38f86a9ae7ef443ce8e",
     "commitName": "feat(owner): agregar la opción Perdí un objeto en la pantalla principal",
     "commitTimestamp": 1792588193209,
     "testId": 49
@@ -4582,5 +4582,27 @@
     "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
     "commitTimestamp": 1792597534262,
     "testId": 56
+  },
+  {
+    "numPassedTests": 518,
+    "failedTests": 3,
+    "numTotalTests": 521,
+    "timestamp": 1792597687009,
+    "success": false,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 521,
+    "failedTests": 0,
+    "numTotalTests": 521,
+    "timestamp": 1792597774049,
+    "success": true,
+    "testId": 57
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
+    "commitTimestamp": 1792597809312,
+    "testId": 57
   }
 ]

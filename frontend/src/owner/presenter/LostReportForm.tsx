@@ -5,6 +5,7 @@ import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { getCategoryIcon } from '../../core/presenter/CategoryIcon';
 import type { FoundItemCatalogs } from '../../finder/data/foundItemsService';
 import type { LostReportCreated, LostReportsService } from '../data/lostReportsService';
+import { validateLostReportForm, type LostReportFormErrors } from '../logic/validateLostReportForm';
 import { LostReportConfirmation } from './LostReportConfirmation';
 
 type ChosenPlace = { placeId: number; classroomId: number | null };
@@ -18,6 +19,17 @@ const CHIP = 'rounded-full border px-3.5 py-1.5 text-sm transition';
 const CHIP_ON = 'border-blue-700 bg-blue-700 text-neutral-0';
 const CHIP_OFF = 'border-neutral-300 bg-neutral-0 text-neutral-700 hover:border-blue-300';
 
+function FieldError({ text }: { text?: string }) {
+  if (!text) {
+    return null;
+  }
+  return (
+    <p role="alert" className="mt-1 text-xs font-medium text-danger-700">
+      {text}
+    </p>
+  );
+}
+
 export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -25,6 +37,7 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
   const [placeDescription, setPlaceDescription] = useState('');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
+  const [errors, setErrors] = useState<LostReportFormErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [created, setCreated] = useState<LostReportCreated | null>(null);
@@ -48,7 +61,9 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitError(null);
-    if (!onCreate) {
+    const nextErrors = validateLostReportForm({ description, category, dateFrom, dateTo });
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0 || !onCreate) {
       return;
     }
     setSubmitting(true);
@@ -84,7 +99,7 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
       {submitError && <div role="alert"><Alert>{submitError}</Alert></div>}
 
       <fieldset disabled={submitting} className="space-y-5">
-        <Field id="lost-report-description" label="Descripción de tu objeto">
+        <Field id="lost-report-description" label="Descripción de tu objeto" error={errors.description}>
           <textarea
             id="lost-report-description"
             rows={4}
@@ -118,6 +133,7 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
               );
             })}
           </div>
+          <FieldError text={errors.category} />
         </fieldset>
 
         <fieldset className="space-y-2">
@@ -180,7 +196,7 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
         <fieldset className="space-y-2">
           <legend className="text-sm font-medium text-neutral-700">¿Entre qué fechas pudo perderlo?</legend>
           <div className="grid grid-cols-2 gap-3">
-            <Field id="lost-report-date-from" label="Desde">
+            <Field id="lost-report-date-from" label="Desde" error={errors.dateFrom}>
               <input
                 id="lost-report-date-from"
                 type="date"
@@ -189,7 +205,7 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
                 onChange={(event) => setDateFrom(event.target.value)}
               />
             </Field>
-            <Field id="lost-report-date-to" label="Hasta">
+            <Field id="lost-report-date-to" label="Hasta" error={errors.dateTo}>
               <input
                 id="lost-report-date-to"
                 type="date"

@@ -2888,12 +2888,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "a934102e2f6e5cfff3dcf38f86a9ae7ef443ce8e",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T13:09:52.000Z",
       "message": "feat(owner): agregar la opción Perdí un objeto en la pantalla principal",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a934102e2f6e5cfff3dcf38f86a9ae7ef443ce8e"
     },
     "stats": {
       "total": 74,
@@ -3036,6 +3036,25 @@
     },
     "coverage": 89.81,
     "test_count": 516,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T15:50:08.000Z",
+      "message": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 101,
+      "additions": 97,
+      "deletions": 4,
+      "date": "2026-10-21"
+    },
+    "coverage": 90.03,
+    "test_count": 521,
     "failed_tests": 0,
     "conclusion": "success"
   }

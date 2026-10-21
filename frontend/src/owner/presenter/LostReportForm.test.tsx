@@ -150,3 +150,17 @@ describe('Enviar el reporte y recibir su código', () => {
     expect(screen.getByLabelText('Descripción de tu objeto')).toHaveValue('  Llaves con llavero azul ');
   });
 });
+
+describe('Datos obligatorios al enviar', () => {
+  it('no envía el reporte si falta la descripción, la categoría o el rango de fechas', async () => {
+    const onCreate = renderForm();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+
+    expect(screen.getByText('Escribe una descripción de tu objeto.')).toBeInTheDocument();
+    expect(screen.getByText('Elige una categoría.')).toBeInTheDocument();
+    expect(screen.getByText('Indica desde qué fecha pudo perderse.')).toBeInTheDocument();
+    expect(screen.getByText('Indica hasta qué fecha pudo perderse.')).toBeInTheDocument();
+    expect(onCreate).not.toHaveBeenCalled();
+  });
+});
