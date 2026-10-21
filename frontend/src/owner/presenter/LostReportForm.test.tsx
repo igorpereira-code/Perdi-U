@@ -89,3 +89,16 @@ describe('Descripción del lugar', () => {
     expect(screen.getByLabelText(/¿Por dónde pudo perderlo\?/)).toHaveValue('Fui de la biblioteca a la cafetería');
   });
 });
+
+
+describe('Rango de fechas de la pérdida', () => {
+  it('permite indicar desde y hasta qué fecha pudo perderlo', async () => {
+    renderForm();
+
+    await userEvent.type(screen.getByLabelText('Desde'), '2026-10-17');
+    await userEvent.type(screen.getByLabelText('Hasta'), '2026-10-18');
+
+    expect(screen.getByLabelText('Desde')).toHaveValue('2026-10-17');
+    expect(screen.getByLabelText('Hasta')).toHaveValue('2026-10-18');
+  });
+});

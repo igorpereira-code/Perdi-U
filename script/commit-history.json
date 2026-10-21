@@ -2850,12 +2850,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "79d03d27ef459b4272e217e86638f4eb44df21db",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-20T20:47:39.000Z",
       "message": "chore: integra los últimos cambios de final-test en el revert",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/79d03d27ef459b4272e217e86638f4eb44df21db"
     },
     "stats": {
       "total": 452,
@@ -2998,6 +2998,25 @@
     },
     "coverage": 89.6,
     "test_count": 494,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T14:55:00.000Z",
+      "message": "feat(owner): permitir indicar el rango de fechas de la pérdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 38,
+      "additions": 38,
+      "deletions": 0,
+      "date": "2026-10-21"
+    },
+    "coverage": 89.63,
+    "test_count": 495,
     "failed_tests": 0,
     "conclusion": "success"
   }

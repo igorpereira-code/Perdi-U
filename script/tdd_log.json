@@ -4324,7 +4324,7 @@
     "testId": 46
   },
   {
-    "commitId": "HEAD",
+    "commitId": "79d03d27ef459b4272e217e86638f4eb44df21db",
     "commitName": "chore: integra los últimos cambios de final-test en el revert",
     "commitTimestamp": 1792529260837,
     "testId": 47
@@ -4506,5 +4506,27 @@
     "commitName": "feat(owner): permitir describir por dónde pudo perderse el objeto",
     "commitTimestamp": 1792594366380,
     "testId": 54
+  },
+  {
+    "numPassedTests": 494,
+    "failedTests": 1,
+    "numTotalTests": 495,
+    "timestamp": 1792594425245,
+    "success": false,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 495,
+    "failedTests": 0,
+    "numTotalTests": 495,
+    "timestamp": 1792594467058,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir indicar el rango de fechas de la pérdida",
+    "commitTimestamp": 1792594501296,
+    "testId": 55
   }
 ]

@@ -18,6 +18,8 @@ export function LostReportForm({ catalogs }: LostReportFormProps) {
   const [category, setCategory] = useState('');
   const [places, setPlaces] = useState<ChosenPlace[]>([]);
   const [placeDescription, setPlaceDescription] = useState('');
+  const [dateFrom, setDateFrom] = useState('');
+  const [dateTo, setDateTo] = useState('');
 
   function togglePlace(placeId: number) {
     setPlaces((current) =>
@@ -129,6 +131,29 @@ export function LostReportForm({ catalogs }: LostReportFormProps) {
           onChange={(event) => setPlaceDescription(event.target.value)}
         />
       </Field>
+      <fieldset className="space-y-2">
+        <legend className="text-sm font-medium text-neutral-700">¿Entre qué fechas pudo perderlo?</legend>
+        <div className="grid grid-cols-2 gap-3">
+          <Field id="lost-report-date-from" label="Desde">
+            <input
+              id="lost-report-date-from"
+              type="date"
+              className={INPUT_CLASSES}
+              value={dateFrom}
+              onChange={(event) => setDateFrom(event.target.value)}
+            />
+          </Field>
+          <Field id="lost-report-date-to" label="Hasta">
+            <input
+              id="lost-report-date-to"
+              type="date"
+              className={INPUT_CLASSES}
+              value={dateTo}
+              onChange={(event) => setDateTo(event.target.value)}
+            />
+          </Field>
+        </div>
+      </fieldset>
     </form>
   );
 }
