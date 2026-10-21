@@ -3834,7 +3834,7 @@
     "testId": 45
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f56666c1dff7826ab2232b23ba871c4f8dd16929",
     "commitName": "chore(docs): retirar planes de bienestar",
     "commitTimestamp": 1792504236519,
     "testId": 46
@@ -4432,5 +4432,27 @@
     "commitName": "feat(owner): permitir escribir la descripción del objeto perdido",
     "commitTimestamp": 1792589017168,
     "testId": 51
+  },
+  {
+    "numPassedTests": 489,
+    "failedTests": 1,
+    "numTotalTests": 490,
+    "timestamp": 1792589185697,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 490,
+    "failedTests": 0,
+    "numTotalTests": 490,
+    "timestamp": 1792589223357,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir elegir la categoría del objeto perdido",
+    "commitTimestamp": 1792589269115,
+    "testId": 52
   }
 ]

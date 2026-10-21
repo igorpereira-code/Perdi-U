@@ -2774,12 +2774,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f56666c1dff7826ab2232b23ba871c4f8dd16929",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-20T13:29:45.000Z",
       "message": "feat(welfare): mostrar acceso en la barra por rol",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f56666c1dff7826ab2232b23ba871c4f8dd16929"
     },
     "stats": {
       "total": 42,
@@ -2941,6 +2941,25 @@
     },
     "coverage": 89.34,
     "test_count": 489,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T13:27:48.000Z",
+      "message": "feat(owner): permitir elegir la categoría del objeto perdido",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 42,
+      "additions": 41,
+      "deletions": 1,
+      "date": "2026-10-21"
+    },
+    "coverage": 89.39,
+    "test_count": 490,
     "failed_tests": 0,
     "conclusion": "success"
   }

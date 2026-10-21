@@ -31,4 +31,16 @@ describe('Descripción del objeto perdido', () => {
 
     expect(screen.getByLabelText('Descripción de tu objeto')).toHaveValue('Llaves con llavero azul');
   });
+  
+});
+
+describe('Categoría del objeto perdido', () => {
+  it('muestra las categorías y permite elegir una', async () => {
+    renderForm();
+
+    await userEvent.click(screen.getByRole('radio', { name: 'Llaves' }));
+
+    expect(screen.getByRole('radio', { name: 'Llaves' })).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByRole('radio', { name: 'Electrónicos' })).toHaveAttribute('aria-checked', 'false');
+  });
 });
