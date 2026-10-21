@@ -19,12 +19,16 @@ const SEND_ERROR = 'No se pudo enviar tu reporte. Intenta nuevamente.';
 
 export function createLostReportsService(apiFetch: ApiFetch): LostReportsService {
   return {
-    create: async (report, _photo) => {
-      const init: RequestInit = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(report),
-      };
+    create: async (report, photo) => {
+      let init: RequestInit;
+      if (photo) {
+        const form = new FormData();
+        form.append('report', JSON.stringify(report));
+        form.append('photo', photo);
+        init = { method: 'POST', body: form };
+      } else {
+        init = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(report) };
+      }
 
       let response: Response;
       try {

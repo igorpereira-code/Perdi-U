@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
+import { PhotoInput } from '../../core/presenter/PhotoInput';
 import { getCategoryIcon } from '../../core/presenter/CategoryIcon';
 import type { FoundItemCatalogs } from '../../finder/data/foundItemsService';
 import type { LostReportCreated, LostReportsService } from '../data/lostReportsService';
@@ -32,6 +33,7 @@ function FieldError({ text }: { text?: string }) {
 
 export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
   const [description, setDescription] = useState('');
+  const [photo, setPhoto] = useState<File | null>(null);
   const [category, setCategory] = useState('');
   const [places, setPlaces] = useState<ChosenPlace[]>([]);
   const [placeDescription, setPlaceDescription] = useState('');
@@ -77,7 +79,7 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
           dateFrom,
           dateTo,
         },
-        null,
+        photo,
       );
       setCreated(result);
     } catch (error) {
@@ -109,6 +111,14 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
             onChange={(event) => setDescription(event.target.value)}
           />
         </Field>
+
+        <fieldset className="space-y-2">
+          <legend className="text-sm font-medium text-neutral-700">
+            Foto de referencia <span className="font-normal text-neutral-500">(opcional)</span>
+          </legend>
+          <PhotoInput onChange={setPhoto} />
+          <p className="text-xs text-neutral-500">JPEG, PNG o WebP, máximo 5 MiB.</p>
+        </fieldset>
 
         <fieldset className="space-y-2">
           <legend className="text-sm font-medium text-neutral-700">Categoría</legend>

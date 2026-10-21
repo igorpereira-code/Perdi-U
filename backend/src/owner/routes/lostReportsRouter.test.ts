@@ -135,3 +135,51 @@ describe('Recibir un código al enviar el reporte de pérdida (POST /lost-report
     expect(res.body).toEqual({ error: 'No se pudo registrar tu reporte. Intenta nuevamente.' });
   });
 });
+
+// Imagen PNG real de 1x1 píxel, solo para las pruebas.
+const PNG = Buffer.from(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
+  'base64',
+);
+
+describe('Subir una foto de referencia (POST /lost-reports)', () => {
+  it('guarda la foto en el almacenamiento privado y su ruta en el reporte', async () => {
+    const { lostReports, foundItems, foundItemPhotos } = fakes();
+
+    const res = await request(createApp({ lostReports, foundItems, foundItemPhotos }))
+      .post('/lost-reports')
+      .field('report', JSON.stringify(validReport))
+      .attach('photo', PNG, { filename: 'llaves.png', contentType: 'image/png' });
+
+    expect(res.status).toBe(201);
+    expect(foundItemPhotos.upload).toHaveBeenCalledTimes(1);
+    const [path] = foundItemPhotos.upload.mock.calls[0];
+    expect(path).toMatch(new RegExp(`^${SAMPLE_USERS.ana.id}/[a-f0-9-]+\\.png$`));
+    expect(lostReports.create).toHaveBeenCalledWith(expect.objectContaining({ photoUrl: path }));
+  });
+
+  it('borra la foto subida si el reporte no se pudo guardar', async () => {
+    const { lostReports, foundItems, foundItemPhotos } = fakes();
+    lostReports.create.mockRejectedValue(new Error('Detalle interno de Prisma'));
+
+    const res = await request(createApp({ lostReports, foundItems, foundItemPhotos }))
+      .post('/lost-reports')
+      .field('report', JSON.stringify(validReport))
+      .attach('photo', PNG, { filename: 'llaves.png', contentType: 'image/png' });
+
+    expect(res.status).toBe(500);
+    expect(foundItemPhotos.remove).toHaveBeenCalledWith(foundItemPhotos.upload.mock.calls[0][0]);
+  });
+
+  it('no sube nada si el reporte no es válido', async () => {
+    const { lostReports, foundItems, foundItemPhotos } = fakes();
+
+    const res = await request(createApp({ lostReports, foundItems, foundItemPhotos }))
+      .post('/lost-reports')
+      .field('report', JSON.stringify({ ...validReport, description: '' }))
+      .attach('photo', PNG, { filename: 'llaves.png', contentType: 'image/png' });
+
+    expect(res.status).toBe(400);
+    expect(foundItemPhotos.upload).not.toHaveBeenCalled();
+  });
+});

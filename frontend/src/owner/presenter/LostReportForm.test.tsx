@@ -164,3 +164,24 @@ describe('Datos obligatorios al enviar', () => {
     expect(onCreate).not.toHaveBeenCalled();
   });
 });
+
+describe('Foto de referencia', () => {
+  beforeAll(() => {
+    // jsdom no crea vistas previas de imágenes; las simulamos.
+    URL.createObjectURL = jest.fn(() => 'blob:vista-previa');
+    URL.revokeObjectURL = jest.fn();
+  });
+
+  it('permite subir una foto de referencia y la envía con el reporte', async () => {
+    const onCreate = renderForm(jest.fn().mockResolvedValue({ code: 'PR-0008' }));
+    const photo = new File(['foto'], 'llaves.png', { type: 'image/png' });
+
+    await userEvent.upload(screen.getByLabelText('Foto del objeto'), photo);
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeInTheDocument();
+    await fillRequiredFields();
+    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+
+    expect(await screen.findByText('PR-0008')).toBeInTheDocument();
+    expect(onCreate).toHaveBeenCalledWith(expect.any(Object), photo);
+  });
+});

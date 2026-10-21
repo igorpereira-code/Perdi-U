@@ -4450,7 +4450,7 @@
     "testId": 52
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d3d5a351605c3131e06771649102af3e8f5f6bc8",
     "commitName": "feat(owner): permitir elegir la categoría del objeto perdido",
     "commitTimestamp": 1792589269115,
     "testId": 52
@@ -4648,5 +4648,27 @@
     "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
     "commitTimestamp": 1792599362931,
     "testId": 59
+  },
+  {
+    "numPassedTests": 525,
+    "failedTests": 4,
+    "numTotalTests": 529,
+    "timestamp": 1792599591075,
+    "success": false,
+    "testId": 60
+  },
+  {
+    "numPassedTests": 529,
+    "failedTests": 0,
+    "numTotalTests": 529,
+    "timestamp": 1792599688015,
+    "success": true,
+    "testId": 60
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
+    "commitTimestamp": 1792599791806,
+    "testId": 60
   }
 ]

@@ -44,3 +44,20 @@ describe('Enviar el reporte de pérdida', () => {
     );
   });
 });
+
+describe('Enviar el reporte de pérdida con foto', () => {
+  it('envía el reporte y la foto juntos en un formulario', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(answer(201, { code: 'PR-0008', status: 'SEARCHING' }));
+    const photo = new File(['foto'], 'llaves.png', { type: 'image/png' });
+
+    const created = await createLostReportsService(apiFetch as ApiFetch).create(report, photo);
+
+    expect(created).toEqual({ code: 'PR-0008' });
+    const [path, init] = apiFetch.mock.calls[0];
+    expect(path).toBe('/lost-reports');
+    expect(init.method).toBe('POST');
+    expect(init.body).toBeInstanceOf(FormData);
+    expect(init.body.get('report')).toBe(JSON.stringify(report));
+    expect(init.body.get('photo')).toBe(photo);
+  });
+});
