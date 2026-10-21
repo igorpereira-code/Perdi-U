@@ -71,6 +71,7 @@ model User {
   photoUrl  String?  @map("photo_url")
   role      Role     @default(COMMUNITY)
   createdAt DateTime @default(now()) @map("created_at")
+  hasSeenGuide Boolean  @default(false) @map("has_seen_guide")
 
   foundItems           FoundItem[]  @relation("FoundItemFinder")
   receivedItems        FoundItem[]  @relation("FoundItemReceivedBy")

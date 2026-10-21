@@ -6,6 +6,7 @@ const igor = {
   name: 'Igor Pereira',
   email: 'igor.pereira@ucb.edu.bo',
   role: 'COMMUNITY',
+  hasSeenGuide: true,
 };
 
 function fakeAuth(session: { access_token: string } | null) {
