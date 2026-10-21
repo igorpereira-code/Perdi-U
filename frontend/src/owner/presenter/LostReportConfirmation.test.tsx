@@ -28,3 +28,22 @@ describe('Privacidad del reporte de pérdida', () => {
     );
   });
 });
+
+describe('El reporte sigue activo', () => {
+  it('avisa que el reporte sigue activo aunque el objeto todavía no aparezca', () => {
+    renderConfirmation();
+
+    expect(
+      screen.getByText('Tu reporte seguirá activo aunque tu objeto todavía no aparezca.'),
+    ).toBeInTheDocument();
+  });
+
+  it('permite ver los objetos parecidos a su reporte', () => {
+    renderConfirmation();
+
+    expect(screen.getByRole('link', { name: 'Ver objetos parecidos' })).toHaveAttribute(
+      'href',
+      '/mis-reportes/PR-0007/coincidencias',
+    );
+  });
+});

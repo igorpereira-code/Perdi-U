@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import { CircleCheck } from 'lucide-react';
 import { Alert } from '../../core/presenter/Alert';
+import { SeeMatchesLink } from '../../matching/presenter/SeeMatchesLink';
 
 /** Shown after sending a lost report. */
 export function LostReportConfirmation({ code }: { code: string }) {
@@ -12,6 +14,13 @@ export function LostReportConfirmation({ code }: { code: string }) {
         <p className="font-mono text-2xl font-bold text-blue-700">{code}</p>
       </div>
       <Alert>Tu reporte es privado: solo lo ven tú y Bienestar Estudiantil.</Alert>
+      <p className="text-sm text-neutral-700">
+        Tu reporte seguirá activo aunque tu objeto todavía no aparezca.
+      </p>
+      <SeeMatchesLink reportCode={code} />
+      <Link to="/" className="inline-block text-sm font-semibold text-blue-500">
+        Volver al inicio
+      </Link>
     </div>
   );
 }

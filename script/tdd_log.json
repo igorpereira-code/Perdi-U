@@ -4428,7 +4428,7 @@
     "testId": 51
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c764b84e5ea27ebca43a01262092d540b05ac68f",
     "commitName": "feat(owner): permitir escribir la descripción del objeto perdido",
     "commitTimestamp": 1792589017168,
     "testId": 51
@@ -4626,5 +4626,27 @@
     "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
     "commitTimestamp": 1792598049048,
     "testId": 58
+  },
+  {
+    "numPassedTests": 522,
+    "failedTests": 2,
+    "numTotalTests": 524,
+    "timestamp": 1792599291718,
+    "success": false,
+    "testId": 59
+  },
+  {
+    "numPassedTests": 524,
+    "failedTests": 0,
+    "numTotalTests": 524,
+    "timestamp": 1792599326423,
+    "success": true,
+    "testId": 59
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
+    "commitTimestamp": 1792599362931,
+    "testId": 59
   }
 ]
