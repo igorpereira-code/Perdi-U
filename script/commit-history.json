@@ -2812,12 +2812,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "568e0e28552f3d79e035bf5b531a95a67f80ff19",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-20T14:01:47.000Z",
       "message": "chore: integra los últimos cambios de final-test en welfare",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/568e0e28552f3d79e035bf5b531a95a67f80ff19"
     },
     "stats": {
       "total": 1023,
@@ -2979,6 +2979,25 @@
     },
     "coverage": 89.58,
     "test_count": 493,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T14:52:45.000Z",
+      "message": "feat(owner): permitir describir por dónde pudo perderse el objeto",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 23,
+      "deletions": 0,
+      "date": "2026-10-21"
+    },
+    "coverage": 89.6,
+    "test_count": 494,
     "failed_tests": 0,
     "conclusion": "success"
   }

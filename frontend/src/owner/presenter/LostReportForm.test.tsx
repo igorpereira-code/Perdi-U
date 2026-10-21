@@ -78,3 +78,14 @@ describe('Lugares donde pudo perderlo', () => {
     expect(screen.queryByLabelText(/Aula en Bloque A/)).not.toBeInTheDocument();
   });
 });
+
+
+describe('Descripción del lugar', () => {
+  it('permite describir en texto por dónde pudo perderlo', async () => {
+    renderForm();
+
+    await userEvent.type(screen.getByLabelText(/¿Por dónde pudo perderlo\?/), 'Fui de la biblioteca a la cafetería');
+
+    expect(screen.getByLabelText(/¿Por dónde pudo perderlo\?/)).toHaveValue('Fui de la biblioteca a la cafetería');
+  });
+});

@@ -4318,7 +4318,7 @@
     "testId": 45
   },
   {
-    "commitId": "HEAD",
+    "commitId": "568e0e28552f3d79e035bf5b531a95a67f80ff19",
     "commitName": "chore: integra los últimos cambios de final-test en welfare",
     "commitTimestamp": 1792504909096,
     "testId": 46
@@ -4476,5 +4476,35 @@
     "commitName": "feat(owner): permitir elegir uno o varios lugares donde pudo perderse",
     "commitTimestamp": 1792590838451,
     "testId": 53
+  },
+  {
+    "numPassedTests": 493,
+    "failedTests": 0,
+    "numTotalTests": 493,
+    "timestamp": 1792591025032,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 493,
+    "failedTests": 1,
+    "numTotalTests": 494,
+    "timestamp": 1792594250316,
+    "success": false,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 494,
+    "failedTests": 0,
+    "numTotalTests": 494,
+    "timestamp": 1792594328805,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir describir por dónde pudo perderse el objeto",
+    "commitTimestamp": 1792594366380,
+    "testId": 54
   }
 ]

@@ -17,6 +17,7 @@ export function LostReportForm({ catalogs }: LostReportFormProps) {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [places, setPlaces] = useState<ChosenPlace[]>([]);
+  const [placeDescription, setPlaceDescription] = useState('');
 
   function togglePlace(placeId: number) {
     setPlaces((current) =>
@@ -117,6 +118,17 @@ export function LostReportForm({ catalogs }: LostReportFormProps) {
           );
         })}
       </fieldset>
+      <Field id="lost-report-place-description" label="¿Por dónde pudo perderlo?" optional>
+        <input
+          id="lost-report-place-description"
+          type="text"
+          maxLength={300}
+          className={INPUT_CLASSES}
+          placeholder="Ej. Fui de la biblioteca a la cafetería"
+          value={placeDescription}
+          onChange={(event) => setPlaceDescription(event.target.value)}
+        />
+      </Field>
     </form>
   );
 }
