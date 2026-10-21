@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import type { FoundItemCatalogs, FoundItemsService } from '../../finder/data/foundItemsService';
+import type { LostReportsService } from '../data/lostReportsService';
 import { LostReportForm } from './LostReportForm';
 
 type LostReportScreenProps = {
   foundItemsService: Pick<FoundItemsService, 'getCatalogs'>;
+  lostReportsService: LostReportsService;
 };
 
 /** Loads the categories and places, then shows the lost report form. */
-export function LostReportScreen({ foundItemsService }: LostReportScreenProps) {
+export function LostReportScreen({ foundItemsService, lostReportsService }: LostReportScreenProps) {
   const [catalogs, setCatalogs] = useState<FoundItemCatalogs | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
@@ -43,10 +45,8 @@ export function LostReportScreen({ foundItemsService }: LostReportScreenProps) {
       </div>
     );
   }
-
   if (!catalogs) {
     return <p role="status" className="text-sm text-neutral-500">Cargando categorías y lugares…</p>;
   }
-
-  return <LostReportForm catalogs={catalogs} />;
+  return <LostReportForm catalogs={catalogs} onCreate={lostReportsService.create} />;
 }

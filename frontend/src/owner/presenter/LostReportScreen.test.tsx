@@ -9,7 +9,7 @@ const catalogs: FoundItemCatalogs = { categories: [{ id: 47, name: 'Llaves' }], 
 function renderScreen(getCatalogs: jest.Mock) {
   render(
     <MemoryRouter>
-      <LostReportScreen foundItemsService={{ getCatalogs }} />
+      <LostReportScreen foundItemsService={{ getCatalogs }} lostReportsService={{ create: jest.fn() }} />
     </MemoryRouter>,
   );
 }
@@ -28,7 +28,6 @@ describe('Abrir el formulario de pérdida', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent(
       'No se pudieron cargar las categorías y los lugares. Intenta nuevamente.',
     );
-
     await userEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
 
     expect(await screen.findByRole('form', { name: 'Reportar objeto perdido' })).toBeInTheDocument();

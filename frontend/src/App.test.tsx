@@ -9,6 +9,7 @@ import type { MatchesService } from './matching/data/matchesService';
 import type { GuideService } from './finder/data/guideService';
 import type { FoundItemsService, MyFoundItem } from './finder/data/foundItemsService';
 import type { WelfareService } from './welfare/data/welfareService';
+import type { LostReportsService } from './owner/data/lostReportsService';
 
 const phone: MatchView = {
   id: 'match-1',
@@ -76,6 +77,7 @@ function renderAt(
     receive: jest.fn(),
     deliver: jest.fn(),
   };
+  const lostReportsService: LostReportsService = { create: jest.fn() };
   const rendered = render(
     <MemoryRouter initialEntries={[path]}>
       <App
@@ -84,6 +86,7 @@ function renderAt(
         guideService={guideService}
         foundItemsService={foundItemsService}
         welfareService={welfareService}
+        lostReportsService={lostReportsService}
       />
     </MemoryRouter>,
   );
@@ -477,7 +480,7 @@ describe('Guía automática durante el primer ingreso', () => {
     expect(firstLogin.markSeen).not.toHaveBeenCalled();
     expect(nextLogin.markSeen).not.toHaveBeenCalled();
   });
-
+});
 
 describe('Opción Perdí un objeto en el inicio', () => {
   it('muestra Perdí un objeto en la pantalla principal', async () => {
@@ -501,10 +504,4 @@ describe('Abrir el formulario de pérdida desde el inicio', () => {
 
     expect(await screen.findByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
   });
-});
-
-
-
-
-
 });

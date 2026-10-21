@@ -15,12 +15,13 @@ const catalogs: FoundItemCatalogs = {
   ],
 };
 
-function renderForm() {
+function renderForm(onCreate = jest.fn()) {
   render(
     <MemoryRouter>
-      <LostReportForm catalogs={catalogs} />
+      <LostReportForm catalogs={catalogs} onCreate={onCreate} />
     </MemoryRouter>,
   );
+  return onCreate;
 }
 
 describe('Descripción del objeto perdido', () => {
@@ -100,5 +101,52 @@ describe('Rango de fechas de la pérdida', () => {
 
     expect(screen.getByLabelText('Desde')).toHaveValue('2026-10-17');
     expect(screen.getByLabelText('Hasta')).toHaveValue('2026-10-18');
+  });
+});
+
+
+async function fillRequiredFields() {
+  await userEvent.type(screen.getByLabelText('Descripción de tu objeto'), '  Llaves con llavero azul ');
+  await userEvent.click(screen.getByRole('radio', { name: 'Llaves' }));
+  await userEvent.type(screen.getByLabelText('Desde'), '2026-10-17');
+  await userEvent.type(screen.getByLabelText('Hasta'), '2026-10-18');
+}
+
+describe('Enviar el reporte y recibir su código', () => {
+  it('envía los datos elegidos y muestra el código único del reporte', async () => {
+    const onCreate = renderForm(jest.fn().mockResolvedValue({ code: 'PR-0007' }));
+    await fillRequiredFields();
+    await userEvent.click(screen.getByRole('button', { name: 'Bloque A' }));
+    await userEvent.selectOptions(screen.getByLabelText(/Aula en Bloque A/), 'Aula A-12');
+    await userEvent.click(screen.getByRole('button', { name: 'Biblioteca' }));
+    await userEvent.type(screen.getByLabelText(/¿Por dónde pudo perderlo\?/), 'Cerca de la cafetería');
+
+    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+
+    expect(await screen.findByText('PR-0007')).toBeInTheDocument();
+    expect(onCreate).toHaveBeenCalledWith(
+      {
+        description: 'Llaves con llavero azul',
+        categoryId: 47,
+        places: [
+          { placeId: 83, classroomId: 216 },
+          { placeId: 98, classroomId: null },
+        ],
+        placeDescription: 'Cerca de la cafetería',
+        dateFrom: '2026-10-17',
+        dateTo: '2026-10-18',
+      },
+      null,
+    );
+  });
+
+  it('muestra el error y mantiene lo escrito si no se pudo enviar', async () => {
+    renderForm(jest.fn().mockRejectedValue(new Error('No se pudo enviar tu reporte. Intenta nuevamente.')));
+    await fillRequiredFields();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+
+    expect(await screen.findByText('No se pudo enviar tu reporte. Intenta nuevamente.')).toBeInTheDocument();
+    expect(screen.getByLabelText('Descripción de tu objeto')).toHaveValue('  Llaves con llavero azul ');
   });
 });

@@ -4338,7 +4338,7 @@
     "testId": 48
   },
   {
-    "commitId": "HEAD",
+    "commitId": "9a5e3cf82a9afa8e4e774dd42e43546fc425887d",
     "commitName": "chore: integra los últimos cambios de final-test en finder",
     "commitTimestamp": 1792530358744,
     "testId": 48
@@ -4528,5 +4528,59 @@
     "commitName": "feat(owner): permitir indicar el rango de fechas de la pérdida",
     "commitTimestamp": 1792594501296,
     "testId": 55
+  },
+  {
+    "numPassedTests": 496,
+    "failedTests": 14,
+    "numTotalTests": 510,
+    "timestamp": 1792595749532,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 510,
+    "failedTests": 0,
+    "numTotalTests": 510,
+    "timestamp": 1792595835832,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 510,
+    "failedTests": 3,
+    "numTotalTests": 513,
+    "timestamp": 1792595977737,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 513,
+    "failedTests": 0,
+    "numTotalTests": 513,
+    "timestamp": 1792596010402,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 513,
+    "failedTests": 3,
+    "numTotalTests": 516,
+    "timestamp": 1792596314575,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 516,
+    "failedTests": 0,
+    "numTotalTests": 516,
+    "timestamp": 1792596688160,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
+    "commitTimestamp": 1792597534262,
+    "testId": 56
   }
 ]

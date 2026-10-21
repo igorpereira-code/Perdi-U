@@ -17,6 +17,7 @@ import { MyFoundItemsScreen } from './finder/presenter/MyFoundItemsScreen';
 import { MyFoundItemScreen } from './finder/presenter/MyFoundItemScreen';
 import type { WelfareService } from './welfare/data/welfareService';
 import { WelfarePage } from './welfare/presenter/WelfarePage';
+import type { LostReportsService } from './owner/data/lostReportsService';
 import { LostItemEntry } from './owner/presenter/LostItemEntry';
 import { LostReportScreen } from './owner/presenter/LostReportScreen';
 
@@ -26,6 +27,7 @@ type AppProps = {
   guideService: GuideService;
   foundItemsService: FoundItemsService;
   welfareService: WelfareService;
+  lostReportsService: LostReportsService;
 };
 
 export default function App({
@@ -34,6 +36,7 @@ export default function App({
   guideService,
   foundItemsService,
   welfareService,
+  lostReportsService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
@@ -95,7 +98,9 @@ export default function App({
       />
       <Route
         path="/reportar-perdida"
-        element={signedInPage(() => <LostReportScreen foundItemsService={foundItemsService} />)}
+        element={signedInPage(() => (
+          <LostReportScreen foundItemsService={foundItemsService} lostReportsService={lostReportsService} />
+        ))}
       />
       <Route
         path="/perfil"
