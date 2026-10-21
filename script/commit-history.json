@@ -1615,20 +1615,12 @@
     "conclusion": "success"
   },
   {
-<<<<<<< HEAD
     "sha": "16226f1f18c7970d255770ec1185acb4c7d0b5bf",
-=======
-    "sha": "48d8273cf23e08a267fc6318d580f1ccf3e19907",
->>>>>>> 9ca7cefbe41bbe2f149e7cb8860c8b73a1e88762
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-18T21:52:57.000Z",
       "message": "feat: excluir objetos entregados del catalogo de exploracion",
-<<<<<<< HEAD
       "url": "https://github.com/igorpereira-code/Perdi-U/commit/16226f1f18c7970d255770ec1185acb4c7d0b5bf"
-=======
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/48d8273cf23e08a267fc6318d580f1ccf3e19907"
->>>>>>> 9ca7cefbe41bbe2f149e7cb8860c8b73a1e88762
     },
     "stats": {
       "total": 54,
@@ -1642,80 +1634,6 @@
     "conclusion": "success"
   },
   {
-<<<<<<< HEAD
-    "sha": "b936512dba2a63d7427359ab23bc8161b5ceae0a",
-    "author": "javichosGIT",
-    "commit": {
-      "date": "2026-10-20T01:20:51.000Z",
-      "message": "feat: mostrar listado de reportes de perdida del usuario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b936512dba2a63d7427359ab23bc8161b5ceae0a"
-    },
-    "stats": {
-      "total": 67,
-      "additions": 67,
-      "deletions": 0,
-      "date": "2026-10-20"
-    },
-    "coverage": 87.73,
-    "test_count": 126,
-    "failed_tests": 0,
-    "conclusion": "success"
-  },
-  {
-    "sha": "c2de1800d3bccbecdea54327524a43b365672746",
-    "author": "javichosGIT",
-    "commit": {
-      "date": "2026-10-20T01:22:18.000Z",
-      "message": "feat: mostrar el codigo y el estado visual de cada reporte de perdida",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c2de1800d3bccbecdea54327524a43b365672746"
-    },
-    "stats": {
-      "total": 65,
-      "additions": 57,
-      "deletions": 8,
-      "date": "2026-10-20"
-    },
-    "coverage": 87.78,
-    "test_count": 127,
-    "failed_tests": 0,
-    "conclusion": "success"
-  },
-  {
-    "sha": "0d1123c0a4d2b59f4ae6cc9dae740fbd4beacaf0",
-    "author": "javichosGIT",
-    "commit": {
-      "date": "2026-10-20T01:25:20.000Z",
-      "message": "feat: crear vista de detalles de un reporte de perdida",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0d1123c0a4d2b59f4ae6cc9dae740fbd4beacaf0"
-    },
-    "stats": {
-      "total": 125,
-      "additions": 125,
-      "deletions": 0,
-      "date": "2026-10-20"
-    },
-    "coverage": 87.87,
-    "test_count": 129,
-    "failed_tests": 0,
-    "conclusion": "success"
-  },
-  {
-    "sha": "60f4939d67d43bbc821530f3130a65ebeb50f8d0",
-    "author": "javichosGIT",
-    "commit": {
-      "date": "2026-10-20T01:31:54.000Z",
-      "message": "feat: mostrar tarjeta destacada con el codigo para presentar en bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/60f4939d67d43bbc821530f3130a65ebeb50f8d0"
-    },
-    "stats": {
-      "total": 25,
-      "additions": 24,
-      "deletions": 1,
-      "date": "2026-10-20"
-    },
-    "coverage": 87.87,
-    "test_count": 130,
-=======
     "sha": "502050a420e122a703b7917c99fdb4befb1f719e",
     "author": "CodexSandboxOffline",
     "commit": {
@@ -2301,30 +2219,87 @@
     },
     "coverage": 87.04,
     "test_count": 104,
->>>>>>> 9ca7cefbe41bbe2f149e7cb8860c8b73a1e88762
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "b936512dba2a63d7427359ab23bc8161b5ceae0a",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-20T01:20:51.000Z",
+      "message": "feat: mostrar listado de reportes de perdida del usuario",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b936512dba2a63d7427359ab23bc8161b5ceae0a"
+    },
+    "stats": {
+      "total": 67,
+      "additions": 67,
+      "deletions": 0,
+      "date": "2026-10-20"
+    },
+    "coverage": 87.73,
+    "test_count": 126,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "c2de1800d3bccbecdea54327524a43b365672746",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-20T01:22:18.000Z",
+      "message": "feat: mostrar el codigo y el estado visual de cada reporte de perdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c2de1800d3bccbecdea54327524a43b365672746"
+    },
+    "stats": {
+      "total": 65,
+      "additions": 57,
+      "deletions": 8,
+      "date": "2026-10-20"
+    },
+    "coverage": 87.78,
+    "test_count": 127,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "0d1123c0a4d2b59f4ae6cc9dae740fbd4beacaf0",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-20T01:25:20.000Z",
+      "message": "feat: crear vista de detalles de un reporte de perdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0d1123c0a4d2b59f4ae6cc9dae740fbd4beacaf0"
+    },
+    "stats": {
+      "total": 125,
+      "additions": 125,
+      "deletions": 0,
+      "date": "2026-10-20"
+    },
+    "coverage": 87.87,
+    "test_count": 129,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "60f4939d67d43bbc821530f3130a65ebeb50f8d0",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-20T01:31:54.000Z",
+      "message": "feat: mostrar tarjeta destacada con el codigo para presentar en bienestar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/60f4939d67d43bbc821530f3130a65ebeb50f8d0"
+    },
+    "stats": {
+      "total": 25,
+      "additions": 24,
+      "deletions": 1,
+      "date": "2026-10-20"
+    },
+    "coverage": 87.87,
+    "test_count": 130,
     "failed_tests": 0,
     "conclusion": "success"
   },
   {
     "sha": "HEAD",
-<<<<<<< HEAD
-    "author": "javichosGIT",
-    "commit": {
-      "date": "2026-10-21T03:36:07.000Z",
-      "message": "feat: actualizar diseño de HomeScreen y unificar rutas principales",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
-    },
-    "stats": {
-      "total": 1108,
-      "additions": 716,
-      "deletions": 392,
-      "date": "2026-10-21"
-    },
-    "coverage": 76.11,
-    "test_count": 130,
-    "failed_tests": 17,
-    "conclusion": "failure"
-=======
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-20T00:48:33.000Z",
@@ -2398,6 +2373,24 @@
     "test_count": 195,
     "failed_tests": 0,
     "conclusion": "success"
->>>>>>> 9ca7cefbe41bbe2f149e7cb8860c8b73a1e88762
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T03:36:07.000Z",
+      "message": "feat: actualizar diseño de HomeScreen y unificar rutas principales",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 1108,
+      "additions": 716,
+      "deletions": 392,
+      "date": "2026-10-21"
+    },
+    "coverage": 76.11,
+    "test_count": 130,
+    "failed_tests": 17,
+    "conclusion": "failure"
   }
 ]
