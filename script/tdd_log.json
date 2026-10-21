@@ -3798,13 +3798,13 @@
     "testId": 42
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c66c9d37a1deb3e8f5f9cce7890e8d2278543244",
     "commitName": "chore: integra los últimos cambios de final-test en welfare",
     "commitTimestamp": 1792467315567,
     "testId": 43
   },
   {
-    "commitId": "HEAD",
+    "commitId": "fe9c787a6c0f86709996365991596901f3553ee8",
     "commitName": "style(welfare): actualizar solo el diseño visual del panel",
     "commitTimestamp": 1792468570160,
     "testId": 44
@@ -3828,13 +3828,13 @@
     "testId": 44
   },
   {
-    "commitId": "HEAD",
+    "commitId": "63599295538466250b4d0a5743530bba54a9374d",
     "commitName": "feat(welfare): mostrar acceso en la barra por rol",
     "commitTimestamp": 1792502988248,
     "testId": 45
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f56666c1dff7826ab2232b23ba871c4f8dd16929",
     "commitName": "chore(docs): retirar planes de bienestar",
     "commitTimestamp": 1792504236519,
     "testId": 46
@@ -4312,19 +4312,19 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6cfd72ad3f485fc33234dd9ed5bd5b93a69d7d5c",
     "commitName": "chore: integra los últimos cambios de final-test en owner",
     "commitTimestamp": 1792502287696,
     "testId": 45
   },
   {
-    "commitId": "HEAD",
+    "commitId": "568e0e28552f3d79e035bf5b531a95a67f80ff19",
     "commitName": "chore: integra los últimos cambios de final-test en welfare",
     "commitTimestamp": 1792504909096,
     "testId": 46
   },
   {
-    "commitId": "HEAD",
+    "commitId": "79d03d27ef459b4272e217e86638f4eb44df21db",
     "commitName": "chore: integra los últimos cambios de final-test en el revert",
     "commitTimestamp": 1792529260837,
     "testId": 47
@@ -4338,9 +4338,359 @@
     "testId": 48
   },
   {
-    "commitId": "HEAD",
+    "commitId": "9a5e3cf82a9afa8e4e774dd42e43546fc425887d",
     "commitName": "chore: integra los últimos cambios de final-test en finder",
     "commitTimestamp": 1792530358744,
     "testId": 48
+  },
+  {
+    "numPassedTests": 481,
+    "failedTests": 0,
+    "numTotalTests": 481,
+    "timestamp": 1792586841351,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 481,
+    "failedTests": 0,
+    "numTotalTests": 481,
+    "timestamp": 1792587545700,
+    "success": false,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 481,
+    "failedTests": 0,
+    "numTotalTests": 481,
+    "timestamp": 1792587672855,
+    "success": false,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 484,
+    "failedTests": 0,
+    "numTotalTests": 484,
+    "timestamp": 1792587745166,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 484,
+    "failedTests": 0,
+    "numTotalTests": 484,
+    "timestamp": 1792588154376,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "commitId": "a934102e2f6e5cfff3dcf38f86a9ae7ef443ce8e",
+    "commitName": "feat(owner): agregar la opción Perdí un objeto en la pantalla principal",
+    "commitTimestamp": 1792588193209,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 484,
+    "failedTests": 4,
+    "numTotalTests": 488,
+    "timestamp": 1792588496178,
+    "success": false,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 488,
+    "failedTests": 0,
+    "numTotalTests": 488,
+    "timestamp": 1792588753013,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "commitId": "f233f863f2110ab2670e078222f8cd182475b544",
+    "commitName": "feat(owner): abrir el formulario para reportar un objeto perdido",
+    "commitTimestamp": 1792588842459,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 488,
+    "failedTests": 1,
+    "numTotalTests": 489,
+    "timestamp": 1792588934368,
+    "success": false,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 489,
+    "failedTests": 0,
+    "numTotalTests": 489,
+    "timestamp": 1792588977386,
+    "success": true,
+    "testId": 51
+  },
+  {
+    "commitId": "c764b84e5ea27ebca43a01262092d540b05ac68f",
+    "commitName": "feat(owner): permitir escribir la descripción del objeto perdido",
+    "commitTimestamp": 1792589017168,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 489,
+    "failedTests": 1,
+    "numTotalTests": 490,
+    "timestamp": 1792589185697,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 490,
+    "failedTests": 0,
+    "numTotalTests": 490,
+    "timestamp": 1792589223357,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "commitId": "d3d5a351605c3131e06771649102af3e8f5f6bc8",
+    "commitName": "feat(owner): permitir elegir la categoría del objeto perdido",
+    "commitTimestamp": 1792589269115,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 490,
+    "failedTests": 3,
+    "numTotalTests": 493,
+    "timestamp": 1792590638001,
+    "success": false,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 493,
+    "failedTests": 0,
+    "numTotalTests": 493,
+    "timestamp": 1792590798145,
+    "success": true,
+    "testId": 53
+  },
+  {
+    "commitId": "19955906ff934ae9b7183b76489cd312389e6451",
+    "commitName": "feat(owner): permitir elegir uno o varios lugares donde pudo perderse",
+    "commitTimestamp": 1792590838451,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 493,
+    "failedTests": 0,
+    "numTotalTests": 493,
+    "timestamp": 1792591025032,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 493,
+    "failedTests": 1,
+    "numTotalTests": 494,
+    "timestamp": 1792594250316,
+    "success": false,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 494,
+    "failedTests": 0,
+    "numTotalTests": 494,
+    "timestamp": 1792594328805,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir describir por dónde pudo perderse el objeto",
+    "commitTimestamp": 1792594366380,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 494,
+    "failedTests": 1,
+    "numTotalTests": 495,
+    "timestamp": 1792594425245,
+    "success": false,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 495,
+    "failedTests": 0,
+    "numTotalTests": 495,
+    "timestamp": 1792594467058,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir indicar el rango de fechas de la pérdida",
+    "commitTimestamp": 1792594501296,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 496,
+    "failedTests": 14,
+    "numTotalTests": 510,
+    "timestamp": 1792595749532,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 510,
+    "failedTests": 0,
+    "numTotalTests": 510,
+    "timestamp": 1792595835832,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 510,
+    "failedTests": 3,
+    "numTotalTests": 513,
+    "timestamp": 1792595977737,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 513,
+    "failedTests": 0,
+    "numTotalTests": 513,
+    "timestamp": 1792596010402,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 513,
+    "failedTests": 3,
+    "numTotalTests": 516,
+    "timestamp": 1792596314575,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 516,
+    "failedTests": 0,
+    "numTotalTests": 516,
+    "timestamp": 1792596688160,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
+    "commitTimestamp": 1792597534262,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 518,
+    "failedTests": 3,
+    "numTotalTests": 521,
+    "timestamp": 1792597687009,
+    "success": false,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 521,
+    "failedTests": 0,
+    "numTotalTests": 521,
+    "timestamp": 1792597774049,
+    "success": true,
+    "testId": 57
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
+    "commitTimestamp": 1792597809312,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 521,
+    "failedTests": 1,
+    "numTotalTests": 522,
+    "timestamp": 1792597968343,
+    "success": false,
+    "testId": 58
+  },
+  {
+    "numPassedTests": 522,
+    "failedTests": 0,
+    "numTotalTests": 522,
+    "timestamp": 1792598001665,
+    "success": true,
+    "testId": 58
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
+    "commitTimestamp": 1792598049048,
+    "testId": 58
+  },
+  {
+    "numPassedTests": 522,
+    "failedTests": 2,
+    "numTotalTests": 524,
+    "timestamp": 1792599291718,
+    "success": false,
+    "testId": 59
+  },
+  {
+    "numPassedTests": 524,
+    "failedTests": 0,
+    "numTotalTests": 524,
+    "timestamp": 1792599326423,
+    "success": true,
+    "testId": 59
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
+    "commitTimestamp": 1792599362931,
+    "testId": 59
+  },
+  {
+    "numPassedTests": 525,
+    "failedTests": 4,
+    "numTotalTests": 529,
+    "timestamp": 1792599591075,
+    "success": false,
+    "testId": 60
+  },
+  {
+    "numPassedTests": 529,
+    "failedTests": 0,
+    "numTotalTests": 529,
+    "timestamp": 1792599688015,
+    "success": true,
+    "testId": 60
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
+    "commitTimestamp": 1792599791806,
+    "testId": 60
+  },
+  {
+    "numPassedTests": 529,
+    "failedTests": 0,
+    "numTotalTests": 529,
+    "timestamp": 1792599999536,
+    "success": true,
+    "testId": 61
+  },
+  {
+    "numPassedTests": 529,
+    "failedTests": 0,
+    "numTotalTests": 529,
+    "timestamp": 1792601229073,
+    "success": true,
+    "testId": 61
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
+    "commitTimestamp": 1792601341695,
+    "testId": 61
   }
 ]
