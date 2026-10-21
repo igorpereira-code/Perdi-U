@@ -2907,12 +2907,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f233f863f2110ab2670e078222f8cd182475b544",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T13:20:41.000Z",
       "message": "feat(owner): abrir el formulario para reportar un objeto perdido",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f233f863f2110ab2670e078222f8cd182475b544"
     },
     "stats": {
       "total": 129,
@@ -3055,6 +3055,25 @@
     },
     "coverage": 90.03,
     "test_count": 521,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T15:54:08.000Z",
+      "message": "feat(owner): avisar que el reporte de pérdida es privado",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 12,
+      "additions": 12,
+      "deletions": 0,
+      "date": "2026-10-21"
+    },
+    "coverage": 90.03,
+    "test_count": 522,
     "failed_tests": 0,
     "conclusion": "success"
   }

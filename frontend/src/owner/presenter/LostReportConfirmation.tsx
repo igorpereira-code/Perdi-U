@@ -1,4 +1,5 @@
 import { CircleCheck } from 'lucide-react';
+import { Alert } from '../../core/presenter/Alert';
 
 /** Shown after sending a lost report. */
 export function LostReportConfirmation({ code }: { code: string }) {
@@ -10,6 +11,7 @@ export function LostReportConfirmation({ code }: { code: string }) {
         <p className="text-sm text-neutral-500">Código de tu reporte</p>
         <p className="font-mono text-2xl font-bold text-blue-700">{code}</p>
       </div>
+      <Alert>Tu reporte es privado: solo lo ven tú y Bienestar Estudiantil.</Alert>
     </div>
   );
 }

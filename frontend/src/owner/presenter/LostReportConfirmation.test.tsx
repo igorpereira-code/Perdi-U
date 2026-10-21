@@ -18,3 +18,13 @@ describe('Confirmación del reporte de pérdida', () => {
     expect(screen.getByText('PR-0007')).toBeInTheDocument();
   });
 });
+
+describe('Privacidad del reporte de pérdida', () => {
+  it('avisa que el reporte solo lo ven el dueño y Bienestar', () => {
+    renderConfirmation();
+
+    expect(screen.getByRole('note')).toHaveTextContent(
+      'Tu reporte es privado: solo lo ven tú y Bienestar Estudiantil.',
+    );
+  });
+});

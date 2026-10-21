@@ -4406,7 +4406,7 @@
     "testId": 50
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f233f863f2110ab2670e078222f8cd182475b544",
     "commitName": "feat(owner): abrir el formulario para reportar un objeto perdido",
     "commitTimestamp": 1792588842459,
     "testId": 50
@@ -4604,5 +4604,27 @@
     "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
     "commitTimestamp": 1792597809312,
     "testId": 57
+  },
+  {
+    "numPassedTests": 521,
+    "failedTests": 1,
+    "numTotalTests": 522,
+    "timestamp": 1792597968343,
+    "success": false,
+    "testId": 58
+  },
+  {
+    "numPassedTests": 522,
+    "failedTests": 0,
+    "numTotalTests": 522,
+    "timestamp": 1792598001665,
+    "success": true,
+    "testId": 58
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
+    "commitTimestamp": 1792598049048,
+    "testId": 58
   }
 ]
