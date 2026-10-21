@@ -7,6 +7,8 @@ import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
+import type { WelfareService } from './welfare/data/welfareService';
+import { WelfarePage } from './welfare/presenter/WelfarePage';
 
 import { HomeScreen } from './owner/presenter/HomeScreen';
 import { MyLostReportsPage, type LostReportSummary } from './owner/presenter/MyLostReportsPage';
@@ -21,9 +23,10 @@ type AppProps = {
   authService: AuthService;
   matchesService: MatchesService;
   ownerService: OwnerService;
+  welfareService: WelfareService;
 };
 
-export default function App({ authService, matchesService, ownerService }: AppProps) {
+export default function App({ authService, matchesService, ownerService, welfareService }: AppProps) {
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [notInstitutional, setNotInstitutional] = useState(false);
   const [lastReportCode, setLastReportCode] = useState('');
@@ -84,7 +87,6 @@ export default function App({ authService, matchesService, ownerService }: AppPr
         path="/" 
         element={signedInPage((me) => (
           <div className="flex flex-col w-full min-h-screen bg-neutral-50 pb-20">
-            {/* Saludo personalizado centrado correctamente con el resto del contenido */}
             <div className="flex flex-col items-center text-center px-4 pt-8 pb-6 max-w-lg mx-auto w-full">
               <p className="text-sm text-neutral-500 mb-1">
                 ¡Hola, {me.name.split(' ')[0]}! 
@@ -137,6 +139,7 @@ export default function App({ authService, matchesService, ownerService }: AppPr
           />
         ))}
       />
+      
       <Route
         path="/reporte-confirmado"
         element={signedInPage(() => (
@@ -160,6 +163,7 @@ export default function App({ authService, matchesService, ownerService }: AppPr
           />
         ))}
       />
+      
       <Route
         path="/mis-reportes/detalle"
         element={signedInPage(() => (
@@ -176,6 +180,17 @@ export default function App({ authService, matchesService, ownerService }: AppPr
             onBack={() => window.history.back()} 
           />
         ))}
+      />
+
+      <Route
+        path="/bienestar"
+        element={signedInPage((me) =>
+          me.role === 'WELFARE' ? (
+            <WelfarePage welfareService={welfareService} matchesService={matchesService} />
+          ) : (
+            <Navigate to="/" replace />
+          ),
+        )}
       />
     </Routes>
   );

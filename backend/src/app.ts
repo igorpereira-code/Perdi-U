@@ -9,6 +9,9 @@ import type { MatchingRepository } from './matching/data/matchingRepository';
 import { prismaMatchingRepository } from './matching/data/prismaMatchingRepository';
 import { createMatchesRouter } from './matching/routes/matchesRouter';
 import { createPublishRouter } from './matching/routes/publishRouter';
+import type { WelfareRepository } from './welfare/data/welfareRepository';
+import { createReceivedItemsRouter } from './welfare/routes/receivedItemsRouter';
+import { prismaWelfareRepository } from './welfare/data/prismaWelfareRepository';
 
 // NUEVA IMPORTACIÓN
 import { createLostReportsRouter } from './owner/routes/lostReportsRouter';
@@ -18,6 +21,7 @@ type AppOptions = {
   users?: UsersRepository;
   allowSampleUsers?: boolean;
   matching?: MatchingRepository;
+  welfare?: WelfareRepository;
 };
 
 export function createApp({
@@ -25,6 +29,7 @@ export function createApp({
   users = prismaUsersRepository,
   allowSampleUsers = process.env.ALLOW_SAMPLE_USERS === 'true',
   matching = prismaMatchingRepository,
+  welfare = prismaWelfareRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -45,6 +50,7 @@ export function createApp({
   
   // NUEVO ENRUTADOR REGISTRADO
   app.use(createLostReportsRouter());
+  app.use(createReceivedItemsRouter(welfare));
 
   return app;
 }
