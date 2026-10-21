@@ -3002,12 +3002,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b43bd98e732c914d9edca421183dde452ab45c5a",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T14:55:00.000Z",
       "message": "feat(owner): permitir indicar el rango de fechas de la pérdida",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b43bd98e732c914d9edca421183dde452ab45c5a"
     },
     "stats": {
       "total": 38,
@@ -3150,6 +3150,25 @@
     },
     "coverage": 90.06,
     "test_count": 533,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T23:27:39.000Z",
+      "message": "feat(owner): mostrar los últimos objetos publicados en la pantalla de inicio",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 402,
+      "additions": 399,
+      "deletions": 3,
+      "date": "2026-10-21"
+    },
+    "coverage": 89.99,
+    "test_count": 542,
     "failed_tests": 0,
     "conclusion": "success"
   }

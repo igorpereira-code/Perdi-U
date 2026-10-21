@@ -4524,7 +4524,7 @@
     "testId": 55
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b43bd98e732c914d9edca421183dde452ab45c5a",
     "commitName": "feat(owner): permitir indicar el rango de fechas de la pérdida",
     "commitTimestamp": 1792594501296,
     "testId": 55
@@ -4698,5 +4698,43 @@
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
     "testId": 62
+  },
+  {
+    "numPassedTests": 533,
+    "failedTests": 0,
+    "numTotalTests": 533,
+    "timestamp": 1792621151122,
+    "success": true,
+    "testId": 63
+  },
+  {
+    "numPassedTests": 534,
+    "failedTests": 8,
+    "numTotalTests": 542,
+    "timestamp": 1792623551578,
+    "success": false,
+    "testId": 63
+  },
+  {
+    "numPassedTests": 525,
+    "failedTests": 17,
+    "numTotalTests": 542,
+    "timestamp": 1792623937908,
+    "success": false,
+    "testId": 63
+  },
+  {
+    "numPassedTests": 542,
+    "failedTests": 0,
+    "numTotalTests": 542,
+    "timestamp": 1792624379144,
+    "success": true,
+    "testId": 63
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar los últimos objetos publicados en la pantalla de inicio",
+    "commitTimestamp": 1792625262277,
+    "testId": 63
   }
 ]
