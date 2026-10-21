@@ -11,6 +11,8 @@ export type FoundItemToPublish = PublishedItem & { code: string; status: FoundIt
 export type MatchingRepository = {
   /** The lost report with that code, only if it belongs to that user. */
   findOwnLostReport: (code: string, ownerId: string) => Promise<LostReportToMatch | null>;
+  /** The active lost report with that code, for Bienestar staff. */
+  findLostReportByCode: (code: string) => Promise<LostReportToMatch | null>;
   listPublishedItems: () => Promise<PublishedItem[]>;
   /** Saves new suggestions. The ones that already exist (even if dismissed) are left as they are. */
   saveSuggestions: (lostReportId: string, suggestions: Suggestion[]) => Promise<void>;

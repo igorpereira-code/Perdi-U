@@ -9,10 +9,12 @@ function fakeUsers(welfareEmails: string[] = []) {
   const users: UsersRepository = {
     findById: async (id) => saved.find((user) => user.id === id) ?? null,
     create: async (profile) => {
-      saved.push(profile);
-      return profile;
+      const savedProfile = { ...profile, hasSeenGuide: false };
+      saved.push(savedProfile);
+      return savedProfile;
     },
     listWelfareEmails: async () => welfareEmails,
+    markGuideSeen: async () => {},
   };
   return { users, saved };
 }
@@ -87,7 +89,7 @@ describe('Ingresar con una sesión de Google', () => {
 
     it('sigue usando el mismo perfil y no crea otro', async () => {
       const { users, saved } = fakeUsers();
-      saved.push({ ...googleUser, photoUrl: null, role: 'WELFARE' });
+      saved.push({ ...googleUser, photoUrl: null, role: 'WELFARE', hasSeenGuide: true });
 
       const res = await request(createApp({ verifyToken, users }))
         .get('/me')
@@ -105,7 +107,7 @@ describe('Ingresar con una sesión de Google', () => {
       .get('/me')
       .set('Authorization', 'Bearer valid-token');
 
-    expect(saved).toEqual([{ ...googleUser, role: 'COMMUNITY' }]);
+    expect(saved).toEqual([{ ...googleUser, role: 'COMMUNITY', hasSeenGuide: false }]);
   });
 });
 
