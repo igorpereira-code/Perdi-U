@@ -19,5 +19,18 @@ export function createCatalogRouter(catalog: CatalogRepository): Router {
     }
   });
 
+  router.get('/catalog/:code', async (req, res) => {
+    try {
+      const item = await catalog.findByCode(String(req.params.code).trim().toUpperCase());
+      if (!item || !isInCatalog(item)) {
+        res.status(404).json({ error: 'No encontramos este objeto.' });
+        return;
+      }
+      res.json(toView(item));
+    } catch {
+      res.status(503).json({ error: 'No se pudo cargar el objeto. Intenta nuevamente.' });
+    }
+  });
+
   return router;
 }

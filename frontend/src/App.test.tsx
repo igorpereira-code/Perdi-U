@@ -516,3 +516,12 @@ describe('Objetos encontrados en el inicio', () => {
     expect(await screen.findByRole('heading', { name: 'Objetos encontrados' })).toBeInTheDocument();
   });
 });
+
+
+describe('Detalle de un objeto encontrado', () => {
+  it('abre el detalle de un objeto en /objetos/<código>', async () => {
+    renderAt('/objetos/HZ-0007', igor);
+
+    expect(await screen.findByRole('heading', { name: 'No encontramos este objeto' })).toBeInTheDocument();
+  });
+});

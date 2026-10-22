@@ -4644,7 +4644,7 @@
     "testId": 59
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e7fd3be423674db2a13d9aab82fd6ae791607a65",
     "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
     "commitTimestamp": 1792599362931,
     "testId": 59
@@ -4810,5 +4810,27 @@
     "commitName": "feat(owner): filtrar los objetos encontrados por categoría",
     "commitTimestamp": 1792627053808,
     "testId": 66
+  },
+  {
+    "numPassedTests": 552,
+    "failedTests": 6,
+    "numTotalTests": 558,
+    "timestamp": 1792629368994,
+    "success": false,
+    "testId": 67
+  },
+  {
+    "numPassedTests": 560,
+    "failedTests": 0,
+    "numTotalTests": 560,
+    "timestamp": 1792629600788,
+    "success": true,
+    "testId": 67
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ver el detalle de un objeto encontrado",
+    "commitTimestamp": 1792629786506,
+    "testId": 67
   }
 ]

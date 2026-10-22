@@ -75,3 +75,24 @@ describe('Los objetos entregados no aparecen (GET /catalog)', () => {
     expect(res.body.map((item: { code: string }) => item.code)).toEqual(['HZ-0007']);
   });
 });
+
+describe('Ver el detalle de un objeto publicado (GET /catalog/:code)', () => {
+  it('muestra el detalle de un objeto publicado por su código', async () => {
+    const catalog = fakeCatalog([backpack]);
+
+    const res = await request(createApp({ catalog })).get('/catalog/hz-0007');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchObject({ code: 'HZ-0007', description: 'Mochila negra con llavero' });
+    expect(catalog.findByCode).toHaveBeenCalledWith('HZ-0007');
+  });
+
+  it('no muestra el detalle de un objeto entregado ni de uno que no existe', async () => {
+    const delivered: CatalogItem = { ...backpack, code: 'HZ-0008', status: 'DELIVERED', visibility: 'HIDDEN' };
+    const catalog = fakeCatalog([backpack, delivered]);
+    const app = createApp({ catalog });
+
+    expect((await request(app).get('/catalog/HZ-0008')).status).toBe(404);
+    expect((await request(app).get('/catalog/HZ-9999')).status).toBe(404);
+  });
+});

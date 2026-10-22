@@ -31,3 +31,18 @@ describe('Consultar los objetos publicados', () => {
     );
   });
 });
+
+describe('Consultar el detalle de un objeto publicado', () => {
+  it('trae el objeto por su código', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(answer(200, backpack));
+
+    await expect(createCatalogService(apiFetch as ApiFetch).getByCode('HZ-0007')).resolves.toEqual(backpack);
+    expect(apiFetch).toHaveBeenCalledWith('/catalog/HZ-0007');
+  });
+
+  it('devuelve vacío si el objeto no está publicado', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(answer(404, { error: 'No encontramos este objeto.' }));
+
+    await expect(createCatalogService(apiFetch as ApiFetch).getByCode('HZ-0008')).resolves.toBeNull();
+  });
+});

@@ -74,3 +74,11 @@ describe('Filtrar los objetos publicados por categoría', () => {
     expect(screen.queryByText('Mochila negra con llavero')).not.toBeInTheDocument();
   });
 });
+
+describe('Abrir un objeto publicado', () => {
+  it('cada objeto lleva a su detalle', async () => {
+    renderSection(jest.fn().mockResolvedValue([backpack]));
+
+    expect(await screen.findByRole('link', { name: 'Ver objeto HZ-0007' })).toHaveAttribute('href', '/objetos/HZ-0007');
+  });
+});

@@ -22,7 +22,7 @@ import { LostItemEntry } from './owner/presenter/LostItemEntry';
 import { LostReportScreen } from './owner/presenter/LostReportScreen';
 import type { CatalogService } from './owner/data/catalogService';
 import { CatalogSection } from './owner/presenter/CatalogSection';
-
+import { CatalogItemScreen } from './owner/presenter/CatalogItemScreen';
 
 type AppProps = {
   authService: AuthService;
@@ -78,7 +78,6 @@ export default function App({
     if (user === null) {
       return <Navigate to="/ingresar" replace />;
     }
-    
     if (guidePending && pathname !== '/guia-rapida') {
       return <Navigate to="/guia-rapida" replace />;
     }
@@ -101,19 +100,20 @@ export default function App({
           </div>
         ))}
       />
-             <Route
+      <Route
         path="/reportar-objeto"
-        element={signedInPage(() => (
-          <FoundItemScreen foundItemsService={foundItemsService} />
-        ))}
+        element={signedInPage(() => <FoundItemScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/reportar-perdida"
         element={signedInPage(() => (
-          <LostReportScreen
-            foundItemsService={foundItemsService}
-            lostReportsService={lostReportsService}
-          />
+          <LostReportScreen foundItemsService={foundItemsService} lostReportsService={lostReportsService} />
+        ))}
+      />
+      <Route
+        path="/objetos/:code"
+        element={signedInPage(() => (
+          <CatalogItemScreen catalogService={catalogService} foundItemsService={foundItemsService} />
         ))}
       />
       <Route

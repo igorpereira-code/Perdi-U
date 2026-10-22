@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
@@ -16,7 +17,11 @@ type CatalogSectionProps = {
 
 function CatalogCard({ item, foundItemsService }: { item: CatalogItem } & Pick<CatalogSectionProps, 'foundItemsService'>) {
   return (
-    <div className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+    <Link
+      to={`/objetos/${encodeURIComponent(item.code)}`}
+      aria-label={`Ver objeto ${item.code}`}
+      className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4 hover:border-blue-300"
+    >
       <FoundItemPhoto report={item} foundItemsService={foundItemsService} />
       <div className="min-w-0 space-y-1">
         <p className="break-words text-sm font-medium text-neutral-900">{item.description}</p>
@@ -27,7 +32,7 @@ function CatalogCard({ item, foundItemsService }: { item: CatalogItem } & Pick<C
           {item.code} · Encontrado el <time dateTime={item.foundAt}>{formatReportDate(item.foundAt)}</time>
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
 
