@@ -52,3 +52,14 @@ describe('Código y estado de cada reporte', () => {
     expect(screen.getByText('Buscando')).toBeInTheDocument();
   });
 });
+
+describe('Abrir un reporte de la lista', () => {
+  it('cada reporte lleva a su detalle', async () => {
+    renderList(jest.fn().mockResolvedValue([keys]));
+
+    expect(await screen.findByRole('link', { name: 'Ver reporte PR-0007' })).toHaveAttribute(
+      'href',
+      '/mis-perdidas/PR-0007',
+    );
+  });
+});

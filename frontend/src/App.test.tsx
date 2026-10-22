@@ -538,3 +538,11 @@ describe('Mis reportes de pérdida desde el inicio', () => {
     expect(await screen.findByRole('heading', { name: 'Mis reportes de pérdida' })).toBeInTheDocument();
   });
 });
+
+describe('Detalle de mi reporte de pérdida', () => {
+  it('abre el detalle de mi reporte en /mis-perdidas/<código>', async () => {
+    renderAt('/mis-perdidas/PR-0007', igor);
+
+    expect(await screen.findByRole('heading', { name: 'No encontramos este reporte' })).toBeInTheDocument();
+  });
+});

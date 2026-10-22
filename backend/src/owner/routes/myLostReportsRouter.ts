@@ -22,5 +22,20 @@ export function createMyLostReportsRouter(reports: MyLostReportsRepository): Rou
     }
   });
 
+  router.get('/my-lost-reports/:code', async (req, res) => {
+    res.set('Cache-Control', 'private, no-store');
+    try {
+      const code = String(req.params.code).trim().toUpperCase();
+      const report = await reports.findMine(getCurrentUser(req).id, code);
+      if (!report) {
+        res.status(404).json({ error: 'No encontramos este reporte.' });
+        return;
+      }
+      res.json(toView(report));
+    } catch {
+      res.status(503).json({ error: 'No se pudo cargar el reporte. Intenta nuevamente.' });
+    }
+  });
+
   return router;
 }

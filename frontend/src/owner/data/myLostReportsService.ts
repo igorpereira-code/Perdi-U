@@ -14,6 +14,7 @@ export type MyLostReport = {
 
 export type MyLostReportsService = {
   listMine: () => Promise<MyLostReport[]>;
+  getMine: (code: string) => Promise<MyLostReport | null>;
 };
 
 export function createMyLostReportsService(apiFetch: ApiFetch): MyLostReportsService {
@@ -22,6 +23,16 @@ export function createMyLostReportsService(apiFetch: ApiFetch): MyLostReportsSer
       const response = await apiFetch('/my-lost-reports');
       if (!response.ok) {
         throw new Error('No se pudieron cargar tus reportes. Intenta nuevamente.');
+      }
+      return response.json();
+    },
+    getMine: async (code) => {
+      const response = await apiFetch(`/my-lost-reports/${encodeURIComponent(code)}`);
+      if (response.status === 404) {
+        return null;
+      }
+      if (!response.ok) {
+        throw new Error('No se pudo cargar el reporte. Intenta nuevamente.');
       }
       return response.json();
     },

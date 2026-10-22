@@ -32,3 +32,18 @@ describe('Consultar mis reportes de pérdida', () => {
     );
   });
 });
+
+describe('Consultar el detalle de mi reporte', () => {
+  it('trae mi reporte por su código', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(answer(200, keys));
+
+    await expect(createMyLostReportsService(apiFetch as ApiFetch).getMine('PR-0007')).resolves.toEqual(keys);
+    expect(apiFetch).toHaveBeenCalledWith('/my-lost-reports/PR-0007');
+  });
+
+  it('devuelve vacío si el reporte no existe o no es mío', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(answer(404, { error: 'No encontramos este reporte.' }));
+
+    await expect(createMyLostReportsService(apiFetch as ApiFetch).getMine('PR-0001')).resolves.toBeNull();
+  });
+});

@@ -25,6 +25,7 @@ import { CatalogSection } from './owner/presenter/CatalogSection';
 import { CatalogItemScreen } from './owner/presenter/CatalogItemScreen';
 import type { MyLostReportsService } from './owner/data/myLostReportsService';
 import { MyLostReportsScreen } from './owner/presenter/MyLostReportsScreen';
+import { MyLostReportScreen } from './owner/presenter/MyLostReportScreen';
 
 type AppProps = {
   authService: AuthService;
@@ -126,6 +127,10 @@ export default function App({
       <Route
         path="/mis-perdidas"
         element={signedInPage(() => <MyLostReportsScreen myLostReportsService={myLostReportsService} />)}
+      />
+      <Route
+        path="/mis-perdidas/:code"
+        element={signedInPage(() => <MyLostReportScreen myLostReportsService={myLostReportsService} />)}
       />
       <Route
         path="/perfil"

@@ -4732,7 +4732,7 @@
     "testId": 63
   },
   {
-    "commitId": "HEAD",
+    "commitId": "de85d97f0eb511d976d0f4c8a582ec89f20dc5b4",
     "commitName": "feat(owner): mostrar los últimos objetos publicados en la pantalla de inicio",
     "commitTimestamp": 1792625262277,
     "testId": 63
@@ -4906,5 +4906,27 @@
     "commitName": "feat(owner): mostrar el código y el estado de cada reporte de pérdida",
     "commitTimestamp": 1792632095899,
     "testId": 70
+  },
+  {
+    "numPassedTests": 571,
+    "failedTests": 9,
+    "numTotalTests": 580,
+    "timestamp": 1792632365772,
+    "success": false,
+    "testId": 71
+  },
+  {
+    "numPassedTests": 580,
+    "failedTests": 0,
+    "numTotalTests": 580,
+    "timestamp": 1792632538004,
+    "success": true,
+    "testId": 71
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ver el detalle de mi reporte de pérdida",
+    "commitTimestamp": 1792632582953,
+    "testId": 71
   }
 ]

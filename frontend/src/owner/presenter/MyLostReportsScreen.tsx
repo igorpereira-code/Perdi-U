@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
@@ -65,6 +66,13 @@ export function MyLostReportsScreen({ myLostReportsService }: MyLostReportsScree
               </div>
               <p className="break-words text-sm text-neutral-900">{report.description}</p>
               <p className="text-sm text-neutral-500">{report.category}</p>
+              <Link
+                to={`/mis-perdidas/${encodeURIComponent(report.code)}`}
+                aria-label={`Ver reporte ${report.code}`}
+                className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700 hover:bg-blue-50"
+              >
+                Ver reporte
+              </Link>
             </li>
           ))}
         </ul>

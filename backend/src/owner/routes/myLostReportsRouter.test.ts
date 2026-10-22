@@ -63,3 +63,24 @@ describe('Ver mis reportes de pérdida (GET /my-lost-reports)', () => {
     expect(res.body).toEqual({ error: 'No se pudieron cargar tus reportes. Intenta nuevamente.' });
   });
 });
+
+describe('Ver el detalle de mi reporte (GET /my-lost-reports/:code)', () => {
+  it('muestra el detalle de un reporte propio', async () => {
+    const myLostReports = fakeReports([keys]);
+
+    const res = await request(createApp({ myLostReports })).get('/my-lost-reports/pr-0007');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchObject({ code: 'PR-0007', dateFrom: '2026-10-17', dateTo: '2026-10-18' });
+    expect(myLostReports.findMine).toHaveBeenCalledWith(SAMPLE_USERS.ana.id, 'PR-0007');
+  });
+
+  it('no muestra un reporte que no existe o que es de otra persona', async () => {
+    const myLostReports = fakeReports([]);
+
+    const res = await request(createApp({ myLostReports })).get('/my-lost-reports/PR-0001');
+
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: 'No encontramos este reporte.' });
+  });
+});
