@@ -24,6 +24,9 @@ import { createLostReportsRouter } from './owner/routes/lostReportsRouter';
 import type { CatalogRepository } from './owner/data/catalogRepository';
 import { prismaCatalogRepository } from './owner/data/prismaCatalogRepository';
 import { createCatalogRouter } from './owner/routes/catalogRouter';
+import type { MyLostReportsRepository } from './owner/data/myLostReportsRepository';
+import { prismaMyLostReportsRepository } from './owner/data/prismaMyLostReportsRepository';
+import { createMyLostReportsRouter } from './owner/routes/myLostReportsRouter';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -35,6 +38,7 @@ type AppOptions = {
   welfare?: WelfareRepository;
   lostReports?: LostReportsRepository;
   catalog?: CatalogRepository;
+  myLostReports?: MyLostReportsRepository;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
@@ -46,6 +50,7 @@ export function createApp({
   welfare = prismaWelfareRepository,
   lostReports = prismaLostReportsRepository,
   catalog = prismaCatalogRepository,
+  myLostReports = prismaMyLostReportsRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -67,6 +72,7 @@ export function createApp({
   app.use(createReceivedItemsRouter(welfare));
   app.use(createLostReportsRouter(lostReports, () => foundItems.getCatalogs(), foundItemPhotos));
   app.use(createCatalogRouter(catalog));
+  app.use(createMyLostReportsRouter(myLostReports));
 
   return app;
 }

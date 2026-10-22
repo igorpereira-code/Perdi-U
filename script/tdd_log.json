@@ -4688,7 +4688,7 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1821c6fb2130d31ed029f0a4a034548370fb2566",
     "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
     "commitTimestamp": 1792601341695,
     "testId": 61
@@ -4854,5 +4854,35 @@
     "commitName": "feat(owner): mostrar dónde y cuándo preguntar por un objeto en Bienestar",
     "commitTimestamp": 1792630045127,
     "testId": 68
+  },
+  {
+    "numPassedTests": 562,
+    "failedTests": 5,
+    "numTotalTests": 567,
+    "timestamp": 1792631456454,
+    "success": false,
+    "testId": 69
+  },
+  {
+    "numPassedTests": 523,
+    "failedTests": 0,
+    "numTotalTests": 523,
+    "timestamp": 1792631653667,
+    "success": false,
+    "testId": 69
+  },
+  {
+    "numPassedTests": 570,
+    "failedTests": 0,
+    "numTotalTests": 570,
+    "timestamp": 1792631804843,
+    "success": true,
+    "testId": 69
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ver todos mis reportes de pérdida",
+    "commitTimestamp": 1792631842462,
+    "testId": 69
   }
 ]

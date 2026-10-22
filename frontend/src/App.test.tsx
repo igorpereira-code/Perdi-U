@@ -11,6 +11,7 @@ import type { FoundItemsService, MyFoundItem } from './finder/data/foundItemsSer
 import type { WelfareService } from './welfare/data/welfareService';
 import type { LostReportsService } from './owner/data/lostReportsService';
 import type { CatalogService } from './owner/data/catalogService';
+import type { MyLostReportsService } from './owner/data/myLostReportsService';
 
 const phone: MatchView = {
   id: 'match-1',
@@ -80,6 +81,7 @@ function renderAt(
   };
   const lostReportsService: LostReportsService = { create: jest.fn() };
   const catalogService = { list: jest.fn().mockResolvedValue([]), getByCode: jest.fn().mockResolvedValue(null) } as CatalogService;
+  const myLostReportsService = { listMine: jest.fn().mockResolvedValue([]), getMine: jest.fn().mockResolvedValue(null) } as MyLostReportsService;
   const rendered = render(
     <MemoryRouter initialEntries={[path]}>
       <App
@@ -90,6 +92,7 @@ function renderAt(
         welfareService={welfareService}
         lostReportsService={lostReportsService}
         catalogService={catalogService}
+        myLostReportsService={myLostReportsService}
       />
     </MemoryRouter>,
   );
@@ -523,5 +526,15 @@ describe('Detalle de un objeto encontrado', () => {
     renderAt('/objetos/HZ-0007', igor);
 
     expect(await screen.findByRole('heading', { name: 'No encontramos este objeto' })).toBeInTheDocument();
+  });
+});
+
+describe('Mis reportes de pérdida desde el inicio', () => {
+  it('abre Mis reportes de pérdida desde la pantalla principal', async () => {
+    renderAt('/', igor);
+
+    await userEvent.click(await screen.findByRole('link', { name: 'Mis reportes de pérdida' }));
+
+    expect(await screen.findByRole('heading', { name: 'Mis reportes de pérdida' })).toBeInTheDocument();
   });
 });
