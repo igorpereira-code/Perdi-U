@@ -4688,13 +4688,13 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1821c6fb2130d31ed029f0a4a034548370fb2566",
     "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
     "commitTimestamp": 1792601341695,
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "3115ce1c12a59df6315d7a4fae2b8adc542b3c79",
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
     "testId": 62
@@ -4732,7 +4732,7 @@
     "testId": 63
   },
   {
-    "commitId": "HEAD",
+    "commitId": "de85d97f0eb511d976d0f4c8a582ec89f20dc5b4",
     "commitName": "feat(owner): mostrar los últimos objetos publicados en la pantalla de inicio",
     "commitTimestamp": 1792625262277,
     "testId": 63
@@ -4754,7 +4754,7 @@
     "testId": 64
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4c2bd462b75b6b269cc0933501ae904a65092d22",
     "commitName": "feat(owner): ocultar del catálogo los objetos ya entregados",
     "commitTimestamp": 1792626142532,
     "testId": 64
@@ -4854,5 +4854,101 @@
     "commitName": "feat(owner): mostrar dónde y cuándo preguntar por un objeto en Bienestar",
     "commitTimestamp": 1792630045127,
     "testId": 68
+  },
+  {
+    "numPassedTests": 562,
+    "failedTests": 5,
+    "numTotalTests": 567,
+    "timestamp": 1792631456454,
+    "success": false,
+    "testId": 69
+  },
+  {
+    "numPassedTests": 523,
+    "failedTests": 0,
+    "numTotalTests": 523,
+    "timestamp": 1792631653667,
+    "success": false,
+    "testId": 69
+  },
+  {
+    "numPassedTests": 570,
+    "failedTests": 0,
+    "numTotalTests": 570,
+    "timestamp": 1792631804843,
+    "success": true,
+    "testId": 69
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ver todos mis reportes de pérdida",
+    "commitTimestamp": 1792631842462,
+    "testId": 69
+  },
+  {
+    "numPassedTests": 570,
+    "failedTests": 1,
+    "numTotalTests": 571,
+    "timestamp": 1792632027573,
+    "success": false,
+    "testId": 70
+  },
+  {
+    "numPassedTests": 571,
+    "failedTests": 0,
+    "numTotalTests": 571,
+    "timestamp": 1792632057881,
+    "success": true,
+    "testId": 70
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código y el estado de cada reporte de pérdida",
+    "commitTimestamp": 1792632095899,
+    "testId": 70
+  },
+  {
+    "numPassedTests": 571,
+    "failedTests": 9,
+    "numTotalTests": 580,
+    "timestamp": 1792632365772,
+    "success": false,
+    "testId": 71
+  },
+  {
+    "numPassedTests": 580,
+    "failedTests": 0,
+    "numTotalTests": 580,
+    "timestamp": 1792632538004,
+    "success": true,
+    "testId": 71
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ver el detalle de mi reporte de pérdida",
+    "commitTimestamp": 1792632582953,
+    "testId": 71
+  },
+  {
+    "numPassedTests": 580,
+    "failedTests": 1,
+    "numTotalTests": 581,
+    "timestamp": 1792632707691,
+    "success": false,
+    "testId": 72
+  },
+  {
+    "numPassedTests": 581,
+    "failedTests": 0,
+    "numTotalTests": 581,
+    "timestamp": 1792632739676,
+    "success": true,
+    "testId": 72
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
+    "commitTimestamp": 1792632787536,
+    "testId": 72
   }
 ]
