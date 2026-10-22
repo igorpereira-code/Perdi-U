@@ -23,6 +23,9 @@ import { LostReportScreen } from './owner/presenter/LostReportScreen';
 import type { CatalogService } from './owner/data/catalogService';
 import { CatalogSection } from './owner/presenter/CatalogSection';
 import { CatalogItemScreen } from './owner/presenter/CatalogItemScreen';
+import type { MyLostReportsService } from './owner/data/myLostReportsService';
+import { MyLostReportsScreen } from './owner/presenter/MyLostReportsScreen';
+import { MyLostReportScreen } from './owner/presenter/MyLostReportScreen';
 
 type AppProps = {
   authService: AuthService;
@@ -32,6 +35,7 @@ type AppProps = {
   welfareService: WelfareService;
   lostReportsService: LostReportsService;
   catalogService: CatalogService;
+  myLostReportsService: MyLostReportsService;
 };
 
 export default function App({
@@ -42,6 +46,7 @@ export default function App({
   welfareService,
   lostReportsService,
   catalogService,
+  myLostReportsService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
@@ -95,7 +100,10 @@ export default function App({
               <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
               <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
             </div>
-            <Link to="/mis-reportes" className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700">Mis reportes</Link>
+            <div className="flex flex-wrap gap-3">
+              <Link to="/mis-reportes" className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700">Mis reportes</Link>
+              <Link to="/mis-perdidas" className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700">Mis reportes de pérdida</Link>
+            </div>
             <CatalogSection catalogService={catalogService} foundItemsService={foundItemsService} />
           </div>
         ))}
@@ -115,6 +123,14 @@ export default function App({
         element={signedInPage(() => (
           <CatalogItemScreen catalogService={catalogService} foundItemsService={foundItemsService} />
         ))}
+      />
+      <Route
+        path="/mis-perdidas"
+        element={signedInPage(() => <MyLostReportsScreen myLostReportsService={myLostReportsService} />)}
+      />
+      <Route
+        path="/mis-perdidas/:code"
+        element={signedInPage(() => <MyLostReportScreen myLostReportsService={myLostReportsService} />)}
       />
       <Route
         path="/perfil"
