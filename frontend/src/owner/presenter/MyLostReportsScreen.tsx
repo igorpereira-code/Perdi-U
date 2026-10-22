@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
+import { StatusChip } from '../../core/presenter/StatusChip';
 import type { MyLostReport, MyLostReportsService } from '../data/myLostReportsService';
 
 type MyLostReportsScreenProps = {
@@ -58,6 +59,10 @@ export function MyLostReportsScreen({ myLostReportsService }: MyLostReportsScree
         <ul aria-label="Mis reportes de pérdida" className="space-y-3">
           {reports.map((report) => (
             <li key={report.code} className="space-y-2 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+              <div className="flex items-start justify-between gap-3">
+                <p className="font-mono text-sm font-semibold text-blue-700">{report.code}</p>
+                <StatusChip status={report.status} />
+              </div>
               <p className="break-words text-sm text-neutral-900">{report.description}</p>
               <p className="text-sm text-neutral-500">{report.category}</p>
             </li>

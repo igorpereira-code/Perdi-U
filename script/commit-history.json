@@ -3135,12 +3135,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "3115ce1c12a59df6315d7a4fae2b8adc542b3c79",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-21T20:06:58.000Z",
       "message": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/3115ce1c12a59df6315d7a4fae2b8adc542b3c79"
     },
     "stats": {
       "total": 80,
@@ -3283,6 +3283,25 @@
     },
     "coverage": 89.88,
     "test_count": 570,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-22T01:21:35.000Z",
+      "message": "feat(owner): mostrar el código y el estado de cada reporte de pérdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 16,
+      "deletions": 0,
+      "date": "2026-10-22"
+    },
+    "coverage": 89.88,
+    "test_count": 571,
     "failed_tests": 0,
     "conclusion": "success"
   }

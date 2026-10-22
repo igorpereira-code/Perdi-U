@@ -41,3 +41,14 @@ describe('Ver todos mis reportes de pérdida', () => {
     expect(await screen.findByText('Llaves con llavero azul')).toBeInTheDocument();
   });
 });
+
+describe('Código y estado de cada reporte', () => {
+  it('cada reporte muestra su código y su estado', async () => {
+    renderList(jest.fn().mockResolvedValue([keys, phone]));
+
+    expect(await screen.findByText('PR-0007')).toBeInTheDocument();
+    expect(screen.getByText('Con coincidencias')).toBeInTheDocument();
+    expect(screen.getByText('PR-0008')).toBeInTheDocument();
+    expect(screen.getByText('Buscando')).toBeInTheDocument();
+  });
+});

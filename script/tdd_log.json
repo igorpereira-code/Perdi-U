@@ -4694,7 +4694,7 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "3115ce1c12a59df6315d7a4fae2b8adc542b3c79",
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
     "testId": 62
@@ -4884,5 +4884,27 @@
     "commitName": "feat(owner): ver todos mis reportes de pérdida",
     "commitTimestamp": 1792631842462,
     "testId": 69
+  },
+  {
+    "numPassedTests": 570,
+    "failedTests": 1,
+    "numTotalTests": 571,
+    "timestamp": 1792632027573,
+    "success": false,
+    "testId": 70
+  },
+  {
+    "numPassedTests": 571,
+    "failedTests": 0,
+    "numTotalTests": 571,
+    "timestamp": 1792632057881,
+    "success": true,
+    "testId": 70
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código y el estado de cada reporte de pérdida",
+    "commitTimestamp": 1792632095899,
+    "testId": 70
   }
 ]
