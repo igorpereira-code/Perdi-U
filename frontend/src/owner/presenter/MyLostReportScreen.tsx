@@ -4,6 +4,7 @@ import { Alert } from '../../core/presenter/Alert';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { InfoRow } from '../../core/presenter/InfoRow';
 import { StatusChip } from '../../core/presenter/StatusChip';
+import { WelfareCard } from '../../core/presenter/WelfareCard';
 import { SeeMatchesLink } from '../../matching/presenter/SeeMatchesLink';
 import type { MyLostReport, MyLostReportsService } from '../data/myLostReportsService';
 
@@ -77,6 +78,11 @@ export function MyLostReportScreen({ myLostReportsService }: MyLostReportScreenP
         <h1 className="text-lg font-semibold text-blue-700">Detalle de mi reporte</h1>
         <StatusChip status={report.status} />
       </div>
+      <div className="space-y-1 rounded-2xl border border-blue-100 bg-blue-50 p-4 text-center">
+        <p className="text-sm text-neutral-700">Código de tu reporte</p>
+        <p className="font-mono text-2xl font-bold text-blue-700">{report.code}</p>
+        <p className="text-sm text-neutral-700">Muestra este código en Bienestar Estudiantil para recoger tu objeto.</p>
+      </div>
       <p className="break-words text-base text-neutral-900">{report.description}</p>
       <dl className="rounded-2xl border border-neutral-200 bg-neutral-0 px-4">
         <InfoRow label="Categoría" value={report.category} />
@@ -85,6 +91,7 @@ export function MyLostReportScreen({ myLostReportsService }: MyLostReportScreenP
         <InfoRow label="Fechas" value={`Del ${formatDay(report.dateFrom)} al ${formatDay(report.dateTo)}`} />
       </dl>
       <SeeMatchesLink reportCode={report.code} />
+      <WelfareCard />
     </article>
   );
 }

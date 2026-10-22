@@ -4754,7 +4754,7 @@
     "testId": 64
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4c2bd462b75b6b269cc0933501ae904a65092d22",
     "commitName": "feat(owner): ocultar del catálogo los objetos ya entregados",
     "commitTimestamp": 1792626142532,
     "testId": 64
@@ -4928,5 +4928,27 @@
     "commitName": "feat(owner): ver el detalle de mi reporte de pérdida",
     "commitTimestamp": 1792632582953,
     "testId": 71
+  },
+  {
+    "numPassedTests": 580,
+    "failedTests": 1,
+    "numTotalTests": 581,
+    "timestamp": 1792632707691,
+    "success": false,
+    "testId": 72
+  },
+  {
+    "numPassedTests": 581,
+    "failedTests": 0,
+    "numTotalTests": 581,
+    "timestamp": 1792632739676,
+    "success": true,
+    "testId": 72
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
+    "commitTimestamp": 1792632787536,
+    "testId": 72
   }
 ]

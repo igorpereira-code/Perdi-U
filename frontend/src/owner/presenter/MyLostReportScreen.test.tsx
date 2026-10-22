@@ -54,3 +54,15 @@ describe('Detalle de mi reporte de pérdida', () => {
     expect(await screen.findByRole('heading', { name: 'No encontramos este reporte' })).toBeInTheDocument();
   });
 });
+
+describe('Mostrar el código en Bienestar', () => {
+  it('muestra el código del reporte para presentarlo en Bienestar', async () => {
+    renderDetail(jest.fn().mockResolvedValue(keys));
+
+    expect(await screen.findByText('PR-0007')).toBeInTheDocument();
+    expect(
+      screen.getByText('Muestra este código en Bienestar Estudiantil para recoger tu objeto.'),
+    ).toBeInTheDocument();
+    expect(screen.getByText('Bienestar Estudiantil – Bloque C')).toBeInTheDocument();
+  });
+});
