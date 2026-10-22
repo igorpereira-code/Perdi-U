@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Alert } from '../../core/presenter/Alert';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { InfoRow } from '../../core/presenter/InfoRow';
+import { WelfareCard } from '../../core/presenter/WelfareCard';
 import type { FoundItemsService } from '../../finder/data/foundItemsService';
 import { formatReportDate } from '../../finder/logic/formatReportDate';
 import { FoundItemPhoto } from '../../finder/presenter/FoundItemPhoto';
@@ -84,6 +85,15 @@ export function CatalogItemScreen({ catalogService, foundItemsService }: Catalog
         {item.placeReference && <InfoRow label="Referencia" value={item.placeReference} />}
         <InfoRow label="Fecha" value={formatReportDate(item.foundAt)} />
       </dl>
+      <section aria-labelledby="ask-welfare-title" className="space-y-2">
+        <h2 id="ask-welfare-title" className="text-base font-semibold text-blue-700">
+          ¿Es tuyo?
+        </h2>
+        <p className="text-sm text-neutral-700">
+          Acércate a Bienestar Estudiantil con el código {item.code} para preguntar por él.
+        </p>
+        <WelfareCard />
+      </section>
     </article>
   );
 }

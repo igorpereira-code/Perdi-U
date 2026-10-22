@@ -3097,12 +3097,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "afd088963ec9f09b0e3d47a51a206ebf90bb8f8e",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T16:23:10.000Z",
       "message": "feat(owner): permitir subir una foto de referencia del objeto perdido",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/afd088963ec9f09b0e3d47a51a206ebf90bb8f8e"
     },
     "stats": {
       "total": 152,
@@ -3245,6 +3245,25 @@
     },
     "coverage": 90.01,
     "test_count": 560,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-22T00:47:24.000Z",
+      "message": "feat(owner): mostrar dónde y cuándo preguntar por un objeto en Bienestar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 23,
+      "deletions": 0,
+      "date": "2026-10-22"
+    },
+    "coverage": 90.01,
+    "test_count": 561,
     "failed_tests": 0,
     "conclusion": "success"
   }

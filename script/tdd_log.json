@@ -4666,7 +4666,7 @@
     "testId": 60
   },
   {
-    "commitId": "HEAD",
+    "commitId": "afd088963ec9f09b0e3d47a51a206ebf90bb8f8e",
     "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
     "commitTimestamp": 1792599791806,
     "testId": 60
@@ -4832,5 +4832,27 @@
     "commitName": "feat(owner): ver el detalle de un objeto encontrado",
     "commitTimestamp": 1792629786506,
     "testId": 67
+  },
+  {
+    "numPassedTests": 560,
+    "failedTests": 1,
+    "numTotalTests": 561,
+    "timestamp": 1792629909525,
+    "success": false,
+    "testId": 68
+  },
+  {
+    "numPassedTests": 561,
+    "failedTests": 0,
+    "numTotalTests": 561,
+    "timestamp": 1792629966303,
+    "success": true,
+    "testId": 68
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar dónde y cuándo preguntar por un objeto en Bienestar",
+    "commitTimestamp": 1792630045127,
+    "testId": 68
   }
 ]

@@ -48,3 +48,16 @@ describe('Detalle de un objeto publicado', () => {
     expect(await screen.findByRole('heading', { name: 'No encontramos este objeto' })).toBeInTheDocument();
   });
 });
+
+describe('Dónde preguntar por el objeto', () => {
+  it('muestra dónde está Bienestar y su horario para ir a preguntar', async () => {
+    renderScreen(jest.fn().mockResolvedValue(backpack));
+
+    expect(await screen.findByRole('heading', { name: '¿Es tuyo?' })).toBeInTheDocument();
+    expect(
+      screen.getByText('Acércate a Bienestar Estudiantil con el código HZ-0007 para preguntar por él.'),
+    ).toBeInTheDocument();
+    expect(screen.getByText('Bienestar Estudiantil – Bloque C')).toBeInTheDocument();
+    expect(screen.getByText('Lunes a viernes, de 08:30 a 16:00')).toBeInTheDocument();
+  });
+});
