@@ -4524,7 +4524,7 @@
     "testId": 55
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b43bd98e732c914d9edca421183dde452ab45c5a",
     "commitName": "feat(owner): permitir indicar el rango de fechas de la pérdida",
     "commitTimestamp": 1792594501296,
     "testId": 55
@@ -4578,7 +4578,7 @@
     "testId": 56
   },
   {
-    "commitId": "HEAD",
+    "commitId": "a4d4e077d8f019c3c5bee602723cbfae4966fefe",
     "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
     "commitTimestamp": 1792597534262,
     "testId": 56
@@ -4600,7 +4600,7 @@
     "testId": 57
   },
   {
-    "commitId": "HEAD",
+    "commitId": "84c6b6eccaa6488a2ec19bb6a58c35fca21466d2",
     "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
     "commitTimestamp": 1792597809312,
     "testId": 57
@@ -4622,7 +4622,7 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ed542ad622f8c698a98c3f39a7373455c786011f",
     "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
     "commitTimestamp": 1792598049048,
     "testId": 58
@@ -4644,7 +4644,7 @@
     "testId": 59
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e7fd3be423674db2a13d9aab82fd6ae791607a65",
     "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
     "commitTimestamp": 1792599362931,
     "testId": 59
@@ -4666,7 +4666,7 @@
     "testId": 60
   },
   {
-    "commitId": "HEAD",
+    "commitId": "afd088963ec9f09b0e3d47a51a206ebf90bb8f8e",
     "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
     "commitTimestamp": 1792599791806,
     "testId": 60
@@ -4698,5 +4698,161 @@
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
     "testId": 62
+  },
+  {
+    "numPassedTests": 533,
+    "failedTests": 0,
+    "numTotalTests": 533,
+    "timestamp": 1792621151122,
+    "success": true,
+    "testId": 63
+  },
+  {
+    "numPassedTests": 534,
+    "failedTests": 8,
+    "numTotalTests": 542,
+    "timestamp": 1792623551578,
+    "success": false,
+    "testId": 63
+  },
+  {
+    "numPassedTests": 525,
+    "failedTests": 17,
+    "numTotalTests": 542,
+    "timestamp": 1792623937908,
+    "success": false,
+    "testId": 63
+  },
+  {
+    "numPassedTests": 542,
+    "failedTests": 0,
+    "numTotalTests": 542,
+    "timestamp": 1792624379144,
+    "success": true,
+    "testId": 63
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar los últimos objetos publicados en la pantalla de inicio",
+    "commitTimestamp": 1792625262277,
+    "testId": 63
+  },
+  {
+    "numPassedTests": 542,
+    "failedTests": 1,
+    "numTotalTests": 543,
+    "timestamp": 1792625827266,
+    "success": false,
+    "testId": 64
+  },
+  {
+    "numPassedTests": 543,
+    "failedTests": 0,
+    "numTotalTests": 543,
+    "timestamp": 1792625994205,
+    "success": true,
+    "testId": 64
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ocultar del catálogo los objetos ya entregados",
+    "commitTimestamp": 1792626142532,
+    "testId": 64
+  },
+  {
+    "numPassedTests": 544,
+    "failedTests": 5,
+    "numTotalTests": 549,
+    "timestamp": 1792626503651,
+    "success": false,
+    "testId": 65
+  },
+  {
+    "numPassedTests": 549,
+    "failedTests": 0,
+    "numTotalTests": 549,
+    "timestamp": 1792626580974,
+    "success": true,
+    "testId": 65
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): buscar objetos encontrados por palabras clave",
+    "commitTimestamp": 1792626623530,
+    "testId": 65
+  },
+  {
+    "numPassedTests": 549,
+    "failedTests": 0,
+    "numTotalTests": 549,
+    "timestamp": 1792626919343,
+    "success": true,
+    "testId": 66
+  },
+  {
+    "numPassedTests": 549,
+    "failedTests": 3,
+    "numTotalTests": 552,
+    "timestamp": 1792626953185,
+    "success": false,
+    "testId": 66
+  },
+  {
+    "numPassedTests": 552,
+    "failedTests": 0,
+    "numTotalTests": 552,
+    "timestamp": 1792627005490,
+    "success": true,
+    "testId": 66
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): filtrar los objetos encontrados por categoría",
+    "commitTimestamp": 1792627053808,
+    "testId": 66
+  },
+  {
+    "numPassedTests": 552,
+    "failedTests": 6,
+    "numTotalTests": 558,
+    "timestamp": 1792629368994,
+    "success": false,
+    "testId": 67
+  },
+  {
+    "numPassedTests": 560,
+    "failedTests": 0,
+    "numTotalTests": 560,
+    "timestamp": 1792629600788,
+    "success": true,
+    "testId": 67
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ver el detalle de un objeto encontrado",
+    "commitTimestamp": 1792629786506,
+    "testId": 67
+  },
+  {
+    "numPassedTests": 560,
+    "failedTests": 1,
+    "numTotalTests": 561,
+    "timestamp": 1792629909525,
+    "success": false,
+    "testId": 68
+  },
+  {
+    "numPassedTests": 561,
+    "failedTests": 0,
+    "numTotalTests": 561,
+    "timestamp": 1792629966303,
+    "success": true,
+    "testId": 68
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar dónde y cuándo preguntar por un objeto en Bienestar",
+    "commitTimestamp": 1792630045127,
+    "testId": 68
   }
 ]

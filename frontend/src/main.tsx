@@ -12,6 +12,7 @@ import { createGuideService } from './finder/data/guideService';
 import { createFoundItemsService } from './finder/data/foundItemsService';
 import { createWelfareService } from './welfare/data/welfareService';
 import { createLostReportsService } from './owner/data/lostReportsService';
+import { createCatalogService } from './owner/data/catalogService';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const authService = createAuthService({ auth: supabase.auth, apiUrl });
@@ -21,6 +22,7 @@ const guideService = createGuideService(apiFetch);
 const foundItemsService = createFoundItemsService(apiFetch);
 const welfareService = createWelfareService(apiFetch);
 const lostReportsService = createLostReportsService(apiFetch);
+const catalogService = createCatalogService(apiFetch);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -32,6 +34,7 @@ createRoot(document.getElementById('root')!).render(
         foundItemsService={foundItemsService}
         welfareService={welfareService}
         lostReportsService={lostReportsService}
+        catalogService={catalogService}
       />
     </BrowserRouter>
   </StrictMode>,
