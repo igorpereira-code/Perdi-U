@@ -20,6 +20,9 @@ import { WelfarePage } from './welfare/presenter/WelfarePage';
 import type { LostReportsService } from './owner/data/lostReportsService';
 import { LostItemEntry } from './owner/presenter/LostItemEntry';
 import { LostReportScreen } from './owner/presenter/LostReportScreen';
+import type { CatalogService } from './owner/data/catalogService';
+import { CatalogSection } from './owner/presenter/CatalogSection';
+import { CatalogItemScreen } from './owner/presenter/CatalogItemScreen';
 
 type AppProps = {
   authService: AuthService;
@@ -28,6 +31,7 @@ type AppProps = {
   foundItemsService: FoundItemsService;
   welfareService: WelfareService;
   lostReportsService: LostReportsService;
+  catalogService: CatalogService;
 };
 
 export default function App({
@@ -37,6 +41,7 @@ export default function App({
   foundItemsService,
   welfareService,
   lostReportsService,
+  catalogService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
@@ -91,6 +96,7 @@ export default function App({
               <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
             </div>
             <Link to="/mis-reportes" className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700">Mis reportes</Link>
+            <CatalogSection catalogService={catalogService} foundItemsService={foundItemsService} />
           </div>
         ))}
       />
@@ -102,6 +108,12 @@ export default function App({
         path="/reportar-perdida"
         element={signedInPage(() => (
           <LostReportScreen foundItemsService={foundItemsService} lostReportsService={lostReportsService} />
+        ))}
+      />
+      <Route
+        path="/objetos/:code"
+        element={signedInPage(() => (
+          <CatalogItemScreen catalogService={catalogService} foundItemsService={foundItemsService} />
         ))}
       />
       <Route
