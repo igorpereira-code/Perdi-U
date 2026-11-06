@@ -46,10 +46,7 @@ const useSampleUser: RequestHandler = (req, res, next) => {
   next();
 };
 
-/**
- * Returns the user's saved profile.
- * On the first sign-in it does not exist yet, so it is created with the data from Google. No form needed.
- */
+/* Returns the user's saved profile.  */
 async function findOrCreateProfile(
   tokenUser: TokenUser,
   users: UsersRepository,
@@ -63,13 +60,7 @@ async function findOrCreateProfile(
   return users.create({ ...tokenUser, photoUrl: tokenUser.photoUrl ?? null, role });
 }
 
-/**
- * Finds out who is making the request:
- * - With `Authorization: Bearer <token>`, it is the user who signed in with Google.
- * - Otherwise, a sample user (header `x-sample-user: ana | luis | welfare`),
- *   only if ALLOW_SAMPLE_USERS=true (local development). If not, the user must sign in.
- * Routes always use getCurrentUser(), so they never care which one it was.
- */
+/* Finds out who is making the request: */
 export function createCurrentUser(
   verifyToken: VerifyToken,
   users: UsersRepository,
