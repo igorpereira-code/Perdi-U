@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Bell } from 'lucide-react';
 import type { AppNotification } from '@shared/notifications';
 import type { NotificationsService } from '../data/notificationsService';
+import { notificationTime } from '../logic/notificationTime';
 import { Alert } from './Alert';
 import { Button } from './Button';
 import { EmptyState } from './EmptyState';
@@ -65,6 +66,11 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
               className="rounded-2xl border border-neutral-200 bg-neutral-0 p-4"
             >
               <p className="text-sm text-neutral-900">{notification.message}</p>
+              <p className="mt-1 text-xs text-neutral-500">
+                <time dateTime={notification.createdAt}>
+                  {notificationTime(notification.createdAt)}
+                </time>
+              </p>
             </li>
           ))}
         </ul>
