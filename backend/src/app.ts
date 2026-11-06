@@ -21,6 +21,15 @@ import { prismaWelfareRepository } from './welfare/data/prismaWelfareRepository'
 import type { LostReportsRepository } from './owner/data/lostReportsRepository';
 import { prismaLostReportsRepository } from './owner/data/prismaLostReportsRepository';
 import { createLostReportsRouter } from './owner/routes/lostReportsRouter';
+import type { CatalogRepository } from './owner/data/catalogRepository';
+import { prismaCatalogRepository } from './owner/data/prismaCatalogRepository';
+import { createCatalogRouter } from './owner/routes/catalogRouter';
+import type { MyLostReportsRepository } from './owner/data/myLostReportsRepository';
+import { prismaMyLostReportsRepository } from './owner/data/prismaMyLostReportsRepository';
+import { createMyLostReportsRouter } from './owner/routes/myLostReportsRouter';
+import type { NotificationsRepository } from './core/data/notificationsRepository';
+import { prismaNotificationsRepository } from './core/data/prismaNotificationsRepository';
+import { createNotificationsRouter } from './core/routes/notificationsRouter';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -31,6 +40,9 @@ type AppOptions = {
   foundItemPhotos?: FoundItemPhotoStorage;
   welfare?: WelfareRepository;
   lostReports?: LostReportsRepository;
+  catalog?: CatalogRepository;
+  myLostReports?: MyLostReportsRepository;
+  notifications?: NotificationsRepository;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
@@ -41,6 +53,9 @@ export function createApp({
   foundItemPhotos = supabaseFoundItemPhotoStorage,
   welfare = prismaWelfareRepository,
   lostReports = prismaLostReportsRepository,
+  catalog = prismaCatalogRepository,
+  myLostReports = prismaMyLostReportsRepository,
+  notifications = prismaNotificationsRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -61,6 +76,8 @@ export function createApp({
   app.use(createFoundItemsRouter(foundItems, foundItemPhotos));
   app.use(createReceivedItemsRouter(welfare));
   app.use(createLostReportsRouter(lostReports, () => foundItems.getCatalogs(), foundItemPhotos));
-
+  app.use(createCatalogRouter(catalog));
+  app.use(createMyLostReportsRouter(myLostReports));
+  app.use(createNotificationsRouter(notifications));
   return app;
 }

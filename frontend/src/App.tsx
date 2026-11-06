@@ -20,6 +20,15 @@ import { WelfarePage } from './welfare/presenter/WelfarePage';
 import type { LostReportsService } from './owner/data/lostReportsService';
 import { LostItemEntry } from './owner/presenter/LostItemEntry';
 import { LostReportScreen } from './owner/presenter/LostReportScreen';
+import type { CatalogService } from './owner/data/catalogService';
+import { CatalogSection } from './owner/presenter/CatalogSection';
+import { CatalogItemScreen } from './owner/presenter/CatalogItemScreen';
+import type { MyLostReportsService } from './owner/data/myLostReportsService';
+import { MyLostReportsScreen } from './owner/presenter/MyLostReportsScreen';
+import { MyLostReportScreen } from './owner/presenter/MyLostReportScreen';
+import type { NotificationsService } from './core/data/notificationsService';
+import { NotificationsBell } from './core/presenter/NotificationsBell';
+import { NotificationsScreen } from './core/presenter/NotificationsScreen';
 
 type AppProps = {
   authService: AuthService;
@@ -28,6 +37,9 @@ type AppProps = {
   foundItemsService: FoundItemsService;
   welfareService: WelfareService;
   lostReportsService: LostReportsService;
+  catalogService: CatalogService;
+  myLostReportsService: MyLostReportsService;
+  notificationsService?: NotificationsService;
 };
 
 export default function App({
@@ -37,6 +49,9 @@ export default function App({
   foundItemsService,
   welfareService,
   lostReportsService,
+  catalogService,
+  myLostReportsService,
+  notificationsService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
@@ -76,7 +91,16 @@ export default function App({
     if (guidePending && pathname !== '/guia-rapida') {
       return <Navigate to="/guia-rapida" replace />;
     }
-    return <AppLayout role={user.role}>{page(user)}</AppLayout>;
+    return (
+      <AppLayout
+        role={user.role}
+        headerAction={
+          notificationsService && <NotificationsBell notificationsService={notificationsService} />
+        }
+      >
+        {page(user)}
+      </AppLayout>
+    );
   };
 
   return (
@@ -90,18 +114,58 @@ export default function App({
               <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
               <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
             </div>
-            <Link to="/mis-reportes" className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700">Mis reportes</Link>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                to="/mis-reportes"
+                className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700"
+              >
+                Mis reportes
+              </Link>
+              <Link
+                to="/mis-perdidas"
+                className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700"
+              >
+                Mis reportes de pérdida
+              </Link>
+            </div>
+            <CatalogSection catalogService={catalogService} foundItemsService={foundItemsService} />
           </div>
         ))}
       />
       <Route
         path="/reportar-objeto"
-        element={signedInPage(() => <FoundItemScreen foundItemsService={foundItemsService} />)}
+        element={signedInPage(() => (
+          <FoundItemScreen foundItemsService={foundItemsService} />
+        ))}
       />
       <Route
         path="/reportar-perdida"
         element={signedInPage(() => (
-          <LostReportScreen foundItemsService={foundItemsService} lostReportsService={lostReportsService} />
+          <LostReportScreen
+            foundItemsService={foundItemsService}
+            lostReportsService={lostReportsService}
+          />
+        ))}
+      />
+      <Route
+        path="/objetos/:code"
+        element={signedInPage(() => (
+          <CatalogItemScreen
+            catalogService={catalogService}
+            foundItemsService={foundItemsService}
+          />
+        ))}
+      />
+      <Route
+        path="/mis-perdidas"
+        element={signedInPage(() => (
+          <MyLostReportsScreen myLostReportsService={myLostReportsService} />
+        ))}
+      />
+      <Route
+        path="/mis-perdidas/:code"
+        element={signedInPage(() => (
+          <MyLostReportScreen myLostReportsService={myLostReportsService} />
         ))}
       />
       <Route
@@ -112,16 +176,30 @@ export default function App({
       />
       <Route
         path="/mis-reportes"
-        element={signedInPage(() => <MyFoundItemsScreen foundItemsService={foundItemsService} />)}
+        element={signedInPage(() => (
+          <MyFoundItemsScreen foundItemsService={foundItemsService} />
+        ))}
       />
       <Route
         path="/mis-reportes/encontrados/:code"
-        element={signedInPage(() => <MyFoundItemScreen foundItemsService={foundItemsService} />)}
+        element={signedInPage(() => (
+          <MyFoundItemScreen foundItemsService={foundItemsService} />
+        ))}
       />
       <Route
         path="/mis-reportes/:code/coincidencias"
-        element={signedInPage(() => <MatchesScreen matchesService={matchesService} />)}
+        element={signedInPage(() => (
+          <MatchesScreen matchesService={matchesService} />
+        ))}
       />
+      {notificationsService && (
+        <Route
+          path="/avisos"
+          element={signedInPage(() => (
+            <NotificationsScreen notificationsService={notificationsService} />
+          ))}
+        />
+      )}
       <Route
         path="/guia-rapida"
         element={signedInPage(() => (

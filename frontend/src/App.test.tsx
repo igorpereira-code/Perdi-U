@@ -10,6 +10,8 @@ import type { GuideService } from './finder/data/guideService';
 import type { FoundItemsService, MyFoundItem } from './finder/data/foundItemsService';
 import type { WelfareService } from './welfare/data/welfareService';
 import type { LostReportsService } from './owner/data/lostReportsService';
+import type { CatalogService } from './owner/data/catalogService';
+import type { MyLostReportsService } from './owner/data/myLostReportsService';
 
 const phone: MatchView = {
   id: 'match-1',
@@ -78,6 +80,8 @@ function renderAt(
     deliver: jest.fn(),
   };
   const lostReportsService: LostReportsService = { create: jest.fn() };
+  const catalogService = { list: jest.fn().mockResolvedValue([]), getByCode: jest.fn().mockResolvedValue(null) } as CatalogService;
+  const myLostReportsService = { listMine: jest.fn().mockResolvedValue([]), getMine: jest.fn().mockResolvedValue(null) } as MyLostReportsService;
   const rendered = render(
     <MemoryRouter initialEntries={[path]}>
       <App
@@ -87,6 +91,8 @@ function renderAt(
         foundItemsService={foundItemsService}
         welfareService={welfareService}
         lostReportsService={lostReportsService}
+        catalogService={catalogService}
+        myLostReportsService={myLostReportsService}
       />
     </MemoryRouter>,
   );
@@ -503,5 +509,40 @@ describe('Abrir el formulario de pérdida desde el inicio', () => {
     renderAt('/reportar-perdida', null);
 
     expect(await screen.findByRole('button', { name: 'Ingresar con Google' })).toBeInTheDocument();
+  });
+});
+
+describe('Objetos encontrados en el inicio', () => {
+  it('muestra la sección de objetos encontrados en la pantalla principal', async () => {
+    renderAt('/', igor);
+
+    expect(await screen.findByRole('heading', { name: 'Objetos encontrados' })).toBeInTheDocument();
+  });
+});
+
+
+describe('Detalle de un objeto encontrado', () => {
+  it('abre el detalle de un objeto en /objetos/<código>', async () => {
+    renderAt('/objetos/HZ-0007', igor);
+
+    expect(await screen.findByRole('heading', { name: 'No encontramos este objeto' })).toBeInTheDocument();
+  });
+});
+
+describe('Mis reportes de pérdida desde el inicio', () => {
+  it('abre Mis reportes de pérdida desde la pantalla principal', async () => {
+    renderAt('/', igor);
+
+    await userEvent.click(await screen.findByRole('link', { name: 'Mis reportes de pérdida' }));
+
+    expect(await screen.findByRole('heading', { name: 'Mis reportes de pérdida' })).toBeInTheDocument();
+  });
+});
+
+describe('Detalle de mi reporte de pérdida', () => {
+  it('abre el detalle de mi reporte en /mis-perdidas/<código>', async () => {
+    renderAt('/mis-perdidas/PR-0007', igor);
+
+    expect(await screen.findByRole('heading', { name: 'No encontramos este reporte' })).toBeInTheDocument();
   });
 });
