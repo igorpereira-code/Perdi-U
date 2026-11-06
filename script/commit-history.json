@@ -3192,12 +3192,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "34e6c902fe3bc47e20d271a69931400bc71bfa55",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T23:50:22.000Z",
       "message": "feat(owner): buscar objetos encontrados por palabras clave",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/34e6c902fe3bc47e20d271a69931400bc71bfa55"
     },
     "stats": {
       "total": 107,
@@ -3337,6 +3337,25 @@
       "additions": 19,
       "deletions": 0,
       "date": "2026-10-22"
+    },
+    "coverage": 89.82,
+    "test_count": 581,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-06T21:43:57.000Z",
+      "message": "feat: Pequeños cambios",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 13,
+      "additions": 2,
+      "deletions": 11,
+      "date": "2026-11-06"
     },
     "coverage": 89.82,
     "test_count": 581,
