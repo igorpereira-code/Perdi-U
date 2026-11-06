@@ -4850,7 +4850,7 @@
     "testId": 68
   },
   {
-    "commitId": "HEAD",
+    "commitId": "99a3ad025a9e23f6f9e0ec6822d13924cfe13d8d",
     "commitName": "feat(owner): mostrar dónde y cuándo preguntar por un objeto en Bienestar",
     "commitTimestamp": 1792630045127,
     "testId": 68
@@ -5008,5 +5008,27 @@
     "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
     "commitTimestamp": 1794004502232,
     "testId": 75
+  },
+  {
+    "numPassedTests": 599,
+    "failedTests": 3,
+    "numTotalTests": 602,
+    "timestamp": 1794004943359,
+    "success": false,
+    "testId": 76
+  },
+  {
+    "numPassedTests": 602,
+    "failedTests": 0,
+    "numTotalTests": 602,
+    "timestamp": 1794005055697,
+    "success": true,
+    "testId": 76
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar los avisos del más reciente al más antiguo",
+    "commitTimestamp": 1794005105950,
+    "testId": 76
   }
 ]

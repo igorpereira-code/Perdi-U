@@ -64,6 +64,29 @@ describe('Ver mis avisos', () => {
       },
     ]);
   });
+  it('muestra los avisos del más reciente al más antiguo', async () => {
+    const older = {
+      ...received,
+      id: 'aviso-antiguo',
+      createdAt: new Date('2026-11-01T09:00:00.000Z'),
+    };
+    const newer = {
+      ...received,
+      id: 'aviso-nuevo',
+      createdAt: new Date('2026-11-06T18:00:00.000Z'),
+    };
+    const { app } = setup([older, received, newer]);
+
+    const response = await request(app)
+      .get('/me/notifications')
+      .auth('valid-token', { type: 'bearer' });
+
+    expect(response.body.map(({ id }: { id: string }) => id)).toEqual([
+      'aviso-nuevo',
+      'aviso-1',
+      'aviso-antiguo',
+    ]);
+  });
 
   it('muestra una lista vacía si todavía no tiene avisos', async () => {
     const { app } = setup([]);

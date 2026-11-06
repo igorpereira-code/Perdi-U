@@ -22,7 +22,13 @@ describe('Avisos guardados en la base de datos', () => {
       expect.objectContaining({ where: { userId: 'usuario-ana' } }),
     );
   });
+  it('pide los avisos del más reciente al más antiguo', async () => {
+    await prismaNotificationsRepository.listForUser('usuario-ana');
 
+    expect(notification.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({ orderBy: { createdAt: 'desc' } }),
+    );
+  });
   it('guarda un aviso nuevo para su destinatario', async () => {
     await prismaNotificationsRepository.notify({
       userId: 'usuario-ana',

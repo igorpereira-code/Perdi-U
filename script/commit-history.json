@@ -3249,12 +3249,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "99a3ad025a9e23f6f9e0ec6822d13924cfe13d8d",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-22T00:47:24.000Z",
       "message": "feat(owner): mostrar dónde y cuándo preguntar por un objeto en Bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/99a3ad025a9e23f6f9e0ec6822d13924cfe13d8d"
     },
     "stats": {
       "total": 23,
@@ -3397,6 +3397,25 @@
     },
     "coverage": 88.25,
     "test_count": 598,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-06T22:45:05.000Z",
+      "message": "feat(core): mostrar los avisos del más reciente al más antiguo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 67,
+      "additions": 66,
+      "deletions": 1,
+      "date": "2026-11-06"
+    },
+    "coverage": 88.27,
+    "test_count": 602,
     "failed_tests": 0,
     "conclusion": "success"
   }

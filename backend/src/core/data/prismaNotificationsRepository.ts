@@ -5,6 +5,7 @@ export const prismaNotificationsRepository: NotificationsRepository = {
   listForUser: (userId) =>
     db().notification.findMany({
       where: { userId },
+      orderBy: { createdAt: 'desc' },
       select: { id: true, userId: true, message: true, link: true, createdAt: true, readAt: true },
     }),
   notify: async ({ userId, message, link = null }) => {
