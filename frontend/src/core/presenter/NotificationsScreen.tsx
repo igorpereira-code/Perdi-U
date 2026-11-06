@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Bell } from 'lucide-react';
+import { Bell, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import type { AppNotification } from '@shared/notifications';
 import type { NotificationsService } from '../data/notificationsService';
 import { notificationTime } from '../logic/notificationTime';
+import { notificationDestination } from '../logic/notificationDestination';
 import { Alert } from './Alert';
 import { Button } from './Button';
 import { EmptyState } from './EmptyState';
@@ -60,19 +62,37 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
         />
       ) : (
         <ul aria-label="Mis avisos" className="space-y-3">
-          {notifications.map((notification) => (
-            <li
-              key={notification.id}
-              className="rounded-2xl border border-neutral-200 bg-neutral-0 p-4"
-            >
-              <p className="text-sm text-neutral-900">{notification.message}</p>
-              <p className="mt-1 text-xs text-neutral-500">
-                <time dateTime={notification.createdAt}>
-                  {notificationTime(notification.createdAt)}
-                </time>
-              </p>
-            </li>
-          ))}
+          {notifications.map((notification) => {
+            const destination = notificationDestination(notification.link);
+            const content = (
+              <>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm text-neutral-900">{notification.message}</p>
+                  <p className="mt-1 text-xs text-neutral-500">
+                    <time dateTime={notification.createdAt}>
+                      {notificationTime(notification.createdAt)}
+                    </time>
+                  </p>
+                </div>
+                {destination && (
+                  <ChevronRight className="h-5 w-5 shrink-0 text-blue-300" aria-hidden="true" />
+                )}
+              </>
+            );
+            const style =
+              'flex items-center gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4';
+            return (
+              <li key={notification.id}>
+                {destination ? (
+                  <Link to={destination} className={`${style} hover:bg-blue-50`}>
+                    {content}
+                  </Link>
+                ) : (
+                  <div className={style}>{content}</div>
+                )}
+              </li>
+            );
+          })}
         </ul>
       )}
     </section>
