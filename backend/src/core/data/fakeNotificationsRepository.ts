@@ -18,6 +18,14 @@ export function fakeNotificationsRepository(initial: StoredNotification[] = []) 
         readAt: null,
       });
     },
+    markRead: async (id, userId) => {
+      const notification = saved.find((stored) => stored.id === id && stored.userId === userId);
+      if (!notification) {
+        return false;
+      }
+      notification.readAt ??= new Date();
+      return true;
+    },
   };
   return repository;
 }

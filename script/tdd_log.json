@@ -4924,7 +4924,7 @@
     "testId": 71
   },
   {
-    "commitId": "HEAD",
+    "commitId": "295351309070aa9ce65fca04d819fb35be77ec76",
     "commitName": "feat(owner): ver el detalle de mi reporte de pérdida",
     "commitTimestamp": 1792632582953,
     "testId": 71
@@ -5074,5 +5074,27 @@
     "commitName": "feat(core): abrir el reporte u objeto relacionado al tocar un aviso",
     "commitTimestamp": 1794005817055,
     "testId": 78
+  },
+  {
+    "numPassedTests": 622,
+    "failedTests": 7,
+    "numTotalTests": 629,
+    "timestamp": 1794006067815,
+    "success": false,
+    "testId": 79
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794006220533,
+    "success": true,
+    "testId": 79
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): dejar de contar como nuevos los avisos que ya se abrieron",
+    "commitTimestamp": 1794006258664,
+    "testId": 79
   }
 ]

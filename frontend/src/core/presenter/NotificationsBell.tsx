@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Bell } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import type { NotificationsService } from '../data/notificationsService';
+import { NOTIFICATIONS_CHANGED, type NotificationsService } from '../data/notificationsService';
 import { countUnread, unreadBadgeText } from '../logic/unreadNotifications';
 
 type NotificationsBellProps = {
@@ -12,8 +12,15 @@ type NotificationsBellProps = {
 export function NotificationsBell({ notificationsService }: NotificationsBellProps) {
   const { pathname } = useLocation();
   const [unread, setUnread] = useState(0);
+  const [changes, setChanges] = useState(0);
 
-  // Checked again on every screen change, so the number stays up to date.
+  useEffect(() => {
+    const refresh = () => setChanges((value) => value + 1);
+    window.addEventListener(NOTIFICATIONS_CHANGED, refresh);
+    return () => window.removeEventListener(NOTIFICATIONS_CHANGED, refresh);
+  }, []);
+
+  // Checked again on every screen change and when a notification is opened, so the number stays up to date.
   useEffect(() => {
     let active = true;
     notificationsService
@@ -27,7 +34,7 @@ export function NotificationsBell({ notificationsService }: NotificationsBellPro
     return () => {
       active = false;
     };
-  }, [notificationsService, pathname]);
+  }, [notificationsService, pathname, changes]);
 
   const badge = unreadBadgeText(unread);
 

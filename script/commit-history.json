@@ -3306,12 +3306,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "295351309070aa9ce65fca04d819fb35be77ec76",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-22T01:29:42.000Z",
       "message": "feat(owner): ver el detalle de mi reporte de pérdida",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/295351309070aa9ce65fca04d819fb35be77ec76"
     },
     "stats": {
       "total": 240,
@@ -3454,6 +3454,25 @@
     },
     "coverage": 88.25,
     "test_count": 617,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-06T23:04:17.000Z",
+      "message": "feat(core): dejar de contar como nuevos los avisos que ya se abrieron",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 295,
+      "additions": 266,
+      "deletions": 29,
+      "date": "2026-11-06"
+    },
+    "coverage": 87.4,
+    "test_count": 629,
     "failed_tests": 0,
     "conclusion": "success"
   }

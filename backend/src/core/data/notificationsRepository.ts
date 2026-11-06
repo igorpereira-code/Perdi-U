@@ -23,4 +23,6 @@ export type NewNotification = {
 export type NotificationsRepository = {
   listForUser: (userId: string) => Promise<StoredNotification[]>;
   notify: (notification: NewNotification) => Promise<void>;
+  /** Saves when the user opened it. Returns false if it does not exist or belongs to someone else. */
+  markRead: (id: string, userId: string) => Promise<boolean>;
 };

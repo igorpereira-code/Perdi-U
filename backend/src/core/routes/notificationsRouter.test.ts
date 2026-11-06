@@ -145,3 +145,67 @@ describe('Crear avisos para un usuario', () => {
     ]);
   });
 });
+
+describe('Marcar un aviso como abierto', () => {
+  const read = (app: Parameters<typeof request>[0], id: string) =>
+    request(app).post(`/me/notifications/${id}/read`).auth('valid-token', { type: 'bearer' });
+  const list = (app: Parameters<typeof request>[0]) =>
+    request(app).get('/me/notifications').auth('valid-token', { type: 'bearer' });
+
+  it('el aviso abierto deja de estar como nuevo', async () => {
+    const { app } = setup();
+
+    const response = await read(app, 'aviso-1');
+    const after = await list(app);
+
+    expect(response.status).toBe(204);
+    expect(after.body[0].readAt).not.toBeNull();
+  });
+
+  it('solo cambia el aviso que abrió', async () => {
+    const second = { ...received, id: 'aviso-3', message: 'Otro aviso' };
+    const { app } = setup([received, second]);
+
+    await read(app, 'aviso-1');
+    const after = await list(app);
+
+    expect(after.body.find(({ id }: { id: string }) => id === 'aviso-3').readAt).toBeNull();
+  });
+
+  it('abrirlo otra vez conserva la primera vez que lo abrió', async () => {
+    const openedBefore = { ...received, readAt: new Date('2026-11-06T15:00:00.000Z') };
+    const { app } = setup([openedBefore]);
+
+    const response = await read(app, 'aviso-1');
+    const after = await list(app);
+
+    expect(response.status).toBe(204);
+    expect(after.body[0].readAt).toBe('2026-11-06T15:00:00.000Z');
+  });
+
+  it('no puede abrir el aviso de otra persona', async () => {
+    const { app, notifications } = setup();
+
+    const response = await read(app, 'aviso-2');
+
+    expect(response.status).toBe(404);
+    expect(notifications.saved.find(({ id }) => id === 'aviso-2')?.readAt).toBeNull();
+  });
+
+  it('informa si el aviso no existe', async () => {
+    const { app } = setup();
+
+    const response = await read(app, 'aviso-inexistente');
+
+    expect(response.status).toBe(404);
+    expect(response.body).toEqual({ error: 'No encontramos este aviso.' });
+  });
+
+  it('pide iniciar sesión para abrir un aviso', async () => {
+    const { app } = setup();
+
+    const response = await request(app).post('/me/notifications/aviso-1/read');
+
+    expect(response.status).toBe(401);
+  });
+});

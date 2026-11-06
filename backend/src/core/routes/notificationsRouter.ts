@@ -27,5 +27,18 @@ export function createNotificationsRouter(notifications: NotificationsRepository
     }
   });
 
+  router.post('/me/notifications/:id/read', async (req, res) => {
+    try {
+      const found = await notifications.markRead(String(req.params.id), getCurrentUser(req).id);
+      if (!found) {
+        res.status(404).json({ error: 'No encontramos este aviso.' });
+        return;
+      }
+      res.sendStatus(204);
+    } catch {
+      res.status(503).json({ error: 'No se pudo marcar el aviso como leído.' });
+    }
+  });
+
   return router;
 }

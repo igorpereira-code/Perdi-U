@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Bell, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import type { AppNotification } from '@shared/notifications';
-import type { NotificationsService } from '../data/notificationsService';
+import { NOTIFICATIONS_CHANGED, type NotificationsService } from '../data/notificationsService';
 import { notificationTime } from '../logic/notificationTime';
 import { notificationDestination } from '../logic/notificationDestination';
+import { markNotificationRead } from '../logic/markNotificationRead';
 import { Alert } from './Alert';
 import { Button } from './Button';
 import { EmptyState } from './EmptyState';
@@ -18,6 +19,19 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
   const [notifications, setNotifications] = useState<AppNotification[] | null>(null);
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const navigate = useNavigate();
+
+  async function open(notification: AppNotification) {
+    setNotifications((current) => current && markNotificationRead(current, notification.id));
+    if (notification.readAt === null) {
+      await notificationsService.markRead(notification.id).catch(() => undefined);
+      window.dispatchEvent(new Event(NOTIFICATIONS_CHANGED));
+    }
+    const destination = notificationDestination(notification.link);
+    if (destination) {
+      navigate(destination);
+    }
+  }
 
   useEffect(() => {
     let active = true;
@@ -63,33 +77,39 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
       ) : (
         <ul aria-label="Mis avisos" className="space-y-3">
           {notifications.map((notification) => {
+            const isNew = notification.readAt === null;
             const destination = notificationDestination(notification.link);
-            const content = (
-              <>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm text-neutral-900">{notification.message}</p>
-                  <p className="mt-1 text-xs text-neutral-500">
-                    <time dateTime={notification.createdAt}>
-                      {notificationTime(notification.createdAt)}
-                    </time>
-                  </p>
-                </div>
-                {destination && (
-                  <ChevronRight className="h-5 w-5 shrink-0 text-blue-300" aria-hidden="true" />
-                )}
-              </>
-            );
-            const style =
-              'flex items-center gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4';
             return (
               <li key={notification.id}>
-                {destination ? (
-                  <Link to={destination} className={`${style} hover:bg-blue-50`}>
-                    {content}
-                  </Link>
-                ) : (
-                  <div className={style}>{content}</div>
-                )}
+                <button
+                  type="button"
+                  onClick={() => void open(notification)}
+                  className={`flex w-full items-center gap-3 rounded-2xl border p-4 text-left hover:bg-blue-50 ${
+                    isNew ? 'border-blue-200 bg-blue-50' : 'border-neutral-200 bg-neutral-0'
+                  }`}
+                >
+                  {isNew && (
+                    <span
+                      className="h-2 w-2 shrink-0 rounded-full bg-yellow-500"
+                      aria-label="Nuevo"
+                    />
+                  )}
+                  <span className="min-w-0 flex-1">
+                    <span
+                      className={`block text-sm text-neutral-900 ${isNew ? 'font-semibold' : ''}`}
+                    >
+                      {notification.message}
+                    </span>
+                    <span className="mt-1 block text-xs text-neutral-500">
+                      <time dateTime={notification.createdAt}>
+                        {notificationTime(notification.createdAt)}
+                      </time>
+                    </span>
+                  </span>
+                  {destination && (
+                    <ChevronRight className="h-5 w-5 shrink-0 text-blue-300" aria-hidden="true" />
+                  )}
+                </button>
               </li>
             );
           })}

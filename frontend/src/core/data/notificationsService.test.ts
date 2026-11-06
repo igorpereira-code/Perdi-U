@@ -32,3 +32,20 @@ describe('Consultar mis avisos', () => {
     );
   });
 });
+describe('Marcar un aviso como abierto', () => {
+  it('avisa al backend qué aviso abrió', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(answer(204, null));
+
+    await createNotificationsService(apiFetch as ApiFetch).markRead('aviso-1');
+
+    expect(apiFetch).toHaveBeenCalledWith('/me/notifications/aviso-1/read', { method: 'POST' });
+  });
+
+  it('avisa con un mensaje claro si no se pudo marcar', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(answer(503, { error: 'Detalle' }));
+
+    await expect(
+      createNotificationsService(apiFetch as ApiFetch).markRead('aviso-1'),
+    ).rejects.toThrow('No se pudo marcar el aviso como leído.');
+  });
+});
