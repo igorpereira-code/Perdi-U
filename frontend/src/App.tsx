@@ -92,7 +92,12 @@ export default function App({
       return <Navigate to="/guia-rapida" replace />;
     }
     return (
-      <AppLayout role={user.role} headerAction={notificationsService && <NotificationsBell />}>
+      <AppLayout
+        role={user.role}
+        headerAction={
+          notificationsService && <NotificationsBell notificationsService={notificationsService} />
+        }
+      >
         {page(user)}
       </AppLayout>
     );

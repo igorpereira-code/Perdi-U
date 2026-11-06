@@ -4828,7 +4828,7 @@
     "testId": 67
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e0ace0f37e57cf43b23cfdf299c8d5021b117626",
     "commitName": "feat(owner): ver el detalle de un objeto encontrado",
     "commitTimestamp": 1792629786506,
     "testId": 67
@@ -4986,5 +4986,27 @@
     "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
     "commitTimestamp": 1794003330500,
     "testId": 74
+  },
+  {
+    "numPassedTests": 591,
+    "failedTests": 0,
+    "numTotalTests": 591,
+    "timestamp": 1794004307372,
+    "success": false,
+    "testId": 75
+  },
+  {
+    "numPassedTests": 598,
+    "failedTests": 0,
+    "numTotalTests": 598,
+    "timestamp": 1794004424085,
+    "success": true,
+    "testId": 75
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
+    "commitTimestamp": 1794004502232,
+    "testId": 75
   }
 ]
