@@ -3211,12 +3211,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ad7a6b0232cb471fc61e0acdd638e3124dfc5387",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T23:57:32.000Z",
       "message": "feat(owner): filtrar los objetos encontrados por categoría",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ad7a6b0232cb471fc61e0acdd638e3124dfc5387"
     },
     "stats": {
       "total": 55,
@@ -3359,6 +3359,25 @@
     },
     "coverage": 89.82,
     "test_count": 581,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-06T22:15:29.000Z",
+      "message": "feat(core): agregar la opción de avisos en la pantalla principal",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 552,
+      "additions": 532,
+      "deletions": 20,
+      "date": "2026-11-06"
+    },
+    "coverage": 88.83,
+    "test_count": 591,
     "failed_tests": 0,
     "conclusion": "success"
   }

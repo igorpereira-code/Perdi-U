@@ -4806,7 +4806,7 @@
     "testId": 66
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ad7a6b0232cb471fc61e0acdd638e3124dfc5387",
     "commitName": "feat(owner): filtrar los objetos encontrados por categoría",
     "commitTimestamp": 1792627053808,
     "testId": 66
@@ -4956,5 +4956,35 @@
     "commitName": "feat: Pequeños cambios",
     "commitTimestamp": 1794001438321,
     "testId": 73
+  },
+  {
+    "numPassedTests": 581,
+    "failedTests": 0,
+    "numTotalTests": 581,
+    "timestamp": 1794001706781,
+    "success": false,
+    "testId": 74
+  },
+  {
+    "numPassedTests": 589,
+    "failedTests": 0,
+    "numTotalTests": 589,
+    "timestamp": 1794002609545,
+    "success": false,
+    "testId": 74
+  },
+  {
+    "numPassedTests": 591,
+    "failedTests": 0,
+    "numTotalTests": 591,
+    "timestamp": 1794003128406,
+    "success": true,
+    "testId": 74
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
+    "commitTimestamp": 1794003330500,
+    "testId": 74
   }
 ]
