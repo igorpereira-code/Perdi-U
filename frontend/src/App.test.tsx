@@ -174,6 +174,9 @@ describe('Navegación de la app', () => {
     renderAt('/', igor);
 
     expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
+    const guideOption = screen.queryByRole('button', { name: 'Ver guía' });
+    expect(guideOption).toBeInTheDocument();
+    expect(guideOption).toBeVisible();
   });
 
   it('muestra su perfil en /perfil', async () => {

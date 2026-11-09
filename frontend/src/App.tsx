@@ -4,6 +4,7 @@ import type { AppUser } from '@shared/user';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import { AppLayout } from './core/presenter/AppLayout';
 import { HomePage } from './core/presenter/HomePage';
+import { Button } from './core/presenter/Button';
 import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
@@ -115,6 +116,7 @@ export default function App({
               <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
             </div>
             <div className="flex flex-wrap gap-3">
+              <Button variant="outline">Ver guía</Button>
               <Link
                 to="/mis-reportes"
                 className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700"

@@ -4548,7 +4548,7 @@
     "testId": 55
   },
   {
-    "commitId": "HEAD",
+    "commitId": "299e4334e90cf0a51f2600d96aeea5743f4b2a6b",
     "commitName": "feat(owner): permitir indicar el rango de fechas de la pérdida",
     "commitTimestamp": 1792594501296,
     "testId": 55
@@ -5182,5 +5182,51 @@
     "commitName": "chore: integra los últimos cambios de core-matching en core-matching-hu-15",
     "commitTimestamp": 1794007200212,
     "testId": 80
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794255134205,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794256543324,
+    "success": false,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794256604377,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794256657361,
+    "success": false,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794256688337,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): mostrar la opción Ver guía en Inicio",
+    "commitTimestamp": 1794257369798,
+    "testId": 81
   }
 ]
