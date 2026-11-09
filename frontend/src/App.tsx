@@ -116,7 +116,9 @@ export default function App({
               <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
             </div>
             <div className="flex flex-wrap gap-3">
-              <Button variant="outline">Ver guía</Button>
+              <Button variant="outline" onClick={() => navigate('/guia-rapida')}>
+                Ver guía
+              </Button>
               <Link
                 to="/mis-reportes"
                 className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700"

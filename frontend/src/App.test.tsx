@@ -177,6 +177,16 @@ describe('Navegación de la app', () => {
     const guideOption = screen.queryByRole('button', { name: 'Ver guía' });
     expect(guideOption).toBeInTheDocument();
     expect(guideOption).toBeVisible();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Ver guía' }));
+
+    expect(screen.queryByRole('heading', { name: 'Bienvenido a Perdi-U' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Encuentra el objeto' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Reporta el hallazgo' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Lleva el objeto a Bienestar Estudiantil' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'El dueño lo recoge en Bienestar' })).toBeVisible();
+    expect(screen.getByText(/no debes entregarlo directamente a su dueño/i)).toBeVisible();
+    expect(screen.getByRole('region', { name: 'Ubicación y horario de Bienestar' })).toBeVisible();
   });
 
   it('muestra su perfil en /perfil', async () => {

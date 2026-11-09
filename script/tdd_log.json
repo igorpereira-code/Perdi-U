@@ -4608,7 +4608,7 @@
     "testId": 56
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0a01ffa8183d14ae2b0daf8c94728b3b26a012f6",
     "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
     "commitTimestamp": 1792597534262,
     "testId": 56
@@ -5228,5 +5228,35 @@
     "commitName": "feat(finder): mostrar la opción Ver guía en Inicio",
     "commitTimestamp": 1794257369798,
     "testId": 81
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794257731295,
+    "success": false,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794257783884,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794257838524,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): abrir la guía rápida desde Inicio",
+    "commitTimestamp": 1794258117193,
+    "testId": 82
   }
 ]
