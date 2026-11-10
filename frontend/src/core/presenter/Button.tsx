@@ -1,9 +1,14 @@
 import type { ButtonHTMLAttributes } from 'react';
+import { LoaderCircle } from 'lucide-react';
 
 type Variant = 'primary' | 'outline' | 'ghost' | 'accent';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: Variant;
+  /** While true, the button is disabled and shows a spinner, so the user knows the app is working. */
+  isLoading?: boolean;
+  /** Text shown while loading, e.g. "Enviando reporte…". Without it, the normal text stays. */
+  loadingText?: string;
 };
 
 const BASE =
@@ -20,7 +25,28 @@ export function Button({
   variant = 'primary',
   type = 'button',
   className = '',
+  isLoading = false,
+  loadingText,
+  disabled,
+  children,
   ...props
 }: ButtonProps) {
-  return <button type={type} className={`${BASE} ${VARIANTS[variant]} ${className}`} {...props} />;
+  return (
+    <button
+      type={type}
+      className={`${BASE} ${VARIANTS[variant]} ${className}`}
+      disabled={disabled || isLoading}
+      aria-busy={isLoading || undefined}
+      {...props}
+    >
+      {isLoading ? (
+        <>
+          <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden="true" />
+          {loadingText ?? children}
+        </>
+      ) : (
+        children
+      )}
+    </button>
+  );
 }
