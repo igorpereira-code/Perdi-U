@@ -3629,12 +3629,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7f842352d2df2a3d75928762844788280d9b13bb",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:45:05.000Z",
       "message": "feat(core): mostrar los avisos del más reciente al más antiguo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7f842352d2df2a3d75928762844788280d9b13bb"
     },
     "stats": {
       "total": 67,
@@ -3963,6 +3963,25 @@
       "total": 10,
       "additions": 4,
       "deletions": 6,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:21:09.000Z",
+      "message": "refactor(core): corregir el nombre del archivo de pruebas del correo institucional",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

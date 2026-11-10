@@ -5098,7 +5098,7 @@
     "testId": 76
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7f842352d2df2a3d75928762844788280d9b13bb",
     "commitName": "feat(core): mostrar los avisos del más reciente al más antiguo",
     "commitTimestamp": 1794005105950,
     "testId": 76
@@ -5308,5 +5308,11 @@
     "commitName": "refactor(matching): renombrar setStatus a setMatchStatus",
     "commitTimestamp": 1794338327349,
     "testId": 93
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): corregir el nombre del archivo de pruebas del correo institucional",
+    "commitTimestamp": 1794338471161,
+    "testId": 94
   }
 ]
