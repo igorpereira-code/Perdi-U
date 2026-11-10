@@ -9,7 +9,7 @@ import { markNotificationRead } from '../logic/markNotificationRead';
 import { Alert } from './Alert';
 import { Button } from './Button';
 import { EmptyState } from './EmptyState';
-import { LoadingState } from './LoadingState';
+import { Skeleton, SkeletonArea } from './Skeleton';
 
 type NotificationsScreenProps = {
   notificationsService: NotificationsService;
@@ -66,7 +66,19 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
           <Button onClick={() => setLoadAttempt((value) => value + 1)}>Reintentar</Button>
         </div>
       ) : notifications === null ? (
-        <LoadingState text="Cargando tus avisos…" />
+        <SkeletonArea label="Cargando tus avisos…">
+          <ul className="space-y-3">
+            {Array.from({ length: 3 }, (_, rowIndex) => (
+              <li
+                key={rowIndex}
+                className="space-y-2 rounded-2xl border border-neutral-200 bg-neutral-0 p-4"
+              >
+                <Skeleton className="h-4 w-3/4" />
+                <Skeleton className="h-3 w-16" />
+              </li>
+            ))}
+          </ul>
+        </SkeletonArea>
       ) : notifications.length === 0 ? (
         <EmptyState
           icon={Bell}

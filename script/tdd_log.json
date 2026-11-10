@@ -5386,7 +5386,7 @@
     "testId": 100
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f9d1ef4d8cd02c62245fd03008cbb5a2fed0f705",
     "commitName": "refactor(core): renombrar LABEL y TONE a STATUS_LABELS y STATUS_TONES",
     "commitTimestamp": 1794339175539,
     "testId": 100
@@ -5400,7 +5400,7 @@
     "testId": 101
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e83a29e607ec2212c2f2213d5f6b4f981ce7739d",
     "commitName": "refactor(core): indicar en milisegundos las constantes de tiempo",
     "commitTimestamp": 1794339244588,
     "testId": 101
@@ -5628,5 +5628,41 @@
     "commitName": "refactor(matching): renombrar el archivo matchCountText a formatMatchCount",
     "commitTimestamp": 1794340476250,
     "testId": 117
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794343673114,
+    "success": true,
+    "testId": 118
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar el cursor de carga mientras el botón espera al servidor",
+    "commitTimestamp": 1794343786430,
+    "testId": 118
+  },
+  {
+    "numPassedTests": 627,
+    "failedTests": 2,
+    "numTotalTests": 629,
+    "timestamp": 1794343932729,
+    "success": false,
+    "testId": 119
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794344062022,
+    "success": true,
+    "testId": 119
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar esqueletos de carga en lugar del indicador con círculo",
+    "commitTimestamp": 1794344118367,
+    "testId": 119
   }
 ]
