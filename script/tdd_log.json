@@ -5428,7 +5428,7 @@
     "testId": 103
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7ea20b3a980819731044501d254cbb064538aef9",
     "commitName": "refactor(core): renombrar MAX_SHOWN a MAX_BADGE_COUNT",
     "commitTimestamp": 1794339394933,
     "testId": 103
@@ -5678,5 +5678,19 @@
     "commitName": "feat(core): mostrar una pantalla de carga al abrir la app",
     "commitTimestamp": 1794344852072,
     "testId": 120
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794345077720,
+    "success": true,
+    "testId": 121
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar la carga al iniciar y cerrar sesión",
+    "commitTimestamp": 1794345106760,
+    "testId": 121
   }
 ]
