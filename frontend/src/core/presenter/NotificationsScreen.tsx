@@ -3,13 +3,13 @@ import { Bell, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { AppNotification } from '@shared/notifications';
 import { NOTIFICATIONS_CHANGED, type NotificationsService } from '../data/notificationsService';
-import { notificationTime } from '../logic/notificationTime';
-import { notificationDestination } from '../logic/notificationDestination';
+import { formatNotificationTime } from '../logic/formatNotificationTime';
+import { getNotificationDestination } from '../logic/getNotificationDestination';
 import { markNotificationRead } from '../logic/markNotificationRead';
 import { Alert } from './Alert';
 import { Button } from './Button';
 import { EmptyState } from './EmptyState';
-import { LoadingState } from './LoadingState';
+import { Skeleton, SkeletonArea } from './Skeleton';
 
 type NotificationsScreenProps = {
   notificationsService: NotificationsService;
@@ -18,17 +18,17 @@ type NotificationsScreenProps = {
 /** The user's notifications. */
 export function NotificationsScreen({ notificationsService }: NotificationsScreenProps) {
   const [notifications, setNotifications] = useState<AppNotification[] | null>(null);
-  const [failed, setFailed] = useState(false);
-  const [attempt, setAttempt] = useState(0);
+  const [hasFailed, setHasFailed] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const navigate = useNavigate();
 
-  async function open(notification: AppNotification) {
+  async function openNotification(notification: AppNotification) {
     setNotifications((current) => current && markNotificationRead(current, notification.id));
     if (notification.readAt === null) {
       await notificationsService.markRead(notification.id).catch(() => undefined);
       window.dispatchEvent(new Event(NOTIFICATIONS_CHANGED));
     }
-    const destination = notificationDestination(notification.link);
+    const destination = getNotificationDestination(notification.link);
     if (destination) {
       navigate(destination);
     }
@@ -37,36 +37,48 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
   useEffect(() => {
     let active = true;
     setNotifications(null);
-    setFailed(false);
+    setHasFailed(false);
     notificationsService
       .list()
-      .then((data) => {
+      .then((loadedNotifications) => {
         if (active) {
-          setNotifications(data);
+          setNotifications(loadedNotifications);
         }
       })
       .catch(() => {
         if (active) {
-          setFailed(true);
+          setHasFailed(true);
         }
       });
     return () => {
       active = false;
     };
-  }, [notificationsService, attempt]);
+  }, [notificationsService, loadAttempt]);
 
   return (
     <section className="mx-auto max-w-lg space-y-4">
       <h1 className="text-lg font-semibold text-blue-700">Avisos</h1>
-      {failed ? (
+      {hasFailed ? (
         <div className="space-y-3">
           <div role="alert">
             <Alert>No se pudieron cargar tus avisos. Intenta nuevamente.</Alert>
           </div>
-          <Button onClick={() => setAttempt((value) => value + 1)}>Reintentar</Button>
+          <Button onClick={() => setLoadAttempt((value) => value + 1)}>Reintentar</Button>
         </div>
       ) : notifications === null ? (
-        <LoadingState text="Cargando tus avisos…" />
+        <SkeletonArea label="Cargando tus avisos…">
+          <ul className="space-y-3">
+            {Array.from({ length: 3 }, (_, rowIndex) => (
+              <li
+                key={rowIndex}
+                className="space-y-2 rounded-2xl border border-neutral-200 bg-neutral-0 p-4"
+              >
+                <Skeleton className="h-4 w-3/4" />
+                <Skeleton className="h-3 w-16" />
+              </li>
+            ))}
+          </ul>
+        </SkeletonArea>
       ) : notifications.length === 0 ? (
         <EmptyState
           icon={Bell}
@@ -77,12 +89,12 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
         <ul aria-label="Mis avisos" className="space-y-3">
           {notifications.map((notification) => {
             const isNew = notification.readAt === null;
-            const destination = notificationDestination(notification.link);
+            const destination = getNotificationDestination(notification.link);
             return (
               <li key={notification.id}>
                 <button
                   type="button"
-                  onClick={() => void open(notification)}
+                  onClick={() => void openNotification(notification)}
                   className={`flex w-full items-center gap-3 rounded-2xl border p-4 text-left hover:bg-blue-50 ${
                     isNew ? 'border-blue-200 bg-blue-50' : 'border-neutral-200 bg-neutral-0'
                   }`}
@@ -101,7 +113,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
                     </span>
                     <span className="mt-1 block text-xs text-neutral-500">
                       <time dateTime={notification.createdAt}>
-                        {notificationTime(notification.createdAt)}
+                        {formatNotificationTime(notification.createdAt)}
                       </time>
                     </span>
                   </span>

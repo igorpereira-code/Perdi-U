@@ -57,15 +57,15 @@ export default function App({
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
-  const [notInstitutional, setNotInstitutional] = useState(false);
-  const guidePending = user ? !user.hasSeenGuide : false;
+  const [isNotInstitutional, setIsNotInstitutional] = useState(false);
+  const isGuidePending = user ? !user.hasSeenGuide : false;
 
   useEffect(() => {
     authService
       .getCurrentUser()
       .then(setUser)
       .catch((error: unknown) => {
-        setNotInstitutional(error instanceof NotInstitutionalEmailError);
+        setIsNotInstitutional(error instanceof NotInstitutionalEmailError);
         setUser(null);
       });
   }, [authService]);
@@ -81,14 +81,14 @@ export default function App({
   }
 
   /** Pages for signed-in users: inside the blue header and bottom menu. Without a session, go to sign in. */
-  const signedInPage = (page: (me: AppUser) => ReactNode) => {
+  const renderSignedInPage = (page: (signedInUser: AppUser) => ReactNode) => {
     if (user === undefined) {
       return null;
     }
     if (user === null) {
       return <Navigate to="/ingresar" replace />;
     }
-    if (guidePending && pathname !== '/guia-rapida') {
+    if (isGuidePending && pathname !== '/guia-rapida') {
       return <Navigate to="/guia-rapida" replace />;
     }
     return (
@@ -107,9 +107,9 @@ export default function App({
     <Routes>
       <Route
         path="/"
-        element={signedInPage((me) => (
+        element={renderSignedInPage((signedInUser) => (
           <div className="mx-auto max-w-xl space-y-6">
-            <HomePage user={me} />
+            <HomePage user={signedInUser} />
             <div className="grid grid-cols-2 gap-3">
               <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
               <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
@@ -134,13 +134,13 @@ export default function App({
       />
       <Route
         path="/reportar-objeto"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <FoundItemScreen foundItemsService={foundItemsService} />
         ))}
       />
       <Route
         path="/reportar-perdida"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <LostReportScreen
             foundItemsService={foundItemsService}
             lostReportsService={lostReportsService}
@@ -149,7 +149,7 @@ export default function App({
       />
       <Route
         path="/objetos/:code"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <CatalogItemScreen
             catalogService={catalogService}
             foundItemsService={foundItemsService}
@@ -158,58 +158,58 @@ export default function App({
       />
       <Route
         path="/mis-perdidas"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyLostReportsScreen myLostReportsService={myLostReportsService} />
         ))}
       />
       <Route
         path="/mis-perdidas/:code"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyLostReportScreen myLostReportsService={myLostReportsService} />
         ))}
       />
       <Route
         path="/perfil"
-        element={signedInPage((me) => (
-          <ProfilePage user={me} onSignOut={handleSignOut} />
+        element={renderSignedInPage((signedInUser) => (
+          <ProfilePage user={signedInUser} onSignOut={handleSignOut} />
         ))}
       />
       <Route
         path="/mis-reportes"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyFoundItemsScreen foundItemsService={foundItemsService} />
         ))}
       />
       <Route
         path="/mis-reportes/encontrados/:code"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyFoundItemScreen foundItemsService={foundItemsService} />
         ))}
       />
       <Route
         path="/mis-reportes/:code/coincidencias"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MatchesScreen matchesService={matchesService} />
         ))}
       />
       {notificationsService && (
         <Route
           path="/avisos"
-          element={signedInPage(() => (
+          element={renderSignedInPage(() => (
             <NotificationsScreen notificationsService={notificationsService} />
           ))}
         />
       )}
       <Route
         path="/guia-rapida"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <QuickGuideScreen guideService={guideService} onSeen={handleGuideSeen} />
         ))}
       />
       <Route
         path="/bienestar"
-        element={signedInPage((me) =>
-          me.role === 'WELFARE' ? (
+        element={renderSignedInPage((signedInUser) =>
+          signedInUser.role === 'WELFARE' ? (
             <WelfarePage welfareService={welfareService} matchesService={matchesService} />
           ) : (
             <Navigate to="/" replace />
@@ -219,10 +219,10 @@ export default function App({
       <Route
         path="/ingresar"
         element={
-          guidePending ? (
+          isGuidePending ? (
             <Navigate to="/guia-rapida" replace />
           ) : (
-            <LoginPage onGoogleLogin={authService.signIn} notInstitutional={notInstitutional} />
+            <LoginPage onGoogleLogin={authService.signIn} isNotInstitutional={isNotInstitutional} />
           )
         }
       />

@@ -19,13 +19,15 @@ export function MatchesScreen({ matchesService }: { matchesService: MatchesServi
   async function handlePickUp(matchId: string) {
     await matchesService.pickUp(matchId);
     setMatches((current) =>
-      current?.map((m) => (m.id === matchId ? { ...m, status: 'WILL_PICK_UP' } : m)),
+      current?.map((match) =>
+        match.id === matchId ? { ...match, status: 'WILL_PICK_UP' } : match,
+      ),
     );
   }
 
   async function handleDismiss(matchId: string) {
     await matchesService.dismiss(matchId);
-    setMatches((current) => current?.filter((m) => m.id !== matchId));
+    setMatches((current) => current?.filter((match) => match.id !== matchId));
   }
 
   if (matches === undefined) {

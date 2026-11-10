@@ -3154,12 +3154,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "44a334a10605afb41d94b9338e01652a2b373275",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T15:50:08.000Z",
       "message": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/44a334a10605afb41d94b9338e01652a2b373275"
     },
     "stats": {
       "total": 101,
@@ -3192,12 +3192,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "267c37c90ab0101016c3d6161489632ec8816963",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T15:54:08.000Z",
       "message": "feat(owner): avisar que el reporte de pérdida es privado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/267c37c90ab0101016c3d6161489632ec8816963"
     },
     "stats": {
       "total": 12,
@@ -3230,12 +3230,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "0086f5360817a53a25f55db4ed97d31ceefc7da1",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T16:16:02.000Z",
       "message": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0086f5360817a53a25f55db4ed97d31ceefc7da1"
     },
     "stats": {
       "total": 28,
@@ -3268,12 +3268,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "55ecdc121e7dddbd6ef415763238ac60548858a2",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T16:23:10.000Z",
       "message": "feat(owner): permitir subir una foto de referencia del objeto perdido",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/55ecdc121e7dddbd6ef415763238ac60548858a2"
     },
     "stats": {
       "total": 152,
@@ -3306,12 +3306,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7fd0aa59f1cb775c6cc124d8e8b21b2cb9e49d31",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T16:49:00.000Z",
       "message": "style(owner): mostrar las opciones del inicio como tarjetas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7fd0aa59f1cb775c6cc124d8e8b21b2cb9e49d31"
     },
     "stats": {
       "total": 36,
@@ -3344,12 +3344,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "231d46643f596ab380bd5516d532b1ac8f6c1bf8",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-21T20:06:58.000Z",
       "message": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/231d46643f596ab380bd5516d532b1ac8f6c1bf8"
     },
     "stats": {
       "total": 80,
@@ -3363,12 +3363,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "65751ebaa0d83e749e57641d0294ead0ca5a8284",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-21T20:53:51.000Z",
       "message": "chore: integra los últimos cambios de main en core-matching",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/65751ebaa0d83e749e57641d0294ead0ca5a8284"
     },
     "stats": {
       "total": 8542,
@@ -3553,12 +3553,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "25ef8a0ded099f818b118566d3bde61f96fde295",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-22T01:33:06.000Z",
       "message": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/25ef8a0ded099f818b118566d3bde61f96fde295"
     },
     "stats": {
       "total": 19,
@@ -3572,12 +3572,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "beac01bbfca2718e9a304c55eecce315827e30b3",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T21:43:57.000Z",
       "message": "feat: Pequeños cambios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/beac01bbfca2718e9a304c55eecce315827e30b3"
     },
     "stats": {
       "total": 13,
@@ -3591,12 +3591,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "8021c5e55075b3a9ae43a71bb2e2f4e65dba4856",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:15:29.000Z",
       "message": "feat(core): agregar la opción de avisos en la pantalla principal",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/8021c5e55075b3a9ae43a71bb2e2f4e65dba4856"
     },
     "stats": {
       "total": 552,
@@ -3610,12 +3610,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ea45771e29086d5aa5dd1f034de94bf3124dc02d",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:35:01.000Z",
       "message": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ea45771e29086d5aa5dd1f034de94bf3124dc02d"
     },
     "stats": {
       "total": 111,
@@ -3629,12 +3629,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7f842352d2df2a3d75928762844788280d9b13bb",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:45:05.000Z",
       "message": "feat(core): mostrar los avisos del más reciente al más antiguo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7f842352d2df2a3d75928762844788280d9b13bb"
     },
     "stats": {
       "total": 67,
@@ -3648,12 +3648,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "d696f1199751970ab242326a12845609887065cb",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:48:35.000Z",
       "message": "feat(core): mostrar qué pasó y cuándo en cada aviso",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d696f1199751970ab242326a12845609887065cb"
     },
     "stats": {
       "total": 72,
@@ -3667,12 +3667,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "d7e521f088a0d7f397fd5b4b737de56cdb9311b3",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:56:56.000Z",
       "message": "feat(core): abrir el reporte u objeto relacionado al tocar un aviso",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d7e521f088a0d7f397fd5b4b737de56cdb9311b3"
     },
     "stats": {
       "total": 80,
@@ -3686,12 +3686,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "09d94deec7f8625acb94b965356b696fe6353bb3",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T23:04:17.000Z",
       "message": "feat(core): dejar de contar como nuevos los avisos que ya se abrieron",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/09d94deec7f8625acb94b965356b696fe6353bb3"
     },
     "stats": {
       "total": 295,
@@ -3705,12 +3705,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c328a1054b892f726fe26bc300040f112a61a39c",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T23:19:59.000Z",
       "message": "chore: integra los últimos cambios de core-matching en core-matching-hu-15",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c328a1054b892f726fe26bc300040f112a61a39c"
     },
     "stats": {
       "total": 0,
@@ -3724,12 +3724,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "90c460002c36108a0fc0ae5b5788d9eea8f87f68",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T14:01:21.000Z",
       "message": "feat(core): mostrar en los botones que la app está cargando",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/90c460002c36108a0fc0ae5b5788d9eea8f87f68"
     },
     "stats": {
       "total": 28,
@@ -3743,12 +3743,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ead16cff3405c3aa27707997b3e408d15d22f000",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T14:03:11.000Z",
       "message": "feat(core): agregar un indicador de carga único para pantallas y listas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ead16cff3405c3aa27707997b3e408d15d22f000"
     },
     "stats": {
       "total": 24,
@@ -3757,6 +3757,709 @@
       "date": "2026-11-10"
     },
     "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "fd26a7b9ee06ad502491772cbc6295a9ec350736",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T14:23:02.000Z",
+      "message": "refactor(core): renombrar newestFirst a sortNewestFirst",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fd26a7b9ee06ad502491772cbc6295a9ec350736"
+    },
+    "stats": {
+      "total": 89,
+      "additions": 47,
+      "deletions": 42,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "7d492327c002cf1002a58c80fc9e9cb4e8395c51",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T14:25:33.000Z",
+      "message": "refactor(core): renombrar unreadBadge a formatUnreadBadge",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7d492327c002cf1002a58c80fc9e9cb4e8395c51"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 8,
+      "deletions": 8,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "9fbe1efdf48e34c9e2d19d3be9d08e40b29683c7",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T14:27:25.000Z",
+      "message": "refactor(core): renombrar notificationDestination  a getNotificationDestination",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/9fbe1efdf48e34c9e2d19d3be9d08e40b29683c7"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 8,
+      "deletions": 8,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "35e7da0b4e25599d072a94bd49a45e91adf1bd51",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T14:35:31.000Z",
+      "message": "refactor(core): renombrar matchCountText  a formatMatchCount",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/35e7da0b4e25599d072a94bd49a45e91adf1bd51"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 9,
+      "deletions": 7,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "fdd9b7b54d6384394775fa487dd9135ee4507ee1",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:02:56.000Z",
+      "message": "refactor(matching): renombrar  createCuurentUser a createUserAuthenticator",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fdd9b7b54d6384394775fa487dd9135ee4507ee1"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 4,
+      "deletions": 4,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "281e60d2217e72f5a547a225dc037db2ea2d39a8",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:04:12.000Z",
+      "message": "refactor(matching): renombrar  currentUser a authenticateUser",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/281e60d2217e72f5a547a225dc037db2ea2d39a8"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 3,
+      "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "4c564ace6e48fd8cfa60280f26d807a20974f835",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:06:02.000Z",
+      "message": "refactor(matching): renombrar  useSampleUser a signInAsSampleUser",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/4c564ace6e48fd8cfa60280f26d807a20974f835"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "86896c5ba9177dcf091a39ad5b3cac3292e73a79",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:11:28.000Z",
+      "message": "refactor(matching): renombrar carpetas de backend/src/core/data",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/86896c5ba9177dcf091a39ad5b3cac3292e73a79"
+    },
+    "stats": {
+      "total": 27,
+      "additions": 15,
+      "deletions": 12,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "b3a230a064e23f92238b8855fd3753d1ea940a08",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:15:21.000Z",
+      "message": "refactor(core): refactor nombre de archivos, newestFirst y roleForEmail a shortNewestFirst y getRoleForEmail",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b3a230a064e23f92238b8855fd3753d1ea940a08"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 4,
+      "deletions": 4,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "d72fb50ab312dc58a8c5e40f81f5ced3a6b67e10",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:17:37.000Z",
+      "message": "refactor(matching): renombrar normalized a normalizedText",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d72fb50ab312dc58a8c5e40f81f5ced3a6b67e10"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 4,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "c39fedfd38c4ccc552c03916bf1900fca4ff5031",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:18:46.000Z",
+      "message": "refactor(matching): renombrar setStatus a setMatchStatus",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c39fedfd38c4ccc552c03916bf1900fca4ff5031"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 4,
+      "deletions": 6,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "26d6ac5db6f8cb650c7560e588c4dfc30bfc8643",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:21:09.000Z",
+      "message": "refactor(core): corregir el nombre del archivo de pruebas del correo institucional",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/26d6ac5db6f8cb650c7560e588c4dfc30bfc8643"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "1e5dd2993cec31bbaa1a603d51b702c769cd70ff",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:24:13.000Z",
+      "message": "refactor(core): renombrar ApiFetchDeps a ApiFetchDependencies",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/1e5dd2993cec31bbaa1a603d51b702c769cd70ff"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "8775920b2d738672d30a8e228159e6e51500d149",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:25:25.000Z",
+      "message": "refactor(core): renombrar fetchFn a sendRequest en api",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/8775920b2d738672d30a8e228159e6e51500d149"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 5,
+      "deletions": 5,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "6e9218fa9815c758238ba374e7c13d82a8965d57",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:28:59.000Z",
+      "message": "refactor(core): renombrar at a createNotificationAt en las pruebas del orden",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/6e9218fa9815c758238ba374e7c13d82a8965d57"
+    },
+    "stats": {
+      "total": 12,
+      "additions": 6,
+      "deletions": 6,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "eabe8e0b1d5f1f030cdf5ae52fabff876ce1e8d1",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:30:34.000Z",
+      "message": "refactor(core): renombrar AuthServiceDeps y fetchFn en el servicio de sesión",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/eabe8e0b1d5f1f030cdf5ae52fabff876ce1e8d1"
+    },
+    "stats": {
+      "total": 42,
+      "additions": 21,
+      "deletions": 21,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "87555433838a6d6a4c85f974a21fe9a1f15ee7ce",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:31:46.000Z",
+      "message": "refactor(core): renombrar answer y received en las pruebas de avisos",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/87555433838a6d6a4c85f974a21fe9a1f15ee7ce"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 7,
+      "deletions": 7,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "f9d1ef4d8cd02c62245fd03008cbb5a2fed0f705",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:32:55.000Z",
+      "message": "refactor(core): renombrar LABEL y TONE a STATUS_LABELS y STATUS_TONES",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/f9d1ef4d8cd02c62245fd03008cbb5a2fed0f705"
+    },
+    "stats": {
+      "total": 9,
+      "additions": 6,
+      "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "e83a29e607ec2212c2f2213d5f6b4f981ce7739d",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:34:04.000Z",
+      "message": "refactor(core): indicar en milisegundos las constantes de tiempo",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/e83a29e607ec2212c2f2213d5f6b4f981ce7739d"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 8,
+      "deletions": 8,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:35:24.000Z",
+      "message": "refactor(core): renombrar dayKey, date y elapsed al calcular el cuándo",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 13,
+      "deletions": 10,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:36:34.000Z",
+      "message": "refactor(core): renombrar MAX_SHOWN a MAX_BADGE_COUNT",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:37:47.000Z",
+      "message": "refactor(core): renombrar id a openedNotificationId",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:39:07.000Z",
+      "message": "refactor(core): renombrar el archivo notificationTime a formatNotificationTime",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:40:25.000Z",
+      "message": "refactor(core): renombrar el archivo notificationDestination a getNotificationDestination",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:41:47.000Z",
+      "message": "refactor(core): renombrar BASE y VARIANTS en el botón",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 3,
+      "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:43:01.000Z",
+      "message": "refactor(core): renombrar BOX a BOX_CLASSES",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 3,
+      "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:44:15.000Z",
+      "message": "refactor(core): renombrar preview a previewUrl",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 10,
+      "deletions": 6,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:45:29.000Z",
+      "message": "refactor(core): renombrar los nombres de la campana de avisos",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 22,
+      "additions": 11,
+      "deletions": 11,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:46:56.000Z",
+      "message": "refactor(core): renombrar attempt, open y data en la pantalla de avisos",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 7,
+      "deletions": 7,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:48:19.000Z",
+      "message": "refactor(core): renombrar notInstitutional a isNotInstitutional en el login",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 5,
+      "deletions": 5,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:49:33.000Z",
+      "message": "refactor(core): renombrar notInstitutional a isNotInstitutional en App",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 3,
+      "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:50:47.000Z",
+      "message": "refactor(core): renombrar guidePending a isGuidePending",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 3,
+      "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:51:57.000Z",
+      "message": "refactor(core): renombrar signedInPage a renderSignedInPage",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 34,
+      "additions": 17,
+      "deletions": 17,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:53:20.000Z",
+      "message": "refactor(matching): renombrar result a publishResult",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 7,
+      "deletions": 7,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:54:36.000Z",
+      "message": "refactor(matching): renombrar el archivo matchCountText a formatMatchCount",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T20:49:43.000Z",
+      "message": "feat(core): mostrar el cursor de carga mientras el botón espera al servidor",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 4,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 2,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T20:55:16.000Z",
+      "message": "feat(core): mostrar esqueletos de carga en lugar del indicador con círculo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 85,
+      "additions": 83,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.03,
     "test_count": 629,
     "failed_tests": 0,
     "conclusion": "success"

@@ -4636,7 +4636,7 @@
     "testId": 57
   },
   {
-    "commitId": "HEAD",
+    "commitId": "44a334a10605afb41d94b9338e01652a2b373275",
     "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
     "commitTimestamp": 1792597809312,
     "testId": 57
@@ -4664,7 +4664,7 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "267c37c90ab0101016c3d6161489632ec8816963",
     "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
     "commitTimestamp": 1792598049048,
     "testId": 58
@@ -4692,7 +4692,7 @@
     "testId": 59
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0086f5360817a53a25f55db4ed97d31ceefc7da1",
     "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
     "commitTimestamp": 1792599362931,
     "testId": 59
@@ -4720,7 +4720,7 @@
     "testId": 60
   },
   {
-    "commitId": "HEAD",
+    "commitId": "55ecdc121e7dddbd6ef415763238ac60548858a2",
     "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
     "commitTimestamp": 1792599791806,
     "testId": 60
@@ -4748,7 +4748,7 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7fd0aa59f1cb775c6cc124d8e8b21b2cb9e49d31",
     "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
     "commitTimestamp": 1792601341695,
     "testId": 61
@@ -4760,13 +4760,13 @@
     "testId": 62
   },
   {
-    "commitId": "HEAD",
+    "commitId": "231d46643f596ab380bd5516d532b1ac8f6c1bf8",
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
     "testId": 62
   },
   {
-    "commitId": "HEAD",
+    "commitId": "65751ebaa0d83e749e57641d0294ead0ca5a8284",
     "commitName": "chore: integra los últimos cambios de main en core-matching",
     "commitTimestamp": 1792616032864,
     "testId": 63
@@ -5018,13 +5018,13 @@
     "testId": 72
   },
   {
-    "commitId": "HEAD",
+    "commitId": "25ef8a0ded099f818b118566d3bde61f96fde295",
     "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
     "commitTimestamp": 1792632787536,
     "testId": 72
   },
   {
-    "commitId": "HEAD",
+    "commitId": "beac01bbfca2718e9a304c55eecce315827e30b3",
     "commitName": "feat: Pequeños cambios",
     "commitTimestamp": 1794001438321,
     "testId": 73
@@ -5054,7 +5054,7 @@
     "testId": 74
   },
   {
-    "commitId": "HEAD",
+    "commitId": "8021c5e55075b3a9ae43a71bb2e2f4e65dba4856",
     "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
     "commitTimestamp": 1794003330500,
     "testId": 74
@@ -5076,7 +5076,7 @@
     "testId": 75
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ea45771e29086d5aa5dd1f034de94bf3124dc02d",
     "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
     "commitTimestamp": 1794004502232,
     "testId": 75
@@ -5098,7 +5098,7 @@
     "testId": 76
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7f842352d2df2a3d75928762844788280d9b13bb",
     "commitName": "feat(core): mostrar los avisos del más reciente al más antiguo",
     "commitTimestamp": 1794005105950,
     "testId": 76
@@ -5120,7 +5120,7 @@
     "testId": 77
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d696f1199751970ab242326a12845609887065cb",
     "commitName": "feat(core): mostrar qué pasó y cuándo en cada aviso",
     "commitTimestamp": 1794005316407,
     "testId": 77
@@ -5142,7 +5142,7 @@
     "testId": 78
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d7e521f088a0d7f397fd5b4b737de56cdb9311b3",
     "commitName": "feat(core): abrir el reporte u objeto relacionado al tocar un aviso",
     "commitTimestamp": 1794005817055,
     "testId": 78
@@ -5164,7 +5164,7 @@
     "testId": 79
   },
   {
-    "commitId": "HEAD",
+    "commitId": "09d94deec7f8625acb94b965356b696fe6353bb3",
     "commitName": "feat(core): dejar de contar como nuevos los avisos que ya se abrieron",
     "commitTimestamp": 1794006258664,
     "testId": 79
@@ -5178,7 +5178,7 @@
     "testId": 80
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c328a1054b892f726fe26bc300040f112a61a39c",
     "commitName": "chore: integra los últimos cambios de core-matching en core-matching-hu-15",
     "commitTimestamp": 1794007200212,
     "testId": 80
@@ -5192,7 +5192,7 @@
     "testId": 81
   },
   {
-    "commitId": "HEAD",
+    "commitId": "90c460002c36108a0fc0ae5b5788d9eea8f87f68",
     "commitName": "feat(core): mostrar en los botones que la app está cargando",
     "commitTimestamp": 1794319281960,
     "testId": 81
@@ -5206,9 +5206,463 @@
     "testId": 82
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ead16cff3405c3aa27707997b3e408d15d22f000",
     "commitName": "feat(core): agregar un indicador de carga único para pantallas y listas",
     "commitTimestamp": 1794319392159,
     "testId": 82
+  },
+  {
+    "commitId": "fd26a7b9ee06ad502491772cbc6295a9ec350736",
+    "commitName": "refactor(core): renombrar newestFirst a sortNewestFirst",
+    "commitTimestamp": 1794320583160,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794320634852,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "commitId": "7d492327c002cf1002a58c80fc9e9cb4e8395c51",
+    "commitName": "refactor(core): renombrar unreadBadge a formatUnreadBadge",
+    "commitTimestamp": 1794320734205,
+    "testId": 84
+  },
+  {
+    "commitId": "9fbe1efdf48e34c9e2d19d3be9d08e40b29683c7",
+    "commitName": "refactor(core): renombrar notificationDestination  a getNotificationDestination",
+    "commitTimestamp": 1794320846024,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794321297086,
+    "success": true,
+    "testId": 86
+  },
+  {
+    "commitId": "35e7da0b4e25599d072a94bd49a45e91adf1bd51",
+    "commitName": "refactor(core): renombrar matchCountText  a formatMatchCount",
+    "commitTimestamp": 1794321332637,
+    "testId": 86
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794337202921,
+    "success": true,
+    "testId": 87
+  },
+  {
+    "commitId": "fdd9b7b54d6384394775fa487dd9135ee4507ee1",
+    "commitName": "refactor(matching): renombrar  createCuurentUser a createUserAuthenticator",
+    "commitTimestamp": 1794337378485,
+    "testId": 87
+  },
+  {
+    "commitId": "281e60d2217e72f5a547a225dc037db2ea2d39a8",
+    "commitName": "refactor(matching): renombrar  currentUser a authenticateUser",
+    "commitTimestamp": 1794337453375,
+    "testId": 88
+  },
+  {
+    "commitId": "4c564ace6e48fd8cfa60280f26d807a20974f835",
+    "commitName": "refactor(matching): renombrar  useSampleUser a signInAsSampleUser",
+    "commitTimestamp": 1794337563885,
+    "testId": 89
+  },
+  {
+    "commitId": "86896c5ba9177dcf091a39ad5b3cac3292e73a79",
+    "commitName": "refactor(matching): renombrar carpetas de backend/src/core/data",
+    "commitTimestamp": 1794337889565,
+    "testId": 90
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794338020352,
+    "success": true,
+    "testId": 91
+  },
+  {
+    "commitId": "b3a230a064e23f92238b8855fd3753d1ea940a08",
+    "commitName": "refactor(core): refactor nombre de archivos, newestFirst y roleForEmail a shortNewestFirst y getRoleForEmail",
+    "commitTimestamp": 1794338123051,
+    "testId": 91
+  },
+  {
+    "commitId": "d72fb50ab312dc58a8c5e40f81f5ced3a6b67e10",
+    "commitName": "refactor(matching): renombrar normalized a normalizedText",
+    "commitTimestamp": 1794338258904,
+    "testId": 92
+  },
+  {
+    "commitId": "c39fedfd38c4ccc552c03916bf1900fca4ff5031",
+    "commitName": "refactor(matching): renombrar setStatus a setMatchStatus",
+    "commitTimestamp": 1794338327349,
+    "testId": 93
+  },
+  {
+    "commitId": "26d6ac5db6f8cb650c7560e588c4dfc30bfc8643",
+    "commitName": "refactor(core): corregir el nombre del archivo de pruebas del correo institucional",
+    "commitTimestamp": 1794338471161,
+    "testId": 94
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794338565401,
+    "success": true,
+    "testId": 95
+  },
+  {
+    "commitId": "1e5dd2993cec31bbaa1a603d51b702c769cd70ff",
+    "commitName": "refactor(core): renombrar ApiFetchDeps a ApiFetchDependencies",
+    "commitTimestamp": 1794338654580,
+    "testId": 95
+  },
+  {
+    "commitId": "8775920b2d738672d30a8e228159e6e51500d149",
+    "commitName": "refactor(core): renombrar fetchFn a sendRequest en api",
+    "commitTimestamp": 1794338726467,
+    "testId": 96
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794338909650,
+    "success": true,
+    "testId": 97
+  },
+  {
+    "commitId": "6e9218fa9815c758238ba374e7c13d82a8965d57",
+    "commitName": "refactor(core): renombrar at a createNotificationAt en las pruebas del orden",
+    "commitTimestamp": 1794338939762,
+    "testId": 97
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339002666,
+    "success": true,
+    "testId": 98
+  },
+  {
+    "commitId": "eabe8e0b1d5f1f030cdf5ae52fabff876ce1e8d1",
+    "commitName": "refactor(core): renombrar AuthServiceDeps y fetchFn en el servicio de sesión",
+    "commitTimestamp": 1794339034706,
+    "testId": 98
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339076295,
+    "success": true,
+    "testId": 99
+  },
+  {
+    "commitId": "87555433838a6d6a4c85f974a21fe9a1f15ee7ce",
+    "commitName": "refactor(core): renombrar answer y received en las pruebas de avisos",
+    "commitTimestamp": 1794339106761,
+    "testId": 99
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339144526,
+    "success": true,
+    "testId": 100
+  },
+  {
+    "commitId": "f9d1ef4d8cd02c62245fd03008cbb5a2fed0f705",
+    "commitName": "refactor(core): renombrar LABEL y TONE a STATUS_LABELS y STATUS_TONES",
+    "commitTimestamp": 1794339175539,
+    "testId": 100
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339212382,
+    "success": true,
+    "testId": 101
+  },
+  {
+    "commitId": "e83a29e607ec2212c2f2213d5f6b4f981ce7739d",
+    "commitName": "refactor(core): indicar en milisegundos las constantes de tiempo",
+    "commitTimestamp": 1794339244588,
+    "testId": 101
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339292857,
+    "success": true,
+    "testId": 102
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar dayKey, date y elapsed al calcular el cuándo",
+    "commitTimestamp": 1794339324214,
+    "testId": 102
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339362927,
+    "success": true,
+    "testId": 103
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar MAX_SHOWN a MAX_BADGE_COUNT",
+    "commitTimestamp": 1794339394933,
+    "testId": 103
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339434134,
+    "success": true,
+    "testId": 104
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar id a openedNotificationId",
+    "commitTimestamp": 1794339467819,
+    "testId": 104
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339514199,
+    "success": true,
+    "testId": 105
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar el archivo notificationTime a formatNotificationTime",
+    "commitTimestamp": 1794339547482,
+    "testId": 105
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339590926,
+    "success": true,
+    "testId": 106
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar el archivo notificationDestination a getNotificationDestination",
+    "commitTimestamp": 1794339625592,
+    "testId": 106
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339674465,
+    "success": true,
+    "testId": 107
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar BASE y VARIANTS en el botón",
+    "commitTimestamp": 1794339707442,
+    "testId": 107
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339747568,
+    "success": true,
+    "testId": 108
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar BOX a BOX_CLASSES",
+    "commitTimestamp": 1794339781777,
+    "testId": 108
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339823185,
+    "success": true,
+    "testId": 109
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar preview a previewUrl",
+    "commitTimestamp": 1794339855963,
+    "testId": 109
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339896689,
+    "success": true,
+    "testId": 110
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar los nombres de la campana de avisos",
+    "commitTimestamp": 1794339929969,
+    "testId": 110
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339980821,
+    "success": true,
+    "testId": 111
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar attempt, open y data en la pantalla de avisos",
+    "commitTimestamp": 1794340016246,
+    "testId": 111
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340066766,
+    "success": true,
+    "testId": 112
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en el login",
+    "commitTimestamp": 1794340099763,
+    "testId": 112
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340139907,
+    "success": true,
+    "testId": 113
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en App",
+    "commitTimestamp": 1794340173522,
+    "testId": 113
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340214525,
+    "success": true,
+    "testId": 114
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar guidePending a isGuidePending",
+    "commitTimestamp": 1794340247321,
+    "testId": 114
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340284076,
+    "success": true,
+    "testId": 115
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar signedInPage a renderSignedInPage",
+    "commitTimestamp": 1794340317356,
+    "testId": 115
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340366323,
+    "success": true,
+    "testId": 116
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): renombrar result a publishResult",
+    "commitTimestamp": 1794340400452,
+    "testId": 116
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340441567,
+    "success": true,
+    "testId": 117
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): renombrar el archivo matchCountText a formatMatchCount",
+    "commitTimestamp": 1794340476250,
+    "testId": 117
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794343673114,
+    "success": true,
+    "testId": 118
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar el cursor de carga mientras el botón espera al servidor",
+    "commitTimestamp": 1794343786430,
+    "testId": 118
+  },
+  {
+    "numPassedTests": 627,
+    "failedTests": 2,
+    "numTotalTests": 629,
+    "timestamp": 1794343932729,
+    "success": false,
+    "testId": 119
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794344062022,
+    "success": true,
+    "testId": 119
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar esqueletos de carga en lugar del indicador con círculo",
+    "commitTimestamp": 1794344118367,
+    "testId": 119
   }
 ]

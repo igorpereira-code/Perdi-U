@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { APP_NAME } from '@shared/constants';
-import { createCurrentUser, getCurrentUser, type VerifyToken } from './core/currentUser';
+import { createUserAuthenticator, getCurrentUser, type VerifyToken } from './core/currentUser';
 import { verifySupabaseToken } from './core/data/supabaseAuth';
 import { prismaUsersRepository } from './core/data/prismaUsersRepository';
 import type { UsersRepository } from './core/data/usersRepository';
@@ -65,7 +65,7 @@ export function createApp({
     res.json({ status: 'ok', app: APP_NAME });
   });
 
-  app.use(createCurrentUser(verifyToken, users, allowSampleUsers));
+  app.use(createUserAuthenticator(verifyToken, users, allowSampleUsers));
 
   app.get('/me', (req, res) => {
     res.json(getCurrentUser(req));
