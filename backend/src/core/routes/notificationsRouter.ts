@@ -2,7 +2,7 @@ import { Router } from 'express';
 import type { AppNotification } from '@shared/notifications';
 import { getCurrentUser } from '../currentUser';
 import type { NotificationsRepository, StoredNotification } from '../data/notificationsRepository';
-import { sortNewestFirst } from '../logic/newestFirst';
+import { sortNewestFirst } from '../logic/sortNewestFirst';
 
 function toView(notification: StoredNotification): AppNotification {
   return {

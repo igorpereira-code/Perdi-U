@@ -1,4 +1,4 @@
-import { getRoleForEmail } from './roleForEmail';
+import { getRoleForEmail } from './getRoleForEmail';
 
 describe('Rol de un perfil nuevo', () => {
   const welfareEmails = ['bienestar@ucb.edu.bo'];

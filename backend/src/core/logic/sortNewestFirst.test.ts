@@ -1,4 +1,4 @@
-import { sortNewestFirst } from './newestFirst';
+import { sortNewestFirst } from './sortNewestFirst';
 
 const at = (id: string, iso: string) => ({ id, createdAt: new Date(iso) });
 

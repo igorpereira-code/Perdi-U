@@ -6,7 +6,7 @@ import { SAMPLE_USERS } from './sampleUsers';
 import { isInstitutionalEmail } from './logic/institutionalEmail';
 import { prismaUsersRepository } from './data/prismaUsersRepository';
 import type { UsersRepository } from './data/usersRepository';
-import { getRoleForEmail } from './logic/roleForEmail';
+import { getRoleForEmail } from './logic/getRoleForEmail';
 
 export type CurrentUser = AppUser;
 

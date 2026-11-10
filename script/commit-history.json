@@ -3572,12 +3572,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "beac01bbfca2718e9a304c55eecce315827e30b3",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T21:43:57.000Z",
       "message": "feat: Pequeños cambios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/beac01bbfca2718e9a304c55eecce315827e30b3"
     },
     "stats": {
       "total": 13,
@@ -3906,6 +3906,25 @@
       "total": 27,
       "additions": 15,
       "deletions": 12,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:15:21.000Z",
+      "message": "refactor(core): refactor nombre de archivos, newestFirst y roleForEmail a shortNewestFirst y getRoleForEmail",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 4,
+      "deletions": 4,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

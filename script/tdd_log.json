@@ -5024,7 +5024,7 @@
     "testId": 72
   },
   {
-    "commitId": "HEAD",
+    "commitId": "beac01bbfca2718e9a304c55eecce315827e30b3",
     "commitName": "feat: Pequeños cambios",
     "commitTimestamp": 1794001438321,
     "testId": 73
@@ -5282,5 +5282,19 @@
     "commitName": "refactor(matching): renombrar carpetas de backend/src/core/data",
     "commitTimestamp": 1794337889565,
     "testId": 90
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794338020352,
+    "success": true,
+    "testId": 91
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): refactor nombre de archivos, newestFirst y roleForEmail a shortNewestFirst y getRoleForEmail",
+    "commitTimestamp": 1794338123051,
+    "testId": 91
   }
 ]
