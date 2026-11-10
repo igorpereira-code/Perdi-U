@@ -3876,12 +3876,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "4c564ace6e48fd8cfa60280f26d807a20974f835",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T19:06:02.000Z",
       "message": "refactor(matching): renombrar  useSampleUser a signInAsSampleUser",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/4c564ace6e48fd8cfa60280f26d807a20974f835"
     },
     "stats": {
       "total": 4,
@@ -4210,6 +4210,25 @@
       "total": 4,
       "additions": 2,
       "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:41:47.000Z",
+      "message": "refactor(core): renombrar BASE y VARIANTS en el botón",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 3,
+      "deletions": 3,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

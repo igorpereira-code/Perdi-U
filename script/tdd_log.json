@@ -5272,7 +5272,7 @@
     "testId": 88
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4c564ace6e48fd8cfa60280f26d807a20974f835",
     "commitName": "refactor(matching): renombrar  useSampleUser a signInAsSampleUser",
     "commitTimestamp": 1794337563885,
     "testId": 89
@@ -5474,5 +5474,19 @@
     "commitName": "refactor(core): renombrar el archivo notificationDestination a getNotificationDestination",
     "commitTimestamp": 1794339625592,
     "testId": 106
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339674465,
+    "success": true,
+    "testId": 107
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar BASE y VARIANTS en el botón",
+    "commitTimestamp": 1794339707442,
+    "testId": 107
   }
 ]
