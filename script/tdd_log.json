@@ -5226,7 +5226,7 @@
     "testId": 84
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7d492327c002cf1002a58c80fc9e9cb4e8395c51",
     "commitName": "refactor(core): renombrar unreadBadge a formatUnreadBadge",
     "commitTimestamp": 1794320734205,
     "testId": 84
@@ -5404,5 +5404,19 @@
     "commitName": "refactor(core): indicar en milisegundos las constantes de tiempo",
     "commitTimestamp": 1794339244588,
     "testId": 101
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339292857,
+    "success": true,
+    "testId": 102
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar dayKey, date y elapsed al calcular el cuándo",
+    "commitTimestamp": 1794339324214,
+    "testId": 102
   }
 ]

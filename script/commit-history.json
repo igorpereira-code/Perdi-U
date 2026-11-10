@@ -3781,12 +3781,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7d492327c002cf1002a58c80fc9e9cb4e8395c51",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T14:25:33.000Z",
       "message": "refactor(core): renombrar unreadBadge a formatUnreadBadge",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7d492327c002cf1002a58c80fc9e9cb4e8395c51"
     },
     "stats": {
       "total": 16,
@@ -4115,6 +4115,25 @@
       "total": 16,
       "additions": 8,
       "deletions": 8,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:35:24.000Z",
+      "message": "refactor(core): renombrar dayKey, date y elapsed al calcular el cuándo",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 13,
+      "deletions": 10,
       "date": "2026-11-10"
     },
     "coverage": 87.35,
