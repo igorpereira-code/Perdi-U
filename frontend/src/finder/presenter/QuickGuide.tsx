@@ -3,11 +3,9 @@ import { Alert } from '../../core/presenter/Alert';
 import { WelfareCard } from '../../core/presenter/WelfareCard';
 
 type QuickGuideProps = {
-  onSkip: () => void;
-  onComplete: () => void;
   saving?: boolean;
   error?: string | null;
-};
+} & ({ onClose: () => void } | { onSkip: () => void; onComplete: () => void });
 
 const steps = [
   {
@@ -28,7 +26,8 @@ const steps = [
   },
 ];
 
-export function QuickGuide({ onSkip, onComplete, saving = false, error }: QuickGuideProps) {
+export function QuickGuide(props: QuickGuideProps) {
+  const { saving = false, error } = props;
   return (
     <main className="mx-auto max-w-lg space-y-6 px-4 py-6">
       <header className="space-y-2 text-center">
@@ -87,12 +86,20 @@ export function QuickGuide({ onSkip, onComplete, saving = false, error }: QuickG
       )}
 
       <div className="space-y-3" aria-busy={saving}>
-        <Button onClick={onComplete} disabled={saving} className="w-full">
-          Empezar a usar Perdi-U
-        </Button>
-        <Button variant="outline" onClick={onSkip} disabled={saving} className="w-full">
-          Saltar guía
-        </Button>
+        {'onClose' in props ? (
+          <Button onClick={props.onClose} className="w-full">
+            Cerrar guía
+          </Button>
+        ) : (
+          <>
+            <Button onClick={props.onComplete} disabled={saving} className="w-full">
+              Empezar a usar Perdi-U
+            </Button>
+            <Button variant="outline" onClick={props.onSkip} disabled={saving} className="w-full">
+              Saltar guía
+            </Button>
+          </>
+        )}
         {saving && (
           <p role="status" className="text-center text-sm">Guardando tu decisión…</p>
         )}

@@ -4636,7 +4636,7 @@
     "testId": 57
   },
   {
-    "commitId": "HEAD",
+    "commitId": "9d848402240e2f136a2f3741b71cc3943f83ecaf",
     "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
     "commitTimestamp": 1792597809312,
     "testId": 57
@@ -5258,5 +5258,35 @@
     "commitName": "feat(finder): abrir la guía rápida desde Inicio",
     "commitTimestamp": 1794258117193,
     "testId": 82
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794316364385,
+    "success": false,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794316446192,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794316508757,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir cerrar la guía y volver a Inicio",
+    "commitTimestamp": 1794316599608,
+    "testId": 83
   }
 ]

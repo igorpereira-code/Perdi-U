@@ -10,6 +10,7 @@ import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
 import type { GuideService } from './finder/data/guideService';
+import { QuickGuide } from './finder/presenter/QuickGuide';
 import { QuickGuideScreen } from './finder/presenter/QuickGuideScreen';
 import { FoundItemEntry } from './finder/presenter/FoundItemEntry';
 import { FoundItemScreen } from './finder/presenter/FoundItemScreen';
@@ -206,9 +207,13 @@ export default function App({
       )}
       <Route
         path="/guia-rapida"
-        element={signedInPage(() => (
-          <QuickGuideScreen guideService={guideService} onSeen={handleGuideSeen} />
-        ))}
+        element={signedInPage((me) =>
+          me.hasSeenGuide ? (
+            <QuickGuide onClose={() => navigate('/', { replace: true })} />
+          ) : (
+            <QuickGuideScreen guideService={guideService} onSeen={handleGuideSeen} />
+          ),
+        )}
       />
       <Route
         path="/bienestar"
