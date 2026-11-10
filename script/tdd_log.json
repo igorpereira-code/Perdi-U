@@ -5164,7 +5164,7 @@
     "testId": 79
   },
   {
-    "commitId": "HEAD",
+    "commitId": "09d94deec7f8625acb94b965356b696fe6353bb3",
     "commitName": "feat(core): dejar de contar como nuevos los avisos que ya se abrieron",
     "commitTimestamp": 1794006258664,
     "testId": 79
@@ -5334,5 +5334,19 @@
     "commitName": "refactor(core): renombrar fetchFn a sendRequest en api",
     "commitTimestamp": 1794338726467,
     "testId": 96
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794338909650,
+    "success": true,
+    "testId": 97
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar at a createNotificationAt en las pruebas del orden",
+    "commitTimestamp": 1794338939762,
+    "testId": 97
   }
 ]

@@ -3686,12 +3686,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "09d94deec7f8625acb94b965356b696fe6353bb3",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T23:04:17.000Z",
       "message": "feat(core): dejar de contar como nuevos los avisos que ya se abrieron",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/09d94deec7f8625acb94b965356b696fe6353bb3"
     },
     "stats": {
       "total": 295,
@@ -4020,6 +4020,25 @@
       "total": 10,
       "additions": 5,
       "deletions": 5,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:28:59.000Z",
+      "message": "refactor(core): renombrar at a createNotificationAt en las pruebas del orden",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 12,
+      "additions": 6,
+      "deletions": 6,
       "date": "2026-11-10"
     },
     "coverage": 87.35,
