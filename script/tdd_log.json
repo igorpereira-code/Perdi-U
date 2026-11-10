@@ -5292,7 +5292,7 @@
     "testId": 91
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b3a230a064e23f92238b8855fd3753d1ea940a08",
     "commitName": "refactor(core): refactor nombre de archivos, newestFirst y roleForEmail a shortNewestFirst y getRoleForEmail",
     "commitTimestamp": 1794338123051,
     "testId": 91
@@ -5502,5 +5502,19 @@
     "commitName": "refactor(core): renombrar BOX a BOX_CLASSES",
     "commitTimestamp": 1794339781777,
     "testId": 108
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339823185,
+    "success": true,
+    "testId": 109
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar preview a previewUrl",
+    "commitTimestamp": 1794339855963,
+    "testId": 109
   }
 ]
