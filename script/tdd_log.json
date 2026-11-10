@@ -5278,7 +5278,7 @@
     "testId": 89
   },
   {
-    "commitId": "HEAD",
+    "commitId": "86896c5ba9177dcf091a39ad5b3cac3292e73a79",
     "commitName": "refactor(matching): renombrar carpetas de backend/src/core/data",
     "commitTimestamp": 1794337889565,
     "testId": 90
@@ -5488,5 +5488,19 @@
     "commitName": "refactor(core): renombrar BASE y VARIANTS en el botón",
     "commitTimestamp": 1794339707442,
     "testId": 107
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339747568,
+    "success": true,
+    "testId": 108
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar BOX a BOX_CLASSES",
+    "commitTimestamp": 1794339781777,
+    "testId": 108
   }
 ]

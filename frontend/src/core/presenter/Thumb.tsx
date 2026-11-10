@@ -5,11 +5,11 @@ type ThumbProps = {
   photoUrl?: string | null;
 };
 
-const BOX = 'h-16 w-16 shrink-0 rounded-xl';
+const BOX_CLASSES = 'h-16 w-16 shrink-0 rounded-xl';
 
 export function Thumb({ category, photoUrl }: ThumbProps) {
   if (photoUrl) {
-    return <img src={photoUrl} alt="Foto del objeto" className={`${BOX} object-cover`} />;
+    return <img src={photoUrl} alt="Foto del objeto" className={`${BOX_CLASSES} object-cover`} />;
   }
 
   const Icon = getCategoryIcon(category);
@@ -17,7 +17,7 @@ export function Thumb({ category, photoUrl }: ThumbProps) {
     <div
       role="img"
       aria-label={category}
-      className={`${BOX} flex items-center justify-center bg-blue-50 text-blue-300`}
+      className={`${BOX_CLASSES} flex items-center justify-center bg-blue-50 text-blue-300`}
     >
       <Icon className="h-7 w-7" aria-hidden="true" />
     </div>
