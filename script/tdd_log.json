@@ -4608,7 +4608,7 @@
     "testId": 56
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6fe207b853103a95af54662156d2834a4ee3355a",
     "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
     "commitTimestamp": 1792597534262,
     "testId": 56
@@ -5196,5 +5196,19 @@
     "commitName": "feat(core): mostrar en los botones que la app está cargando",
     "commitTimestamp": 1794319281960,
     "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794319355927,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): agregar un indicador de carga único para pantallas y listas",
+    "commitTimestamp": 1794319392159,
+    "testId": 82
   }
 ]

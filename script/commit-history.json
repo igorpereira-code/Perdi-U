@@ -3116,12 +3116,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6fe207b853103a95af54662156d2834a4ee3355a",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T15:45:33.000Z",
       "message": "feat(owner): enviar el reporte de pérdida y recibir su código único",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6fe207b853103a95af54662156d2834a4ee3355a"
     },
     "stats": {
       "total": 810,
@@ -3738,6 +3738,25 @@
       "date": "2026-11-10"
     },
     "coverage": 87.4,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T14:03:11.000Z",
+      "message": "feat(core): agregar un indicador de carga único para pantallas y listas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 24,
+      "additions": 21,
+      "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
     "test_count": 629,
     "failed_tests": 0,
     "conclusion": "success"

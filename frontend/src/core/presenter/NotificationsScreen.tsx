@@ -9,6 +9,7 @@ import { markNotificationRead } from '../logic/markNotificationRead';
 import { Alert } from './Alert';
 import { Button } from './Button';
 import { EmptyState } from './EmptyState';
+import { LoadingState } from './LoadingState';
 
 type NotificationsScreenProps = {
   notificationsService: NotificationsService;
@@ -65,9 +66,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
           <Button onClick={() => setAttempt((value) => value + 1)}>Reintentar</Button>
         </div>
       ) : notifications === null ? (
-        <p role="status" className="text-sm text-neutral-500">
-          Cargando tus avisos…
-        </p>
+        <LoadingState text="Cargando tus avisos…" />
       ) : notifications.length === 0 ? (
         <EmptyState
           icon={Bell}
