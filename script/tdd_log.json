@@ -4608,7 +4608,7 @@
     "testId": 56
   },
   {
-    "commitId": "HEAD",
+    "commitId": "28f403997e5e299ba03f8ed55471dd7cb8996b5c",
     "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
     "commitTimestamp": 1792597534262,
     "testId": 56
@@ -5236,5 +5236,11 @@
     "commitName": "refactor(finder): nombrar buildFoundAt según su propósito",
     "commitTimestamp": 1794320623056,
     "testId": 81
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(finder): aclarar los nombres del envío del hallazgo",
+    "commitTimestamp": 1794320686630,
+    "testId": 82
   }
 ]

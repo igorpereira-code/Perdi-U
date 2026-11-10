@@ -23,10 +23,10 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
   const [foundDate, setFoundDate] = useState('');
   const [foundTime, setFoundTime] = useState('');
   const [errors, setErrors] = useState<FoundItemFormErrors>({});
-  const [submitting, setSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [created, setCreated] = useState<FoundItemCreated | null>(null);
-  const submitLocked = useRef(false);
+  const [createdReport, setCreatedReport] = useState<FoundItemCreated | null>(null);
+  const isSubmitLockedRef = useRef(false);
   const selectedPlace = catalogs.places.find((place) => String(place.id) === placeId);
 
   function handlePlaceChange(id: string) {
@@ -36,7 +36,7 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (submitLocked.current) { return; }
+    if (isSubmitLockedRef.current) { return; }
     setSubmitError(null);
     const nextErrors = validateFoundItemForm({ description, category, place: placeId, foundDate });
     setErrors(nextErrors);
@@ -50,10 +50,10 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
       return;
     }
     if (!onCreate) { return; }
-    submitLocked.current = true;
-    setSubmitting(true);
+    isSubmitLockedRef.current = true;
+    setIsSubmitting(true);
     try {
-      const result = await onCreate({
+      const creation = await onCreate({
         description: description.trim(),
         categoryId: Number(category),
         placeId: Number(placeId),
@@ -61,17 +61,17 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
         placeReference: placeReference.trim() || null,
         foundAt: buildFoundAt(foundDate, foundTime),
       }, photo);
-      setCreated(result);
+      setCreatedReport(creation);
     } catch (error) {
-      submitLocked.current = false;
+      isSubmitLockedRef.current = false;
       setSubmitError(error instanceof Error ? error.message : 'No se pudo enviar el reporte. Intenta nuevamente.');
     } finally {
-      setSubmitting(false);
+      setIsSubmitting(false);
     }
   }
 
-  if (created) {
-    return <FoundItemConfirmation code={created.code} />;
+  if (createdReport) {
+    return <FoundItemConfirmation code={createdReport.code} />;
   }
 
   return (
@@ -85,7 +85,7 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
         Reportar objeto encontrado
       </h1>
       {submitError && <div role="alert"><Alert>{submitError}</Alert></div>}
-      <fieldset disabled={submitting} className="space-y-4">
+      <fieldset disabled={isSubmitting} className="space-y-4">
       <Field id="found-item-description" label="Descripción del objeto" error={errors.description}>
         <textarea
           id="found-item-description"
@@ -201,8 +201,8 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
           />
         </Field>
       </fieldset>
-      <Button type="submit" className="w-full" disabled={submitting}>
-        {submitting ? 'Enviando…' : 'Reportar objeto encontrado'}
+      <Button type="submit" className="w-full" disabled={isSubmitting}>
+        {isSubmitting ? 'Enviando…' : 'Reportar objeto encontrado'}
       </Button>
       </fieldset>
     </form>
