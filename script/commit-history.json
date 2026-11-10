@@ -3971,12 +3971,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "26d6ac5db6f8cb650c7560e588c4dfc30bfc8643",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T19:21:09.000Z",
       "message": "refactor(core): corregir el nombre del archivo de pruebas del correo institucional",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/26d6ac5db6f8cb650c7560e588c4dfc30bfc8643"
     },
     "stats": {
       "total": 0,
@@ -4305,6 +4305,25 @@
       "total": 14,
       "additions": 7,
       "deletions": 7,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:48:19.000Z",
+      "message": "refactor(core): renombrar notInstitutional a isNotInstitutional en el login",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 5,
+      "deletions": 5,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

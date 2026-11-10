@@ -5310,7 +5310,7 @@
     "testId": 93
   },
   {
-    "commitId": "HEAD",
+    "commitId": "26d6ac5db6f8cb650c7560e588c4dfc30bfc8643",
     "commitName": "refactor(core): corregir el nombre del archivo de pruebas del correo institucional",
     "commitTimestamp": 1794338471161,
     "testId": 94
@@ -5544,5 +5544,19 @@
     "commitName": "refactor(core): renombrar attempt, open y data en la pantalla de avisos",
     "commitTimestamp": 1794340016246,
     "testId": 111
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340066766,
+    "success": true,
+    "testId": 112
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en el login",
+    "commitTimestamp": 1794340099763,
+    "testId": 112
   }
 ]

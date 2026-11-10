@@ -222,7 +222,7 @@ export default function App({
           guidePending ? (
             <Navigate to="/guia-rapida" replace />
           ) : (
-            <LoginPage onGoogleLogin={authService.signIn} notInstitutional={notInstitutional} />
+            <LoginPage onGoogleLogin={authService.signIn} isNotInstitutional={notInstitutional} />
           )
         }
       />
