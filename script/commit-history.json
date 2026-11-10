@@ -3933,12 +3933,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "d72fb50ab312dc58a8c5e40f81f5ced3a6b67e10",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T19:17:37.000Z",
       "message": "refactor(matching): renombrar normalized a normalizedText",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d72fb50ab312dc58a8c5e40f81f5ced3a6b67e10"
     },
     "stats": {
       "total": 6,
@@ -4267,6 +4267,25 @@
       "total": 16,
       "additions": 10,
       "deletions": 6,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:45:29.000Z",
+      "message": "refactor(core): renombrar los nombres de la campana de avisos",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 22,
+      "additions": 11,
+      "deletions": 11,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

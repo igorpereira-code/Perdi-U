@@ -5298,7 +5298,7 @@
     "testId": 91
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d72fb50ab312dc58a8c5e40f81f5ced3a6b67e10",
     "commitName": "refactor(matching): renombrar normalized a normalizedText",
     "commitTimestamp": 1794338258904,
     "testId": 92
@@ -5516,5 +5516,19 @@
     "commitName": "refactor(core): renombrar preview a previewUrl",
     "commitTimestamp": 1794339855963,
     "testId": 109
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339896689,
+    "success": true,
+    "testId": 110
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar los nombres de la campana de avisos",
+    "commitTimestamp": 1794339929969,
+    "testId": 110
   }
 ]
