@@ -3553,12 +3553,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "25ef8a0ded099f818b118566d3bde61f96fde295",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-22T01:33:06.000Z",
       "message": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/25ef8a0ded099f818b118566d3bde61f96fde295"
     },
     "stats": {
       "total": 19,
@@ -3887,6 +3887,25 @@
       "total": 4,
       "additions": 2,
       "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:11:28.000Z",
+      "message": "refactor(matching): renombrar carpetas de backend/src/core/data",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 27,
+      "additions": 15,
+      "deletions": 12,
       "date": "2026-11-10"
     },
     "coverage": 87.35,
