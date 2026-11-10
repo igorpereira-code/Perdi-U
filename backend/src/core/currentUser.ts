@@ -61,7 +61,7 @@ async function findOrCreateProfile(
 }
 
 /* Finds out who is making the request: */
-export function createCurrentUser(
+export function createUserAuthenticator(
   verifyToken: VerifyToken,
   users: UsersRepository,
   allowSampleUsers: boolean,
@@ -92,7 +92,7 @@ export function createCurrentUser(
   };
 }
 
-export const currentUser = createCurrentUser(
+export const currentUser = createUserAuthenticator(
   verifySupabaseToken,
   prismaUsersRepository,
   process.env.ALLOW_SAMPLE_USERS === 'true',

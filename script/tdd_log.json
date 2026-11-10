@@ -4748,7 +4748,7 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7fd0aa59f1cb775c6cc124d8e8b21b2cb9e49d31",
     "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
     "commitTimestamp": 1792601341695,
     "testId": 61
@@ -5250,5 +5250,19 @@
     "commitName": "refactor(core): renombrar matchCountText  a formatMatchCount",
     "commitTimestamp": 1794321332637,
     "testId": 86
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794337202921,
+    "success": true,
+    "testId": 87
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): renombrar  createCuurentUser a createUserAuthenticator",
+    "commitTimestamp": 1794337378485,
+    "testId": 87
   }
 ]

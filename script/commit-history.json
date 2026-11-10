@@ -3306,12 +3306,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7fd0aa59f1cb775c6cc124d8e8b21b2cb9e49d31",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T16:49:00.000Z",
       "message": "style(owner): mostrar las opciones del inicio como tarjetas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7fd0aa59f1cb775c6cc124d8e8b21b2cb9e49d31"
     },
     "stats": {
       "total": 36,
@@ -3830,6 +3830,25 @@
       "total": 16,
       "additions": 9,
       "deletions": 7,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:02:56.000Z",
+      "message": "refactor(matching): renombrar  createCuurentUser a createUserAuthenticator",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 4,
+      "deletions": 4,
       "date": "2026-11-10"
     },
     "coverage": 87.35,
