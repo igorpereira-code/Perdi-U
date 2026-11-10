@@ -5386,7 +5386,7 @@
     "testId": 100
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f9d1ef4d8cd02c62245fd03008cbb5a2fed0f705",
     "commitName": "refactor(core): renombrar LABEL y TONE a STATUS_LABELS y STATUS_TONES",
     "commitTimestamp": 1794339175539,
     "testId": 100
@@ -5628,5 +5628,19 @@
     "commitName": "refactor(matching): renombrar el archivo matchCountText a formatMatchCount",
     "commitTimestamp": 1794340476250,
     "testId": 117
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794343673114,
+    "success": true,
+    "testId": 118
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar el cursor de carga mientras el botón espera al servidor",
+    "commitTimestamp": 1794343786430,
+    "testId": 118
   }
 ]
