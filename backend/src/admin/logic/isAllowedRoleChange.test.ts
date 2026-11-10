@@ -16,4 +16,11 @@ describe('Cambios de rol permitidos', () => {
   it('no se puede dar el rol de Bienestar a quien ya lo tiene', () => {
     expect(isAllowedRoleChange('WELFARE', 'WELFARE')).toBe(false);
   });
+  it('se puede quitar el rol de Bienestar', () => {
+    expect(isAllowedRoleChange('WELFARE', 'COMMUNITY')).toBe(true);
+  });
+
+  it('no se puede quitar el rol de Bienestar a quien no lo tiene', () => {
+    expect(isAllowedRoleChange('COMMUNITY', 'COMMUNITY')).toBe(false);
+  });
 });

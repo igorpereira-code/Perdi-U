@@ -12,5 +12,8 @@ export function getRoleAction(currentRole: Role): RoleAction | null {
   if (currentRole === 'COMMUNITY') {
     return { newRole: 'WELFARE', label: 'Asignar Bienestar', loadingText: 'Asignando…' };
   }
+  if (currentRole === 'WELFARE') {
+    return { newRole: 'COMMUNITY', label: 'Quitar Bienestar', loadingText: 'Quitando…' };
+  }
   return null;
 }

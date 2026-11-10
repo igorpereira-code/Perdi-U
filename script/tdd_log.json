@@ -5526,7 +5526,7 @@
     "testId": 110
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f0666bbebab2f8c0a809623135a2ad292567f015",
     "commitName": "refactor(core): renombrar los nombres de la campana de avisos",
     "commitTimestamp": 1794339929969,
     "testId": 110
@@ -5824,5 +5824,27 @@
     "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352177930,
     "testId": 127
+  },
+  {
+    "numPassedTests": 668,
+    "failedTests": 3,
+    "numTotalTests": 671,
+    "timestamp": 1794352326809,
+    "success": false,
+    "testId": 128
+  },
+  {
+    "numPassedTests": 671,
+    "failedTests": 0,
+    "numTotalTests": 671,
+    "timestamp": 1794352392658,
+    "success": true,
+    "testId": 128
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352441180,
+    "testId": 128
   }
 ]

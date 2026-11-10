@@ -12,4 +12,11 @@ describe('Qué puede hacer el Administrador con el rol de un usuario', () => {
   it('a un Administrador no le puede cambiar el rol', () => {
     expect(getRoleAction('ADMIN')).toBeNull();
   });
+  it('a alguien de Bienestar le puede quitar ese rol', () => {
+    expect(getRoleAction('WELFARE')).toEqual({
+      newRole: 'COMMUNITY',
+      label: 'Quitar Bienestar',
+      loadingText: 'Quitando…',
+    });
+  });
 });

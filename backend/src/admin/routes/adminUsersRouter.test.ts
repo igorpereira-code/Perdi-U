@@ -142,4 +142,22 @@ describe('Asignar el rol de Bienestar', () => {
     expect(response.status).toBe(400);
     expect(response.body).toEqual({ error: 'El rol no es válido.' });
   });
+  describe('Quitar el rol de Bienestar', () => {
+    it('el Administrador le quita el rol de Bienestar a un usuario', async () => {
+      const app = setup('ADMIN');
+
+      const response = await changeRole(app, 'usuario-luis', 'COMMUNITY');
+      const usersAfter = await listUsers(app);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual({ ...luis, role: 'COMMUNITY' });
+      expect(usersAfter.body).toContainEqual({ ...luis, role: 'COMMUNITY' });
+    });
+
+    it('no se puede quitar el rol de Bienestar a quien no lo tiene', async () => {
+      const response = await changeRole(setup('ADMIN'), 'usuario-ana', 'COMMUNITY');
+
+      expect(response.status).toBe(409);
+    });
+  });
 });

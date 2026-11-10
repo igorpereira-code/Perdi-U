@@ -4275,12 +4275,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f0666bbebab2f8c0a809623135a2ad292567f015",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:45:29.000Z",
       "message": "refactor(core): renombrar los nombres de la campana de avisos",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/f0666bbebab2f8c0a809623135a2ad292567f015"
     },
     "stats": {
       "total": 22,
@@ -4613,6 +4613,25 @@
     },
     "coverage": 85.62,
     "test_count": 666,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T23:13:59.000Z",
+      "message": "feat(admin): quitar el rol de Bienestar a un usuario",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 41,
+      "additions": 39,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 85.65,
+    "test_count": 671,
     "failed_tests": 0,
     "conclusion": "success"
   }
