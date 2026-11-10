@@ -12,13 +12,13 @@ type ApiFetchDependencies = {
 export function createApiFetch({
   auth,
   apiUrl,
-  sendRequest: fetchFn = (url, init) => fetch(url, init),
+  sendRequest = (url, init) => fetch(url, init),
 }: ApiFetchDependencies): ApiFetch {
   return async (path, init = {}) => {
     const { data } = await auth.getSession();
     const headers = data.session
       ? { ...init.headers, Authorization: `Bearer ${data.session.access_token}` }
       : init.headers;
-    return fetchFn(`${apiUrl}${path}`, { ...init, headers });
+    return sendRequest(`${apiUrl}${path}`, { ...init, headers });
   };
 }

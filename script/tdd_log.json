@@ -5178,7 +5178,7 @@
     "testId": 80
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c328a1054b892f726fe26bc300040f112a61a39c",
     "commitName": "chore: integra los últimos cambios de core-matching en core-matching-hu-15",
     "commitTimestamp": 1794007200212,
     "testId": 80
@@ -5348,5 +5348,19 @@
     "commitName": "refactor(core): renombrar at a createNotificationAt en las pruebas del orden",
     "commitTimestamp": 1794338939762,
     "testId": 97
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339002666,
+    "success": true,
+    "testId": 98
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar AuthServiceDeps y fetchFn en el servicio de sesión",
+    "commitTimestamp": 1794339034706,
+    "testId": 98
   }
 ]
