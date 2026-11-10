@@ -4,11 +4,17 @@ import { EmptyState } from '../../core/presenter/EmptyState';
 import { Thumb } from '../../core/presenter/Thumb';
 import { WelfareCard } from '../../core/presenter/WelfareCard';
 
+/** The answer the owner just gave and that is still being saved. */
+export type PendingAnswer = { matchId: string; action: 'pickUp' | 'dismiss' };
+
 type MatchesPageProps = {
   reportCode: string;
   matches: MatchView[];
   onPickUp: (matchId: string) => void;
   onDismiss: (matchId: string) => void;
+  pendingAnswer?: PendingAnswer | null;
+  /** The match whose answer could not be saved. */
+  failedMatchId?: string | null;
 };
 
 function PickUpInstructions({ reportCode }: { reportCode: string }) {
@@ -30,9 +36,20 @@ type MatchCardProps = {
   reportCode: string;
   onPickUp: () => void;
   onDismiss: () => void;
+  /** Which answer of this card is being saved, if any. */
+  pendingAction?: PendingAnswer['action'];
+  hasFailed: boolean;
 };
 
-function MatchCard({ match, reportCode, onPickUp, onDismiss }: MatchCardProps) {
+function MatchCard({
+  match,
+  reportCode,
+  onPickUp,
+  onDismiss,
+  pendingAction,
+  hasFailed,
+}: MatchCardProps) {
+  const isSaving = pendingAction !== undefined;
   const { foundItem } = match;
   return (
     <li className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-3">
@@ -46,20 +63,47 @@ function MatchCard({ match, reportCode, onPickUp, onDismiss }: MatchCardProps) {
       {match.status === 'WILL_PICK_UP' ? (
         <PickUpInstructions reportCode={reportCode} />
       ) : (
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={onDismiss} className="flex-1">
-            No es mío
-          </Button>
-          <Button onClick={onPickUp} className="flex-1">
-            Pasaré a recoger
-          </Button>
+        <div className="space-y-2">
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={onDismiss}
+              disabled={isSaving}
+              isLoading={pendingAction === 'dismiss'}
+              loadingText="Guardando…"
+              className="flex-1"
+            >
+              No es mío
+            </Button>
+            <Button
+              onClick={onPickUp}
+              disabled={isSaving}
+              isLoading={pendingAction === 'pickUp'}
+              loadingText="Guardando…"
+              className="flex-1"
+            >
+              Pasaré a recoger
+            </Button>
+          </div>
+          {hasFailed && (
+            <p role="alert" className="rounded-xl bg-danger-50 p-2 text-sm text-danger-700">
+              No se pudo guardar tu respuesta. Intenta nuevamente.
+            </p>
+          )}
         </div>
       )}
     </li>
   );
 }
 
-export function MatchesPage({ reportCode, matches, onPickUp, onDismiss }: MatchesPageProps) {
+export function MatchesPage({
+  reportCode,
+  matches,
+  onPickUp,
+  onDismiss,
+  pendingAnswer = null,
+  failedMatchId = null,
+}: MatchesPageProps) {
   if (matches.length === 0) {
     return (
       <EmptyState
@@ -85,6 +129,8 @@ export function MatchesPage({ reportCode, matches, onPickUp, onDismiss }: Matche
             reportCode={reportCode}
             onPickUp={() => onPickUp(match.id)}
             onDismiss={() => onDismiss(match.id)}
+            pendingAction={pendingAnswer?.matchId === match.id ? pendingAnswer.action : undefined}
+            hasFailed={failedMatchId === match.id}
           />
         ))}
       </ul>

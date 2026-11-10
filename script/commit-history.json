@@ -4123,12 +4123,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "92435301aed075c64a4ff75c930dfd53bfa2940a",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:35:24.000Z",
       "message": "refactor(core): renombrar dayKey, date y elapsed al calcular el cuándo",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/92435301aed075c64a4ff75c930dfd53bfa2940a"
     },
     "stats": {
       "total": 23,
@@ -4142,12 +4142,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7ea20b3a980819731044501d254cbb064538aef9",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:36:34.000Z",
       "message": "refactor(core): renombrar MAX_SHOWN a MAX_BADGE_COUNT",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/7ea20b3a980819731044501d254cbb064538aef9"
     },
     "stats": {
       "total": 4,
@@ -4161,12 +4161,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "45fe489ec2768f13da7b67f11122344f3f5c2632",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:37:47.000Z",
       "message": "refactor(core): renombrar id a openedNotificationId",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/45fe489ec2768f13da7b67f11122344f3f5c2632"
     },
     "stats": {
       "total": 4,
@@ -4180,12 +4180,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "4cc9f3da603b177472990e84a537972d03fa15e3",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:39:07.000Z",
       "message": "refactor(core): renombrar el archivo notificationTime a formatNotificationTime",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/4cc9f3da603b177472990e84a537972d03fa15e3"
     },
     "stats": {
       "total": 4,
@@ -4461,6 +4461,82 @@
     },
     "coverage": 87.03,
     "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T21:07:31.000Z",
+      "message": "feat(core): mostrar una pantalla de carga al abrir la app",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 22,
+      "additions": 21,
+      "deletions": 1,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.04,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T21:11:45.000Z",
+      "message": "feat(core): mostrar la carga al iniciar y cerrar sesión",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 60,
+      "additions": 56,
+      "deletions": 4,
+      "date": "2026-11-10"
+    },
+    "coverage": 86.92,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T21:16:34.000Z",
+      "message": "feat(matching): mostrar la carga y los errores en las coincidencias del propietario",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 197,
+      "additions": 166,
+      "deletions": 31,
+      "date": "2026-11-10"
+    },
+    "coverage": 86.99,
+    "test_count": 631,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T21:20:52.000Z",
+      "message": "feat(matching): mostrar la carga y los errores al publicar un objeto",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 38,
+      "additions": 33,
+      "deletions": 5,
+      "date": "2026-11-10"
+    },
+    "coverage": 87,
+    "test_count": 632,
     "failed_tests": 0,
     "conclusion": "success"
   }

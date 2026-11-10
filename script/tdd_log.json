@@ -5414,7 +5414,7 @@
     "testId": 102
   },
   {
-    "commitId": "HEAD",
+    "commitId": "92435301aed075c64a4ff75c930dfd53bfa2940a",
     "commitName": "refactor(core): renombrar dayKey, date y elapsed al calcular el cuándo",
     "commitTimestamp": 1794339324214,
     "testId": 102
@@ -5428,7 +5428,7 @@
     "testId": 103
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7ea20b3a980819731044501d254cbb064538aef9",
     "commitName": "refactor(core): renombrar MAX_SHOWN a MAX_BADGE_COUNT",
     "commitTimestamp": 1794339394933,
     "testId": 103
@@ -5442,7 +5442,7 @@
     "testId": 104
   },
   {
-    "commitId": "HEAD",
+    "commitId": "45fe489ec2768f13da7b67f11122344f3f5c2632",
     "commitName": "refactor(core): renombrar id a openedNotificationId",
     "commitTimestamp": 1794339467819,
     "testId": 104
@@ -5456,7 +5456,7 @@
     "testId": 105
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4cc9f3da603b177472990e84a537972d03fa15e3",
     "commitName": "refactor(core): renombrar el archivo notificationTime a formatNotificationTime",
     "commitTimestamp": 1794339547482,
     "testId": 105
@@ -5664,5 +5664,77 @@
     "commitName": "feat(core): mostrar esqueletos de carga en lugar del indicador con círculo",
     "commitTimestamp": 1794344118367,
     "testId": 119
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794344807994,
+    "success": true,
+    "testId": 120
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar una pantalla de carga al abrir la app",
+    "commitTimestamp": 1794344852072,
+    "testId": 120
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794345077720,
+    "success": true,
+    "testId": 121
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar la carga al iniciar y cerrar sesión",
+    "commitTimestamp": 1794345106760,
+    "testId": 121
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 2,
+    "numTotalTests": 631,
+    "timestamp": 1794345278397,
+    "success": false,
+    "testId": 122
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 0,
+    "numTotalTests": 631,
+    "timestamp": 1794345366816,
+    "success": true,
+    "testId": 122
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): mostrar la carga y los errores en las coincidencias del propietario",
+    "commitTimestamp": 1794345395572,
+    "testId": 122
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 1,
+    "numTotalTests": 632,
+    "timestamp": 1794345471768,
+    "success": false,
+    "testId": 123
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 0,
+    "numTotalTests": 632,
+    "timestamp": 1794345618971,
+    "success": true,
+    "testId": 123
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): mostrar la carga y los errores al publicar un objeto",
+    "commitTimestamp": 1794345653282,
+    "testId": 123
   }
 ]
