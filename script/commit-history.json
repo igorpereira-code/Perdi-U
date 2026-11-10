@@ -3363,12 +3363,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "65751ebaa0d83e749e57641d0294ead0ca5a8284",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-21T20:53:51.000Z",
       "message": "chore: integra los últimos cambios de main en core-matching",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/65751ebaa0d83e749e57641d0294ead0ca5a8284"
     },
     "stats": {
       "total": 8542,
@@ -3868,6 +3868,25 @@
       "total": 6,
       "additions": 3,
       "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:06:02.000Z",
+      "message": "refactor(matching): renombrar  useSampleUser a signInAsSampleUser",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

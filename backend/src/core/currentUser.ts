@@ -34,7 +34,7 @@ const DEFAULT_SAMPLE_USER: SampleUserKey = 'ana';
 const isSampleUserKey = (key: string): key is SampleUserKey => Object.hasOwn(SAMPLE_USERS, key);
 
 /** TEMPORARY sample users, so the team can try the API without signing in with Google. */
-const useSampleUser: RequestHandler = (req, res, next) => {
+const signInAsSampleUser: RequestHandler = (req, res, next) => {
   const key = req.header('x-sample-user') ?? DEFAULT_SAMPLE_USER;
 
   if (!isSampleUserKey(key)) {
@@ -73,7 +73,7 @@ export function createUserAuthenticator(
         res.status(401).json({ error: 'Sign in to continue.' });
         return;
       }
-      useSampleUser(req, res, next);
+      signInAsSampleUser(req, res, next);
       return;
     }
 

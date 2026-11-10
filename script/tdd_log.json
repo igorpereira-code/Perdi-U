@@ -4766,7 +4766,7 @@
     "testId": 62
   },
   {
-    "commitId": "HEAD",
+    "commitId": "65751ebaa0d83e749e57641d0294ead0ca5a8284",
     "commitName": "chore: integra los últimos cambios de main en core-matching",
     "commitTimestamp": 1792616032864,
     "testId": 63
@@ -5270,5 +5270,11 @@
     "commitName": "refactor(matching): renombrar  currentUser a authenticateUser",
     "commitTimestamp": 1794337453375,
     "testId": 88
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): renombrar  useSampleUser a signInAsSampleUser",
+    "commitTimestamp": 1794337563885,
+    "testId": 89
   }
 ]
