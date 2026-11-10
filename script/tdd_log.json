@@ -5498,7 +5498,7 @@
     "testId": 108
   },
   {
-    "commitId": "HEAD",
+    "commitId": "04ae124e983572159d37ab57d09df13dc5e215b0",
     "commitName": "refactor(core): renombrar BOX a BOX_CLASSES",
     "commitTimestamp": 1794339781777,
     "testId": 108
@@ -5780,5 +5780,27 @@
     "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
     "commitTimestamp": 1794347651673,
     "testId": 125
+  },
+  {
+    "numPassedTests": 646,
+    "failedTests": 4,
+    "numTotalTests": 650,
+    "timestamp": 1794351101343,
+    "success": false,
+    "testId": 126
+  },
+  {
+    "numPassedTests": 650,
+    "failedTests": 0,
+    "numTotalTests": 650,
+    "timestamp": 1794351194074,
+    "success": true,
+    "testId": 126
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): buscar un usuario por su correo institucional",
+    "commitTimestamp": 1794351233083,
+    "testId": 126
   }
 ]

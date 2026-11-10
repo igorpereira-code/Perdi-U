@@ -4237,12 +4237,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "04ae124e983572159d37ab57d09df13dc5e215b0",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:43:01.000Z",
       "message": "refactor(core): renombrar BOX a BOX_CLASSES",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/04ae124e983572159d37ab57d09df13dc5e215b0"
     },
     "stats": {
       "total": 6,
@@ -4575,6 +4575,25 @@
     },
     "coverage": 86.19,
     "test_count": 645,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T22:53:51.000Z",
+      "message": "feat(admin): buscar un usuario por su correo institucional",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 107,
+      "additions": 90,
+      "deletions": 17,
+      "date": "2026-11-10"
+    },
+    "coverage": 86.08,
+    "test_count": 650,
     "failed_tests": 0,
     "conclusion": "success"
   }

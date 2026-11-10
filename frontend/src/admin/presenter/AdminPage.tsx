@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Users } from 'lucide-react';
+import { SearchX, Users } from 'lucide-react';
 import type { ManagedUser } from '@shared/admin';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
+import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { SkeletonList } from '../../core/presenter/Skeleton';
 import type { AdminUsersService } from '../data/adminUsersService';
+import { filterUsersByEmail } from '../logic/filterUsersByEmail';
 import { formatRoleLabel } from '../logic/formatRoleLabel';
 
 type AdminPageProps = {
@@ -17,6 +19,7 @@ export function AdminPage({ adminUsersService }: AdminPageProps) {
   const [users, setUsers] = useState<ManagedUser[] | null>(null);
   const [hasFailed, setHasFailed] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
+  const [searchedEmail, setSearchedEmail] = useState('');
 
   useEffect(() => {
     let isActive = true;
@@ -38,6 +41,8 @@ export function AdminPage({ adminUsersService }: AdminPageProps) {
       isActive = false;
     };
   }, [adminUsersService, loadAttempt]);
+
+  const foundUsers = users ? filterUsersByEmail(users, searchedEmail) : [];
 
   return (
     <section className="mx-auto max-w-lg space-y-4">
@@ -61,22 +66,42 @@ export function AdminPage({ adminUsersService }: AdminPageProps) {
           text="Aparecerán cuando ingresen a Perdi-U."
         />
       ) : (
-        <ul aria-label="Usuarios" className="space-y-3">
-          {users.map((user) => (
-            <li
-              key={user.id}
-              className="flex items-center gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4"
-            >
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-neutral-900">{user.name}</p>
-                <p className="truncate text-xs text-neutral-500">{user.email}</p>
-              </div>
-              <span className="shrink-0 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-                {formatRoleLabel(user.role)}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div className="space-y-4">
+          <Field id="searched-email" label="Buscar por correo">
+            <input
+              id="searched-email"
+              type="search"
+              value={searchedEmail}
+              onChange={(event) => setSearchedEmail(event.target.value)}
+              placeholder="nombre.apellido@ucb.edu.bo"
+              className={INPUT_CLASSES}
+            />
+          </Field>
+          {foundUsers.length === 0 ? (
+            <EmptyState
+              icon={SearchX}
+              title="No encontramos usuarios con ese correo"
+              text="Revisa que el correo esté bien escrito."
+            />
+          ) : (
+            <ul aria-label="Usuarios" className="space-y-3">
+              {foundUsers.map((user) => (
+                <li
+                  key={user.id}
+                  className="flex items-center gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4"
+                >
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-semibold text-neutral-900">{user.name}</p>
+                    <p className="truncate text-xs text-neutral-500">{user.email}</p>
+                  </div>
+                  <span className="shrink-0 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+                    {formatRoleLabel(user.role)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       )}
     </section>
   );
