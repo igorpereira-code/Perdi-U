@@ -5260,7 +5260,7 @@
     "testId": 87
   },
   {
-    "commitId": "HEAD",
+    "commitId": "fdd9b7b54d6384394775fa487dd9135ee4507ee1",
     "commitName": "refactor(matching): renombrar  createCuurentUser a createUserAuthenticator",
     "commitTimestamp": 1794337378485,
     "testId": 87
@@ -5446,5 +5446,19 @@
     "commitName": "refactor(core): renombrar id a openedNotificationId",
     "commitTimestamp": 1794339467819,
     "testId": 104
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339514199,
+    "success": true,
+    "testId": 105
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar el archivo notificationTime a formatNotificationTime",
+    "commitTimestamp": 1794339547482,
+    "testId": 105
   }
 ]

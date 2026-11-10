@@ -1,4 +1,4 @@
-import { formatNotificationTime } from './notificationTime';
+import { formatNotificationTime } from './formatNotificationTime';
 
 // 6 de noviembre de 2026, 15:00 en Bolivia (19:00 UTC).
 const now = new Date('2026-11-06T19:00:00.000Z');

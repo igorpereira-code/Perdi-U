@@ -3838,12 +3838,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "fdd9b7b54d6384394775fa487dd9135ee4507ee1",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T19:02:56.000Z",
       "message": "refactor(matching): renombrar  createCuurentUser a createUserAuthenticator",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fdd9b7b54d6384394775fa487dd9135ee4507ee1"
     },
     "stats": {
       "total": 8,
@@ -4166,6 +4166,25 @@
     "commit": {
       "date": "2026-11-10T19:37:47.000Z",
       "message": "refactor(core): renombrar id a openedNotificationId",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:39:07.000Z",
+      "message": "refactor(core): renombrar el archivo notificationTime a formatNotificationTime",
       "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
     },
     "stats": {
