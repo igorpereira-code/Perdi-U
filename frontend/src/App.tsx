@@ -58,7 +58,7 @@ export default function App({
   const { pathname } = useLocation();
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [isNotInstitutional, setIsNotInstitutional] = useState(false);
-  const guidePending = user ? !user.hasSeenGuide : false;
+  const isGuidePending = user ? !user.hasSeenGuide : false;
 
   useEffect(() => {
     authService
@@ -88,7 +88,7 @@ export default function App({
     if (user === null) {
       return <Navigate to="/ingresar" replace />;
     }
-    if (guidePending && pathname !== '/guia-rapida') {
+    if (isGuidePending && pathname !== '/guia-rapida') {
       return <Navigate to="/guia-rapida" replace />;
     }
     return (
@@ -219,7 +219,7 @@ export default function App({
       <Route
         path="/ingresar"
         element={
-          guidePending ? (
+          isGuidePending ? (
             <Navigate to="/guia-rapida" replace />
           ) : (
             <LoginPage onGoogleLogin={authService.signIn} isNotInstitutional={isNotInstitutional} />

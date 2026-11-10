@@ -4009,12 +4009,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "8775920b2d738672d30a8e228159e6e51500d149",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T19:25:25.000Z",
       "message": "refactor(core): renombrar fetchFn a sendRequest en api",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/8775920b2d738672d30a8e228159e6e51500d149"
     },
     "stats": {
       "total": 10,
@@ -4337,6 +4337,25 @@
     "commit": {
       "date": "2026-11-10T19:49:33.000Z",
       "message": "refactor(core): renombrar notInstitutional a isNotInstitutional en App",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 3,
+      "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:50:47.000Z",
+      "message": "refactor(core): renombrar guidePending a isGuidePending",
       "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
     },
     "stats": {

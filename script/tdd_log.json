@@ -5330,7 +5330,7 @@
     "testId": 95
   },
   {
-    "commitId": "HEAD",
+    "commitId": "8775920b2d738672d30a8e228159e6e51500d149",
     "commitName": "refactor(core): renombrar fetchFn a sendRequest en api",
     "commitTimestamp": 1794338726467,
     "testId": 96
@@ -5572,5 +5572,19 @@
     "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en App",
     "commitTimestamp": 1794340173522,
     "testId": 113
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340214525,
+    "success": true,
+    "testId": 114
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar guidePending a isGuidePending",
+    "commitTimestamp": 1794340247321,
+    "testId": 114
   }
 ]
