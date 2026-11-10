@@ -4664,7 +4664,7 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "267c37c90ab0101016c3d6161489632ec8816963",
     "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
     "commitTimestamp": 1792598049048,
     "testId": 58
@@ -5216,5 +5216,19 @@
     "commitName": "refactor(core): renombrar newestFirst a sortNewestFirst",
     "commitTimestamp": 1794320583160,
     "testId": 83
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794320634852,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar unreadBadge a formatUnreadBadge",
+    "commitTimestamp": 1794320734205,
+    "testId": 84
   }
 ]

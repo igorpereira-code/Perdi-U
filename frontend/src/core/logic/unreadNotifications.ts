@@ -8,7 +8,7 @@ export function countUnread(notifications: AppNotification[]): number {
 }
 
 /** Number shown next to the notifications option, or null when there is nothing new. */
-export function unreadBadgeText(count: number): string | null {
+export function formatUnreadBadge(count: number): string | null {
   if (count <= 0) {
     return null;
   }

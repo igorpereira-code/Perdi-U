@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Bell } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { NOTIFICATIONS_CHANGED, type NotificationsService } from '../data/notificationsService';
-import { countUnread, unreadBadgeText } from '../logic/unreadNotifications';
+import { countUnread, formatUnreadBadge } from '../logic/unreadNotifications';
 
 type NotificationsBellProps = {
   notificationsService: Pick<NotificationsService, 'list'>;
@@ -36,7 +36,7 @@ export function NotificationsBell({ notificationsService }: NotificationsBellPro
     };
   }, [notificationsService, pathname, changes]);
 
-  const badge = unreadBadgeText(unread);
+  const badge = formatUnreadBadge(unread);
 
   return (
     <Link

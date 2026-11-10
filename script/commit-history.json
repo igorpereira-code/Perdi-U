@@ -3192,12 +3192,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "267c37c90ab0101016c3d6161489632ec8816963",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T15:54:08.000Z",
       "message": "feat(owner): avisar que el reporte de pérdida es privado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/267c37c90ab0101016c3d6161489632ec8816963"
     },
     "stats": {
       "total": 12,
@@ -3773,6 +3773,25 @@
       "total": 89,
       "additions": 47,
       "deletions": 42,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T14:25:33.000Z",
+      "message": "refactor(core): renombrar unreadBadge a formatUnreadBadge",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 8,
+      "deletions": 8,
       "date": "2026-11-10"
     },
     "coverage": 87.35,
