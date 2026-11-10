@@ -4760,7 +4760,7 @@
     "testId": 62
   },
   {
-    "commitId": "HEAD",
+    "commitId": "231d46643f596ab380bd5516d532b1ac8f6c1bf8",
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
     "testId": 62
@@ -5264,5 +5264,11 @@
     "commitName": "refactor(matching): renombrar  createCuurentUser a createUserAuthenticator",
     "commitTimestamp": 1794337378485,
     "testId": 87
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): renombrar  currentUser a authenticateUser",
+    "commitTimestamp": 1794337453375,
+    "testId": 88
   }
 ]

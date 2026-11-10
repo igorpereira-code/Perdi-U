@@ -92,7 +92,7 @@ export function createUserAuthenticator(
   };
 }
 
-export const currentUser = createUserAuthenticator(
+export const authenticateUser = createUserAuthenticator(
   verifySupabaseToken,
   prismaUsersRepository,
   process.env.ALLOW_SAMPLE_USERS === 'true',
