@@ -1,4 +1,4 @@
-import { getNotificationDestination } from './notificationDestination';
+import { getNotificationDestination } from './getNotificationDestination';
 
 describe('Pantalla que se abre al tocar un aviso', () => {
   it.each([

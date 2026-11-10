@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import type { AppNotification } from '@shared/notifications';
 import { NOTIFICATIONS_CHANGED, type NotificationsService } from '../data/notificationsService';
 import { formatNotificationTime } from '../logic/formatNotificationTime';
-import { getNotificationDestination } from '../logic/notificationDestination';
+import { getNotificationDestination } from '../logic/getNotificationDestination';
 import { markNotificationRead } from '../logic/markNotificationRead';
 import { Alert } from './Alert';
 import { Button } from './Button';
