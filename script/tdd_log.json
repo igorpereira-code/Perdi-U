@@ -5076,7 +5076,7 @@
     "testId": 75
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ea45771e29086d5aa5dd1f034de94bf3124dc02d",
     "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
     "commitTimestamp": 1794004502232,
     "testId": 75
@@ -5302,5 +5302,11 @@
     "commitName": "refactor(matching): renombrar normalized a normalizedText",
     "commitTimestamp": 1794338258904,
     "testId": 92
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): renombrar setStatus a setMatchStatus",
+    "commitTimestamp": 1794338327349,
+    "testId": 93
   }
 ]

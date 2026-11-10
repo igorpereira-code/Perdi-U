@@ -3610,12 +3610,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ea45771e29086d5aa5dd1f034de94bf3124dc02d",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:35:01.000Z",
       "message": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ea45771e29086d5aa5dd1f034de94bf3124dc02d"
     },
     "stats": {
       "total": 111,
@@ -3944,6 +3944,25 @@
       "total": 6,
       "additions": 4,
       "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:18:46.000Z",
+      "message": "refactor(matching): renombrar setStatus a setMatchStatus",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 4,
+      "deletions": 6,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

@@ -24,9 +24,7 @@ export function fakeMatchingRepository(reports: FakeReport[], initialItems: Fake
       reports.find((report) => report.code === code && report.ownerId === ownerId) ?? null,
 
     findLostReportByCode: async (code) =>
-      reports.find(
-        (report) => report.code === code && report.status !== 'RECOVERED',
-      ) ?? null,
+      reports.find((report) => report.code === code && report.status !== 'RECOVERED') ?? null,
 
     listPublishedItems: async () => items.filter((item) => statusOf(item) === 'PUBLISHED'),
 
@@ -60,11 +58,11 @@ export function fakeMatchingRepository(reports: FakeReport[], initialItems: Fake
     },
 
     markWillPickUp: async (matchId) => {
-      setStatus(matchId, 'WILL_PICK_UP');
+      setMatchStatus(matchId, 'WILL_PICK_UP');
     },
 
     dismiss: async (matchId) => {
-      setStatus(matchId, 'DISMISSED');
+      setMatchStatus(matchId, 'DISMISSED');
     },
 
     findFoundItemByCode: async (code) => {
@@ -86,7 +84,7 @@ export function fakeMatchingRepository(reports: FakeReport[], initialItems: Fake
       ),
   };
 
-  function setStatus(matchId: string, status: MatchView['status']) {
+  function setMatchStatus(matchId: string, status: MatchView['status']) {
     const match = matches.find((m) => m.id === matchId);
     if (match) {
       match.status = status;
