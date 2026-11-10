@@ -5484,7 +5484,7 @@
     "testId": 107
   },
   {
-    "commitId": "HEAD",
+    "commitId": "31f930188cf3cd2835e08318687e3c29f558b73d",
     "commitName": "refactor(core): renombrar BASE y VARIANTS en el botón",
     "commitTimestamp": 1794339707442,
     "testId": 107
@@ -5758,5 +5758,27 @@
     "commitName": "feat(admin): mostrar la opción de administración solo al Administrador",
     "commitTimestamp": 1794346318231,
     "testId": 124
+  },
+  {
+    "numPassedTests": 635,
+    "failedTests": 10,
+    "numTotalTests": 645,
+    "timestamp": 1794347357580,
+    "success": false,
+    "testId": 125
+  },
+  {
+    "numPassedTests": 645,
+    "failedTests": 0,
+    "numTotalTests": 645,
+    "timestamp": 1794347624955,
+    "success": true,
+    "testId": 125
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
+    "commitTimestamp": 1794347651673,
+    "testId": 125
   }
 ]

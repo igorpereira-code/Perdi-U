@@ -32,6 +32,7 @@ import { NotificationsScreen } from './core/presenter/NotificationsScreen';
 import { AppLoadingScreen } from './core/presenter/AppLoadingScreen';
 import { canManageUsers } from './admin/logic/canManageUsers';
 import { AdminPage } from './admin/presenter/AdminPage';
+import type { AdminUsersService } from './admin/data/adminUsersService';
 
 type AppProps = {
   authService: AuthService;
@@ -43,6 +44,7 @@ type AppProps = {
   catalogService: CatalogService;
   myLostReportsService: MyLostReportsService;
   notificationsService?: NotificationsService;
+  adminUsersService?: AdminUsersService;
 };
 
 export default function App({
@@ -55,6 +57,7 @@ export default function App({
   catalogService,
   myLostReportsService,
   notificationsService,
+  adminUsersService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
@@ -219,12 +222,18 @@ export default function App({
           ),
         )}
       />
-      <Route
-        path="/administracion"
-        element={renderSignedInPage((signedInUser) =>
-          canManageUsers(signedInUser.role) ? <AdminPage /> : <Navigate to="/" replace />,
-        )}
-      />
+      {adminUsersService && (
+        <Route
+          path="/administracion"
+          element={renderSignedInPage((signedInUser) =>
+            canManageUsers(signedInUser.role) ? (
+              <AdminPage adminUsersService={adminUsersService} />
+            ) : (
+              <Navigate to="/" replace />
+            ),
+          )}
+        />
+      )}
       <Route
         path="/ingresar"
         element={

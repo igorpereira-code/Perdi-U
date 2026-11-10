@@ -4218,12 +4218,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "31f930188cf3cd2835e08318687e3c29f558b73d",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:41:47.000Z",
       "message": "refactor(core): renombrar BASE y VARIANTS en el botón",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/31f930188cf3cd2835e08318687e3c29f558b73d"
     },
     "stats": {
       "total": 6,
@@ -4556,6 +4556,25 @@
     },
     "coverage": 86.97,
     "test_count": 635,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T21:54:10.000Z",
+      "message": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 332,
+      "additions": 321,
+      "deletions": 11,
+      "date": "2026-11-10"
+    },
+    "coverage": 86.19,
+    "test_count": 645,
     "failed_tests": 0,
     "conclusion": "success"
   }
