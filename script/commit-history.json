@@ -4104,12 +4104,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "e83a29e607ec2212c2f2213d5f6b4f981ce7739d",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:34:04.000Z",
       "message": "refactor(core): indicar en milisegundos las constantes de tiempo",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/e83a29e607ec2212c2f2213d5f6b4f981ce7739d"
     },
     "stats": {
       "total": 16,
@@ -4444,5 +4444,24 @@
     "test_count": 629,
     "failed_tests": 2,
     "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T20:55:16.000Z",
+      "message": "feat(core): mostrar esqueletos de carga en lugar del indicador con círculo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 85,
+      "additions": 83,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.03,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
   }
 ]
