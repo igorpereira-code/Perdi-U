@@ -4692,7 +4692,7 @@
     "testId": 59
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c6613860ef5794f285049e0d28a1b4c5a1bb45a7",
     "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
     "commitTimestamp": 1792599362931,
     "testId": 59
@@ -5254,5 +5254,11 @@
     "commitName": "refactor(finder): aclarar los estados de carga y fallo",
     "commitTimestamp": 1794320791917,
     "testId": 84
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(finder): aclarar la validación y el guardado del reporte",
+    "commitTimestamp": 1794320842629,
+    "testId": 85
   }
 ]

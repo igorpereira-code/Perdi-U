@@ -74,39 +74,39 @@ export function createFoundItemsRouter(foundItems: FoundItemsRepository, photos:
 
   router.post('/found-items', raw({ type: 'multipart/form-data', limit: 6 * 1024 * 1024 }), async (req, res) => {
     let photoPath: string | undefined;
-    let saved = false;
-    let uploading = false;
+    let isReportSaved = false;
+    let isPhotoUploading = false;
     try {
       const { report, photo } = await readFoundItemRequest(req);
       const catalogs = await foundItems.getCatalogs();
-      const result = validateFoundItemReport(report, catalogs);
-      if (!result.valid) {
-        res.status(400).json({ error: 'Revisa los datos del reporte.', errors: result.errors });
+      const validation = validateFoundItemReport(report, catalogs);
+      if (!validation.valid) {
+        res.status(400).json({ error: 'Revisa los datos del reporte.', errors: validation.errors });
         return;
       }
 
       const finderId = getCurrentUser(req).id;
       if (photo) {
         const newPath = `${finderId}/${randomUUID()}.${photo.extension}`;
-        uploading = true;
+        isPhotoUploading = true;
         await photos.upload(newPath, photo.bytes, photo.contentType);
         photoPath = newPath;
-        uploading = false;
+        isPhotoUploading = false;
       }
       const item = await foundItems.create({
-        ...result.data, finderId, ...(photoPath ? { photoUrl: photoPath } : {}),
+        ...validation.data, finderId, ...(photoPath ? { photoUrl: photoPath } : {}),
       });
-      saved = true;
+      isReportSaved = true;
       res.status(201).json(item);
     } catch (error) {
-      if (photoPath && !saved) {
+      if (photoPath && !isReportSaved) {
         try { await photos.remove(photoPath); } catch { /* Compensación de mejor esfuerzo: no ocultar el error original. */ }
       }
       if (error instanceof FoundItemRequestError) {
         res.status(error.status).json({ error: error.message });
         return;
       }
-      if (uploading) {
+      if (isPhotoUploading) {
         res.status(503).json({ error: 'No se pudo subir la fotografía. Intenta nuevamente.' });
         return;
       }
