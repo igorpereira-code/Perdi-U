@@ -1,6 +1,6 @@
-const MINUTE = 60 * 1000;
-const HOUR = 60 * MINUTE;
-const DAY = 24 * HOUR;
+const ONE_MINUTE_IN_MS = 60 * 1000;
+const ONE_HOUR_IN_MS = 60 * ONE_MINUTE_IN_MS;
+const ONE_DAY_IN_MS = 24 * ONE_HOUR_IN_MS;
 const TIME_ZONE = 'America/La_Paz';
 
 const dayKey = new Intl.DateTimeFormat('en-CA', {
@@ -21,16 +21,16 @@ export function formatNotificationTime(createdAt: string, now: Date = new Date()
   const date = new Date(createdAt);
   const elapsed = now.getTime() - date.getTime();
 
-  if (elapsed < MINUTE) {
+  if (elapsed < ONE_MINUTE_IN_MS) {
     return 'Hace un momento';
   }
-  if (elapsed < HOUR) {
-    return `Hace ${Math.floor(elapsed / MINUTE)} min`;
+  if (elapsed < ONE_HOUR_IN_MS) {
+    return `Hace ${Math.floor(elapsed / ONE_MINUTE_IN_MS)} min`;
   }
   if (dayKey.format(date) === dayKey.format(now)) {
-    return `Hace ${Math.floor(elapsed / HOUR)} h`;
+    return `Hace ${Math.floor(elapsed / ONE_HOUR_IN_MS)} h`;
   }
-  if (dayKey.format(date) === dayKey.format(new Date(now.getTime() - DAY))) {
+  if (dayKey.format(date) === dayKey.format(new Date(now.getTime() - ONE_DAY_IN_MS))) {
     return 'Ayer';
   }
   return dateFormat.format(date);

@@ -5212,7 +5212,7 @@
     "testId": 82
   },
   {
-    "commitId": "HEAD",
+    "commitId": "fd26a7b9ee06ad502491772cbc6295a9ec350736",
     "commitName": "refactor(core): renombrar newestFirst a sortNewestFirst",
     "commitTimestamp": 1794320583160,
     "testId": 83
@@ -5390,5 +5390,19 @@
     "commitName": "refactor(core): renombrar LABEL y TONE a STATUS_LABELS y STATUS_TONES",
     "commitTimestamp": 1794339175539,
     "testId": 100
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339212382,
+    "success": true,
+    "testId": 101
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): indicar en milisegundos las constantes de tiempo",
+    "commitTimestamp": 1794339244588,
+    "testId": 101
   }
 ]

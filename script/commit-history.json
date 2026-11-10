@@ -3762,12 +3762,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "fd26a7b9ee06ad502491772cbc6295a9ec350736",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T14:23:02.000Z",
       "message": "refactor(core): renombrar newestFirst a sortNewestFirst",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fd26a7b9ee06ad502491772cbc6295a9ec350736"
     },
     "stats": {
       "total": 89,
@@ -4096,6 +4096,25 @@
       "total": 9,
       "additions": 6,
       "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:34:04.000Z",
+      "message": "refactor(core): indicar en milisegundos las constantes de tiempo",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 8,
+      "deletions": 8,
       "date": "2026-11-10"
     },
     "coverage": 87.35,
