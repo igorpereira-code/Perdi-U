@@ -3230,12 +3230,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "0086f5360817a53a25f55db4ed97d31ceefc7da1",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T16:16:02.000Z",
       "message": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0086f5360817a53a25f55db4ed97d31ceefc7da1"
     },
     "stats": {
       "total": 28,
@@ -3786,6 +3786,25 @@
     "commit": {
       "date": "2026-11-10T14:25:33.000Z",
       "message": "refactor(core): renombrar unreadBadge a formatUnreadBadge",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 8,
+      "deletions": 8,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T14:27:25.000Z",
+      "message": "refactor(core): renombrar notificationDestination  a getNotificationDestination",
       "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
     },
     "stats": {

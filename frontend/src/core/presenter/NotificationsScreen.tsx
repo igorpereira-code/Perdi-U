@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import type { AppNotification } from '@shared/notifications';
 import { NOTIFICATIONS_CHANGED, type NotificationsService } from '../data/notificationsService';
 import { formatNotificationTime } from '../logic/notificationTime';
-import { notificationDestination } from '../logic/notificationDestination';
+import { getNotificationDestination } from '../logic/notificationDestination';
 import { markNotificationRead } from '../logic/markNotificationRead';
 import { Alert } from './Alert';
 import { Button } from './Button';
@@ -28,7 +28,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
       await notificationsService.markRead(notification.id).catch(() => undefined);
       window.dispatchEvent(new Event(NOTIFICATIONS_CHANGED));
     }
-    const destination = notificationDestination(notification.link);
+    const destination = getNotificationDestination(notification.link);
     if (destination) {
       navigate(destination);
     }
@@ -77,7 +77,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
         <ul aria-label="Mis avisos" className="space-y-3">
           {notifications.map((notification) => {
             const isNew = notification.readAt === null;
-            const destination = notificationDestination(notification.link);
+            const destination = getNotificationDestination(notification.link);
             return (
               <li key={notification.id}>
                 <button

@@ -4692,7 +4692,7 @@
     "testId": 59
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0086f5360817a53a25f55db4ed97d31ceefc7da1",
     "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
     "commitTimestamp": 1792599362931,
     "testId": 59
@@ -5230,5 +5230,11 @@
     "commitName": "refactor(core): renombrar unreadBadge a formatUnreadBadge",
     "commitTimestamp": 1794320734205,
     "testId": 84
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar notificationDestination  a getNotificationDestination",
+    "commitTimestamp": 1794320846024,
+    "testId": 85
   }
 ]
