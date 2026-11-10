@@ -3743,12 +3743,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ead16cff3405c3aa27707997b3e408d15d22f000",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T14:03:11.000Z",
       "message": "feat(core): agregar un indicador de carga único para pantallas y listas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ead16cff3405c3aa27707997b3e408d15d22f000"
     },
     "stats": {
       "total": 24,
@@ -4077,6 +4077,25 @@
       "total": 14,
       "additions": 7,
       "deletions": 7,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:32:55.000Z",
+      "message": "refactor(core): renombrar LABEL y TONE a STATUS_LABELS y STATUS_TONES",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 9,
+      "additions": 6,
+      "deletions": 3,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

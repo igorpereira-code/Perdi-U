@@ -5206,7 +5206,7 @@
     "testId": 82
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ead16cff3405c3aa27707997b3e408d15d22f000",
     "commitName": "feat(core): agregar un indicador de carga único para pantallas y listas",
     "commitTimestamp": 1794319392159,
     "testId": 82
@@ -5376,5 +5376,19 @@
     "commitName": "refactor(core): renombrar answer y received en las pruebas de avisos",
     "commitTimestamp": 1794339106761,
     "testId": 99
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339144526,
+    "success": true,
+    "testId": 100
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar LABEL y TONE a STATUS_LABELS y STATUS_TONES",
+    "commitTimestamp": 1794339175539,
+    "testId": 100
   }
 ]
