@@ -3952,12 +3952,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c39fedfd38c4ccc552c03916bf1900fca4ff5031",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T19:18:46.000Z",
       "message": "refactor(matching): renombrar setStatus a setMatchStatus",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c39fedfd38c4ccc552c03916bf1900fca4ff5031"
     },
     "stats": {
       "total": 10,
@@ -4286,6 +4286,25 @@
       "total": 22,
       "additions": 11,
       "deletions": 11,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:46:56.000Z",
+      "message": "refactor(core): renombrar attempt, open y data en la pantalla de avisos",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 7,
+      "deletions": 7,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

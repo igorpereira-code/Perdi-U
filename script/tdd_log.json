@@ -5304,7 +5304,7 @@
     "testId": 92
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c39fedfd38c4ccc552c03916bf1900fca4ff5031",
     "commitName": "refactor(matching): renombrar setStatus a setMatchStatus",
     "commitTimestamp": 1794338327349,
     "testId": 93
@@ -5530,5 +5530,19 @@
     "commitName": "refactor(core): renombrar los nombres de la campana de avisos",
     "commitTimestamp": 1794339929969,
     "testId": 110
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339980821,
+    "success": true,
+    "testId": 111
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar attempt, open y data en la pantalla de avisos",
+    "commitTimestamp": 1794340016246,
+    "testId": 111
   }
 ]

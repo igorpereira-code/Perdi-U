@@ -19,10 +19,10 @@ type NotificationsScreenProps = {
 export function NotificationsScreen({ notificationsService }: NotificationsScreenProps) {
   const [notifications, setNotifications] = useState<AppNotification[] | null>(null);
   const [hasFailed, setHasFailed] = useState(false);
-  const [attempt, setAttempt] = useState(0);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const navigate = useNavigate();
 
-  async function open(notification: AppNotification) {
+  async function openNotification(notification: AppNotification) {
     setNotifications((current) => current && markNotificationRead(current, notification.id));
     if (notification.readAt === null) {
       await notificationsService.markRead(notification.id).catch(() => undefined);
@@ -40,9 +40,9 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
     setHasFailed(false);
     notificationsService
       .list()
-      .then((data) => {
+      .then((loadedNotifications) => {
         if (active) {
-          setNotifications(data);
+          setNotifications(loadedNotifications);
         }
       })
       .catch(() => {
@@ -53,7 +53,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
     return () => {
       active = false;
     };
-  }, [notificationsService, attempt]);
+  }, [notificationsService, loadAttempt]);
 
   return (
     <section className="mx-auto max-w-lg space-y-4">
@@ -63,7 +63,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
           <div role="alert">
             <Alert>No se pudieron cargar tus avisos. Intenta nuevamente.</Alert>
           </div>
-          <Button onClick={() => setAttempt((value) => value + 1)}>Reintentar</Button>
+          <Button onClick={() => setLoadAttempt((value) => value + 1)}>Reintentar</Button>
         </div>
       ) : notifications === null ? (
         <LoadingState text="Cargando tus avisos…" />
@@ -82,7 +82,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
               <li key={notification.id}>
                 <button
                   type="button"
-                  onClick={() => void open(notification)}
+                  onClick={() => void openNotification(notification)}
                   className={`flex w-full items-center gap-3 rounded-2xl border p-4 text-left hover:bg-blue-50 ${
                     isNew ? 'border-blue-200 bg-blue-50' : 'border-neutral-200 bg-neutral-0'
                   }`}
