@@ -3819,12 +3819,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "35e7da0b4e25599d072a94bd49a45e91adf1bd51",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T14:35:31.000Z",
       "message": "refactor(core): renombrar matchCountText  a formatMatchCount",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/35e7da0b4e25599d072a94bd49a45e91adf1bd51"
     },
     "stats": {
       "total": 16,
@@ -4147,6 +4147,25 @@
     "commit": {
       "date": "2026-11-10T19:36:34.000Z",
       "message": "refactor(core): renombrar MAX_SHOWN a MAX_BADGE_COUNT",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:37:47.000Z",
+      "message": "refactor(core): renombrar id a openedNotificationId",
       "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
     },
     "stats": {

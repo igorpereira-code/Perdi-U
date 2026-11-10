@@ -5246,7 +5246,7 @@
     "testId": 86
   },
   {
-    "commitId": "HEAD",
+    "commitId": "35e7da0b4e25599d072a94bd49a45e91adf1bd51",
     "commitName": "refactor(core): renombrar matchCountText  a formatMatchCount",
     "commitTimestamp": 1794321332637,
     "testId": 86
@@ -5432,5 +5432,19 @@
     "commitName": "refactor(core): renombrar MAX_SHOWN a MAX_BADGE_COUNT",
     "commitTimestamp": 1794339394933,
     "testId": 103
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339434134,
+    "success": true,
+    "testId": 104
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar id a openedNotificationId",
+    "commitTimestamp": 1794339467819,
+    "testId": 104
   }
 ]
