@@ -2968,7 +2968,7 @@
     "testId": 44
   },
   {
-    "commitId": "HEAD",
+    "commitId": "47a19eb7d478191712916828bfb9e4f68c42ecd3",
     "commitName": "feat(welfare): mostrar acceso en la barra por rol",
     "commitTimestamp": 1792502988248,
     "testId": 45
@@ -3474,5 +3474,27 @@
     "commitName": "chore: integra los últimos cambios de final-test en welfare",
     "commitTimestamp": 1792504909096,
     "testId": 46
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794320139314,
+    "success": false,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 198,
+    "failedTests": 0,
+    "numTotalTests": 198,
+    "timestamp": 1794320164663,
+    "success": true,
+    "testId": 47
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): renombrar estados booleanos",
+    "commitTimestamp": 1794320255330,
+    "testId": 47
   }
 ]

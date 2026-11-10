@@ -41,22 +41,22 @@ function SectionHeader({ title, subtitle }: { title: string; subtitle: string })
 export function WelfarePage({ welfareService, matchesService }: WelfarePageProps) {
   const [activeSection, setActiveSection] = useState<WelfareSection>('reports');
   const [lostReports, setLostReports] = useState<WelfareLostReportView[] | null>(null);
-  const [lostReportsError, setLostReportsError] = useState(false);
+  const [hasLostReportsError, setHasLostReportsError] = useState(false);
   const [lostReportCode, setLostReportCode] = useState('');
   const [selectedLostReport, setSelectedLostReport] = useState<WelfareLostReportView | null>(null);
   const [lostReportMessage, setLostReportMessage] = useState<string | null>(null);
   const [lostReportMatches, setLostReportMatches] = useState<MatchView[] | null>(null);
   const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
-  const [pendingPickupsError, setPendingPickupsError] = useState(false);
+  const [hasPendingPickupsError, setHasPendingPickupsError] = useState(false);
   const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
   const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
   const [publishedCodes, setPublishedCodes] = useState<Set<string>>(new Set());
   const [selected, setSelected] = useState<WelfareFoundItemView | null>(null);
   const [code, setCode] = useState('');
   const [message, setMessage] = useState<string | null>(null);
-  const [receiving, setReceiving] = useState(false);
+  const [isReceiving, setIsReceiving] = useState(false);
   const [deliveryDraft, setDeliveryDraft] = useState<DeliveryInput | null>(null);
-  const [delivering, setDelivering] = useState(false);
+  const [isDelivering, setIsDelivering] = useState(false);
 
   useEffect(() => {
     welfareService
@@ -64,7 +64,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       .then(setLostReports)
       .catch(() => {
         setLostReports([]);
-        setLostReportsError(true);
+        setHasLostReportsError(true);
       });
   }, [welfareService]);
 
@@ -130,10 +130,10 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
 
   async function confirmDelivery(event: FormEvent) {
     event.preventDefault();
-    if (!deliveryDraft || delivering) {
+    if (!deliveryDraft || isDelivering) {
       return;
     }
-    setDelivering(true);
+    setIsDelivering(true);
     setMessage(null);
     try {
       const result = await welfareService.deliver(deliveryDraft);
@@ -161,7 +161,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     } catch {
       setMessage('No pudimos registrar la entrega');
     } finally {
-      setDelivering(false);
+      setIsDelivering(false);
     }
   }
 
@@ -171,7 +171,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       .then(setPendingPickups)
       .catch(() => {
         setPendingPickups([]);
-        setPendingPickupsError(true);
+        setHasPendingPickupsError(true);
       });
   }, [welfareService]);
 
@@ -221,10 +221,10 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   }
 
   async function receive() {
-    if (!selected || receiving) {
+    if (!selected || isReceiving) {
       return;
     }
-    setReceiving(true);
+    setIsReceiving(true);
     setMessage(null);
     try {
       const result = await welfareService.receive(selected.code);
@@ -239,7 +239,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     } catch {
       setMessage('No pudimos confirmar la recepción');
     } finally {
-      setReceiving(false);
+      setIsReceiving(false);
     }
   }
 
@@ -333,7 +333,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
 
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
             <div className="space-y-2">
-              {lostReportsError ? (
+              {hasLostReportsError ? (
                 <Alert>No pudimos cargar los reportes de pérdida</Alert>
               ) : lostReports === null ? (
                 <p>Cargando reportes de pérdida...</p>
@@ -513,7 +513,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
                       </>
                     )}
                   </dl>
-                  <Button onClick={receive} disabled={receiving} className="w-full">
+                  <Button onClick={receive} disabled={isReceiving} className="w-full">
                     <PackageCheck className="h-4 w-4" aria-hidden="true" />
                     Confirmar recepción
                   </Button>
@@ -578,7 +578,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             title="Recojos pendientes"
             subtitle="Personas que avisaron que pasarán a recoger un objeto."
           />
-          {pendingPickupsError ? (
+          {hasPendingPickupsError ? (
             <Alert>No pudimos cargar los recojos pendientes</Alert>
           ) : pendingPickups === null ? (
             <p>Cargando recojos pendientes...</p>
@@ -668,7 +668,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
                 Al confirmar, el objeto pasará a <b>Entregado</b>, dejará de verse en el
                 catálogo y el reporte vinculado quedará como <b>Recuperado</b>.
               </div>
-              <Button type="submit" disabled={delivering}>
+              <Button type="submit" disabled={isDelivering}>
                 <PackageCheck className="h-4 w-4" aria-hidden="true" />
                 Confirmar entrega
               </Button>
