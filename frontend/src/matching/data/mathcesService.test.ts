@@ -62,18 +62,36 @@ describe('Traer los objetos parecidos a un reporte', () => {
   });
 
   it('trae cuántos reportes de pérdida se parecen al objeto publicado', async () => {
-    const apiFetch = jest
-      .fn()
-      .mockResolvedValue({
-        ok: true,
-        status: 200,
-        json: async () => ({ code: 'HZ-0004', matchCount: 2 }),
-      });
+    const apiFetch = jest.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ code: 'HZ-0004', matchCount: 2 }),
+    });
     const service = createMatchesService(apiFetch);
 
     await expect(service.publish('HZ-0004')).resolves.toEqual({
       status: 'PUBLISHED',
       matchCount: 2,
     });
+  });
+  it('avisa con un error si no se pudieron cargar los objetos parecidos', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({ ok: false, status: 503 });
+    const service = createMatchesService(apiFetch);
+
+    await expect(service.getMatches('PR-0001')).rejects.toThrow(
+      'No se pudieron cargar los objetos parecidos. Intenta nuevamente.',
+    );
+  });
+
+  it('avisa con un error si no se pudo guardar la respuesta del dueño', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({ ok: false, status: 503 });
+    const service = createMatchesService(apiFetch);
+
+    await expect(service.pickUp('match-1')).rejects.toThrow(
+      'No se pudo guardar tu respuesta. Intenta nuevamente.',
+    );
+    await expect(service.dismiss('match-1')).rejects.toThrow(
+      'No se pudo guardar tu respuesta. Intenta nuevamente.',
+    );
   });
 });

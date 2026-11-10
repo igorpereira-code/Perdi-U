@@ -5442,7 +5442,7 @@
     "testId": 104
   },
   {
-    "commitId": "HEAD",
+    "commitId": "45fe489ec2768f13da7b67f11122344f3f5c2632",
     "commitName": "refactor(core): renombrar id a openedNotificationId",
     "commitTimestamp": 1794339467819,
     "testId": 104
@@ -5692,5 +5692,27 @@
     "commitName": "feat(core): mostrar la carga al iniciar y cerrar sesión",
     "commitTimestamp": 1794345106760,
     "testId": 121
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 2,
+    "numTotalTests": 631,
+    "timestamp": 1794345278397,
+    "success": false,
+    "testId": 122
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 0,
+    "numTotalTests": 631,
+    "timestamp": 1794345366816,
+    "success": true,
+    "testId": 122
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): mostrar la carga y los errores en las coincidencias del propietario",
+    "commitTimestamp": 1794345395572,
+    "testId": 122
   }
 ]
