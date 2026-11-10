@@ -5540,7 +5540,7 @@
     "testId": 111
   },
   {
-    "commitId": "HEAD",
+    "commitId": "60dc8a60bb5cdf013fafe1ae45d73d7618a06e58",
     "commitName": "refactor(core): renombrar attempt, open y data en la pantalla de avisos",
     "commitTimestamp": 1794340016246,
     "testId": 111
@@ -5554,7 +5554,7 @@
     "testId": 112
   },
   {
-    "commitId": "HEAD",
+    "commitId": "60dc8a60bb5cdf013fafe1ae45d73d7618a06e58",
     "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en el login",
     "commitTimestamp": 1794340099763,
     "testId": 112
@@ -5846,5 +5846,33 @@
     "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352441180,
     "testId": 128
+  },
+  {
+    "numPassedTests": 674,
+    "failedTests": 4,
+    "numTotalTests": 678,
+    "timestamp": 1794352761914,
+    "success": false,
+    "testId": 129
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794352962072,
+    "success": true,
+    "testId": 129
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+    "commitTimestamp": 1794353175070,
+    "testId": 129
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+    "commitTimestamp": 1794353525149,
+    "testId": 130
   }
 ]
