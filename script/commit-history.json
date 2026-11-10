@@ -3192,12 +3192,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "051d7fbb29d4583810d7187dd4173355ecda1977",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T15:54:08.000Z",
       "message": "feat(owner): avisar que el reporte de pérdida es privado",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/051d7fbb29d4583810d7187dd4173355ecda1977"
     },
     "stats": {
       "total": 12,
@@ -3773,6 +3773,25 @@
       "total": 1138,
       "additions": 1106,
       "deletions": 32,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-10T14:53:39.000Z",
+      "message": "refactor(owner): renombrar normalize a removeAccentsAndLowercase",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 3,
+      "deletions": 3,
       "date": "2026-11-10"
     },
     "coverage": 87.35,
