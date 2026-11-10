@@ -29,6 +29,7 @@ import { MyLostReportScreen } from './owner/presenter/MyLostReportScreen';
 import type { NotificationsService } from './core/data/notificationsService';
 import { NotificationsBell } from './core/presenter/NotificationsBell';
 import { NotificationsScreen } from './core/presenter/NotificationsScreen';
+import { AppLoadingScreen } from './core/presenter/AppLoadingScreen';
 
 type AppProps = {
   authService: AuthService;
@@ -83,7 +84,7 @@ export default function App({
   /** Pages for signed-in users: inside the blue header and bottom menu. Without a session, go to sign in. */
   const renderSignedInPage = (page: (signedInUser: AppUser) => ReactNode) => {
     if (user === undefined) {
-      return null;
+      return <AppLoadingScreen />;
     }
     if (user === null) {
       return <Navigate to="/ingresar" replace />;

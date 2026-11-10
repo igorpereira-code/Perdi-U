@@ -5414,7 +5414,7 @@
     "testId": 102
   },
   {
-    "commitId": "HEAD",
+    "commitId": "92435301aed075c64a4ff75c930dfd53bfa2940a",
     "commitName": "refactor(core): renombrar dayKey, date y elapsed al calcular el cuándo",
     "commitTimestamp": 1794339324214,
     "testId": 102
@@ -5664,5 +5664,19 @@
     "commitName": "feat(core): mostrar esqueletos de carga en lugar del indicador con círculo",
     "commitTimestamp": 1794344118367,
     "testId": 119
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794344807994,
+    "success": true,
+    "testId": 120
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar una pantalla de carga al abrir la app",
+    "commitTimestamp": 1794344852072,
+    "testId": 120
   }
 ]
