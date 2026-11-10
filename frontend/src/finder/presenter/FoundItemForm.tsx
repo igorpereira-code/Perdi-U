@@ -4,7 +4,7 @@ import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { PhotoInput } from '../../core/presenter/PhotoInput';
 import type { FoundItemCatalogs, FoundItemCreated, FoundItemsService } from '../data/foundItemsService';
-import { foundAtFromForm } from '../logic/foundAtFromForm';
+import { buildFoundAt } from '../logic/buildFoundAt';
 import { validateFoundItemForm, type FoundItemFormErrors } from '../logic/validateFoundItemForm';
 import { FoundItemConfirmation } from './FoundItemConfirmation';
 
@@ -59,7 +59,7 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
         placeId: Number(placeId),
         classroomId: classroomId ? Number(classroomId) : null,
         placeReference: placeReference.trim() || null,
-        foundAt: foundAtFromForm(foundDate, foundTime),
+        foundAt: buildFoundAt(foundDate, foundTime),
       }, photo);
       setCreated(result);
     } catch (error) {
