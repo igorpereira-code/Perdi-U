@@ -6,7 +6,7 @@ import { SAMPLE_USERS } from './sampleUsers';
 import { isInstitutionalEmail } from './logic/institutionalEmail';
 import { prismaUsersRepository } from './data/prismaUsersRepository';
 import type { UsersRepository } from './data/usersRepository';
-import { roleForEmail } from './logic/roleForEmail';
+import { getRoleForEmail } from './logic/roleForEmail';
 
 export type CurrentUser = AppUser;
 
@@ -56,7 +56,7 @@ async function findOrCreateProfile(
     return savedProfile;
   }
 
-  const role = roleForEmail(tokenUser.email, await users.listWelfareEmails());
+  const role = getRoleForEmail(tokenUser.email, await users.listWelfareEmails());
   return users.create({ ...tokenUser, photoUrl: tokenUser.photoUrl ?? null, role });
 }
 

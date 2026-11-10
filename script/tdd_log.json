@@ -4636,7 +4636,7 @@
     "testId": 57
   },
   {
-    "commitId": "HEAD",
+    "commitId": "44a334a10605afb41d94b9338e01652a2b373275",
     "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
     "commitTimestamp": 1792597809312,
     "testId": 57
@@ -5210,5 +5210,11 @@
     "commitName": "feat(core): agregar un indicador de carga único para pantallas y listas",
     "commitTimestamp": 1794319392159,
     "testId": 82
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar newestFirst a sortNewestFirst",
+    "commitTimestamp": 1794320583160,
+    "testId": 83
   }
 ]

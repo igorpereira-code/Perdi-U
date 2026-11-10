@@ -2,7 +2,7 @@ import { Router } from 'express';
 import type { AppNotification } from '@shared/notifications';
 import { getCurrentUser } from '../currentUser';
 import type { NotificationsRepository, StoredNotification } from '../data/notificationsRepository';
-import { newestFirst } from '../logic/newestFirst';
+import { sortNewestFirst } from '../logic/newestFirst';
 
 function toView(notification: StoredNotification): AppNotification {
   return {
@@ -21,7 +21,7 @@ export function createNotificationsRouter(notifications: NotificationsRepository
     res.set('Cache-Control', 'private, no-store');
     try {
       const mine = await notifications.listForUser(getCurrentUser(req).id);
-      res.json(newestFirst(mine).map(toView));
+      res.json(sortNewestFirst(mine).map(toView));
     } catch {
       res.status(503).json({ error: 'No se pudieron cargar tus avisos. Intenta nuevamente.' });
     }

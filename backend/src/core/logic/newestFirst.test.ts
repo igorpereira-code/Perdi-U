@@ -1,4 +1,4 @@
-import { newestFirst } from './newestFirst';
+import { sortNewestFirst } from './newestFirst';
 
 const at = (id: string, iso: string) => ({ id, createdAt: new Date(iso) });
 
@@ -10,7 +10,7 @@ describe('Orden de los avisos', () => {
       at('martes', '2026-11-03T10:00:00.000Z'),
     ];
 
-    expect(newestFirst(notifications).map(({ id }) => id)).toEqual([
+    expect(sortNewestFirst(notifications).map(({ id }) => id)).toEqual([
       'miercoles',
       'martes',
       'lunes',
@@ -23,7 +23,7 @@ describe('Orden de los avisos', () => {
       at('nuevo', '2026-11-04T10:00:00.000Z'),
     ];
 
-    newestFirst(notifications);
+    sortNewestFirst(notifications);
 
     expect(notifications.map(({ id }) => id)).toEqual(['antiguo', 'nuevo']);
   });

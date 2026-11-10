@@ -17,7 +17,7 @@ const dateFormat = new Intl.DateTimeFormat('es-BO', {
 });
 
 /** When a notification happened, in words: "Hace 5 min", "Hace 3 h", "Ayer" or its date. */
-export function notificationTime(createdAt: string, now: Date = new Date()): string {
+export function formatNotificationTime(createdAt: string, now: Date = new Date()): string {
   const date = new Date(createdAt);
   const elapsed = now.getTime() - date.getTime();
 

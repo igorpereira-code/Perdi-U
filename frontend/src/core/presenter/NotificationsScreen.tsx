@@ -3,7 +3,7 @@ import { Bell, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { AppNotification } from '@shared/notifications';
 import { NOTIFICATIONS_CHANGED, type NotificationsService } from '../data/notificationsService';
-import { notificationTime } from '../logic/notificationTime';
+import { formatNotificationTime } from '../logic/notificationTime';
 import { notificationDestination } from '../logic/notificationDestination';
 import { markNotificationRead } from '../logic/markNotificationRead';
 import { Alert } from './Alert';
@@ -18,7 +18,7 @@ type NotificationsScreenProps = {
 /** The user's notifications. */
 export function NotificationsScreen({ notificationsService }: NotificationsScreenProps) {
   const [notifications, setNotifications] = useState<AppNotification[] | null>(null);
-  const [failed, setFailed] = useState(false);
+  const [hasFailed, setHasFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
   useEffect(() => {
     let active = true;
     setNotifications(null);
-    setFailed(false);
+    setHasFailed(false);
     notificationsService
       .list()
       .then((data) => {
@@ -47,7 +47,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
       })
       .catch(() => {
         if (active) {
-          setFailed(true);
+          setHasFailed(true);
         }
       });
     return () => {
@@ -58,7 +58,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
   return (
     <section className="mx-auto max-w-lg space-y-4">
       <h1 className="text-lg font-semibold text-blue-700">Avisos</h1>
-      {failed ? (
+      {hasFailed ? (
         <div className="space-y-3">
           <div role="alert">
             <Alert>No se pudieron cargar tus avisos. Intenta nuevamente.</Alert>
@@ -101,7 +101,7 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
                     </span>
                     <span className="mt-1 block text-xs text-neutral-500">
                       <time dateTime={notification.createdAt}>
-                        {notificationTime(notification.createdAt)}
+                        {formatNotificationTime(notification.createdAt)}
                       </time>
                     </span>
                   </span>

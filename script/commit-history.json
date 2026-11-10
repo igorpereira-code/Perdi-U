@@ -3154,12 +3154,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "44a334a10605afb41d94b9338e01652a2b373275",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T15:50:08.000Z",
       "message": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/44a334a10605afb41d94b9338e01652a2b373275"
     },
     "stats": {
       "total": 101,
@@ -3754,6 +3754,25 @@
       "total": 24,
       "additions": 21,
       "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T14:23:02.000Z",
+      "message": "refactor(core): renombrar newestFirst a sortNewestFirst",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 89,
+      "additions": 47,
+      "deletions": 42,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

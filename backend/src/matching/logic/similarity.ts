@@ -40,7 +40,10 @@ function sharedWordCount(report: LostReportForMatching, item: FoundItemForMatchi
 }
 
 /** From 0 to 100: how much a found item looks like the lost one. Different category = 0. */
-export function similarityScore(report: LostReportForMatching, item: FoundItemForMatching): number {
+export function calculateSimilarityScore(
+  report: LostReportForMatching,
+  item: FoundItemForMatching,
+): number {
   if (report.categoryId !== item.categoryId) {
     return 0;
   }
