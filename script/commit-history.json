@@ -3667,12 +3667,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "d7e521f088a0d7f397fd5b4b737de56cdb9311b3",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:56:56.000Z",
       "message": "feat(core): abrir el reporte u objeto relacionado al tocar un aviso",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d7e521f088a0d7f397fd5b4b737de56cdb9311b3"
     },
     "stats": {
       "total": 80,
@@ -4001,6 +4001,25 @@
       "total": 0,
       "additions": 0,
       "deletions": 0,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:25:25.000Z",
+      "message": "refactor(core): renombrar fetchFn a sendRequest en api",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 10,
+      "additions": 5,
+      "deletions": 5,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

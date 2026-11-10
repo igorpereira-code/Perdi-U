@@ -13,7 +13,7 @@ describe('Llamar al backend con la sesión del usuario', () => {
     const apiFetch = createApiFetch({
       auth: fakeAuth({ access_token: 'token-123' }),
       apiUrl: 'http://api',
-      fetchFn,
+      sendRequest: fetchFn,
     });
 
     await apiFetch('/lost-reports/PR-0001/matches', { method: 'POST' });

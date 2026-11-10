@@ -5142,7 +5142,7 @@
     "testId": 78
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d7e521f088a0d7f397fd5b4b737de56cdb9311b3",
     "commitName": "feat(core): abrir el reporte u objeto relacionado al tocar un aviso",
     "commitTimestamp": 1794005817055,
     "testId": 78
@@ -5328,5 +5328,11 @@
     "commitName": "refactor(core): renombrar ApiFetchDeps a ApiFetchDependencies",
     "commitTimestamp": 1794338654580,
     "testId": 95
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar fetchFn a sendRequest en api",
+    "commitTimestamp": 1794338726467,
+    "testId": 96
   }
 ]

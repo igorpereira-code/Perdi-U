@@ -2,18 +2,18 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type ApiFetch = (path: string, init?: RequestInit) => Promise<Response>;
 
-type ApiFetchDeps = {
+type ApiFetchDependencies = {
   auth: SupabaseClient['auth'];
   apiUrl: string;
-  fetchFn?: typeof fetch;
+  sendRequest?: typeof fetch;
 };
 
 /** Calls our backend and sends the user's session, so the backend knows who is asking. */
 export function createApiFetch({
   auth,
   apiUrl,
-  fetchFn = (url, init) => fetch(url, init),
-}: ApiFetchDeps): ApiFetch {
+  sendRequest: fetchFn = (url, init) => fetch(url, init),
+}: ApiFetchDependencies): ApiFetch {
   return async (path, init = {}) => {
     const { data } = await auth.getSession();
     const headers = data.session
