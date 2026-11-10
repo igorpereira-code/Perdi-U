@@ -5054,7 +5054,7 @@
     "testId": 74
   },
   {
-    "commitId": "HEAD",
+    "commitId": "8021c5e55075b3a9ae43a71bb2e2f4e65dba4856",
     "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
     "commitTimestamp": 1794003330500,
     "testId": 74
@@ -5296,5 +5296,11 @@
     "commitName": "refactor(core): refactor nombre de archivos, newestFirst y roleForEmail a shortNewestFirst y getRoleForEmail",
     "commitTimestamp": 1794338123051,
     "testId": 91
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): renombrar normalized a normalizedText",
+    "commitTimestamp": 1794338258904,
+    "testId": 92
   }
 ]

@@ -22,11 +22,13 @@ const MIN_WORD_LENGTH = 4;
 
 /** Words of 4 letters or more, in lowercase and without accents ("Cálculo" → "calculo"). */
 function words(text: string): Set<string> {
-  const normalized = text
+  const normalizedText = text
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
-  return new Set(normalized.split(/[^a-z0-9]+/).filter((word) => word.length >= MIN_WORD_LENGTH));
+  return new Set(
+    normalizedText.split(/[^a-z0-9]+/).filter((word) => word.length >= MIN_WORD_LENGTH),
+  );
 }
 
 function foundInDateRange(report: LostReportForMatching, item: FoundItemForMatching): boolean {

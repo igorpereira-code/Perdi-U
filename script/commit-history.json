@@ -3591,12 +3591,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "8021c5e55075b3a9ae43a71bb2e2f4e65dba4856",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:15:29.000Z",
       "message": "feat(core): agregar la opción de avisos en la pantalla principal",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/8021c5e55075b3a9ae43a71bb2e2f4e65dba4856"
     },
     "stats": {
       "total": 552,
@@ -3925,6 +3925,25 @@
       "total": 8,
       "additions": 4,
       "deletions": 4,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:17:37.000Z",
+      "message": "refactor(matching): renombrar normalized a normalizedText",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 4,
+      "deletions": 2,
       "date": "2026-11-10"
     },
     "coverage": 87.35,
