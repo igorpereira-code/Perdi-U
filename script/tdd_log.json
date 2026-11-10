@@ -3452,7 +3452,7 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "3de651014f24d47ee630f505bf21b25c9d21b2c7",
     "commitName": "chore: integra los últimos cambios de final-test en core-matching",
     "commitTimestamp": 1792457314026,
     "testId": 42
@@ -3510,5 +3510,19 @@
     "commitName": "refactor(welfare): aclarar estados de objetos pendientes",
     "commitTimestamp": 1794320455558,
     "testId": 48
+  },
+  {
+    "numPassedTests": 198,
+    "failedTests": 0,
+    "numTotalTests": 198,
+    "timestamp": 1794320563880,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): precisar acciones de busqueda y recepcion",
+    "commitTimestamp": 1794320611019,
+    "testId": 49
   }
 ]

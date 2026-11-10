@@ -200,7 +200,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       .catch(() => setInOfficeItems((current) => current ?? []));
   }, [welfareService]);
 
-  async function search(event: FormEvent) {
+  async function searchFoundItem(event: FormEvent) {
     event.preventDefault();
     setFeedbackMessage(null);
     try {
@@ -220,7 +220,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     }
   }
 
-  async function receive() {
+  async function confirmReception() {
     if (!selectedItem || isReceiving) {
       return;
     }
@@ -452,7 +452,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             title="Solicitudes de hallazgo"
             subtitle="Reportes privados esperando que el hallador traiga el objeto."
           />
-          <form onSubmit={search} className="relative mb-4">
+          <form onSubmit={searchFoundItem} className="relative mb-4">
             <Search
               className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-neutral-500"
               aria-hidden="true"
@@ -522,7 +522,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
                       </>
                     )}
                   </dl>
-                  <Button onClick={receive} disabled={isReceiving} className="w-full">
+                  <Button onClick={confirmReception} disabled={isReceiving} className="w-full">
                     <PackageCheck className="h-4 w-4" aria-hidden="true" />
                     Confirmar recepción
                   </Button>

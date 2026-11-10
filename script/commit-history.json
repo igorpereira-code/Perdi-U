@@ -2318,12 +2318,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "3de651014f24d47ee630f505bf21b25c9d21b2c7",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-20T13:18:06.000Z",
       "message": "chore: integra los últimos cambios de final-test en owner",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/3de651014f24d47ee630f505bf21b25c9d21b2c7"
     },
     "stats": {
       "total": 3002,
@@ -2424,6 +2424,25 @@
       "total": 99,
       "additions": 54,
       "deletions": 45,
+      "date": "2026-11-10"
+    },
+    "coverage": 84.66,
+    "test_count": 198,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-10T14:23:28.000Z",
+      "message": "refactor(welfare): precisar acciones de busqueda y recepcion",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 8,
+      "additions": 4,
+      "deletions": 4,
       "date": "2026-11-10"
     },
     "coverage": 84.66,
