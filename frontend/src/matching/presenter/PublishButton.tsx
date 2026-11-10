@@ -13,12 +13,22 @@ type PublishButtonProps = {
 /** "Publicar" button for Bienestar's panel (Chiqui). It publishes the item and shows the result. */
 export function PublishButton({ itemCode, matchesService, onPublished }: PublishButtonProps) {
   const [publishResult, setPublishResult] = useState<PublishResult | null>(null);
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [hasFailed, setHasFailed] = useState(false);
 
   async function handlePublish() {
-    const newPublishResult = await matchesService.publish(itemCode);
-    setPublishResult(newPublishResult);
-    if (newPublishResult.status === 'PUBLISHED') {
-      onPublished?.();
+    setIsPublishing(true);
+    setHasFailed(false);
+    try {
+      const newPublishResult = await matchesService.publish(itemCode);
+      setPublishResult(newPublishResult);
+      if (newPublishResult.status === 'PUBLISHED') {
+        onPublished?.();
+      }
+    } catch {
+      setHasFailed(true);
+    } finally {
+      setIsPublishing(false);
     }
   }
 
@@ -36,10 +46,17 @@ export function PublishButton({ itemCode, matchesService, onPublished }: Publish
 
   return (
     <div className="space-y-2">
-      <Button onClick={handlePublish}>Publicar</Button>
+      <Button onClick={handlePublish} isLoading={isPublishing} loadingText="Publicando…">
+        Publicar
+      </Button>
       {publishResult?.status === 'NOT_RECEIVED' && (
         <p role="alert" className="rounded-xl bg-danger-50 p-2 text-sm text-danger-700">
           Este objeto todavía no fue recibido en Bienestar. Primero confirma que lo recibiste.
+        </p>
+      )}
+      {hasFailed && (
+        <p role="alert" className="rounded-xl bg-danger-50 p-2 text-sm text-danger-700">
+          No se pudo publicar. Intenta nuevamente.
         </p>
       )}
     </div>
