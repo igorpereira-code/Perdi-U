@@ -1,8 +1,10 @@
 import type { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
-import { HandHeart, House, UserRound, type LucideIcon } from 'lucide-react';
+import { HandHeart, House, ShieldCheck, UserRound, type LucideIcon } from 'lucide-react';
 import type { Role } from '@shared/user';
+import { canManageUsers } from '../../admin/logic/canManageUsers';
 import { Logo } from './Logo';
+import { canUseWelfareOptions } from '../logic/canUseWelfareOptions';
 
 function NavItem({ to, icon: Icon, label }: { to: string; icon: LucideIcon; label: string }) {
   return (
@@ -36,7 +38,12 @@ export function AppLayout({ children, role, headerAction }: AppLayoutProps) {
       <main className="p-4">{children}</main>
       <nav className="fixed inset-x-0 bottom-0 flex border-t border-neutral-200 bg-neutral-0">
         <NavItem to="/" icon={House} label="Inicio" />
-        {role === 'WELFARE' && <NavItem to="/bienestar" icon={HandHeart} label="Bienestar" />}
+        {canUseWelfareOptions(role) && (
+          <NavItem to="/bienestar" icon={HandHeart} label="Bienestar" />
+        )}
+        {canManageUsers(role) && (
+          <NavItem to="/administracion" icon={ShieldCheck} label="Administración" />
+        )}
         <NavItem to="/perfil" icon={UserRound} label="Mi perfil" />
       </nav>
     </div>

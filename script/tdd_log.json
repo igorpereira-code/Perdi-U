@@ -5470,7 +5470,7 @@
     "testId": 106
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f5a360f2b1b6f90555606700afe29f3bd6615424",
     "commitName": "refactor(core): renombrar el archivo notificationDestination a getNotificationDestination",
     "commitTimestamp": 1794339625592,
     "testId": 106
@@ -5484,7 +5484,7 @@
     "testId": 107
   },
   {
-    "commitId": "HEAD",
+    "commitId": "31f930188cf3cd2835e08318687e3c29f558b73d",
     "commitName": "refactor(core): renombrar BASE y VARIANTS en el botón",
     "commitTimestamp": 1794339707442,
     "testId": 107
@@ -5498,7 +5498,7 @@
     "testId": 108
   },
   {
-    "commitId": "HEAD",
+    "commitId": "04ae124e983572159d37ab57d09df13dc5e215b0",
     "commitName": "refactor(core): renombrar BOX a BOX_CLASSES",
     "commitTimestamp": 1794339781777,
     "testId": 108
@@ -5512,7 +5512,7 @@
     "testId": 109
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b92a5bd432136f377cbd7bfecd4fed42a1e58ebc",
     "commitName": "refactor(core): renombrar preview a previewUrl",
     "commitTimestamp": 1794339855963,
     "testId": 109
@@ -5526,7 +5526,7 @@
     "testId": 110
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f0666bbebab2f8c0a809623135a2ad292567f015",
     "commitName": "refactor(core): renombrar los nombres de la campana de avisos",
     "commitTimestamp": 1794339929969,
     "testId": 110
@@ -5540,7 +5540,7 @@
     "testId": 111
   },
   {
-    "commitId": "HEAD",
+    "commitId": "60dc8a60bb5cdf013fafe1ae45d73d7618a06e58",
     "commitName": "refactor(core): renombrar attempt, open y data en la pantalla de avisos",
     "commitTimestamp": 1794340016246,
     "testId": 111
@@ -5554,7 +5554,7 @@
     "testId": 112
   },
   {
-    "commitId": "HEAD",
+    "commitId": "60dc8a60bb5cdf013fafe1ae45d73d7618a06e58",
     "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en el login",
     "commitTimestamp": 1794340099763,
     "testId": 112
@@ -5736,5 +5736,143 @@
     "commitName": "feat(matching): mostrar la carga y los errores al publicar un objeto",
     "commitTimestamp": 1794345653282,
     "testId": 123
+  },
+  {
+    "numPassedTests": 634,
+    "failedTests": 1,
+    "numTotalTests": 635,
+    "timestamp": 1794346145250,
+    "success": false,
+    "testId": 124
+  },
+  {
+    "numPassedTests": 635,
+    "failedTests": 0,
+    "numTotalTests": 635,
+    "timestamp": 1794346291467,
+    "success": true,
+    "testId": 124
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar la opción de administración solo al Administrador",
+    "commitTimestamp": 1794346318231,
+    "testId": 124
+  },
+  {
+    "numPassedTests": 635,
+    "failedTests": 10,
+    "numTotalTests": 645,
+    "timestamp": 1794347357580,
+    "success": false,
+    "testId": 125
+  },
+  {
+    "numPassedTests": 645,
+    "failedTests": 0,
+    "numTotalTests": 645,
+    "timestamp": 1794347624955,
+    "success": true,
+    "testId": 125
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
+    "commitTimestamp": 1794347651673,
+    "testId": 125
+  },
+  {
+    "numPassedTests": 646,
+    "failedTests": 4,
+    "numTotalTests": 650,
+    "timestamp": 1794351101343,
+    "success": false,
+    "testId": 126
+  },
+  {
+    "numPassedTests": 650,
+    "failedTests": 0,
+    "numTotalTests": 650,
+    "timestamp": 1794351194074,
+    "success": true,
+    "testId": 126
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): buscar un usuario por su correo institucional",
+    "commitTimestamp": 1794351233083,
+    "testId": 126
+  },
+  {
+    "numPassedTests": 654,
+    "failedTests": 12,
+    "numTotalTests": 666,
+    "timestamp": 1794351969564,
+    "success": false,
+    "testId": 127
+  },
+  {
+    "numPassedTests": 666,
+    "failedTests": 0,
+    "numTotalTests": 666,
+    "timestamp": 1794352130821,
+    "success": true,
+    "testId": 127
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352177930,
+    "testId": 127
+  },
+  {
+    "numPassedTests": 668,
+    "failedTests": 3,
+    "numTotalTests": 671,
+    "timestamp": 1794352326809,
+    "success": false,
+    "testId": 128
+  },
+  {
+    "numPassedTests": 671,
+    "failedTests": 0,
+    "numTotalTests": 671,
+    "timestamp": 1794352392658,
+    "success": true,
+    "testId": 128
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352441180,
+    "testId": 128
+  },
+  {
+    "numPassedTests": 674,
+    "failedTests": 4,
+    "numTotalTests": 678,
+    "timestamp": 1794352761914,
+    "success": false,
+    "testId": 129
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794352962072,
+    "success": true,
+    "testId": 129
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+    "commitTimestamp": 1794353175070,
+    "testId": 129
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+    "commitTimestamp": 1794353525149,
+    "testId": 130
   }
 ]

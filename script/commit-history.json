@@ -4199,12 +4199,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f5a360f2b1b6f90555606700afe29f3bd6615424",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:40:25.000Z",
       "message": "refactor(core): renombrar el archivo notificationDestination a getNotificationDestination",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/f5a360f2b1b6f90555606700afe29f3bd6615424"
     },
     "stats": {
       "total": 4,
@@ -4218,12 +4218,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "31f930188cf3cd2835e08318687e3c29f558b73d",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:41:47.000Z",
       "message": "refactor(core): renombrar BASE y VARIANTS en el botón",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/31f930188cf3cd2835e08318687e3c29f558b73d"
     },
     "stats": {
       "total": 6,
@@ -4237,12 +4237,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "04ae124e983572159d37ab57d09df13dc5e215b0",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:43:01.000Z",
       "message": "refactor(core): renombrar BOX a BOX_CLASSES",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/04ae124e983572159d37ab57d09df13dc5e215b0"
     },
     "stats": {
       "total": 6,
@@ -4256,12 +4256,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b92a5bd432136f377cbd7bfecd4fed42a1e58ebc",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:44:15.000Z",
       "message": "refactor(core): renombrar preview a previewUrl",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/b92a5bd432136f377cbd7bfecd4fed42a1e58ebc"
     },
     "stats": {
       "total": 16,
@@ -4275,12 +4275,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f0666bbebab2f8c0a809623135a2ad292567f015",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:45:29.000Z",
       "message": "refactor(core): renombrar los nombres de la campana de avisos",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/f0666bbebab2f8c0a809623135a2ad292567f015"
     },
     "stats": {
       "total": 22,
@@ -4294,12 +4294,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "60dc8a60bb5cdf013fafe1ae45d73d7618a06e58",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:46:56.000Z",
       "message": "refactor(core): renombrar attempt, open y data en la pantalla de avisos",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/60dc8a60bb5cdf013fafe1ae45d73d7618a06e58"
     },
     "stats": {
       "total": 14,
@@ -4313,12 +4313,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "60dc8a60bb5cdf013fafe1ae45d73d7618a06e58",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:48:19.000Z",
       "message": "refactor(core): renombrar notInstitutional a isNotInstitutional en el login",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/60dc8a60bb5cdf013fafe1ae45d73d7618a06e58"
     },
     "stats": {
       "total": 10,
@@ -4537,6 +4537,139 @@
     },
     "coverage": 87,
     "test_count": 632,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T21:31:57.000Z",
+      "message": "feat(admin): mostrar la opción de administración solo al Administrador",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 43,
+      "additions": 42,
+      "deletions": 1,
+      "date": "2026-11-10"
+    },
+    "coverage": 86.97,
+    "test_count": 635,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T21:54:10.000Z",
+      "message": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 332,
+      "additions": 321,
+      "deletions": 11,
+      "date": "2026-11-10"
+    },
+    "coverage": 86.19,
+    "test_count": 645,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T22:53:51.000Z",
+      "message": "feat(admin): buscar un usuario por su correo institucional",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 107,
+      "additions": 90,
+      "deletions": 17,
+      "date": "2026-11-10"
+    },
+    "coverage": 86.08,
+    "test_count": 650,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T23:09:36.000Z",
+      "message": "feat(admin): asignar el rol de Bienestar a un usuario",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 308,
+      "additions": 290,
+      "deletions": 18,
+      "date": "2026-11-10"
+    },
+    "coverage": 85.62,
+    "test_count": 666,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T23:13:59.000Z",
+      "message": "feat(admin): quitar el rol de Bienestar a un usuario",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 41,
+      "additions": 39,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 85.65,
+    "test_count": 671,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T23:26:13.000Z",
+      "message": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 96,
+      "additions": 94,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 85.45,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T23:32:04.000Z",
+      "message": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 101,
+      "additions": 99,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 85.47,
+    "test_count": 678,
     "failed_tests": 0,
     "conclusion": "success"
   }
