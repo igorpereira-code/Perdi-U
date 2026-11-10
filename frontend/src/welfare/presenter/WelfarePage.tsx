@@ -87,9 +87,9 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     event.preventDefault();
     setLostReportMessage(null);
     try {
-      const result = await welfareService.findLostReportByCode(lostReportCode);
-      if (result.status === 'FOUND') {
-        await showLostReport(result.report);
+      const searchResult = await welfareService.findLostReportByCode(lostReportCode);
+      if (searchResult.status === 'FOUND') {
+        await showLostReport(searchResult.report);
         return;
       }
       setSelectedLostReport(null);
@@ -136,24 +136,24 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     setIsDelivering(true);
     setFeedbackMessage(null);
     try {
-      const result = await welfareService.deliver(deliveryDraft);
-      if (result.status !== 'DELIVERED') {
+      const deliveryResult = await welfareService.deliver(deliveryDraft);
+      if (deliveryResult.status !== 'DELIVERED') {
         setFeedbackMessage(
-          result.status === 'REPORT_NOT_ELIGIBLE'
+          deliveryResult.status === 'REPORT_NOT_ELIGIBLE'
             ? 'El reporte no corresponde a este objeto o propietario'
-            : result.status === 'ITEM_NOT_AVAILABLE'
+            : deliveryResult.status === 'ITEM_NOT_AVAILABLE'
               ? 'El objeto ya no está disponible para entrega'
-              : result.status === 'INVALID_RECIPIENT_EMAIL'
+              : deliveryResult.status === 'INVALID_RECIPIENT_EMAIL'
                 ? 'Ingresa un correo institucional válido'
                 : 'Completa todos los datos obligatorios',
         );
         return;
       }
       setPendingPickups((current) =>
-        current?.filter((pickup) => pickup.foundItem.code !== result.foundItemCode) ?? [],
+        current?.filter((pickup) => pickup.foundItem.code !== deliveryResult.foundItemCode) ?? [],
       );
       setInOfficeItems((current) =>
-        current?.filter((item) => item.code !== result.foundItemCode) ?? [],
+        current?.filter((item) => item.code !== deliveryResult.foundItemCode) ?? [],
       );
       setDeliveryDraft(null);
       setActiveSection('custody');
@@ -204,14 +204,14 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     event.preventDefault();
     setFeedbackMessage(null);
     try {
-      const result = await welfareService.findByCode(searchedItemCode);
-      if (result.status === 'FOUND') {
-        setSelectedItem(result.item);
+      const searchResult = await welfareService.findByCode(searchedItemCode);
+      if (searchResult.status === 'FOUND') {
+        setSelectedItem(searchResult.item);
         return;
       }
       setSelectedItem(null);
       setFeedbackMessage(
-        result.status === 'NOT_FOUND'
+        searchResult.status === 'NOT_FOUND'
           ? 'No encontramos un objeto con ese código'
           : 'Este objeto ya fue recibido',
       );
@@ -227,15 +227,15 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     setIsReceiving(true);
     setFeedbackMessage(null);
     try {
-      const result = await welfareService.receive(selectedItem.code);
-      if (result.status !== 'FOUND') {
+      const receptionResult = await welfareService.receive(selectedItem.code);
+      if (receptionResult.status !== 'FOUND') {
         setFeedbackMessage('Este objeto ya fue recibido');
         return;
       }
       setPendingItems((current) =>
         current?.filter((item) => item.code !== selectedItem.code) ?? [],
       );
-      setInOfficeItems((current) => [...(current ?? []), result.item]);
+      setInOfficeItems((current) => [...(current ?? []), receptionResult.item]);
       setSelectedItem(null);
       setFeedbackMessage('Objeto recibido y puesto en custodia');
     } catch {

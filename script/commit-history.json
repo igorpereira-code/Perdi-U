@@ -2337,12 +2337,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "41ad00c2888e896cc5453679280223a4ee3f77ac",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-20T13:29:45.000Z",
       "message": "feat(welfare): mostrar acceso en la barra por rol",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/41ad00c2888e896cc5453679280223a4ee3f77ac"
     },
     "stats": {
       "total": 42,
@@ -2443,6 +2443,25 @@
       "total": 8,
       "additions": 4,
       "deletions": 4,
+      "date": "2026-11-10"
+    },
+    "coverage": 84.66,
+    "test_count": 198,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-10T14:26:11.000Z",
+      "message": "refactor(welfare): precisar resultados de operaciones",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 46,
+      "additions": 23,
+      "deletions": 23,
       "date": "2026-11-10"
     },
     "coverage": 84.66,

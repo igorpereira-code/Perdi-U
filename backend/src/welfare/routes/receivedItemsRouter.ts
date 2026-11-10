@@ -62,7 +62,7 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
       res.status(400).json({ code: 'INVALID_RECIPIENT_EMAIL' });
       return;
     }
-    const result = await welfare.deliver({
+    const deliveryResult = await welfare.deliver({
       foundItemCode,
       lostReportCode: req.body.lostReportCode ? normalizeCode(req.body.lostReportCode) : null,
       recipientName,
@@ -71,11 +71,11 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
       registeredById: getCurrentUser(req).id,
       deliveredAt: new Date(),
     });
-    if (result.status !== 'DELIVERED') {
-      res.status(409).json({ code: result.status });
+    if (deliveryResult.status !== 'DELIVERED') {
+      res.status(409).json({ code: deliveryResult.status });
       return;
     }
-    res.status(201).json(result);
+    res.status(201).json(deliveryResult);
   });
 
   router.get('/welfare/found-items/pending', requireRole('WELFARE'), async (_req, res) => {

@@ -3458,7 +3458,7 @@
     "testId": 42
   },
   {
-    "commitId": "HEAD",
+    "commitId": "41ad00c2888e896cc5453679280223a4ee3f77ac",
     "commitName": "chore: integra los últimos cambios de final-test en welfare",
     "commitTimestamp": 1792467315567,
     "testId": 43
@@ -3524,5 +3524,19 @@
     "commitName": "refactor(welfare): precisar acciones de busqueda y recepcion",
     "commitTimestamp": 1794320611019,
     "testId": 49
+  },
+  {
+    "numPassedTests": 198,
+    "failedTests": 0,
+    "numTotalTests": 198,
+    "timestamp": 1794320696876,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): precisar resultados de operaciones",
+    "commitTimestamp": 1794320773848,
+    "testId": 50
   }
 ]
