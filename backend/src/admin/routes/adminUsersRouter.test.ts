@@ -18,6 +18,23 @@ const luis: ManagedUser = {
   role: 'WELFARE',
 };
 
+/** An in-memory copy of the users, so one test does not change the next one. */
+function createFakeAdminUsers(savedUsers: ManagedUser[]): AdminUsersRepository {
+  const storedUsers = savedUsers.map((user) => ({ ...user }));
+  return {
+    listUsers: async () => storedUsers,
+    findUser: async (userId) => storedUsers.find((user) => user.id === userId) ?? null,
+    changeRole: async (userId, newRole) => {
+      const user = storedUsers.find((storedUser) => storedUser.id === userId);
+      if (!user) {
+        throw new Error(`Unknown user ${userId}`);
+      }
+      user.role = newRole;
+      return user;
+    },
+  };
+}
+
 /** Signs in with a user of the given role. */
 function setup(signedInRole: Role, adminUsers: Partial<AdminUsersRepository> = {}) {
   const signedInUser = {
@@ -38,7 +55,7 @@ function setup(signedInRole: Role, adminUsers: Partial<AdminUsersRepository> = {
     users,
     verifyToken: async () => signedInUser,
     allowSampleUsers: false,
-    adminUsers: { listUsers: async () => [ana, luis], ...adminUsers },
+    adminUsers: { ...createFakeAdminUsers([ana, luis]), ...adminUsers },
   });
 }
 
@@ -75,5 +92,54 @@ describe('Ver la lista de usuarios', () => {
     expect(response.body).toEqual({
       error: 'No se pudieron cargar los usuarios. Intenta nuevamente.',
     });
+  });
+});
+
+const changeRole = (app: ReturnType<typeof createApp>, userId: string, role: unknown) =>
+  request(app)
+    .patch(`/admin/users/${userId}/role`)
+    .auth('token', { type: 'bearer' })
+    .send({ role });
+
+describe('Asignar el rol de Bienestar', () => {
+  it('el Administrador da el rol de Bienestar a un miembro de la comunidad', async () => {
+    const app = setup('ADMIN');
+
+    const response = await changeRole(app, 'usuario-ana', 'WELFARE');
+    const usersAfter = await listUsers(app);
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ ...ana, role: 'WELFARE' });
+    expect(usersAfter.body).toContainEqual({ ...ana, role: 'WELFARE' });
+  });
+
+  it.each(['COMMUNITY', 'WELFARE'] as const)(
+    'un usuario %s no puede cambiar roles',
+    async (role) => {
+      const response = await changeRole(setup(role), 'usuario-ana', 'WELFARE');
+
+      expect(response.status).toBe(403);
+    },
+  );
+
+  it('informa si el usuario no existe', async () => {
+    const response = await changeRole(setup('ADMIN'), 'usuario-inexistente', 'WELFARE');
+
+    expect(response.status).toBe(404);
+    expect(response.body).toEqual({ error: 'No encontramos a este usuario.' });
+  });
+
+  it('no deja dar el rol de Administrador', async () => {
+    const response = await changeRole(setup('ADMIN'), 'usuario-ana', 'ADMIN');
+
+    expect(response.status).toBe(409);
+    expect(response.body).toEqual({ error: 'No se puede hacer este cambio de rol.' });
+  });
+
+  it('no acepta un rol que no existe', async () => {
+    const response = await changeRole(setup('ADMIN'), 'usuario-ana', 'JEFE');
+
+    expect(response.status).toBe(400);
+    expect(response.body).toEqual({ error: 'El rol no es válido.' });
   });
 });

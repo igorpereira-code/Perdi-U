@@ -28,4 +28,27 @@ describe('Consultar los usuarios', () => {
       'No se pudieron cargar los usuarios. Intenta nuevamente.',
     );
   });
+  describe('Cambiar el rol de un usuario', () => {
+    it('pide al backend el nuevo rol y trae al usuario actualizado', async () => {
+      const updatedAna = { ...ana, role: 'WELFARE' };
+      const apiFetch = jest.fn().mockResolvedValue(createResponse(200, updatedAna));
+
+      await expect(
+        createAdminUsersService(apiFetch as ApiFetch).changeRole('usuario-ana', 'WELFARE'),
+      ).resolves.toEqual(updatedAna);
+      expect(apiFetch).toHaveBeenCalledWith('/admin/users/usuario-ana/role', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role: 'WELFARE' }),
+      });
+    });
+
+    it('avisa con un mensaje claro si no se pudo cambiar', async () => {
+      const apiFetch = jest.fn().mockResolvedValue(createResponse(503, { error: 'Detalle' }));
+
+      await expect(
+        createAdminUsersService(apiFetch as ApiFetch).changeRole('usuario-ana', 'WELFARE'),
+      ).rejects.toThrow('No se pudo cambiar el rol. Intenta nuevamente.');
+    });
+  });
 });

@@ -5512,7 +5512,7 @@
     "testId": 109
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b92a5bd432136f377cbd7bfecd4fed42a1e58ebc",
     "commitName": "refactor(core): renombrar preview a previewUrl",
     "commitTimestamp": 1794339855963,
     "testId": 109
@@ -5802,5 +5802,27 @@
     "commitName": "feat(admin): buscar un usuario por su correo institucional",
     "commitTimestamp": 1794351233083,
     "testId": 126
+  },
+  {
+    "numPassedTests": 654,
+    "failedTests": 12,
+    "numTotalTests": 666,
+    "timestamp": 1794351969564,
+    "success": false,
+    "testId": 127
+  },
+  {
+    "numPassedTests": 666,
+    "failedTests": 0,
+    "numTotalTests": 666,
+    "timestamp": 1794352130821,
+    "success": true,
+    "testId": 127
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352177930,
+    "testId": 127
   }
 ]

@@ -4256,12 +4256,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b92a5bd432136f377cbd7bfecd4fed42a1e58ebc",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:44:15.000Z",
       "message": "refactor(core): renombrar preview a previewUrl",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/b92a5bd432136f377cbd7bfecd4fed42a1e58ebc"
     },
     "stats": {
       "total": 16,
@@ -4594,6 +4594,25 @@
     },
     "coverage": 86.08,
     "test_count": 650,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T23:09:36.000Z",
+      "message": "feat(admin): asignar el rol de Bienestar a un usuario",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 308,
+      "additions": 290,
+      "deletions": 18,
+      "date": "2026-11-10"
+    },
+    "coverage": 85.62,
+    "test_count": 666,
     "failed_tests": 0,
     "conclusion": "success"
   }
