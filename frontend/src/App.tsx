@@ -30,6 +30,11 @@ import type { NotificationsService } from './core/data/notificationsService';
 import { NotificationsBell } from './core/presenter/NotificationsBell';
 import { NotificationsScreen } from './core/presenter/NotificationsScreen';
 import { AppLoadingScreen } from './core/presenter/AppLoadingScreen';
+import { canManageUsers } from './admin/logic/canManageUsers';
+import { AdminPage } from './admin/presenter/AdminPage';
+import type { AdminUsersService } from './admin/data/adminUsersService';
+import { canUseWelfareOptions } from './core/logic/canUseWelfareOptions';
+import { withRefreshedRole } from './core/logic/withRefreshedRole';
 
 type AppProps = {
   authService: AuthService;
@@ -41,6 +46,7 @@ type AppProps = {
   catalogService: CatalogService;
   myLostReportsService: MyLostReportsService;
   notificationsService?: NotificationsService;
+  adminUsersService?: AdminUsersService;
 };
 
 export default function App({
@@ -53,6 +59,7 @@ export default function App({
   catalogService,
   myLostReportsService,
   notificationsService,
+  adminUsersService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
@@ -60,6 +67,7 @@ export default function App({
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
   const [isNotInstitutional, setIsNotInstitutional] = useState(false);
   const isGuidePending = user ? !user.hasSeenGuide : false;
+  const ROLE_REFRESH_INTERVAL_MS = 30 * 1000;
 
   useEffect(() => {
     authService
@@ -69,6 +77,31 @@ export default function App({
         setIsNotInstitutional(error instanceof NotInstitutionalEmailError);
         setUser(null);
       });
+  }, [authService]);
+  // The Administrator can give or take away the Bienestar role while the app is open,
+  // so the role is checked again every 30 seconds and every time the user comes back to the app.
+  useEffect(() => {
+    function refreshRole() {
+      if (document.visibilityState !== 'visible') {
+        return;
+      }
+      authService
+        .getCurrentUser()
+        .then((refreshedUser) =>
+          setUser((currentUser) =>
+            currentUser ? withRefreshedRole(currentUser, refreshedUser) : currentUser,
+          ),
+        )
+        .catch(() => undefined);
+    }
+    const refreshTimer = window.setInterval(refreshRole, ROLE_REFRESH_INTERVAL_MS);
+    window.addEventListener('focus', refreshRole);
+    document.addEventListener('visibilitychange', refreshRole);
+    return () => {
+      window.clearInterval(refreshTimer);
+      window.removeEventListener('focus', refreshRole);
+      document.removeEventListener('visibilitychange', refreshRole);
+    };
   }, [authService]);
 
   async function handleSignOut() {
@@ -210,13 +243,25 @@ export default function App({
       <Route
         path="/bienestar"
         element={renderSignedInPage((signedInUser) =>
-          signedInUser.role === 'WELFARE' ? (
+          canUseWelfareOptions(signedInUser.role) ? (
             <WelfarePage welfareService={welfareService} matchesService={matchesService} />
           ) : (
             <Navigate to="/" replace />
           ),
         )}
       />
+      {adminUsersService && (
+        <Route
+          path="/administracion"
+          element={renderSignedInPage((signedInUser) =>
+            canManageUsers(signedInUser.role) ? (
+              <AdminPage adminUsersService={adminUsersService} />
+            ) : (
+              <Navigate to="/" replace />
+            ),
+          )}
+        />
+      )}
       <Route
         path="/ingresar"
         element={
