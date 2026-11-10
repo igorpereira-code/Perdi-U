@@ -134,10 +134,10 @@ describe('Servicio de reportes encontrados', () => {
   });
 
   it('solicita al backend una URL temporal por código, sin firmarla en el navegador', async () => {
-    const result = { url: 'https://storage.example/foto-firmada', expiresIn: 60 };
-    const apiFetch = jest.fn().mockResolvedValue(response(result));
+    const signedPhoto = { url: 'https://storage.example/foto-firmada', expiresIn: 60 };
+    const apiFetch = jest.fn().mockResolvedValue(response(signedPhoto));
 
-    await expect(createFoundItemsService(apiFetch).getPhotoUrl('HZ-7325')).resolves.toEqual(result);
+    await expect(createFoundItemsService(apiFetch).getPhotoUrl('HZ-7325')).resolves.toEqual(signedPhoto);
     expect(apiFetch).toHaveBeenCalledWith('/found-items/HZ-7325/photo');
   });
 

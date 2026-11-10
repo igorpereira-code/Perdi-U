@@ -4720,7 +4720,7 @@
     "testId": 60
   },
   {
-    "commitId": "HEAD",
+    "commitId": "79f6d22eb9555a970a8950e7d0b1e2632ad9c97f",
     "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
     "commitTimestamp": 1792599791806,
     "testId": 60
@@ -5260,5 +5260,11 @@
     "commitName": "refactor(finder): aclarar la validación y el guardado del reporte",
     "commitTimestamp": 1794320842629,
     "testId": 85
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(finder): aclarar los nombres al validar las respuestas",
+    "commitTimestamp": 1794320894364,
+    "testId": 86
   }
 ]

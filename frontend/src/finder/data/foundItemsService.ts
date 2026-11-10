@@ -35,13 +35,13 @@ function isMyFoundItem(value: unknown): value is MyFoundItem {
   if (!value || typeof value !== 'object') {
     return false;
   }
-  const item = value as Partial<MyFoundItem>;
-  return typeof item.code === 'string' && /^HZ-\d+$/.test(item.code)
-    && typeof item.description === 'string' && typeof item.category === 'string'
-    && typeof item.foundAt === 'string' && !Number.isNaN(Date.parse(item.foundAt))
-    && typeof item.hasPhoto === 'boolean'
-    && typeof item.status === 'string' && Object.hasOwn(FOUND_ITEM_STATUS_LABEL, item.status)
-    && (item.receivedAt === null || (typeof item.receivedAt === 'string' && !Number.isNaN(Date.parse(item.receivedAt))));
+  const candidate = value as Partial<MyFoundItem>;
+  return typeof candidate.code === 'string' && /^HZ-\d+$/.test(candidate.code)
+    && typeof candidate.description === 'string' && typeof candidate.category === 'string'
+    && typeof candidate.foundAt === 'string' && !Number.isNaN(Date.parse(candidate.foundAt))
+    && typeof candidate.hasPhoto === 'boolean'
+    && typeof candidate.status === 'string' && Object.hasOwn(FOUND_ITEM_STATUS_LABEL, candidate.status)
+    && (candidate.receivedAt === null || (typeof candidate.receivedAt === 'string' && !Number.isNaN(Date.parse(candidate.receivedAt))));
 }
 
 function isPhotoUrl(value: unknown): value is string {
@@ -56,41 +56,41 @@ function isPhotoUrl(value: unknown): value is string {
 }
 
 export function createFoundItemsService(apiFetch: ApiFetch): FoundItemsService {
-  async function request(path: string, fallback: string, init?: RequestInit, options: { allowNotFound?: boolean } = {}) {
+  async function request(path: string, fallbackMessage: string, init?: RequestInit, options: { allowNotFound?: boolean } = {}) {
     let response: Response;
     try {
       response = await (init ? apiFetch(path, init) : apiFetch(path));
     } catch {
-      throw new Error(fallback);
+      throw new Error(fallbackMessage);
     }
     if (options.allowNotFound && response.status === 404) {
       return { response, body: null };
     }
     let body;
-    try { body = await response.json(); } catch { throw new Error(fallback); }
+    try { body = await response.json(); } catch { throw new Error(fallbackMessage); }
     if (!response.ok) {
-      throw new Error(typeof body?.error === 'string' ? body.error : fallback);
+      throw new Error(typeof body?.error === 'string' ? body.error : fallbackMessage);
     }
     return { response, body };
   }
 
   return {
     getMineByCode: async (code) => {
-      const fallback = 'No se pudo cargar el reporte. Intenta nuevamente.';
-      const { response, body } = await request(`/my-found-items/${encodeURIComponent(code)}`, fallback, undefined, { allowNotFound: true });
+      const fallbackMessage = 'No se pudo cargar el reporte. Intenta nuevamente.';
+      const { response, body } = await request(`/my-found-items/${encodeURIComponent(code)}`, fallbackMessage, undefined, { allowNotFound: true });
       if (response.status === 404) {
         return null;
       }
       if (!isMyFoundItem(body) || body.code !== code) {
-        throw new Error(fallback);
+        throw new Error(fallbackMessage);
       }
       return body;
     },
     listMine: async () => {
-      const fallback = 'No se pudieron cargar tus reportes. Intenta nuevamente.';
-      const { body } = await request('/my-found-items', fallback);
+      const fallbackMessage = 'No se pudieron cargar tus reportes. Intenta nuevamente.';
+      const { body } = await request('/my-found-items', fallbackMessage);
       if (!Array.isArray(body) || !body.every(isMyFoundItem)) {
-        throw new Error(fallback);
+        throw new Error(fallbackMessage);
       }
       return body;
     },
@@ -119,10 +119,10 @@ export function createFoundItemsService(apiFetch: ApiFetch): FoundItemsService {
       return body;
     },
     getPhotoUrl: async (code) => {
-      const fallback = 'No se pudo consultar la fotografía. Intenta nuevamente.';
-      const { body } = await request(`/found-items/${encodeURIComponent(code)}/photo`, fallback);
+      const fallbackMessage = 'No se pudo consultar la fotografía. Intenta nuevamente.';
+      const { body } = await request(`/found-items/${encodeURIComponent(code)}/photo`, fallbackMessage);
       if (!isPhotoUrl(body?.url) || !Number.isInteger(body?.expiresIn) || body.expiresIn <= 0) {
-        throw new Error(fallback);
+        throw new Error(fallbackMessage);
       }
       return body;
     },
