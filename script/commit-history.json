@@ -3648,12 +3648,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "d696f1199751970ab242326a12845609887065cb",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:48:35.000Z",
       "message": "feat(core): mostrar qué pasó y cuándo en cada aviso",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d696f1199751970ab242326a12845609887065cb"
     },
     "stats": {
       "total": 72,
@@ -3976,6 +3976,25 @@
     "commit": {
       "date": "2026-11-10T19:21:09.000Z",
       "message": "refactor(core): corregir el nombre del archivo de pruebas del correo institucional",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T19:24:13.000Z",
+      "message": "refactor(core): renombrar ApiFetchDeps a ApiFetchDependencies",
       "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
     },
     "stats": {

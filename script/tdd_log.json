@@ -5120,7 +5120,7 @@
     "testId": 77
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d696f1199751970ab242326a12845609887065cb",
     "commitName": "feat(core): mostrar qué pasó y cuándo en cada aviso",
     "commitTimestamp": 1794005316407,
     "testId": 77
@@ -5314,5 +5314,19 @@
     "commitName": "refactor(core): corregir el nombre del archivo de pruebas del correo institucional",
     "commitTimestamp": 1794338471161,
     "testId": 94
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794338565401,
+    "success": true,
+    "testId": 95
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar ApiFetchDeps a ApiFetchDependencies",
+    "commitTimestamp": 1794338654580,
+    "testId": 95
   }
 ]
