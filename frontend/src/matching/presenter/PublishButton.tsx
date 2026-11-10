@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { PublishResult } from '@shared/matching';
 import { Button } from '../../core/presenter/Button';
 import type { MatchesService } from '../data/matchesService';
-import { matchCountText } from '../logic/matchCountText';
+import { formatMatchCount } from '../logic/matchCountText';
 
 type PublishButtonProps = {
   itemCode: string;
@@ -29,7 +29,7 @@ export function PublishButton({ itemCode, matchesService, onPublished }: Publish
         className="space-y-1 rounded-xl bg-success-50 p-2 text-sm text-success-700"
       >
         <p className="font-medium">Publicado: la comunidad ya puede ver este objeto.</p>
-        <p>{matchCountText(result.matchCount)}</p>
+        <p>{formatMatchCount(result.matchCount)}</p>
       </div>
     );
   }

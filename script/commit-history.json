@@ -3268,12 +3268,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "55ecdc121e7dddbd6ef415763238ac60548858a2",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T16:23:10.000Z",
       "message": "feat(owner): permitir subir una foto de referencia del objeto perdido",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/55ecdc121e7dddbd6ef415763238ac60548858a2"
     },
     "stats": {
       "total": 152,
@@ -3811,6 +3811,25 @@
       "total": 16,
       "additions": 8,
       "deletions": 8,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T14:35:31.000Z",
+      "message": "refactor(core): renombrar matchCountText  a formatMatchCount",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 9,
+      "deletions": 7,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

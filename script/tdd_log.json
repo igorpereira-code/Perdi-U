@@ -4720,7 +4720,7 @@
     "testId": 60
   },
   {
-    "commitId": "HEAD",
+    "commitId": "55ecdc121e7dddbd6ef415763238ac60548858a2",
     "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
     "commitTimestamp": 1792599791806,
     "testId": 60
@@ -5236,5 +5236,19 @@
     "commitName": "refactor(core): renombrar notificationDestination  a getNotificationDestination",
     "commitTimestamp": 1794320846024,
     "testId": 85
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794321297086,
+    "success": true,
+    "testId": 86
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar matchCountText  a formatMatchCount",
+    "commitTimestamp": 1794321332637,
+    "testId": 86
   }
 ]
