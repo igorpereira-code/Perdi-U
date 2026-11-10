@@ -5470,7 +5470,7 @@
     "testId": 106
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f5a360f2b1b6f90555606700afe29f3bd6615424",
     "commitName": "refactor(core): renombrar el archivo notificationDestination a getNotificationDestination",
     "commitTimestamp": 1794339625592,
     "testId": 106
@@ -5736,5 +5736,27 @@
     "commitName": "feat(matching): mostrar la carga y los errores al publicar un objeto",
     "commitTimestamp": 1794345653282,
     "testId": 123
+  },
+  {
+    "numPassedTests": 634,
+    "failedTests": 1,
+    "numTotalTests": 635,
+    "timestamp": 1794346145250,
+    "success": false,
+    "testId": 124
+  },
+  {
+    "numPassedTests": 635,
+    "failedTests": 0,
+    "numTotalTests": 635,
+    "timestamp": 1794346291467,
+    "success": true,
+    "testId": 124
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar la opción de administración solo al Administrador",
+    "commitTimestamp": 1794346318231,
+    "testId": 124
   }
 ]

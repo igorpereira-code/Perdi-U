@@ -4199,12 +4199,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f5a360f2b1b6f90555606700afe29f3bd6615424",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:40:25.000Z",
       "message": "refactor(core): renombrar el archivo notificationDestination a getNotificationDestination",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/f5a360f2b1b6f90555606700afe29f3bd6615424"
     },
     "stats": {
       "total": 4,
@@ -4537,6 +4537,25 @@
     },
     "coverage": 87,
     "test_count": 632,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T21:31:57.000Z",
+      "message": "feat(admin): mostrar la opción de administración solo al Administrador",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 43,
+      "additions": 42,
+      "deletions": 1,
+      "date": "2026-11-10"
+    },
+    "coverage": 86.97,
+    "test_count": 635,
     "failed_tests": 0,
     "conclusion": "success"
   }

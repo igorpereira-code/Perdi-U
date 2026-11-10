@@ -30,6 +30,8 @@ import type { NotificationsService } from './core/data/notificationsService';
 import { NotificationsBell } from './core/presenter/NotificationsBell';
 import { NotificationsScreen } from './core/presenter/NotificationsScreen';
 import { AppLoadingScreen } from './core/presenter/AppLoadingScreen';
+import { canManageUsers } from './admin/logic/canManageUsers';
+import { AdminPage } from './admin/presenter/AdminPage';
 
 type AppProps = {
   authService: AuthService;
@@ -215,6 +217,12 @@ export default function App({
           ) : (
             <Navigate to="/" replace />
           ),
+        )}
+      />
+      <Route
+        path="/administracion"
+        element={renderSignedInPage((signedInUser) =>
+          canManageUsers(signedInUser.role) ? <AdminPage /> : <Navigate to="/" replace />,
         )}
       />
       <Route
