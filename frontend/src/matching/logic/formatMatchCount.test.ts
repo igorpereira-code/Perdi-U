@@ -1,4 +1,4 @@
-import { formatMatchCount } from './matchCountText';
+import { formatMatchCount } from './formatMatchCount';
 
 describe('Texto de cuántos reportes se parecen', () => {
   it('lo dice en singular, en plural o avisa que no hay ninguno', () => {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { PublishResult } from '@shared/matching';
 import { Button } from '../../core/presenter/Button';
 import type { MatchesService } from '../data/matchesService';
-import { formatMatchCount } from '../logic/matchCountText';
+import { formatMatchCount } from '../logic/formatMatchCount';
 
 type PublishButtonProps = {
   itemCode: string;

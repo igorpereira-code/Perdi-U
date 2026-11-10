@@ -4066,12 +4066,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "87555433838a6d6a4c85f974a21fe9a1f15ee7ce",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:31:46.000Z",
       "message": "refactor(core): renombrar answer y received en las pruebas de avisos",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/87555433838a6d6a4c85f974a21fe9a1f15ee7ce"
     },
     "stats": {
       "total": 14,
@@ -4400,6 +4400,25 @@
       "total": 14,
       "additions": 7,
       "deletions": 7,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:54:36.000Z",
+      "message": "refactor(matching): renombrar el archivo matchCountText a formatMatchCount",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
       "date": "2026-11-10"
     },
     "coverage": 87.35,
