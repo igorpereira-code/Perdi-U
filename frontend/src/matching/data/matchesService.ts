@@ -41,6 +41,9 @@ export function createMatchesService(apiFetch: ApiFetch): MatchesService {
       if (response.status === 409) {
         return { status: 'NOT_RECEIVED' };
       }
+      if (!response.ok) {
+        throw new Error('No se pudo publicar. Intenta nuevamente.');
+      }
       const { matchCount } = await response.json();
       return { status: 'PUBLISHED', matchCount };
     },

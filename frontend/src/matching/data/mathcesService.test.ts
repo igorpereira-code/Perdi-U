@@ -94,4 +94,12 @@ describe('Traer los objetos parecidos a un reporte', () => {
       'No se pudo guardar tu respuesta. Intenta nuevamente.',
     );
   });
+  it('avisa con un error si no se pudo publicar', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({ ok: false, status: 503 });
+    const service = createMatchesService(apiFetch);
+
+    await expect(service.publish('HZ-0004')).rejects.toThrow(
+      'No se pudo publicar. Intenta nuevamente.',
+    );
+  });
 });

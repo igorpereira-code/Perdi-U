@@ -5456,7 +5456,7 @@
     "testId": 105
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4cc9f3da603b177472990e84a537972d03fa15e3",
     "commitName": "refactor(core): renombrar el archivo notificationTime a formatNotificationTime",
     "commitTimestamp": 1794339547482,
     "testId": 105
@@ -5714,5 +5714,27 @@
     "commitName": "feat(matching): mostrar la carga y los errores en las coincidencias del propietario",
     "commitTimestamp": 1794345395572,
     "testId": 122
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 1,
+    "numTotalTests": 632,
+    "timestamp": 1794345471768,
+    "success": false,
+    "testId": 123
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 0,
+    "numTotalTests": 632,
+    "timestamp": 1794345618971,
+    "success": true,
+    "testId": 123
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): mostrar la carga y los errores al publicar un objeto",
+    "commitTimestamp": 1794345653282,
+    "testId": 123
   }
 ]

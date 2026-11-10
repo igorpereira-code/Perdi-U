@@ -4180,12 +4180,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "4cc9f3da603b177472990e84a537972d03fa15e3",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:39:07.000Z",
       "message": "refactor(core): renombrar el archivo notificationTime a formatNotificationTime",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/4cc9f3da603b177472990e84a537972d03fa15e3"
     },
     "stats": {
       "total": 4,
@@ -4518,6 +4518,25 @@
     },
     "coverage": 86.99,
     "test_count": 631,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T21:20:52.000Z",
+      "message": "feat(matching): mostrar la carga y los errores al publicar un objeto",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 38,
+      "additions": 33,
+      "deletions": 5,
+      "date": "2026-11-10"
+    },
+    "coverage": 87,
+    "test_count": 632,
     "failed_tests": 0,
     "conclusion": "success"
   }
