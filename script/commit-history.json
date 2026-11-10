@@ -4028,12 +4028,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6e9218fa9815c758238ba374e7c13d82a8965d57",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:28:59.000Z",
       "message": "refactor(core): renombrar at a createNotificationAt en las pruebas del orden",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/6e9218fa9815c758238ba374e7c13d82a8965d57"
     },
     "stats": {
       "total": 12,
@@ -4362,6 +4362,25 @@
       "total": 6,
       "additions": 3,
       "deletions": 3,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:51:57.000Z",
+      "message": "refactor(core): renombrar signedInPage a renderSignedInPage",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 34,
+      "additions": 17,
+      "deletions": 17,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

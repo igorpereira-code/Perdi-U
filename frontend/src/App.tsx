@@ -81,7 +81,7 @@ export default function App({
   }
 
   /** Pages for signed-in users: inside the blue header and bottom menu. Without a session, go to sign in. */
-  const signedInPage = (page: (me: AppUser) => ReactNode) => {
+  const renderSignedInPage = (page: (signedInUser: AppUser) => ReactNode) => {
     if (user === undefined) {
       return null;
     }
@@ -107,9 +107,9 @@ export default function App({
     <Routes>
       <Route
         path="/"
-        element={signedInPage((me) => (
+        element={renderSignedInPage((signedInUser) => (
           <div className="mx-auto max-w-xl space-y-6">
-            <HomePage user={me} />
+            <HomePage user={signedInUser} />
             <div className="grid grid-cols-2 gap-3">
               <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
               <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
@@ -134,13 +134,13 @@ export default function App({
       />
       <Route
         path="/reportar-objeto"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <FoundItemScreen foundItemsService={foundItemsService} />
         ))}
       />
       <Route
         path="/reportar-perdida"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <LostReportScreen
             foundItemsService={foundItemsService}
             lostReportsService={lostReportsService}
@@ -149,7 +149,7 @@ export default function App({
       />
       <Route
         path="/objetos/:code"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <CatalogItemScreen
             catalogService={catalogService}
             foundItemsService={foundItemsService}
@@ -158,58 +158,58 @@ export default function App({
       />
       <Route
         path="/mis-perdidas"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyLostReportsScreen myLostReportsService={myLostReportsService} />
         ))}
       />
       <Route
         path="/mis-perdidas/:code"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyLostReportScreen myLostReportsService={myLostReportsService} />
         ))}
       />
       <Route
         path="/perfil"
-        element={signedInPage((me) => (
-          <ProfilePage user={me} onSignOut={handleSignOut} />
+        element={renderSignedInPage((signedInUser) => (
+          <ProfilePage user={signedInUser} onSignOut={handleSignOut} />
         ))}
       />
       <Route
         path="/mis-reportes"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyFoundItemsScreen foundItemsService={foundItemsService} />
         ))}
       />
       <Route
         path="/mis-reportes/encontrados/:code"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyFoundItemScreen foundItemsService={foundItemsService} />
         ))}
       />
       <Route
         path="/mis-reportes/:code/coincidencias"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MatchesScreen matchesService={matchesService} />
         ))}
       />
       {notificationsService && (
         <Route
           path="/avisos"
-          element={signedInPage(() => (
+          element={renderSignedInPage(() => (
             <NotificationsScreen notificationsService={notificationsService} />
           ))}
         />
       )}
       <Route
         path="/guia-rapida"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <QuickGuideScreen guideService={guideService} onSeen={handleGuideSeen} />
         ))}
       />
       <Route
         path="/bienestar"
-        element={signedInPage((me) =>
-          me.role === 'WELFARE' ? (
+        element={renderSignedInPage((signedInUser) =>
+          signedInUser.role === 'WELFARE' ? (
             <WelfarePage welfareService={welfareService} matchesService={matchesService} />
           ) : (
             <Navigate to="/" replace />

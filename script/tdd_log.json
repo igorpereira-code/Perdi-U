@@ -5344,7 +5344,7 @@
     "testId": 97
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6e9218fa9815c758238ba374e7c13d82a8965d57",
     "commitName": "refactor(core): renombrar at a createNotificationAt en las pruebas del orden",
     "commitTimestamp": 1794338939762,
     "testId": 97
@@ -5586,5 +5586,19 @@
     "commitName": "refactor(core): renombrar guidePending a isGuidePending",
     "commitTimestamp": 1794340247321,
     "testId": 114
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340284076,
+    "success": true,
+    "testId": 115
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar signedInPage a renderSignedInPage",
+    "commitTimestamp": 1794340317356,
+    "testId": 115
   }
 ]
