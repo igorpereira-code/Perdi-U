@@ -4047,12 +4047,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "eabe8e0b1d5f1f030cdf5ae52fabff876ce1e8d1",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:30:34.000Z",
       "message": "refactor(core): renombrar AuthServiceDeps y fetchFn en el servicio de sesión",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/eabe8e0b1d5f1f030cdf5ae52fabff876ce1e8d1"
     },
     "stats": {
       "total": 42,
@@ -4381,6 +4381,25 @@
       "total": 34,
       "additions": 17,
       "deletions": 17,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:53:20.000Z",
+      "message": "refactor(matching): renombrar result a publishResult",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 7,
+      "deletions": 7,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

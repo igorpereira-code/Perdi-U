@@ -5358,7 +5358,7 @@
     "testId": 98
   },
   {
-    "commitId": "HEAD",
+    "commitId": "eabe8e0b1d5f1f030cdf5ae52fabff876ce1e8d1",
     "commitName": "refactor(core): renombrar AuthServiceDeps y fetchFn en el servicio de sesión",
     "commitTimestamp": 1794339034706,
     "testId": 98
@@ -5600,5 +5600,19 @@
     "commitName": "refactor(core): renombrar signedInPage a renderSignedInPage",
     "commitTimestamp": 1794340317356,
     "testId": 115
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340366323,
+    "success": true,
+    "testId": 116
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): renombrar result a publishResult",
+    "commitTimestamp": 1794340400452,
+    "testId": 116
   }
 ]
