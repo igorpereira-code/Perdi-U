@@ -5232,7 +5232,7 @@
     "testId": 84
   },
   {
-    "commitId": "HEAD",
+    "commitId": "9fbe1efdf48e34c9e2d19d3be9d08e40b29683c7",
     "commitName": "refactor(core): renombrar notificationDestination  a getNotificationDestination",
     "commitTimestamp": 1794320846024,
     "testId": 85
@@ -5418,5 +5418,19 @@
     "commitName": "refactor(core): renombrar dayKey, date y elapsed al calcular el cuándo",
     "commitTimestamp": 1794339324214,
     "testId": 102
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339362927,
+    "success": true,
+    "testId": 103
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar MAX_SHOWN a MAX_BADGE_COUNT",
+    "commitTimestamp": 1794339394933,
+    "testId": 103
   }
 ]

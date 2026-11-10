@@ -3800,12 +3800,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "9fbe1efdf48e34c9e2d19d3be9d08e40b29683c7",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T14:27:25.000Z",
       "message": "refactor(core): renombrar notificationDestination  a getNotificationDestination",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/9fbe1efdf48e34c9e2d19d3be9d08e40b29683c7"
     },
     "stats": {
       "total": 16,
@@ -4134,6 +4134,25 @@
       "total": 23,
       "additions": 13,
       "deletions": 10,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:36:34.000Z",
+      "message": "refactor(core): renombrar MAX_SHOWN a MAX_BADGE_COUNT",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
       "date": "2026-11-10"
     },
     "coverage": 87.35,

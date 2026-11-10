@@ -1,6 +1,6 @@
 import type { AppNotification } from '@shared/notifications';
 
-const MAX_SHOWN = 9;
+const MAX_BADGE_COUNT = 9;
 
 /** How many notifications the user has not opened yet. */
 export function countUnread(notifications: AppNotification[]): number {
@@ -12,5 +12,5 @@ export function formatUnreadBadge(count: number): string | null {
   if (count <= 0) {
     return null;
   }
-  return count > MAX_SHOWN ? `${MAX_SHOWN}+` : String(count);
+  return count > MAX_BADGE_COUNT ? `${MAX_BADGE_COUNT}+` : String(count);
 }
