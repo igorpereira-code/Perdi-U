@@ -2974,7 +2974,7 @@
     "testId": 45
   },
   {
-    "commitId": "HEAD",
+    "commitId": "02ee333af7b61c4e011f57b59380efdf6aad6cfa",
     "commitName": "chore(docs): retirar planes de bienestar",
     "commitTimestamp": 1792504236519,
     "testId": 46
@@ -3496,5 +3496,19 @@
     "commitName": "refactor(welfare): renombrar estados booleanos",
     "commitTimestamp": 1794320255330,
     "testId": 47
+  },
+  {
+    "numPassedTests": 198,
+    "failedTests": 0,
+    "numTotalTests": 198,
+    "timestamp": 1794320405553,
+    "success": true,
+    "testId": 48
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): aclarar estados de objetos pendientes",
+    "commitTimestamp": 1794320455558,
+    "testId": 48
   }
 ]

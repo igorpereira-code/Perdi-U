@@ -2280,12 +2280,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "02ee333af7b61c4e011f57b59380efdf6aad6cfa",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-20T03:35:14.000Z",
       "message": "chore: integra los últimos cambios de final-test en welfare",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/02ee333af7b61c4e011f57b59380efdf6aad6cfa"
     },
     "stats": {
       "total": 0,
@@ -2405,6 +2405,25 @@
       "total": 32,
       "additions": 16,
       "deletions": 16,
+      "date": "2026-11-10"
+    },
+    "coverage": 84.66,
+    "test_count": 198,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-10T14:20:52.000Z",
+      "message": "refactor(welfare): aclarar estados de objetos pendientes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 99,
+      "additions": 54,
+      "deletions": 45,
       "date": "2026-11-10"
     },
     "coverage": 84.66,

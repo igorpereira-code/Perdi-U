@@ -48,12 +48,12 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [lostReportMatches, setLostReportMatches] = useState<MatchView[] | null>(null);
   const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
   const [hasPendingPickupsError, setHasPendingPickupsError] = useState(false);
-  const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
+  const [pendingItems, setPendingItems] = useState<WelfareFoundItemView[] | null>(null);
   const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
   const [publishedCodes, setPublishedCodes] = useState<Set<string>>(new Set());
-  const [selected, setSelected] = useState<WelfareFoundItemView | null>(null);
-  const [code, setCode] = useState('');
-  const [message, setMessage] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<WelfareFoundItemView | null>(null);
+  const [searchedItemCode, setSearchedItemCode] = useState('');
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
   const [isReceiving, setIsReceiving] = useState(false);
   const [deliveryDraft, setDeliveryDraft] = useState<DeliveryInput | null>(null);
   const [isDelivering, setIsDelivering] = useState(false);
@@ -134,11 +134,11 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       return;
     }
     setIsDelivering(true);
-    setMessage(null);
+    setFeedbackMessage(null);
     try {
       const result = await welfareService.deliver(deliveryDraft);
       if (result.status !== 'DELIVERED') {
-        setMessage(
+        setFeedbackMessage(
           result.status === 'REPORT_NOT_ELIGIBLE'
             ? 'El reporte no corresponde a este objeto o propietario'
             : result.status === 'ITEM_NOT_AVAILABLE'
@@ -157,9 +157,9 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       );
       setDeliveryDraft(null);
       setActiveSection('custody');
-      setMessage('Entrega registrada correctamente');
+      setFeedbackMessage('Entrega registrada correctamente');
     } catch {
-      setMessage('No pudimos registrar la entrega');
+      setFeedbackMessage('No pudimos registrar la entrega');
     } finally {
       setIsDelivering(false);
     }
@@ -178,10 +178,10 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   useEffect(() => {
     welfareService
       .listPending()
-      .then(setItems)
+      .then(setPendingItems)
       .catch(() => {
-        setItems([]);
-        setMessage('No pudimos cargar los objetos pendientes');
+        setPendingItems([]);
+        setFeedbackMessage('No pudimos cargar los objetos pendientes');
       });
   }, [welfareService]);
 
@@ -202,42 +202,44 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
 
   async function search(event: FormEvent) {
     event.preventDefault();
-    setMessage(null);
+    setFeedbackMessage(null);
     try {
-      const result = await welfareService.findByCode(code);
+      const result = await welfareService.findByCode(searchedItemCode);
       if (result.status === 'FOUND') {
-        setSelected(result.item);
+        setSelectedItem(result.item);
         return;
       }
-      setSelected(null);
-      setMessage(
+      setSelectedItem(null);
+      setFeedbackMessage(
         result.status === 'NOT_FOUND'
           ? 'No encontramos un objeto con ese código'
           : 'Este objeto ya fue recibido',
       );
     } catch {
-      setMessage('No pudimos buscar el objeto');
+      setFeedbackMessage('No pudimos buscar el objeto');
     }
   }
 
   async function receive() {
-    if (!selected || isReceiving) {
+    if (!selectedItem || isReceiving) {
       return;
     }
     setIsReceiving(true);
-    setMessage(null);
+    setFeedbackMessage(null);
     try {
-      const result = await welfareService.receive(selected.code);
+      const result = await welfareService.receive(selectedItem.code);
       if (result.status !== 'FOUND') {
-        setMessage('Este objeto ya fue recibido');
+        setFeedbackMessage('Este objeto ya fue recibido');
         return;
       }
-      setItems((current) => current?.filter((item) => item.code !== selected.code) ?? []);
+      setPendingItems((current) =>
+        current?.filter((item) => item.code !== selectedItem.code) ?? [],
+      );
       setInOfficeItems((current) => [...(current ?? []), result.item]);
-      setSelected(null);
-      setMessage('Objeto recibido y puesto en custodia');
+      setSelectedItem(null);
+      setFeedbackMessage('Objeto recibido y puesto en custodia');
     } catch {
-      setMessage('No pudimos confirmar la recepción');
+      setFeedbackMessage('No pudimos confirmar la recepción');
     } finally {
       setIsReceiving(false);
     }
@@ -250,7 +252,12 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     count?: number;
   }> = [
     { id: 'reports', label: 'Reportes de pérdida', icon: FileSearch, count: lostReports?.length },
-    { id: 'requests', label: 'Solicitudes de hallazgo', icon: Inbox, count: items?.length },
+    {
+      id: 'requests',
+      label: 'Solicitudes de hallazgo',
+      icon: Inbox,
+      count: pendingItems?.length,
+    },
     { id: 'custody', label: 'Objetos en custodia', icon: Archive },
     {
       id: 'pickups',
@@ -307,7 +314,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       </aside>
 
       <main className="min-w-0 flex-1">
-        {message && <div className="mb-4"><Alert>{message}</Alert></div>}
+        {feedbackMessage && <div className="mb-4"><Alert>{feedbackMessage}</Alert></div>}
 
         <section className={activeSection === 'reports' ? '' : 'hidden'}>
           <SectionHeader
@@ -454,8 +461,8 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             <input
               id="found-item-code"
               className={`${INPUT_CLASSES} pl-9 font-mono uppercase placeholder:font-sans placeholder:normal-case`}
-              value={code}
-              onChange={(event) => setCode(event.target.value)}
+              value={searchedItemCode}
+              onChange={(event) => setSearchedItemCode(event.target.value)}
               placeholder="Buscar por ID, ej. HZ-0007"
             />
             <button type="submit" className="sr-only">Buscar</button>
@@ -464,18 +471,18 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
             <div className="space-y-2">
               <h2 className="sr-only">Objetos pendientes de recepción</h2>
-              {items === null ? (
+              {pendingItems === null ? (
                 <p>Cargando objetos pendientes...</p>
-              ) : items.length === 0 ? (
+              ) : pendingItems.length === 0 ? (
                 <EmptyState title="No hay objetos pendientes" text="No quedan objetos por recibir en la oficina." />
               ) : (
-                items.map((item) => (
+                pendingItems.map((item) => (
                   <article key={item.code}>
                     <button
                       type="button"
-                      onClick={() => setSelected(item)}
+                      onClick={() => setSelectedItem(item)}
                       className={`flex w-full items-center gap-3 rounded-2xl border bg-neutral-0 p-3 text-left ${
-                        selected?.code === item.code
+                        selectedItem?.code === item.code
                           ? 'border-blue-300 ring-2 ring-blue-300/20'
                           : 'border-neutral-200'
                       }`}
@@ -494,22 +501,24 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             </div>
 
             <div className="lg:sticky lg:top-24 lg:self-start">
-              {selected ? (
+              {selectedItem ? (
                 <section className="space-y-4 rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
                   <div className="flex items-center justify-between gap-3">
-                    <h2 className="font-mono text-2xl font-bold text-blue-700">{selected.code}</h2>
-                    <StatusChip status={selected.status} />
+                    <h2 className="font-mono text-2xl font-bold text-blue-700">{selectedItem.code}</h2>
+                    <StatusChip status={selectedItem.status} />
                   </div>
-                  <Thumb category={selected.category} photoUrl={selected.photoUrl} />
+                  <Thumb category={selectedItem.category} photoUrl={selectedItem.photoUrl} />
                   <dl>
-                    <InfoRow label="Descripción" value={selected.description} />
-                    <InfoRow label="Categoría" value={selected.category} />
-                    <InfoRow label="Lugar" value={selected.place} />
-                    {selected.classroom && <InfoRow label="Aula" value={selected.classroom} />}
-                    {selected.finder && (
+                    <InfoRow label="Descripción" value={selectedItem.description} />
+                    <InfoRow label="Categoría" value={selectedItem.category} />
+                    <InfoRow label="Lugar" value={selectedItem.place} />
+                    {selectedItem.classroom && (
+                      <InfoRow label="Aula" value={selectedItem.classroom} />
+                    )}
+                    {selectedItem.finder && (
                       <>
-                        <InfoRow label="Hallador" value={selected.finder.name} />
-                        <InfoRow label="Correo" value={selected.finder.email} />
+                        <InfoRow label="Hallador" value={selectedItem.finder.name} />
+                        <InfoRow label="Correo" value={selectedItem.finder.email} />
                       </>
                     )}
                   </dl>
