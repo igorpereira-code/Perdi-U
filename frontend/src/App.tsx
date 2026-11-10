@@ -57,7 +57,7 @@ export default function App({
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
-  const [notInstitutional, setNotInstitutional] = useState(false);
+  const [isNotInstitutional, setIsNotInstitutional] = useState(false);
   const guidePending = user ? !user.hasSeenGuide : false;
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function App({
       .getCurrentUser()
       .then(setUser)
       .catch((error: unknown) => {
-        setNotInstitutional(error instanceof NotInstitutionalEmailError);
+        setIsNotInstitutional(error instanceof NotInstitutionalEmailError);
         setUser(null);
       });
   }, [authService]);
@@ -222,7 +222,7 @@ export default function App({
           guidePending ? (
             <Navigate to="/guia-rapida" replace />
           ) : (
-            <LoginPage onGoogleLogin={authService.signIn} isNotInstitutional={notInstitutional} />
+            <LoginPage onGoogleLogin={authService.signIn} isNotInstitutional={isNotInstitutional} />
           )
         }
       />

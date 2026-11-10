@@ -5324,7 +5324,7 @@
     "testId": 95
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1e5dd2993cec31bbaa1a603d51b702c769cd70ff",
     "commitName": "refactor(core): renombrar ApiFetchDeps a ApiFetchDependencies",
     "commitTimestamp": 1794338654580,
     "testId": 95
@@ -5558,5 +5558,19 @@
     "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en el login",
     "commitTimestamp": 1794340099763,
     "testId": 112
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340139907,
+    "success": true,
+    "testId": 113
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en App",
+    "commitTimestamp": 1794340173522,
+    "testId": 113
   }
 ]
