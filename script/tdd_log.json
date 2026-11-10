@@ -4692,7 +4692,7 @@
     "testId": 59
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e99b0d38bf21fc981aeee0adeaaf64358cce30c5",
     "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
     "commitTimestamp": 1792599362931,
     "testId": 59
@@ -5238,5 +5238,11 @@
     "commitName": "refactor(owner): renombrar normalize a removeAccentsAndLowercase",
     "commitTimestamp": 1794322420708,
     "testId": 84
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(owner): renombrar toView a toCatalogItemView en catalogRouter",
+    "commitTimestamp": 1794322490179,
+    "testId": 85
   }
 ]
