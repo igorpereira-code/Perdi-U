@@ -4636,7 +4636,7 @@
     "testId": 57
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ac0fa981b0d3c5539cfe4d78a404f732128c0962",
     "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
     "commitTimestamp": 1792597809312,
     "testId": 57
@@ -5242,5 +5242,11 @@
     "commitName": "refactor(finder): aclarar los nombres del envío del hallazgo",
     "commitTimestamp": 1794320686630,
     "testId": 82
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(finder): aclarar los nombres del guardado de la guía",
+    "commitTimestamp": 1794320740203,
+    "testId": 83
   }
 ]
