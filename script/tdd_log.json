@@ -4664,7 +4664,7 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "456a345eb2b85661dda431ab4d0fb0055177f07c",
     "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
     "commitTimestamp": 1792598049048,
     "testId": 58
@@ -5248,5 +5248,11 @@
     "commitName": "refactor(finder): aclarar los nombres del guardado de la guía",
     "commitTimestamp": 1794320740203,
     "testId": 83
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(finder): aclarar los estados de carga y fallo",
+    "commitTimestamp": 1794320791917,
+    "testId": 84
   }
 ]

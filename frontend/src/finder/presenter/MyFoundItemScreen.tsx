@@ -10,26 +10,26 @@ import { FoundItemSummary } from './FoundItemSummary';
 function ReportDetails({ code, foundItemsService }: { code: string; foundItemsService: FoundItemsService }) {
   const navigate = useNavigate();
   const [report, setReport] = useState<MyFoundItem | null | undefined>(undefined);
-  const [failed, setFailed] = useState(false);
-  const [attempt, setAttempt] = useState(0);
+  const [hasFailed, setHasFailed] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
-    let active = true;
+    let isRequestActive = true;
     setReport(undefined);
-    setFailed(false);
+    setHasFailed(false);
     foundItemsService.getMineByCode(code)
-      .then((item) => { if (active) { setReport(item); } })
-      .catch(() => { if (active) { setFailed(true); } });
-    return () => { active = false; };
-  }, [foundItemsService, code, attempt]);
+      .then((loadedReport) => { if (isRequestActive) { setReport(loadedReport); } })
+      .catch(() => { if (isRequestActive) { setHasFailed(true); } });
+    return () => { isRequestActive = false; };
+  }, [foundItemsService, code, retryCount]);
 
   return (
     <section className="mx-auto max-w-lg space-y-4">
       <BackHeader title="Detalle del reporte" onBack={() => navigate('/mis-reportes')} />
-      {failed ? (
+      {hasFailed ? (
         <div className="space-y-3">
           <div role="alert"><Alert>No se pudo cargar el reporte. Intenta nuevamente.</Alert></div>
-          <Button onClick={() => setAttempt((value) => value + 1)}>Reintentar</Button>
+          <Button onClick={() => setRetryCount((previousRetryCount) => previousRetryCount + 1)}>Reintentar</Button>
         </div>
       ) : report === undefined ? (
         <p role="status" className="text-sm text-neutral-500">Cargando el reporte…</p>
