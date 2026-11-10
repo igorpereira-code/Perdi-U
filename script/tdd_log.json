@@ -5192,7 +5192,7 @@
     "testId": 81
   },
   {
-    "commitId": "HEAD",
+    "commitId": "90c460002c36108a0fc0ae5b5788d9eea8f87f68",
     "commitName": "feat(core): mostrar en los botones que la app está cargando",
     "commitTimestamp": 1794319281960,
     "testId": 81
@@ -5362,5 +5362,19 @@
     "commitName": "refactor(core): renombrar AuthServiceDeps y fetchFn en el servicio de sesión",
     "commitTimestamp": 1794339034706,
     "testId": 98
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339076295,
+    "success": true,
+    "testId": 99
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar answer y received en las pruebas de avisos",
+    "commitTimestamp": 1794339106761,
+    "testId": 99
   }
 ]

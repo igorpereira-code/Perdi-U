@@ -3724,12 +3724,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "90c460002c36108a0fc0ae5b5788d9eea8f87f68",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T14:01:21.000Z",
       "message": "feat(core): mostrar en los botones que la app está cargando",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/90c460002c36108a0fc0ae5b5788d9eea8f87f68"
     },
     "stats": {
       "total": 28,
@@ -4058,6 +4058,25 @@
       "total": 42,
       "additions": 21,
       "deletions": 21,
+      "date": "2026-11-10"
+    },
+    "coverage": 87.35,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-10T19:31:46.000Z",
+      "message": "refactor(core): renombrar answer y received en las pruebas de avisos",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 14,
+      "additions": 7,
+      "deletions": 7,
       "date": "2026-11-10"
     },
     "coverage": 87.35,
