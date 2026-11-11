@@ -22,6 +22,7 @@ export function FoundItemPhotoPicker({ photo, onChange }: FoundItemPhotoPickerPr
       return;
     }
 
+    event.currentTarget.value = '';
     setCameraPreviewUrl(URL.createObjectURL(capturedPhoto));
     onChange(capturedPhoto);
   }
@@ -31,27 +32,25 @@ export function FoundItemPhotoPicker({ photo, onChange }: FoundItemPhotoPickerPr
     onChange(null);
   }
 
-  if (cameraPreviewUrl) {
-    return (
-      <div className="space-y-2">
-        <img
-          src={cameraPreviewUrl}
-          alt="Vista previa de la foto"
-          className="h-40 w-full rounded-xl border border-neutral-300 object-cover"
-        />
-        <Button variant="outline" onClick={removeCameraPhoto}>
-          Quitar foto
-        </Button>
-      </div>
-    );
-  }
-
   return (
     <>
-      <PhotoInput onChange={onChange} />
-      {!photo && (
+      {cameraPreviewUrl ? (
+        <div className="space-y-2">
+          <img
+            src={cameraPreviewUrl}
+            alt="Vista previa de la foto"
+            className="h-40 w-full rounded-xl border border-neutral-300 object-cover"
+          />
+          <Button variant="outline" onClick={removeCameraPhoto}>
+            Quitar foto
+          </Button>
+        </div>
+      ) : (
+        <PhotoInput onChange={onChange} />
+      )}
+      {(!photo || cameraPreviewUrl !== null) && (
         <label className="inline-flex min-h-11 cursor-pointer items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700 focus-within:ring-2 focus-within:ring-blue-500">
-          Tomar foto
+          {cameraPreviewUrl ? 'Volver a tomar foto' : 'Tomar foto'}
           <input
             type="file"
             accept="image/*"

@@ -78,6 +78,37 @@ describe('Fotografía opcional del objeto encontrado', () => {
     expect(screen.getByText(capturedPhoto.name)).toBeInTheDocument();
   });
 
+  it('reemplaza la captura al volver a tomar la foto y conserva la anterior si se cancela', async () => {
+    const user = userEvent.setup();
+    const firstPhoto = new File(['primera captura'], 'primera.jpg', { type: 'image/jpeg' });
+    const replacementPhoto = new File(['segunda captura'], 'segunda.jpg', { type: 'image/jpeg' });
+    jest.mocked(URL.createObjectURL)
+      .mockReturnValueOnce('blob:primera-captura')
+      .mockReturnValueOnce('blob:segunda-captura');
+    render(<FoundItemForm catalogs={catalogs} />);
+
+    await user.upload(screen.getByLabelText('Tomar foto'), firstPhoto);
+
+    expect(screen.queryByLabelText('Volver a tomar foto')).toHaveAttribute('capture', 'environment');
+    const retakeInput = screen.getByLabelText('Volver a tomar foto');
+    fireEvent.change(retakeInput, { target: { files: [] } });
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
+      'src',
+      'blob:primera-captura',
+    );
+    expect(screen.getByText(firstPhoto.name)).toBeInTheDocument();
+
+    await user.upload(retakeInput, replacementPhoto);
+
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
+      'src',
+      'blob:segunda-captura',
+    );
+    expect(screen.getByText(replacementPhoto.name)).toBeInTheDocument();
+    expect(screen.queryByText(firstPhoto.name)).not.toBeInTheDocument();
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:primera-captura');
+  });
+
   it('indica que la fotografía es opcional y permite escribir la descripción sin seleccionarla', async () => {
     const user = userEvent.setup();
     render(<FoundItemForm catalogs={catalogs} />);

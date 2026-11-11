@@ -4608,7 +4608,7 @@
     "testId": 56
   },
   {
-    "commitId": "HEAD",
+    "commitId": "12531eb9fe49ed961867b1c074a49e87103c1c1d",
     "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
     "commitTimestamp": 1792597534262,
     "testId": 56
@@ -5212,5 +5212,35 @@
     "commitName": "feat(finder): permitir tomar la foto del hallazgo con la cámara",
     "commitTimestamp": 1794429242538,
     "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 1,
+    "numTotalTests": 630,
+    "timestamp": 1794429430489,
+    "success": false,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 630,
+    "failedTests": 0,
+    "numTotalTests": 630,
+    "timestamp": 1794429503892,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 630,
+    "failedTests": 0,
+    "numTotalTests": 630,
+    "timestamp": 1794429562570,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir volver a tomar la foto del hallazgo",
+    "commitTimestamp": 1794429946766,
+    "testId": 82
   }
 ]
