@@ -2,11 +2,12 @@ import { useRef, useState, type FormEvent } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
-import type { FoundItemCatalogs, FoundItemCreated, FoundItemsService } from '../data/foundItemsService';
+import type { FoundItemCatalogs, FoundItemCreated, FoundItemPayload, FoundItemsService } from '../data/foundItemsService';
 import { foundAtFromForm } from '../logic/foundAtFromForm';
 import { validateFoundItemForm, type FoundItemFormErrors } from '../logic/validateFoundItemForm';
 import { FoundItemConfirmation } from './FoundItemConfirmation';
 import { FoundItemPhotoPicker } from './FoundItemPhotoPicker';
+import { FoundItemReview } from './FoundItemReview';
 
 type FoundItemFormProps = {
   catalogs: FoundItemCatalogs;
@@ -26,6 +27,7 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [created, setCreated] = useState<FoundItemCreated | null>(null);
+  const [reportToReview, setReportToReview] = useState<FoundItemPayload | null>(null);
   const submitLocked = useRef(false);
   const selectedPlace = catalogs.places.find((place) => String(place.id) === placeId);
 
@@ -34,9 +36,9 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
     setClassroomId('');
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleReview(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (submitLocked.current) { return; }
+    if (reportToReview || submitLocked.current) { return; }
     setSubmitError(null);
     const nextErrors = validateFoundItemForm({ description, category, place: placeId, foundDate });
     setErrors(nextErrors);
@@ -50,20 +52,33 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
       return;
     }
     if (!onCreate) { return; }
-    submitLocked.current = true;
-    setSubmitting(true);
     try {
-      const result = await onCreate({
+      setReportToReview({
         description: description.trim(),
         categoryId: Number(category),
         placeId: Number(placeId),
         classroomId: classroomId ? Number(classroomId) : null,
         placeReference: placeReference.trim() || null,
         foundAt: foundAtFromForm(foundDate, foundTime),
-      }, photo);
+      });
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'No se pudo preparar el resumen del reporte.');
+    }
+  }
+
+  async function handleConfirm() {
+    if (!onCreate || !reportToReview || submitLocked.current) {
+      return;
+    }
+
+    submitLocked.current = true;
+    setSubmitting(true);
+    try {
+      const result = await onCreate(reportToReview, photo);
       setCreated(result);
     } catch (error) {
       submitLocked.current = false;
+      setReportToReview(null);
       setSubmitError(error instanceof Error ? error.message : 'No se pudo enviar el reporte. Intenta nuevamente.');
     } finally {
       setSubmitting(false);
@@ -74,12 +89,13 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
     return <FoundItemConfirmation code={created.code} />;
   }
 
-  return (
+  const form = (
     <form
+      hidden={reportToReview !== null}
       aria-labelledby="found-item-form-title"
       className="mx-auto max-w-lg space-y-4"
       noValidate
-      onSubmit={handleSubmit}
+      onSubmit={handleReview}
     >
       <h1 id="found-item-form-title" className="text-lg font-semibold text-blue-700">
         Reportar objeto encontrado
@@ -202,9 +218,31 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
         </Field>
       </fieldset>
       <Button type="submit" className="w-full" disabled={submitting}>
-        {submitting ? 'Enviando…' : 'Reportar objeto encontrado'}
+        Revisar reporte
       </Button>
       </fieldset>
     </form>
+  );
+
+  return (
+    <>
+      {form}
+      {reportToReview && (
+        <FoundItemReview
+          description={reportToReview.description}
+          category={catalogs.categories.find((option) => option.id === reportToReview.categoryId)?.name ?? ''}
+          location={[
+            selectedPlace?.name,
+            selectedPlace?.classrooms.find((option) => option.id === reportToReview.classroomId)?.name,
+            reportToReview.placeReference,
+          ].filter(Boolean).join(' · ')}
+          foundAt={reportToReview.foundAt}
+          foundTime={foundTime}
+          photo={photo}
+          isSubmitting={submitting}
+          onConfirm={handleConfirm}
+        />
+      )}
+    </>
   );
 }

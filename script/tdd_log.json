@@ -4664,7 +4664,7 @@
     "testId": 58
   },
   {
-    "commitId": "HEAD",
+    "commitId": "eafde7231c7bb169fe15fb89ced567bcb196c6e3",
     "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
     "commitTimestamp": 1792598049048,
     "testId": 58
@@ -5256,5 +5256,35 @@
     "commitName": "test(finder): verificar que la galería sigue disponible tras usar la cámara",
     "commitTimestamp": 1794430487766,
     "testId": 83
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 1,
+    "numTotalTests": 632,
+    "timestamp": 1794430577244,
+    "success": false,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 0,
+    "numTotalTests": 632,
+    "timestamp": 1794430675196,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 0,
+    "numTotalTests": 632,
+    "timestamp": 1794430742518,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): mostrar el resumen del hallazgo antes de enviarlo",
+    "commitTimestamp": 1794435708683,
+    "testId": 84
   }
 ]

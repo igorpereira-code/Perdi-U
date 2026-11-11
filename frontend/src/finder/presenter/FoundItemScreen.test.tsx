@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { WELFARE_OFFICE } from '@shared/constants';
 import type { FoundItemsService } from '../data/foundItemsService';
@@ -32,6 +32,11 @@ async function fillForm(user: ReturnType<typeof userEvent.setup>, withPhoto = fa
   }
 }
 
+async function reviewAndConfirm(user: ReturnType<typeof userEvent.setup>) {
+  await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+  await user.click(screen.getByRole('button', { name: 'Confirmar y enviar' }));
+}
+
 beforeEach(() => {
   URL.createObjectURL = jest.fn(() => 'blob:foto-local');
   URL.revokeObjectURL = jest.fn();
@@ -50,6 +55,29 @@ describe('Envío del formulario de hallazgo con catálogos reales', () => {
     expect(service.getCatalogs).toHaveBeenCalledTimes(2);
   });
 
+  it('muestra la fotografía y los datos del hallazgo antes de enviar el reporte', async () => {
+    const user = userEvent.setup();
+    const service = fakeService();
+    render(<FoundItemScreen foundItemsService={service} />);
+    await fillForm(user, true);
+
+    await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+
+    expect(screen.queryByRole('heading', { name: 'Resumen del reporte' })).toBeVisible();
+    const summary = screen.getByRole('region', { name: 'Resumen del reporte' });
+    expect(within(summary).getByRole('img', { name: 'Foto del objeto encontrado' })).toHaveAttribute(
+      'src',
+      'blob:foto-local',
+    );
+    expect(summary).toHaveTextContent('Llaves azules');
+    expect(summary).toHaveTextContent('Llaves reales');
+    expect(summary).toHaveTextContent('Bloque real');
+    expect(summary).toHaveTextContent('Aula real');
+    expect(summary).toHaveTextContent('Sobre la mesa');
+    expect(summary).toHaveTextContent('19/10/2026');
+    expect(service.create).not.toHaveBeenCalled();
+  });
+
   it('envía IDs reales sin foto ni hora y muestra únicamente el código confirmado', async () => {
     const user = userEvent.setup();
     const service = fakeService();
@@ -57,7 +85,9 @@ describe('Envío del formulario de hallazgo con catálogos reales', () => {
     await fillForm(user);
     expect(screen.queryByText(/HZ-/)).not.toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+    expect(screen.getByText('Sin fotografía')).toBeVisible();
+    await user.click(screen.getByRole('button', { name: 'Confirmar y enviar' }));
 
     expect(await screen.findByRole('status')).toHaveTextContent('HZ-7325');
     expect(service.create).toHaveBeenCalledWith({
@@ -75,7 +105,7 @@ describe('Envío del formulario de hallazgo con catálogos reales', () => {
     fireEvent.change(screen.getByLabelText('Hora del hallazgo'), { target: { value: '23:45' } });
     await user.upload(screen.getByLabelText('Foto del objeto'), photo);
 
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
 
     expect(await screen.findByText('HZ-7325')).toBeInTheDocument();
     expect(service.create).toHaveBeenCalledWith(expect.objectContaining({
@@ -91,8 +121,10 @@ describe('Envío del formulario de hallazgo con catálogos reales', () => {
     render(<FoundItemScreen foundItemsService={service} />);
     await fillForm(user);
 
-    await user.dblClick(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
-    fireEvent.submit(screen.getByRole('form'));
+    const form = screen.getByRole('form');
+    await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+    await user.dblClick(screen.getByRole('button', { name: 'Confirmar y enviar' }));
+    fireEvent.submit(form);
 
     expect(service.create).toHaveBeenCalledTimes(1);
     expect(screen.queryByText(/HZ-/)).not.toBeInTheDocument();
@@ -112,7 +144,7 @@ describe('Envío del formulario de hallazgo con catálogos reales', () => {
     await user.upload(screen.getByLabelText('Foto del objeto'), photo);
     fireEvent.change(screen.getByLabelText('Hora del hallazgo'), { target: { value: '08:15' } });
 
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
 
     expect(await screen.findByRole('alert')).toHaveTextContent('No se pudo subir la fotografía.');
     expect(screen.getByLabelText('Descripción del objeto')).toHaveValue('Llaves azules');
@@ -124,7 +156,7 @@ describe('Envío del formulario de hallazgo con catálogos reales', () => {
     expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('08:15');
     expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute('src', 'blob:foto-local');
     expect(screen.queryByText(/HZ-/)).not.toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
 
     await waitFor(() => expect(screen.getByText('HZ-7325')).toBeInTheDocument());
     expect(service.create).toHaveBeenCalledTimes(2);
@@ -143,7 +175,7 @@ describe('Instrucciones de entrega después del registro (CA11)', () => {
     render(<FoundItemScreen foundItemsService={service} />);
     await fillForm(user, withPhoto);
 
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
 
     expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
     expect(screen.getByRole('status')).toHaveTextContent(code);
@@ -168,7 +200,7 @@ describe('Instrucciones de entrega después del registro (CA11)', () => {
     }
 
     expectNoConfirmation();
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
     expect(screen.getByRole('button', { name: 'Enviando…' })).toBeDisabled();
     expectNoConfirmation();
     await act(async () => { rejectCreate(new Error('No se pudo registrar el objeto encontrado. Intenta nuevamente.')); });
@@ -176,7 +208,7 @@ describe('Instrucciones de entrega después del registro (CA11)', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent('No se pudo registrar el objeto encontrado.');
     expectNoConfirmation();
     expect(screen.getByLabelText('Descripción del objeto')).toHaveValue('Llaves azules');
-    expect(screen.getByRole('button', { name: 'Reportar objeto encontrado' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Revisar reporte' })).toBeEnabled();
   });
 });
 
@@ -189,7 +221,7 @@ describe('Advertencia de entrega a Bienestar Estudiantil (CA12)', () => {
     render(<FoundItemScreen foundItemsService={service} />);
     await fillForm(user);
 
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
 
     expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
     expect(screen.getByRole('note')).toHaveTextContent(warningText);
@@ -204,14 +236,14 @@ describe('Advertencia de entrega a Bienestar Estudiantil (CA12)', () => {
     await fillForm(user);
     expect(screen.queryByText(/No entregues el objeto directamente a su dueño/)).not.toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
 
     expect(await screen.findByRole('alert')).toHaveTextContent('No se pudo registrar el objeto encontrado.');
     expect(screen.queryByText(/No entregues el objeto directamente a su dueño/)).not.toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: 'Reporte registrado' })).not.toBeInTheDocument();
     expect(screen.getByLabelText('Descripción del objeto')).toHaveValue('Llaves azules');
 
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
 
     expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
     expect(screen.getByRole('note')).toHaveTextContent(warningText);
@@ -228,7 +260,7 @@ describe('Ubicación y horario de Bienestar después del registro (CA13)', () =>
     expect(screen.queryByText(WELFARE_OFFICE.place)).not.toBeInTheDocument();
     expect(screen.queryByText(WELFARE_OFFICE.hours)).not.toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
 
     expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
     expect(screen.getByText(WELFARE_OFFICE.place)).toBeVisible();
@@ -246,7 +278,7 @@ describe('Privacidad del reporte hasta su recepción en Bienestar (CA14)', () =>
     render(<FoundItemScreen foundItemsService={service} />);
     await fillForm(user, withPhoto);
 
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
 
     expect(await screen.findByRole('heading', { name: 'Reporte registrado' })).toBeInTheDocument();
     expect(screen.getByText(privacyNotice)).toBeVisible();
@@ -263,7 +295,7 @@ describe('Privacidad del reporte hasta su recepción en Bienestar (CA14)', () =>
     await fillForm(user);
     expect(screen.queryByText(privacyNotice)).not.toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await reviewAndConfirm(user);
 
     expect(screen.getByRole('button', { name: 'Enviando…' })).toBeDisabled();
     expect(screen.queryByText(privacyNotice)).not.toBeInTheDocument();
@@ -272,6 +304,6 @@ describe('Privacidad del reporte hasta su recepción en Bienestar (CA14)', () =>
     expect(await screen.findByRole('alert')).toHaveTextContent('No se pudo registrar el objeto encontrado.');
     expect(screen.queryByText(privacyNotice)).not.toBeInTheDocument();
     expect(screen.getByLabelText('Descripción del objeto')).toHaveValue('Llaves azules');
-    expect(screen.getByRole('button', { name: 'Reportar objeto encontrado' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Revisar reporte' })).toBeEnabled();
   });
 });
