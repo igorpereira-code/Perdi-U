@@ -3154,12 +3154,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2bb2b797806d641ca89833ca2cdabf07087a688d",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T15:50:08.000Z",
       "message": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2bb2b797806d641ca89833ca2cdabf07087a688d"
     },
     "stats": {
       "total": 101,
@@ -3758,6 +3758,25 @@
     },
     "coverage": 87.39,
     "test_count": 630,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-11-11T20:54:45.000Z",
+      "message": "test(finder): verificar que la galería sigue disponible tras usar la cámara",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 17,
+      "additions": 17,
+      "deletions": 0,
+      "date": "2026-11-11"
+    },
+    "coverage": 87.51,
+    "test_count": 631,
     "failed_tests": 0,
     "conclusion": "success"
   }

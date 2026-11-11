@@ -4636,7 +4636,7 @@
     "testId": 57
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2bb2b797806d641ca89833ca2cdabf07087a688d",
     "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
     "commitTimestamp": 1792597809312,
     "testId": 57
@@ -5242,5 +5242,19 @@
     "commitName": "feat(finder): permitir volver a tomar la foto del hallazgo",
     "commitTimestamp": 1794429946766,
     "testId": 82
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 0,
+    "numTotalTests": 631,
+    "timestamp": 1794430443564,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(finder): verificar que la galería sigue disponible tras usar la cámara",
+    "commitTimestamp": 1794430487766,
+    "testId": 83
   }
 ]

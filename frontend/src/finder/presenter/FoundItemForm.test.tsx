@@ -109,6 +109,23 @@ describe('Fotografía opcional del objeto encontrado', () => {
     expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:primera-captura');
   });
 
+  it('permite volver a elegir una foto de la galería después de quitar una captura', async () => {
+    const user = userEvent.setup();
+    const capturedPhoto = new File(['captura'], 'camara.jpg', { type: 'image/jpeg' });
+    render(<FoundItemForm catalogs={catalogs} />);
+
+    await user.upload(screen.getByLabelText('Tomar foto'), capturedPhoto);
+    await user.click(screen.getByRole('button', { name: 'Quitar foto' }));
+
+    const galleryInput = screen.getByLabelText('Foto del objeto');
+    expect(galleryInput).not.toHaveAttribute('capture');
+    await user.upload(galleryInput, photo);
+
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeVisible();
+    expect(screen.getByText(photo.name)).toBeInTheDocument();
+    expect(screen.queryByText(capturedPhoto.name)).not.toBeInTheDocument();
+  });
+
   it('indica que la fotografía es opcional y permite escribir la descripción sin seleccionarla', async () => {
     const user = userEvent.setup();
     render(<FoundItemForm catalogs={catalogs} />);
