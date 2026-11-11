@@ -127,13 +127,31 @@ export const prismaWelfareRepository = {
     return row ? toWelfareItem(row) : null;
   },
 
-  receivePending: async (itemId, receivedById, receivedAt) => {
-    const result = await db().foundItem.updateMany({
-      where: { id: itemId, status: 'PENDING_DROP_OFF' },
-      data: { status: 'IN_CUSTODY', receivedById, receivedAt },
-    });
-    return result.count === 1;
-  },
+  receivePending: async (itemId, receivedById, receivedAt) =>
+    db().$transaction(async (transaction) => {
+      const result = await transaction.foundItem.updateMany({
+        where: { id: itemId, status: 'PENDING_DROP_OFF' },
+        data: { status: 'IN_CUSTODY', receivedById, receivedAt },
+      });
+      if (result.count !== 1) {
+        return false;
+      }
+
+      const { finderId, code } = await transaction.foundItem.findUniqueOrThrow({
+        where: { id: itemId },
+        select: { finderId: true, code: true },
+      });
+      if (finderId) {
+        await transaction.notification.create({
+          data: {
+            userId: finderId,
+            message: 'Bienestar Estudiantil recibió el objeto de tu reporte ' + code + '.',
+            link: '/mis-reportes/encontrados/' + encodeURIComponent(code),
+          },
+        });
+      }
+      return true;
+    }),
 
   deliver: async (delivery) =>
     db().$transaction(async (transaction) => {

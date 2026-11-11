@@ -36,7 +36,7 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "eb12025cd1372881cdb2ac08ba21c31f47c0c999",
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
     "testId": 62
@@ -6074,5 +6074,27 @@
     "commitName": "chore(finder): integrar final-test en finder",
     "commitTimestamp": 1794437956154,
     "testId": 131
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 1,
+    "numTotalTests": 679,
+    "timestamp": 1794438854233,
+    "success": false,
+    "testId": 132
+  },
+  {
+    "numPassedTests": 679,
+    "failedTests": 0,
+    "numTotalTests": 679,
+    "timestamp": 1794438921936,
+    "success": true,
+    "testId": 132
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): avisar al hallador cuando Bienestar recibe el objeto",
+    "commitTimestamp": 1794438985717,
+    "testId": 132
   }
 ]
