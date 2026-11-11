@@ -106,7 +106,7 @@ export const prismaWelfareRepository = {
 
   listPending: async () => {
     const rows = await db().foundItem.findMany({
-      where: { status: 'PENDING_DROP_OFF' },
+      where: { status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
       include: itemRelations,
       orderBy: { createdAt: 'asc' },
     });
@@ -123,7 +123,10 @@ export const prismaWelfareRepository = {
   },
 
   findByCode: async (code) => {
-    const row = await db().foundItem.findUnique({ where: { code }, include: itemRelations });
+    const row = await db().foundItem.findFirst({
+      where: { code, OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }] },
+      include: itemRelations,
+    });
     return row ? toWelfareItem(row) : null;
   },
 

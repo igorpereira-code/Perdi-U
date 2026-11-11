@@ -27,3 +27,25 @@ it('registra un aviso para el hallador al recibir su objeto', async () => {
     },
   });
 });
+
+it('excluye los reportes cancelados de la lista y la búsqueda de Bienestar', async () => {
+  const foundItem = {
+    findMany: jest.fn().mockResolvedValue([]),
+    findFirst: jest.fn().mockResolvedValue(null),
+    findUnique: jest.fn().mockResolvedValue(null),
+  };
+  jest.mocked(db).mockReturnValue({ foundItem } as unknown as ReturnType<typeof db>);
+
+  await expect(prismaWelfareRepository.listPending()).resolves.toEqual([]);
+  expect(foundItem.findMany).toHaveBeenCalledWith(expect.objectContaining({
+    where: { status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
+  }));
+
+  await expect(prismaWelfareRepository.findByCode('HZ-0005')).resolves.toBeNull();
+  expect(foundItem.findFirst).toHaveBeenCalledWith(expect.objectContaining({
+    where: {
+      code: 'HZ-0005',
+      OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }],
+    },
+  }));
+});

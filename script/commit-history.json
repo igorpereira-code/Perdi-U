@@ -3781,12 +3781,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "4ec4f617995dce86dea5d7e232d03259b42e3b94",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:15:29.000Z",
       "message": "feat(core): agregar la opción de avisos en la pantalla principal",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/4ec4f617995dce86dea5d7e232d03259b42e3b94"
     },
     "stats": {
       "total": 552,
@@ -5202,6 +5202,25 @@
     },
     "coverage": 83.75,
     "test_count": 681,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-11-11T23:30:33.000Z",
+      "message": "feat(finder): excluir cancelados de las solicitudes de Bienestar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 29,
+      "additions": 27,
+      "deletions": 2,
+      "date": "2026-11-11"
+    },
+    "coverage": 83.96,
+    "test_count": 682,
     "failed_tests": 0,
     "conclusion": "success"
   }

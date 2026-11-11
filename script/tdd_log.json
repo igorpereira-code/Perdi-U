@@ -60,7 +60,7 @@
     "testId": 73
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4ec4f617995dce86dea5d7e232d03259b42e3b94",
     "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
     "commitTimestamp": 1794003330500,
     "testId": 74
@@ -6162,5 +6162,27 @@
     "commitName": "feat(finder): confirmar antes de cancelar un reporte",
     "commitTimestamp": 1794439678670,
     "testId": 135
+  },
+  {
+    "numPassedTests": 681,
+    "failedTests": 1,
+    "numTotalTests": 682,
+    "timestamp": 1794439745222,
+    "success": false,
+    "testId": 136
+  },
+  {
+    "numPassedTests": 682,
+    "failedTests": 0,
+    "numTotalTests": 682,
+    "timestamp": 1794439797405,
+    "success": true,
+    "testId": 136
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): excluir cancelados de las solicitudes de Bienestar",
+    "commitTimestamp": 1794439835194,
+    "testId": 136
   }
 ]
