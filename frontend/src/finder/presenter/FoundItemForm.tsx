@@ -240,6 +240,7 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
           foundTime={foundTime}
           photo={photo}
           isSubmitting={submitting}
+          onEdit={() => setReportToReview(null)}
           onConfirm={handleConfirm}
         />
       )}

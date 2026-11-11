@@ -10,6 +10,7 @@ type FoundItemReviewProps = {
   foundTime: string;
   photo: File | null;
   isSubmitting: boolean;
+  onEdit: () => void;
   onConfirm: () => void;
 };
 
@@ -21,6 +22,7 @@ export function FoundItemReview({
   foundTime,
   photo,
   isSubmitting,
+  onEdit,
   onConfirm,
 }: FoundItemReviewProps) {
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
@@ -72,6 +74,9 @@ export function FoundItemReview({
           <dd>{formatReportDate(foundAt)}{foundTime && (' · ' + foundTime)}</dd>
         </div>
       </dl>
+      <Button variant="outline" className="w-full" disabled={isSubmitting} onClick={onEdit}>
+        Volver a editar
+      </Button>
       <Button className="w-full" disabled={isSubmitting} onClick={onConfirm}>
         {isSubmitting ? 'Enviando…' : 'Confirmar y enviar'}
       </Button>

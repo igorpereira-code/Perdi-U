@@ -78,6 +78,47 @@ describe('Envío del formulario de hallazgo con catálogos reales', () => {
     expect(service.create).not.toHaveBeenCalled();
   });
 
+  it('permite corregir el borrador desde el resumen sin perder la foto ni los demás datos', async () => {
+    const user = userEvent.setup();
+    const service = fakeService();
+    const photo = new File(['captura'], 'llaves.png', { type: 'image/png' });
+    jest.mocked(URL.createObjectURL)
+      .mockReturnValueOnce('blob:captura')
+      .mockReturnValueOnce('blob:resumen');
+    render(<FoundItemScreen foundItemsService={service} />);
+    await fillForm(user);
+    await user.upload(screen.getByLabelText('Tomar foto'), photo);
+    fireEvent.change(screen.getByLabelText('Hora del hallazgo'), { target: { value: '08:15' } });
+
+    await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+    expect(screen.queryByRole('button', { name: 'Volver a editar' })).toBeVisible();
+    await user.click(screen.getByRole('button', { name: 'Volver a editar' }));
+
+    expect(screen.queryByRole('region', { name: 'Resumen del reporte' })).not.toBeInTheDocument();
+    expect(screen.getByLabelText('Descripción del objeto')).toHaveValue('Llaves azules');
+    expect(screen.getByLabelText('Categoría')).toHaveValue('47');
+    expect(screen.getByLabelText('Bloque o espacio')).toHaveValue('83');
+    expect(screen.getByLabelText('Aula')).toHaveValue('216');
+    expect(screen.getByLabelText('Referencia del lugar')).toHaveValue('Sobre la mesa');
+    expect(screen.getByLabelText('Fecha del hallazgo')).toHaveValue('2026-10-19');
+    expect(screen.getByLabelText('Hora del hallazgo')).toHaveValue('08:15');
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
+      'src',
+      'blob:captura',
+    );
+    expect(screen.getByText(photo.name)).toBeVisible();
+
+    const description = screen.getByLabelText('Descripción del objeto');
+    await user.clear(description);
+    await user.type(description, 'Llaves azules con llavero');
+    await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+
+    const summary = screen.getByRole('region', { name: 'Resumen del reporte' });
+    expect(summary).toHaveTextContent('Llaves azules con llavero');
+    expect(within(summary).getByRole('img', { name: 'Foto del objeto encontrado' })).toBeVisible();
+    expect(service.create).not.toHaveBeenCalled();
+  });
+
   it('envía IDs reales sin foto ni hora y muestra únicamente el código confirmado', async () => {
     const user = userEvent.setup();
     const service = fakeService();

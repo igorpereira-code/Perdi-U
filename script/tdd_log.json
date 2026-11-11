@@ -4692,7 +4692,7 @@
     "testId": 59
   },
   {
-    "commitId": "HEAD",
+    "commitId": "da62bbb24fec2cd460062a16b580dd3aee3d9b1a",
     "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
     "commitTimestamp": 1792599362931,
     "testId": 59
@@ -5286,5 +5286,35 @@
     "commitName": "feat(finder): mostrar el resumen del hallazgo antes de enviarlo",
     "commitTimestamp": 1794435708683,
     "testId": 84
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 1,
+    "numTotalTests": 633,
+    "timestamp": 1794435780227,
+    "success": false,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 633,
+    "failedTests": 0,
+    "numTotalTests": 633,
+    "timestamp": 1794435832570,
+    "success": true,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 633,
+    "failedTests": 0,
+    "numTotalTests": 633,
+    "timestamp": 1794435885146,
+    "success": true,
+    "testId": 85
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir corregir el reporte desde el resumen",
+    "commitTimestamp": 1794436331985,
+    "testId": 85
   }
 ]
