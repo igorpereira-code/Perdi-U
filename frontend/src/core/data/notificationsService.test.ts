@@ -2,7 +2,7 @@ import type { AppNotification } from '@shared/notifications';
 import type { ApiFetch } from './api';
 import { createNotificationsService } from './notificationsService';
 
-const received: AppNotification = {
+const receivedNotification: AppNotification = {
   id: 'aviso-1',
   message: 'Bienestar recibió tu objeto HZ-0001.',
   link: '/mis-reportes/encontrados/HZ-0001',
@@ -10,22 +10,22 @@ const received: AppNotification = {
   readAt: null,
 };
 
-function answer(status: number, body: unknown): Response {
+function createResponse(status: number, body: unknown): Response {
   return { ok: status >= 200 && status < 300, status, json: async () => body } as Response;
 }
 
 describe('Consultar mis avisos', () => {
   it('trae mis avisos del backend', async () => {
-    const apiFetch = jest.fn().mockResolvedValue(answer(200, [received]));
+    const apiFetch = jest.fn().mockResolvedValue(createResponse(200, [receivedNotification]));
 
     await expect(createNotificationsService(apiFetch as ApiFetch).list()).resolves.toEqual([
-      received,
+      receivedNotification,
     ]);
     expect(apiFetch).toHaveBeenCalledWith('/me/notifications');
   });
 
   it('avisa con un mensaje claro si no se pudieron cargar', async () => {
-    const apiFetch = jest.fn().mockResolvedValue(answer(503, { error: 'Detalle' }));
+    const apiFetch = jest.fn().mockResolvedValue(createResponse(503, { error: 'Detalle' }));
 
     await expect(createNotificationsService(apiFetch as ApiFetch).list()).rejects.toThrow(
       'No se pudieron cargar tus avisos. Intenta nuevamente.',
@@ -34,7 +34,7 @@ describe('Consultar mis avisos', () => {
 });
 describe('Marcar un aviso como abierto', () => {
   it('avisa al backend qué aviso abrió', async () => {
-    const apiFetch = jest.fn().mockResolvedValue(answer(204, null));
+    const apiFetch = jest.fn().mockResolvedValue(createResponse(204, null));
 
     await createNotificationsService(apiFetch as ApiFetch).markRead('aviso-1');
 
@@ -42,7 +42,7 @@ describe('Marcar un aviso como abierto', () => {
   });
 
   it('avisa con un mensaje claro si no se pudo marcar', async () => {
-    const apiFetch = jest.fn().mockResolvedValue(answer(503, { error: 'Detalle' }));
+    const apiFetch = jest.fn().mockResolvedValue(createResponse(503, { error: 'Detalle' }));
 
     await expect(
       createNotificationsService(apiFetch as ApiFetch).markRead('aviso-1'),

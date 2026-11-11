@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { APP_NAME } from '@shared/constants';
-import { createCurrentUser, getCurrentUser, type VerifyToken } from './core/currentUser';
+import { createUserAuthenticator, getCurrentUser, type VerifyToken } from './core/currentUser';
 import { verifySupabaseToken } from './core/data/supabaseAuth';
 import { prismaUsersRepository } from './core/data/prismaUsersRepository';
 import type { UsersRepository } from './core/data/usersRepository';
@@ -30,6 +30,9 @@ import { createMyLostReportsRouter } from './owner/routes/myLostReportsRouter';
 import type { NotificationsRepository } from './core/data/notificationsRepository';
 import { prismaNotificationsRepository } from './core/data/prismaNotificationsRepository';
 import { createNotificationsRouter } from './core/routes/notificationsRouter';
+import type { AdminUsersRepository } from './admin/data/adminUsersRepository';
+import { prismaAdminUsersRepository } from './admin/data/prismaAdminUsersRepository';
+import { createAdminUsersRouter } from './admin/routes/adminUsersRouter';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -43,6 +46,7 @@ type AppOptions = {
   catalog?: CatalogRepository;
   myLostReports?: MyLostReportsRepository;
   notifications?: NotificationsRepository;
+  adminUsers?: AdminUsersRepository;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
@@ -56,6 +60,7 @@ export function createApp({
   catalog = prismaCatalogRepository,
   myLostReports = prismaMyLostReportsRepository,
   notifications = prismaNotificationsRepository,
+  adminUsers = prismaAdminUsersRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -65,7 +70,7 @@ export function createApp({
     res.json({ status: 'ok', app: APP_NAME });
   });
 
-  app.use(createCurrentUser(verifyToken, users, allowSampleUsers));
+  app.use(createUserAuthenticator(verifyToken, users, allowSampleUsers));
 
   app.get('/me', (req, res) => {
     res.json(getCurrentUser(req));
@@ -79,5 +84,6 @@ export function createApp({
   app.use(createCatalogRouter(catalog));
   app.use(createMyLostReportsRouter(myLostReports));
   app.use(createNotificationsRouter(notifications));
+  app.use(createAdminUsersRouter(adminUsers));
   return app;
 }
