@@ -66,7 +66,7 @@
     "testId": 74
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ac7f52313d636d398909897e02ab6b0a05493cce",
     "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
     "commitTimestamp": 1794004502232,
     "testId": 75
@@ -6184,5 +6184,27 @@
     "commitName": "feat(finder): excluir cancelados de las solicitudes de Bienestar",
     "commitTimestamp": 1794439835194,
     "testId": 136
+  },
+  {
+    "numPassedTests": 682,
+    "failedTests": 2,
+    "numTotalTests": 684,
+    "timestamp": 1794439892268,
+    "success": false,
+    "testId": 137
+  },
+  {
+    "numPassedTests": 687,
+    "failedTests": 0,
+    "numTotalTests": 687,
+    "timestamp": 1794439988756,
+    "success": true,
+    "testId": 137
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): bloquear cambios tras la recepción en Bienestar",
+    "commitTimestamp": 1794440028976,
+    "testId": 137
   }
 ]

@@ -192,3 +192,29 @@ describe('Cancelar un reporte de objeto encontrado', () => {
     expect(foundItems.cancelPending).toHaveBeenCalledWith(SAMPLE_USERS.ana.id, 'HZ-7325');
   });
 });
+
+it.each(['patch', 'delete'] as const)('impide %s cuando Bienestar ya recibió el objeto', async (method) => {
+  const foundItems = fakeFoundItems();
+  const changes = {
+    description: 'Llaves actualizadas', categoryId: 1, placeId: 2,
+    classroomId: null, placeReference: null, foundAt: '2026-10-18T12:15:00.000Z',
+  };
+  foundItems.getCatalogs.mockResolvedValue({
+    categories: [{ id: 1, name: 'Llaves' }],
+    places: [{ id: 2, name: 'Patio', type: 'SPACE', classrooms: [] }],
+  });
+  foundItems.getMineByCode.mockResolvedValue({
+    code: 'HZ-7325', description: 'Llaves', category: 'Llaves', foundAt: new Date(changes.foundAt),
+    hasPhoto: false, status: 'IN_CUSTODY', receivedAt: new Date('2026-10-19T14:30:00.000Z'),
+  });
+  foundItems.updatePending.mockResolvedValue(false);
+  foundItems.cancelPending.mockResolvedValue(false);
+
+  const response = await request(createApp({ foundItems }))[method]('/my-found-items/HZ-7325')
+    .set('x-sample-user', 'ana')
+    .send(changes);
+
+  expect(response.status).toBe(409);
+  expect(response.body.code).toBe('REPORT_ALREADY_RECEIVED');
+  expect(foundItems.getMineByCode).toHaveBeenCalledWith(SAMPLE_USERS.ana.id, 'HZ-7325');
+});

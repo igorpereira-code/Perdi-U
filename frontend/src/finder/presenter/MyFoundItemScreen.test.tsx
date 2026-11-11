@@ -25,7 +25,7 @@ function renderReport(service: FoundItemsService) {
 }
 
 describe('Detalle de un reporte propio del hallador', () => {
-  it.each(['PENDING_DROP_OFF', 'DELIVERED'] as const)(
+  it.each(['PENDING_DROP_OFF', 'IN_CUSTODY', 'PUBLISHED', 'DELIVERED'] as const)(
     'mantiene junto al código la instrucción de Bienestar al consultar un reporte en estado %s',
     async (status) => {
       const service = fakeService();
@@ -35,6 +35,10 @@ describe('Detalle de un reporte propio del hallador', () => {
       await screen.findByText(report.code);
       const group = screen.getByRole('group', { name: 'Código para entregar el objeto' });
       expect(within(group).getByText(report.code)).toBeInTheDocument();
+      if (status !== 'PENDING_DROP_OFF') {
+        expect(screen.queryByRole('button', { name: 'Editar reporte' })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'Cancelar reporte' })).not.toBeInTheDocument();
+      }
       expect(within(group).getByText('Muestra este código en Bienestar Estudiantil cuando entregues el objeto')).toBeInTheDocument();
     },
   );

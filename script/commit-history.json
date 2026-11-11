@@ -3819,12 +3819,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ac7f52313d636d398909897e02ab6b0a05493cce",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:35:01.000Z",
       "message": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ac7f52313d636d398909897e02ab6b0a05493cce"
     },
     "stats": {
       "total": 111,
@@ -5221,6 +5221,25 @@
     },
     "coverage": 83.96,
     "test_count": 682,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-11-11T23:33:46.000Z",
+      "message": "feat(finder): bloquear cambios tras la recepción en Bienestar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 77,
+      "additions": 70,
+      "deletions": 7,
+      "date": "2026-11-11"
+    },
+    "coverage": 84.32,
+    "test_count": 687,
     "failed_tests": 0,
     "conclusion": "success"
   }
