@@ -41,6 +41,38 @@ export function createFoundItemsRouter(foundItems: FoundItemsRepository, photos:
     }
   });
 
+  router.get('/my-found-items/:code/edit', async (req, res) => {
+    res.set('Cache-Control', 'private, no-store');
+    try {
+      const report = await foundItems.getEditable(getCurrentUser(req).id, String(req.params.code));
+      if (!report) {
+        res.status(404).json({ error: 'El reporte no está disponible para editar.' });
+        return;
+      }
+      res.json(report);
+    } catch {
+      res.status(503).json({ error: 'No se pudo cargar el reporte para editar.' });
+    }
+  });
+
+  router.patch('/my-found-items/:code', async (req, res) => {
+    try {
+      const validation = validateFoundItemReport(req.body, await foundItems.getCatalogs());
+      if (!validation.valid) {
+        res.status(400).json({ error: 'Revisa los datos del reporte.', errors: validation.errors });
+        return;
+      }
+      const updated = await foundItems.updatePending(getCurrentUser(req).id, String(req.params.code), validation.data);
+      if (!updated) {
+        res.status(409).json({ error: 'El reporte ya no está disponible para editar.' });
+        return;
+      }
+      res.json({ updated: true });
+    } catch {
+      res.status(503).json({ error: 'No se pudieron guardar los cambios. Intenta nuevamente.' });
+    }
+  });
+
   router.get('/found-items/:code/photo', async (req, res) => {
     res.set('Cache-Control', 'private, no-store');
     try {

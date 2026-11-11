@@ -6,6 +6,8 @@ import type { FoundItemsRepository } from '../data/foundItemsRepository';
 
 function fakeFoundItems(): jest.Mocked<FoundItemsRepository> {
   return {
+    getEditable: jest.fn(),
+    updatePending: jest.fn(),
     listMine: jest.fn().mockResolvedValue([]),
     getMineByCode: jest.fn().mockResolvedValue(null),
     getPhotoByCode: jest.fn(),
@@ -144,5 +146,34 @@ describe('Detalle privado de un reporte encontrado (GET /my-found-items/:code)',
 
     expect(res.status).toBe(503);
     expect(res.body).toEqual({ error: 'No se pudo cargar el reporte. Intenta nuevamente.' });
+  });
+});
+
+describe('Editar un reporte de objeto encontrado', () => {
+  it('guarda los datos corregidos del reporte del hallador', async () => {
+    const base = fakeFoundItems();
+    const foundItems = { ...base, updatePending: jest.fn().mockResolvedValue(true) };
+    base.getCatalogs.mockResolvedValue({
+      categories: [{ id: 1, name: 'Llaves' }],
+      places: [{ id: 2, name: 'Patio', type: 'SPACE', classrooms: [] }],
+    });
+    const changes = {
+      description: 'Llaves con llavero azul',
+      categoryId: 1,
+      placeId: 2,
+      classroomId: null,
+      placeReference: 'Junto a la entrada',
+      foundAt: '2026-10-18T12:15:00.000Z',
+    };
+
+    const response = await request(createApp({ foundItems }))
+      .patch('/my-found-items/HZ-7325')
+      .set('x-sample-user', 'ana')
+      .send(changes);
+
+    expect(response.status).toBe(200);
+    expect(foundItems.updatePending).toHaveBeenCalledWith(
+      SAMPLE_USERS.ana.id, 'HZ-7325', { ...changes, foundAt: new Date(changes.foundAt) },
+    );
   });
 });

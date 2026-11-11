@@ -4,7 +4,8 @@ import { Alert } from '../../core/presenter/Alert';
 import { BackHeader } from '../../core/presenter/BackHeader';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
-import type { FoundItemsService, MyFoundItem } from '../data/foundItemsService';
+import type { FoundItemCatalogs, FoundItemPayload, FoundItemsService, MyFoundItem } from '../data/foundItemsService';
+import { FoundItemForm } from './FoundItemForm';
 import { FoundItemSummary } from './FoundItemSummary';
 
 function ReportDetails({ code, foundItemsService }: { code: string; foundItemsService: FoundItemsService }) {
@@ -12,6 +13,24 @@ function ReportDetails({ code, foundItemsService }: { code: string; foundItemsSe
   const [report, setReport] = useState<MyFoundItem | null | undefined>(undefined);
   const [hasFailed, setHasFailed] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
+  const [edit, setEdit] = useState<{ initial: FoundItemPayload; catalogs: FoundItemCatalogs } | null>(null);
+  const [isOpeningEdit, setIsOpeningEdit] = useState(false);
+  const [editError, setEditError] = useState('');
+
+  async function openEdit() {
+    setIsOpeningEdit(true);
+    setEditError('');
+    try {
+      const [initial, catalogs] = await Promise.all([
+        foundItemsService.getEditable(code), foundItemsService.getCatalogs(),
+      ]);
+      setEdit({ initial, catalogs });
+    } catch (error) {
+      setEditError(error instanceof Error ? error.message : 'No se pudo cargar el reporte para editar.');
+    } finally {
+      setIsOpeningEdit(false);
+    }
+  }
 
   useEffect(() => {
     let isRequestActive = true;
@@ -35,9 +54,22 @@ function ReportDetails({ code, foundItemsService }: { code: string; foundItemsSe
         <p role="status" className="text-sm text-neutral-500">Cargando el reporte…</p>
       ) : report === null ? (
         <EmptyState title="No encontramos este reporte" text="Revisa que el código corresponda a uno de tus objetos encontrados." />
+      ) : edit ? (
+        <>
+          <FoundItemForm catalogs={edit.catalogs} edit={{ initial: edit.initial, onSave: async (changes) => {
+            await foundItemsService.updatePending(code, changes);
+            setEdit(null);
+            setRetryCount((count) => count + 1);
+          } }} />
+          <Button onClick={() => setEdit(null)}>Volver al detalle</Button>
+        </>
       ) : (
         <article className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
           <FoundItemSummary report={report} foundItemsService={foundItemsService} />
+          {report.status === 'PENDING_DROP_OFF' && (
+            <Button onClick={openEdit} isLoading={isOpeningEdit} loadingText="Cargando reporte…">Editar reporte</Button>
+          )}
+          {editError && <div role="alert"><Alert>{editError}</Alert></div>}
         </article>
       )}
     </section>

@@ -25,6 +25,8 @@ const created = { code: 'HZ-7321', status: 'PENDING_DROP_OFF' };
 
 function fakeFoundItems(): jest.Mocked<FoundItemsRepository> {
   return {
+    getEditable: jest.fn(),
+    updatePending: jest.fn(),
     listMine: jest.fn().mockResolvedValue([]),
     getMineByCode: jest.fn().mockResolvedValue(null),
     getPhotoByCode: jest.fn().mockResolvedValue(null),

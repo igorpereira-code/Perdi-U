@@ -24,6 +24,8 @@ export type MyFoundItem = {
   receivedAt: string | null;
 };
 export type FoundItemsService = {
+  getEditable: (code: string) => Promise<FoundItemPayload>;
+  updatePending: (code: string, changes: FoundItemPayload) => Promise<void>;
   listMine: () => Promise<MyFoundItem[]>;
   getMineByCode: (code: string) => Promise<MyFoundItem | null>;
   getCatalogs: () => Promise<FoundItemCatalogs>;
@@ -75,6 +77,19 @@ export function createFoundItemsService(apiFetch: ApiFetch): FoundItemsService {
   }
 
   return {
+    getEditable: async (code) => {
+      const { body } = await request(
+        '/my-found-items/' + encodeURIComponent(code) + '/edit', 'No se pudo cargar el reporte para editar.',
+      );
+      return body;
+    },
+    updatePending: async (code, changes) => {
+      await request('/my-found-items/' + encodeURIComponent(code), 'No se pudieron guardar los cambios.', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(changes),
+      });
+    },
     getMineByCode: async (code) => {
       const fallbackMessage = 'No se pudo cargar el reporte. Intenta nuevamente.';
       const { response, body } = await request(`/my-found-items/${encodeURIComponent(code)}`, fallbackMessage, undefined, { allowNotFound: true });

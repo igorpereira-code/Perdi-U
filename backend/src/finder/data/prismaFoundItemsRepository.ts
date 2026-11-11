@@ -24,6 +24,17 @@ function toMyFoundItem(item: StoredMyFoundItem): MyFoundItem {
 }
 
 export const prismaFoundItemsRepository: FoundItemsRepository = {
+  getEditable: (finderId, code) => db().foundItem.findFirst({
+    where: { finderId, code, status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
+    select: { description: true, categoryId: true, placeId: true, classroomId: true, placeReference: true, foundAt: true },
+  }),
+  updatePending: async (finderId, code, changes) => {
+    const update = await db().foundItem.updateMany({
+      where: { finderId, code, status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
+      data: changes,
+    });
+    return update.count === 1;
+  },
   getMineByCode: async (finderId, code) => {
     const item = await db().foundItem.findFirst({
       where: { finderId, code },

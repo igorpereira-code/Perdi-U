@@ -9,7 +9,7 @@ function renderScreen(service: FoundItemsService) {
 }
 
 function fakeService(): jest.Mocked<FoundItemsService> {
-  return { listMine: jest.fn().mockResolvedValue([]), getMineByCode: jest.fn().mockResolvedValue(null), getCatalogs: jest.fn(),
+  return { getEditable: jest.fn(), updatePending: jest.fn(), listMine: jest.fn().mockResolvedValue([]), getMineByCode: jest.fn().mockResolvedValue(null), getCatalogs: jest.fn(),
     create: jest.fn(), getPhotoUrl: jest.fn() };
 }
 

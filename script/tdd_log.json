@@ -42,7 +42,7 @@
     "testId": 62
   },
   {
-    "commitId": "HEAD",
+    "commitId": "82c6f6e19506de122248b391aacf814e159429c2",
     "commitName": "chore: integra los últimos cambios de main en core-matching",
     "commitTimestamp": 1792616032864,
     "testId": 63
@@ -6096,5 +6096,27 @@
     "commitName": "feat(finder): avisar al hallador cuando Bienestar recibe el objeto",
     "commitTimestamp": 1794438985717,
     "testId": 132
+  },
+  {
+    "numPassedTests": 679,
+    "failedTests": 1,
+    "numTotalTests": 680,
+    "timestamp": 1794439072481,
+    "success": false,
+    "testId": 133
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 0,
+    "numTotalTests": 680,
+    "timestamp": 1794439224238,
+    "success": true,
+    "testId": 133
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): editar reportes pendientes de entrega",
+    "commitTimestamp": 1794439281357,
+    "testId": 133
   }
 ]

@@ -3496,12 +3496,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "82c6f6e19506de122248b391aacf814e159429c2",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-21T20:53:51.000Z",
       "message": "chore: integra los últimos cambios de main en core-matching",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/82c6f6e19506de122248b391aacf814e159429c2"
     },
     "stats": {
       "total": 8542,
@@ -5145,6 +5145,25 @@
     },
     "coverage": 85.57,
     "test_count": 679,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-11-11T23:21:19.000Z",
+      "message": "feat(finder): editar reportes pendientes de entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 182,
+      "additions": 161,
+      "deletions": 21,
+      "date": "2026-11-11"
+    },
+    "coverage": 84.23,
+    "test_count": 680,
     "failed_tests": 0,
     "conclusion": "success"
   }
