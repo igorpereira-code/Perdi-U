@@ -2,11 +2,11 @@ import { useRef, useState, type FormEvent } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
-import { PhotoInput } from '../../core/presenter/PhotoInput';
 import type { FoundItemCatalogs, FoundItemCreated, FoundItemsService } from '../data/foundItemsService';
 import { foundAtFromForm } from '../logic/foundAtFromForm';
 import { validateFoundItemForm, type FoundItemFormErrors } from '../logic/validateFoundItemForm';
 import { FoundItemConfirmation } from './FoundItemConfirmation';
+import { FoundItemPhotoPicker } from './FoundItemPhotoPicker';
 
 type FoundItemFormProps = {
   catalogs: FoundItemCatalogs;
@@ -120,7 +120,7 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
         <legend className="text-sm font-medium text-neutral-700">
           Fotografía <span className="font-normal text-neutral-500">(opcional)</span>
         </legend>
-        <PhotoInput onChange={setPhoto} />
+        <FoundItemPhotoPicker photo={photo} onChange={setPhoto} />
         <p className="text-sm text-neutral-500">JPEG, PNG o WebP, máximo 5 MiB.</p>
         {photo && <p className="text-sm text-neutral-500">{photo.name}</p>}
       </fieldset>

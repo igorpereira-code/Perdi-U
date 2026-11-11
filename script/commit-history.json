@@ -3078,12 +3078,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "299e4334e90cf0a51f2600d96aeea5743f4b2a6b",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T14:55:00.000Z",
       "message": "feat(owner): permitir indicar el rango de fechas de la pérdida",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/299e4334e90cf0a51f2600d96aeea5743f4b2a6b"
     },
     "stats": {
       "total": 38,
@@ -3719,6 +3719,25 @@
       "date": "2026-11-06"
     },
     "coverage": 87.4,
+    "test_count": 629,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-11-11T20:34:00.000Z",
+      "message": "feat(finder): permitir tomar la foto del hallazgo con la cámara",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 81,
+      "additions": 78,
+      "deletions": 3,
+      "date": "2026-11-11"
+    },
+    "coverage": 87.33,
     "test_count": 629,
     "failed_tests": 0,
     "conclusion": "success"

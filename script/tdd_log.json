@@ -4548,7 +4548,7 @@
     "testId": 55
   },
   {
-    "commitId": "HEAD",
+    "commitId": "299e4334e90cf0a51f2600d96aeea5743f4b2a6b",
     "commitName": "feat(owner): permitir indicar el rango de fechas de la pérdida",
     "commitTimestamp": 1792594501296,
     "testId": 55
@@ -5182,5 +5182,35 @@
     "commitName": "chore: integra los últimos cambios de core-matching en core-matching-hu-15",
     "commitTimestamp": 1794007200212,
     "testId": 80
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794319076639,
+    "success": false,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794319154828,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794319220832,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir tomar la foto del hallazgo con la cámara",
+    "commitTimestamp": 1794429242538,
+    "testId": 81
   }
 ]

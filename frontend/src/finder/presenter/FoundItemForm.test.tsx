@@ -54,7 +54,7 @@ describe('Fotografía opcional del objeto encontrado', () => {
     URL.revokeObjectURL = jest.fn();
   });
 
-  it('permite seleccionar una fotografía desde el formulario y ver su vista previa', async () => {
+  it('permite elegir una foto de la galería o tomarla con la cámara y ver su vista previa', async () => {
     const user = userEvent.setup();
     render(<FoundItemForm catalogs={catalogs} />);
 
@@ -67,6 +67,15 @@ describe('Fotografía opcional del objeto encontrado', () => {
       'blob:foto-del-objeto',
     );
     expect(screen.getByText(photo.name)).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Quitar foto' }));
+
+    expect(screen.queryByLabelText('Tomar foto')).toHaveAttribute('capture', 'environment');
+    const capturedPhoto = new File(['captura'], 'camara.jpg', { type: 'image/jpeg' });
+    await user.upload(screen.getByLabelText('Tomar foto'), capturedPhoto);
+
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeVisible();
+    expect(screen.getByText(capturedPhoto.name)).toBeInTheDocument();
   });
 
   it('indica que la fotografía es opcional y permite escribir la descripción sin seleccionarla', async () => {
