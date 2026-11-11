@@ -48,7 +48,7 @@
     "testId": 63
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6041b6ad647fe608c7186eaa5704d9f8eb0bf4bd",
     "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
     "commitTimestamp": 1792632787536,
     "testId": 72
@@ -6118,5 +6118,27 @@
     "commitName": "feat(finder): editar reportes pendientes de entrega",
     "commitTimestamp": 1794439281357,
     "testId": 133
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 1,
+    "numTotalTests": 681,
+    "timestamp": 1794439386004,
+    "success": false,
+    "testId": 134
+  },
+  {
+    "numPassedTests": 681,
+    "failedTests": 0,
+    "numTotalTests": 681,
+    "timestamp": 1794439462297,
+    "success": true,
+    "testId": 134
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): cancelar reportes pendientes de entrega",
+    "commitTimestamp": 1794439503287,
+    "testId": 134
   }
 ]

@@ -3705,12 +3705,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6041b6ad647fe608c7186eaa5704d9f8eb0bf4bd",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-22T01:33:06.000Z",
       "message": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6041b6ad647fe608c7186eaa5704d9f8eb0bf4bd"
     },
     "stats": {
       "total": 19,
@@ -5164,6 +5164,25 @@
     },
     "coverage": 84.23,
     "test_count": 680,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-11-11T23:25:01.000Z",
+      "message": "feat(finder): cancelar reportes pendientes de entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 80,
+      "additions": 71,
+      "deletions": 9,
+      "date": "2026-11-11"
+    },
+    "coverage": 83.71,
+    "test_count": 681,
     "failed_tests": 0,
     "conclusion": "success"
   }

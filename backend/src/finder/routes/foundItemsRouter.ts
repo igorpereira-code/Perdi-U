@@ -73,6 +73,19 @@ export function createFoundItemsRouter(foundItems: FoundItemsRepository, photos:
     }
   });
 
+  router.delete('/my-found-items/:code', async (req, res) => {
+    try {
+      const cancelled = await foundItems.cancelPending(getCurrentUser(req).id, String(req.params.code));
+      if (!cancelled) {
+        res.status(409).json({ error: 'El reporte ya no está disponible para cancelar.' });
+        return;
+      }
+      res.json({ cancelled: true });
+    } catch {
+      res.status(503).json({ error: 'No se pudo cancelar el reporte. Intenta nuevamente.' });
+    }
+  });
+
   router.get('/found-items/:code/photo', async (req, res) => {
     res.set('Cache-Control', 'private, no-store');
     try {

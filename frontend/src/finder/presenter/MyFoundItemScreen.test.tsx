@@ -8,7 +8,7 @@ const report: MyFoundItem = { code: 'HZ-7325', description: 'Llaves azules', cat
   foundAt: '2026-10-18T12:15:00.000Z', hasPhoto: false, status: 'PENDING_DROP_OFF', receivedAt: null };
 
 function fakeService(): jest.Mocked<FoundItemsService> {
-  return { getEditable: jest.fn(), updatePending: jest.fn(), listMine: jest.fn(), getMineByCode: jest.fn().mockResolvedValue(report),
+  return { cancelPending: jest.fn(), getEditable: jest.fn(), updatePending: jest.fn(), listMine: jest.fn(), getMineByCode: jest.fn().mockResolvedValue(report),
     getCatalogs: jest.fn(), create: jest.fn(), getPhotoUrl: jest.fn() };
 }
 

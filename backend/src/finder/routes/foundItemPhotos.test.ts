@@ -12,6 +12,7 @@ const created = { code: 'HZ-7325', status: 'PENDING_DROP_OFF' };
 
 function setup() {
   const foundItems: jest.Mocked<FoundItemsRepository> = {
+    cancelPending: jest.fn(),
     getEditable: jest.fn(),
     updatePending: jest.fn(),
     listMine: jest.fn().mockResolvedValue([]),

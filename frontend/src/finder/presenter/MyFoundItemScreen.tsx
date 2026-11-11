@@ -16,6 +16,21 @@ function ReportDetails({ code, foundItemsService }: { code: string; foundItemsSe
   const [edit, setEdit] = useState<{ initial: FoundItemPayload; catalogs: FoundItemCatalogs } | null>(null);
   const [isOpeningEdit, setIsOpeningEdit] = useState(false);
   const [editError, setEditError] = useState('');
+  const [isCancelling, setIsCancelling] = useState(false);
+  const [cancelError, setCancelError] = useState('');
+
+  async function cancelReport() {
+    setIsCancelling(true);
+    setCancelError('');
+    try {
+      await foundItemsService.cancelPending(code);
+      navigate('/mis-reportes');
+    } catch (error) {
+      setCancelError(error instanceof Error ? error.message : 'No se pudo cancelar el reporte.');
+    } finally {
+      setIsCancelling(false);
+    }
+  }
 
   async function openEdit() {
     setIsOpeningEdit(true);
@@ -67,9 +82,13 @@ function ReportDetails({ code, foundItemsService }: { code: string; foundItemsSe
         <article className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
           <FoundItemSummary report={report} foundItemsService={foundItemsService} />
           {report.status === 'PENDING_DROP_OFF' && (
-            <Button onClick={openEdit} isLoading={isOpeningEdit} loadingText="Cargando reporte…">Editar reporte</Button>
+            <div className="flex flex-wrap gap-2">
+              <Button onClick={openEdit} disabled={isCancelling} isLoading={isOpeningEdit} loadingText="Cargando reporte…">Editar reporte</Button>
+              <Button onClick={cancelReport} disabled={isOpeningEdit} isLoading={isCancelling} loadingText="Cancelando reporte…">Cancelar reporte</Button>
+            </div>
           )}
           {editError && <div role="alert"><Alert>{editError}</Alert></div>}
+          {cancelError && <div role="alert"><Alert>{cancelError}</Alert></div>}
         </article>
       )}
     </section>

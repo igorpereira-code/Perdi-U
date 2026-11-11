@@ -41,7 +41,7 @@ describe('Mis reportes mediante Prisma', () => {
       hasPhoto: true, status: 'PENDING_DROP_OFF', receivedAt: null,
     });
     expect(foundItemFindFirst).toHaveBeenCalledWith({
-      where: { finderId: item.finderId, code: 'HZ-7325' },
+      where: { finderId: item.finderId, code: 'HZ-7325', OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }] },
       select: { code: true, description: true, category: { select: { name: true } }, foundAt: true,
         photoUrl: true, status: true, receivedAt: true },
     });
@@ -69,7 +69,7 @@ describe('Mis reportes mediante Prisma', () => {
         hasPhoto: true, status: 'PENDING_DROP_OFF', receivedAt: null },
     ]);
     expect(foundItemFindMany).toHaveBeenCalledWith({
-      where: { finderId: item.finderId },
+      where: { finderId: item.finderId, OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }] },
       select: { code: true, description: true, category: { select: { name: true } }, foundAt: true,
         photoUrl: true, status: true, receivedAt: true },
       orderBy: [{ createdAt: 'desc' }, { code: 'desc' }],

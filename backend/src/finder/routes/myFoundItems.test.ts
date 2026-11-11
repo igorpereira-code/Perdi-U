@@ -6,6 +6,7 @@ import type { FoundItemsRepository } from '../data/foundItemsRepository';
 
 function fakeFoundItems(): jest.Mocked<FoundItemsRepository> {
   return {
+    cancelPending: jest.fn(),
     getEditable: jest.fn(),
     updatePending: jest.fn(),
     listMine: jest.fn().mockResolvedValue([]),
@@ -175,5 +176,19 @@ describe('Editar un reporte de objeto encontrado', () => {
     expect(foundItems.updatePending).toHaveBeenCalledWith(
       SAMPLE_USERS.ana.id, 'HZ-7325', { ...changes, foundAt: new Date(changes.foundAt) },
     );
+  });
+});
+
+describe('Cancelar un reporte de objeto encontrado', () => {
+  it('cancela el reporte pendiente del hallador autenticado', async () => {
+    const foundItems = { ...fakeFoundItems(), cancelPending: jest.fn().mockResolvedValue(true) };
+
+    const response = await request(createApp({ foundItems }))
+      .delete('/my-found-items/HZ-7325')
+      .set('x-sample-user', 'ana');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ cancelled: true });
+    expect(foundItems.cancelPending).toHaveBeenCalledWith(SAMPLE_USERS.ana.id, 'HZ-7325');
   });
 });

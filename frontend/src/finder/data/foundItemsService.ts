@@ -25,6 +25,7 @@ export type MyFoundItem = {
 };
 export type FoundItemsService = {
   getEditable: (code: string) => Promise<FoundItemPayload>;
+  cancelPending: (code: string) => Promise<void>;
   updatePending: (code: string, changes: FoundItemPayload) => Promise<void>;
   listMine: () => Promise<MyFoundItem[]>;
   getMineByCode: (code: string) => Promise<MyFoundItem | null>;
@@ -82,6 +83,9 @@ export function createFoundItemsService(apiFetch: ApiFetch): FoundItemsService {
         '/my-found-items/' + encodeURIComponent(code) + '/edit', 'No se pudo cargar el reporte para editar.',
       );
       return body;
+    },
+    cancelPending: async (code) => {
+      await request('/my-found-items/' + encodeURIComponent(code), 'No se pudo cancelar el reporte.', { method: 'DELETE' });
     },
     updatePending: async (code, changes) => {
       await request('/my-found-items/' + encodeURIComponent(code), 'No se pudieron guardar los cambios.', {

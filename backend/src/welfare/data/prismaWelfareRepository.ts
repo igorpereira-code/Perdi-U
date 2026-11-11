@@ -130,7 +130,7 @@ export const prismaWelfareRepository = {
   receivePending: async (itemId, receivedById, receivedAt) =>
     db().$transaction(async (transaction) => {
       const result = await transaction.foundItem.updateMany({
-        where: { id: itemId, status: 'PENDING_DROP_OFF' },
+        where: { id: itemId, status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
         data: { status: 'IN_CUSTODY', receivedById, receivedAt },
       });
       if (result.count !== 1) {
