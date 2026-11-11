@@ -16,6 +16,7 @@ function ReportDetails({ code, foundItemsService }: { code: string; foundItemsSe
   const [edit, setEdit] = useState<{ initial: FoundItemPayload; catalogs: FoundItemCatalogs } | null>(null);
   const [isOpeningEdit, setIsOpeningEdit] = useState(false);
   const [editError, setEditError] = useState('');
+  const [isConfirmingCancellation, setIsConfirmingCancellation] = useState(false);
   const [isCancelling, setIsCancelling] = useState(false);
   const [cancelError, setCancelError] = useState('');
 
@@ -81,12 +82,24 @@ function ReportDetails({ code, foundItemsService }: { code: string; foundItemsSe
       ) : (
         <article className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
           <FoundItemSummary report={report} foundItemsService={foundItemsService} />
-          {report.status === 'PENDING_DROP_OFF' && (
+          {report.status === 'PENDING_DROP_OFF' && (isConfirmingCancellation ? (
+            <section className="space-y-3" aria-labelledby="cancel-report-title">
+              <h2 id="cancel-report-title" className="font-semibold">¿Quieres cancelar este reporte?</h2>
+              <p className="text-sm">Si lo cancelas, ya no podrás entregarlo usando este código.</p>
+              <div className="flex flex-wrap gap-2">
+                <Button variant="outline" onClick={() => setIsConfirmingCancellation(false)} disabled={isCancelling}>Conservar reporte</Button>
+                <Button onClick={cancelReport} isLoading={isCancelling} loadingText="Cancelando reporte…">Confirmar cancelación</Button>
+              </div>
+            </section>
+          ) : (
             <div className="flex flex-wrap gap-2">
-              <Button onClick={openEdit} disabled={isCancelling} isLoading={isOpeningEdit} loadingText="Cargando reporte…">Editar reporte</Button>
-              <Button onClick={cancelReport} disabled={isOpeningEdit} isLoading={isCancelling} loadingText="Cancelando reporte…">Cancelar reporte</Button>
+              <Button onClick={openEdit} isLoading={isOpeningEdit} loadingText="Cargando reporte…">Editar reporte</Button>
+              <Button variant="outline" disabled={isOpeningEdit} onClick={() => {
+                setCancelError('');
+                setIsConfirmingCancellation(true);
+              }}>Cancelar reporte</Button>
             </div>
-          )}
+          ))}
           {editError && <div role="alert"><Alert>{editError}</Alert></div>}
           {cancelError && <div role="alert"><Alert>{cancelError}</Alert></div>}
         </article>

@@ -54,7 +54,7 @@
     "testId": 72
   },
   {
-    "commitId": "HEAD",
+    "commitId": "fc7a28fd5d4395d149e71f8c27c4586f5d7e1963",
     "commitName": "feat: Pequeños cambios",
     "commitTimestamp": 1794001438321,
     "testId": 73
@@ -6140,5 +6140,27 @@
     "commitName": "feat(finder): cancelar reportes pendientes de entrega",
     "commitTimestamp": 1794439503287,
     "testId": 134
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 1,
+    "numTotalTests": 681,
+    "timestamp": 1794439585783,
+    "success": false,
+    "testId": 135
+  },
+  {
+    "numPassedTests": 681,
+    "failedTests": 0,
+    "numTotalTests": 681,
+    "timestamp": 1794439638468,
+    "success": true,
+    "testId": 135
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): confirmar antes de cancelar un reporte",
+    "commitTimestamp": 1794439678670,
+    "testId": 135
   }
 ]

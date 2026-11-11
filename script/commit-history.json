@@ -3743,12 +3743,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "fc7a28fd5d4395d149e71f8c27c4586f5d7e1963",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T21:43:57.000Z",
       "message": "feat: Pequeños cambios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fc7a28fd5d4395d149e71f8c27c4586f5d7e1963"
     },
     "stats": {
       "total": 13,
@@ -5182,6 +5182,25 @@
       "date": "2026-11-11"
     },
     "coverage": 83.71,
+    "test_count": 681,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Mateo Rojas Campos",
+    "commit": {
+      "date": "2026-11-11T23:27:56.000Z",
+      "message": "feat(finder): confirmar antes de cancelar un reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 30,
+      "additions": 24,
+      "deletions": 6,
+      "date": "2026-11-11"
+    },
+    "coverage": 83.75,
     "test_count": 681,
     "failed_tests": 0,
     "conclusion": "success"

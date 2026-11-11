@@ -76,9 +76,14 @@ describe('Detalle de un reporte propio del hallador', () => {
   });
 
   it('vuelve a Mis reportes incluso cuando se ingresó por una URL directa', async () => {
-    renderReport(fakeService());
-
+    const service = fakeService();
+    renderReport(service);
     await screen.findByText(report.code);
+    await userEvent.click(screen.getByRole('button', { name: 'Cancelar reporte' }));
+    expect(screen.getByText('¿Quieres cancelar este reporte?')).toBeInTheDocument();
+    expect(service.cancelPending).not.toHaveBeenCalled();
+    await userEvent.click(screen.getByRole('button', { name: 'Conservar reporte' }));
+    expect(service.cancelPending).not.toHaveBeenCalled();
     await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
 
     expect(await screen.findByRole('heading', { name: 'Mis reportes' })).toBeInTheDocument();
