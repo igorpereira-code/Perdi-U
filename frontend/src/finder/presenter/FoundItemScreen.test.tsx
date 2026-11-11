@@ -117,6 +117,19 @@ describe('Envío del formulario de hallazgo con catálogos reales', () => {
     expect(summary).toHaveTextContent('Llaves azules con llavero');
     expect(within(summary).getByRole('img', { name: 'Foto del objeto encontrado' })).toBeVisible();
     expect(service.create).not.toHaveBeenCalled();
+
+    await user.click(within(summary).getByRole('button', { name: 'Confirmar y enviar' }));
+
+    expect(await screen.findByRole('status')).toHaveTextContent('HZ-7325');
+    expect(service.create).toHaveBeenCalledTimes(1);
+    expect(service.create).toHaveBeenCalledWith({
+      description: 'Llaves azules con llavero',
+      categoryId: 47,
+      placeId: 83,
+      classroomId: 216,
+      placeReference: 'Sobre la mesa',
+      foundAt: '2026-10-19T12:15:00.000Z',
+    }, photo);
   });
 
   it('envía IDs reales sin foto ni hora y muestra únicamente el código confirmado', async () => {

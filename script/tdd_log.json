@@ -4720,7 +4720,7 @@
     "testId": 60
   },
   {
-    "commitId": "HEAD",
+    "commitId": "bd9d8f599167b4c8ac39e908ba7ce8384f298768",
     "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
     "commitTimestamp": 1792599791806,
     "testId": 60
@@ -5316,5 +5316,19 @@
     "commitName": "feat(finder): permitir corregir el reporte desde el resumen",
     "commitTimestamp": 1794436331985,
     "testId": 85
+  },
+  {
+    "numPassedTests": 633,
+    "failedTests": 0,
+    "numTotalTests": 633,
+    "timestamp": 1794436468677,
+    "success": true,
+    "testId": 86
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(finder): verificar el envío solo al confirmar el resumen",
+    "commitTimestamp": 1794436504406,
+    "testId": 86
   }
 ]
