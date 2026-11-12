@@ -5582,7 +5582,7 @@
     "testId": 114
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b1066ac2611cec840d8d2f69c7ff29f6537d5188",
     "commitName": "refactor(core): renombrar guidePending a isGuidePending",
     "commitTimestamp": 1794340247321,
     "testId": 114
@@ -5888,5 +5888,11 @@
     "commitName": "refactor(core): borrar LoadingState, reemplazado por los esqueletos",
     "commitTimestamp": 1794487631272,
     "testId": 131
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
+    "commitTimestamp": 1794490799523,
+    "testId": 132
   }
 ]

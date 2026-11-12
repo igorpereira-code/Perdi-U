@@ -4351,12 +4351,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b1066ac2611cec840d8d2f69c7ff29f6537d5188",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:50:47.000Z",
       "message": "refactor(core): renombrar guidePending a isGuidePending",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/b1066ac2611cec840d8d2f69c7ff29f6537d5188"
     },
     "stats": {
       "total": 6,
@@ -4688,6 +4688,25 @@
       "date": "2026-11-12"
     },
     "coverage": 85.52,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-12T13:39:59.000Z",
+      "message": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 62,
+      "additions": 25,
+      "deletions": 37,
+      "date": "2026-11-12"
+    },
+    "coverage": 85.81,
     "test_count": 678,
     "failed_tests": 0,
     "conclusion": "success"
