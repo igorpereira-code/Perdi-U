@@ -4560,6 +4560,25 @@
     "conclusion": "success"
   },
   {
+    "sha": "fcc14b0c15caa8d596caaec6059c3bd64a85dd7e",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T21:54:10.000Z",
+      "message": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fcc14b0c15caa8d596caaec6059c3bd64a85dd7e"
+    },
+    "stats": {
+      "total": 332,
+      "additions": 321,
+      "deletions": 11,
+      "date": "2026-11-10"
+    },
+    "coverage": 86.19,
+    "test_count": 645,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
     "sha": "5151a7afd34363a09d89d85891bec070d403f91d",
     "author": "igorpereira-code",
     "commit": {
@@ -4579,12 +4598,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c62c84c58ab690effa8144a46e9a356430b720a0",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T22:53:51.000Z",
       "message": "feat(admin): buscar un usuario por su correo institucional",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c62c84c58ab690effa8144a46e9a356430b720a0"
     },
     "stats": {
       "total": 107,
@@ -4594,6 +4613,44 @@
     },
     "coverage": 86.08,
     "test_count": 650,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "5b1ae99d2ea62752df8afaf40961bd32b5e53b8a",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T22:53:51.000Z",
+      "message": "feat(admin): buscar un usuario por su correo institucional",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/5b1ae99d2ea62752df8afaf40961bd32b5e53b8a"
+    },
+    "stats": {
+      "total": 107,
+      "additions": 90,
+      "deletions": 17,
+      "date": "2026-11-10"
+    },
+    "coverage": 86.08,
+    "test_count": 650,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "6c5f2506a6ab4134800f954860c8232178405133",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T23:09:36.000Z",
+      "message": "feat(admin): asignar el rol de Bienestar a un usuario",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/6c5f2506a6ab4134800f954860c8232178405133"
+    },
+    "stats": {
+      "total": 308,
+      "additions": 290,
+      "deletions": 18,
+      "date": "2026-11-10"
+    },
+    "coverage": 85.62,
+    "test_count": 666,
     "failed_tests": 0,
     "conclusion": "success"
   },
@@ -4613,6 +4670,25 @@
     },
     "coverage": 85.62,
     "test_count": 666,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "2c21080e0de69ef1e2e01d92deaeb8e293e83f86",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-10T23:13:59.000Z",
+      "message": "feat(admin): quitar el rol de Bienestar a un usuario",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2c21080e0de69ef1e2e01d92deaeb8e293e83f86"
+    },
+    "stats": {
+      "total": 41,
+      "additions": 39,
+      "deletions": 2,
+      "date": "2026-11-10"
+    },
+    "coverage": 85.65,
+    "test_count": 671,
     "failed_tests": 0,
     "conclusion": "success"
   },
@@ -4903,6 +4979,44 @@
   },
   {
     "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-12T14:53:29.000Z",
+      "message": "feat(admin): ver las categorías y los lugares del campus",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 812,
+      "additions": 667,
+      "deletions": 145,
+      "date": "2026-11-12"
+    },
+    "coverage": 84.91,
+    "test_count": 689,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-12T18:42:24.000Z",
+      "message": "feat(admin): crear, editar y desactivar categorías",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 771,
+      "additions": 745,
+      "deletions": 26,
+      "date": "2026-11-12"
+    },
+    "coverage": 83.99,
+    "test_count": 730,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T18:49:55.000Z",
@@ -4917,6 +5031,63 @@
     },
     "coverage": 86.15,
     "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-12T22:02:47.000Z",
+      "message": "feat(admin): crear, editar y desactivar lugares y sus aulas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 1101,
+      "additions": 961,
+      "deletions": 140,
+      "date": "2026-11-12"
+    },
+    "coverage": 83.41,
+    "test_count": 764,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-12T22:06:44.000Z",
+      "message": "fix(admin): quitar el repositorio de prueba del router y reiniciar los mocks",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 5,
+      "additions": 3,
+      "deletions": 2,
+      "date": "2026-11-12"
+    },
+    "coverage": 83.41,
+    "test_count": 764,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-12T22:24:18.000Z",
+      "message": "chore(admin): integra final-test en admin",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 551,
+      "additions": 295,
+      "deletions": 256,
+      "date": "2026-11-12"
+    },
+    "coverage": 83.41,
+    "test_count": 764,
     "failed_tests": 0,
     "conclusion": "success"
   }
