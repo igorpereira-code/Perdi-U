@@ -4617,12 +4617,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2c21080e0de69ef1e2e01d92deaeb8e293e83f86",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T23:13:59.000Z",
       "message": "feat(admin): quitar el rol de Bienestar a un usuario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2c21080e0de69ef1e2e01d92deaeb8e293e83f86"
     },
     "stats": {
       "total": 41,
@@ -4951,6 +4951,25 @@
       "total": 1101,
       "additions": 961,
       "deletions": 140,
+      "date": "2026-11-12"
+    },
+    "coverage": 83.41,
+    "test_count": 764,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-12T22:06:44.000Z",
+      "message": "fix(admin): quitar el repositorio de prueba del router y reiniciar los mocks",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 5,
+      "additions": 3,
+      "deletions": 2,
       "date": "2026-11-12"
     },
     "coverage": 83.41,

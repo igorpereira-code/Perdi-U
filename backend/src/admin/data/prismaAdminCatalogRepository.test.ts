@@ -8,11 +8,13 @@ const place = { findMany: jest.fn(), create: jest.fn(), update: jest.fn() };
 const classroom = { create: jest.fn(), update: jest.fn() };
 
 beforeEach(() => {
+  jest.resetAllMocks();
   jest
     .mocked(db)
     .mockReturnValue({ category, place, classroom } as unknown as ReturnType<typeof db>);
+  category.findMany.mockResolvedValue([]);
+  place.findMany.mockResolvedValue([]);
 });
-
 describe('Categorías y lugares guardados en la base de datos', () => {
   it('pide todas las categorías, activas y desactivadas, ordenadas por nombre', async () => {
     await prismaAdminCatalogRepository.listCatalogs();

@@ -10,7 +10,6 @@ import {
 } from '../logic/catalogName';
 import { readCatalogChanges } from '../logic/readCatalogChanges';
 import { createAdminPlacesRouter } from './adminPlacesRouter';
-import { fakeAdminCatalogRepository } from '../data/fakeAdminCatalogRepository';
 
 const SAVE_CATEGORY_ERROR = 'No se pudo guardar la categoría. Intenta nuevamente.';
 const TAKEN_CATEGORY_NAME = 'Ya existe una categoría con ese nombre.';

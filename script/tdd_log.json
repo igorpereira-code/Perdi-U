@@ -5842,7 +5842,7 @@
     "testId": 128
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2c21080e0de69ef1e2e01d92deaeb8e293e83f86",
     "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352441180,
     "testId": 128
@@ -6044,5 +6044,19 @@
     "commitName": "feat(admin): crear, editar y desactivar lugares y sus aulas",
     "commitTimestamp": 1794520968541,
     "testId": 145
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794521172724,
+    "success": true,
+    "testId": 146
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(admin): quitar el repositorio de prueba del router y reiniciar los mocks",
+    "commitTimestamp": 1794521204950,
+    "testId": 146
   }
 ]
