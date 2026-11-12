@@ -5782,6 +5782,12 @@
     "testId": 125
   },
   {
+    "commitId": "5151a7afd34363a09d89d85891bec070d403f91d",
+    "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
+    "commitTimestamp": 1794347651673,
+    "testId": 125
+  },
+  {
     "numPassedTests": 646,
     "failedTests": 4,
     "numTotalTests": 650,
@@ -5799,6 +5805,12 @@
   },
   {
     "commitId": "c62c84c58ab690effa8144a46e9a356430b720a0",
+    "commitName": "feat(admin): buscar un usuario por su correo institucional",
+    "commitTimestamp": 1794351233083,
+    "testId": 126
+  },
+  {
+    "commitId": "5b1ae99d2ea62752df8afaf40961bd32b5e53b8a",
     "commitName": "feat(admin): buscar un usuario por su correo institucional",
     "commitTimestamp": 1794351233083,
     "testId": 126
@@ -5826,6 +5838,12 @@
     "testId": 127
   },
   {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352177930,
+    "testId": 127
+  },
+  {
     "numPassedTests": 668,
     "failedTests": 3,
     "numTotalTests": 671,
@@ -5843,6 +5861,12 @@
   },
   {
     "commitId": "2c21080e0de69ef1e2e01d92deaeb8e293e83f86",
+    "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352441180,
+    "testId": 128
+  },
+  {
+    "commitId": "HEAD",
     "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352441180,
     "testId": 128
@@ -6016,6 +6040,20 @@
     "testId": 144
   },
   {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794509313202,
+    "success": true,
+    "testId": 143
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): actualizar final-test para resolver el PR",
+    "commitTimestamp": 1794509396922,
+    "testId": 143
+  },
+  {
     "numPassedTests": 735,
     "failedTests": 29,
     "numTotalTests": 764,
@@ -6058,5 +6096,11 @@
     "commitName": "fix(admin): quitar el repositorio de prueba del router y reiniciar los mocks",
     "commitTimestamp": 1794521204950,
     "testId": 146
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(admin): integra final-test en admin",
+    "commitTimestamp": 1794522258688,
+    "testId": 147
   }
 ]

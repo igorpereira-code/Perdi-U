@@ -75,8 +75,8 @@ function renderAt(
     listPendingPickups: jest.fn().mockResolvedValue([]),
     listPending: jest.fn().mockResolvedValue([]),
     listInOffice: jest.fn().mockResolvedValue([]),
-    findByCode: jest.fn(),
-    receive: jest.fn(),
+    findFoundItemByCode: jest.fn(),
+    confirmReception: jest.fn(),
     deliver: jest.fn(),
   };
   const lostReportsService: LostReportsService = { create: jest.fn() };
