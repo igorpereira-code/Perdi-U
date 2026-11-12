@@ -5776,7 +5776,7 @@
     "testId": 125
   },
   {
-    "commitId": "HEAD",
+    "commitId": "fcc14b0c15caa8d596caaec6059c3bd64a85dd7e",
     "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
     "commitTimestamp": 1794347651673,
     "testId": 125
@@ -5954,5 +5954,35 @@
     "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
     "commitTimestamp": 1794491488766,
     "testId": 142
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 9,
+    "numTotalTests": 689,
+    "timestamp": 1794494119920,
+    "success": false,
+    "testId": 143
+  },
+  {
+    "numPassedTests": 689,
+    "failedTests": 0,
+    "numTotalTests": 689,
+    "timestamp": 1794494385126,
+    "success": true,
+    "testId": 143
+  },
+  {
+    "numPassedTests": 689,
+    "failedTests": 0,
+    "numTotalTests": 689,
+    "timestamp": 1794495146981,
+    "success": true,
+    "testId": 143
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): ver las categorías y los lugares del campus",
+    "commitTimestamp": 1794495210769,
+    "testId": 143
   }
 ]

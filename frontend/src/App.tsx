@@ -33,6 +33,7 @@ import { AppLoadingScreen } from './core/presenter/AppLoadingScreen';
 import { canManageUsers } from './admin/logic/canManageUsers';
 import { AdminPage } from './admin/presenter/AdminPage';
 import type { AdminUsersService } from './admin/data/adminUsersService';
+import type { AdminCatalogService } from './admin/data/adminCatalogService';
 import { canUseWelfareOptions } from './core/logic/canUseWelfareOptions';
 import { useRoleRefresh } from './core/presenter/useRoleRefresh';
 
@@ -47,6 +48,7 @@ type AppProps = {
   myLostReportsService: MyLostReportsService;
   notificationsService?: NotificationsService;
   adminUsersService?: AdminUsersService;
+  adminCatalogService?: AdminCatalogService;
 };
 
 export default function App({
@@ -60,6 +62,7 @@ export default function App({
   myLostReportsService,
   notificationsService,
   adminUsersService,
+  adminCatalogService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
@@ -225,12 +228,15 @@ export default function App({
           ),
         )}
       />
-      {adminUsersService && (
+      {adminUsersService && adminCatalogService && (
         <Route
           path="/administracion"
           element={renderSignedInPage((signedInUser) =>
             canManageUsers(signedInUser.role) ? (
-              <AdminPage adminUsersService={adminUsersService} />
+              <AdminPage
+                adminUsersService={adminUsersService}
+                adminCatalogService={adminCatalogService}
+              />
             ) : (
               <Navigate to="/" replace />
             ),

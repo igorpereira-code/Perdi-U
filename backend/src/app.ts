@@ -33,6 +33,9 @@ import { createNotificationsRouter } from './core/routes/notificationsRouter';
 import type { AdminUsersRepository } from './admin/data/adminUsersRepository';
 import { prismaAdminUsersRepository } from './admin/data/prismaAdminUsersRepository';
 import { createAdminUsersRouter } from './admin/routes/adminUsersRouter';
+import type { AdminCatalogRepository } from './admin/data/adminCatalogRepository';
+import { prismaAdminCatalogRepository } from './admin/data/prismaAdminCatalogRepository';
+import { createAdminCatalogRouter } from './admin/routes/adminCatalogRouter';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -47,6 +50,7 @@ type AppOptions = {
   myLostReports?: MyLostReportsRepository;
   notifications?: NotificationsRepository;
   adminUsers?: AdminUsersRepository;
+  adminCatalog?: AdminCatalogRepository;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
@@ -61,6 +65,7 @@ export function createApp({
   myLostReports = prismaMyLostReportsRepository,
   notifications = prismaNotificationsRepository,
   adminUsers = prismaAdminUsersRepository,
+  adminCatalog = prismaAdminCatalogRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -85,5 +90,6 @@ export function createApp({
   app.use(createMyLostReportsRouter(myLostReports));
   app.use(createNotificationsRouter(notifications));
   app.use(createAdminUsersRouter(adminUsers));
+  app.use(createAdminCatalogRouter(adminCatalog));
   return app;
 }
