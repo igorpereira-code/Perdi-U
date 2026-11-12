@@ -1,4 +1,6 @@
 export const MAX_CATEGORY_NAME_LENGTH = 80;
+export const MAX_PLACE_NAME_LENGTH = 100;
+export const MAX_CLASSROOM_NAME_LENGTH = 50;
 
 /** "  Llaves   de casa " → "Llaves de casa". Anything that is not text becomes "". */
 export function cleanCatalogName(value: unknown): string {

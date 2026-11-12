@@ -1,4 +1,11 @@
-import type { CatalogChanges, ManagedCatalogs, ManagedCategory } from '@shared/admin';
+import type {
+  CatalogChanges,
+  ManagedCatalogs,
+  ManagedCategory,
+  ManagedClassroom,
+  ManagedPlace,
+  NewPlace,
+} from '@shared/admin';
 import type { ApiFetch } from '../../core/data/api';
 
 export type AdminCatalogService = {
@@ -8,9 +15,19 @@ export type AdminCatalogService = {
   createCategory: (name: string) => Promise<ManagedCategory>;
   /** Saves the new name and/or active state and returns the updated category. */
   updateCategory: (categoryId: number, changes: CatalogChanges) => Promise<ManagedCategory>;
+  /** Saves a new block or space and returns it. */
+  createPlace: (newPlace: NewPlace) => Promise<ManagedPlace>;
+  /** Saves the new name and/or active state and returns the updated place. */
+  updatePlace: (placeId: number, changes: CatalogChanges) => Promise<ManagedPlace>;
+  /** Saves a new classroom in a block and returns it. */
+  createClassroom: (placeId: number, name: string) => Promise<ManagedClassroom>;
+  /** Saves the new name and/or active state and returns the updated classroom. */
+  updateClassroom: (classroomId: number, changes: CatalogChanges) => Promise<ManagedClassroom>;
 };
 
 const SAVE_CATEGORY_ERROR = 'No se pudo guardar la categoría. Intenta nuevamente.';
+const SAVE_PLACE_ERROR = 'No se pudo guardar el lugar. Intenta nuevamente.';
+const SAVE_CLASSROOM_ERROR = 'No se pudo guardar el aula. Intenta nuevamente.';
 
 /** The message the backend sent (for example, "Ya existe una categoría con ese nombre."). */
 async function readErrorMessage(response: Response, fallback: string): Promise<string> {
@@ -50,6 +67,20 @@ export function createAdminCatalogService(apiFetch: ApiFetch): AdminCatalogServi
       readSavedData(
         requestJson(`/admin/categories/${categoryId}`, 'PATCH', changes),
         SAVE_CATEGORY_ERROR,
+      ),
+    createPlace: (newPlace) =>
+      readSavedData(requestJson('/admin/places', 'POST', newPlace), SAVE_PLACE_ERROR),
+    updatePlace: (placeId, changes) =>
+      readSavedData(requestJson(`/admin/places/${placeId}`, 'PATCH', changes), SAVE_PLACE_ERROR),
+    createClassroom: (placeId, name) =>
+      readSavedData(
+        requestJson(`/admin/places/${placeId}/classrooms`, 'POST', { name }),
+        SAVE_CLASSROOM_ERROR,
+      ),
+    updateClassroom: (classroomId, changes) =>
+      readSavedData(
+        requestJson(`/admin/classrooms/${classroomId}`, 'PATCH', changes),
+        SAVE_CLASSROOM_ERROR,
       ),
   };
 }

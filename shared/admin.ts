@@ -43,3 +43,9 @@ export type CatalogChanges = {
   name?: string;
   active?: boolean;
 };
+
+/** What the Administrator fills in to add a block or a space. */
+export type NewPlace = {
+  name: string;
+  type: PlaceType;
+};

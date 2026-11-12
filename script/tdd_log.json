@@ -5820,7 +5820,7 @@
     "testId": 127
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6c5f2506a6ab4134800f954860c8232178405133",
     "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352177930,
     "testId": 127
@@ -6014,5 +6014,35 @@
     "commitName": "feat(admin): crear, editar y desactivar categorías",
     "commitTimestamp": 1794508947528,
     "testId": 144
+  },
+  {
+    "numPassedTests": 735,
+    "failedTests": 29,
+    "numTotalTests": 764,
+    "timestamp": 1794520677688,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794520809043,
+    "success": true,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794520876941,
+    "success": true,
+    "testId": 145
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): crear, editar y desactivar lugares y sus aulas",
+    "commitTimestamp": 1794520968541,
+    "testId": 145
   }
 ]

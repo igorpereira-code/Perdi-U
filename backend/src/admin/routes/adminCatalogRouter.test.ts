@@ -4,6 +4,7 @@ import type { Role } from '@shared/user';
 import { createApp } from '../../app';
 import type { UsersRepository } from '../../core/data/usersRepository';
 import type { AdminCatalogRepository } from '../data/adminCatalogRepository';
+import { fakeAdminCatalogRepository } from '../data/fakeAdminCatalogRepository';
 
 const savedCatalogs: ManagedCatalogs = {
   categories: [
@@ -21,27 +22,6 @@ const savedCatalogs: ManagedCatalogs = {
     { id: 11, name: 'Biblioteca', type: 'SPACE', active: true, classrooms: [] },
   ],
 };
-
-/** An in-memory copy of the catalogs, so one test does not change the next one. */
-function createFakeAdminCatalog(catalogs: ManagedCatalogs): AdminCatalogRepository {
-  const storedCatalogs: ManagedCatalogs = structuredClone(catalogs);
-  return {
-    listCatalogs: async () => storedCatalogs,
-    createCategory: async (name) => {
-      const newCategory = { id: 99, name, active: true };
-      storedCatalogs.categories.push(newCategory);
-      return newCategory;
-    },
-    updateCategory: async (categoryId, changes) => {
-      const category = storedCatalogs.categories.find((saved) => saved.id === categoryId);
-      if (!category) {
-        throw new Error(`Unknown category ${categoryId}`);
-      }
-      Object.assign(category, changes);
-      return category;
-    },
-  };
-}
 
 /** Signs in with a user of the given role. */
 function setup(signedInRole: Role, adminCatalog: Partial<AdminCatalogRepository> = {}) {
@@ -63,7 +43,7 @@ function setup(signedInRole: Role, adminCatalog: Partial<AdminCatalogRepository>
     users,
     verifyToken: async () => signedInUser,
     allowSampleUsers: false,
-    adminCatalog: { ...createFakeAdminCatalog(savedCatalogs), ...adminCatalog },
+    adminCatalog: { ...fakeAdminCatalogRepository(savedCatalogs), ...adminCatalog },
   });
 }
 

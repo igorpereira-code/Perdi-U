@@ -24,4 +24,12 @@ export const prismaAdminCatalogRepository: AdminCatalogRepository = {
     db().category.create({ data: { name, active: true }, select: CATEGORY_FIELDS }),
   updateCategory: (categoryId, changes) =>
     db().category.update({ where: { id: categoryId }, data: changes, select: CATEGORY_FIELDS }),
+  createPlace: ({ name, type }) =>
+    db().place.create({ data: { name, type, active: true }, select: PLACE_FIELDS }),
+  updatePlace: (placeId, changes) =>
+    db().place.update({ where: { id: placeId }, data: changes, select: PLACE_FIELDS }),
+  createClassroom: (placeId, name) =>
+    db().classroom.create({ data: { placeId, name, active: true }, select: CLASSROOM_FIELDS }),
+  updateClassroom: (classroomId, changes) =>
+    db().classroom.update({ where: { id: classroomId }, data: changes, select: CLASSROOM_FIELDS }),
 };
