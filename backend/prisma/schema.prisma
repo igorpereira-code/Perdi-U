@@ -266,3 +266,14 @@ model Notification {
   @@index([userId, createdAt])
   @@map("notifications")
 }
+
+/// Settings the Administrator can change. There is only one row, with id 1.
+model AppSettings {
+  id            Int      @id @default(1)
+  welfarePlace  String   @map("welfare_place") @db.VarChar(120)
+  welfareHours  String   @map("welfare_hours") @db.VarChar(120)
+  minSimilarity Int      @default(40) @map("min_similarity") /// From 0 to 100
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("app_settings")
+}

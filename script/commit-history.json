@@ -4655,12 +4655,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "005d984f2e4ee15df6942bfe94d4fbb8aad381fb",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T23:09:36.000Z",
       "message": "feat(admin): asignar el rol de Bienestar a un usuario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/005d984f2e4ee15df6942bfe94d4fbb8aad381fb"
     },
     "stats": {
       "total": 308,
@@ -5088,6 +5088,25 @@
     },
     "coverage": 83.41,
     "test_count": 764,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-12T22:44:31.000Z",
+      "message": "feat(admin): editar la ubicación y el horario de Bienestar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 599,
+      "additions": 596,
+      "deletions": 3,
+      "date": "2026-11-12"
+    },
+    "coverage": 82.79,
+    "test_count": 784,
     "failed_tests": 0,
     "conclusion": "success"
   }

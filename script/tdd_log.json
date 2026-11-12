@@ -5838,7 +5838,7 @@
     "testId": 127
   },
   {
-    "commitId": "HEAD",
+    "commitId": "005d984f2e4ee15df6942bfe94d4fbb8aad381fb",
     "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352177930,
     "testId": 127
@@ -6102,5 +6102,43 @@
     "commitName": "chore(admin): integra final-test en admin",
     "commitTimestamp": 1794522258688,
     "testId": 147
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794522290339,
+    "success": true,
+    "testId": 148
+  },
+  {
+    "numPassedTests": 766,
+    "failedTests": 18,
+    "numTotalTests": 784,
+    "timestamp": 1794523019633,
+    "success": false,
+    "testId": 148
+  },
+  {
+    "numPassedTests": 784,
+    "failedTests": 0,
+    "numTotalTests": 784,
+    "timestamp": 1794523160000,
+    "success": true,
+    "testId": 148
+  },
+  {
+    "numPassedTests": 784,
+    "failedTests": 0,
+    "numTotalTests": 784,
+    "timestamp": 1794523435870,
+    "success": true,
+    "testId": 148
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): editar la ubicación y el horario de Bienestar",
+    "commitTimestamp": 1794523472098,
+    "testId": 148
   }
 ]
