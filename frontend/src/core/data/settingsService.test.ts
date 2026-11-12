@@ -56,3 +56,47 @@ describe('Ubicación y horario de Bienestar', () => {
     ).rejects.toThrow('No se pudo guardar la ubicación de Bienestar. Intenta nuevamente.');
   });
 });
+
+describe('Nivel mínimo de similitud', () => {
+  it('trae el nivel mínimo del backend', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(createResponse(200, { minSimilarity: 40 }));
+
+    await expect(createSettingsService(apiFetch as ApiFetch).getMatchSettings()).resolves.toEqual({
+      minSimilarity: 40,
+    });
+    expect(apiFetch).toHaveBeenCalledWith('/admin/match-settings');
+  });
+
+  it('avisa con un mensaje claro si no se pudo cargar', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(createResponse(503, null));
+
+    await expect(createSettingsService(apiFetch as ApiFetch).getMatchSettings()).rejects.toThrow(
+      'No se pudo cargar el nivel mínimo. Intenta nuevamente.',
+    );
+  });
+
+  it('guarda el nuevo nivel mínimo', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(createResponse(200, { minSimilarity: 60 }));
+
+    await expect(
+      createSettingsService(apiFetch as ApiFetch).updateMatchSettings({ minSimilarity: 60 }),
+    ).resolves.toEqual({ minSimilarity: 60 });
+    expect(apiFetch).toHaveBeenCalledWith('/admin/match-settings', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ minSimilarity: 60 }),
+    });
+  });
+
+  it('muestra el motivo que da el backend si no se pudo guardar', async () => {
+    const apiFetch = jest
+      .fn()
+      .mockResolvedValue(
+        createResponse(400, { error: 'El nivel mínimo debe ser un número entero entre 0 y 100.' }),
+      );
+
+    await expect(
+      createSettingsService(apiFetch as ApiFetch).updateMatchSettings({ minSimilarity: 150 }),
+    ).rejects.toThrow('El nivel mínimo debe ser un número entero entre 0 y 100.');
+  });
+});

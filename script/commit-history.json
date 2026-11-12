@@ -4712,12 +4712,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7f066adb30720a66cb1809776f6f34ef55b00d76",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T23:26:13.000Z",
       "message": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7f066adb30720a66cb1809776f6f34ef55b00d76"
     },
     "stats": {
       "total": 96,
@@ -5126,6 +5126,25 @@
     },
     "coverage": 82.79,
     "test_count": 786,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-12T23:11:17.000Z",
+      "message": "feat(admin): definir el nivel mínimo de similitud de las coincidencias",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 462,
+      "additions": 408,
+      "deletions": 54,
+      "date": "2026-11-12"
+    },
+    "coverage": 82.43,
+    "test_count": 807,
     "failed_tests": 0,
     "conclusion": "success"
   }

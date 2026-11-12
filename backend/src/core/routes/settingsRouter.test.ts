@@ -125,3 +125,66 @@ describe('Los usuarios ven la ubicación y el horario actualizados', () => {
     },
   );
 });
+
+const getMatchSettings = (app: TestApp) =>
+  request(app).get('/admin/match-settings').auth('token', { type: 'bearer' });
+
+const updateMatchSettings = (app: TestApp, body: object) =>
+  request(app).put('/admin/match-settings').auth('token', { type: 'bearer' }).send(body);
+
+describe('Definir el nivel mínimo de similitud', () => {
+  it('el Administrador ve el nivel mínimo actual', async () => {
+    const response = await getMatchSettings(setup('ADMIN'));
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ minSimilarity: 40 });
+  });
+
+  it('el Administrador guarda un nuevo nivel mínimo', async () => {
+    const app = setup('ADMIN');
+
+    const response = await updateMatchSettings(app, { minSimilarity: 60 });
+    const afterSaving = await getMatchSettings(app);
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ minSimilarity: 60 });
+    expect(afterSaving.body).toEqual({ minSimilarity: 60 });
+  });
+
+  it('no guarda un nivel fuera de 0 a 100', async () => {
+    const response = await updateMatchSettings(setup('ADMIN'), { minSimilarity: 150 });
+
+    expect(response.status).toBe(400);
+    expect(response.body).toEqual({
+      error: 'El nivel mínimo debe ser un número entero entre 0 y 100.',
+    });
+  });
+
+  it.each(['COMMUNITY', 'WELFARE'] as const)(
+    'un usuario %s no puede ver ni cambiar el nivel mínimo',
+    async (role) => {
+      const app = setup(role);
+
+      const readResponse = await getMatchSettings(app);
+      const saveResponse = await updateMatchSettings(app, { minSimilarity: 60 });
+
+      expect(readResponse.status).toBe(403);
+      expect(saveResponse.status).toBe(403);
+    },
+  );
+
+  it('informa con un mensaje claro si no se pudo guardar', async () => {
+    const app = setup('ADMIN', {
+      updateMatchSettings: async () => {
+        throw new Error('Base no disponible');
+      },
+    });
+
+    const response = await updateMatchSettings(app, { minSimilarity: 60 });
+
+    expect(response.status).toBe(503);
+    expect(response.body).toEqual({
+      error: 'No se pudo guardar el nivel mínimo. Intenta nuevamente.',
+    });
+  });
+});

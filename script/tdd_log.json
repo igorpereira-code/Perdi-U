@@ -5888,7 +5888,7 @@
     "testId": 129
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7f066adb30720a66cb1809776f6f34ef55b00d76",
     "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
     "commitTimestamp": 1794353175070,
     "testId": 129
@@ -6154,5 +6154,43 @@
     "commitName": "feat(core): mostrar a los usuarios la ubicación y el horario guardados de Bienestar",
     "commitTimestamp": 1794524024380,
     "testId": 149
+  },
+  {
+    "numPassedTests": 789,
+    "failedTests": 18,
+    "numTotalTests": 807,
+    "timestamp": 1794524723774,
+    "success": false,
+    "testId": 150
+  },
+  {
+    "numPassedTests": 807,
+    "failedTests": 0,
+    "numTotalTests": 807,
+    "timestamp": 1794524842430,
+    "success": true,
+    "testId": 150
+  },
+  {
+    "numPassedTests": 807,
+    "failedTests": 0,
+    "numTotalTests": 807,
+    "timestamp": 1794524902516,
+    "success": true,
+    "testId": 150
+  },
+  {
+    "numPassedTests": 807,
+    "failedTests": 0,
+    "numTotalTests": 807,
+    "timestamp": 1794525045461,
+    "success": true,
+    "testId": 150
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): definir el nivel mínimo de similitud de las coincidencias",
+    "commitTimestamp": 1794525077848,
+    "testId": 150
   }
 ]

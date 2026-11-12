@@ -56,3 +56,44 @@ describe('Ubicación y horario de Bienestar guardados en la base de datos', () =
     });
   });
 });
+
+describe('Nivel mínimo de similitud guardado en la base de datos', () => {
+  it('lee el nivel mínimo guardado', async () => {
+    appSettings.findUnique.mockResolvedValue({ minSimilarity: 60 });
+
+    await expect(prismaSettingsRepository.getMatchSettings()).resolves.toEqual({
+      minSimilarity: 60,
+    });
+    expect(appSettings.findUnique).toHaveBeenCalledWith({
+      where: { id: 1 },
+      select: { minSimilarity: true },
+    });
+  });
+
+  it('si todavía no hay nada guardado, usa el nivel de siempre', async () => {
+    appSettings.findUnique.mockResolvedValue(null);
+
+    await expect(prismaSettingsRepository.getMatchSettings()).resolves.toEqual({
+      minSimilarity: 40,
+    });
+  });
+
+  it('guarda el nuevo nivel mínimo', async () => {
+    appSettings.upsert.mockResolvedValue({ minSimilarity: 60 });
+
+    const saved = await prismaSettingsRepository.updateMatchSettings({ minSimilarity: 60 });
+
+    expect(saved).toEqual({ minSimilarity: 60 });
+    expect(appSettings.upsert).toHaveBeenCalledWith({
+      where: { id: 1 },
+      update: { minSimilarity: 60 },
+      create: {
+        id: 1,
+        welfarePlace: 'Bienestar Estudiantil – Bloque C',
+        welfareHours: 'Lunes a viernes, de 08:30 a 16:00',
+        minSimilarity: 60,
+      },
+      select: { minSimilarity: true },
+    });
+  });
+});
