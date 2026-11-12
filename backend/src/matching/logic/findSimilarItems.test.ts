@@ -38,9 +38,26 @@ describe('Buscar objetos parecidos a un reporte de pérdida', () => {
       },
     ];
 
-    const similar = findSimilarItems(lostPhone, items);
+    const similar = findSimilarItems(lostPhone, items, 40);
 
     expect(similar.map((match) => match.item.id)).toEqual(['same', 'almost']);
     expect(similar[0].similarity).toBe(100);
+  });
+
+  it('con un nivel mínimo más alto deja fuera a los menos parecidos', () => {
+    const items = [
+      { id: 'almost', categoryId: 1, foundAt: inDates, placeId: 9, description: 'Celular negro' },
+      {
+        id: 'same',
+        categoryId: 1,
+        foundAt: inDates,
+        placeId: 5,
+        description: 'Celular Samsung con funda azul',
+      },
+    ];
+
+    const similar = findSimilarItems(lostPhone, items, 60);
+
+    expect(similar.map((match) => match.item.id)).toEqual(['same']);
   });
 });

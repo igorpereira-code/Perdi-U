@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { createApp } from '../../app';
 import { SAMPLE_USERS } from '../../core/sampleUsers';
+import { fakeSettingsRepository } from '../../core/data/fakeSettingsRepository';
 import {
   fakeMatchingRepository,
   type FakeItem,
@@ -54,10 +55,7 @@ const items: FakeItem[] = [
 
 describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matches)', () => {
   it('no permite que Bienestar consulte coincidencias de un reporte recuperado', async () => {
-    const { repository } = fakeMatchingRepository(
-      [{ ...anasReport, status: 'RECOVERED' }],
-      items,
-    );
+    const { repository } = fakeMatchingRepository([{ ...anasReport, status: 'RECOVERED' }], items);
 
     const res = await request(createApp({ matching: repository }))
       .get('/lost-reports/PR-0001/matches')
@@ -147,5 +145,21 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
         after.body.map((match: { foundItem: { code: string } }) => match.foundItem.code),
       ).toEqual(['HZ-0002']);
     });
+  });
+});
+
+describe('Las nuevas coincidencias respetan el nivel mínimo que guardó el Administrador', () => {
+  it('con un nivel de 60 solo muestra el objeto más parecido', async () => {
+    const { repository } = fakeMatchingRepository([anasReport], items);
+    const settings = fakeSettingsRepository();
+    await settings.updateMatchSettings({ minSimilarity: 60 });
+
+    const res = await request(createApp({ matching: repository, settings })).get(
+      '/lost-reports/PR-0001/matches',
+    );
+
+    expect(res.body.map((match: { foundItem: { code: string } }) => match.foundItem.code)).toEqual([
+      'HZ-0001',
+    ]);
   });
 });

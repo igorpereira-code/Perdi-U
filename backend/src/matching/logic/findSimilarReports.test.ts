@@ -23,8 +23,25 @@ describe('Buscar reportes de pérdida parecidos a un objeto encontrado', () => {
       { id: 'other-category', categoryId: 1, ...lostOn, placeIds: [1], description: 'Celular' },
     ];
 
-    const similar = findSimilarReports(keys, reports);
+    const similar = findSimilarReports(keys, reports, 40);
 
     expect(similar.map((match) => match.report.id)).toEqual(['same', 'almost']);
+  });
+
+  it('con un nivel mínimo más alto deja fuera a los menos parecidos', () => {
+    const reports = [
+      { id: 'almost', categoryId: 4, ...lostOn, placeIds: [9], description: 'Perdí unas llaves' },
+      {
+        id: 'same',
+        categoryId: 4,
+        ...lostOn,
+        placeIds: [1],
+        description: 'Llaves de mi casa con llavero rojo',
+      },
+    ];
+
+    const similar = findSimilarReports(keys, reports, 60);
+
+    expect(similar.map((match) => match.report.id)).toEqual(['same']);
   });
 });

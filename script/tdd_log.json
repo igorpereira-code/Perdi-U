@@ -5894,7 +5894,7 @@
     "testId": 129
   },
   {
-    "commitId": "HEAD",
+    "commitId": "eabfec82efe2d35f5dd655595a838df8ddd249f5",
     "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
     "commitTimestamp": 1794353525149,
     "testId": 130
@@ -6192,5 +6192,27 @@
     "commitName": "feat(admin): definir el nivel mínimo de similitud de las coincidencias",
     "commitTimestamp": 1794525077848,
     "testId": 150
+  },
+  {
+    "numPassedTests": 808,
+    "failedTests": 4,
+    "numTotalTests": 812,
+    "timestamp": 1794525858308,
+    "success": false,
+    "testId": 151
+  },
+  {
+    "numPassedTests": 812,
+    "failedTests": 0,
+    "numTotalTests": 812,
+    "timestamp": 1794525998303,
+    "success": true,
+    "testId": 151
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): usar el nivel mínimo de similitud guardado en las coincidencias nuevas",
+    "commitTimestamp": 1794526037578,
+    "testId": 151
   }
 ]

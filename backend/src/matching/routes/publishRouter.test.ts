@@ -6,6 +6,7 @@ import {
   type FakeItem,
   type FakeReport,
 } from '../data/fakeMatchingRepository';
+import { fakeSettingsRepository } from '../../core/data/fakeSettingsRepository';
 
 const keys: FakeItem = {
   id: 'item-4',
@@ -93,5 +94,46 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
         foundItem: expect.objectContaining({ code: 'HZ-0004' }),
       }),
     ]);
+  });
+});
+
+describe('Al publicar, las nuevas coincidencias respetan el nivel mínimo', () => {
+  it('con un nivel de 60 no cuenta el reporte que se parece poco', async () => {
+    const almostKeys = {
+      ...lostKeys,
+      id: 'report-almost',
+      code: 'PR-0011',
+      placeIds: [9],
+      description: 'Perdí unas llaves',
+    };
+    const { repository, matches } = fakeMatchingRepository([lostKeys, almostKeys], [keys]);
+    const settings = fakeSettingsRepository();
+    await settings.updateMatchSettings({ minSimilarity: 60 });
+
+    const res = await request(createApp({ matching: repository, settings }))
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1 });
+    expect(matches.map((match) => match.lostReportId)).toEqual(['report-3']);
+  });
+
+  it('con el nivel de siempre (40) también cuenta el reporte que se parece poco', async () => {
+    const almostKeys = {
+      ...lostKeys,
+      id: 'report-almost',
+      code: 'PR-0011',
+      placeIds: [9],
+      description: 'Perdí unas llaves',
+    };
+    const { repository } = fakeMatchingRepository([lostKeys, almostKeys], [keys]);
+
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    )
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 2 });
   });
 });
