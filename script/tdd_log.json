@@ -5754,7 +5754,7 @@
     "testId": 124
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2099df584873a06d8b8184937fa4103c0d4c20d9",
     "commitName": "feat(admin): mostrar la opción de administración solo al Administrador",
     "commitTimestamp": 1794346318231,
     "testId": 124
@@ -5948,5 +5948,11 @@
     "commitName": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
     "commitTimestamp": 1794491360067,
     "testId": 141
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
+    "commitTimestamp": 1794491488766,
+    "testId": 142
   }
 ]

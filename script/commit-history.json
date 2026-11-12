@@ -4541,12 +4541,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2099df584873a06d8b8184937fa4103c0d4c20d9",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T21:31:57.000Z",
       "message": "feat(admin): mostrar la opción de administración solo al Administrador",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2099df584873a06d8b8184937fa4103c0d4c20d9"
     },
     "stats": {
       "total": 43,
@@ -4875,6 +4875,25 @@
       "total": 22,
       "additions": 10,
       "deletions": 12,
+      "date": "2026-11-12"
+    },
+    "coverage": 86.15,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-12T13:51:28.000Z",
+      "message": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 66,
+      "additions": 39,
+      "deletions": 27,
       "date": "2026-11-12"
     },
     "coverage": 86.15,
