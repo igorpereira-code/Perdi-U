@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import { Bell, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { AppNotification } from '@shared/notifications';
@@ -6,10 +6,10 @@ import { NOTIFICATIONS_CHANGED, type NotificationsService } from '../data/notifi
 import { formatNotificationTime } from '../logic/formatNotificationTime';
 import { getNotificationDestination } from '../logic/getNotificationDestination';
 import { markNotificationRead } from '../logic/markNotificationRead';
-import { Alert } from './Alert';
-import { Button } from './Button';
 import { EmptyState } from './EmptyState';
+import { LoadErrorAlert } from './LoadErrorAlert';
 import { Skeleton, SkeletonArea } from './Skeleton';
+import { useLoadedData } from './useLoadedData';
 
 type NotificationsScreenProps = {
   notificationsService: NotificationsService;
@@ -17,9 +17,13 @@ type NotificationsScreenProps = {
 
 /** The user's notifications. */
 export function NotificationsScreen({ notificationsService }: NotificationsScreenProps) {
-  const [notifications, setNotifications] = useState<AppNotification[] | null>(null);
-  const [hasFailed, setHasFailed] = useState(false);
-  const [loadAttempt, setLoadAttempt] = useState(0);
+  const loadNotifications = useCallback(() => notificationsService.list(), [notificationsService]);
+  const {
+    data: notifications,
+    setData: setNotifications,
+    hasFailed,
+    retry,
+  } = useLoadedData(loadNotifications);
   const navigate = useNavigate();
 
   async function openNotification(notification: AppNotification) {
@@ -34,38 +38,15 @@ export function NotificationsScreen({ notificationsService }: NotificationsScree
     }
   }
 
-  useEffect(() => {
-    let active = true;
-    setNotifications(null);
-    setHasFailed(false);
-    notificationsService
-      .list()
-      .then((loadedNotifications) => {
-        if (active) {
-          setNotifications(loadedNotifications);
-        }
-      })
-      .catch(() => {
-        if (active) {
-          setHasFailed(true);
-        }
-      });
-    return () => {
-      active = false;
-    };
-  }, [notificationsService, loadAttempt]);
-
   return (
     <section className="mx-auto max-w-lg space-y-4">
       <h1 className="text-lg font-semibold text-blue-700">Avisos</h1>
       {hasFailed ? (
-        <div className="space-y-3">
-          <div role="alert">
-            <Alert>No se pudieron cargar tus avisos. Intenta nuevamente.</Alert>
-          </div>
-          <Button onClick={() => setLoadAttempt((value) => value + 1)}>Reintentar</Button>
-        </div>
-      ) : notifications === null ? (
+        <LoadErrorAlert
+          message="No se pudieron cargar tus avisos. Intenta nuevamente."
+          onRetry={retry}
+        />
+      ) : notifications === undefined ? (
         <SkeletonArea label="Cargando tus avisos…">
           <ul className="space-y-3">
             {Array.from({ length: 3 }, (_, rowIndex) => (

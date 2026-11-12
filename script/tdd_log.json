@@ -5660,7 +5660,7 @@
     "testId": 119
   },
   {
-    "commitId": "HEAD",
+    "commitId": "01de44676c2c3ea0acea587a8bd4b8530c84333c",
     "commitName": "feat(core): mostrar esqueletos de carga en lugar del indicador con círculo",
     "commitTimestamp": 1794344118367,
     "testId": 119
@@ -5918,5 +5918,11 @@
     "commitName": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
     "commitTimestamp": 1794491011050,
     "testId": 136
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): extraer la carga con reintento a useLoadedData y LoadErrorAlert",
+    "commitTimestamp": 1794491116150,
+    "testId": 137
   }
 ]

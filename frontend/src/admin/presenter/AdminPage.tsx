@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { SearchX, Users } from 'lucide-react';
 import type { ManagedUser } from '@shared/admin';
-import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
+import { LoadErrorAlert } from '../../core/presenter/LoadErrorAlert';
 import { SkeletonList } from '../../core/presenter/Skeleton';
+import { useLoadedData } from '../../core/presenter/useLoadedData';
 import type { AdminUsersService } from '../data/adminUsersService';
 import { filterUsersByEmail } from '../logic/filterUsersByEmail';
 import { formatRoleLabel } from '../logic/formatRoleLabel';
@@ -17,33 +18,11 @@ type AdminPageProps = {
 
 /** The Administrator's page: the users of the app and their roles. */
 export function AdminPage({ adminUsersService }: AdminPageProps) {
-  const [users, setUsers] = useState<ManagedUser[] | null>(null);
-  const [hasFailed, setHasFailed] = useState(false);
-  const [loadAttempt, setLoadAttempt] = useState(0);
+  const loadUsers = useCallback(() => adminUsersService.listUsers(), [adminUsersService]);
+  const { data: users, setData: setUsers, hasFailed, retry } = useLoadedData(loadUsers);
   const [searchedEmail, setSearchedEmail] = useState('');
   const [changingUserId, setChangingUserId] = useState<string | null>(null);
   const [failedUserId, setFailedUserId] = useState<string | null>(null);
-
-  useEffect(() => {
-    let isActive = true;
-    setUsers(null);
-    setHasFailed(false);
-    adminUsersService
-      .listUsers()
-      .then((loadedUsers) => {
-        if (isActive) {
-          setUsers(loadedUsers);
-        }
-      })
-      .catch(() => {
-        if (isActive) {
-          setHasFailed(true);
-        }
-      });
-    return () => {
-      isActive = false;
-    };
-  }, [adminUsersService, loadAttempt]);
 
   async function changeRole(user: ManagedUser, roleAction: RoleAction) {
     setChangingUserId(user.id);
@@ -73,13 +52,11 @@ export function AdminPage({ adminUsersService }: AdminPageProps) {
         <p className="text-sm text-neutral-500">Gestiona al personal de Bienestar Estudiantil.</p>
       </div>
       {hasFailed ? (
-        <div className="space-y-3">
-          <div role="alert">
-            <Alert>No se pudieron cargar los usuarios. Intenta nuevamente.</Alert>
-          </div>
-          <Button onClick={() => setLoadAttempt((value) => value + 1)}>Reintentar</Button>
-        </div>
-      ) : users === null ? (
+        <LoadErrorAlert
+          message="No se pudieron cargar los usuarios. Intenta nuevamente."
+          onRetry={retry}
+        />
+      ) : users === undefined ? (
         <SkeletonList rows={4} label="Cargando usuarios…" />
       ) : users.length === 0 ? (
         <EmptyState
