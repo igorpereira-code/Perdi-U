@@ -4332,12 +4332,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "25a8f4f84bc507be2c85b4fb1fc8d77b4da1633b",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:49:33.000Z",
       "message": "refactor(core): renombrar notInstitutional a isNotInstitutional en App",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/25a8f4f84bc507be2c85b4fb1fc8d77b4da1633b"
     },
     "stats": {
       "total": 6,
@@ -4669,6 +4669,25 @@
       "date": "2026-11-10"
     },
     "coverage": 85.47,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-12T12:47:10.000Z",
+      "message": "refactor(core): borrar LoadingState, reemplazado por los esqueletos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 19,
+      "additions": 0,
+      "deletions": 19,
+      "date": "2026-11-12"
+    },
+    "coverage": 85.52,
     "test_count": 678,
     "failed_tests": 0,
     "conclusion": "success"
