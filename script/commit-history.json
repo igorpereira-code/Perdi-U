@@ -4503,12 +4503,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c1fbb91757b8b669dc740e3aabe3d947de959780",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T21:16:34.000Z",
       "message": "feat(matching): mostrar la carga y los errores en las coincidencias del propietario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c1fbb91757b8b669dc740e3aabe3d947de959780"
     },
     "stats": {
       "total": 197,
@@ -4840,6 +4840,25 @@
       "date": "2026-11-12"
     },
     "coverage": 86.14,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-12T13:48:27.000Z",
+      "message": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 15,
+      "additions": 10,
+      "deletions": 5,
+      "date": "2026-11-12"
+    },
+    "coverage": 86.15,
     "test_count": 678,
     "failed_tests": 0,
     "conclusion": "success"

@@ -5710,7 +5710,7 @@
     "testId": 122
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c1fbb91757b8b669dc740e3aabe3d947de959780",
     "commitName": "feat(matching): mostrar la carga y los errores en las coincidencias del propietario",
     "commitTimestamp": 1794345395572,
     "testId": 122
@@ -5936,5 +5936,11 @@
     "commitName": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
     "commitTimestamp": 1794491262113,
     "testId": 139
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
+    "commitTimestamp": 1794491307539,
+    "testId": 140
   }
 ]
