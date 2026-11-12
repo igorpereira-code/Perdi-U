@@ -5864,7 +5864,7 @@
     "testId": 129
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5387a2201596c2494bf2fb4642f746477d7b0b84",
     "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
     "commitTimestamp": 1794353175070,
     "testId": 129
@@ -6034,5 +6034,11 @@
     "commitName": "feat(welfare): mostrar esqueletos al cargar objetos parecidos",
     "commitTimestamp": 1794512996293,
     "testId": 146
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar carga y reintento en listas",
+    "commitTimestamp": 1794520583459,
+    "testId": 147
   }
 ]

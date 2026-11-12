@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { useCallback, useEffect, useState, type FormEvent } from 'react';
 import { Archive, FileSearch, HandCoins, Inbox, PackageCheck, Search } from 'lucide-react';
 import type {
   WelfareFoundItemView,
@@ -11,7 +11,8 @@ import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { InfoRow } from '../../core/presenter/InfoRow';
-import { SkeletonArea, SkeletonCard } from '../../core/presenter/Skeleton';
+import { LoadErrorAlert } from '../../core/presenter/LoadErrorAlert';
+import { SkeletonArea, SkeletonCard, SkeletonList } from '../../core/presenter/Skeleton';
 import { StatusChip } from '../../core/presenter/StatusChip';
 import { Thumb } from '../../core/presenter/Thumb';
 import type { MatchesService } from '../../matching/data/matchesService';
@@ -52,7 +53,9 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
   const [hasPendingPickupsError, setHasPendingPickupsError] = useState(false);
   const [pendingItems, setPendingItems] = useState<WelfareFoundItemView[] | null>(null);
+  const [hasPendingItemsError, setHasPendingItemsError] = useState(false);
   const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
+  const [hasInOfficeItemsError, setHasInOfficeItemsError] = useState(false);
   const [publishedCodes, setPublishedCodes] = useState<Set<string>>(new Set());
   const [selectedItem, setSelectedItem] = useState<WelfareFoundItemView | null>(null);
   const [searchedItemCode, setSearchedItemCode] = useState('');
@@ -62,15 +65,19 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [deliveryDraft, setDeliveryDraft] = useState<DeliveryInput | null>(null);
   const [isDelivering, setIsDelivering] = useState(false);
 
-  useEffect(() => {
-    welfareService
-      .listActiveLostReports()
-      .then(setLostReports)
-      .catch(() => {
-        setLostReports([]);
-        setHasLostReportsError(true);
-      });
+  const loadActiveLostReports = useCallback(async () => {
+    setHasLostReportsError(false);
+    setLostReports(null);
+    try {
+      setLostReports(await welfareService.listActiveLostReports());
+    } catch {
+      setHasLostReportsError(true);
+    }
   }, [welfareService]);
+
+  useEffect(() => {
+    void loadActiveLostReports();
+  }, [loadActiveLostReports]);
 
   async function showLostReport(report: WelfareLostReportView) {
     setSelectedLostReport(report);
@@ -179,40 +186,54 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     }
   }
 
-  useEffect(() => {
-    welfareService
-      .listPendingPickups()
-      .then(setPendingPickups)
-      .catch(() => {
-        setPendingPickups([]);
-        setHasPendingPickupsError(true);
-      });
+  const loadPendingPickups = useCallback(async () => {
+    setHasPendingPickupsError(false);
+    setPendingPickups(null);
+    try {
+      setPendingPickups(await welfareService.listPendingPickups());
+    } catch {
+      setHasPendingPickupsError(true);
+    }
   }, [welfareService]);
 
   useEffect(() => {
-    welfareService
-      .listPending()
-      .then(setPendingItems)
-      .catch(() => {
-        setPendingItems([]);
-        setFeedbackMessage('No pudimos cargar los objetos pendientes');
-      });
+    void loadPendingPickups();
+  }, [loadPendingPickups]);
+
+  const loadPendingItems = useCallback(async () => {
+    setHasPendingItemsError(false);
+    setPendingItems(null);
+    try {
+      setPendingItems(await welfareService.listPending());
+    } catch {
+      setHasPendingItemsError(true);
+    }
   }, [welfareService]);
 
   useEffect(() => {
-    welfareService
-      .listInOffice()
-      .then((loadedItems) =>
-        setInOfficeItems((current) => {
-          if (current === null) {
-            return loadedItems;
-          }
-          const currentCodes = new Set(current.map((item) => item.code));
-          return [...loadedItems.filter((item) => !currentCodes.has(item.code)), ...current];
-        }),
-      )
-      .catch(() => setInOfficeItems((current) => current ?? []));
+    void loadPendingItems();
+  }, [loadPendingItems]);
+
+  const loadInOfficeItems = useCallback(async () => {
+    setHasInOfficeItemsError(false);
+    setInOfficeItems((current) => (current?.length ? current : null));
+    try {
+      const loadedItems = await welfareService.listInOffice();
+      setInOfficeItems((current) => {
+        if (current === null) {
+          return loadedItems;
+        }
+        const currentCodes = new Set(current.map((item) => item.code));
+        return [...loadedItems.filter((item) => !currentCodes.has(item.code)), ...current];
+      });
+    } catch {
+      setHasInOfficeItemsError(true);
+    }
   }, [welfareService]);
+
+  useEffect(() => {
+    void loadInOfficeItems();
+  }, [loadInOfficeItems]);
 
   async function searchFoundItem(event: FormEvent) {
     event.preventDefault();
@@ -371,9 +392,12 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
             <div className="space-y-2">
               {hasLostReportsError ? (
-                <Alert>No pudimos cargar los reportes de pérdida</Alert>
+                <LoadErrorAlert
+                  message="No pudimos cargar los reportes de pérdida"
+                  onRetry={() => void loadActiveLostReports()}
+                />
               ) : lostReports === null ? (
-                <p>Cargando reportes de pérdida...</p>
+                <SkeletonList rows={3} label="Cargando reportes de pérdida..." />
               ) : lostReports.length === 0 ? (
                 <EmptyState
                   title="No hay reportes de pérdida activos"
@@ -523,8 +547,13 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
             <div className="space-y-2">
               <h2 className="sr-only">Objetos pendientes de recepción</h2>
-              {pendingItems === null ? (
-                <p>Cargando objetos pendientes...</p>
+              {hasPendingItemsError ? (
+                <LoadErrorAlert
+                  message="No pudimos cargar los objetos pendientes"
+                  onRetry={() => void loadPendingItems()}
+                />
+              ) : pendingItems === null ? (
+                <SkeletonList rows={3} label="Cargando objetos pendientes..." />
               ) : pendingItems.length === 0 ? (
                 <EmptyState title="No hay objetos pendientes" text="No quedan objetos por recibir en la oficina." />
               ) : (
@@ -599,8 +628,18 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             title="Objetos en custodia"
             subtitle="Objetos recibidos en la oficina. Publícalos para que la comunidad los vea."
           />
+          {hasInOfficeItemsError && (
+            <div className="mb-4">
+              <LoadErrorAlert
+                message="No pudimos cargar los objetos en la oficina"
+                onRetry={() => void loadInOfficeItems()}
+              />
+            </div>
+          )}
           {inOfficeItems === null ? (
-            <p>Cargando objetos en la oficina...</p>
+            hasInOfficeItemsError ? null : (
+              <SkeletonList rows={4} label="Cargando objetos en la oficina..." />
+            )
           ) : inOfficeItems.length === 0 ? (
             <EmptyState title="No hay objetos en la oficina" text="No quedan objetos bajo custodia." />
           ) : (
@@ -645,9 +684,12 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             subtitle="Personas que avisaron que pasarán a recoger un objeto."
           />
           {hasPendingPickupsError ? (
-            <Alert>No pudimos cargar los recojos pendientes</Alert>
+            <LoadErrorAlert
+              message="No pudimos cargar los recojos pendientes"
+              onRetry={() => void loadPendingPickups()}
+            />
           ) : pendingPickups === null ? (
-            <p>Cargando recojos pendientes...</p>
+            <SkeletonList rows={3} label="Cargando recojos pendientes..." />
           ) : pendingPickups.length === 0 ? (
             <EmptyState
               title="No hay recojos pendientes"
