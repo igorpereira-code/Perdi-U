@@ -5568,7 +5568,7 @@
     "testId": 113
   },
   {
-    "commitId": "HEAD",
+    "commitId": "25a8f4f84bc507be2c85b4fb1fc8d77b4da1633b",
     "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en App",
     "commitTimestamp": 1794340173522,
     "testId": 113
@@ -5874,5 +5874,19 @@
     "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
     "commitTimestamp": 1794353525149,
     "testId": 130
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794487576213,
+    "success": false,
+    "testId": 131
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): borrar LoadingState, reemplazado por los esqueletos",
+    "commitTimestamp": 1794487631272,
+    "testId": 131
   }
 ]
