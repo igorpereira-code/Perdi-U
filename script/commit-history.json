@@ -4522,12 +4522,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "71d21c266c33880f0391aa305b350829b6ffa4c4",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T21:20:52.000Z",
       "message": "feat(matching): mostrar la carga y los errores al publicar un objeto",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/71d21c266c33880f0391aa305b350829b6ffa4c4"
     },
     "stats": {
       "total": 38,
@@ -4856,6 +4856,25 @@
       "total": 15,
       "additions": 10,
       "deletions": 5,
+      "date": "2026-11-12"
+    },
+    "coverage": 86.15,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-12T13:49:19.000Z",
+      "message": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 22,
+      "additions": 10,
+      "deletions": 12,
       "date": "2026-11-12"
     },
     "coverage": 86.15,

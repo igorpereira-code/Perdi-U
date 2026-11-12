@@ -5732,7 +5732,7 @@
     "testId": 123
   },
   {
-    "commitId": "HEAD",
+    "commitId": "71d21c266c33880f0391aa305b350829b6ffa4c4",
     "commitName": "feat(matching): mostrar la carga y los errores al publicar un objeto",
     "commitTimestamp": 1794345653282,
     "testId": 123
@@ -5942,5 +5942,11 @@
     "commitName": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
     "commitTimestamp": 1794491307539,
     "testId": 140
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
+    "commitTimestamp": 1794491360067,
+    "testId": 141
   }
 ]
