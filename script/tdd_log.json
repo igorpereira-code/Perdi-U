@@ -5624,7 +5624,7 @@
     "testId": 117
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c0f20362e61668df1787b63b3dd51b9e9b9b5710",
     "commitName": "refactor(matching): renombrar el archivo matchCountText a formatMatchCount",
     "commitTimestamp": 1794340476250,
     "testId": 117
@@ -5906,5 +5906,11 @@
     "commitName": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
     "commitTimestamp": 1794490908233,
     "testId": 134
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
+    "commitTimestamp": 1794490958823,
+    "testId": 135
   }
 ]
