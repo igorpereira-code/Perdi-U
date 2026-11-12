@@ -5798,7 +5798,7 @@
     "testId": 126
   },
   {
-    "commitId": "HEAD",
+    "commitId": "28f1803dd74d935a5b4632b69cb7e1e1e2917716",
     "commitName": "feat(admin): buscar un usuario por su correo institucional",
     "commitTimestamp": 1794351233083,
     "testId": 126
@@ -5968,5 +5968,27 @@
     "commitName": "chore(welfare): actualizar final-test para resolver el PR",
     "commitTimestamp": 1794509396922,
     "testId": 143
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794511694044,
+    "success": false,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794511718275,
+    "success": true,
+    "testId": 144
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar carga al registrar la entrega",
+    "commitTimestamp": 1794511789301,
+    "testId": 144
   }
 ]

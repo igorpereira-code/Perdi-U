@@ -682,7 +682,11 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
                 Al confirmar, el objeto pasará a <b>Entregado</b>, dejará de verse en el
                 catálogo y el reporte vinculado quedará como <b>Recuperado</b>.
               </div>
-              <Button type="submit" disabled={isDelivering}>
+              <Button
+                type="submit"
+                isLoading={isDelivering}
+                loadingText="Registrando entrega…"
+              >
                 <PackageCheck className="h-4 w-4" aria-hidden="true" />
                 Confirmar entrega
               </Button>

@@ -4579,12 +4579,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "28f1803dd74d935a5b4632b69cb7e1e1e2917716",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T22:53:51.000Z",
       "message": "feat(admin): buscar un usuario por su correo institucional",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/28f1803dd74d935a5b4632b69cb7e1e1e2917716"
     },
     "stats": {
       "total": 107,
@@ -4913,6 +4913,25 @@
       "total": 910,
       "additions": 509,
       "deletions": 401,
+      "date": "2026-11-12"
+    },
+    "coverage": 86.15,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T19:29:47.000Z",
+      "message": "feat(welfare): mostrar carga al registrar la entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 5,
+      "deletions": 1,
       "date": "2026-11-12"
     },
     "coverage": 86.15,
