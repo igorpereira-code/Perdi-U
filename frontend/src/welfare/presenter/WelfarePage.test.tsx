@@ -513,7 +513,7 @@ describe('Panel de Bienestar', () => {
     expect(within(officeSection!).getByText('HZ-0005')).toBeInTheDocument();
   });
 
-  it('evita confirmar dos veces mientras guarda', async () => {
+  it('muestra que esta confirmando y evita confirmar dos veces mientras guarda', async () => {
     let resolveReceive!: (result: WelfareResult) => void;
     const confirmReception = jest.fn<Promise<WelfareResult>, [string]>(
       () => new Promise<WelfareResult>((resolve) => (resolveReceive = resolve)),
@@ -524,7 +524,9 @@ describe('Panel de Bienestar', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     const button = await screen.findByRole('button', { name: 'Confirmar recepción' });
     await userEvent.click(button);
-    expect(button).toBeDisabled();
+    const loadingButton = screen.getByRole('button', { name: 'Confirmando recepción…' });
+    expect(loadingButton).toBeDisabled();
+    expect(loadingButton).toHaveAttribute('aria-busy', 'true');
     resolveReceive({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } });
     expect(await screen.findByText('Objeto recibido y puesto en custodia')).toBeInTheDocument();
   });

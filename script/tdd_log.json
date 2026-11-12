@@ -5596,7 +5596,7 @@
     "testId": 115
   },
   {
-    "commitId": "HEAD",
+    "commitId": "545b5bd010c0e5e25c55ba86517e1e681a1c4805",
     "commitName": "refactor(core): renombrar signedInPage a renderSignedInPage",
     "commitTimestamp": 1794340317356,
     "testId": 115
@@ -5902,5 +5902,19 @@
     "commitName": "chore(welfare): integrar final-test antes de REF-14",
     "commitTimestamp": 1794492294633,
     "testId": 132
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794492789957,
+    "success": true,
+    "testId": 133
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): mostrar carga al confirmar recepcion",
+    "commitTimestamp": 1794492956269,
+    "testId": 133
   }
 ]

@@ -522,7 +522,12 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
                       </>
                     )}
                   </dl>
-                  <Button onClick={confirmReception} disabled={isReceiving} className="w-full">
+                  <Button
+                    onClick={confirmReception}
+                    isLoading={isReceiving}
+                    loadingText="Confirmando recepción…"
+                    className="w-full"
+                  >
                     <PackageCheck className="h-4 w-4" aria-hidden="true" />
                     Confirmar recepción
                   </Button>

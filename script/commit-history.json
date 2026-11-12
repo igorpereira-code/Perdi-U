@@ -4370,12 +4370,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "545b5bd010c0e5e25c55ba86517e1e681a1c4805",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:51:57.000Z",
       "message": "refactor(core): renombrar signedInPage a renderSignedInPage",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/545b5bd010c0e5e25c55ba86517e1e681a1c4805"
     },
     "stats": {
       "total": 34,
@@ -4710,5 +4710,24 @@
     "test_count": 678,
     "failed_tests": 0,
     "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T14:15:53.000Z",
+      "message": "refactor(welfare): mostrar carga al confirmar recepcion",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 13,
+      "additions": 10,
+      "deletions": 3,
+      "date": "2026-11-12"
+    },
+    "coverage": 85.52,
+    "test_count": 678,
+    "failed_tests": 3,
+    "conclusion": "failure"
   }
 ]
