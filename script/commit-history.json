@@ -4579,12 +4579,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "28f1803dd74d935a5b4632b69cb7e1e1e2917716",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T22:53:51.000Z",
       "message": "feat(admin): buscar un usuario por su correo institucional",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/28f1803dd74d935a5b4632b69cb7e1e1e2917716"
     },
     "stats": {
       "total": 107,
@@ -4598,12 +4598,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "aee0a70a9ee8dec3562dc1639448a021eba29b5f",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T23:09:36.000Z",
       "message": "feat(admin): asignar el rol de Bienestar a un usuario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/aee0a70a9ee8dec3562dc1639448a021eba29b5f"
     },
     "stats": {
       "total": 308,
@@ -4617,12 +4617,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ff9167c8d56432ccb3652977fe77e2226ea045cc",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T23:13:59.000Z",
       "message": "feat(admin): quitar el rol de Bienestar a un usuario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ff9167c8d56432ccb3652977fe77e2226ea045cc"
     },
     "stats": {
       "total": 41,
@@ -4636,12 +4636,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "5387a2201596c2494bf2fb4642f746477d7b0b84",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T23:26:13.000Z",
       "message": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/5387a2201596c2494bf2fb4642f746477d7b0b84"
     },
     "stats": {
       "total": 96,
@@ -4916,6 +4916,82 @@
       "date": "2026-11-12"
     },
     "coverage": 86.15,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T19:29:47.000Z",
+      "message": "feat(welfare): mostrar carga al registrar la entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 6,
+      "additions": 5,
+      "deletions": 1,
+      "date": "2026-11-12"
+    },
+    "coverage": 86.15,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T19:37:47.000Z",
+      "message": "feat(welfare): mostrar carga en las busquedas por codigo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 89,
+      "additions": 61,
+      "deletions": 28,
+      "date": "2026-11-12"
+    },
+    "coverage": 85.9,
+    "test_count": 678,
+    "failed_tests": 15,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T19:49:48.000Z",
+      "message": "feat(welfare): mostrar esqueletos al cargar objetos parecidos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 21,
+      "additions": 20,
+      "deletions": 1,
+      "date": "2026-11-12"
+    },
+    "coverage": 85.83,
+    "test_count": 678,
+    "failed_tests": 13,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T21:56:21.000Z",
+      "message": "feat(welfare): mostrar carga y reintento en listas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 128,
+      "additions": 85,
+      "deletions": 43,
+      "date": "2026-11-12"
+    },
+    "coverage": 86.28,
     "test_count": 678,
     "failed_tests": 0,
     "conclusion": "success"

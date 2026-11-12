@@ -5798,7 +5798,7 @@
     "testId": 126
   },
   {
-    "commitId": "HEAD",
+    "commitId": "28f1803dd74d935a5b4632b69cb7e1e1e2917716",
     "commitName": "feat(admin): buscar un usuario por su correo institucional",
     "commitTimestamp": 1794351233083,
     "testId": 126
@@ -5820,7 +5820,7 @@
     "testId": 127
   },
   {
-    "commitId": "HEAD",
+    "commitId": "aee0a70a9ee8dec3562dc1639448a021eba29b5f",
     "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352177930,
     "testId": 127
@@ -5842,7 +5842,7 @@
     "testId": 128
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ff9167c8d56432ccb3652977fe77e2226ea045cc",
     "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352441180,
     "testId": 128
@@ -5864,7 +5864,7 @@
     "testId": 129
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5387a2201596c2494bf2fb4642f746477d7b0b84",
     "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
     "commitTimestamp": 1794353175070,
     "testId": 129
@@ -5968,5 +5968,77 @@
     "commitName": "chore(welfare): actualizar final-test para resolver el PR",
     "commitTimestamp": 1794509396922,
     "testId": 143
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794511694044,
+    "success": false,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794511718275,
+    "success": true,
+    "testId": 144
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar carga al registrar la entrega",
+    "commitTimestamp": 1794511789301,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794511919096,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794511977047,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794512050396,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar carga en las busquedas por codigo",
+    "commitTimestamp": 1794512274493,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 606,
+    "failedTests": 72,
+    "numTotalTests": 678,
+    "timestamp": 1794512470755,
+    "success": false,
+    "testId": 146
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar esqueletos al cargar objetos parecidos",
+    "commitTimestamp": 1794512996293,
+    "testId": 146
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar carga y reintento en listas",
+    "commitTimestamp": 1794520583459,
+    "testId": 147
   }
 ]
