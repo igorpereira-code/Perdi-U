@@ -5674,7 +5674,7 @@
     "testId": 120
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c09c6880807368ee86b987a6494abce06be7f77c",
     "commitName": "feat(core): mostrar una pantalla de carga al abrir la app",
     "commitTimestamp": 1794344852072,
     "testId": 120
@@ -5924,5 +5924,11 @@
     "commitName": "refactor(core): extraer la carga con reintento a useLoadedData y LoadErrorAlert",
     "commitTimestamp": 1794491116150,
     "testId": 137
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
+    "commitTimestamp": 1794491189261,
+    "testId": 138
   }
 ]

@@ -4465,12 +4465,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c09c6880807368ee86b987a6494abce06be7f77c",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T21:07:31.000Z",
       "message": "feat(core): mostrar una pantalla de carga al abrir la app",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c09c6880807368ee86b987a6494abce06be7f77c"
     },
     "stats": {
       "total": 22,
@@ -4802,6 +4802,25 @@
       "date": "2026-11-12"
     },
     "coverage": 87.14,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-12T13:46:29.000Z",
+      "message": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 218,
+      "additions": 126,
+      "deletions": 92,
+      "date": "2026-11-12"
+    },
+    "coverage": 86.75,
     "test_count": 678,
     "failed_tests": 0,
     "conclusion": "success"
