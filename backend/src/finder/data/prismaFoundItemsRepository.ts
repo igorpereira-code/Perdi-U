@@ -24,16 +24,34 @@ function toMyFoundItem(item: StoredMyFoundItem): MyFoundItem {
 }
 
 export const prismaFoundItemsRepository: FoundItemsRepository = {
+  getEditable: (finderId, code) => db().foundItem.findFirst({
+    where: { finderId, code, status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
+    select: { description: true, categoryId: true, placeId: true, classroomId: true, placeReference: true, foundAt: true },
+  }),
+  cancelPending: async (finderId, code) => {
+    const cancellation = await db().foundItem.updateMany({
+      where: { finderId, code, status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
+      data: { visibility: 'HIDDEN' },
+    });
+    return cancellation.count === 1;
+  },
+  updatePending: async (finderId, code, changes) => {
+    const update = await db().foundItem.updateMany({
+      where: { finderId, code, status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
+      data: changes,
+    });
+    return update.count === 1;
+  },
   getMineByCode: async (finderId, code) => {
     const item = await db().foundItem.findFirst({
-      where: { finderId, code },
+      where: { finderId, code, OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }] },
       select: myFoundItemSelect,
     });
     return item ? toMyFoundItem(item) : null;
   },
   listMine: async (finderId) => {
     const items = await db().foundItem.findMany({
-      where: { finderId },
+      where: { finderId, OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }] },
       select: myFoundItemSelect,
       orderBy: [{ createdAt: 'desc' }, { code: 'desc' }],
     });

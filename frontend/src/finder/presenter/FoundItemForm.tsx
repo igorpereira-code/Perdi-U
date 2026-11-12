@@ -3,7 +3,7 @@ import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { PhotoInput } from '../../core/presenter/PhotoInput';
-import type { FoundItemCatalogs, FoundItemCreated, FoundItemsService } from '../data/foundItemsService';
+import type { FoundItemCatalogs, FoundItemCreated, FoundItemPayload, FoundItemsService } from '../data/foundItemsService';
 import { buildFoundAt } from '../logic/buildFoundAt';
 import { validateFoundItemForm, type FoundItemFormErrors } from '../logic/validateFoundItemForm';
 import { FoundItemConfirmation } from './FoundItemConfirmation';
@@ -11,17 +11,22 @@ import { FoundItemConfirmation } from './FoundItemConfirmation';
 type FoundItemFormProps = {
   catalogs: FoundItemCatalogs;
   onCreate?: FoundItemsService['create'];
+  edit?: { initial: FoundItemPayload; onSave: (changes: FoundItemPayload) => Promise<void> };
 };
 
-export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
+export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) {
+  const initial = edit?.initial;
+  // El formulario trabaja con fecha y hora de Bolivia.
+  const localFoundAt = initial ? new Date(Date.parse(initial.foundAt) - 4 * 60 * 60 * 1000).toISOString() : '';
+  const title = edit ? 'Editar reporte' : 'Reportar objeto encontrado';
+  const [description, setDescription] = useState(initial?.description ?? '');
+  const [category, setCategory] = useState(initial ? String(initial.categoryId) : '');
   const [photo, setPhoto] = useState<File | null>(null);
-  const [placeId, setPlaceId] = useState('');
-  const [classroomId, setClassroomId] = useState('');
-  const [placeReference, setPlaceReference] = useState('');
-  const [foundDate, setFoundDate] = useState('');
-  const [foundTime, setFoundTime] = useState('');
+  const [placeId, setPlaceId] = useState(initial ? String(initial.placeId) : '');
+  const [classroomId, setClassroomId] = useState(initial?.classroomId ? String(initial.classroomId) : '');
+  const [placeReference, setPlaceReference] = useState(initial?.placeReference ?? '');
+  const [foundDate, setFoundDate] = useState(localFoundAt.slice(0, 10));
+  const [foundTime, setFoundTime] = useState(localFoundAt.slice(11, 16));
   const [errors, setErrors] = useState<FoundItemFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -49,19 +54,23 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
       }
       return;
     }
-    if (!onCreate) { return; }
+    if (!onCreate && !edit) { return; }
     isSubmitLockedRef.current = true;
     setIsSubmitting(true);
     try {
-      const creation = await onCreate({
+      const changes = {
         description: description.trim(),
         categoryId: Number(category),
         placeId: Number(placeId),
         classroomId: classroomId ? Number(classroomId) : null,
         placeReference: placeReference.trim() || null,
         foundAt: buildFoundAt(foundDate, foundTime),
-      }, photo);
-      setCreatedReport(creation);
+      };
+      if (edit) {
+        await edit.onSave(changes);
+      } else if (onCreate) {
+        setCreatedReport(await onCreate(changes, photo));
+      }
     } catch (error) {
       isSubmitLockedRef.current = false;
       setSubmitError(error instanceof Error ? error.message : 'No se pudo enviar el reporte. Intenta nuevamente.');
@@ -82,7 +91,7 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
       onSubmit={handleSubmit}
     >
       <h1 id="found-item-form-title" className="text-lg font-semibold text-blue-700">
-        Reportar objeto encontrado
+        {title}
       </h1>
       {submitError && <div role="alert"><Alert>{submitError}</Alert></div>}
       <fieldset disabled={isSubmitting} className="space-y-4">
@@ -116,14 +125,14 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
           ))}
         </select>
       </Field>
-      <fieldset className="space-y-2">
+      {!edit && <fieldset className="space-y-2">
         <legend className="text-sm font-medium text-neutral-700">
           Fotografía <span className="font-normal text-neutral-500">(opcional)</span>
         </legend>
         <PhotoInput onChange={setPhoto} />
         <p className="text-sm text-neutral-500">JPEG, PNG o WebP, máximo 5 MiB.</p>
         {photo && <p className="text-sm text-neutral-500">{photo.name}</p>}
-      </fieldset>
+      </fieldset>}
       <Field id="found-item-place" label="Bloque o espacio" error={errors.place}>
         <select
           id="found-item-place"
@@ -202,7 +211,7 @@ export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
         </Field>
       </fieldset>
       <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? 'Enviando…' : 'Reportar objeto encontrado'}
+        {isSubmitting ? (edit ? 'Guardando…' : 'Enviando…') : edit ? 'Guardar cambios' : title}
       </Button>
       </fieldset>
     </form>

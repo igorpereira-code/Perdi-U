@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { raw, Router, type ErrorRequestHandler } from 'express';
+import { raw, Router, type ErrorRequestHandler, type Response } from 'express';
 import { getCurrentUser } from '../../core/currentUser';
 import type { FoundItemsRepository } from '../data/foundItemsRepository';
 import { validateFoundItemReport } from '../logic/validateFoundItemReport';
@@ -12,6 +12,22 @@ const PHOTO_URL_TTL_SECONDS = 60;
 
 export function createFoundItemsRouter(foundItems: FoundItemsRepository, photos: FoundItemPhotoStorage): Router {
   const router = Router();
+
+  async function respondToPendingChangeConflict(finderId: string, code: string, res: Response) {
+    const report = await foundItems.getMineByCode(finderId, code);
+    if (!report) {
+      res.status(404).json({ error: 'No encontramos este reporte.' });
+      return;
+    }
+    if (report.status !== 'PENDING_DROP_OFF') {
+      res.status(409).json({
+        code: 'REPORT_ALREADY_RECEIVED',
+        error: 'Bienestar Estudiantil ya recibió este objeto. Ya no puedes editar ni cancelar el reporte.',
+      });
+      return;
+    }
+    res.status(409).json({ error: 'El reporte ya no está disponible para realizar cambios.' });
+  }
 
   router.get('/my-found-items', async (req, res) => {
     res.set('Cache-Control', 'private, no-store');
@@ -38,6 +54,55 @@ export function createFoundItemsRouter(foundItems: FoundItemsRepository, photos:
       res.json(item);
     } catch {
       res.status(503).json({ error: 'No se pudo cargar el reporte. Intenta nuevamente.' });
+    }
+  });
+
+  router.get('/my-found-items/:code/edit', async (req, res) => {
+    res.set('Cache-Control', 'private, no-store');
+    try {
+      const report = await foundItems.getEditable(getCurrentUser(req).id, String(req.params.code));
+      if (!report) {
+        res.status(404).json({ error: 'El reporte no está disponible para editar.' });
+        return;
+      }
+      res.json(report);
+    } catch {
+      res.status(503).json({ error: 'No se pudo cargar el reporte para editar.' });
+    }
+  });
+
+  router.patch('/my-found-items/:code', async (req, res) => {
+    try {
+      const validation = validateFoundItemReport(req.body, await foundItems.getCatalogs());
+      if (!validation.valid) {
+        res.status(400).json({ error: 'Revisa los datos del reporte.', errors: validation.errors });
+        return;
+      }
+      const finderId = getCurrentUser(req).id;
+      const code = String(req.params.code);
+      const updated = await foundItems.updatePending(finderId, code, validation.data);
+      if (!updated) {
+        await respondToPendingChangeConflict(finderId, code, res);
+        return;
+      }
+      res.json({ updated: true });
+    } catch {
+      res.status(503).json({ error: 'No se pudieron guardar los cambios. Intenta nuevamente.' });
+    }
+  });
+
+  router.delete('/my-found-items/:code', async (req, res) => {
+    try {
+      const finderId = getCurrentUser(req).id;
+      const code = String(req.params.code);
+      const cancelled = await foundItems.cancelPending(finderId, code);
+      if (!cancelled) {
+        await respondToPendingChangeConflict(finderId, code, res);
+        return;
+      }
+      res.json({ cancelled: true });
+    } catch {
+      res.status(503).json({ error: 'No se pudo cancelar el reporte. Intenta nuevamente.' });
     }
   });
 
