@@ -1,5 +1,5 @@
 import { Clock, MapPin, type LucideIcon } from 'lucide-react';
-import { WELFARE_OFFICE } from '@shared/constants';
+import { useWelfareOffice } from './WelfareOffice';
 
 function Line({ icon: Icon, text }: { icon: LucideIcon; text: string }) {
   return (
@@ -10,11 +10,13 @@ function Line({ icon: Icon, text }: { icon: LucideIcon; text: string }) {
   );
 }
 
+/** Where and when to go to Bienestar, as the Administrator saved it. */
 export function WelfareCard() {
+  const welfareOffice = useWelfareOffice();
   return (
     <div className="space-y-2 rounded-2xl border border-blue-100 bg-blue-50 p-4 text-sm text-blue-700">
-      <Line icon={MapPin} text={WELFARE_OFFICE.place} />
-      <Line icon={Clock} text={WELFARE_OFFICE.hours} />
+      <Line icon={MapPin} text={welfareOffice.place} />
+      <Line icon={Clock} text={welfareOffice.hours} />
     </div>
   );
 }

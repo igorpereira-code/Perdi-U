@@ -36,6 +36,9 @@ import { createAdminUsersRouter } from './admin/routes/adminUsersRouter';
 import type { AdminCatalogRepository } from './admin/data/adminCatalogRepository';
 import { prismaAdminCatalogRepository } from './admin/data/prismaAdminCatalogRepository';
 import { createAdminCatalogRouter } from './admin/routes/adminCatalogRouter';
+import type { SettingsRepository } from './core/data/settingsRepository';
+import { prismaSettingsRepository } from './core/data/prismaSettingsRepository';
+import { createSettingsRouter } from './core/routes/settingsRouter';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -51,6 +54,7 @@ type AppOptions = {
   notifications?: NotificationsRepository;
   adminUsers?: AdminUsersRepository;
   adminCatalog?: AdminCatalogRepository;
+  settings?: SettingsRepository;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
@@ -66,6 +70,7 @@ export function createApp({
   notifications = prismaNotificationsRepository,
   adminUsers = prismaAdminUsersRepository,
   adminCatalog = prismaAdminCatalogRepository,
+  settings = prismaSettingsRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -81,8 +86,8 @@ export function createApp({
     res.json(getCurrentUser(req));
   });
   app.use(createGuideRouter(users));
-  app.use(createMatchesRouter(matching));
-  app.use(createPublishRouter(matching));
+  app.use(createMatchesRouter(matching, settings));
+  app.use(createPublishRouter(matching, settings));
   app.use(createFoundItemsRouter(foundItems, foundItemPhotos));
   app.use(createReceivedItemsRouter(welfare));
   app.use(createLostReportsRouter(lostReports, () => foundItems.getCatalogs(), foundItemPhotos));
@@ -91,5 +96,6 @@ export function createApp({
   app.use(createNotificationsRouter(notifications));
   app.use(createAdminUsersRouter(adminUsers));
   app.use(createAdminCatalogRouter(adminCatalog));
+  app.use(createSettingsRouter(settings));
   return app;
 }

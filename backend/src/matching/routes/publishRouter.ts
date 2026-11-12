@@ -3,13 +3,19 @@ import { getCurrentUser, requireRole } from '../../core/currentUser';
 import type { FoundItemToPublish, MatchingRepository } from '../data/matchingRepository';
 import { canBePublished } from '../logic/canBePublished';
 import { findSimilarReports } from '../logic/findSimilarReports';
+import type { SettingsRepository } from '../../core/data/settingsRepository';
 
-export function createPublishRouter(matching: MatchingRepository): Router {
+export function createPublishRouter(
+  matching: MatchingRepository,
+  settings: SettingsRepository,
+): Router {
   const router = Router();
 
-  /** Saves the item as a possible match in every active lost report that looks like it. Returns how many. */
+  /** Saves the item as a possible match in every active lost report that looks like it enough. Returns how many. */
   async function suggestToSimilarReports(item: FoundItemToPublish): Promise<number> {
-    const similarReports = findSimilarReports(item, await matching.listActiveLostReports());
+    const { minSimilarity } = await settings.getMatchSettings();
+    const activeReports = await matching.listActiveLostReports();
+    const similarReports = findSimilarReports(item, activeReports, minSimilarity);
     for (const { report, similarity } of similarReports) {
       await matching.saveSuggestions(report.id, [{ foundItemId: item.id, similarity }]);
     }
