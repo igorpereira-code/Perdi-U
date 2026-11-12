@@ -4617,12 +4617,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ff9167c8d56432ccb3652977fe77e2226ea045cc",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T23:13:59.000Z",
       "message": "feat(admin): quitar el rol de Bienestar a un usuario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ff9167c8d56432ccb3652977fe77e2226ea045cc"
     },
     "stats": {
       "total": 41,
@@ -4956,6 +4956,25 @@
     "coverage": 85.9,
     "test_count": 678,
     "failed_tests": 15,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T19:49:48.000Z",
+      "message": "feat(welfare): mostrar esqueletos al cargar objetos parecidos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 21,
+      "additions": 20,
+      "deletions": 1,
+      "date": "2026-11-12"
+    },
+    "coverage": 85.83,
+    "test_count": 678,
+    "failed_tests": 13,
     "conclusion": "failure"
   }
 ]

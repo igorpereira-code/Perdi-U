@@ -11,6 +11,7 @@ import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { InfoRow } from '../../core/presenter/InfoRow';
+import { SkeletonArea, SkeletonCard } from '../../core/presenter/Skeleton';
 import { StatusChip } from '../../core/presenter/StatusChip';
 import { Thumb } from '../../core/presenter/Thumb';
 import type { MatchesService } from '../../matching/data/matchesService';
@@ -47,6 +48,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [selectedLostReport, setSelectedLostReport] = useState<WelfareLostReportView | null>(null);
   const [lostReportMessage, setLostReportMessage] = useState<string | null>(null);
   const [lostReportMatches, setLostReportMatches] = useState<MatchView[] | null>(null);
+  const [isLoadingLostReportMatches, setIsLoadingLostReportMatches] = useState(false);
   const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
   const [hasPendingPickupsError, setHasPendingPickupsError] = useState(false);
   const [pendingItems, setPendingItems] = useState<WelfareFoundItemView[] | null>(null);
@@ -73,6 +75,8 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   async function showLostReport(report: WelfareLostReportView) {
     setSelectedLostReport(report);
     setLostReportMatches(null);
+    setLostReportMessage(null);
+    setIsLoadingLostReportMatches(true);
     try {
       const matches = await matchesService.getMatches(report.code);
       if (matches === null) {
@@ -82,6 +86,8 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       }
     } catch {
       setLostReportMessage('No pudimos cargar los objetos parecidos');
+    } finally {
+      setIsLoadingLostReportMatches(false);
     }
   }
 
@@ -430,7 +436,20 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
                     </div>
                   </section>
 
-                  {lostReportMatches !== null && (
+                  {isLoadingLostReportMatches && (
+                    <section className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
+                      <h3 className="text-lg font-semibold text-blue-700">Objetos parecidos</h3>
+                      <SkeletonArea label="Cargando objetos parecidos…">
+                        <div className="space-y-2">
+                          {Array.from({ length: 3 }, (_, cardIndex) => (
+                            <SkeletonCard key={cardIndex} />
+                          ))}
+                        </div>
+                      </SkeletonArea>
+                    </section>
+                  )}
+
+                  {!isLoadingLostReportMatches && lostReportMatches !== null && (
                     <section className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
                       <h3 className="text-lg font-semibold text-blue-700">Objetos parecidos</h3>
                       {lostReportMatches.length === 0 ? (

@@ -5842,7 +5842,7 @@
     "testId": 128
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ff9167c8d56432ccb3652977fe77e2226ea045cc",
     "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352441180,
     "testId": 128
@@ -6020,5 +6020,19 @@
     "commitName": "feat(welfare): mostrar carga en las busquedas por codigo",
     "commitTimestamp": 1794512274493,
     "testId": 145
+  },
+  {
+    "numPassedTests": 606,
+    "failedTests": 72,
+    "numTotalTests": 678,
+    "timestamp": 1794512470755,
+    "success": false,
+    "testId": 146
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar esqueletos al cargar objetos parecidos",
+    "commitTimestamp": 1794512996293,
+    "testId": 146
   }
 ]
