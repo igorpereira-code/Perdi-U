@@ -51,7 +51,11 @@ export type WelfareRepository = {
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItem[]>;
   listInOffice: () => Promise<WelfareFoundItem[]>;
-  findByCode: (code: string) => Promise<WelfareFoundItem | null>;
-  receivePending: (itemId: string, receivedById: string, receivedAt: Date) => Promise<boolean>;
+  findFoundItemByCode: (code: string) => Promise<WelfareFoundItem | null>;
+  confirmPendingReception: (
+    itemId: string,
+    receivedById: string,
+    receivedAt: Date,
+  ) => Promise<boolean>;
   deliver: (delivery: DeliveryRegistration) => Promise<DeliveryResult>;
 };

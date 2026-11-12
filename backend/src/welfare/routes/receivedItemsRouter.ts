@@ -4,9 +4,9 @@ import { getCurrentUser, requireRole } from '../../core/currentUser';
 import { isInstitutionalEmail } from '../../core/logic/institutionalEmail';
 import type { WelfareFoundItem, WelfareRepository } from '../data/welfareRepository';
 
-function toView(item: WelfareFoundItem): WelfareFoundItemView {
-  const { id: _id, receivedById: _receivedById, receivedAt: _receivedAt, ...view } = item;
-  return { ...view, foundAt: item.foundAt.toISOString() };
+function toFoundItemView(foundItem: WelfareFoundItem): WelfareFoundItemView {
+  const { id: _id, receivedById: _receivedById, receivedAt: _receivedAt, ...view } = foundItem;
+  return { ...view, foundAt: foundItem.foundAt.toISOString() };
 }
 
 function toLostReportView(
@@ -79,40 +79,44 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
   });
 
   router.get('/welfare/found-items/pending', requireRole('WELFARE'), async (_req, res) => {
-    res.json((await welfare.listPending()).map(toView));
+    res.json((await welfare.listPending()).map(toFoundItemView));
   });
 
   router.get('/welfare/found-items/in-office', requireRole('WELFARE'), async (_req, res) => {
-    res.json((await welfare.listInOffice()).map(toView));
+    res.json((await welfare.listInOffice()).map(toFoundItemView));
   });
 
   router.get('/welfare/found-items/:code', requireRole('WELFARE'), async (req, res) => {
-    const code = normalizeCode(req.params.code);
-    const item = await welfare.findByCode(code);
-    if (!item) {
+    const foundItemCode = normalizeCode(req.params.code);
+    const foundItem = await welfare.findFoundItemByCode(foundItemCode);
+    if (!foundItem) {
       res.status(404).json({ error: 'Found item not found' });
       return;
     }
-    if (item.status !== 'PENDING_DROP_OFF') {
+    if (foundItem.status !== 'PENDING_DROP_OFF') {
       res.status(409).json({ code: 'ALREADY_RECEIVED' });
       return;
     }
-    res.json(toView(item));
+    res.json(toFoundItemView(foundItem));
   });
 
   router.post('/welfare/found-items/:code/receive', requireRole('WELFARE'), async (req, res) => {
-    const code = normalizeCode(req.params.code);
-    const item = await welfare.findByCode(code);
-    if (!item) {
+    const foundItemCode = normalizeCode(req.params.code);
+    const foundItem = await welfare.findFoundItemByCode(foundItemCode);
+    if (!foundItem) {
       res.status(404).json({ error: 'Found item not found' });
       return;
     }
-    const received = await welfare.receivePending(item.id, getCurrentUser(req).id, new Date());
-    if (!received) {
+    const wasReceived = await welfare.confirmPendingReception(
+      foundItem.id,
+      getCurrentUser(req).id,
+      new Date(),
+    );
+    if (!wasReceived) {
       res.status(409).json({ code: 'ALREADY_RECEIVED' });
       return;
     }
-    res.json(toView({ ...item, status: 'IN_CUSTODY' }));
+    res.json(toFoundItemView({ ...foundItem, status: 'IN_CUSTODY' }));
   });
 
   return router;

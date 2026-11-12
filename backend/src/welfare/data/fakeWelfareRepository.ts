@@ -54,11 +54,11 @@ export function fakeWelfareRepository(
       items
         .filter((item) => item.status === 'IN_CUSTODY' || item.status === 'PUBLISHED')
         .map((item) => ({ ...item, finder: item.finder && { ...item.finder } })),
-    findByCode: async (code) => {
+    findFoundItemByCode: async (code) => {
       const item = items.find((candidate) => candidate.code === code);
       return item ? { ...item, finder: item.finder && { ...item.finder } } : null;
     },
-    receivePending: async (itemId, receivedById, receivedAt) => {
+    confirmPendingReception: async (itemId, receivedById, receivedAt) => {
       const item = items.find((candidate) => candidate.id === itemId);
       if (!item || item.status !== 'PENDING_DROP_OFF') {
         return false;

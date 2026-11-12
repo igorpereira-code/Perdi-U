@@ -3470,7 +3470,7 @@
     "testId": 45
   },
   {
-    "commitId": "HEAD",
+    "commitId": "3aae79aa0d130821a99f81acdeef31e5ee554275",
     "commitName": "chore: integra los últimos cambios de final-test en welfare",
     "commitTimestamp": 1792504909096,
     "testId": 46
@@ -3552,5 +3552,19 @@
     "commitName": "refactor(welfare): aclarar operaciones del servicio",
     "commitTimestamp": 1794486589524,
     "testId": 51
+  },
+  {
+    "numPassedTests": 198,
+    "failedTests": 0,
+    "numTotalTests": 198,
+    "timestamp": 1794486681679,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): aclarar operaciones del repositorio",
+    "commitTimestamp": 1794486736900,
+    "testId": 52
   }
 ]

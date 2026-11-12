@@ -122,12 +122,12 @@ export const prismaWelfareRepository = {
     return rows.map(toWelfareItem);
   },
 
-  findByCode: async (code) => {
+  findFoundItemByCode: async (code) => {
     const row = await db().foundItem.findUnique({ where: { code }, include: itemRelations });
     return row ? toWelfareItem(row) : null;
   },
 
-  receivePending: async (itemId, receivedById, receivedAt) => {
+  confirmPendingReception: async (itemId, receivedById, receivedAt) => {
     const updatedItems = await db().foundItem.updateMany({
       where: { id: itemId, status: 'PENDING_DROP_OFF' },
       data: { status: 'IN_CUSTODY', receivedById, receivedAt },
