@@ -35,8 +35,8 @@ export type WelfareService = {
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItemView[]>;
   listInOffice: () => Promise<WelfareFoundItemView[]>;
-  findByCode: (code: string) => Promise<WelfareResult>;
-  receive: (code: string) => Promise<WelfareResult>;
+  findFoundItemByCode: (code: string) => Promise<WelfareResult>;
+  confirmReception: (code: string) => Promise<WelfareResult>;
   deliver: (delivery: DeliveryInput) => Promise<DeliveryResult>;
 };
 
@@ -44,7 +44,7 @@ function normalizeCode(code: string): string {
   return code.trim().toUpperCase();
 }
 
-async function itemResult(response: Response): Promise<WelfareResult> {
+async function parseFoundItemResponse(response: Response): Promise<WelfareResult> {
   if (response.ok) {
     return { status: 'FOUND', item: await response.json() };
   }
@@ -97,10 +97,10 @@ export function createWelfareService(apiFetch: ApiFetch): WelfareService {
       }
       return response.json();
     },
-    findByCode: async (code) =>
-      itemResult(await apiFetch(`/welfare/found-items/${normalizeCode(code)}`)),
-    receive: async (code) =>
-      itemResult(
+    findFoundItemByCode: async (code) =>
+      parseFoundItemResponse(await apiFetch(`/welfare/found-items/${normalizeCode(code)}`)),
+    confirmReception: async (code) =>
+      parseFoundItemResponse(
         await apiFetch(`/welfare/found-items/${normalizeCode(code)}/receive`, { method: 'POST' }),
       ),
     deliver: async (delivery) => {

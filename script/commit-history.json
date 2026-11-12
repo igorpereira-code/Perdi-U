@@ -4560,12 +4560,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "5151a7afd34363a09d89d85891bec070d403f91d",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T21:54:10.000Z",
       "message": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/5151a7afd34363a09d89d85891bec070d403f91d"
     },
     "stats": {
       "total": 332,
@@ -4894,6 +4894,25 @@
       "total": 66,
       "additions": 39,
       "deletions": 27,
+      "date": "2026-11-12"
+    },
+    "coverage": 86.15,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T18:49:55.000Z",
+      "message": "chore(welfare): actualizar final-test para resolver el PR",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 910,
+      "additions": 509,
+      "deletions": 401,
       "date": "2026-11-12"
     },
     "coverage": 86.15,

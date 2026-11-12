@@ -5776,7 +5776,7 @@
     "testId": 125
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5151a7afd34363a09d89d85891bec070d403f91d",
     "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
     "commitTimestamp": 1794347651673,
     "testId": 125
@@ -5954,5 +5954,19 @@
     "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
     "commitTimestamp": 1794491488766,
     "testId": 142
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794509313202,
+    "success": true,
+    "testId": 143
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): actualizar final-test para resolver el PR",
+    "commitTimestamp": 1794509396922,
+    "testId": 143
   }
 ]
