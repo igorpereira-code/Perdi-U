@@ -5776,7 +5776,7 @@
     "testId": 125
   },
   {
-    "commitId": "HEAD",
+    "commitId": "fcc14b0c15caa8d596caaec6059c3bd64a85dd7e",
     "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
     "commitTimestamp": 1794347651673,
     "testId": 125
@@ -5798,7 +5798,7 @@
     "testId": 126
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c62c84c58ab690effa8144a46e9a356430b720a0",
     "commitName": "feat(admin): buscar un usuario por su correo institucional",
     "commitTimestamp": 1794351233083,
     "testId": 126
@@ -5820,7 +5820,7 @@
     "testId": 127
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6c5f2506a6ab4134800f954860c8232178405133",
     "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352177930,
     "testId": 127
@@ -5842,7 +5842,7 @@
     "testId": 128
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2c21080e0de69ef1e2e01d92deaeb8e293e83f86",
     "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352441180,
     "testId": 128
@@ -5954,5 +5954,109 @@
     "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
     "commitTimestamp": 1794491488766,
     "testId": 142
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 9,
+    "numTotalTests": 689,
+    "timestamp": 1794494119920,
+    "success": false,
+    "testId": 143
+  },
+  {
+    "numPassedTests": 689,
+    "failedTests": 0,
+    "numTotalTests": 689,
+    "timestamp": 1794494385126,
+    "success": true,
+    "testId": 143
+  },
+  {
+    "numPassedTests": 689,
+    "failedTests": 0,
+    "numTotalTests": 689,
+    "timestamp": 1794495146981,
+    "success": true,
+    "testId": 143
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): ver las categorías y los lugares del campus",
+    "commitTimestamp": 1794495210769,
+    "testId": 143
+  },
+  {
+    "numPassedTests": 698,
+    "failedTests": 32,
+    "numTotalTests": 730,
+    "timestamp": 1794508588013,
+    "success": false,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 730,
+    "failedTests": 0,
+    "numTotalTests": 730,
+    "timestamp": 1794508783398,
+    "success": true,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 730,
+    "failedTests": 0,
+    "numTotalTests": 730,
+    "timestamp": 1794508877206,
+    "success": true,
+    "testId": 144
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): crear, editar y desactivar categorías",
+    "commitTimestamp": 1794508947528,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 735,
+    "failedTests": 29,
+    "numTotalTests": 764,
+    "timestamp": 1794520677688,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794520809043,
+    "success": true,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794520876941,
+    "success": true,
+    "testId": 145
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): crear, editar y desactivar lugares y sus aulas",
+    "commitTimestamp": 1794520968541,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794521172724,
+    "success": true,
+    "testId": 146
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(admin): quitar el repositorio de prueba del router y reiniciar los mocks",
+    "commitTimestamp": 1794521204950,
+    "testId": 146
   }
 ]
