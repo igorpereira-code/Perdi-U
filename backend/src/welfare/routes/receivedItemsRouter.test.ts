@@ -135,7 +135,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
   });
 
   it('no entrega si el reporte no corresponde al objeto y propietario', async () => {
-    const { repository, items, deliveries } = fakeWelfareRepository(
+    const { repository, foundItems, deliveries } = fakeWelfareRepository(
       [publishedItem],
       [pendingPickup],
     );
@@ -152,7 +152,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(409);
     expect(res.body).toEqual({ code: 'REPORT_NOT_ELIGIBLE' });
-    expect(items[0].status).toBe('PUBLISHED');
+    expect(foundItems[0].status).toBe('PUBLISHED');
     expect(deliveries).toEqual([]);
   });
 
@@ -174,7 +174,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
   });
 
   it('rechaza un correo no institucional para la entrega', async () => {
-    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const { repository, foundItems, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))
       .post('/welfare/deliveries')
       .set('x-sample-user', 'welfare')
@@ -187,12 +187,12 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(400);
     expect(res.body).toEqual({ code: 'INVALID_RECIPIENT_EMAIL' });
-    expect(items[0].status).toBe('PUBLISHED');
+    expect(foundItems[0].status).toBe('PUBLISHED');
     expect(deliveries).toEqual([]);
   });
 
   it('rechaza una entrega si faltan los datos obligatorios del receptor', async () => {
-    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const { repository, foundItems, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))
       .post('/welfare/deliveries')
       .set('x-sample-user', 'welfare')
@@ -200,7 +200,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(400);
     expect(res.body).toEqual({ code: 'INVALID_DELIVERY_DATA' });
-    expect(items[0].status).toBe('PUBLISHED');
+    expect(foundItems[0].status).toBe('PUBLISHED');
     expect(deliveries).toEqual([]);
   });
 
@@ -209,7 +209,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
       ...pendingPickup,
       foundItem: { code: 'HZ-0003', description: publishedItem.description },
     };
-    const { repository, items, pickups, deliveries } = fakeWelfareRepository(
+    const { repository, foundItems, pendingPickups, deliveries } = fakeWelfareRepository(
       [publishedItem],
       [pickupForItem],
     );
@@ -225,13 +225,13 @@ describe('Recibir objetos encontrados en Bienestar', () => {
       });
 
     expect(res.status).toBe(201);
-    expect(items[0].status).toBe('DELIVERED');
-    expect(pickups[0].reportStatus).toBe('RECOVERED');
+    expect(foundItems[0].status).toBe('DELIVERED');
+    expect(pendingPickups[0].reportStatus).toBe('RECOVERED');
     expect(deliveries[0]).toEqual(expect.objectContaining({ lostReportCode: 'PR-0001' }));
   });
 
   it('registra una entrega sin reporte y marca el objeto como entregado', async () => {
-    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const { repository, foundItems, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))
       .post('/welfare/deliveries')
       .set('x-sample-user', 'welfare')
@@ -244,7 +244,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(201);
     expect(res.body).toEqual({ status: 'DELIVERED', foundItemCode: 'HZ-0003' });
-    expect(items[0].status).toBe('DELIVERED');
+    expect(foundItems[0].status).toBe('DELIVERED');
     expect(deliveries).toEqual([
       expect.objectContaining({
         foundItemCode: 'HZ-0003',
@@ -417,12 +417,12 @@ describe('Recibir objetos encontrados en Bienestar', () => {
   });
 
   it('registra quien y cuando lo recibio', async () => {
-    const { repository, items } = fakeWelfareRepository([pendingItem]);
+    const { repository, foundItems } = fakeWelfareRepository([pendingItem]);
     await request(createApp({ welfare: repository }))
       .post('/welfare/found-items/HZ-0005/receive')
       .set('x-sample-user', 'welfare');
 
-    expect(items[0]).toEqual(
+    expect(foundItems[0]).toEqual(
       expect.objectContaining({
         receivedById: SAMPLE_USERS.welfare.id,
         receivedAt: expect.any(Date),
@@ -431,12 +431,12 @@ describe('Recibir objetos encontrados en Bienestar', () => {
   });
 
   it('deja el objeto en custodia', async () => {
-    const { repository, items } = fakeWelfareRepository([pendingItem]);
+    const { repository, foundItems } = fakeWelfareRepository([pendingItem]);
     await request(createApp({ welfare: repository }))
       .post('/welfare/found-items/HZ-0005/receive')
       .set('x-sample-user', 'welfare');
 
-    expect(items[0].status).toBe('IN_CUSTODY');
+    expect(foundItems[0].status).toBe('IN_CUSTODY');
     await expect(repository.listPending()).resolves.toEqual([]);
   });
 

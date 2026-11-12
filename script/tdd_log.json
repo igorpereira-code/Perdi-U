@@ -3492,7 +3492,7 @@
     "testId": 47
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0fb5be0907a3c5008e5daa58d950fb8bdf9e7a0a",
     "commitName": "refactor(welfare): renombrar estados booleanos",
     "commitTimestamp": 1794320255330,
     "testId": 47
@@ -3506,7 +3506,7 @@
     "testId": 48
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0fb5be0907a3c5008e5daa58d950fb8bdf9e7a0a",
     "commitName": "refactor(welfare): aclarar estados de objetos pendientes",
     "commitTimestamp": 1794320455558,
     "testId": 48
@@ -3566,5 +3566,41 @@
     "commitName": "refactor(welfare): aclarar operaciones del repositorio",
     "commitTimestamp": 1794486736900,
     "testId": 52
+  },
+  {
+    "numPassedTests": 194,
+    "failedTests": 4,
+    "numTotalTests": 198,
+    "timestamp": 1794487061710,
+    "success": false,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 198,
+    "failedTests": 0,
+    "numTotalTests": 198,
+    "timestamp": 1794487415799,
+    "success": true,
+    "testId": 53
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): aclarar nombres de persistencia",
+    "commitTimestamp": 1794487654135,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 198,
+    "failedTests": 0,
+    "numTotalTests": 198,
+    "timestamp": 1794487853850,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): aclarar nombres de persistencia",
+    "commitTimestamp": 1794488023571,
+    "testId": 54
   }
 ]

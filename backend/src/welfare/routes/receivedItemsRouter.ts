@@ -10,13 +10,13 @@ function toFoundItemView(foundItem: WelfareFoundItem): WelfareFoundItemView {
 }
 
 function toLostReportView(
-  report: Awaited<ReturnType<WelfareRepository['listActiveLostReports']>>[number],
+  lostReport: Awaited<ReturnType<WelfareRepository['listActiveLostReports']>>[number],
 ): WelfareLostReportView {
-  const { id: _id, ...view } = report;
+  const { id: _id, ...view } = lostReport;
   return {
     ...view,
-    dateFrom: report.dateFrom.toISOString(),
-    dateTo: report.dateTo.toISOString(),
+    dateFrom: lostReport.dateFrom.toISOString(),
+    dateTo: lostReport.dateTo.toISOString(),
   };
 }
 
@@ -36,12 +36,12 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
   });
 
   router.get('/welfare/lost-reports/:code', requireRole('WELFARE'), async (req, res) => {
-    const report = await welfare.findActiveLostReportByCode(normalizeCode(req.params.code));
-    if (!report) {
+    const lostReport = await welfare.findActiveLostReportByCode(normalizeCode(req.params.code));
+    if (!lostReport) {
       res.status(404).json({ code: 'LOST_REPORT_NOT_FOUND' });
       return;
     }
-    res.json(toLostReportView(report));
+    res.json(toLostReportView(lostReport));
   });
 
   router.get('/welfare/pending-pickups', requireRole('WELFARE'), async (_req, res) => {

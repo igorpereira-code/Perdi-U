@@ -2394,12 +2394,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "0fb5be0907a3c5008e5daa58d950fb8bdf9e7a0a",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-10T14:17:33.000Z",
       "message": "refactor(welfare): renombrar estados booleanos",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0fb5be0907a3c5008e5daa58d950fb8bdf9e7a0a"
     },
     "stats": {
       "total": 32,
@@ -2413,12 +2413,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "0fb5be0907a3c5008e5daa58d950fb8bdf9e7a0a",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-10T14:20:52.000Z",
       "message": "refactor(welfare): aclarar estados de objetos pendientes",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/0fb5be0907a3c5008e5daa58d950fb8bdf9e7a0a"
     },
     "stats": {
       "total": 99,
@@ -2506,5 +2506,43 @@
     "test_count": 198,
     "failed_tests": 0,
     "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T12:47:24.000Z",
+      "message": "refactor(welfare): aclarar nombres de persistencia",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 248,
+      "additions": 136,
+      "deletions": 112,
+      "date": "2026-11-12"
+    },
+    "coverage": 84.66,
+    "test_count": 198,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T12:53:42.000Z",
+      "message": "refactor(welfare): aclarar nombres de persistencia",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 248,
+      "additions": 136,
+      "deletions": 112,
+      "date": "2026-11-12"
+    },
+    "coverage": 84.28,
+    "test_count": 198,
+    "failed_tests": 1,
+    "conclusion": "failure"
   }
 ]
