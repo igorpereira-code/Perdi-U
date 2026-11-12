@@ -5582,7 +5582,7 @@
     "testId": 114
   },
   {
-    "commitId": "decb48eab2e1f426af9d0fe07f3e6d07b9779821",
+    "commitId": "b1066ac2611cec840d8d2f69c7ff29f6537d5188",
     "commitName": "refactor(core): renombrar guidePending a isGuidePending",
     "commitTimestamp": 1794340247321,
     "testId": 114
@@ -5596,7 +5596,7 @@
     "testId": 115
   },
   {
-    "commitId": "545b5bd010c0e5e25c55ba86517e1e681a1c4805",
+    "commitId": "6957e217d0cd10a3f7d211eca1c6ce8fd951875c",
     "commitName": "refactor(core): renombrar signedInPage a renderSignedInPage",
     "commitTimestamp": 1794340317356,
     "testId": 115
@@ -5610,7 +5610,7 @@
     "testId": 116
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b05400b46a702cfe29329804a04ee7fb361b915a",
     "commitName": "refactor(matching): renombrar result a publishResult",
     "commitTimestamp": 1794340400452,
     "testId": 116
@@ -5624,7 +5624,7 @@
     "testId": 117
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c0f20362e61668df1787b63b3dd51b9e9b9b5710",
     "commitName": "refactor(matching): renombrar el archivo matchCountText a formatMatchCount",
     "commitTimestamp": 1794340476250,
     "testId": 117
@@ -5638,7 +5638,7 @@
     "testId": 118
   },
   {
-    "commitId": "HEAD",
+    "commitId": "3e9c46e1216bda00683e7af6ca3632233dc34a80",
     "commitName": "feat(core): mostrar el cursor de carga mientras el botón espera al servidor",
     "commitTimestamp": 1794343786430,
     "testId": 118
@@ -5660,7 +5660,7 @@
     "testId": 119
   },
   {
-    "commitId": "HEAD",
+    "commitId": "01de44676c2c3ea0acea587a8bd4b8530c84333c",
     "commitName": "feat(core): mostrar esqueletos de carga en lugar del indicador con círculo",
     "commitTimestamp": 1794344118367,
     "testId": 119
@@ -5674,7 +5674,7 @@
     "testId": 120
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c09c6880807368ee86b987a6494abce06be7f77c",
     "commitName": "feat(core): mostrar una pantalla de carga al abrir la app",
     "commitTimestamp": 1794344852072,
     "testId": 120
@@ -5688,7 +5688,7 @@
     "testId": 121
   },
   {
-    "commitId": "HEAD",
+    "commitId": "953343a4f12a6c1b9302f37ef574064ea23f60fd",
     "commitName": "feat(core): mostrar la carga al iniciar y cerrar sesión",
     "commitTimestamp": 1794345106760,
     "testId": 121
@@ -5710,7 +5710,7 @@
     "testId": 122
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c1fbb91757b8b669dc740e3aabe3d947de959780",
     "commitName": "feat(matching): mostrar la carga y los errores en las coincidencias del propietario",
     "commitTimestamp": 1794345395572,
     "testId": 122
@@ -5732,7 +5732,7 @@
     "testId": 123
   },
   {
-    "commitId": "HEAD",
+    "commitId": "71d21c266c33880f0391aa305b350829b6ffa4c4",
     "commitName": "feat(matching): mostrar la carga y los errores al publicar un objeto",
     "commitTimestamp": 1794345653282,
     "testId": 123
@@ -5754,7 +5754,7 @@
     "testId": 124
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2099df584873a06d8b8184937fa4103c0d4c20d9",
     "commitName": "feat(admin): mostrar la opción de administración solo al Administrador",
     "commitTimestamp": 1794346318231,
     "testId": 124
@@ -5776,7 +5776,7 @@
     "testId": 125
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5151a7afd34363a09d89d85891bec070d403f91d",
     "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
     "commitTimestamp": 1794347651673,
     "testId": 125
@@ -5890,31 +5890,83 @@
     "testId": 131
   },
   {
-    "numPassedTests": 678,
-    "failedTests": 0,
-    "numTotalTests": 678,
-    "timestamp": 1794492115050,
-    "success": true,
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
+    "commitTimestamp": 1794490799523,
     "testId": 132
   },
   {
     "commitId": "HEAD",
-    "commitName": "chore(welfare): integrar final-test antes de REF-14",
-    "commitTimestamp": 1794492294633,
-    "testId": 132
+    "commitName": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
+    "commitTimestamp": 1794490855674,
+    "testId": 133
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
+    "commitTimestamp": 1794490908233,
+    "testId": 134
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
+    "commitTimestamp": 1794490958823,
+    "testId": 135
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
+    "commitTimestamp": 1794491011050,
+    "testId": 136
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): extraer la carga con reintento a useLoadedData y LoadErrorAlert",
+    "commitTimestamp": 1794491116150,
+    "testId": 137
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
+    "commitTimestamp": 1794491189261,
+    "testId": 138
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
+    "commitTimestamp": 1794491262113,
+    "testId": 139
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
+    "commitTimestamp": 1794491307539,
+    "testId": 140
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
+    "commitTimestamp": 1794491360067,
+    "testId": 141
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
+    "commitTimestamp": 1794491488766,
+    "testId": 142
   },
   {
     "numPassedTests": 678,
     "failedTests": 0,
     "numTotalTests": 678,
-    "timestamp": 1794492789957,
+    "timestamp": 1794509313202,
     "success": true,
-    "testId": 133
+    "testId": 143
   },
   {
     "commitId": "HEAD",
-    "commitName": "refactor(welfare): mostrar carga al confirmar recepcion",
-    "commitTimestamp": 1794492956269,
-    "testId": 133
+    "commitName": "chore(welfare): actualizar final-test para resolver el PR",
+    "commitTimestamp": 1794509396922,
+    "testId": 143
   }
 ]
