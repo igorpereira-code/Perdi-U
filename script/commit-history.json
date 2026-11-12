@@ -4389,12 +4389,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b05400b46a702cfe29329804a04ee7fb361b915a",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:53:20.000Z",
       "message": "refactor(matching): renombrar result a publishResult",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/b05400b46a702cfe29329804a04ee7fb361b915a"
     },
     "stats": {
       "total": 14,
@@ -4726,6 +4726,25 @@
       "date": "2026-11-12"
     },
     "coverage": 85.81,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-12T13:41:48.000Z",
+      "message": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 42,
+      "additions": 25,
+      "deletions": 17,
+      "date": "2026-11-12"
+    },
+    "coverage": 85.84,
     "test_count": 678,
     "failed_tests": 0,
     "conclusion": "success"

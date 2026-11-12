@@ -5610,7 +5610,7 @@
     "testId": 116
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b05400b46a702cfe29329804a04ee7fb361b915a",
     "commitName": "refactor(matching): renombrar result a publishResult",
     "commitTimestamp": 1794340400452,
     "testId": 116
@@ -5900,5 +5900,11 @@
     "commitName": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
     "commitTimestamp": 1794490855674,
     "testId": 133
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
+    "commitTimestamp": 1794490908233,
+    "testId": 134
   }
 ]
