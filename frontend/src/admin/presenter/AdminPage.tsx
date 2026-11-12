@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { SearchX, Users } from 'lucide-react';
 import type { ManagedUser } from '@shared/admin';
-import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
+import { LoadErrorAlert } from '../../core/presenter/LoadErrorAlert';
 import { SkeletonList } from '../../core/presenter/Skeleton';
+import { useLoadedData } from '../../core/presenter/useLoadedData';
 import type { AdminUsersService } from '../data/adminUsersService';
 import { filterUsersByEmail } from '../logic/filterUsersByEmail';
 import { formatRoleLabel } from '../logic/formatRoleLabel';
@@ -15,56 +16,145 @@ type AdminPageProps = {
   adminUsersService: AdminUsersService;
 };
 
+/** Which user's role is being changed right now, and which change could not be saved. */
+type RoleChangeState = {
+  changingUserId: string | null;
+  failedUserId: string | null;
+};
+
+type ChangeRole = (user: ManagedUser, roleAction: RoleAction) => void;
+
+function replaceUser(users: ManagedUser[] | undefined, updatedUser: ManagedUser) {
+  return users?.map((user) => (user.id === updatedUser.id ? updatedUser : user));
+}
+
+type ManagedUserCardProps = {
+  user: ManagedUser;
+  roleChange: RoleChangeState;
+  onChangeRole: ChangeRole;
+};
+
+function ManagedUserCard({ user, roleChange, onChangeRole }: ManagedUserCardProps) {
+  const roleAction = getRoleAction(user.role);
+  return (
+    <li className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+      <div className="flex items-center gap-3">
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-semibold text-neutral-900">{user.name}</p>
+          <p className="truncate text-xs text-neutral-500">{user.email}</p>
+        </div>
+        <span className="shrink-0 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+          {formatRoleLabel(user.role)}
+        </span>
+      </div>
+      {roleAction && (
+        <Button
+          variant="outline"
+          onClick={() => onChangeRole(user, roleAction)}
+          disabled={roleChange.changingUserId !== null}
+          isLoading={roleChange.changingUserId === user.id}
+          loadingText={roleAction.loadingText}
+          className="w-full"
+        >
+          {roleAction.label}
+        </Button>
+      )}
+      {roleChange.failedUserId === user.id && (
+        <p role="alert" className="rounded-xl bg-danger-50 p-2 text-sm text-danger-700">
+          No se pudo cambiar el rol. Intenta nuevamente.
+        </p>
+      )}
+    </li>
+  );
+}
+
+type UsersListProps = {
+  users: ManagedUser[];
+  roleChange: RoleChangeState;
+  onChangeRole: ChangeRole;
+};
+
+/** The users, with a search box to find one by email. */
+function UsersList({ users, roleChange, onChangeRole }: UsersListProps) {
+  const [searchedEmail, setSearchedEmail] = useState('');
+  const foundUsers = filterUsersByEmail(users, searchedEmail);
+  return (
+    <div className="space-y-4">
+      <Field id="searched-email" label="Buscar por correo">
+        <input
+          id="searched-email"
+          type="search"
+          value={searchedEmail}
+          onChange={(event) => setSearchedEmail(event.target.value)}
+          placeholder="nombre.apellido@ucb.edu.bo"
+          className={INPUT_CLASSES}
+        />
+      </Field>
+      {foundUsers.length === 0 ? (
+        <EmptyState
+          icon={SearchX}
+          title="No encontramos usuarios con ese correo"
+          text="Revisa que el correo esté bien escrito."
+        />
+      ) : (
+        <ul aria-label="Usuarios" className="space-y-3">
+          {foundUsers.map((user) => (
+            <ManagedUserCard
+              key={user.id}
+              user={user}
+              roleChange={roleChange}
+              onChangeRole={onChangeRole}
+            />
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 /** The Administrator's page: the users of the app and their roles. */
 export function AdminPage({ adminUsersService }: AdminPageProps) {
-  const [users, setUsers] = useState<ManagedUser[] | null>(null);
-  const [hasFailed, setHasFailed] = useState(false);
-  const [loadAttempt, setLoadAttempt] = useState(0);
-  const [searchedEmail, setSearchedEmail] = useState('');
-  const [changingUserId, setChangingUserId] = useState<string | null>(null);
-  const [failedUserId, setFailedUserId] = useState<string | null>(null);
-
-  useEffect(() => {
-    let isActive = true;
-    setUsers(null);
-    setHasFailed(false);
-    adminUsersService
-      .listUsers()
-      .then((loadedUsers) => {
-        if (isActive) {
-          setUsers(loadedUsers);
-        }
-      })
-      .catch(() => {
-        if (isActive) {
-          setHasFailed(true);
-        }
-      });
-    return () => {
-      isActive = false;
-    };
-  }, [adminUsersService, loadAttempt]);
+  const loadUsers = useCallback(() => adminUsersService.listUsers(), [adminUsersService]);
+  const { data: users, setData: setUsers, hasFailed, retry } = useLoadedData(loadUsers);
+  const [roleChange, setRoleChange] = useState<RoleChangeState>({
+    changingUserId: null,
+    failedUserId: null,
+  });
 
   async function changeRole(user: ManagedUser, roleAction: RoleAction) {
-    setChangingUserId(user.id);
-    setFailedUserId(null);
+    setRoleChange({ changingUserId: user.id, failedUserId: null });
     try {
       const updatedUser = await adminUsersService.changeRole(user.id, roleAction.newRole);
-      setUsers(
-        (current) =>
-          current &&
-          current.map((storedUser) =>
-            storedUser.id === updatedUser.id ? updatedUser : storedUser,
-          ),
-      );
+      setUsers((current) => replaceUser(current, updatedUser));
+      setRoleChange({ changingUserId: null, failedUserId: null });
     } catch {
-      setFailedUserId(user.id);
-    } finally {
-      setChangingUserId(null);
+      setRoleChange({ changingUserId: null, failedUserId: user.id });
     }
   }
 
-  const foundUsers = users ? filterUsersByEmail(users, searchedEmail) : [];
+  function renderUsers() {
+    if (hasFailed) {
+      return (
+        <LoadErrorAlert
+          message="No se pudieron cargar los usuarios. Intenta nuevamente."
+          onRetry={retry}
+        />
+      );
+    }
+    if (users === undefined) {
+      return <SkeletonList rows={4} label="Cargando usuarios…" />;
+    }
+    if (users.length === 0) {
+      return (
+        <EmptyState
+          icon={Users}
+          title="Todavía no hay usuarios"
+          text="Aparecerán cuando ingresen a Perdi-U."
+        />
+      );
+    }
+    return <UsersList users={users} roleChange={roleChange} onChangeRole={changeRole} />;
+  }
 
   return (
     <section className="mx-auto max-w-lg space-y-4">
@@ -72,86 +162,7 @@ export function AdminPage({ adminUsersService }: AdminPageProps) {
         <h1 className="text-lg font-semibold text-blue-700">Administración</h1>
         <p className="text-sm text-neutral-500">Gestiona al personal de Bienestar Estudiantil.</p>
       </div>
-      {hasFailed ? (
-        <div className="space-y-3">
-          <div role="alert">
-            <Alert>No se pudieron cargar los usuarios. Intenta nuevamente.</Alert>
-          </div>
-          <Button onClick={() => setLoadAttempt((value) => value + 1)}>Reintentar</Button>
-        </div>
-      ) : users === null ? (
-        <SkeletonList rows={4} label="Cargando usuarios…" />
-      ) : users.length === 0 ? (
-        <EmptyState
-          icon={Users}
-          title="Todavía no hay usuarios"
-          text="Aparecerán cuando ingresen a Perdi-U."
-        />
-      ) : (
-        <div className="space-y-4">
-          <Field id="searched-email" label="Buscar por correo">
-            <input
-              id="searched-email"
-              type="search"
-              value={searchedEmail}
-              onChange={(event) => setSearchedEmail(event.target.value)}
-              placeholder="nombre.apellido@ucb.edu.bo"
-              className={INPUT_CLASSES}
-            />
-          </Field>
-          {foundUsers.length === 0 ? (
-            <EmptyState
-              icon={SearchX}
-              title="No encontramos usuarios con ese correo"
-              text="Revisa que el correo esté bien escrito."
-            />
-          ) : (
-            <ul aria-label="Usuarios" className="space-y-3">
-              {foundUsers.map((user) => {
-                const roleAction = getRoleAction(user.role);
-                return (
-                  <li
-                    key={user.id}
-                    className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-semibold text-neutral-900">
-                          {user.name}
-                        </p>
-                        <p className="truncate text-xs text-neutral-500">{user.email}</p>
-                      </div>
-                      <span className="shrink-0 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-                        {formatRoleLabel(user.role)}
-                      </span>
-                    </div>
-                    {roleAction && (
-                      <Button
-                        variant="outline"
-                        onClick={() => changeRole(user, roleAction)}
-                        disabled={changingUserId !== null}
-                        isLoading={changingUserId === user.id}
-                        loadingText={roleAction.loadingText}
-                        className="w-full"
-                      >
-                        {roleAction.label}
-                      </Button>
-                    )}
-                    {failedUserId === user.id && (
-                      <p
-                        role="alert"
-                        className="rounded-xl bg-danger-50 p-2 text-sm text-danger-700"
-                      >
-                        No se pudo cambiar el rol. Intenta nuevamente.
-                      </p>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </div>
-      )}
+      {renderUsers()}
     </section>
   );
 }

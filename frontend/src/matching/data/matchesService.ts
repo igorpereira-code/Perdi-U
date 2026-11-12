@@ -13,6 +13,14 @@ export type MatchesService = {
 const REPORT_NOT_FOUND_STATUSES = [403, 404];
 
 export function createMatchesService(apiFetch: ApiFetch): MatchesService {
+  /** Saves the owner's answer to a match: "pick-up" or "dismiss". */
+  async function sendMatchAnswer(matchId: string, answer: 'pick-up' | 'dismiss') {
+    const response = await apiFetch(`/matches/${matchId}/${answer}`, { method: 'POST' });
+    if (!response.ok) {
+      throw new Error('No se pudo guardar tu respuesta. Intenta nuevamente.');
+    }
+  }
+
   return {
     getMatches: async (reportCode) => {
       const response = await apiFetch(`/lost-reports/${reportCode}/matches`);
@@ -24,18 +32,8 @@ export function createMatchesService(apiFetch: ApiFetch): MatchesService {
       }
       return response.json();
     },
-    pickUp: async (matchId) => {
-      const response = await apiFetch(`/matches/${matchId}/pick-up`, { method: 'POST' });
-      if (!response.ok) {
-        throw new Error('No se pudo guardar tu respuesta. Intenta nuevamente.');
-      }
-    },
-    dismiss: async (matchId) => {
-      const response = await apiFetch(`/matches/${matchId}/dismiss`, { method: 'POST' });
-      if (!response.ok) {
-        throw new Error('No se pudo guardar tu respuesta. Intenta nuevamente.');
-      }
-    },
+    pickUp: (matchId) => sendMatchAnswer(matchId, 'pick-up'),
+    dismiss: (matchId) => sendMatchAnswer(matchId, 'dismiss'),
     publish: async (itemCode) => {
       const response = await apiFetch(`/found-items/${itemCode}/publish`, { method: 'POST' });
       if (response.status === 409) {
