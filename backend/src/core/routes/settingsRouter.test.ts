@@ -110,3 +110,18 @@ describe('Editar la ubicación y el horario de Bienestar', () => {
     });
   });
 });
+
+describe('Los usuarios ven la ubicación y el horario actualizados', () => {
+  it.each(['COMMUNITY', 'WELFARE'] as const)(
+    'un usuario %s ve la ubicación y el horario que guardó el Administrador',
+    async (role) => {
+      const settings = fakeSettingsRepository();
+      await settings.updateWelfareOffice(NEW_WELFARE_OFFICE);
+
+      const response = await getWelfareOffice(setup(role, settings));
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(NEW_WELFARE_OFFICE);
+    },
+  );
+});

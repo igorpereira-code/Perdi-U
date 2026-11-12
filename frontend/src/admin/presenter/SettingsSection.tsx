@@ -71,7 +71,7 @@ function WelfareOfficeForm({ savedWelfareOffice, onSave }: WelfareOfficeFormProp
       )}
       {hasSaved && (
         <p role="status" className="rounded-xl bg-success-50 p-2 text-sm text-success-700">
-          Guardado. Los usuarios ya ven la nueva ubicación y horario.
+          Guardado. Los usuarios verán la nueva ubicación y horario al volver a Perdi-U.
         </p>
       )}
       <Button type="submit" isLoading={isSaving} loadingText="Guardando…" className="w-full">

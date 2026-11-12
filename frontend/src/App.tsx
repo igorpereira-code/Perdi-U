@@ -37,6 +37,7 @@ import type { AdminCatalogService } from './admin/data/adminCatalogService';
 import { canUseWelfareOptions } from './core/logic/canUseWelfareOptions';
 import { useRoleRefresh } from './core/presenter/useRoleRefresh';
 import type { SettingsService } from './core/data/settingsService';
+import { useSavedWelfareOffice, WelfareOfficeContext } from './core/presenter/WelfareOffice';
 
 type AppProps = {
   authService: AuthService;
@@ -84,6 +85,7 @@ export default function App({
       });
   }, [authService]);
   useRoleRefresh(authService, setUser);
+  const welfareOffice = useSavedWelfareOffice(settingsService, user?.id);
 
   async function handleSignOut() {
     await authService.signOut();
@@ -107,14 +109,18 @@ export default function App({
       return <Navigate to="/guia-rapida" replace />;
     }
     return (
-      <AppLayout
-        role={user.role}
-        headerAction={
-          notificationsService && <NotificationsBell notificationsService={notificationsService} />
-        }
-      >
-        {page(user)}
-      </AppLayout>
+      <WelfareOfficeContext.Provider value={welfareOffice}>
+        <AppLayout
+          role={user.role}
+          headerAction={
+            notificationsService && (
+              <NotificationsBell notificationsService={notificationsService} />
+            )
+          }
+        >
+          {page(user)}
+        </AppLayout>
+      </WelfareOfficeContext.Provider>
     );
   };
 
