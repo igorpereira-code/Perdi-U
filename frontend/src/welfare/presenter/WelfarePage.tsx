@@ -43,6 +43,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [lostReports, setLostReports] = useState<WelfareLostReportView[] | null>(null);
   const [hasLostReportsError, setHasLostReportsError] = useState(false);
   const [lostReportCode, setLostReportCode] = useState('');
+  const [isSearchingLostReport, setIsSearchingLostReport] = useState(false);
   const [selectedLostReport, setSelectedLostReport] = useState<WelfareLostReportView | null>(null);
   const [lostReportMessage, setLostReportMessage] = useState<string | null>(null);
   const [lostReportMatches, setLostReportMatches] = useState<MatchView[] | null>(null);
@@ -53,6 +54,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [publishedCodes, setPublishedCodes] = useState<Set<string>>(new Set());
   const [selectedItem, setSelectedItem] = useState<WelfareFoundItemView | null>(null);
   const [searchedItemCode, setSearchedItemCode] = useState('');
+  const [isSearchingFoundItem, setIsSearchingFoundItem] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
   const [isReceiving, setIsReceiving] = useState(false);
   const [deliveryDraft, setDeliveryDraft] = useState<DeliveryInput | null>(null);
@@ -85,6 +87,10 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
 
   async function searchLostReport(event: FormEvent) {
     event.preventDefault();
+    if (isSearchingLostReport) {
+      return;
+    }
+    setIsSearchingLostReport(true);
     setLostReportMessage(null);
     try {
       const searchResult = await welfareService.findLostReportByCode(lostReportCode);
@@ -99,6 +105,8 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       setSelectedLostReport(null);
       setLostReportMatches(null);
       setLostReportMessage('No pudimos buscar el reporte');
+    } finally {
+      setIsSearchingLostReport(false);
     }
   }
 
@@ -202,6 +210,10 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
 
   async function searchFoundItem(event: FormEvent) {
     event.preventDefault();
+    if (isSearchingFoundItem) {
+      return;
+    }
+    setIsSearchingFoundItem(true);
     setFeedbackMessage(null);
     try {
       const searchResult = await welfareService.findFoundItemByCode(searchedItemCode);
@@ -217,6 +229,8 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       );
     } catch {
       setFeedbackMessage('No pudimos buscar el objeto');
+    } finally {
+      setIsSearchingFoundItem(false);
     }
   }
 
@@ -321,20 +335,30 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             title="Reportes de pérdida activos"
             subtitle="Consulta reportes activos y revisa los objetos encontrados que podrían coincidir."
           />
-          <form onSubmit={searchLostReport} className="relative mb-4">
-            <Search
-              className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-neutral-500"
-              aria-hidden="true"
-            />
-            <label htmlFor="lost-report-code" className="sr-only">Código del reporte</label>
-            <input
-              id="lost-report-code"
-              className={`${INPUT_CLASSES} pl-9 font-mono uppercase placeholder:font-sans placeholder:normal-case`}
-              value={lostReportCode}
-              onChange={(event) => setLostReportCode(event.target.value)}
-              placeholder="Buscar por ID, ej. PR-0001"
-            />
-            <button type="submit" className="sr-only">Buscar reporte</button>
+          <form onSubmit={searchLostReport} className="mb-4 flex gap-2">
+            <div className="relative min-w-0 flex-1">
+              <Search
+                className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-neutral-500"
+                aria-hidden="true"
+              />
+              <label htmlFor="lost-report-code" className="sr-only">Código del reporte</label>
+              <input
+                id="lost-report-code"
+                className={`${INPUT_CLASSES} pl-9 font-mono uppercase placeholder:font-sans placeholder:normal-case`}
+                value={lostReportCode}
+                onChange={(event) => setLostReportCode(event.target.value)}
+                placeholder="Buscar por ID, ej. PR-0001"
+                disabled={isSearchingLostReport}
+              />
+            </div>
+            <Button
+              type="submit"
+              aria-label="Buscar reporte"
+              isLoading={isSearchingLostReport}
+              loadingText="Buscando…"
+            >
+              Buscar
+            </Button>
           </form>
           {lostReportMessage && <div className="mb-4"><Alert>{lostReportMessage}</Alert></div>}
 
@@ -452,20 +476,29 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             title="Solicitudes de hallazgo"
             subtitle="Reportes privados esperando que el hallador traiga el objeto."
           />
-          <form onSubmit={searchFoundItem} className="relative mb-4">
-            <Search
-              className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-neutral-500"
-              aria-hidden="true"
-            />
-            <label htmlFor="found-item-code" className="sr-only">Código del objeto</label>
-            <input
-              id="found-item-code"
-              className={`${INPUT_CLASSES} pl-9 font-mono uppercase placeholder:font-sans placeholder:normal-case`}
-              value={searchedItemCode}
-              onChange={(event) => setSearchedItemCode(event.target.value)}
-              placeholder="Buscar por ID, ej. HZ-0007"
-            />
-            <button type="submit" className="sr-only">Buscar</button>
+          <form onSubmit={searchFoundItem} className="mb-4 flex gap-2">
+            <div className="relative min-w-0 flex-1">
+              <Search
+                className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-neutral-500"
+                aria-hidden="true"
+              />
+              <label htmlFor="found-item-code" className="sr-only">Código del objeto</label>
+              <input
+                id="found-item-code"
+                className={`${INPUT_CLASSES} pl-9 font-mono uppercase placeholder:font-sans placeholder:normal-case`}
+                value={searchedItemCode}
+                onChange={(event) => setSearchedItemCode(event.target.value)}
+                placeholder="Buscar por ID, ej. HZ-0007"
+                disabled={isSearchingFoundItem}
+              />
+            </div>
+            <Button
+              type="submit"
+              isLoading={isSearchingFoundItem}
+              loadingText="Buscando…"
+            >
+              Buscar
+            </Button>
           </form>
 
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">

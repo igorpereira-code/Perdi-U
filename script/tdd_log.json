@@ -5820,7 +5820,7 @@
     "testId": 127
   },
   {
-    "commitId": "HEAD",
+    "commitId": "aee0a70a9ee8dec3562dc1639448a021eba29b5f",
     "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
     "commitTimestamp": 1794352177930,
     "testId": 127
@@ -5990,5 +5990,35 @@
     "commitName": "feat(welfare): mostrar carga al registrar la entrega",
     "commitTimestamp": 1794511789301,
     "testId": 144
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794511919096,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794511977047,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794512050396,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar carga en las busquedas por codigo",
+    "commitTimestamp": 1794512274493,
+    "testId": 145
   }
 ]
