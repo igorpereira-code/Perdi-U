@@ -5638,7 +5638,7 @@
     "testId": 118
   },
   {
-    "commitId": "HEAD",
+    "commitId": "3e9c46e1216bda00683e7af6ca3632233dc34a80",
     "commitName": "feat(core): mostrar el cursor de carga mientras el botón espera al servidor",
     "commitTimestamp": 1794343786430,
     "testId": 118
@@ -5912,5 +5912,11 @@
     "commitName": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
     "commitTimestamp": 1794490958823,
     "testId": 135
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
+    "commitTimestamp": 1794491011050,
+    "testId": 136
   }
 ]

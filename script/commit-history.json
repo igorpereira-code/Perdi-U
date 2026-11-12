@@ -4427,12 +4427,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "3e9c46e1216bda00683e7af6ca3632233dc34a80",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T20:49:43.000Z",
       "message": "feat(core): mostrar el cursor de carga mientras el botón espera al servidor",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/3e9c46e1216bda00683e7af6ca3632233dc34a80"
     },
     "stats": {
       "total": 6,
@@ -4761,6 +4761,25 @@
       "total": 38,
       "additions": 25,
       "deletions": 13,
+      "date": "2026-11-12"
+    },
+    "coverage": 85.86,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-12T13:43:30.000Z",
+      "message": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 45,
+      "additions": 30,
+      "deletions": 15,
       "date": "2026-11-12"
     },
     "coverage": 85.86,
