@@ -4484,12 +4484,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "953343a4f12a6c1b9302f37ef574064ea23f60fd",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T21:11:45.000Z",
       "message": "feat(core): mostrar la carga al iniciar y cerrar sesión",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/953343a4f12a6c1b9302f37ef574064ea23f60fd"
     },
     "stats": {
       "total": 60,
@@ -4821,6 +4821,25 @@
       "date": "2026-11-12"
     },
     "coverage": 86.75,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-12T13:47:41.000Z",
+      "message": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 167,
+      "additions": 102,
+      "deletions": 65,
+      "date": "2026-11-12"
+    },
+    "coverage": 86.14,
     "test_count": 678,
     "failed_tests": 0,
     "conclusion": "success"

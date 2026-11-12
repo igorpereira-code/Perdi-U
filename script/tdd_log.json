@@ -5688,7 +5688,7 @@
     "testId": 121
   },
   {
-    "commitId": "HEAD",
+    "commitId": "953343a4f12a6c1b9302f37ef574064ea23f60fd",
     "commitName": "feat(core): mostrar la carga al iniciar y cerrar sesión",
     "commitTimestamp": 1794345106760,
     "testId": 121
@@ -5930,5 +5930,11 @@
     "commitName": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
     "commitTimestamp": 1794491189261,
     "testId": 138
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
+    "commitTimestamp": 1794491262113,
+    "testId": 139
   }
 ]
