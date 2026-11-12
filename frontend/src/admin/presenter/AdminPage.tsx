@@ -4,16 +4,20 @@ import type { AdminUsersService } from '../data/adminUsersService';
 import { CategoriesSection } from './CategoriesSection';
 import { PlacesSection } from './PlacesSection';
 import { UsersSection } from './UsersSection';
+import type { SettingsService } from '../../core/data/settingsService';
+import { SettingsSection } from './SettingsSection';
 
 type AdminPageProps = {
   adminUsersService: AdminUsersService;
   adminCatalogService: AdminCatalogService;
+  settingsService: SettingsService;
 };
 
 const ADMIN_TABS = [
   { id: 'users', label: 'Usuarios' },
   { id: 'categories', label: 'Categorías' },
   { id: 'places', label: 'Lugares' },
+  { id: 'settings', label: 'Ajustes' },
 ] as const;
 
 type AdminTab = (typeof ADMIN_TABS)[number]['id'];
@@ -25,7 +29,7 @@ type AdminTabsProps = {
 
 function AdminTabs({ selectedTab, onSelect }: AdminTabsProps) {
   return (
-    <div role="tablist" className="grid grid-cols-3 gap-1 rounded-xl bg-neutral-100 p-1">
+    <div role="tablist" className="grid grid-cols-4 gap-1 rounded-xl bg-neutral-100 p-1">
       {ADMIN_TABS.map((tab) => (
         <button
           key={tab.id}
@@ -45,7 +49,11 @@ function AdminTabs({ selectedTab, onSelect }: AdminTabsProps) {
 }
 
 /** The Administrator's page: users and their roles, categories and places of the campus. */
-export function AdminPage({ adminUsersService, adminCatalogService }: AdminPageProps) {
+export function AdminPage({
+  adminUsersService,
+  adminCatalogService,
+  settingsService,
+}: AdminPageProps) {
   const [selectedTab, setSelectedTab] = useState<AdminTab>('users');
 
   return (
@@ -62,6 +70,7 @@ export function AdminPage({ adminUsersService, adminCatalogService }: AdminPageP
         <CategoriesSection adminCatalogService={adminCatalogService} />
       )}
       {selectedTab === 'places' && <PlacesSection adminCatalogService={adminCatalogService} />}
+      {selectedTab === 'settings' && <SettingsSection settingsService={settingsService} />}
     </section>
   );
 }

@@ -4,8 +4,12 @@ import type { MatchStatus } from '@shared/statuses';
 import { getCurrentUser, type CurrentUser } from '../../core/currentUser';
 import type { LostReportToMatch, MatchingRepository } from '../data/matchingRepository';
 import { findSimilarItems } from '../logic/findSimilarItems';
+import type { SettingsRepository } from '../../core/data/settingsRepository';
 
-export function createMatchesRouter(matching: MatchingRepository): Router {
+export function createMatchesRouter(
+  matching: MatchingRepository,
+  settings: SettingsRepository,
+): Router {
   const router = Router();
 
   /** Bienestar can see any active report; everyone else, only their own. */
@@ -15,9 +19,11 @@ export function createMatchesRouter(matching: MatchingRepository): Router {
       : matching.findOwnLostReport(code, user.id);
   }
 
-  /** Saves every published item that looks like the report as a possible match. */
+  /** Saves every published item that looks like the report enough as a possible match. */
   async function suggestSimilarItems(report: LostReportToMatch): Promise<void> {
-    const similarItems = findSimilarItems(report, await matching.listPublishedItems());
+    const { minSimilarity } = await settings.getMatchSettings();
+    const publishedItems = await matching.listPublishedItems();
+    const similarItems = findSimilarItems(report, publishedItems, minSimilarity);
     await matching.saveSuggestions(
       report.id,
       similarItems.map(({ item, similarity }) => ({ foundItemId: item.id, similarity })),
