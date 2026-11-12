@@ -7,4 +7,5 @@ export type AppUser = {
   email: string;
   photoUrl?: string | null;
   role: Role;
+  hasSeenGuide: boolean;
 };

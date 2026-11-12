@@ -1,19 +1,14 @@
 import type { Request, RequestHandler } from 'express';
 import type { Role } from '@prisma/client';
+import type { AppUser } from '@shared/user';
 import { verifySupabaseToken } from './data/supabaseAuth';
 import { SAMPLE_USERS } from './sampleUsers';
 import { isInstitutionalEmail } from './logic/institutionalEmail';
 import { prismaUsersRepository } from './data/prismaUsersRepository';
 import type { UsersRepository } from './data/usersRepository';
-import { roleForEmail } from './logic/roleForEmail';
+import { getRoleForEmail } from './logic/getRoleForEmail';
 
-export type CurrentUser = {
-  id: string;
-  name: string;
-  email: string;
-  photoUrl?: string | null;
-  role: Role;
-};
+export type CurrentUser = AppUser;
 
 declare global {
   namespace Express {
@@ -39,7 +34,7 @@ const DEFAULT_SAMPLE_USER: SampleUserKey = 'ana';
 const isSampleUserKey = (key: string): key is SampleUserKey => Object.hasOwn(SAMPLE_USERS, key);
 
 /** TEMPORARY sample users, so the team can try the API without signing in with Google. */
-const useSampleUser: RequestHandler = (req, res, next) => {
+const signInAsSampleUser: RequestHandler = (req, res, next) => {
   const key = req.header('x-sample-user') ?? DEFAULT_SAMPLE_USER;
 
   if (!isSampleUserKey(key)) {
@@ -51,10 +46,7 @@ const useSampleUser: RequestHandler = (req, res, next) => {
   next();
 };
 
-/**
- * Returns the user's saved profile.
- * On the first sign-in it does not exist yet, so it is created with the data from Google. No form needed.
- */
+/* Returns the user's saved profile.  */
 async function findOrCreateProfile(
   tokenUser: TokenUser,
   users: UsersRepository,
@@ -64,18 +56,12 @@ async function findOrCreateProfile(
     return savedProfile;
   }
 
-  const role = roleForEmail(tokenUser.email, await users.listWelfareEmails());
+  const role = getRoleForEmail(tokenUser.email, await users.listWelfareEmails());
   return users.create({ ...tokenUser, photoUrl: tokenUser.photoUrl ?? null, role });
 }
 
-/**
- * Finds out who is making the request:
- * - With `Authorization: Bearer <token>`, it is the user who signed in with Google.
- * - Otherwise, a sample user (header `x-sample-user: ana | luis | welfare`),
- *   only if ALLOW_SAMPLE_USERS=true (local development). If not, the user must sign in.
- * Routes always use getCurrentUser(), so they never care which one it was.
- */
-export function createCurrentUser(
+/* Finds out who is making the request: */
+export function createUserAuthenticator(
   verifyToken: VerifyToken,
   users: UsersRepository,
   allowSampleUsers: boolean,
@@ -87,7 +73,7 @@ export function createCurrentUser(
         res.status(401).json({ error: 'Sign in to continue.' });
         return;
       }
-      useSampleUser(req, res, next);
+      signInAsSampleUser(req, res, next);
       return;
     }
 
@@ -106,7 +92,7 @@ export function createCurrentUser(
   };
 }
 
-export const currentUser = createCurrentUser(
+export const authenticateUser = createUserAuthenticator(
   verifySupabaseToken,
   prismaUsersRepository,
   process.env.ALLOW_SAMPLE_USERS === 'true',

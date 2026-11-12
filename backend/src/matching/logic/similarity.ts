@@ -22,11 +22,13 @@ const MIN_WORD_LENGTH = 4;
 
 /** Words of 4 letters or more, in lowercase and without accents ("Cálculo" → "calculo"). */
 function words(text: string): Set<string> {
-  const normalized = text
+  const normalizedText = text
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
-  return new Set(normalized.split(/[^a-z0-9]+/).filter((word) => word.length >= MIN_WORD_LENGTH));
+  return new Set(
+    normalizedText.split(/[^a-z0-9]+/).filter((word) => word.length >= MIN_WORD_LENGTH),
+  );
 }
 
 function foundInDateRange(report: LostReportForMatching, item: FoundItemForMatching): boolean {
@@ -40,7 +42,10 @@ function sharedWordCount(report: LostReportForMatching, item: FoundItemForMatchi
 }
 
 /** From 0 to 100: how much a found item looks like the lost one. Different category = 0. */
-export function similarityScore(report: LostReportForMatching, item: FoundItemForMatching): number {
+export function calculateSimilarityScore(
+  report: LostReportForMatching,
+  item: FoundItemForMatching,
+): number {
   if (report.categoryId !== item.categoryId) {
     return 0;
   }

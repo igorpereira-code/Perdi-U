@@ -6,9 +6,15 @@ import type {
 import { createWelfareService } from './welfareService';
 
 const item: WelfareFoundItemView = {
-  code: 'HZ-0005', description: 'Mochila negra', photoUrl: null, category: 'Mochilas',
-  place: 'Bloque A', classroom: null, placeReference: null,
-  foundAt: '2026-10-15T14:00:00.000Z', status: 'PENDING_DROP_OFF',
+  code: 'HZ-0005',
+  description: 'Mochila negra',
+  photoUrl: null,
+  category: 'Mochilas',
+  place: 'Bloque A',
+  classroom: null,
+  placeReference: null,
+  foundAt: '2026-10-15T14:00:00.000Z',
+  status: 'PENDING_DROP_OFF',
   finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
 
@@ -26,10 +32,12 @@ describe('Servicio de recepcion de Bienestar', () => {
     };
     const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => report });
 
-    await expect(createWelfareService(apiFetch).findLostReportByCode(' pr-0001 ')).resolves.toEqual({
-      status: 'FOUND',
-      report,
-    });
+    await expect(createWelfareService(apiFetch).findLostReportByCode(' pr-0001 ')).resolves.toEqual(
+      {
+        status: 'FOUND',
+        report,
+      },
+    );
     expect(apiFetch).toHaveBeenCalledWith('/welfare/lost-reports/PR-0001');
   });
 
@@ -132,6 +140,28 @@ describe('Servicio de recepcion de Bienestar', () => {
 
   it('rechaza errores inesperados del servidor', async () => {
     const apiFetch = jest.fn().mockResolvedValue({ ok: false, status: 500 });
-    await expect(createWelfareService(apiFetch).listPending()).rejects.toThrow('No se pudo consultar Bienestar');
+    await expect(createWelfareService(apiFetch).listPending()).rejects.toThrow(
+      'No se pudo consultar Bienestar',
+    );
+  });
+  it.each([
+    [400, 'INVALID_DELIVERY_DATA'],
+    [400, 'INVALID_RECIPIENT_EMAIL'],
+    [409, 'ITEM_NOT_AVAILABLE'],
+    [409, 'REPORT_NOT_ELIGIBLE'],
+  ] as const)('explica por qué no se registró la entrega (%s %s)', async (httpStatus, code) => {
+    const apiFetch = jest
+      .fn()
+      .mockResolvedValue({ ok: false, status: httpStatus, json: async () => ({ code }) });
+    const delivery = {
+      foundItemCode: 'HZ-0003',
+      recipientName: 'Ana Rojas',
+      recipientEmail: 'ana.rojas@ucb.edu.bo',
+      recipientUniversityCode: '20205678',
+    };
+
+    await expect(createWelfareService(apiFetch).deliver(delivery)).resolves.toEqual({
+      status: code,
+    });
   });
 });

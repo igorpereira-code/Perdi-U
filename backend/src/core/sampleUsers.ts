@@ -4,17 +4,20 @@ export const SAMPLE_USERS = {
     name: 'Ana Rojas',
     email: 'ana.rojas@universidad.edu.bo',
     role: 'COMMUNITY',
+    hasSeenGuide: true,
   },
   luis: {
     id: '00000000-0000-4000-8000-000000000002',
     name: 'Luis Mamani',
     email: 'luis.mamani@universidad.edu.bo',
     role: 'COMMUNITY',
+    hasSeenGuide: true,
   },
   welfare: {
     id: '00000000-0000-4000-8000-000000000003',
     name: 'Bienestar Estudiantil',
     email: 'bienestar@universidad.edu.bo',
     role: 'WELFARE',
+    hasSeenGuide: true,
   },
 } as const;

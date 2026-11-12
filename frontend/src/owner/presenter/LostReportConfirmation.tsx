@@ -1,53 +1,26 @@
-import { Button } from '../../core/presenter/Button';
-import { StatusChip } from '../../core/presenter/StatusChip';
+import { Link } from 'react-router-dom';
+import { CircleCheck } from 'lucide-react';
+import { Alert } from '../../core/presenter/Alert';
 import { SeeMatchesLink } from '../../matching/presenter/SeeMatchesLink';
 
-type LostReportConfirmationProps = {
-  reportCode: string;
-  onGoHome: () => void;
-};
-
-export function LostReportConfirmation({ reportCode, onGoHome }: LostReportConfirmationProps) {
+/** Shown after sending a lost report. */
+export function LostReportConfirmation({ code }: { code: string }) {
   return (
-    <main className="p-4 max-w-lg mx-auto text-center space-y-6 pt-10">
-      <div className="w-16 h-16 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
-        ✓
+    <div className="mx-auto max-w-lg space-y-4 text-center">
+      <CircleCheck className="mx-auto h-12 w-12 text-blue-500" aria-hidden="true" />
+      <h1 className="text-lg font-semibold text-blue-700">Reporte enviado</h1>
+      <div className="rounded-2xl border border-neutral-300 bg-neutral-0 p-4">
+        <p className="text-sm text-neutral-500">Código de tu reporte</p>
+        <p className="font-mono text-2xl font-bold text-blue-700">{code}</p>
       </div>
-
-      <div className="space-y-2">
-        <h1 className="text-xl font-bold text-neutral-900">Reporte registrado con éxito</h1>
-        <p className="text-sm text-neutral-500">
-          Guarda este código para hacerle seguimiento a tu objeto:
-        </p>
-      </div>
-
-      <div className="p-4 bg-white border border-neutral-200 rounded-xl shadow-sm inline-block space-y-2">
-        <span className="text-2xl font-mono font-bold text-blue-700 tracking-wider block">
-          {reportCode}
-        </span>
-        <div className="flex items-center justify-center gap-2 pt-1 text-xs text-neutral-500">
-          <span>Estado:</span>
-          <StatusChip status="SEARCHING" />
-        </div>
-      </div>
-
-      <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-800 text-left">
-        ℹ️ El reporte sigue activo aunque todavía no aparezca tu objeto. El sistema te notificará cuando haya coincidencias.
-      </div>
-
-      <div className="p-3 bg-neutral-100 border border-neutral-200 rounded-lg text-xs text-neutral-600 text-left">
-        🔒 <strong>Reporte privado:</strong> Tu reporte es privado: solo lo ven tú y Bienestar Estudiantil.
-      </div>
-
-      <div className="pt-2">
-        <SeeMatchesLink reportCode={reportCode} />
-      </div>
-
-      <div className="pt-4">
-        <Button variant="outline" className="w-full" onClick={onGoHome}>
-          Volver al inicio
-        </Button>
-      </div>
-    </main>
+      <Alert>Tu reporte es privado: solo lo ven tú y Bienestar Estudiantil.</Alert>
+      <p className="text-sm text-neutral-700">
+        Tu reporte seguirá activo aunque tu objeto todavía no aparezca.
+      </p>
+      <SeeMatchesLink reportCode={code} />
+      <Link to="/" className="inline-block text-sm font-semibold text-blue-500">
+        Volver al inicio
+      </Link>
+    </div>
   );
 }

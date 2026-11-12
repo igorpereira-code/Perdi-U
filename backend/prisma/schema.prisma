@@ -71,6 +71,7 @@ model User {
   photoUrl  String?  @map("photo_url")
   role      Role     @default(COMMUNITY)
   createdAt DateTime @default(now()) @map("created_at")
+  hasSeenGuide Boolean  @default(false) @map("has_seen_guide")
 
   foundItems           FoundItem[]  @relation("FoundItemFinder")
   receivedItems        FoundItem[]  @relation("FoundItemReceivedBy")
@@ -78,6 +79,7 @@ model User {
   lostReports          LostReport[]
   receivedDeliveries   Delivery[]   @relation("DeliveryRecipient")
   registeredDeliveries Delivery[]   @relation("DeliveryRegisteredBy")
+    notifications        Notification[]
 
   @@map("users")
 }
@@ -245,4 +247,22 @@ model Delivery {
   registeredBy  User        @relation("DeliveryRegisteredBy", fields: [registeredById], references: [id])
 
   @@map("deliveries")
+}
+
+
+// ─────────────── Notifications ───────────────
+
+/// In-app notification for one user (2nd deliverable)
+model Notification {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  message   String    @db.VarChar(300)
+  link      String?   @db.VarChar(200) /// Screen to open, e.g. /mis-perdidas/PR-0001
+  createdAt DateTime  @default(now()) @map("created_at")
+  readAt    DateTime? @map("read_at") /// Null while the user has not opened it
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("notifications")
 }

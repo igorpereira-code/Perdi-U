@@ -1,7 +1,7 @@
 import express from 'express';
 import request from 'supertest';
 import { createApp } from '../app';
-import { currentUser, requireRole } from './currentUser';
+import { authenticateUser, requireRole } from './currentUser';
 import type { UserProfile, UsersRepository } from './data/usersRepository';
 
 function fakeUsers(welfareEmails: string[] = []) {
@@ -9,10 +9,12 @@ function fakeUsers(welfareEmails: string[] = []) {
   const users: UsersRepository = {
     findById: async (id) => saved.find((user) => user.id === id) ?? null,
     create: async (profile) => {
-      saved.push(profile);
-      return profile;
+      const savedProfile = { ...profile, hasSeenGuide: false };
+      saved.push(savedProfile);
+      return savedProfile;
     },
     listWelfareEmails: async () => welfareEmails,
+    markGuideSeen: async () => {},
   };
   return { users, saved };
 }
@@ -41,7 +43,7 @@ describe('Ver el usuario actual (GET /me)', () => {
 
 describe('Restringir por rol (requireRole)', () => {
   const app = express();
-  app.use(currentUser);
+  app.use(authenticateUser);
   app.get('/welfare-only', requireRole('WELFARE'), (_req, res) => {
     res.json({ ok: true });
   });
@@ -87,7 +89,7 @@ describe('Ingresar con una sesión de Google', () => {
 
     it('sigue usando el mismo perfil y no crea otro', async () => {
       const { users, saved } = fakeUsers();
-      saved.push({ ...googleUser, photoUrl: null, role: 'WELFARE' });
+      saved.push({ ...googleUser, photoUrl: null, role: 'WELFARE', hasSeenGuide: true });
 
       const res = await request(createApp({ verifyToken, users }))
         .get('/me')
@@ -105,7 +107,7 @@ describe('Ingresar con una sesión de Google', () => {
       .get('/me')
       .set('Authorization', 'Bearer valid-token');
 
-    expect(saved).toEqual([{ ...googleUser, role: 'COMMUNITY' }]);
+    expect(saved).toEqual([{ ...googleUser, role: 'COMMUNITY', hasSeenGuide: false }]);
   });
 });
 

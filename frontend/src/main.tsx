@@ -8,18 +8,43 @@ import { createApiFetch } from './core/data/api';
 import { createAuthService } from './core/data/authService';
 import { supabase } from './core/data/supabase';
 import { createMatchesService } from './matching/data/matchesService';
+import { createGuideService } from './finder/data/guideService';
+import { createFoundItemsService } from './finder/data/foundItemsService';
 import { createWelfareService } from './welfare/data/welfareService';
+import { createLostReportsService } from './owner/data/lostReportsService';
+import { createCatalogService } from './owner/data/catalogService';
+import { createMyLostReportsService } from './owner/data/myLostReportsService';
+import { createNotificationsService } from './core/data/notificationsService';
+import { createAdminUsersService } from './admin/data/adminUsersService';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const authService = createAuthService({ auth: supabase.auth, apiUrl });
 const apiFetch = createApiFetch({ auth: supabase.auth, apiUrl });
 const matchesService = createMatchesService(apiFetch);
+const guideService = createGuideService(apiFetch);
+const foundItemsService = createFoundItemsService(apiFetch);
 const welfareService = createWelfareService(apiFetch);
+const lostReportsService = createLostReportsService(apiFetch);
+const catalogService = createCatalogService(apiFetch);
+const myLostReportsService = createMyLostReportsService(apiFetch);
+const notificationsService = createNotificationsService(apiFetch);
+const adminUsersService = createAdminUsersService(apiFetch);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <App authService={authService} matchesService={matchesService} welfareService={welfareService} />
+      <App
+        authService={authService}
+        matchesService={matchesService}
+        guideService={guideService}
+        foundItemsService={foundItemsService}
+        welfareService={welfareService}
+        lostReportsService={lostReportsService}
+        catalogService={catalogService}
+        myLostReportsService={myLostReportsService}
+        notificationsService={notificationsService}
+        adminUsersService={adminUsersService}
+      />
     </BrowserRouter>
   </StrictMode>,
 );

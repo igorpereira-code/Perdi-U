@@ -9,16 +9,16 @@ function fakeAuth(session: { access_token: string } | null) {
 
 describe('Llamar al backend con la sesión del usuario', () => {
   it('manda la sesión del usuario en cada pedido', async () => {
-    const fetchFn = jest.fn().mockResolvedValue({ ok: true });
+    const sendRequest = jest.fn().mockResolvedValue({ ok: true });
     const apiFetch = createApiFetch({
       auth: fakeAuth({ access_token: 'token-123' }),
       apiUrl: 'http://api',
-      fetchFn,
+      sendRequest,
     });
 
     await apiFetch('/lost-reports/PR-0001/matches', { method: 'POST' });
 
-    expect(fetchFn).toHaveBeenCalledWith('http://api/lost-reports/PR-0001/matches', {
+    expect(sendRequest).toHaveBeenCalledWith('http://api/lost-reports/PR-0001/matches', {
       method: 'POST',
       headers: { Authorization: 'Bearer token-123' },
     });

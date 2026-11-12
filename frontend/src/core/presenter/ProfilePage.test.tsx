@@ -9,6 +9,7 @@ const igor: AppUser = {
   email: 'igor.pereira@ucb.edu.bo',
   photoUrl: 'https://foto.com/igor.jpg',
   role: 'COMMUNITY',
+  hasSeenGuide: true,
 };
 
 describe('Mi perfil', () => {

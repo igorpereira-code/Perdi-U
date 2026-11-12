@@ -6,6 +6,7 @@ const igor = {
   name: 'Igor Pereira',
   email: 'igor.pereira@ucb.edu.bo',
   role: 'COMMUNITY' as const,
+  hasSeenGuide: true,
 };
 
 describe('Pantalla principal', () => {
