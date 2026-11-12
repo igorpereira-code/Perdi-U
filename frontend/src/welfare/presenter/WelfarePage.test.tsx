@@ -56,8 +56,8 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
     listPendingPickups: jest.fn().mockResolvedValue([]),
     listPending: jest.fn().mockResolvedValue([item]),
     listInOffice: jest.fn().mockResolvedValue([inCustodyItem, publishedItem]),
-    findByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
-    receive: jest.fn(),
+    findFoundItemByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
+    confirmReception: jest.fn(),
     deliver: jest.fn(),
     ...overrides,
   };
@@ -432,7 +432,7 @@ describe('Panel de Bienestar', () => {
     await userEvent.type(screen.getByLabelText('Código del objeto'), ' hz-0005 ');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
 
-    expect(welfareService.findByCode).toHaveBeenCalledWith(' hz-0005 ');
+    expect(welfareService.findFoundItemByCode).toHaveBeenCalledWith(' hz-0005 ');
     const detail = (await screen.findByRole('heading', { name: 'HZ-0005' })).closest('section');
     expect(detail).not.toBeNull();
     expect(within(detail!).getByText('Ana Rojas')).toBeInTheDocument();
@@ -444,7 +444,7 @@ describe('Panel de Bienestar', () => {
     ['NOT_FOUND', 'No encontramos un objeto con ese código'],
     ['ALREADY_RECEIVED', 'Este objeto ya fue recibido'],
   ] as const)('muestra el resultado %s', async (status, message) => {
-    renderPage(service({ findByCode: jest.fn().mockResolvedValue({ status }) }));
+    renderPage(service({ findFoundItemByCode: jest.fn().mockResolvedValue({ status }) }));
     await openRequests();
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-9999');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
@@ -464,7 +464,7 @@ describe('Panel de Bienestar', () => {
     );
     const welfareService = service({
       listInOffice,
-      receive: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
+      confirmReception: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
     });
     renderPage(welfareService);
     await openRequests();
@@ -476,7 +476,7 @@ describe('Panel de Bienestar', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
 
-    expect(welfareService.receive).toHaveBeenCalledWith('HZ-0005');
+    expect(welfareService.confirmReception).toHaveBeenCalledWith('HZ-0005');
     expect(await screen.findByText('Objeto recibido y puesto en custodia')).toBeInTheDocument();
     expect(within(pendingSection!).queryByText('HZ-0005')).not.toBeInTheDocument();
     await userEvent.click(screen.getByRole('button', { name: 'Objetos en custodia' }));
@@ -496,7 +496,7 @@ describe('Panel de Bienestar', () => {
     );
     const welfareService = service({
       listInOffice,
-      receive: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
+      confirmReception: jest.fn().mockResolvedValue({ status: 'FOUND', item: { ...item, status: 'IN_CUSTODY' } }),
     });
     renderPage(welfareService);
     await openRequests();
@@ -515,10 +515,10 @@ describe('Panel de Bienestar', () => {
 
   it('evita confirmar dos veces mientras guarda', async () => {
     let resolveReceive!: (result: WelfareResult) => void;
-    const receive = jest.fn<Promise<WelfareResult>, [string]>(
+    const confirmReception = jest.fn<Promise<WelfareResult>, [string]>(
       () => new Promise<WelfareResult>((resolve) => (resolveReceive = resolve)),
     );
-    renderPage(service({ receive }));
+    renderPage(service({ confirmReception }));
     await openRequests();
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
@@ -530,7 +530,7 @@ describe('Panel de Bienestar', () => {
   });
 
   it('conserva el objeto cuando falla la confirmacion', async () => {
-    renderPage(service({ receive: jest.fn().mockRejectedValue(new Error('network')) }));
+    renderPage(service({ confirmReception: jest.fn().mockRejectedValue(new Error('network')) }));
     await openRequests();
     await userEvent.type(screen.getByLabelText('Código del objeto'), 'HZ-0005');
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));

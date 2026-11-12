@@ -2356,12 +2356,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "3b7bf986c510106266a555bd617713c1de48a1ac",
     "author": "CodexSandboxOffline",
     "commit": {
       "date": "2026-10-20T13:50:34.000Z",
       "message": "chore(docs): retirar planes de bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/3b7bf986c510106266a555bd617713c1de48a1ac"
     },
     "stats": {
       "total": 410,
@@ -2463,6 +2463,25 @@
       "additions": 23,
       "deletions": 23,
       "date": "2026-11-10"
+    },
+    "coverage": 84.66,
+    "test_count": 198,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-12T12:29:45.000Z",
+      "message": "refactor(welfare): aclarar operaciones del servicio",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 48,
+      "additions": 24,
+      "deletions": 24,
+      "date": "2026-11-12"
     },
     "coverage": 84.66,
     "test_count": 198,

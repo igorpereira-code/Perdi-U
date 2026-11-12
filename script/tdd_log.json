@@ -3464,7 +3464,7 @@
     "testId": 43
   },
   {
-    "commitId": "HEAD",
+    "commitId": "3b7bf986c510106266a555bd617713c1de48a1ac",
     "commitName": "chore: integra los últimos cambios de final-test en owner",
     "commitTimestamp": 1792502287696,
     "testId": 45
@@ -3538,5 +3538,19 @@
     "commitName": "refactor(welfare): precisar resultados de operaciones",
     "commitTimestamp": 1794320773848,
     "testId": 50
+  },
+  {
+    "numPassedTests": 198,
+    "failedTests": 0,
+    "numTotalTests": 198,
+    "timestamp": 1794486536669,
+    "success": true,
+    "testId": 51
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): aclarar operaciones del servicio",
+    "commitTimestamp": 1794486589524,
+    "testId": 51
   }
 ]

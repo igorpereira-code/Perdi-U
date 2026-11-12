@@ -46,8 +46,8 @@ function renderAt(path: string, user: AppUser | null | Error, matches: MatchView
     listPendingPickups: jest.fn().mockResolvedValue([]),
     listPending: jest.fn().mockResolvedValue([]),
     listInOffice: jest.fn().mockResolvedValue([]),
-    findByCode: jest.fn(),
-    receive: jest.fn(),
+    findFoundItemByCode: jest.fn(),
+    confirmReception: jest.fn(),
     deliver: jest.fn(),
   };
   render(

@@ -204,7 +204,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     event.preventDefault();
     setFeedbackMessage(null);
     try {
-      const searchResult = await welfareService.findByCode(searchedItemCode);
+      const searchResult = await welfareService.findFoundItemByCode(searchedItemCode);
       if (searchResult.status === 'FOUND') {
         setSelectedItem(searchResult.item);
         return;
@@ -227,7 +227,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     setIsReceiving(true);
     setFeedbackMessage(null);
     try {
-      const receptionResult = await welfareService.receive(selectedItem.code);
+      const receptionResult = await welfareService.confirmReception(selectedItem.code);
       if (receptionResult.status !== 'FOUND') {
         setFeedbackMessage('Este objeto ya fue recibido');
         return;

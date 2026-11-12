@@ -112,21 +112,21 @@ describe('Servicio de recepcion de Bienestar', () => {
 
   it('busca con el codigo normalizado', async () => {
     const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => item });
-    await expect(createWelfareService(apiFetch).findByCode(' hz-0005 ')).resolves.toEqual({ status: 'FOUND', item });
+    await expect(createWelfareService(apiFetch).findFoundItemByCode(' hz-0005 ')).resolves.toEqual({ status: 'FOUND', item });
     expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0005');
   });
 
   it.each([[404, 'NOT_FOUND'], [409, 'ALREADY_RECEIVED']] as const)(
     'traduce el estado HTTP %s a %s', async (httpStatus, status) => {
       const apiFetch = jest.fn().mockResolvedValue({ ok: false, status: httpStatus });
-      await expect(createWelfareService(apiFetch).findByCode('HZ-0005')).resolves.toEqual({ status });
+      await expect(createWelfareService(apiFetch).findFoundItemByCode('HZ-0005')).resolves.toEqual({ status });
     },
   );
 
   it('confirma la recepcion y devuelve el objeto actualizado', async () => {
     const received = { ...item, status: 'IN_CUSTODY' as const };
     const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => received });
-    await expect(createWelfareService(apiFetch).receive(' hz-0005 ')).resolves.toEqual({ status: 'FOUND', item: received });
+    await expect(createWelfareService(apiFetch).confirmReception(' hz-0005 ')).resolves.toEqual({ status: 'FOUND', item: received });
     expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0005/receive', { method: 'POST' });
   });
 
