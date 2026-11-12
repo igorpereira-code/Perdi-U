@@ -35,7 +35,9 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('no publica un objeto que Bienestar todavía no recibió', async () => {
     const { repository } = fakeMatchingRepository([], [{ ...keys, status: 'PENDING_DROP_OFF' }]);
 
-    const res = await request(createApp({ matching: repository }))
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    )
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
@@ -46,9 +48,9 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('solo deja publicar a Bienestar', async () => {
     const { repository } = fakeMatchingRepository([], [keys]);
 
-    const res = await request(createApp({ matching: repository })).post(
-      '/found-items/HZ-0004/publish',
-    );
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    ).post('/found-items/HZ-0004/publish');
 
     expect(res.status).toBe(403);
   });
@@ -56,7 +58,9 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('publica un objeto recibido para que la comunidad lo vea', async () => {
     const { repository, items } = fakeMatchingRepository([], [keys]);
 
-    const res = await request(createApp({ matching: repository }))
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    )
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
@@ -73,7 +77,9 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
     ];
     const { repository } = fakeMatchingRepository(reports, [keys]);
 
-    const res = await request(createApp({ matching: repository }))
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    )
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
@@ -83,7 +89,7 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('deja el objeto como posible coincidencia en los reportes parecidos', async () => {
     const { repository, matches } = fakeMatchingRepository([lostKeys], [keys]);
 
-    await request(createApp({ matching: repository }))
+    await request(createApp({ matching: repository, settings: fakeSettingsRepository() }))
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 

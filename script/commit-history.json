@@ -4750,12 +4750,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7994a5c428e92ed0e9968560cdc1633c617ff2f2",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T12:47:10.000Z",
       "message": "refactor(core): borrar LoadingState, reemplazado por los esqueletos",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7994a5c428e92ed0e9968560cdc1633c617ff2f2"
     },
     "stats": {
       "total": 19,
@@ -5163,6 +5163,25 @@
       "date": "2026-11-12"
     },
     "coverage": 82.54,
+    "test_count": 812,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-12T23:41:40.000Z",
+      "message": "test(matching): usar ajustes falsos en los tests de rutas de matching",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 46,
+      "additions": 28,
+      "deletions": 18,
+      "date": "2026-11-12"
+    },
+    "coverage": 82.45,
     "test_count": 812,
     "failed_tests": 0,
     "conclusion": "success"
