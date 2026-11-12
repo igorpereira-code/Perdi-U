@@ -37,3 +37,9 @@ export type ManagedCatalogs = {
   categories: ManagedCategory[];
   places: ManagedPlace[];
 };
+
+/** What the Administrator can change of a category, place or classroom. */
+export type CatalogChanges = {
+  name?: string;
+  active?: boolean;
+};

@@ -20,4 +20,8 @@ export const prismaAdminCatalogRepository: AdminCatalogRepository = {
     ]);
     return { categories, places };
   },
+  createCategory: (name) =>
+    db().category.create({ data: { name, active: true }, select: CATEGORY_FIELDS }),
+  updateCategory: (categoryId, changes) =>
+    db().category.update({ where: { id: categoryId }, data: changes, select: CATEGORY_FIELDS }),
 };

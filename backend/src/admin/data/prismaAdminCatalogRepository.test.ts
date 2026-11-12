@@ -3,7 +3,7 @@ import { prismaAdminCatalogRepository } from './prismaAdminCatalogRepository';
 
 jest.mock('../../core/data/prisma', () => ({ db: jest.fn() }));
 
-const category = { findMany: jest.fn() };
+const category = { findMany: jest.fn(), create: jest.fn(), update: jest.fn() };
 const place = { findMany: jest.fn() };
 
 beforeEach(() => {
@@ -49,6 +49,27 @@ describe('Categorías y lugares guardados en la base de datos', () => {
     expect(catalogs).toEqual({
       categories: [{ id: 1, name: 'Llaves', active: true }],
       places: [{ id: 2, name: 'Biblioteca', type: 'SPACE', active: false, classrooms: [] }],
+    });
+  });
+});
+
+describe('Guardar categorías en la base de datos', () => {
+  it('crea la categoría activa', async () => {
+    await prismaAdminCatalogRepository.createCategory('Audífonos');
+
+    expect(category.create).toHaveBeenCalledWith({
+      data: { name: 'Audífonos', active: true },
+      select: { id: true, name: true, active: true },
+    });
+  });
+
+  it('guarda los cambios de una categoría', async () => {
+    await prismaAdminCatalogRepository.updateCategory(1, { name: 'Llaves de casa', active: false });
+
+    expect(category.update).toHaveBeenCalledWith({
+      where: { id: 1 },
+      data: { name: 'Llaves de casa', active: false },
+      select: { id: true, name: true, active: true },
     });
   });
 });
