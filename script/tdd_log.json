@@ -5596,7 +5596,7 @@
     "testId": 115
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6957e217d0cd10a3f7d211eca1c6ce8fd951875c",
     "commitName": "refactor(core): renombrar signedInPage a renderSignedInPage",
     "commitTimestamp": 1794340317356,
     "testId": 115
@@ -5894,5 +5894,11 @@
     "commitName": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
     "commitTimestamp": 1794490799523,
     "testId": 132
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
+    "commitTimestamp": 1794490855674,
+    "testId": 133
   }
 ]

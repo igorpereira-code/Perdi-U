@@ -4370,12 +4370,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6957e217d0cd10a3f7d211eca1c6ce8fd951875c",
     "author": "Claude",
     "commit": {
       "date": "2026-11-10T19:51:57.000Z",
       "message": "refactor(core): renombrar signedInPage a renderSignedInPage",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/6957e217d0cd10a3f7d211eca1c6ce8fd951875c"
     },
     "stats": {
       "total": 34,
@@ -4704,6 +4704,25 @@
       "total": 62,
       "additions": 25,
       "deletions": 37,
+      "date": "2026-11-12"
+    },
+    "coverage": 85.81,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-12T13:40:55.000Z",
+      "message": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 57,
+      "additions": 35,
+      "deletions": 22,
       "date": "2026-11-12"
     },
     "coverage": 85.81,
