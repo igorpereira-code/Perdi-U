@@ -70,7 +70,7 @@ export function createApp({
     res.json({ status: 'ok', app: APP_NAME });
   });
 
-  app.use(createUserAuthenticator(verifyToken, users, allowSampleUsers));
+  app.use(createUserAuthenticator({ verifyToken, users, allowSampleUsers }));
 
   app.get('/me', (req, res) => {
     res.json(getCurrentUser(req));

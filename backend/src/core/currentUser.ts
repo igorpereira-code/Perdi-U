@@ -46,34 +46,47 @@ const signInAsSampleUser: RequestHandler = (req, res, next) => {
   next();
 };
 
-/* Returns the user's saved profile.  */
+/** Returns the user's saved profile. The first time they sign in, it is created. */
 async function findOrCreateProfile(
   tokenUser: TokenUser,
   users: UsersRepository,
 ): Promise<CurrentUser> {
   const savedProfile = await users.findById(tokenUser.id);
-  if (savedProfile) {
-    return savedProfile;
-  }
+  return savedProfile ?? createProfile(tokenUser, users);
+}
 
+async function createProfile(tokenUser: TokenUser, users: UsersRepository): Promise<CurrentUser> {
   const role = getRoleForEmail(tokenUser.email, await users.listWelfareEmails());
   return users.create({ ...tokenUser, photoUrl: tokenUser.photoUrl ?? null, role });
 }
 
-/* Finds out who is making the request: */
-export function createUserAuthenticator(
-  verifyToken: VerifyToken,
-  users: UsersRepository,
-  allowSampleUsers: boolean,
-): RequestHandler {
+const rejectMissingToken: RequestHandler = (_req, res) => {
+  res.status(401).json({ error: 'Sign in to continue.' });
+};
+
+/** The login token sent in the "Authorization: Bearer <token>" header, if any. */
+function readBearerToken(req: Request): string | undefined {
+  return req.header('authorization')?.replace('Bearer ', '');
+}
+
+export type UserAuthenticatorOptions = {
+  verifyToken: VerifyToken;
+  users: UsersRepository;
+  allowSampleUsers: boolean;
+};
+
+/** Finds out who is making the request and saves it in req.user. */
+export function createUserAuthenticator({
+  verifyToken,
+  users,
+  allowSampleUsers,
+}: UserAuthenticatorOptions): RequestHandler {
+  const handleMissingToken = allowSampleUsers ? signInAsSampleUser : rejectMissingToken;
+
   return async (req, res, next) => {
-    const token = req.header('authorization')?.replace('Bearer ', '');
+    const token = readBearerToken(req);
     if (!token) {
-      if (!allowSampleUsers) {
-        res.status(401).json({ error: 'Sign in to continue.' });
-        return;
-      }
-      signInAsSampleUser(req, res, next);
+      handleMissingToken(req, res, next);
       return;
     }
 
@@ -92,11 +105,11 @@ export function createUserAuthenticator(
   };
 }
 
-export const authenticateUser = createUserAuthenticator(
-  verifySupabaseToken,
-  prismaUsersRepository,
-  process.env.ALLOW_SAMPLE_USERS === 'true',
-);
+export const authenticateUser = createUserAuthenticator({
+  verifyToken: verifySupabaseToken,
+  users: prismaUsersRepository,
+  allowSampleUsers: process.env.ALLOW_SAMPLE_USERS === 'true',
+});
 
 /** Returns the user making the request. Use it inside any route. */
 export function getCurrentUser(req: Request): CurrentUser {
