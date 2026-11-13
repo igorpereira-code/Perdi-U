@@ -41,7 +41,7 @@ type DateRangeFieldsProps = {
 function DateRangeFields({ from, to, onChangeFrom, onChangeTo }: DateRangeFieldsProps) {
   const error = getDateRangeError(from, to);
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 lg:max-w-md">
       <div className="grid grid-cols-2 gap-3">
         <Field id="statistics-from" label="Desde">
           <input
@@ -108,7 +108,7 @@ export function StatisticsSection({ statisticsService }: StatisticsSectionProps)
     }
     return (
       <div className="space-y-3">
-        <ul aria-label="Estadísticas del rango" className="space-y-3">
+        <ul aria-label="Estadísticas del rango" className="grid gap-3 lg:grid-cols-3">
           <StatisticTile
             icon={PackageSearch}
             label="Objetos encontrados"
@@ -122,7 +122,7 @@ export function StatisticsSection({ statisticsService }: StatisticsSectionProps)
           />
         </ul>
         <h2 className="pt-2 text-sm font-semibold text-neutral-700">Hoy en Bienestar</h2>
-        <ul aria-label="Objetos en custodia" className="space-y-3">
+        <ul aria-label="Objetos en custodia" className="grid gap-3 lg:grid-cols-3">
           <StatisticTile
             icon={Archive}
             label="En custodia sin reclamar"

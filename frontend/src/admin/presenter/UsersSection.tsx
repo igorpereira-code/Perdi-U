@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
-import { SearchX, Users } from 'lucide-react';
+import { Search, SearchX, Users } from 'lucide-react';
 import type { ManagedUser } from '@shared/admin';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
-import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
+import { INPUT_CLASSES } from '../../core/presenter/Field';
 import { LoadErrorAlert } from '../../core/presenter/LoadErrorAlert';
 import { SkeletonList } from '../../core/presenter/Skeleton';
 import { useLoadedData } from '../../core/presenter/useLoadedData';
@@ -28,25 +28,17 @@ function replaceUser(users: ManagedUser[] | undefined, updatedUser: ManagedUser)
   return users?.map((user) => (user.id === updatedUser.id ? updatedUser : user));
 }
 
-type ManagedUserCardProps = {
+type UserActionProps = {
   user: ManagedUser;
   roleChange: RoleChangeState;
   onChangeRole: ChangeRole;
 };
 
-function ManagedUserCard({ user, roleChange, onChangeRole }: ManagedUserCardProps) {
+/** The button to give or take away Bienestar, and its error if it could not be saved. */
+function UserAction({ user, roleChange, onChangeRole }: UserActionProps) {
   const roleAction = getRoleAction(user.role);
   return (
-    <li className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
-      <div className="flex items-center gap-3">
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-neutral-900">{user.name}</p>
-          <p className="truncate text-xs text-neutral-500">{user.email}</p>
-        </div>
-        <span className="shrink-0 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-          {formatRoleLabel(user.role)}
-        </span>
-      </div>
+    <div className="space-y-2">
       {roleAction && (
         <Button
           variant="outline"
@@ -54,7 +46,7 @@ function ManagedUserCard({ user, roleChange, onChangeRole }: ManagedUserCardProp
           disabled={roleChange.changingUserId !== null}
           isLoading={roleChange.changingUserId === user.id}
           loadingText={roleAction.loadingText}
-          className="w-full"
+          className="w-full lg:w-auto"
         >
           {roleAction.label}
         </Button>
@@ -64,32 +56,110 @@ function ManagedUserCard({ user, roleChange, onChangeRole }: ManagedUserCardProp
           No se pudo cambiar el rol. Intenta nuevamente.
         </p>
       )}
-    </li>
+    </div>
   );
 }
 
-type UsersListProps = {
+function RoleChip({ user }: { user: ManagedUser }) {
+  return (
+    <span className="shrink-0 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+      {formatRoleLabel(user.role)}
+    </span>
+  );
+}
+
+type UsersViewProps = {
   users: ManagedUser[];
   roleChange: RoleChangeState;
   onChangeRole: ChangeRole;
 };
 
+/** On phones: one card per user. */
+function UserCards({ users, roleChange, onChangeRole }: UsersViewProps) {
+  return (
+    <ul aria-label="Usuarios" className="space-y-3 lg:hidden">
+      {users.map((user) => (
+        <li
+          key={user.id}
+          className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4"
+        >
+          <div className="flex items-center gap-3">
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-semibold text-neutral-900">{user.name}</p>
+              <p className="truncate text-xs text-neutral-500">{user.email}</p>
+            </div>
+            <RoleChip user={user} />
+          </div>
+          <UserAction user={user} roleChange={roleChange} onChangeRole={onChangeRole} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** On big screens: a table, easier to read. */
+function UsersTable({ users, roleChange, onChangeRole }: UsersViewProps) {
+  return (
+    <div className="hidden overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-0 lg:block">
+      <table className="w-full text-left text-sm">
+        <thead className="bg-neutral-50 text-xs font-semibold tracking-wide text-neutral-500 uppercase">
+          <tr>
+            <th scope="col" className="px-5 py-3">
+              Nombre
+            </th>
+            <th scope="col" className="px-5 py-3">
+              Correo
+            </th>
+            <th scope="col" className="px-5 py-3">
+              Rol
+            </th>
+            <th scope="col" className="px-5 py-3 text-right">
+              Acción
+            </th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-neutral-200">
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td className="px-5 py-3 font-semibold text-neutral-900">{user.name}</td>
+              <td className="px-5 py-3 text-neutral-600">{user.email}</td>
+              <td className="px-5 py-3">
+                <RoleChip user={user} />
+              </td>
+              <td className="px-5 py-3 text-right">
+                <UserAction user={user} roleChange={roleChange} onChangeRole={onChangeRole} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 /** The users, with a search box to find one by email. */
-function UsersList({ users, roleChange, onChangeRole }: UsersListProps) {
+function UsersList({ users, roleChange, onChangeRole }: UsersViewProps) {
   const [searchedEmail, setSearchedEmail] = useState('');
   const foundUsers = filterUsersByEmail(users, searchedEmail);
   return (
     <div className="space-y-4">
-      <Field id="searched-email" label="Buscar por correo">
+      <div className="relative lg:max-w-sm">
+        <label htmlFor="searched-email" className="sr-only">
+          Buscar por correo
+        </label>
+        <Search
+          className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-neutral-500"
+          aria-hidden="true"
+        />
         <input
           id="searched-email"
           type="search"
           value={searchedEmail}
           onChange={(event) => setSearchedEmail(event.target.value)}
-          placeholder="nombre.apellido@ucb.edu.bo"
-          className={INPUT_CLASSES}
+          placeholder="Buscar por correo…"
+          className={`${INPUT_CLASSES} pl-9`}
         />
-      </Field>
+      </div>
       {foundUsers.length === 0 ? (
         <EmptyState
           icon={SearchX}
@@ -97,16 +167,10 @@ function UsersList({ users, roleChange, onChangeRole }: UsersListProps) {
           text="Revisa que el correo esté bien escrito."
         />
       ) : (
-        <ul aria-label="Usuarios" className="space-y-3">
-          {foundUsers.map((user) => (
-            <ManagedUserCard
-              key={user.id}
-              user={user}
-              roleChange={roleChange}
-              onChangeRole={onChangeRole}
-            />
-          ))}
-        </ul>
+        <>
+          <UserCards users={foundUsers} roleChange={roleChange} onChangeRole={onChangeRole} />
+          <UsersTable users={foundUsers} roleChange={roleChange} onChangeRole={onChangeRole} />
+        </>
       )}
     </div>
   );

@@ -9,6 +9,8 @@ type NameFormProps = {
   loadingText: string;
   /** Empties the box after saving, to add another one. */
   clearAfterSubmit?: boolean;
+  /** On big screens, the box and the button go side by side. */
+  isRow?: boolean;
   /** Saves the name. If it throws, its message is shown under the box. */
   onSubmit: (name: string) => Promise<void>;
   onCancel?: () => void;
@@ -21,6 +23,7 @@ export function NameForm({
   submitText,
   loadingText,
   clearAfterSubmit = false,
+  isRow = false,
   onSubmit,
   onCancel,
 }: NameFormProps) {
@@ -46,16 +49,21 @@ export function NameForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <Field id={inputId} label={label} error={error}>
-        <input
-          id={inputId}
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          className={INPUT_CLASSES}
-        />
-      </Field>
-      <div className={onCancel ? 'grid grid-cols-2 gap-2' : ''}>
+    <form
+      onSubmit={handleSubmit}
+      className={isRow ? 'space-y-3 lg:flex lg:items-start lg:gap-3 lg:space-y-0' : 'space-y-3'}
+    >
+      <div className={isRow ? 'lg:flex-1' : ''}>
+        <Field id={inputId} label={label} error={error}>
+          <input
+            id={inputId}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            className={INPUT_CLASSES}
+          />
+        </Field>
+      </div>
+      <div className={onCancel ? 'grid grid-cols-2 gap-2' : isRow ? 'lg:pt-6' : ''}>
         {onCancel && (
           <Button variant="outline" onClick={onCancel} disabled={isSaving}>
             Cancelar
@@ -66,7 +74,7 @@ export function NameForm({
           disabled={name.trim() === ''}
           isLoading={isSaving}
           loadingText={loadingText}
-          className={onCancel ? '' : 'w-full'}
+          className={onCancel ? '' : 'w-full lg:w-auto'}
         >
           {submitText}
         </Button>
