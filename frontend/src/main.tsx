@@ -18,6 +18,7 @@ import { createNotificationsService } from './core/data/notificationsService';
 import { createAdminUsersService } from './admin/data/adminUsersService';
 import { createAdminCatalogService } from './admin/data/adminCatalogService';
 import { createSettingsService } from './core/data/settingsService';
+import { createStatisticsService } from './admin/data/statisticsService';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const authService = createAuthService({ auth: supabase.auth, apiUrl });
@@ -33,6 +34,7 @@ const notificationsService = createNotificationsService(apiFetch);
 const adminUsersService = createAdminUsersService(apiFetch);
 const adminCatalogService = createAdminCatalogService(apiFetch);
 const settingsService = createSettingsService(apiFetch);
+const statisticsService = createStatisticsService(apiFetch);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -50,6 +52,7 @@ createRoot(document.getElementById('root')!).render(
         adminUsersService={adminUsersService}
         adminCatalogService={adminCatalogService}
         settingsService={settingsService}
+        statisticsService={statisticsService}
       />
     </BrowserRouter>
   </StrictMode>,

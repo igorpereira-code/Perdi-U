@@ -4769,12 +4769,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ccd5095a21d3418e925b3cecf8a6e7515119606f",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:39:59.000Z",
       "message": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/ccd5095a21d3418e925b3cecf8a6e7515119606f"
     },
     "stats": {
       "total": 62,
@@ -5183,6 +5183,25 @@
     },
     "coverage": 82.45,
     "test_count": 812,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-13T03:03:25.000Z",
+      "message": "feat(admin): ver cuántos objetos se encontraron, perdieron y entregaron",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 267,
+      "additions": 264,
+      "deletions": 3,
+      "date": "2026-11-13"
+    },
+    "coverage": 82.26,
+    "test_count": 819,
     "failed_tests": 0,
     "conclusion": "success"
   }

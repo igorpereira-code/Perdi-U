@@ -39,6 +39,9 @@ import { createAdminCatalogRouter } from './admin/routes/adminCatalogRouter';
 import type { SettingsRepository } from './core/data/settingsRepository';
 import { prismaSettingsRepository } from './core/data/prismaSettingsRepository';
 import { createSettingsRouter } from './core/routes/settingsRouter';
+import type { StatisticsRepository } from './admin/data/statisticsRepository';
+import { prismaStatisticsRepository } from './admin/data/prismaStatisticsRepository';
+import { createAdminStatisticsRouter } from './admin/routes/adminStatisticsRouter';
 
 type AppOptions = {
   verifyToken?: VerifyToken;
@@ -55,6 +58,7 @@ type AppOptions = {
   adminUsers?: AdminUsersRepository;
   adminCatalog?: AdminCatalogRepository;
   settings?: SettingsRepository;
+  statistics?: StatisticsRepository;
 };
 export function createApp({
   verifyToken = verifySupabaseToken,
@@ -71,6 +75,7 @@ export function createApp({
   adminUsers = prismaAdminUsersRepository,
   adminCatalog = prismaAdminCatalogRepository,
   settings = prismaSettingsRepository,
+  statistics = prismaStatisticsRepository,
 }: AppOptions = {}) {
   const app = express();
   app.use(cors());
@@ -97,5 +102,6 @@ export function createApp({
   app.use(createAdminUsersRouter(adminUsers));
   app.use(createAdminCatalogRouter(adminCatalog));
   app.use(createSettingsRouter(settings));
+  app.use(createAdminStatisticsRouter(statistics));
   return app;
 }
