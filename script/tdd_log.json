@@ -5938,7 +5938,7 @@
     "testId": 135
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0c10c44a84d68f0db13e08579e219ed3a8f5b406",
     "commitName": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
     "commitTimestamp": 1794491011050,
     "testId": 136
@@ -6348,5 +6348,27 @@
     "commitName": "feat(admin): ver cuántos objetos hay en custodia sin reclamar",
     "commitTimestamp": 1794540907908,
     "testId": 156
+  },
+  {
+    "numPassedTests": 849,
+    "failedTests": 1,
+    "numTotalTests": 850,
+    "timestamp": 1794606141232,
+    "success": false,
+    "testId": 157
+  },
+  {
+    "numPassedTests": 850,
+    "failedTests": 0,
+    "numTotalTests": 850,
+    "timestamp": 1794606260533,
+    "success": true,
+    "testId": 157
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): llevar al Administrador directo a Administración al ingresar",
+    "commitTimestamp": 1794606299374,
+    "testId": 157
   }
 ]
