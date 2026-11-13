@@ -4845,6 +4845,25 @@
     "conclusion": "success"
   },
   {
+    "sha": "0c10c44a84d68f0db13e08579e219ed3a8f5b406",
+    "author": "Claude",
+    "commit": {
+      "date": "2026-11-12T13:43:30.000Z",
+      "message": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/0c10c44a84d68f0db13e08579e219ed3a8f5b406"
+    },
+    "stats": {
+      "total": 45,
+      "additions": 30,
+      "deletions": 15,
+      "date": "2026-11-12"
+    },
+    "coverage": 85.86,
+    "test_count": 678,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
     "sha": "5ab807dee5535fd00e2263dab8487bad4f0a9a26",
     "author": "Claude",
     "commit": {
@@ -4864,12 +4883,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2b07697a05f468d45a86ea7319eea402e2ce7f2b",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:45:15.000Z",
       "message": "refactor(core): extraer la carga con reintento a useLoadedData y LoadErrorAlert",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/2b07697a05f468d45a86ea7319eea402e2ce7f2b"
     },
     "stats": {
       "total": 188,
@@ -5278,6 +5297,44 @@
     },
     "coverage": 81.52,
     "test_count": 847,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-13T21:44:58.000Z",
+      "message": "feat(core): llevar al Administrador directo a Administración al ingresar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 48,
+      "additions": 48,
+      "deletions": 0,
+      "date": "2026-11-13"
+    },
+    "coverage": 82.18,
+    "test_count": 850,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-13T21:51:46.000Z",
+      "message": "chore(admin): integra final-test en admin",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 515,
+      "additions": 379,
+      "deletions": 136,
+      "date": "2026-11-13"
+    },
+    "coverage": 81.59,
+    "test_count": 850,
     "failed_tests": 0,
     "conclusion": "success"
   }
