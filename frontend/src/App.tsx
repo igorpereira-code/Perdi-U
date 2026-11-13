@@ -38,6 +38,7 @@ import { canUseWelfareOptions } from './core/logic/canUseWelfareOptions';
 import { useRoleRefresh } from './core/presenter/useRoleRefresh';
 import type { SettingsService } from './core/data/settingsService';
 import { useSavedWelfareOffice, WelfareOfficeContext } from './core/presenter/WelfareOffice';
+import type { StatisticsService } from './admin/data/statisticsService';
 
 type AppProps = {
   authService: AuthService;
@@ -52,6 +53,7 @@ type AppProps = {
   adminUsersService?: AdminUsersService;
   adminCatalogService?: AdminCatalogService;
   settingsService?: SettingsService;
+  statisticsService?: StatisticsService;
 };
 
 export default function App({
@@ -67,6 +69,7 @@ export default function App({
   adminUsersService,
   adminCatalogService,
   settingsService,
+  statisticsService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
@@ -237,7 +240,7 @@ export default function App({
           ),
         )}
       />
-      {adminUsersService && adminCatalogService && settingsService && (
+      {adminUsersService && adminCatalogService && settingsService && statisticsService && (
         <Route
           path="/administracion"
           element={renderSignedInPage((signedInUser) =>
@@ -246,6 +249,7 @@ export default function App({
                 adminUsersService={adminUsersService}
                 adminCatalogService={adminCatalogService}
                 settingsService={settingsService}
+                statisticsService={statisticsService}
               />
             ) : (
               <Navigate to="/" replace />

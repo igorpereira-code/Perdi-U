@@ -5914,25 +5914,25 @@
     "testId": 131
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ccd5095a21d3418e925b3cecf8a6e7515119606f",
     "commitName": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
     "commitTimestamp": 1794490799523,
     "testId": 132
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f4e87b8a20f2532174fcff2b61e73ff566386b70",
     "commitName": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
     "commitTimestamp": 1794490855674,
     "testId": 133
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1d0d04a59e5521eb81757e1a391e67a8bcd1dac5",
     "commitName": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
     "commitTimestamp": 1794490908233,
     "testId": 134
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4befc55bd7ff25ed77dff351bfad7555bf1a0f0c",
     "commitName": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
     "commitTimestamp": 1794490958823,
     "testId": 135
@@ -6228,5 +6228,125 @@
     "commitName": "test(matching): usar ajustes falsos en los tests de rutas de matching",
     "commitTimestamp": 1794526901797,
     "testId": 152
+  },
+  {
+    "numPassedTests": 814,
+    "failedTests": 5,
+    "numTotalTests": 819,
+    "timestamp": 1794538580295,
+    "success": false,
+    "testId": 153
+  },
+  {
+    "numPassedTests": 819,
+    "failedTests": 0,
+    "numTotalTests": 819,
+    "timestamp": 1794538660860,
+    "success": true,
+    "testId": 153
+  },
+  {
+    "numPassedTests": 819,
+    "failedTests": 0,
+    "numTotalTests": 819,
+    "timestamp": 1794538919442,
+    "success": true,
+    "testId": 153
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): ver cuántos objetos se encontraron, perdieron y entregaron",
+    "commitTimestamp": 1794539007437,
+    "testId": 153
+  },
+  {
+    "numPassedTests": 823,
+    "failedTests": 18,
+    "numTotalTests": 841,
+    "timestamp": 1794539526060,
+    "success": false,
+    "testId": 154
+  },
+  {
+    "numPassedTests": 841,
+    "failedTests": 0,
+    "numTotalTests": 841,
+    "timestamp": 1794539661998,
+    "success": true,
+    "testId": 154
+  },
+  {
+    "numPassedTests": 841,
+    "failedTests": 0,
+    "numTotalTests": 841,
+    "timestamp": 1794539734486,
+    "success": true,
+    "testId": 154
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): elegir un rango de fechas para las estadísticas",
+    "commitTimestamp": 1794539837074,
+    "testId": 154
+  },
+  {
+    "numPassedTests": 842,
+    "failedTests": 4,
+    "numTotalTests": 846,
+    "timestamp": 1794540062233,
+    "success": false,
+    "testId": 155
+  },
+  {
+    "numPassedTests": 846,
+    "failedTests": 0,
+    "numTotalTests": 846,
+    "timestamp": 1794540123026,
+    "success": true,
+    "testId": 155
+  },
+  {
+    "numPassedTests": 846,
+    "failedTests": 0,
+    "numTotalTests": 846,
+    "timestamp": 1794540250949,
+    "success": true,
+    "testId": 155
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): actualizar las estadísticas al cambiar el rango de fechas",
+    "commitTimestamp": 1794540316465,
+    "testId": 155
+  },
+  {
+    "numPassedTests": 845,
+    "failedTests": 2,
+    "numTotalTests": 847,
+    "timestamp": 1794540699049,
+    "success": false,
+    "testId": 156
+  },
+  {
+    "numPassedTests": 847,
+    "failedTests": 0,
+    "numTotalTests": 847,
+    "timestamp": 1794540748893,
+    "success": true,
+    "testId": 156
+  },
+  {
+    "numPassedTests": 847,
+    "failedTests": 0,
+    "numTotalTests": 847,
+    "timestamp": 1794540851453,
+    "success": true,
+    "testId": 156
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): ver cuántos objetos hay en custodia sin reclamar",
+    "commitTimestamp": 1794540907908,
+    "testId": 156
   }
 ]

@@ -6,11 +6,14 @@ import { PlacesSection } from './PlacesSection';
 import { UsersSection } from './UsersSection';
 import type { SettingsService } from '../../core/data/settingsService';
 import { SettingsSection } from './SettingsSection';
+import type { StatisticsService } from '../data/statisticsService';
+import { StatisticsSection } from './StatisticsSection';
 
 type AdminPageProps = {
   adminUsersService: AdminUsersService;
   adminCatalogService: AdminCatalogService;
   settingsService: SettingsService;
+  statisticsService: StatisticsService;
 };
 
 const ADMIN_TABS = [
@@ -18,6 +21,7 @@ const ADMIN_TABS = [
   { id: 'categories', label: 'Categorías' },
   { id: 'places', label: 'Lugares' },
   { id: 'settings', label: 'Ajustes' },
+  { id: 'statistics', label: 'Estadísticas' },
 ] as const;
 
 type AdminTab = (typeof ADMIN_TABS)[number]['id'];
@@ -29,7 +33,7 @@ type AdminTabsProps = {
 
 function AdminTabs({ selectedTab, onSelect }: AdminTabsProps) {
   return (
-    <div role="tablist" className="grid grid-cols-4 gap-1 rounded-xl bg-neutral-100 p-1">
+    <div role="tablist" className="grid grid-cols-3 gap-1 rounded-xl bg-neutral-100 p-1">
       {ADMIN_TABS.map((tab) => (
         <button
           key={tab.id}
@@ -37,7 +41,7 @@ function AdminTabs({ selectedTab, onSelect }: AdminTabsProps) {
           role="tab"
           aria-selected={selectedTab === tab.id}
           onClick={() => onSelect(tab.id)}
-          className={`min-h-11 rounded-lg text-sm font-semibold ${
+          className={`min-h-11 rounded-lg px-2 text-sm font-semibold ${
             selectedTab === tab.id ? 'bg-neutral-0 text-blue-700 shadow-sm' : 'text-neutral-500'
           }`}
         >
@@ -53,6 +57,7 @@ export function AdminPage({
   adminUsersService,
   adminCatalogService,
   settingsService,
+  statisticsService,
 }: AdminPageProps) {
   const [selectedTab, setSelectedTab] = useState<AdminTab>('users');
 
@@ -71,6 +76,7 @@ export function AdminPage({
       )}
       {selectedTab === 'places' && <PlacesSection adminCatalogService={adminCatalogService} />}
       {selectedTab === 'settings' && <SettingsSection settingsService={settingsService} />}
+      {selectedTab === 'statistics' && <StatisticsSection statisticsService={statisticsService} />}
     </section>
   );
 }
