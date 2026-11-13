@@ -31,6 +31,7 @@ const igor: AppUser = {
   role: 'COMMUNITY',
   hasSeenGuide: true,
 };
+const firstVisit: AppUser = { ...igor, hasSeenGuide: false };
 const foundReport: MyFoundItem = {
   code: 'HZ-7325',
   description: 'Llaves azules',
@@ -177,6 +178,19 @@ describe('Navegación de la app', () => {
     renderAt('/', igor);
 
     expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
+    const guideOption = screen.queryByRole('button', { name: 'Ver guía' });
+    expect(guideOption).toBeInTheDocument();
+    expect(guideOption).toBeVisible();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Ver guía' }));
+
+    expect(screen.queryByRole('heading', { name: 'Bienvenido a Perdi-U' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Encuentra el objeto' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Reporta el hallazgo' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Lleva el objeto a Bienestar Estudiantil' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'El dueño lo recoge en Bienestar' })).toBeVisible();
+    expect(screen.getByText(/no debes entregarlo directamente a su dueño/i)).toBeVisible();
+    expect(screen.getByRole('region', { name: 'Ubicación y horario de Bienestar' })).toBeVisible();
   });
 
   it('muestra su perfil en /perfil', async () => {
@@ -251,20 +265,20 @@ describe('Navegación de la app', () => {
     ).toBeInTheDocument();
   });
 
-  it('vuelve al inicio cuando el usuario salta la guía rápida', async () => {
-    renderAt('/guia-rapida', igor);
+  it('cierra la guía abierta desde Inicio y vuelve sin guardar otra vez', async () => {
+    const service = renderAt('/', igor);
 
-    const boton = await screen.findByRole('button', {
-      name: 'Saltar guía',
-    });
-
-    await userEvent.click(boton);
+    await userEvent.click(await screen.findByRole('button', { name: 'Ver guía' }));
+    const closeButton = screen.queryByRole('button', { name: 'Cerrar guía' });
+    expect(closeButton).toBeVisible();
+    await userEvent.click(screen.getByRole('button', { name: 'Cerrar guía' }));
 
     expect(
       await screen.findByRole('heading', {
         name: 'Hola, Igor Pereira',
       }),
     ).toBeInTheDocument();
+    expect(service.markSeen).not.toHaveBeenCalled();
   });
   it('muestra Encontré un objeto en la pantalla principal', async () => {
     renderAt('/', igor);
@@ -303,7 +317,7 @@ describe('Salir de la guía rápida con la decisión guardada', () => {
   it.each(['Saltar guía', 'Empezar a usar Perdi-U'])(
     'guarda la decisión antes de continuar con «%s»',
     async (action) => {
-      const service = renderAt('/guia-rapida', igor);
+      const service = renderAt('/guia-rapida', firstVisit);
 
       await userEvent.click(await screen.findByRole('button', { name: action }));
 
@@ -324,7 +338,7 @@ describe('Salir de la guía rápida con la decisión guardada', () => {
           }),
       ),
     };
-    renderAt('/guia-rapida', igor, [], guideService);
+    renderAt('/guia-rapida', firstVisit, [], guideService);
 
     await userEvent.click(await screen.findByRole('button', { name: 'Saltar guía' }));
 
@@ -349,7 +363,7 @@ describe('Salir de la guía rápida con la decisión guardada', () => {
           .mockRejectedValueOnce(new Error('Sin conexión'))
           .mockResolvedValue(undefined),
       };
-      renderAt('/guia-rapida', igor, [], guideService);
+      renderAt('/guia-rapida', firstVisit, [], guideService);
 
       await userEvent.click(await screen.findByRole('button', { name: action }));
 
@@ -377,8 +391,6 @@ describe('Salir de la guía rápida con la decisión guardada', () => {
 });
 
 describe('Guía automática durante el primer ingreso', () => {
-  const firstVisit: AppUser = { ...igor, hasSeenGuide: false };
-
   it.each(['/', '/perfil', '/mis-reportes/PR-0001/coincidencias', '/guia-rapida', '/ingresar'])(
     'muestra los cuatro pasos y la advertencia al ingresar por %s con la guía pendiente',
     async (path) => {

@@ -36,42 +36,6 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
-    "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
-    "commitTimestamp": 1792613220007,
-    "testId": 62
-  },
-  {
-    "commitId": "HEAD",
-    "commitName": "chore: integra los últimos cambios de main en core-matching",
-    "commitTimestamp": 1792616032864,
-    "testId": 63
-  },
-  {
-    "commitId": "HEAD",
-    "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
-    "commitTimestamp": 1792632787536,
-    "testId": 72
-  },
-  {
-    "commitId": "HEAD",
-    "commitName": "feat: Pequeños cambios",
-    "commitTimestamp": 1794001438321,
-    "testId": 73
-  },
-  {
-    "commitId": "HEAD",
-    "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
-    "commitTimestamp": 1794003330500,
-    "testId": 74
-  },
-  {
-    "commitId": "HEAD",
-    "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
-    "commitTimestamp": 1794004502232,
-    "testId": 75
-  },
-  {
     "numPassedTests": 628,
     "failedTests": 1,
     "numTotalTests": 629,
@@ -96,7 +60,7 @@
     "testId": 81
   },
   {
-    "commitId": "HEAD",
+    "commitId": "3c33c7d607189f07c08656361e214442c36aded0",
     "commitName": "feat(finder): permitir tomar la foto del hallazgo con la cámara",
     "commitTimestamp": 1794429242538,
     "testId": 81
@@ -218,6 +182,198 @@
     "commitName": "test(finder): verificar el envío solo al confirmar el resumen",
     "commitTimestamp": 1794436504406,
     "testId": 86
+  },
+  {
+    "numPassedTests": 691,
+    "failedTests": 0,
+    "numTotalTests": 691,
+    "timestamp": 1794536834631,
+    "success": true,
+    "testId": 138
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(finder): integrar finder en HU-17",
+    "commitTimestamp": 1794536875727,
+    "testId": 138
+  },
+  {
+    "commitId": "0a01ffa8183d14ae2b0daf8c94728b3b26a012f6",
+    "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
+    "commitTimestamp": 1792597534262,
+    "testId": 56
+  },
+  {
+    "commitId": "9d848402240e2f136a2f3741b71cc3943f83ecaf",
+    "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
+    "commitTimestamp": 1792597809312,
+    "testId": 57
+  },
+  {
+    "commitId": "07dc6e4f9c4cb75f485499d0bd502ebd828a15bc",
+    "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
+    "commitTimestamp": 1792598049048,
+    "testId": 58
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
+    "commitTimestamp": 1792599362931,
+    "testId": 59
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
+    "commitTimestamp": 1792599791806,
+    "testId": 60
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
+    "commitTimestamp": 1792601341695,
+    "testId": 61
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+    "commitTimestamp": 1792613220007,
+    "testId": 62
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore: integra los últimos cambios de main en core-matching",
+    "commitTimestamp": 1792616032864,
+    "testId": 63
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
+    "commitTimestamp": 1792632787536,
+    "testId": 72
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: Pequeños cambios",
+    "commitTimestamp": 1794001438321,
+    "testId": 73
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
+    "commitTimestamp": 1794003330500,
+    "testId": 74
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
+    "commitTimestamp": 1794004502232,
+    "testId": 75
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794255134205,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794256543324,
+    "success": false,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794256604377,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794256657361,
+    "success": false,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794256688337,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): mostrar la opción Ver guía en Inicio",
+    "commitTimestamp": 1794257369798,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794257731295,
+    "success": false,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794257783884,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794257838524,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): abrir la guía rápida desde Inicio",
+    "commitTimestamp": 1794258117193,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794316364385,
+    "success": false,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794316446192,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794316508757,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir cerrar la guía y volver a Inicio",
+    "commitTimestamp": 1794316599608,
+    "testId": 83
   },
   {
     "commitId": "28f403997e5e299ba03f8ed55471dd7cb8996b5c",
@@ -6428,17 +6584,31 @@
     "testId": 137
   },
   {
-    "numPassedTests": 691,
+    "numPassedTests": 687,
     "failedTests": 0,
-    "numTotalTests": 691,
-    "timestamp": 1794536834631,
+    "numTotalTests": 687,
+    "timestamp": 1794536692897,
     "success": true,
     "testId": 138
   },
   {
     "commitId": "HEAD",
-    "commitName": "chore(finder): integrar finder en HU-17",
-    "commitTimestamp": 1794536875727,
+    "commitName": "chore(finder): integrar finder en HU-16",
+    "commitTimestamp": 1794536739355,
     "testId": 138
+  },
+  {
+    "numPassedTests": 691,
+    "failedTests": 0,
+    "numTotalTests": 691,
+    "timestamp": 1794537950471,
+    "success": true,
+    "testId": 139
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(finder): integrar HU-16 en la base de HU-17",
+    "commitTimestamp": 1794537998046,
+    "testId": 139
   }
 ]
