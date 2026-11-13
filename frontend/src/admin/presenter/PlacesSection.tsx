@@ -46,35 +46,44 @@ function NewPlaceForm({ onCreate }: NewPlaceFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <Field id={nameId} label="Nuevo lugar" error={error}>
-        <input
-          id={nameId}
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          className={INPUT_CLASSES}
-        />
-      </Field>
-      <Field id={typeId} label="Tipo">
-        <select
-          id={typeId}
-          value={type}
-          onChange={(event) => setType(event.target.value as PlaceType)}
-          className={INPUT_CLASSES}
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4 lg:flex lg:items-start lg:gap-3 lg:space-y-0"
+    >
+      <div className="lg:flex-1">
+        <Field id={nameId} label="Nuevo lugar" error={error}>
+          <input
+            id={nameId}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            className={INPUT_CLASSES}
+          />
+        </Field>
+      </div>
+      <div className="lg:w-56">
+        <Field id={typeId} label="Tipo">
+          <select
+            id={typeId}
+            value={type}
+            onChange={(event) => setType(event.target.value as PlaceType)}
+            className={INPUT_CLASSES}
+          >
+            <option value="BLOCK">{formatPlaceType('BLOCK')} (tiene aulas)</option>
+            <option value="SPACE">{formatPlaceType('SPACE')} (sin aulas)</option>
+          </select>
+        </Field>
+      </div>
+      <div className="lg:pt-6">
+        <Button
+          type="submit"
+          disabled={name.trim() === ''}
+          isLoading={isSaving}
+          loadingText="Agregando…"
+          className="w-full lg:w-auto"
         >
-          <option value="BLOCK">{formatPlaceType('BLOCK')} (tiene aulas)</option>
-          <option value="SPACE">{formatPlaceType('SPACE')} (sin aulas)</option>
-        </select>
-      </Field>
-      <Button
-        type="submit"
-        disabled={name.trim() === ''}
-        isLoading={isSaving}
-        loadingText="Agregando…"
-        className="w-full"
-      >
-        Agregar
-      </Button>
+          Agregar
+        </Button>
+      </div>
     </form>
   );
 }
@@ -97,6 +106,7 @@ function Classrooms({ place, onCreate, onUpdate }: ClassroomsProps) {
               name={classroom.name}
               active={classroom.active}
               detail="Aula"
+              isCompact
               onUpdate={(changes) => onUpdate(classroom, changes)}
             />
           ))}
@@ -164,7 +174,7 @@ export function PlacesSection({ adminCatalogService }: PlacesSectionProps) {
           text="Agrega el primero con el formulario de arriba."
         />
       ) : (
-        <ul aria-label="Lugares" className="space-y-3">
+        <ul aria-label="Lugares" className="grid items-start gap-3 lg:grid-cols-2">
           {places.map((place) => (
             <EditableItem
               key={place.id}

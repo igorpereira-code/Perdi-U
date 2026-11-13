@@ -54,13 +54,16 @@ export function CategoriesSection({ adminCatalogService }: CategoriesSectionProp
   }
   return (
     <div className="space-y-4">
-      <NameForm
-        label="Nueva categoría"
-        submitText="Agregar"
-        loadingText="Agregando…"
-        clearAfterSubmit
-        onSubmit={createCategory}
-      />
+      <div className="rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+        <NameForm
+          label="Nueva categoría"
+          submitText="Agregar"
+          loadingText="Agregando…"
+          clearAfterSubmit
+          isRow
+          onSubmit={createCategory}
+        />
+      </div>
       {categories.length === 0 ? (
         <EmptyState
           icon={Tags}
@@ -68,7 +71,7 @@ export function CategoriesSection({ adminCatalogService }: CategoriesSectionProp
           text="Agrega la primera con el formulario de arriba."
         />
       ) : (
-        <ul aria-label="Categorías" className="space-y-3">
+        <ul aria-label="Categorías" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {categories.map((category) => (
             <EditableItem
               key={category.id}

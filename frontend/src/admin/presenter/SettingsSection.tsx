@@ -192,7 +192,7 @@ function MinSimilaritySettings({ settingsService }: SettingsSectionProps) {
 /** Settings of the app that only the Administrator can change. */
 export function SettingsSection({ settingsService }: SettingsSectionProps) {
   return (
-    <div className="space-y-4">
+    <div className="grid items-start gap-4 lg:grid-cols-2">
       <WelfareOfficeSettings settingsService={settingsService} />
       <MinSimilaritySettings settingsService={settingsService} />
     </div>

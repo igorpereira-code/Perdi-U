@@ -5938,7 +5938,7 @@
     "testId": 135
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5ab807dee5535fd00e2263dab8487bad4f0a9a26",
     "commitName": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
     "commitTimestamp": 1794491011050,
     "testId": 136
@@ -6348,5 +6348,11 @@
     "commitName": "feat(admin): ver cuántos objetos hay en custodia sin reclamar",
     "commitTimestamp": 1794540907908,
     "testId": 156
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "style(admin): panel lateral en PC y selector de sección en celular",
+    "commitTimestamp": 1794605840815,
+    "testId": 157
   }
 ]

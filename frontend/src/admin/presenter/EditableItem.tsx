@@ -12,12 +12,24 @@ type EditableItemProps = {
   detail?: string;
   /** Saves the changes. If it throws, its message is shown. */
   onUpdate: (changes: CatalogChanges) => Promise<void>;
+  /** Smaller and lighter, for an item inside another one (a classroom inside its block). */
+  isCompact?: boolean;
   /** What goes under the buttons, for example the classrooms of a block. */
   children?: ReactNode;
 };
 
+const CARD_CLASSES = 'rounded-2xl border border-neutral-200 bg-neutral-0 p-4';
+const COMPACT_CLASSES = 'rounded-xl bg-neutral-50 p-3';
+
 /** A category, place or classroom with its buttons to rename it and to (de)activate it. */
-export function EditableItem({ name, active, detail, onUpdate, children }: EditableItemProps) {
+export function EditableItem({
+  name,
+  active,
+  detail,
+  onUpdate,
+  isCompact = false,
+  children,
+}: EditableItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [isChangingActive, setIsChangingActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -55,7 +67,7 @@ export function EditableItem({ name, active, detail, onUpdate, children }: Edita
     );
   }
   return (
-    <li className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+    <li className={`space-y-3 ${isCompact ? COMPACT_CLASSES : CARD_CLASSES}`}>
       <div className="flex items-center gap-3">
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold text-neutral-900">{name}</p>
@@ -64,11 +76,15 @@ export function EditableItem({ name, active, detail, onUpdate, children }: Edita
         <ActiveChip active={active} />
       </div>
       <div className="grid grid-cols-2 gap-2">
-        <Button variant="outline" onClick={() => setIsEditing(true)} disabled={isChangingActive}>
+        <Button
+          variant={isCompact ? 'ghost' : 'outline'}
+          onClick={() => setIsEditing(true)}
+          disabled={isChangingActive}
+        >
           Editar
         </Button>
         <Button
-          variant="outline"
+          variant={isCompact ? 'ghost' : 'outline'}
           onClick={changeActive}
           isLoading={isChangingActive}
           loadingText={activationAction.loadingText}
