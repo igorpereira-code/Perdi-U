@@ -5,7 +5,12 @@ import { createApp } from '../../app';
 import type { UsersRepository } from '../../core/data/usersRepository';
 import type { StatisticsRepository } from '../data/statisticsRepository';
 
-const usage: UsageStatistics = { foundItems: 12, lostReports: 9, deliveredItems: 4 };
+const usage: UsageStatistics = {
+  foundItems: 12,
+  lostReports: 9,
+  deliveredItems: 4,
+  unclaimedItems: 3,
+};
 
 /** Signs in with a user of the given role. */
 function setup(signedInRole: Role, statistics: Partial<StatisticsRepository> = {}) {
@@ -39,7 +44,7 @@ describe('Ver cuántos objetos se encontraron, perdieron y entregaron', () => {
     const response = await getStatistics(setup('ADMIN'));
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ foundItems: 12, lostReports: 9, deliveredItems: 4 });
+    expect(response.body).toEqual(usage);
   });
 
   it.each(['COMMUNITY', 'WELFARE'] as const)(

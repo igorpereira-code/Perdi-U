@@ -5932,7 +5932,7 @@
     "testId": 134
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4befc55bd7ff25ed77dff351bfad7555bf1a0f0c",
     "commitName": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
     "commitTimestamp": 1794490958823,
     "testId": 135
@@ -6318,5 +6318,35 @@
     "commitName": "feat(admin): actualizar las estadísticas al cambiar el rango de fechas",
     "commitTimestamp": 1794540316465,
     "testId": 155
+  },
+  {
+    "numPassedTests": 845,
+    "failedTests": 2,
+    "numTotalTests": 847,
+    "timestamp": 1794540699049,
+    "success": false,
+    "testId": 156
+  },
+  {
+    "numPassedTests": 847,
+    "failedTests": 0,
+    "numTotalTests": 847,
+    "timestamp": 1794540748893,
+    "success": true,
+    "testId": 156
+  },
+  {
+    "numPassedTests": 847,
+    "failedTests": 0,
+    "numTotalTests": 847,
+    "timestamp": 1794540851453,
+    "success": true,
+    "testId": 156
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): ver cuántos objetos hay en custodia sin reclamar",
+    "commitTimestamp": 1794540907908,
+    "testId": 156
   }
 ]

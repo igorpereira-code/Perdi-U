@@ -4826,12 +4826,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "4befc55bd7ff25ed77dff351bfad7555bf1a0f0c",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:42:38.000Z",
       "message": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/4befc55bd7ff25ed77dff351bfad7555bf1a0f0c"
     },
     "stats": {
       "total": 38,
@@ -5240,6 +5240,25 @@
     },
     "coverage": 82.1,
     "test_count": 846,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-13T03:35:06.000Z",
+      "message": "feat(admin): ver cuántos objetos hay en custodia sin reclamar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 73,
+      "additions": 57,
+      "deletions": 16,
+      "date": "2026-11-13"
+    },
+    "coverage": 82.11,
+    "test_count": 847,
     "failed_tests": 0,
     "conclusion": "success"
   }

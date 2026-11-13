@@ -6,6 +6,8 @@ export type UsageStatistics = {
   lostReports: number;
   /** Items that Bienestar returned to their owner. */
   deliveredItems: number;
+  /** Items in Bienestar right now that nobody has come for. It does not depend on the dates. */
+  unclaimedItems: number;
 };
 
 /** Days chosen by the Administrator, both included, as "YYYY-MM-DD". */

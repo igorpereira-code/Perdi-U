@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { CircleCheck, PackageSearch, SearchX, type LucideIcon } from 'lucide-react';
+import { Archive, CircleCheck, PackageSearch, SearchX, type LucideIcon } from 'lucide-react';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { LoadErrorAlert } from '../../core/presenter/LoadErrorAlert';
@@ -107,15 +107,29 @@ export function StatisticsSection({ statisticsService }: StatisticsSectionProps)
       return <SkeletonList rows={3} label="Cargando estadísticas…" />;
     }
     return (
-      <ul aria-label="Estadísticas" className="space-y-3">
-        <StatisticTile icon={PackageSearch} label="Objetos encontrados" amount={usage.foundItems} />
-        <StatisticTile icon={SearchX} label="Objetos perdidos" amount={usage.lostReports} />
-        <StatisticTile
-          icon={CircleCheck}
-          label="Objetos entregados"
-          amount={usage.deliveredItems}
-        />
-      </ul>
+      <div className="space-y-3">
+        <ul aria-label="Estadísticas del rango" className="space-y-3">
+          <StatisticTile
+            icon={PackageSearch}
+            label="Objetos encontrados"
+            amount={usage.foundItems}
+          />
+          <StatisticTile icon={SearchX} label="Objetos perdidos" amount={usage.lostReports} />
+          <StatisticTile
+            icon={CircleCheck}
+            label="Objetos entregados"
+            amount={usage.deliveredItems}
+          />
+        </ul>
+        <h2 className="pt-2 text-sm font-semibold text-neutral-700">Hoy en Bienestar</h2>
+        <ul aria-label="Objetos en custodia" className="space-y-3">
+          <StatisticTile
+            icon={Archive}
+            label="En custodia sin reclamar"
+            amount={usage.unclaimedItems}
+          />
+        </ul>
+      </div>
     );
   }
 

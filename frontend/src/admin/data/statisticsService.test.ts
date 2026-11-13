@@ -7,7 +7,7 @@ function createResponse(status: number, body: unknown): Response {
 
 describe('Consultar las estadísticas', () => {
   it('trae las cantidades del backend', async () => {
-    const usage = { foundItems: 12, lostReports: 9, deliveredItems: 4 };
+    const usage = { foundItems: 12, lostReports: 9, deliveredItems: 4, unclaimedItems: 3 };
     const apiFetch = jest.fn().mockResolvedValue(createResponse(200, usage));
 
     await expect(createStatisticsService(apiFetch as ApiFetch).getStatistics()).resolves.toEqual(
