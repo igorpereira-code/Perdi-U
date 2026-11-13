@@ -5920,7 +5920,7 @@
     "testId": 132
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f4e87b8a20f2532174fcff2b61e73ff566386b70",
     "commitName": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
     "commitTimestamp": 1794490855674,
     "testId": 133
@@ -6258,5 +6258,35 @@
     "commitName": "feat(admin): ver cuántos objetos se encontraron, perdieron y entregaron",
     "commitTimestamp": 1794539007437,
     "testId": 153
+  },
+  {
+    "numPassedTests": 823,
+    "failedTests": 18,
+    "numTotalTests": 841,
+    "timestamp": 1794539526060,
+    "success": false,
+    "testId": 154
+  },
+  {
+    "numPassedTests": 841,
+    "failedTests": 0,
+    "numTotalTests": 841,
+    "timestamp": 1794539661998,
+    "success": true,
+    "testId": 154
+  },
+  {
+    "numPassedTests": 841,
+    "failedTests": 0,
+    "numTotalTests": 841,
+    "timestamp": 1794539734486,
+    "success": true,
+    "testId": 154
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): elegir un rango de fechas para las estadísticas",
+    "commitTimestamp": 1794539837074,
+    "testId": 154
   }
 ]

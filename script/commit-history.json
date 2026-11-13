@@ -4788,12 +4788,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f4e87b8a20f2532174fcff2b61e73ff566386b70",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:40:55.000Z",
       "message": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/f4e87b8a20f2532174fcff2b61e73ff566386b70"
     },
     "stats": {
       "total": 57,
@@ -5202,6 +5202,25 @@
     },
     "coverage": 82.26,
     "test_count": 819,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-13T03:17:15.000Z",
+      "message": "feat(admin): elegir un rango de fechas para las estadísticas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 339,
+      "additions": 313,
+      "deletions": 26,
+      "date": "2026-11-13"
+    },
+    "coverage": 82.27,
+    "test_count": 841,
     "failed_tests": 0,
     "conclusion": "success"
   }

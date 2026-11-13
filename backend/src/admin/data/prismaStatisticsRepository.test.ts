@@ -26,4 +26,25 @@ describe('Estadísticas leídas de la base de datos', () => {
       deliveredItems: 4,
     });
   });
+
+  it('sin rango de fechas cuenta todo', async () => {
+    await prismaStatisticsRepository.countUsage();
+
+    expect(foundItem.count).toHaveBeenCalledWith({ where: { createdAt: undefined } });
+    expect(lostReport.count).toHaveBeenCalledWith({ where: { createdAt: undefined } });
+    expect(delivery.count).toHaveBeenCalledWith({ where: { deliveredAt: undefined } });
+  });
+
+  it('con un rango, cuenta solo lo reportado y entregado en esos días', async () => {
+    const time = {
+      gte: new Date('2026-11-01T04:00:00.000Z'),
+      lt: new Date('2026-12-01T04:00:00.000Z'),
+    };
+
+    await prismaStatisticsRepository.countUsage({ from: '2026-11-01', to: '2026-11-30' });
+
+    expect(foundItem.count).toHaveBeenCalledWith({ where: { createdAt: time } });
+    expect(lostReport.count).toHaveBeenCalledWith({ where: { createdAt: time } });
+    expect(delivery.count).toHaveBeenCalledWith({ where: { deliveredAt: time } });
+  });
 });

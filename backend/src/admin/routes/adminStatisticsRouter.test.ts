@@ -66,3 +66,38 @@ describe('Ver cuántos objetos se encontraron, perdieron y entregaron', () => {
     });
   });
 });
+
+describe('Elegir un rango de fechas', () => {
+  it('cuenta solo lo que pasó entre las fechas elegidas', async () => {
+    const countUsage = jest.fn().mockResolvedValue(usage);
+    const app = setup('ADMIN', { countUsage });
+
+    const response = await request(app)
+      .get('/admin/statistics')
+      .query({ from: '2026-11-01', to: '2026-11-30' })
+      .auth('token', { type: 'bearer' });
+
+    expect(response.status).toBe(200);
+    expect(countUsage).toHaveBeenCalledWith({ from: '2026-11-01', to: '2026-11-30' });
+  });
+
+  it('sin fechas, cuenta todo', async () => {
+    const countUsage = jest.fn().mockResolvedValue(usage);
+
+    await getStatistics(setup('ADMIN', { countUsage }));
+
+    expect(countUsage).toHaveBeenCalledWith(undefined);
+  });
+
+  it('no acepta una fecha de inicio posterior a la de fin', async () => {
+    const response = await request(setup('ADMIN'))
+      .get('/admin/statistics')
+      .query({ from: '2026-11-30', to: '2026-11-01' })
+      .auth('token', { type: 'bearer' });
+
+    expect(response.status).toBe(400);
+    expect(response.body).toEqual({
+      error: 'La fecha de inicio no puede ser posterior a la de fin.',
+    });
+  });
+});

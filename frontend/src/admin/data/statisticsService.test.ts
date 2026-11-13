@@ -24,3 +24,16 @@ describe('Consultar las estadísticas', () => {
     );
   });
 });
+
+describe('Consultar las estadísticas de un rango de fechas', () => {
+  it('envía la fecha de inicio y la de fin', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(createResponse(200, {}));
+
+    await createStatisticsService(apiFetch as ApiFetch).getStatistics({
+      from: '2026-11-01',
+      to: '2026-11-30',
+    });
+
+    expect(apiFetch).toHaveBeenCalledWith('/admin/statistics?from=2026-11-01&to=2026-11-30');
+  });
+});

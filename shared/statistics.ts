@@ -7,3 +7,9 @@ export type UsageStatistics = {
   /** Items that Bienestar returned to their owner. */
   deliveredItems: number;
 };
+
+/** Days chosen by the Administrator, both included, as "YYYY-MM-DD". */
+export type DateRange = {
+  from: string;
+  to: string;
+};
