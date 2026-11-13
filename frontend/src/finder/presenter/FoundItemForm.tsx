@@ -2,11 +2,12 @@ import { useRef, useState, type FormEvent } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
-import { PhotoInput } from '../../core/presenter/PhotoInput';
 import type { FoundItemCatalogs, FoundItemCreated, FoundItemPayload, FoundItemsService } from '../data/foundItemsService';
 import { buildFoundAt } from '../logic/buildFoundAt';
 import { validateFoundItemForm, type FoundItemFormErrors } from '../logic/validateFoundItemForm';
 import { FoundItemConfirmation } from './FoundItemConfirmation';
+import { FoundItemPhotoPicker } from './FoundItemPhotoPicker';
+import { FoundItemReview } from './FoundItemReview';
 
 type FoundItemFormProps = {
   catalogs: FoundItemCatalogs;
@@ -31,6 +32,7 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [createdReport, setCreatedReport] = useState<FoundItemCreated | null>(null);
+  const [reportToReview, setReportToReview] = useState<FoundItemPayload | null>(null);
   const isSubmitLockedRef = useRef(false);
   const selectedPlace = catalogs.places.find((place) => String(place.id) === placeId);
 
@@ -41,7 +43,7 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (isSubmitLockedRef.current) { return; }
+    if (reportToReview || isSubmitLockedRef.current) { return; }
     setSubmitError(null);
     const nextErrors = validateFoundItemForm({ description, category, place: placeId, foundDate });
     setErrors(nextErrors);
@@ -55,8 +57,6 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
       return;
     }
     if (!onCreate && !edit) { return; }
-    isSubmitLockedRef.current = true;
-    setIsSubmitting(true);
     try {
       const changes = {
         description: description.trim(),
@@ -66,13 +66,34 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
         placeReference: placeReference.trim() || null,
         foundAt: buildFoundAt(foundDate, foundTime),
       };
-      if (edit) {
-        await edit.onSave(changes);
-      } else if (onCreate) {
-        setCreatedReport(await onCreate(changes, photo));
+      if (!edit) {
+        setReportToReview(changes);
+        return;
       }
+      isSubmitLockedRef.current = true;
+      setIsSubmitting(true);
+      await edit.onSave(changes);
     } catch (error) {
       isSubmitLockedRef.current = false;
+      setSubmitError(error instanceof Error ? error.message : 'No se pudo enviar el reporte. Intenta nuevamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function handleConfirm() {
+    if (!onCreate || !reportToReview || isSubmitLockedRef.current) {
+      return;
+    }
+
+    isSubmitLockedRef.current = true;
+    setIsSubmitting(true);
+    try {
+      const creation = await onCreate(reportToReview, photo);
+      setCreatedReport(creation);
+    } catch (error) {
+      isSubmitLockedRef.current = false;
+      setReportToReview(null);
       setSubmitError(error instanceof Error ? error.message : 'No se pudo enviar el reporte. Intenta nuevamente.');
     } finally {
       setIsSubmitting(false);
@@ -83,8 +104,9 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
     return <FoundItemConfirmation code={createdReport.code} />;
   }
 
-  return (
+  const form = (
     <form
+      hidden={reportToReview !== null}
       aria-labelledby="found-item-form-title"
       className="mx-auto max-w-lg space-y-4"
       noValidate
@@ -129,7 +151,7 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
         <legend className="text-sm font-medium text-neutral-700">
           Fotografía <span className="font-normal text-neutral-500">(opcional)</span>
         </legend>
-        <PhotoInput onChange={setPhoto} />
+        <FoundItemPhotoPicker photo={photo} onChange={setPhoto} />
         <p className="text-sm text-neutral-500">JPEG, PNG o WebP, máximo 5 MiB.</p>
         {photo && <p className="text-sm text-neutral-500">{photo.name}</p>}
       </fieldset>}
@@ -211,9 +233,32 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
         </Field>
       </fieldset>
       <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? (edit ? 'Guardando…' : 'Enviando…') : edit ? 'Guardar cambios' : title}
+        {edit ? (isSubmitting ? 'Guardando…' : 'Guardar cambios') : 'Revisar reporte'}
       </Button>
       </fieldset>
     </form>
+  );
+
+  return (
+    <>
+      {form}
+      {reportToReview && (
+        <FoundItemReview
+          description={reportToReview.description}
+          category={catalogs.categories.find((option) => option.id === reportToReview.categoryId)?.name ?? ''}
+          location={[
+            selectedPlace?.name,
+            selectedPlace?.classrooms.find((option) => option.id === reportToReview.classroomId)?.name,
+            reportToReview.placeReference,
+          ].filter(Boolean).join(' · ')}
+          foundAt={reportToReview.foundAt}
+          foundTime={foundTime}
+          photo={photo}
+          isSubmitting={isSubmitting}
+          onEdit={() => setReportToReview(null)}
+          onConfirm={handleConfirm}
+        />
+      )}
+    </>
   );
 }

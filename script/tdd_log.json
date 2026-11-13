@@ -1,5 +1,203 @@
 [
   {
+    "commitId": "12531eb9fe49ed961867b1c074a49e87103c1c1d",
+    "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
+    "commitTimestamp": 1792597534262,
+    "testId": 56
+  },
+  {
+    "commitId": "2bb2b797806d641ca89833ca2cdabf07087a688d",
+    "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
+    "commitTimestamp": 1792597809312,
+    "testId": 57
+  },
+  {
+    "commitId": "eafde7231c7bb169fe15fb89ced567bcb196c6e3",
+    "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
+    "commitTimestamp": 1792598049048,
+    "testId": 58
+  },
+  {
+    "commitId": "da62bbb24fec2cd460062a16b580dd3aee3d9b1a",
+    "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
+    "commitTimestamp": 1792599362931,
+    "testId": 59
+  },
+  {
+    "commitId": "bd9d8f599167b4c8ac39e908ba7ce8384f298768",
+    "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
+    "commitTimestamp": 1792599791806,
+    "testId": 60
+  },
+  {
+    "commitId": "0618a3ed080e0cbe6ddd06b799eb281640ed7602",
+    "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
+    "commitTimestamp": 1792601341695,
+    "testId": 61
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794319076639,
+    "success": false,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794319154828,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794319220832,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "commitId": "3c33c7d607189f07c08656361e214442c36aded0",
+    "commitName": "feat(finder): permitir tomar la foto del hallazgo con la cámara",
+    "commitTimestamp": 1794429242538,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 1,
+    "numTotalTests": 630,
+    "timestamp": 1794429430489,
+    "success": false,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 630,
+    "failedTests": 0,
+    "numTotalTests": 630,
+    "timestamp": 1794429503892,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 630,
+    "failedTests": 0,
+    "numTotalTests": 630,
+    "timestamp": 1794429562570,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir volver a tomar la foto del hallazgo",
+    "commitTimestamp": 1794429946766,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 0,
+    "numTotalTests": 631,
+    "timestamp": 1794430443564,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(finder): verificar que la galería sigue disponible tras usar la cámara",
+    "commitTimestamp": 1794430487766,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 1,
+    "numTotalTests": 632,
+    "timestamp": 1794430577244,
+    "success": false,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 0,
+    "numTotalTests": 632,
+    "timestamp": 1794430675196,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 0,
+    "numTotalTests": 632,
+    "timestamp": 1794430742518,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): mostrar el resumen del hallazgo antes de enviarlo",
+    "commitTimestamp": 1794435708683,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 1,
+    "numTotalTests": 633,
+    "timestamp": 1794435780227,
+    "success": false,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 633,
+    "failedTests": 0,
+    "numTotalTests": 633,
+    "timestamp": 1794435832570,
+    "success": true,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 633,
+    "failedTests": 0,
+    "numTotalTests": 633,
+    "timestamp": 1794435885146,
+    "success": true,
+    "testId": 85
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir corregir el reporte desde el resumen",
+    "commitTimestamp": 1794436331985,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 633,
+    "failedTests": 0,
+    "numTotalTests": 633,
+    "timestamp": 1794436468677,
+    "success": true,
+    "testId": 86
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(finder): verificar el envío solo al confirmar el resumen",
+    "commitTimestamp": 1794436504406,
+    "testId": 86
+  },
+  {
+    "numPassedTests": 691,
+    "failedTests": 0,
+    "numTotalTests": 691,
+    "timestamp": 1794536834631,
+    "success": true,
+    "testId": 138
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(finder): integrar finder en HU-17",
+    "commitTimestamp": 1794536875727,
+    "testId": 138
+  },
+  {
     "commitId": "0a01ffa8183d14ae2b0daf8c94728b3b26a012f6",
     "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
     "commitTimestamp": 1792597534262,
@@ -6398,5 +6596,19 @@
     "commitName": "chore(finder): integrar finder en HU-16",
     "commitTimestamp": 1794536739355,
     "testId": 138
+  },
+  {
+    "numPassedTests": 691,
+    "failedTests": 0,
+    "numTotalTests": 691,
+    "timestamp": 1794537950471,
+    "success": true,
+    "testId": 139
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(finder): integrar HU-16 en la base de HU-17",
+    "commitTimestamp": 1794537998046,
+    "testId": 139
   }
 ]
