@@ -5926,7 +5926,7 @@
     "testId": 133
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1d0d04a59e5521eb81757e1a391e67a8bcd1dac5",
     "commitName": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
     "commitTimestamp": 1794490908233,
     "testId": 134
@@ -6288,5 +6288,35 @@
     "commitName": "feat(admin): elegir un rango de fechas para las estadísticas",
     "commitTimestamp": 1794539837074,
     "testId": 154
+  },
+  {
+    "numPassedTests": 842,
+    "failedTests": 4,
+    "numTotalTests": 846,
+    "timestamp": 1794540062233,
+    "success": false,
+    "testId": 155
+  },
+  {
+    "numPassedTests": 846,
+    "failedTests": 0,
+    "numTotalTests": 846,
+    "timestamp": 1794540123026,
+    "success": true,
+    "testId": 155
+  },
+  {
+    "numPassedTests": 846,
+    "failedTests": 0,
+    "numTotalTests": 846,
+    "timestamp": 1794540250949,
+    "success": true,
+    "testId": 155
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): actualizar las estadísticas al cambiar el rango de fechas",
+    "commitTimestamp": 1794540316465,
+    "testId": 155
   }
 ]

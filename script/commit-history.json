@@ -4807,12 +4807,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "1d0d04a59e5521eb81757e1a391e67a8bcd1dac5",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:41:48.000Z",
       "message": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/1d0d04a59e5521eb81757e1a391e67a8bcd1dac5"
     },
     "stats": {
       "total": 42,
@@ -5221,6 +5221,25 @@
     },
     "coverage": 82.27,
     "test_count": 841,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-13T03:25:15.000Z",
+      "message": "feat(admin): actualizar las estadísticas al cambiar el rango de fechas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 112,
+      "additions": 107,
+      "deletions": 5,
+      "date": "2026-11-13"
+    },
+    "coverage": 82.1,
+    "test_count": 846,
     "failed_tests": 0,
     "conclusion": "success"
   }

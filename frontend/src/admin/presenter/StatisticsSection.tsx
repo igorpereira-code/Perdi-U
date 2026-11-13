@@ -1,11 +1,14 @@
 import { useCallback, useState } from 'react';
 import { CircleCheck, PackageSearch, SearchX, type LucideIcon } from 'lucide-react';
+import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { LoadErrorAlert } from '../../core/presenter/LoadErrorAlert';
 import { SkeletonList } from '../../core/presenter/Skeleton';
 import { useLoadedData } from '../../core/presenter/useLoadedData';
 import type { StatisticsService } from '../data/statisticsService';
+import { describeDateRange } from '../logic/describeDateRange';
 import { getDateRangeError } from '../logic/getDateRangeError';
+import { toDateRange } from '../logic/toDateRange';
 
 type StatisticsSectionProps = {
   statisticsService: StatisticsService;
@@ -68,12 +71,28 @@ function DateRangeFields({ from, to, onChangeFrom, onChangeTo }: DateRangeFields
   );
 }
 
-/** How many items were found, lost and returned with Perdi-U. */
+type ChosenDates = { from: string; to: string };
+
+const NO_DATES: ChosenDates = { from: '', to: '' };
+
+/** How many items were found, lost and returned with Perdi-U, in the chosen days. */
 export function StatisticsSection({ statisticsService }: StatisticsSectionProps) {
-  const [from, setFrom] = useState('');
-  const [to, setTo] = useState('');
-  const loadStatistics = useCallback(() => statisticsService.getStatistics(), [statisticsService]);
+  const [chosenDates, setChosenDates] = useState<ChosenDates>(NO_DATES);
+  // The last valid dates: the counts only change when the chosen dates make sense.
+  const [countedDates, setCountedDates] = useState<ChosenDates>(NO_DATES);
+  const countedRange = toDateRange(countedDates.from, countedDates.to);
+  const loadStatistics = useCallback(
+    () => statisticsService.getStatistics(toDateRange(countedDates.from, countedDates.to)),
+    [statisticsService, countedDates],
+  );
   const { data: usage, hasFailed, retry } = useLoadedData(loadStatistics);
+
+  function chooseDates(newDates: ChosenDates) {
+    setChosenDates(newDates);
+    if (!getDateRangeError(newDates.from, newDates.to)) {
+      setCountedDates(newDates);
+    }
+  }
 
   function renderCounts() {
     if (hasFailed) {
@@ -102,7 +121,20 @@ export function StatisticsSection({ statisticsService }: StatisticsSectionProps)
 
   return (
     <div className="space-y-4">
-      <DateRangeFields from={from} to={to} onChangeFrom={setFrom} onChangeTo={setTo} />
+      <DateRangeFields
+        from={chosenDates.from}
+        to={chosenDates.to}
+        onChangeFrom={(from) => chooseDates({ ...chosenDates, from })}
+        onChangeTo={(to) => chooseDates({ ...chosenDates, to })}
+      />
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-sm font-semibold text-neutral-700">{describeDateRange(countedRange)}</p>
+        {countedRange && (
+          <Button variant="outline" onClick={() => chooseDates(NO_DATES)}>
+            Ver todo
+          </Button>
+        )}
+      </div>
       {renderCounts()}
     </div>
   );
