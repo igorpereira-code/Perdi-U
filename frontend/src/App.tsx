@@ -39,6 +39,7 @@ import { useRoleRefresh } from './core/presenter/useRoleRefresh';
 import type { SettingsService } from './core/data/settingsService';
 import { useSavedWelfareOffice, WelfareOfficeContext } from './core/presenter/WelfareOffice';
 import type { StatisticsService } from './admin/data/statisticsService';
+import { useStartPage } from './core/presenter/useStartPage';
 
 type AppProps = {
   authService: AuthService;
@@ -88,6 +89,7 @@ export default function App({
       });
   }, [authService]);
   useRoleRefresh(authService, setUser);
+  useStartPage(user);
   const welfareOffice = useSavedWelfareOffice(settingsService, user?.id);
 
   async function handleSignOut() {
