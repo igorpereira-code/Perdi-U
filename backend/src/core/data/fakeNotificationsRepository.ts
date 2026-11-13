@@ -3,14 +3,15 @@ import type { NotificationsRepository, StoredNotification } from './notification
 /** In-memory notifications repository for tests. It never touches the shared database. */
 export function fakeNotificationsRepository(initial: StoredNotification[] = []) {
   // A copy, so one test does not change the notifications of the next one.
-  const saved = initial.map((notification) => ({ ...notification }));
+  const savedNotifications = initial.map((notification) => ({ ...notification }));
 
   const repository: NotificationsRepository & { saved: StoredNotification[] } = {
-    saved,
-    listForUser: async (userId) => saved.filter((notification) => notification.userId === userId),
+    saved: savedNotifications,
+    listForUser: async (userId) =>
+      savedNotifications.filter((notification) => notification.userId === userId),
     notify: async ({ userId, message, link = null }) => {
-      saved.push({
-        id: `aviso-${saved.length + 1}`,
+      savedNotifications.push({
+        id: `aviso-${savedNotifications.length + 1}`,
         userId,
         message,
         link,
@@ -19,7 +20,9 @@ export function fakeNotificationsRepository(initial: StoredNotification[] = []) 
       });
     },
     markRead: async (id, userId) => {
-      const notification = saved.find((stored) => stored.id === id && stored.userId === userId);
+      const notification = savedNotifications.find(
+        (stored) => stored.id === id && stored.userId === userId,
+      );
       if (!notification) {
         return false;
       }

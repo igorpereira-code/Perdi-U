@@ -31,6 +31,12 @@ import { MyLostReportScreen } from './owner/presenter/MyLostReportScreen';
 import type { NotificationsService } from './core/data/notificationsService';
 import { NotificationsBell } from './core/presenter/NotificationsBell';
 import { NotificationsScreen } from './core/presenter/NotificationsScreen';
+import { AppLoadingScreen } from './core/presenter/AppLoadingScreen';
+import { canManageUsers } from './admin/logic/canManageUsers';
+import { AdminPage } from './admin/presenter/AdminPage';
+import type { AdminUsersService } from './admin/data/adminUsersService';
+import { canUseWelfareOptions } from './core/logic/canUseWelfareOptions';
+import { withRefreshedRole } from './core/logic/withRefreshedRole';
 
 type AppProps = {
   authService: AuthService;
@@ -42,6 +48,7 @@ type AppProps = {
   catalogService: CatalogService;
   myLostReportsService: MyLostReportsService;
   notificationsService?: NotificationsService;
+  adminUsersService?: AdminUsersService;
 };
 
 export default function App({
@@ -54,22 +61,49 @@ export default function App({
   catalogService,
   myLostReportsService,
   notificationsService,
+  adminUsersService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
-  const [notInstitutional, setNotInstitutional] = useState(false);
-  const guidePending = user ? !user.hasSeenGuide : false;
+  const [isNotInstitutional, setIsNotInstitutional] = useState(false);
+  const isGuidePending = user ? !user.hasSeenGuide : false;
+  const ROLE_REFRESH_INTERVAL_MS = 30 * 1000;
 
   useEffect(() => {
     authService
       .getCurrentUser()
       .then(setUser)
       .catch((error: unknown) => {
-        setNotInstitutional(error instanceof NotInstitutionalEmailError);
+        setIsNotInstitutional(error instanceof NotInstitutionalEmailError);
         setUser(null);
       });
+  }, [authService]);
+  // The Administrator can give or take away the Bienestar role while the app is open,
+  // so the role is checked again every 30 seconds and every time the user comes back to the app.
+  useEffect(() => {
+    function refreshRole() {
+      if (document.visibilityState !== 'visible') {
+        return;
+      }
+      authService
+        .getCurrentUser()
+        .then((refreshedUser) =>
+          setUser((currentUser) =>
+            currentUser ? withRefreshedRole(currentUser, refreshedUser) : currentUser,
+          ),
+        )
+        .catch(() => undefined);
+    }
+    const refreshTimer = window.setInterval(refreshRole, ROLE_REFRESH_INTERVAL_MS);
+    window.addEventListener('focus', refreshRole);
+    document.addEventListener('visibilitychange', refreshRole);
+    return () => {
+      window.clearInterval(refreshTimer);
+      window.removeEventListener('focus', refreshRole);
+      document.removeEventListener('visibilitychange', refreshRole);
+    };
   }, [authService]);
 
   async function handleSignOut() {
@@ -83,14 +117,14 @@ export default function App({
   }
 
   /** Pages for signed-in users: inside the blue header and bottom menu. Without a session, go to sign in. */
-  const signedInPage = (page: (me: AppUser) => ReactNode) => {
+  const renderSignedInPage = (page: (signedInUser: AppUser) => ReactNode) => {
     if (user === undefined) {
-      return null;
+      return <AppLoadingScreen />;
     }
     if (user === null) {
       return <Navigate to="/ingresar" replace />;
     }
-    if (guidePending && pathname !== '/guia-rapida') {
+    if (isGuidePending && pathname !== '/guia-rapida') {
       return <Navigate to="/guia-rapida" replace />;
     }
     return (
@@ -109,9 +143,9 @@ export default function App({
     <Routes>
       <Route
         path="/"
-        element={signedInPage((me) => (
+        element={renderSignedInPage((signedInUser) => (
           <div className="mx-auto max-w-xl space-y-6">
-            <HomePage user={me} />
+            <HomePage user={signedInUser} />
             <div className="grid grid-cols-2 gap-3">
               <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
               <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
@@ -139,13 +173,13 @@ export default function App({
       />
       <Route
         path="/reportar-objeto"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <FoundItemScreen foundItemsService={foundItemsService} />
         ))}
       />
       <Route
         path="/reportar-perdida"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <LostReportScreen
             foundItemsService={foundItemsService}
             lostReportsService={lostReportsService}
@@ -154,7 +188,7 @@ export default function App({
       />
       <Route
         path="/objetos/:code"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <CatalogItemScreen
             catalogService={catalogService}
             foundItemsService={foundItemsService}
@@ -163,51 +197,51 @@ export default function App({
       />
       <Route
         path="/mis-perdidas"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyLostReportsScreen myLostReportsService={myLostReportsService} />
         ))}
       />
       <Route
         path="/mis-perdidas/:code"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyLostReportScreen myLostReportsService={myLostReportsService} />
         ))}
       />
       <Route
         path="/perfil"
-        element={signedInPage((me) => (
-          <ProfilePage user={me} onSignOut={handleSignOut} />
+        element={renderSignedInPage((signedInUser) => (
+          <ProfilePage user={signedInUser} onSignOut={handleSignOut} />
         ))}
       />
       <Route
         path="/mis-reportes"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyFoundItemsScreen foundItemsService={foundItemsService} />
         ))}
       />
       <Route
         path="/mis-reportes/encontrados/:code"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MyFoundItemScreen foundItemsService={foundItemsService} />
         ))}
       />
       <Route
         path="/mis-reportes/:code/coincidencias"
-        element={signedInPage(() => (
+        element={renderSignedInPage(() => (
           <MatchesScreen matchesService={matchesService} />
         ))}
       />
       {notificationsService && (
         <Route
           path="/avisos"
-          element={signedInPage(() => (
+          element={renderSignedInPage(() => (
             <NotificationsScreen notificationsService={notificationsService} />
           ))}
         />
       )}
       <Route
         path="/guia-rapida"
-        element={signedInPage((me) =>
+        element={renderSignedInPage((me) =>
           me.hasSeenGuide ? (
             <QuickGuide onClose={() => navigate('/', { replace: true })} />
           ) : (
@@ -217,21 +251,33 @@ export default function App({
       />
       <Route
         path="/bienestar"
-        element={signedInPage((me) =>
-          me.role === 'WELFARE' ? (
+        element={renderSignedInPage((signedInUser) =>
+          canUseWelfareOptions(signedInUser.role) ? (
             <WelfarePage welfareService={welfareService} matchesService={matchesService} />
           ) : (
             <Navigate to="/" replace />
           ),
         )}
       />
+      {adminUsersService && (
+        <Route
+          path="/administracion"
+          element={renderSignedInPage((signedInUser) =>
+            canManageUsers(signedInUser.role) ? (
+              <AdminPage adminUsersService={adminUsersService} />
+            ) : (
+              <Navigate to="/" replace />
+            ),
+          )}
+        />
+      )}
       <Route
         path="/ingresar"
         element={
-          guidePending ? (
+          isGuidePending ? (
             <Navigate to="/guia-rapida" replace />
           ) : (
-            <LoginPage onGoogleLogin={authService.signIn} notInstitutional={notInstitutional} />
+            <LoginPage onGoogleLogin={authService.signIn} isNotInstitutional={isNotInstitutional} />
           )
         }
       />

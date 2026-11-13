@@ -6,7 +6,7 @@ type PhotoBucket = Pick<ReturnType<SupabaseClient['storage']['from']>, 'upload' 
 export const FOUND_ITEM_PHOTO_BUCKET = 'found-item-photos';
 const STORAGE_ERROR = 'No se pudo completar la operación de fotografías.';
 
-async function storageOperation<T>(action: () => Promise<T>): Promise<T> {
+async function runStorageOperation<T>(action: () => Promise<T>): Promise<T> {
   try {
     return await action();
   } catch {
@@ -17,15 +17,15 @@ async function storageOperation<T>(action: () => Promise<T>): Promise<T> {
 
 export function createFoundItemPhotoStorage(getBucket: () => PhotoBucket): FoundItemPhotoStorage {
   return {
-    upload: (path, bytes, contentType) => storageOperation(async () => {
+    upload: (path, bytes, contentType) => runStorageOperation(async () => {
       const { error } = await getBucket().upload(path, bytes, { contentType, upsert: false, cacheControl: '0' });
       if (error) { throw new Error(STORAGE_ERROR); }
     }),
-    remove: (path) => storageOperation(async () => {
+    remove: (path) => runStorageOperation(async () => {
       const { error } = await getBucket().remove([path]);
       if (error) { throw new Error(STORAGE_ERROR); }
     }),
-    createSignedUrl: (path, expiresIn) => storageOperation(async () => {
+    createSignedUrl: (path, expiresIn) => runStorageOperation(async () => {
       const { data, error } = await getBucket().createSignedUrl(path, expiresIn);
       if (error || !data?.signedUrl) { throw new Error(STORAGE_ERROR); }
       return data.signedUrl;

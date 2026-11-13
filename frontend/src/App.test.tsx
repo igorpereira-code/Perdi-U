@@ -63,6 +63,9 @@ function renderAt(
     publish: jest.fn(),
   };
   const foundItemsService: FoundItemsService = {
+    cancelPending: jest.fn(),
+    getEditable: jest.fn(),
+    updatePending: jest.fn(),
     listMine: jest.fn().mockResolvedValue([]),
     getMineByCode: jest.fn().mockResolvedValue(null),
     getCatalogs: jest.fn().mockResolvedValue({ categories: [], places: [] }),

@@ -3,7 +3,7 @@ import { Alert } from '../../core/presenter/Alert';
 import { WelfareCard } from '../../core/presenter/WelfareCard';
 
 type QuickGuideProps = {
-  saving?: boolean;
+  isSaving?: boolean;
   error?: string | null;
 } & ({ onClose: () => void } | { onSkip: () => void; onComplete: () => void });
 
@@ -27,7 +27,7 @@ const steps = [
 ];
 
 export function QuickGuide(props: QuickGuideProps) {
-  const { saving = false, error } = props;
+  const { isSaving = false, error } = props;
   return (
     <main className="mx-auto max-w-lg space-y-6 px-4 py-6">
       <header className="space-y-2 text-center">
@@ -85,22 +85,22 @@ export function QuickGuide(props: QuickGuideProps) {
         </div>
       )}
 
-      <div className="space-y-3" aria-busy={saving}>
+      <div className="space-y-3" aria-busy={isSaving}>
         {'onClose' in props ? (
           <Button onClick={props.onClose} className="w-full">
             Cerrar guía
           </Button>
         ) : (
           <>
-            <Button onClick={props.onComplete} disabled={saving} className="w-full">
+            <Button onClick={props.onComplete} disabled={isSaving} className="w-full">
               Empezar a usar Perdi-U
             </Button>
-            <Button variant="outline" onClick={props.onSkip} disabled={saving} className="w-full">
+            <Button variant="outline" onClick={props.onSkip} disabled={isSaving} className="w-full">
               Saltar guía
             </Button>
           </>
         )}
-        {saving && (
+        {isSaving && (
           <p role="status" className="text-center text-sm">Guardando tu decisión…</p>
         )}
       </div>
