@@ -1,4 +1,4 @@
-export function notificationDestination(link: string | null): string | null {
+export function getNotificationDestination(link: string | null): string | null {
   if (!link || !link.startsWith('/') || link.startsWith('//') || link.includes('\\')) {
     return null;
   }

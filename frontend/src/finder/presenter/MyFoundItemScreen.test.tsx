@@ -8,7 +8,7 @@ const report: MyFoundItem = { code: 'HZ-7325', description: 'Llaves azules', cat
   foundAt: '2026-10-18T12:15:00.000Z', hasPhoto: false, status: 'PENDING_DROP_OFF', receivedAt: null };
 
 function fakeService(): jest.Mocked<FoundItemsService> {
-  return { listMine: jest.fn(), getMineByCode: jest.fn().mockResolvedValue(report),
+  return { cancelPending: jest.fn(), getEditable: jest.fn(), updatePending: jest.fn(), listMine: jest.fn(), getMineByCode: jest.fn().mockResolvedValue(report),
     getCatalogs: jest.fn(), create: jest.fn(), getPhotoUrl: jest.fn() };
 }
 
@@ -25,7 +25,7 @@ function renderReport(service: FoundItemsService) {
 }
 
 describe('Detalle de un reporte propio del hallador', () => {
-  it.each(['PENDING_DROP_OFF', 'DELIVERED'] as const)(
+  it.each(['PENDING_DROP_OFF', 'IN_CUSTODY', 'PUBLISHED', 'DELIVERED'] as const)(
     'mantiene junto al código la instrucción de Bienestar al consultar un reporte en estado %s',
     async (status) => {
       const service = fakeService();
@@ -35,6 +35,10 @@ describe('Detalle de un reporte propio del hallador', () => {
       await screen.findByText(report.code);
       const group = screen.getByRole('group', { name: 'Código para entregar el objeto' });
       expect(within(group).getByText(report.code)).toBeInTheDocument();
+      if (status !== 'PENDING_DROP_OFF') {
+        expect(screen.queryByRole('button', { name: 'Editar reporte' })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'Cancelar reporte' })).not.toBeInTheDocument();
+      }
       expect(within(group).getByText('Muestra este código en Bienestar Estudiantil cuando entregues el objeto')).toBeInTheDocument();
     },
   );
@@ -76,9 +80,14 @@ describe('Detalle de un reporte propio del hallador', () => {
   });
 
   it('vuelve a Mis reportes incluso cuando se ingresó por una URL directa', async () => {
-    renderReport(fakeService());
-
+    const service = fakeService();
+    renderReport(service);
     await screen.findByText(report.code);
+    await userEvent.click(screen.getByRole('button', { name: 'Cancelar reporte' }));
+    expect(screen.getByText('¿Quieres cancelar este reporte?')).toBeInTheDocument();
+    expect(service.cancelPending).not.toHaveBeenCalled();
+    await userEvent.click(screen.getByRole('button', { name: 'Conservar reporte' }));
+    expect(service.cancelPending).not.toHaveBeenCalled();
     await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
 
     expect(await screen.findByRole('heading', { name: 'Mis reportes' })).toBeInTheDocument();

@@ -10,6 +10,7 @@ const foundItemCreate = jest.fn();
 const foundItemFindUnique = jest.fn();
 const foundItemFindMany = jest.fn();
 const foundItemFindFirst = jest.fn();
+const foundItemUpdateMany = jest.fn();
 const item: NewFoundItem = {
   description: 'Llaves con llavero azul',
   categoryId: 47,
@@ -26,7 +27,7 @@ beforeEach(() => {
     category: { findMany: categoryFindMany },
     place: { findMany: placeFindMany },
     foundItem: { create: foundItemCreate, findUnique: foundItemFindUnique,
-      findMany: foundItemFindMany, findFirst: foundItemFindFirst },
+      findMany: foundItemFindMany, findFirst: foundItemFindFirst, updateMany: foundItemUpdateMany },
   } as unknown as ReturnType<typeof db>);
 });
 
@@ -41,7 +42,7 @@ describe('Mis reportes mediante Prisma', () => {
       hasPhoto: true, status: 'PENDING_DROP_OFF', receivedAt: null,
     });
     expect(foundItemFindFirst).toHaveBeenCalledWith({
-      where: { finderId: item.finderId, code: 'HZ-7325' },
+      where: { finderId: item.finderId, code: 'HZ-7325', OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }] },
       select: { code: true, description: true, category: { select: { name: true } }, foundAt: true,
         photoUrl: true, status: true, receivedAt: true },
     });
@@ -69,7 +70,7 @@ describe('Mis reportes mediante Prisma', () => {
         hasPhoto: true, status: 'PENDING_DROP_OFF', receivedAt: null },
     ]);
     expect(foundItemFindMany).toHaveBeenCalledWith({
-      where: { finderId: item.finderId },
+      where: { finderId: item.finderId, OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }] },
       select: { code: true, description: true, category: { select: { name: true } }, foundAt: true,
         photoUrl: true, status: true, receivedAt: true },
       orderBy: [{ createdAt: 'desc' }, { code: 'desc' }],
@@ -206,4 +207,16 @@ describe('Registro de un hallazgo mediante Prisma', () => {
 
     await expect(prismaFoundItemsRepository.create(item)).rejects.toBe(error);
   });
+});
+
+it('exige que el reporte sea propio, visible y pendiente en la misma escritura', async () => {
+  foundItemUpdateMany.mockResolvedValue({ count: 0 });
+  const { finderId, ...changes } = item;
+
+  await expect(prismaFoundItemsRepository.updatePending(finderId, 'HZ-7325', changes)).resolves.toBe(false);
+  await expect(prismaFoundItemsRepository.cancelPending(finderId, 'HZ-7325')).resolves.toBe(false);
+
+  const where = { finderId, code: 'HZ-7325', status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' };
+  expect(foundItemUpdateMany).toHaveBeenNthCalledWith(1, { where, data: changes });
+  expect(foundItemUpdateMany).toHaveBeenNthCalledWith(2, { where, data: { visibility: 'HIDDEN' } });
 });

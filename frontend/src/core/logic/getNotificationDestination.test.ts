@@ -1,4 +1,4 @@
-import { notificationDestination } from './notificationDestination';
+import { getNotificationDestination } from './getNotificationDestination';
 
 describe('Pantalla que se abre al tocar un aviso', () => {
   it.each([
@@ -7,11 +7,11 @@ describe('Pantalla que se abre al tocar un aviso', () => {
     '/objetos/HZ-0003',
     '/bienestar',
   ])('abre la pantalla relacionada (%s)', (link) => {
-    expect(notificationDestination(link)).toBe(link);
+    expect(getNotificationDestination(link)).toBe(link);
   });
 
   it('no abre ninguna pantalla si el aviso no tiene una relacionada', () => {
-    expect(notificationDestination(null)).toBeNull();
+    expect(getNotificationDestination(null)).toBeNull();
   });
 
   it.each([
@@ -21,6 +21,6 @@ describe('Pantalla que se abre al tocar un aviso', () => {
     'mis-perdidas',
     '',
   ])('no abre direcciones fuera de Perdi-U (%s)', (link) => {
-    expect(notificationDestination(link)).toBeNull();
+    expect(getNotificationDestination(link)).toBeNull();
   });
 });

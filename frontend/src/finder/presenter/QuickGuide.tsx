@@ -5,7 +5,7 @@ import { WelfareCard } from '../../core/presenter/WelfareCard';
 type QuickGuideProps = {
   onSkip: () => void;
   onComplete: () => void;
-  saving?: boolean;
+  isSaving?: boolean;
   error?: string | null;
 };
 
@@ -28,7 +28,7 @@ const steps = [
   },
 ];
 
-export function QuickGuide({ onSkip, onComplete, saving = false, error }: QuickGuideProps) {
+export function QuickGuide({ onSkip, onComplete, isSaving = false, error }: QuickGuideProps) {
   return (
     <main className="mx-auto max-w-lg space-y-6 px-4 py-6">
       <header className="space-y-2 text-center">
@@ -86,14 +86,14 @@ export function QuickGuide({ onSkip, onComplete, saving = false, error }: QuickG
         </div>
       )}
 
-      <div className="space-y-3" aria-busy={saving}>
-        <Button onClick={onComplete} disabled={saving} className="w-full">
+      <div className="space-y-3" aria-busy={isSaving}>
+        <Button onClick={onComplete} disabled={isSaving} className="w-full">
           Empezar a usar Perdi-U
         </Button>
-        <Button variant="outline" onClick={onSkip} disabled={saving} className="w-full">
+        <Button variant="outline" onClick={onSkip} disabled={isSaving} className="w-full">
           Saltar guía
         </Button>
-        {saving && (
+        {isSaving && (
           <p role="status" className="text-center text-sm">Guardando tu decisión…</p>
         )}
       </div>
