@@ -5974,7 +5974,7 @@
     "testId": 140
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6554e7b5674671af87348625b7bac8e452cd266a",
     "commitName": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
     "commitTimestamp": 1794491360067,
     "testId": 141
@@ -6446,5 +6446,75 @@
     "commitName": "feat(owner): elegir con qué reporte de pérdida se relaciona el objeto que se reclama",
     "commitTimestamp": 1794772043367,
     "testId": 161
+  },
+  {
+    "numPassedTests": 857,
+    "failedTests": 7,
+    "numTotalTests": 864,
+    "timestamp": 1794772190909,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 864,
+    "failedTests": 0,
+    "numTotalTests": 864,
+    "timestamp": 1794772272875,
+    "success": true,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 864,
+    "failedTests": 2,
+    "numTotalTests": 866,
+    "timestamp": 1794772358387,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 866,
+    "failedTests": 0,
+    "numTotalTests": 866,
+    "timestamp": 1794772594009,
+    "success": true,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 866,
+    "failedTests": 5,
+    "numTotalTests": 871,
+    "timestamp": 1794772907266,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 856,
+    "failedTests": 1,
+    "numTotalTests": 857,
+    "timestamp": 1794773069945,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 857,
+    "failedTests": 0,
+    "numTotalTests": 857,
+    "timestamp": 1794773341428,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 871,
+    "failedTests": 0,
+    "numTotalTests": 871,
+    "timestamp": 1794773626492,
+    "success": true,
+    "testId": 162
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar a Bienestar que el dueño pasará a recoger un objeto del catálogo",
+    "commitTimestamp": 1794773704804,
+    "testId": 162
   }
 ]

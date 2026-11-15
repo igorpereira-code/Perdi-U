@@ -1,16 +1,22 @@
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { LoadErrorAlert } from '../../core/presenter/LoadErrorAlert';
 import { useLoadedData } from '../../core/presenter/useLoadedData';
+import type { MatchesService } from '../../matching/data/matchesService';
 import type { MyLostReport, MyLostReportsService } from '../data/myLostReportsService';
 
 const REPORT_SELECT_ID = 'claim-report';
 
 type ClaimItemProps = {
+  itemCode: string;
   myLostReportsService: Pick<MyLostReportsService, 'listMine'>;
+  matchesService: Pick<MatchesService, 'claim'>;
 };
+
+type ClaimState = 'idle' | 'saving' | 'failed' | 'done';
 
 type ReportChoiceProps = {
   reports: MyLostReport[];
@@ -44,10 +50,11 @@ function ReportChoice({ reports, chosenCode, onChoose }: ReportChoiceProps) {
 }
 
 /** "Es mío, pasaré a recoger": lets the owner say that a published item is theirs. */
-export function ClaimItem({ myLostReportsService }: ClaimItemProps) {
+export function ClaimItem({ itemCode, myLostReportsService, matchesService }: ClaimItemProps) {
   const loadReports = useCallback(() => myLostReportsService.listMine(), [myLostReportsService]);
   const { data: reports, hasFailed, retry } = useLoadedData(loadReports);
   const [chosenCode, setChosenCode] = useState<string>();
+  const [claimState, setClaimState] = useState<ClaimState>('idle');
 
   if (hasFailed) {
     return (
@@ -78,10 +85,39 @@ export function ClaimItem({ myLostReportsService }: ClaimItemProps) {
   const selectedCode = activeReports.some((report) => report.code === chosenCode)
     ? (chosenCode as string)
     : activeReports[0].code;
+  async function handleClaim() {
+    setClaimState('saving');
+    try {
+      await matchesService.claim(itemCode, selectedCode);
+      setClaimState('done');
+    } catch {
+      setClaimState('failed');
+    }
+  }
+
+  if (claimState === 'done') {
+    return (
+      <p role="status" className="rounded-xl bg-success-50 p-2 text-sm font-medium text-success-700">
+        Pasarás a recoger este objeto
+      </p>
+    );
+  }
   return (
     <div className="space-y-3">
       <ReportChoice reports={activeReports} chosenCode={selectedCode} onChoose={setChosenCode} />
-      <Button className="w-full">Es mío, pasaré a recoger</Button>
+      {claimState === 'failed' && (
+        <div role="alert">
+          <Alert>No se pudo avisar a Bienestar. Intenta nuevamente.</Alert>
+        </div>
+      )}
+      <Button
+        className="w-full"
+        onClick={handleClaim}
+        isLoading={claimState === 'saving'}
+        loadingText="Guardando…"
+      >
+        Es mío, pasaré a recoger
+      </Button>
     </div>
   );
 }

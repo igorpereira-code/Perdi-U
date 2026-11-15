@@ -94,6 +94,27 @@ export const prismaMatchingRepository: MatchingRepository = {
     });
   },
 
+  claimItem: async (lostReportId, foundItemId, similarity) => {
+    const report = await db().lostReport.findUnique({
+      where: { id: lostReportId },
+      select: { status: true },
+    });
+    if (!report || report.status === 'RECOVERED') {
+      return 'REPORT_RECOVERED';
+    }
+    const respondedAt = new Date();
+    await db().match.upsert({
+      where: { lostReportId_foundItemId: { lostReportId, foundItemId } },
+      create: { lostReportId, foundItemId, similarity, status: 'WILL_PICK_UP', respondedAt },
+      update: { status: 'WILL_PICK_UP', respondedAt },
+    });
+    await db().lostReport.update({
+      where: { id: lostReportId },
+      data: { status: 'PENDING_PICKUP' },
+    });
+    return 'CLAIMED';
+  },
+
   dismiss: async (matchId) => {
     await db().match.update({
       where: { id: matchId },

@@ -167,3 +167,94 @@ describe('Las nuevas coincidencias respetan el nivel mínimo que guardó el Admi
     ]);
   });
 });
+
+
+describe('Reclamar un objeto del catálogo (POST /catalog/:code/claim)', () => {
+  const claim = (app: ReturnType<typeof createApp>, itemCode: string, body: object = { reportCode: 'PR-0001' }) =>
+    request(app).post(`/catalog/${itemCode}/claim`).send(body);
+
+  it('avisa a Bienestar que el dueño pasará a recoger el objeto aunque no fuera una coincidencia', async () => {
+    const { repository, matches, reports } = fakeMatchingRepository([anasReport], items);
+    const app = createApp({ matching: repository, settings: fakeSettingsRepository() });
+
+    const res = await claim(app, 'HZ-0003');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ status: 'WILL_PICK_UP' });
+    expect(matches).toHaveLength(1);
+    expect(matches[0].foundItem.code).toBe('HZ-0003');
+    expect(matches[0].status).toBe('WILL_PICK_UP');
+    expect(reports[0].status).toBe('PENDING_PICKUP');
+  });
+
+  it('usa la coincidencia que ya existía en vez de crear otra', async () => {
+    const { repository, matches } = fakeMatchingRepository([anasReport], items);
+    const app = createApp({ matching: repository, settings: fakeSettingsRepository() });
+    await request(app).get('/lost-reports/PR-0001/matches');
+
+    const res = await claim(app, 'HZ-0001');
+
+    expect(res.status).toBe(200);
+    expect(matches).toHaveLength(2);
+    expect(matches.find((match) => match.foundItem.code === 'HZ-0001')?.status).toBe('WILL_PICK_UP');
+    expect(matches.find((match) => match.foundItem.code === 'HZ-0002')?.status).toBe('SUGGESTED');
+  });
+
+  it('si el dueño lo reclama dos veces, queda una sola coincidencia', async () => {
+    const { repository, matches } = fakeMatchingRepository([anasReport], items);
+    const app = createApp({ matching: repository, settings: fakeSettingsRepository() });
+
+    await claim(app, 'HZ-0003');
+    const res = await claim(app, 'HZ-0003');
+
+    expect(res.status).toBe(200);
+    expect(matches).toHaveLength(1);
+  });
+
+  it('pide el código del reporte', async () => {
+    const { repository, matches } = fakeMatchingRepository([anasReport], items);
+    const app = createApp({ matching: repository, settings: fakeSettingsRepository() });
+
+    const res = await claim(app, 'HZ-0003', {});
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ error: 'reportCode is required' });
+    expect(matches).toHaveLength(0);
+  });
+
+  it('no deja reclamar con el reporte de otra persona', async () => {
+    const { repository, matches } = fakeMatchingRepository([anasReport], items);
+    const app = createApp({ matching: repository, settings: fakeSettingsRepository() });
+
+    const res = await claim(app, 'HZ-0003').set('x-sample-user', 'luis');
+
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: 'Lost report not found' });
+    expect(matches).toHaveLength(0);
+  });
+
+  it('no deja reclamar un objeto que no está publicado', async () => {
+    const notPublished = items.map((item) =>
+      item.code === 'HZ-0003' ? { ...item, status: 'IN_CUSTODY' as const } : item,
+    );
+    const { repository, matches } = fakeMatchingRepository([anasReport], notPublished);
+    const app = createApp({ matching: repository, settings: fakeSettingsRepository() });
+
+    const res = await claim(app, 'HZ-0003');
+
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: 'Found item not found' });
+    expect(matches).toHaveLength(0);
+  });
+
+  it('no deja reclamar con un reporte que ya fue recuperado', async () => {
+    const { repository, matches } = fakeMatchingRepository([{ ...anasReport, status: 'RECOVERED' }], items);
+    const app = createApp({ matching: repository, settings: fakeSettingsRepository() });
+
+    const res = await claim(app, 'HZ-0003');
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ error: 'Lost report already recovered' });
+    expect(matches).toHaveLength(0);
+  });
+});

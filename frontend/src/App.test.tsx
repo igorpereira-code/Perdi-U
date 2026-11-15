@@ -10,8 +10,8 @@ import type { GuideService } from './finder/data/guideService';
 import type { FoundItemsService, MyFoundItem } from './finder/data/foundItemsService';
 import type { WelfareService } from './welfare/data/welfareService';
 import type { LostReportsService } from './owner/data/lostReportsService';
-import type { CatalogService } from './owner/data/catalogService';
-import type { MyLostReportsService } from './owner/data/myLostReportsService';
+import type { CatalogItem, CatalogService } from './owner/data/catalogService';
+import type { MyLostReport, MyLostReportsService } from './owner/data/myLostReportsService';
 
 const phone: MatchView = {
   id: 'match-1',
@@ -48,6 +48,7 @@ function renderAt(
   matches: MatchView[] | null = [],
   guideService: GuideService = { markSeen: jest.fn().mockResolvedValue(undefined) },
   foundItemsOverrides: Partial<FoundItemsService> = {},
+  ownerOverrides: { catalogService?: CatalogService; myLostReportsService?: MyLostReportsService } = {},
 ) {
   const authService: AuthService = {
     getCurrentUser:
@@ -59,6 +60,7 @@ function renderAt(
     getMatches: jest.fn().mockResolvedValue(matches),
     pickUp: jest.fn(),
     dismiss: jest.fn(),
+    claim: jest.fn(),
     publish: jest.fn(),
   };
   const foundItemsService: FoundItemsService = {
@@ -80,9 +82,13 @@ function renderAt(
     deliver: jest.fn(),
   };
   const lostReportsService: LostReportsService = { create: jest.fn() };
-  const catalogService = { list: jest.fn().mockResolvedValue([]), getByCode: jest.fn().mockResolvedValue(null) } as CatalogService;
-  const myLostReportsService = { listMine: jest.fn().mockResolvedValue([]), getMine: jest.fn().mockResolvedValue(null) } as MyLostReportsService;
-  const rendered = render(
+    const catalogService =
+    ownerOverrides.catalogService ??
+    ({ list: jest.fn().mockResolvedValue([]), getByCode: jest.fn().mockResolvedValue(null) } as CatalogService);
+  const myLostReportsService =
+    ownerOverrides.myLostReportsService ??
+    ({ listMine: jest.fn().mockResolvedValue([]), getMine: jest.fn().mockResolvedValue(null) } as MyLostReportsService);
+    const rendered = render(
     <MemoryRouter initialEntries={[path]}>
       <App
         authService={authService}
@@ -544,5 +550,43 @@ describe('Detalle de mi reporte de pérdida', () => {
     renderAt('/mis-perdidas/PR-0007', igor);
 
     expect(await screen.findByRole('heading', { name: 'No encontramos este reporte' })).toBeInTheDocument();
+  });
+});
+describe('Reclamar un objeto desde su detalle', () => {
+  it('permite reclamar el objeto desde su detalle con un reporte de pérdida', async () => {
+    const publishedBackpack: CatalogItem = {
+      code: 'HZ-0007',
+      description: 'Mochila negra con llavero',
+      category: 'Mochilas y bolsos',
+      place: 'Bloque A – Aula A-12',
+      placeReference: null,
+      foundAt: '2026-10-18T12:15:00.000Z',
+      hasPhoto: false,
+    };
+    const lostBackpack: MyLostReport = {
+      code: 'PR-0001',
+      description: 'Mochila negra',
+      category: 'Mochilas y bolsos',
+      status: 'SEARCHING',
+      places: ['Bloque A'],
+      placeDescription: null,
+      dateFrom: '2026-10-10',
+      dateTo: '2026-10-11',
+    };
+    const service = renderAt('/objetos/HZ-0007', igor, [], undefined, {}, {
+      catalogService: {
+        list: jest.fn().mockResolvedValue([]),
+        getByCode: jest.fn().mockResolvedValue(publishedBackpack),
+      } as CatalogService,
+      myLostReportsService: {
+        listMine: jest.fn().mockResolvedValue([lostBackpack]),
+        getMine: jest.fn().mockResolvedValue(null),
+      } as MyLostReportsService,
+    });
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Es mío, pasaré a recoger' }));
+
+    expect(service.claim).toHaveBeenCalledWith('HZ-0007', 'PR-0001');
+    expect(await screen.findByText('Pasarás a recoger este objeto')).toBeInTheDocument();
   });
 });

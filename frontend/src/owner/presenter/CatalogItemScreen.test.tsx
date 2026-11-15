@@ -34,10 +34,10 @@ const keysReport: MyLostReport = {
   status: 'HAS_MATCHES',
 };
 
-type Services = { listMine?: jest.Mock };
+type Services = { listMine?: jest.Mock; claim?: jest.Mock };
 
 function renderScreen(getByCode: jest.Mock, path = '/objetos/HZ-0007', services: Services = {}) {
-  const { listMine = jest.fn().mockResolvedValue([]) } = services;
+  const { listMine = jest.fn().mockResolvedValue([]), claim = jest.fn().mockResolvedValue(undefined) } = services;
   render(
     <MemoryRouter initialEntries={[path]}>
       <Routes>
@@ -48,6 +48,7 @@ function renderScreen(getByCode: jest.Mock, path = '/objetos/HZ-0007', services:
               catalogService={{ getByCode }}
               foundItemsService={{ getPhotoUrl: jest.fn() }}
               myLostReportsService={{ listMine }}
+              matchesService={{ claim }}
             />
           }
         />
@@ -164,5 +165,67 @@ describe('Reclamar el objeto: elegir con qué reporte relacionarlo', () => {
 
     expect(await screen.findByRole('link', { name: 'Reportar mi pérdida' })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Es mío, pasaré a recoger' })).not.toBeInTheDocument();
+  });
+});
+
+describe('Reclamar el objeto: avisar a Bienestar', () => {
+  it('al confirmar, avisa que pasará a recoger ese objeto con el reporte elegido', async () => {
+    const claim = jest.fn().mockResolvedValue(undefined);
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport, keysReport]),
+      claim,
+    });
+
+    await userEvent.selectOptions(
+      await screen.findByRole('combobox', { name: '¿Con cuál de tus reportes lo relacionas?' }),
+      'PR-0002',
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Es mío, pasaré a recoger' }));
+
+    expect(claim).toHaveBeenCalledWith('HZ-0007', 'PR-0002');
+    expect(await screen.findByText('Pasarás a recoger este objeto')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Es mío, pasaré a recoger' })).not.toBeInTheDocument();
+  });
+
+  it('con un solo reporte activo lo usa sin pedir que lo elija', async () => {
+    const claim = jest.fn().mockResolvedValue(undefined);
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport]),
+      claim,
+    });
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Es mío, pasaré a recoger' }));
+
+    expect(claim).toHaveBeenCalledWith('HZ-0007', 'PR-0001');
+  });
+
+  it('mientras guarda, muestra que está guardando y no deja tocar dos veces', async () => {
+    const claim = jest.fn().mockReturnValue(new Promise(() => {}));
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport]),
+      claim,
+    });
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Es mío, pasaré a recoger' }));
+
+    expect(await screen.findByRole('button', { name: 'Guardando…' })).toBeDisabled();
+    expect(claim).toHaveBeenCalledTimes(1);
+  });
+
+  it('si no se pudo avisar a Bienestar, lo dice y permite intentarlo de nuevo', async () => {
+    const claim = jest.fn().mockRejectedValueOnce(new Error('Sin conexión')).mockResolvedValue(undefined);
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport]),
+      claim,
+    });
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Es mío, pasaré a recoger' }));
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('No se pudo avisar a Bienestar. Intenta nuevamente.');
+
+    await userEvent.click(screen.getByRole('button', { name: 'Es mío, pasaré a recoger' }));
+
+    expect(await screen.findByText('Pasarás a recoger este objeto')).toBeInTheDocument();
+    expect(claim).toHaveBeenCalledTimes(2);
   });
 });

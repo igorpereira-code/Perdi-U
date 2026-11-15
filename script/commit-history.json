@@ -4959,12 +4959,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6554e7b5674671af87348625b7bac8e452cd266a",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:49:19.000Z",
       "message": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/6554e7b5674671af87348625b7bac8e452cd266a"
     },
     "stats": {
       "total": 22,
@@ -5392,6 +5392,25 @@
     },
     "coverage": 81.91,
     "test_count": 857,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-15T20:15:04.000Z",
+      "message": "feat(owner): avisar a Bienestar que el dueño pasará a recoger un objeto del catálogo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 400,
+      "additions": 381,
+      "deletions": 19,
+      "date": "2026-11-15"
+    },
+    "coverage": 81.99,
+    "test_count": 871,
     "failed_tests": 0,
     "conclusion": "success"
   }
