@@ -13,6 +13,7 @@ import { WelfarePage } from './WelfarePage';
 const item: WelfareFoundItemView = {
   code: 'HZ-0005', description: 'Mochila negra con cuadernos', photoUrl: null,
   category: 'Mochilas', place: 'Bloque A', classroom: 'Aula 3',
+  categoryId: 1, placeId: 1, classroomId: 3,
   placeReference: 'Debajo de una mesa', foundAt: '2026-10-15T14:00:00.000Z',
   status: 'PENDING_DROP_OFF', finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
@@ -56,8 +57,18 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
     listPendingPickups: jest.fn().mockResolvedValue([]),
     listPending: jest.fn().mockResolvedValue([item]),
     listInOffice: jest.fn().mockResolvedValue([inCustodyItem, publishedItem]),
+    getCatalogs: jest.fn().mockResolvedValue({
+      categories: [{ id: 1, name: 'Mochilas' }, { id: 2, name: 'Otros' }],
+      places: [{
+        id: 1,
+        name: 'Bloque A',
+        type: 'BLOCK',
+        classrooms: [{ id: 3, name: 'Aula 3' }],
+      }],
+    }),
     findFoundItemByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
     confirmReception: jest.fn(),
+    deletePending: jest.fn().mockResolvedValue(true),
     deliver: jest.fn(),
     ...overrides,
   };

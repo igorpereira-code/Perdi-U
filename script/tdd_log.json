@@ -5896,7 +5896,7 @@
     "testId": 132
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2464b81fda092f7d8c2f362a9b4c9798d9666633",
     "commitName": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
     "commitTimestamp": 1794490855674,
     "testId": 133
@@ -6066,5 +6066,11 @@
     "commitName": "feat(welfare): eliminar solicitudes no recibidas",
     "commitTimestamp": 1794763125413,
     "testId": 150
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): conectar atencion de solicitudes",
+    "commitTimestamp": 1794763226446,
+    "testId": 151
   }
 ]

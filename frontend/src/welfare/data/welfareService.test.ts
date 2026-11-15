@@ -10,8 +10,11 @@ const item: WelfareFoundItemView = {
   description: 'Mochila negra',
   photoUrl: null,
   category: 'Mochilas',
+  categoryId: 1,
   place: 'Bloque A',
+  placeId: 1,
   classroom: null,
+  classroomId: null,
   placeReference: null,
   foundAt: '2026-10-15T14:00:00.000Z',
   status: 'PENDING_DROP_OFF',
@@ -136,6 +139,46 @@ describe('Servicio de recepcion de Bienestar', () => {
     const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => received });
     await expect(createWelfareService(apiFetch).confirmReception(' hz-0005 ')).resolves.toEqual({ status: 'FOUND', item: received });
     expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0005/receive', { method: 'POST' });
+  });
+
+  it('envia las correcciones al confirmar la recepcion', async () => {
+    const received = { ...item, status: 'IN_CUSTODY' as const };
+    const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => received });
+    const correction = {
+      description: 'Mochila negra con tres cuadernos',
+      categoryId: 2,
+      placeId: 4,
+      classroomId: null,
+      placeReference: 'Recepción del bloque B',
+      foundAt: '2026-10-16T09:30:00.000Z',
+    };
+
+    await createWelfareService(apiFetch).confirmReception('HZ-0005', correction);
+
+    expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0005/receive', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(correction),
+    });
+  });
+
+  it('elimina una solicitud pendiente', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({ ok: true, status: 204 });
+
+    await expect(createWelfareService(apiFetch).deletePending(' hz-0005 ')).resolves.toBe(true);
+
+    expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0005', {
+      method: 'DELETE',
+    });
+  });
+
+  it('carga los catalogos para corregir categoria y lugar', async () => {
+    const catalogs = { categories: [{ id: 1, name: 'Mochilas' }], places: [] };
+    const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => catalogs });
+
+    await expect(createWelfareService(apiFetch).getCatalogs()).resolves.toEqual(catalogs);
+
+    expect(apiFetch).toHaveBeenCalledWith('/found-items/catalogs');
   });
 
   it('rechaza errores inesperados del servidor', async () => {

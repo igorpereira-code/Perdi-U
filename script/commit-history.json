@@ -4712,12 +4712,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2464b81fda092f7d8c2f362a9b4c9798d9666633",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:40:55.000Z",
       "message": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/2464b81fda092f7d8c2f362a9b4c9798d9666633"
     },
     "stats": {
       "total": 57,
@@ -5052,5 +5052,24 @@
     "test_count": 682,
     "failed_tests": 0,
     "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-15T17:20:24.000Z",
+      "message": "feat(welfare): conectar atencion de solicitudes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 90,
+      "additions": 87,
+      "deletions": 3,
+      "date": "2026-11-15"
+    },
+    "coverage": 85.94,
+    "test_count": 685,
+    "failed_tests": 1,
+    "conclusion": "failure"
   }
 ]
