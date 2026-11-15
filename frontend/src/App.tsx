@@ -179,6 +179,7 @@ export default function App({
           <CatalogItemScreen
             catalogService={catalogService}
             foundItemsService={foundItemsService}
+            myLostReportsService={myLostReportsService}
           />
         ))}
       />

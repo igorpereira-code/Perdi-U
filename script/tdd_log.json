@@ -5962,7 +5962,7 @@
     "testId": 138
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4e8ab44d30b73fe884b380e2ec1072aecf43171e",
     "commitName": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
     "commitTimestamp": 1794491262113,
     "testId": 139
@@ -6394,5 +6394,35 @@
     "commitName": "refactor(owner): renombrar funciones auxiliares de owner",
     "commitTimestamp": 1794758674723,
     "testId": 159
+  },
+  {
+    "numPassedTests": 850,
+    "failedTests": 0,
+    "numTotalTests": 850,
+    "timestamp": 1794771115704,
+    "success": true,
+    "testId": 160
+  },
+  {
+    "numPassedTests": 850,
+    "failedTests": 3,
+    "numTotalTests": 853,
+    "timestamp": 1794771426616,
+    "success": false,
+    "testId": 160
+  },
+  {
+    "numPassedTests": 853,
+    "failedTests": 0,
+    "numTotalTests": 853,
+    "timestamp": 1794771578436,
+    "success": true,
+    "testId": 160
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ofrecer la opción Es mío, pasaré a recoger en el detalle del objeto",
+    "commitTimestamp": 1794771761801,
+    "testId": 160
   }
 ]

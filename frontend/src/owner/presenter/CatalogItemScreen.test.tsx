@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import type { CatalogItem } from '../data/catalogService';
+import type { MyLostReport } from '../data/myLostReportsService';
 import { CatalogItemScreen } from './CatalogItemScreen';
 
 const backpack: CatalogItem = {
@@ -13,13 +15,33 @@ const backpack: CatalogItem = {
   hasPhoto: false,
 };
 
-function renderScreen(getByCode: jest.Mock, path = '/objetos/HZ-0007') {
+const phoneReport: MyLostReport = {
+  code: 'PR-0001',
+  description: 'Celular Samsung con funda azul',
+  category: 'Electrónicos',
+  status: 'SEARCHING',
+  places: ['Bloque A'],
+  placeDescription: null,
+  dateFrom: '2026-10-10',
+  dateTo: '2026-10-11',
+};
+
+type Services = { listMine?: jest.Mock };
+
+function renderScreen(getByCode: jest.Mock, path = '/objetos/HZ-0007', services: Services = {}) {
+  const { listMine = jest.fn().mockResolvedValue([]) } = services;
   render(
     <MemoryRouter initialEntries={[path]}>
       <Routes>
         <Route
           path="/objetos/:code"
-          element={<CatalogItemScreen catalogService={{ getByCode }} foundItemsService={{ getPhotoUrl: jest.fn() }} />}
+          element={
+            <CatalogItemScreen
+              catalogService={{ getByCode }}
+              foundItemsService={{ getPhotoUrl: jest.fn() }}
+              myLostReportsService={{ listMine }}
+            />
+          }
         />
       </Routes>
     </MemoryRouter>,
@@ -59,5 +81,33 @@ describe('Dónde preguntar por el objeto', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Bienestar Estudiantil – Bloque C')).toBeInTheDocument();
     expect(screen.getByText('Lunes a viernes, de 08:30 a 16:00')).toBeInTheDocument();
+  });
+});
+
+describe('Reclamar el objeto: la opción "Es mío, pasaré a recoger"', () => {
+  it('ofrece "Es mío, pasaré a recoger" a quien tiene un reporte de pérdida activo', async () => {
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport]),
+    });
+
+    expect(await screen.findByRole('button', { name: 'Es mío, pasaré a recoger' })).toBeInTheDocument();
+  });
+
+  it('sin reportes de pérdida activos, invita a reportar la pérdida en vez de ofrecer la opción', async () => {
+    renderScreen(jest.fn().mockResolvedValue(backpack));
+
+    const link = await screen.findByRole('link', { name: 'Reportar mi pérdida' });
+    expect(link).toHaveAttribute('href', '/reportar-perdida');
+    expect(screen.queryByRole('button', { name: 'Es mío, pasaré a recoger' })).not.toBeInTheDocument();
+  });
+
+  it('avisa si no se pudieron cargar sus reportes y permite reintentar', async () => {
+    const listMine = jest.fn().mockRejectedValueOnce(new Error('Sin conexión')).mockResolvedValue([phoneReport]);
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', { listMine });
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('No se pudieron cargar tus reportes. Intenta nuevamente.');
+    await userEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
+
+    expect(await screen.findByRole('button', { name: 'Es mío, pasaré a recoger' })).toBeInTheDocument();
   });
 });

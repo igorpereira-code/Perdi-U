@@ -4921,12 +4921,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "4e8ab44d30b73fe884b380e2ec1072aecf43171e",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:47:41.000Z",
       "message": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/4e8ab44d30b73fe884b380e2ec1072aecf43171e"
     },
     "stats": {
       "total": 167,
@@ -5354,6 +5354,25 @@
     },
     "coverage": 81.59,
     "test_count": 850,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-15T19:42:40.000Z",
+      "message": "feat(owner): ofrecer la opción Es mío, pasaré a recoger en el detalle del objeto",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 102,
+      "additions": 99,
+      "deletions": 3,
+      "date": "2026-11-15"
+    },
+    "coverage": 81.83,
+    "test_count": 853,
     "failed_tests": 0,
     "conclusion": "success"
   }

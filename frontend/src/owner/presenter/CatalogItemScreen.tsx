@@ -8,10 +8,13 @@ import type { FoundItemsService } from '../../finder/data/foundItemsService';
 import { formatReportDate } from '../../finder/logic/formatReportDate';
 import { FoundItemPhoto } from '../../finder/presenter/FoundItemPhoto';
 import type { CatalogItem, CatalogService } from '../data/catalogService';
+import type { MyLostReportsService } from '../data/myLostReportsService';
+import { ClaimItem } from './ClaimItem';
 
 type CatalogItemScreenProps = {
   catalogService: Pick<CatalogService, 'getByCode'>;
   foundItemsService: Pick<FoundItemsService, 'getPhotoUrl'>;
+  myLostReportsService: Pick<MyLostReportsService, 'listMine'>;
 };
 
 type ScreenState = { status: 'loading' } | { status: 'missing' } | { status: 'failed' } | { status: 'ready'; item: CatalogItem };
@@ -19,7 +22,7 @@ type ScreenState = { status: 'loading' } | { status: 'missing' } | { status: 'fa
 const BACK_LINK = 'inline-flex text-sm font-semibold text-blue-500';
 
 /** Detail of a published found item. */
-export function CatalogItemScreen({ catalogService, foundItemsService }: CatalogItemScreenProps) {
+export function CatalogItemScreen({ catalogService, foundItemsService, myLostReportsService }: CatalogItemScreenProps) {
   const { code = '' } = useParams();
   const [state, setState] = useState<ScreenState>({ status: 'loading' });
 
@@ -93,6 +96,7 @@ export function CatalogItemScreen({ catalogService, foundItemsService }: Catalog
           Acércate a Bienestar Estudiantil con el código {item.code} para preguntar por él.
         </p>
         <WelfareCard />
+        <ClaimItem myLostReportsService={myLostReportsService} />
       </section>
     </article>
   );
