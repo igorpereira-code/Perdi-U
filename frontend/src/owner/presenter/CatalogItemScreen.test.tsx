@@ -249,3 +249,19 @@ describe('Después de reclamar: dónde y cuándo ir a Bienestar', () => {
     expect(screen.getAllByText('Lunes a viernes, de 08:30 a 16:00')).toHaveLength(1);
   });
 });
+
+describe('Después de reclamar: el código que debe mostrar en Bienestar', () => {
+  it('muestra el código del reporte con el que reclamó el objeto', async () => {
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport, keysReport]),
+    });
+
+    await userEvent.selectOptions(
+      await screen.findByRole('combobox', { name: '¿Con cuál de tus reportes lo relacionas?' }),
+      'PR-0002',
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Es mío, pasaré a recoger' }));
+
+    expect(await screen.findByText('Lleva el código de tu reporte PR-0002 para recogerlo.')).toBeInTheDocument();
+  });
+});

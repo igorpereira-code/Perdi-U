@@ -17,7 +17,7 @@ type MatchesPageProps = {
   failedMatchId?: string | null;
 };
 
-function PickUpInstructions({ reportCode }: { reportCode: string }) {
+export function PickUpInstructions({ reportCode }: { reportCode: string }) {
   return (
     <div className="space-y-2">
       <p className="rounded-xl bg-success-50 p-2 text-sm font-medium text-success-700">

@@ -9,6 +9,7 @@ import { formatReportDate } from '../../finder/logic/formatReportDate';
 import { FoundItemPhoto } from '../../finder/presenter/FoundItemPhoto';
 import type { CatalogItem, CatalogService } from '../data/catalogService';
 import type { MatchesService } from '../../matching/data/matchesService';
+import { PickUpInstructions } from '../../matching/presenter/MatchesPage';
 import type { MyLostReportsService } from '../data/myLostReportsService';
 import { ClaimItem } from './ClaimItem';
 
@@ -27,30 +28,28 @@ type IsItYoursProps = {
 
 /** Where to ask for the item, or, once the owner claimed it, that they will pick it up. */
 function IsItYours({ item, myLostReportsService, matchesService }: IsItYoursProps) {
-  const [willPickUp, setWillPickUp] = useState(false);
+  const [claimedReportCode, setClaimedReportCode] = useState<string>();
 
   return (
     <section aria-labelledby="ask-welfare-title" className="space-y-2">
       <h2 id="ask-welfare-title" className="text-base font-semibold text-blue-700">
         ¿Es tuyo?
       </h2>
-      {willPickUp ? (
-        <p role="status" className="rounded-xl bg-success-50 p-2 text-sm font-medium text-success-700">
-          Pasarás a recoger este objeto
-        </p>
+      {claimedReportCode ? (
+        <PickUpInstructions reportCode={claimedReportCode} />
       ) : (
-        <p className="text-sm text-neutral-700">
-          Acércate a Bienestar Estudiantil con el código {item.code} para preguntar por él.
-        </p>
-      )}
-      <WelfareCard />
-      {!willPickUp && (
-        <ClaimItem
-          itemCode={item.code}
-          myLostReportsService={myLostReportsService}
-          matchesService={matchesService}
-          onClaimed={() => setWillPickUp(true)}
-        />
+        <>
+          <p className="text-sm text-neutral-700">
+            Acércate a Bienestar Estudiantil con el código {item.code} para preguntar por él.
+          </p>
+          <WelfareCard />
+          <ClaimItem
+            itemCode={item.code}
+            myLostReportsService={myLostReportsService}
+            matchesService={matchesService}
+            onClaimed={setClaimedReportCode}
+          />
+        </>
       )}
     </section>
   );

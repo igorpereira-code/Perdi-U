@@ -6010,7 +6010,7 @@
     "testId": 143
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b387e5c190b506bc992969f9181cec4ff903944b",
     "commitName": "feat(admin): ver las categorías y los lugares del campus",
     "commitTimestamp": 1794495210769,
     "testId": 143
@@ -6538,5 +6538,27 @@
     "commitName": "feat(owner): mostrar la ubicación y el horario de Bienestar después de reclamar un objeto",
     "commitTimestamp": 1794773883301,
     "testId": 163
+  },
+  {
+    "numPassedTests": 872,
+    "failedTests": 1,
+    "numTotalTests": 873,
+    "timestamp": 1794773965110,
+    "success": false,
+    "testId": 164
+  },
+  {
+    "numPassedTests": 873,
+    "failedTests": 0,
+    "numTotalTests": 873,
+    "timestamp": 1794774066668,
+    "success": true,
+    "testId": 164
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte que debe llevar a Bienestar",
+    "commitTimestamp": 1794774112445,
+    "testId": 164
   }
 ]

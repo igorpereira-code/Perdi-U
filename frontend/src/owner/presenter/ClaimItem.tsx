@@ -14,8 +14,8 @@ type ClaimItemProps = {
   itemCode: string;
   myLostReportsService: Pick<MyLostReportsService, 'listMine'>;
   matchesService: Pick<MatchesService, 'claim'>;
-  /** Called once Bienestar was told that the owner will pick the item up. */
-  onClaimed: () => void;
+  /** Called once Bienestar was told that the owner will pick the item up, with the report used. */
+  onClaimed: (reportCode: string) => void;
 };
 
 type ClaimState = 'idle' | 'saving' | 'failed';
@@ -91,7 +91,7 @@ export function ClaimItem({ itemCode, myLostReportsService, matchesService, onCl
     setClaimState('saving');
     try {
       await matchesService.claim(itemCode, selectedCode);
-      onClaimed();
+      onClaimed(selectedCode);
     } catch {
       setClaimState('failed');
     }
