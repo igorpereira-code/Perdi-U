@@ -4902,12 +4902,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b4aea2b7c338069681c17ce413a27534f2df9389",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:46:29.000Z",
       "message": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/b4aea2b7c338069681c17ce413a27534f2df9389"
     },
     "stats": {
       "total": 218,
@@ -5332,6 +5332,25 @@
       "additions": 379,
       "deletions": 136,
       "date": "2026-11-13"
+    },
+    "coverage": 81.59,
+    "test_count": 850,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-15T16:04:33.000Z",
+      "message": "refactor(owner): renombrar funciones auxiliares de owner",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 18,
+      "additions": 9,
+      "deletions": 9,
+      "date": "2026-11-15"
     },
     "coverage": 81.59,
     "test_count": 850,

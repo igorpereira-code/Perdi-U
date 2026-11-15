@@ -5956,7 +5956,7 @@
     "testId": 137
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b4aea2b7c338069681c17ce413a27534f2df9389",
     "commitName": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
     "commitTimestamp": 1794491189261,
     "testId": 138
@@ -6388,5 +6388,11 @@
     "commitName": "chore(admin): integra final-test en admin",
     "commitTimestamp": 1794606706650,
     "testId": 158
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(owner): renombrar funciones auxiliares de owner",
+    "commitTimestamp": 1794758674723,
+    "testId": 159
   }
 ]
