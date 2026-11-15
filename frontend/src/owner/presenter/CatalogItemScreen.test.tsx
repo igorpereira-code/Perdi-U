@@ -229,3 +229,23 @@ describe('Reclamar el objeto: avisar a Bienestar', () => {
     expect(claim).toHaveBeenCalledTimes(2);
   });
 });
+
+describe('Después de reclamar: dónde y cuándo ir a Bienestar', () => {
+  it('después de confirmar, muestra la ubicación y el horario de Bienestar en lugar de preguntar', async () => {
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport]),
+    });
+    expect(
+      await screen.findByText('Acércate a Bienestar Estudiantil con el código HZ-0007 para preguntar por él.'),
+    ).toBeInTheDocument();
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Es mío, pasaré a recoger' }));
+
+    expect(await screen.findByText('Pasarás a recoger este objeto')).toBeInTheDocument();
+    expect(
+      screen.queryByText('Acércate a Bienestar Estudiantil con el código HZ-0007 para preguntar por él.'),
+    ).not.toBeInTheDocument();
+    expect(screen.getAllByText('Bienestar Estudiantil – Bloque C')).toHaveLength(1);
+    expect(screen.getAllByText('Lunes a viernes, de 08:30 a 16:00')).toHaveLength(1);
+  });
+});

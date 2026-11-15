@@ -5980,7 +5980,7 @@
     "testId": 141
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1bf9e5ed9e1100a51b8f2a9c06990f7afd627385",
     "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
     "commitTimestamp": 1794491488766,
     "testId": 142
@@ -6516,5 +6516,27 @@
     "commitName": "feat(owner): avisar a Bienestar que el dueño pasará a recoger un objeto del catálogo",
     "commitTimestamp": 1794773704804,
     "testId": 162
+  },
+  {
+    "numPassedTests": 871,
+    "failedTests": 1,
+    "numTotalTests": 872,
+    "timestamp": 1794773767900,
+    "success": false,
+    "testId": 163
+  },
+  {
+    "numPassedTests": 872,
+    "failedTests": 0,
+    "numTotalTests": 872,
+    "timestamp": 1794773836626,
+    "success": true,
+    "testId": 163
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar la ubicación y el horario de Bienestar después de reclamar un objeto",
+    "commitTimestamp": 1794773883301,
+    "testId": 163
   }
 ]

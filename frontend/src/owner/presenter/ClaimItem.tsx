@@ -14,9 +14,11 @@ type ClaimItemProps = {
   itemCode: string;
   myLostReportsService: Pick<MyLostReportsService, 'listMine'>;
   matchesService: Pick<MatchesService, 'claim'>;
+  /** Called once Bienestar was told that the owner will pick the item up. */
+  onClaimed: () => void;
 };
 
-type ClaimState = 'idle' | 'saving' | 'failed' | 'done';
+type ClaimState = 'idle' | 'saving' | 'failed';
 
 type ReportChoiceProps = {
   reports: MyLostReport[];
@@ -50,7 +52,7 @@ function ReportChoice({ reports, chosenCode, onChoose }: ReportChoiceProps) {
 }
 
 /** "Es mío, pasaré a recoger": lets the owner say that a published item is theirs. */
-export function ClaimItem({ itemCode, myLostReportsService, matchesService }: ClaimItemProps) {
+export function ClaimItem({ itemCode, myLostReportsService, matchesService, onClaimed }: ClaimItemProps) {
   const loadReports = useCallback(() => myLostReportsService.listMine(), [myLostReportsService]);
   const { data: reports, hasFailed, retry } = useLoadedData(loadReports);
   const [chosenCode, setChosenCode] = useState<string>();
@@ -89,19 +91,12 @@ export function ClaimItem({ itemCode, myLostReportsService, matchesService }: Cl
     setClaimState('saving');
     try {
       await matchesService.claim(itemCode, selectedCode);
-      setClaimState('done');
+      onClaimed();
     } catch {
       setClaimState('failed');
     }
   }
 
-  if (claimState === 'done') {
-    return (
-      <p role="status" className="rounded-xl bg-success-50 p-2 text-sm font-medium text-success-700">
-        Pasarás a recoger este objeto
-      </p>
-    );
-  }
   return (
     <div className="space-y-3">
       <ReportChoice reports={activeReports} chosenCode={selectedCode} onChoose={setChosenCode} />

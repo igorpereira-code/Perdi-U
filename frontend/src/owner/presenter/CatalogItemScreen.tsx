@@ -19,6 +19,43 @@ type CatalogItemScreenProps = {
   matchesService: Pick<MatchesService, 'claim'>;
 };
 
+type IsItYoursProps = {
+  item: CatalogItem;
+  myLostReportsService: Pick<MyLostReportsService, 'listMine'>;
+  matchesService: Pick<MatchesService, 'claim'>;
+};
+
+/** Where to ask for the item, or, once the owner claimed it, that they will pick it up. */
+function IsItYours({ item, myLostReportsService, matchesService }: IsItYoursProps) {
+  const [willPickUp, setWillPickUp] = useState(false);
+
+  return (
+    <section aria-labelledby="ask-welfare-title" className="space-y-2">
+      <h2 id="ask-welfare-title" className="text-base font-semibold text-blue-700">
+        ¿Es tuyo?
+      </h2>
+      {willPickUp ? (
+        <p role="status" className="rounded-xl bg-success-50 p-2 text-sm font-medium text-success-700">
+          Pasarás a recoger este objeto
+        </p>
+      ) : (
+        <p className="text-sm text-neutral-700">
+          Acércate a Bienestar Estudiantil con el código {item.code} para preguntar por él.
+        </p>
+      )}
+      <WelfareCard />
+      {!willPickUp && (
+        <ClaimItem
+          itemCode={item.code}
+          myLostReportsService={myLostReportsService}
+          matchesService={matchesService}
+          onClaimed={() => setWillPickUp(true)}
+        />
+      )}
+    </section>
+  );
+}
+
 type ScreenState = { status: 'loading' } | { status: 'missing' } | { status: 'failed' } | { status: 'ready'; item: CatalogItem };
 
 const BACK_LINK = 'inline-flex text-sm font-semibold text-blue-500';
@@ -90,20 +127,7 @@ export function CatalogItemScreen({ catalogService, foundItemsService, myLostRep
         {item.placeReference && <InfoRow label="Referencia" value={item.placeReference} />}
         <InfoRow label="Fecha" value={formatReportDate(item.foundAt)} />
       </dl>
-      <section aria-labelledby="ask-welfare-title" className="space-y-2">
-        <h2 id="ask-welfare-title" className="text-base font-semibold text-blue-700">
-          ¿Es tuyo?
-        </h2>
-        <p className="text-sm text-neutral-700">
-          Acércate a Bienestar Estudiantil con el código {item.code} para preguntar por él.
-        </p>
-        <WelfareCard />
-        <ClaimItem
-          itemCode={item.code}
-          myLostReportsService={myLostReportsService}
-          matchesService={matchesService}
-        />
-      </section>
+      <IsItYours item={item} myLostReportsService={myLostReportsService} matchesService={matchesService} />
     </article>
   );
 }
