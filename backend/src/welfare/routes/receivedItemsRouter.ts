@@ -131,6 +131,19 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
     res.json(toFoundItemView(foundItem));
   });
 
+  router.delete('/welfare/found-items/:code', requireRole('WELFARE'), async (req, res) => {
+    const foundItem = await welfare.findFoundItemByCode(normalizeCode(req.params.code));
+    if (!foundItem) {
+      res.status(404).json({ code: 'FOUND_ITEM_NOT_FOUND' });
+      return;
+    }
+    if (foundItem.status !== 'PENDING_DROP_OFF' || !(await welfare.deletePending(foundItem.id))) {
+      res.status(409).json({ code: 'ALREADY_RECEIVED' });
+      return;
+    }
+    res.status(204).end();
+  });
+
   router.post('/welfare/found-items/:code/receive', requireRole('WELFARE'), async (req, res) => {
     const foundItemCode = normalizeCode(req.params.code);
     const foundItem = await welfare.findFoundItemByCode(foundItemCode);

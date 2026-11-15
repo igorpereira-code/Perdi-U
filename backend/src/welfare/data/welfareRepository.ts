@@ -70,5 +70,6 @@ export type WelfareRepository = {
     receivedAt: Date,
     correction?: ReceptionCorrection,
   ) => Promise<WelfareFoundItem | null>;
+  deletePending: (itemId: string) => Promise<boolean>;
   deliver: (delivery: DeliveryRegistration) => Promise<DeliveryResult>;
 };

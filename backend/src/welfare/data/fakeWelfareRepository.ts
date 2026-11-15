@@ -88,6 +88,16 @@ export function fakeWelfareRepository(
       foundItem.receivedAt = receivedAt;
       return { ...foundItem, finder: foundItem.finder && { ...foundItem.finder } };
     },
+    deletePending: async (itemId) => {
+      const index = foundItems.findIndex(
+        (candidate) => candidate.id === itemId && candidate.status === 'PENDING_DROP_OFF',
+      );
+      if (index < 0) {
+        return false;
+      }
+      foundItems.splice(index, 1);
+      return true;
+    },
     deliver: async (delivery) => {
       const foundItem = foundItems.find(
         (candidate) => candidate.code === delivery.foundItemCode,

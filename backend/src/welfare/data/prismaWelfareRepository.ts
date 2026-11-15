@@ -151,6 +151,13 @@ export const prismaWelfareRepository = {
     return foundItem ? toWelfareFoundItem(foundItem) : null;
   },
 
+  deletePending: async (itemId) => {
+    const deletedItems = await db().foundItem.deleteMany({
+      where: { id: itemId, status: 'PENDING_DROP_OFF' },
+    });
+    return deletedItems.count === 1;
+  },
+
   deliver: async (delivery) =>
     db().$transaction(async (transaction) => {
       const foundItem = await transaction.foundItem.findFirst({

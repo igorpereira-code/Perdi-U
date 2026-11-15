@@ -5890,7 +5890,7 @@
     "testId": 131
   },
   {
-    "commitId": "HEAD",
+    "commitId": "bf259360d85acb7fb32232d4cc9ca30b5aad039b",
     "commitName": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
     "commitTimestamp": 1794490799523,
     "testId": 132
@@ -6060,5 +6060,11 @@
     "commitName": "feat(welfare): corregir datos al recibir un hallazgo",
     "commitTimestamp": 1794763025959,
     "testId": 149
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): eliminar solicitudes no recibidas",
+    "commitTimestamp": 1794763125413,
+    "testId": 150
   }
 ]

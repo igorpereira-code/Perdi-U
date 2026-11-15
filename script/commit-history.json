@@ -4693,12 +4693,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "bf259360d85acb7fb32232d4cc9ca30b5aad039b",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:39:59.000Z",
       "message": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/bf259360d85acb7fb32232d4cc9ca30b5aad039b"
     },
     "stats": {
       "total": 62,
@@ -5033,5 +5033,24 @@
     "test_count": 680,
     "failed_tests": 2,
     "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-15T17:18:44.000Z",
+      "message": "feat(welfare): eliminar solicitudes no recibidas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 57,
+      "additions": 57,
+      "deletions": 0,
+      "date": "2026-11-15"
+    },
+    "coverage": 86.07,
+    "test_count": 682,
+    "failed_tests": 0,
+    "conclusion": "success"
   }
 ]

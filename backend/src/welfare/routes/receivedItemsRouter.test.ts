@@ -341,6 +341,32 @@ describe('Recibir objetos encontrados en Bienestar', () => {
     expect(res.body.map((item: { code: string }) => item.code)).toEqual(['HZ-0005']);
   });
 
+  it('elimina una solicitud cuyo objeto nunca llego y deja de listarla', async () => {
+    const { repository } = fakeWelfareRepository([pendingItem]);
+    const app = createApp({ welfare: repository });
+
+    const deletion = await request(app)
+      .delete('/welfare/found-items/HZ-0005')
+      .set('x-sample-user', 'welfare');
+    const remaining = await request(app)
+      .get('/welfare/found-items/pending')
+      .set('x-sample-user', 'welfare');
+
+    expect(deletion.status).toBe(204);
+    expect(remaining.body).toEqual([]);
+  });
+
+  it('no elimina un objeto que ya fue recibido', async () => {
+    const { repository } = fakeWelfareRepository([receivedItem]);
+
+    const deletion = await request(createApp({ welfare: repository }))
+      .delete('/welfare/found-items/HZ-0004')
+      .set('x-sample-user', 'welfare');
+
+    expect(deletion.status).toBe(409);
+    await expect(repository.listInOffice()).resolves.toHaveLength(1);
+  });
+
   it('solo Bienestar puede consultar los pendientes', async () => {
     const { repository } = fakeWelfareRepository([pendingItem]);
     const res = await request(createApp({ welfare: repository })).get(
