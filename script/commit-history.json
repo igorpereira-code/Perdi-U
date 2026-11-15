@@ -4940,12 +4940,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "5119b190d4d2dcb46e33b4792c486aea6b7e5ede",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:48:27.000Z",
       "message": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/5119b190d4d2dcb46e33b4792c486aea6b7e5ede"
     },
     "stats": {
       "total": 15,
@@ -5373,6 +5373,25 @@
     },
     "coverage": 81.83,
     "test_count": 853,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-15T19:47:22.000Z",
+      "message": "feat(owner): elegir con qué reporte de pérdida se relaciona el objeto que se reclama",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 109,
+      "additions": 105,
+      "deletions": 4,
+      "date": "2026-11-15"
+    },
+    "coverage": 81.91,
+    "test_count": 857,
     "failed_tests": 0,
     "conclusion": "success"
   }

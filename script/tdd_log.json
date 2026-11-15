@@ -5968,7 +5968,7 @@
     "testId": 139
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5119b190d4d2dcb46e33b4792c486aea6b7e5ede",
     "commitName": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
     "commitTimestamp": 1794491307539,
     "testId": 140
@@ -6424,5 +6424,27 @@
     "commitName": "feat(owner): ofrecer la opción Es mío, pasaré a recoger en el detalle del objeto",
     "commitTimestamp": 1794771761801,
     "testId": 160
+  },
+  {
+    "numPassedTests": 853,
+    "failedTests": 4,
+    "numTotalTests": 857,
+    "timestamp": 1794771870573,
+    "success": false,
+    "testId": 161
+  },
+  {
+    "numPassedTests": 857,
+    "failedTests": 0,
+    "numTotalTests": 857,
+    "timestamp": 1794771917444,
+    "success": true,
+    "testId": 161
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): elegir con qué reporte de pérdida se relaciona el objeto que se reclama",
+    "commitTimestamp": 1794772043367,
+    "testId": 161
   }
 ]

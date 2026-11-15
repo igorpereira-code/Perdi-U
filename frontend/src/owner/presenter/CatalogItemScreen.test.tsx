@@ -26,6 +26,14 @@ const phoneReport: MyLostReport = {
   dateTo: '2026-10-11',
 };
 
+const keysReport: MyLostReport = {
+  ...phoneReport,
+  code: 'PR-0002',
+  description: 'Llaves con llavero azul',
+  category: 'Llaves',
+  status: 'HAS_MATCHES',
+};
+
 type Services = { listMine?: jest.Mock };
 
 function renderScreen(getByCode: jest.Mock, path = '/objetos/HZ-0007', services: Services = {}) {
@@ -109,5 +117,52 @@ describe('Reclamar el objeto: la opción "Es mío, pasaré a recoger"', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
 
     expect(await screen.findByRole('button', { name: 'Es mío, pasaré a recoger' })).toBeInTheDocument();
+  });
+});
+
+describe('Reclamar el objeto: elegir con qué reporte relacionarlo', () => {
+  it('con varios reportes activos, deja elegir con cuál relacionar el objeto', async () => {
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport, keysReport]),
+    });
+
+    const select = await screen.findByRole('combobox', { name: '¿Con cuál de tus reportes lo relacionas?' });
+    expect(select).toHaveValue('PR-0001');
+    expect(screen.getAllByRole('option').map((option) => option.textContent)).toEqual([
+      'PR-0001 – Celular Samsung con funda azul',
+      'PR-0002 – Llaves con llavero azul',
+    ]);
+
+    await userEvent.selectOptions(select, 'PR-0002');
+
+    expect(select).toHaveValue('PR-0002');
+  });
+
+  it('con un solo reporte activo no pide elegir: lo relaciona con ese reporte', async () => {
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport]),
+    });
+
+    expect(await screen.findByText('Lo relacionaremos con tu reporte PR-0001.')).toBeInTheDocument();
+    expect(screen.queryByRole('combobox')).not.toBeInTheDocument();
+  });
+
+  it('no ofrece los reportes que ya fueron recuperados', async () => {
+    const recovered: MyLostReport = { ...keysReport, status: 'RECOVERED' };
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport, recovered]),
+    });
+
+    expect(await screen.findByText('Lo relacionaremos con tu reporte PR-0001.')).toBeInTheDocument();
+    expect(screen.queryByText(/PR-0002/)).not.toBeInTheDocument();
+  });
+
+  it('si todos sus reportes ya fueron recuperados, lo invita a reportar su pérdida', async () => {
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([{ ...phoneReport, status: 'RECOVERED' }]),
+    });
+
+    expect(await screen.findByRole('link', { name: 'Reportar mi pérdida' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Es mío, pasaré a recoger' })).not.toBeInTheDocument();
   });
 });
