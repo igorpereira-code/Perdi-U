@@ -5902,7 +5902,7 @@
     "testId": 133
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1f8ceab9446a7b750367738b0505ccc00afca9c7",
     "commitName": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
     "commitTimestamp": 1794490908233,
     "testId": 134
@@ -6072,5 +6072,27 @@
     "commitName": "feat(welfare): conectar atencion de solicitudes",
     "commitTimestamp": 1794763226446,
     "testId": 151
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794763532116,
+    "success": false,
+    "testId": 152
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 7,
+    "numTotalTests": 687,
+    "timestamp": 1794764312068,
+    "success": false,
+    "testId": 152
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): atender solicitudes de hallazgo",
+    "commitTimestamp": 1794764461489,
+    "testId": 152
   }
 ]
