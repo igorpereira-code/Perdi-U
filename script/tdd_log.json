@@ -5884,7 +5884,7 @@
     "testId": 131
   },
   {
-    "commitId": "HEAD",
+    "commitId": "20f34924508eda83368aa2b763dae89e0d25440c",
     "commitName": "refactor(core): borrar LoadingState, reemplazado por los esqueletos",
     "commitTimestamp": 1794487631272,
     "testId": 131
@@ -6054,5 +6054,11 @@
     "commitName": "feat(welfare): avisar nuevas solicitudes de hallazgo",
     "commitTimestamp": 1794762880718,
     "testId": 148
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): corregir datos al recibir un hallazgo",
+    "commitTimestamp": 1794763025959,
+    "testId": 149
   }
 ]

@@ -4674,12 +4674,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "20f34924508eda83368aa2b763dae89e0d25440c",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T12:47:10.000Z",
       "message": "refactor(core): borrar LoadingState, reemplazado por los esqueletos",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/20f34924508eda83368aa2b763dae89e0d25440c"
     },
     "stats": {
       "total": 19,
@@ -5014,5 +5014,24 @@
     "test_count": 679,
     "failed_tests": 0,
     "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-15T17:17:04.000Z",
+      "message": "feat(welfare): corregir datos al recibir un hallazgo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 120,
+      "additions": 110,
+      "deletions": 10,
+      "date": "2026-11-15"
+    },
+    "coverage": 86.21,
+    "test_count": 680,
+    "failed_tests": 2,
+    "conclusion": "failure"
   }
 ]

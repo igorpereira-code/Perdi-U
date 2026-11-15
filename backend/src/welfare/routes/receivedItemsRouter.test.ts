@@ -9,8 +9,11 @@ const pendingItem = {
   description: 'Mochila negra con cuadernos',
   photoUrl: null,
   category: 'Mochilas',
+  categoryId: 1,
   place: 'Bloque A',
+  placeId: 1,
   classroom: 'Aula 3',
+  classroomId: 3,
   placeReference: 'Debajo de una mesa',
   foundAt: new Date('2026-10-15T14:00:00Z'),
   status: 'PENDING_DROP_OFF' as const,
@@ -378,8 +381,11 @@ describe('Recibir objetos encontrados en Bienestar', () => {
       description: 'Mochila negra con cuadernos',
       photoUrl: null,
       category: 'Mochilas',
+      categoryId: 1,
       place: 'Bloque A',
+      placeId: 1,
       classroom: 'Aula 3',
+      classroomId: 3,
       placeReference: 'Debajo de una mesa',
       foundAt: '2026-10-15T14:00:00.000Z',
       status: 'PENDING_DROP_OFF',
@@ -414,6 +420,32 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual(expect.objectContaining({ code: 'HZ-0005', status: 'IN_CUSTODY' }));
+  });
+
+  it('guarda las correcciones realizadas por Bienestar al recibir el objeto', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([pendingItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/found-items/HZ-0005/receive')
+      .set('x-sample-user', 'welfare')
+      .send({
+        description: 'Mochila negra con tres cuadernos',
+        categoryId: 2,
+        placeId: 4,
+        classroomId: null,
+        placeReference: 'Recepción del bloque B',
+        foundAt: '2026-10-16T09:30:00.000Z',
+      });
+
+    expect(res.status).toBe(200);
+    expect(foundItems[0]).toEqual(expect.objectContaining({
+      description: 'Mochila negra con tres cuadernos',
+      categoryId: 2,
+      placeId: 4,
+      classroomId: null,
+      placeReference: 'Recepción del bloque B',
+      foundAt: new Date('2026-10-16T09:30:00.000Z'),
+      status: 'IN_CUSTODY',
+    }));
   });
 
   it('registra quien y cuando lo recibio', async () => {

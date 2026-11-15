@@ -3,6 +3,7 @@ import type { WelfareFoundItemView, WelfareLostReportView } from '@shared/welfar
 import { getCurrentUser, requireRole } from '../../core/currentUser';
 import { isInstitutionalEmail } from '../../core/logic/institutionalEmail';
 import type { WelfareFoundItem, WelfareRepository } from '../data/welfareRepository';
+import type { ReceptionCorrection } from '../data/welfareRepository';
 
 function toFoundItemView(foundItem: WelfareFoundItem): WelfareFoundItemView {
   const { id: _id, receivedById: _receivedById, receivedAt: _receivedAt, ...view } = foundItem;
@@ -26,6 +27,36 @@ function normalizeCode(value: unknown): string {
 
 function requiredText(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
+}
+
+function readReceptionCorrection(body: unknown): ReceptionCorrection | undefined {
+  if (!body || typeof body !== 'object' || Object.keys(body).length === 0) {
+    return undefined;
+  }
+  const values = body as Record<string, unknown>;
+  const description = requiredText(values.description);
+  const categoryId = values.categoryId;
+  const placeId = values.placeId;
+  const classroomId = values.classroomId;
+  const placeReference = values.placeReference == null ? null : requiredText(values.placeReference);
+  const foundAt = typeof values.foundAt === 'string' ? new Date(values.foundAt) : new Date(NaN);
+  if (
+    !description ||
+    !Number.isInteger(categoryId) || Number(categoryId) <= 0 ||
+    !Number.isInteger(placeId) || Number(placeId) <= 0 ||
+    !(classroomId === null || (Number.isInteger(classroomId) && Number(classroomId) > 0)) ||
+    Number.isNaN(foundAt.getTime())
+  ) {
+    return undefined;
+  }
+  return {
+    description,
+    categoryId: Number(categoryId),
+    placeId: Number(placeId),
+    classroomId: classroomId === null ? null : Number(classroomId),
+    placeReference: placeReference || null,
+    foundAt,
+  };
 }
 
 export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
@@ -107,16 +138,23 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
       res.status(404).json({ error: 'Found item not found' });
       return;
     }
-    const wasReceived = await welfare.confirmPendingReception(
+    const hasCorrections = req.body && Object.keys(req.body).length > 0;
+    const correction = readReceptionCorrection(req.body);
+    if (hasCorrections && !correction) {
+      res.status(400).json({ code: 'INVALID_RECEPTION_DATA' });
+      return;
+    }
+    const receivedItem = await welfare.confirmPendingReception(
       foundItem.id,
       getCurrentUser(req).id,
       new Date(),
+      correction,
     );
-    if (!wasReceived) {
+    if (!receivedItem) {
       res.status(409).json({ code: 'ALREADY_RECEIVED' });
       return;
     }
-    res.json(toFoundItemView({ ...foundItem, status: 'IN_CUSTODY' }));
+    res.json(toFoundItemView(receivedItem));
   });
 
   return router;
