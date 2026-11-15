@@ -78,7 +78,7 @@ export function createApp({
   app.use(createGuideRouter(users));
   app.use(createMatchesRouter(matching));
   app.use(createPublishRouter(matching));
-  app.use(createFoundItemsRouter(foundItems, foundItemPhotos));
+  app.use(createFoundItemsRouter(foundItems, foundItemPhotos, notifications));
   app.use(createReceivedItemsRouter(welfare));
   app.use(createLostReportsRouter(lostReports, () => foundItems.getCatalogs(), foundItemPhotos));
   app.use(createCatalogRouter(catalog));

@@ -5870,7 +5870,7 @@
     "testId": 129
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5e500344f9fde960da5e03e0f6d52aae58358655",
     "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
     "commitTimestamp": 1794353525149,
     "testId": 130
@@ -6040,5 +6040,19 @@
     "commitName": "feat(welfare): mostrar carga y reintento en listas",
     "commitTimestamp": 1794520583459,
     "testId": 147
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794762725009,
+    "success": false,
+    "testId": 148
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): avisar nuevas solicitudes de hallazgo",
+    "commitTimestamp": 1794762880718,
+    "testId": 148
   }
 ]
