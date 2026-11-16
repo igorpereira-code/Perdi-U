@@ -4921,12 +4921,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "08a52bc83878aa87e726e8961ab1e91a56538fff",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T19:29:47.000Z",
       "message": "feat(welfare): mostrar carga al registrar la entrega",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/08a52bc83878aa87e726e8961ab1e91a56538fff"
     },
     "stats": {
       "total": 6,
@@ -5260,6 +5260,25 @@
     "coverage": 84.91,
     "test_count": 698,
     "failed_tests": 3,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T03:47:26.000Z",
+      "message": "feat(welfare): conectar gestion de objetos publicados",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 136,
+      "additions": 126,
+      "deletions": 10,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.58,
+    "test_count": 701,
+    "failed_tests": 7,
     "conclusion": "failure"
   }
 ]

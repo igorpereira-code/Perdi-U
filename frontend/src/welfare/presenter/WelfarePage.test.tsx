@@ -76,6 +76,8 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
     findFoundItemByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
     confirmReception: jest.fn(),
     deletePending: jest.fn().mockResolvedValue(true),
+    setPublishedVisibility: jest.fn(),
+    updatePublishedItem: jest.fn(),
     deliver: jest.fn(),
     ...overrides,
   };
@@ -86,7 +88,9 @@ function publishingService(): MatchesService {
     getMatches: jest.fn().mockResolvedValue([]),
     pickUp: jest.fn(),
     dismiss: jest.fn(),
-    publish: jest.fn().mockResolvedValue({ status: 'PUBLISHED', matchCount: 2 }),
+    publish: jest.fn().mockResolvedValue({
+      status: 'PUBLISHED', matchCount: 2, visibility: 'VISIBLE',
+    }),
   };
 }
 

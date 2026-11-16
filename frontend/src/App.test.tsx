@@ -80,6 +80,8 @@ function renderAt(
     findFoundItemByCode: jest.fn(),
     confirmReception: jest.fn(),
     deletePending: jest.fn(),
+    setPublishedVisibility: jest.fn(),
+    updatePublishedItem: jest.fn(),
     deliver: jest.fn(),
   };
   const lostReportsService: LostReportsService = { create: jest.fn() };

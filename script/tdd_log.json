@@ -5986,7 +5986,7 @@
     "testId": 144
   },
   {
-    "commitId": "HEAD",
+    "commitId": "08a52bc83878aa87e726e8961ab1e91a56538fff",
     "commitName": "feat(welfare): mostrar carga al registrar la entrega",
     "commitTimestamp": 1794511789301,
     "testId": 144
@@ -6156,5 +6156,11 @@
     "commitName": "feat(welfare): editar objetos publicados",
     "commitTimestamp": 1794800593939,
     "testId": 161
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): conectar gestion de objetos publicados",
+    "commitTimestamp": 1794800848914,
+    "testId": 162
   }
 ]

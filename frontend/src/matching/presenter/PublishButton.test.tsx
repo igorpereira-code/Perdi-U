@@ -30,7 +30,7 @@ describe('Botón para publicar un objeto (para el panel de Bienestar)', () => {
     render(
       <PublishButton
         itemCode="HZ-0004"
-        matchesService={fakeService({ status: 'PUBLISHED', matchCount: 0 })}
+        matchesService={fakeService({ status: 'PUBLISHED', matchCount: 0, visibility: 'VISIBLE' })}
       />,
     );
 
@@ -46,7 +46,7 @@ describe('Botón para publicar un objeto (para el panel de Bienestar)', () => {
     render(
       <PublishButton
         itemCode="HZ-0004"
-        matchesService={fakeService({ status: 'PUBLISHED', matchCount: 1 })}
+        matchesService={fakeService({ status: 'PUBLISHED', matchCount: 1, visibility: 'VISIBLE' })}
       />,
     );
 
