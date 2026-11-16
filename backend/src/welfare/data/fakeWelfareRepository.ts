@@ -77,6 +77,28 @@ export function fakeWelfareRepository(
         ? { ...foundItem, finder: foundItem.finder && { ...foundItem.finder } }
         : null;
     },
+    registerFoundItem: async (registration) => {
+      const code = `HZ-${String(foundItems.length + 1).padStart(4, '0')}`;
+      foundItems.push({
+        id: `item-${foundItems.length + 1}`,
+        code,
+        description: registration.description,
+        photoUrl: registration.photoUrl ?? null,
+        category: `Categoría ${registration.categoryId}`,
+        categoryId: registration.categoryId,
+        place: `Lugar ${registration.placeId}`,
+        placeId: registration.placeId,
+        classroom: null,
+        classroomId: registration.classroomId,
+        placeReference: registration.placeReference,
+        foundAt: registration.foundAt,
+        status: 'IN_CUSTODY',
+        finder: null,
+        receivedById: registration.receivedById,
+        receivedAt: registration.receivedAt,
+      });
+      return { code, status: 'IN_CUSTODY' };
+    },
     confirmPendingReception: async (itemId, receivedById, receivedAt, correction) => {
       const foundItem = foundItems.find((candidate) => candidate.id === itemId);
       if (!foundItem || foundItem.status !== 'PENDING_DROP_OFF') {

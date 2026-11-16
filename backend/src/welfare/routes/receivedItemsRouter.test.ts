@@ -2,6 +2,18 @@ import request from 'supertest';
 import { createApp } from '../../app';
 import { SAMPLE_USERS } from '../../core/sampleUsers';
 import { fakeWelfareRepository } from '../data/fakeWelfareRepository';
+import type { FoundItemsRepository } from '../../finder/data/foundItemsRepository';
+
+const foundItemsWithCatalogs: FoundItemsRepository = {
+  listMine: jest.fn(),
+  getMineByCode: jest.fn(),
+  getCatalogs: jest.fn().mockResolvedValue({
+    categories: [{ id: 1, name: 'Accesorios' }],
+    places: [{ id: 1, name: 'Recepción', type: 'SPACE', classrooms: [] }],
+  }),
+  create: jest.fn(),
+  getPhotoByCode: jest.fn(),
+};
 
 const pendingItem = {
   id: 'item-5',
@@ -63,6 +75,34 @@ const activeLostReport = {
 };
 
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('registra sin reporte previo un objeto directamente en custodia', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([]);
+
+    const res = await request(createApp({ welfare: repository, foundItems: foundItemsWithCatalogs }))
+      .post('/welfare/found-items')
+      .set('x-sample-user', 'welfare')
+      .send({
+        description: 'Paraguas negro',
+        categoryId: 1,
+        placeId: 1,
+        classroomId: null,
+        placeReference: 'Junto a recepción',
+        foundAt: '2026-11-15T14:30:00.000Z',
+      });
+
+    expect(res.status).toBe(201);
+    expect(res.body).toEqual({ code: 'HZ-0001', status: 'IN_CUSTODY' });
+    expect(foundItems).toEqual([
+      expect.objectContaining({
+        code: 'HZ-0001',
+        description: 'Paraguas negro',
+        status: 'IN_CUSTODY',
+        finder: null,
+        receivedById: SAMPLE_USERS.welfare.id,
+      }),
+    ]);
+  });
+
   it('impide que una cuenta de comunidad consulte reportes desde Bienestar', async () => {
     const { repository } = fakeWelfareRepository([], [], [activeLostReport]);
 

@@ -4,6 +4,8 @@ import { getCurrentUser, requireRole } from '../../core/currentUser';
 import { isInstitutionalEmail } from '../../core/logic/institutionalEmail';
 import type { WelfareFoundItem, WelfareRepository } from '../data/welfareRepository';
 import type { ReceptionCorrection } from '../data/welfareRepository';
+import type { FoundItemCatalogs } from '../../finder/data/foundItemsRepository';
+import { validateFoundItemReport } from '../../finder/logic/validateFoundItemReport';
 
 function toFoundItemView(foundItem: WelfareFoundItem): WelfareFoundItemView {
   const { id: _id, receivedById: _receivedById, receivedAt: _receivedAt, ...view } = foundItem;
@@ -59,7 +61,10 @@ function readReceptionCorrection(body: unknown): ReceptionCorrection | undefined
   };
 }
 
-export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
+export function createReceivedItemsRouter(
+  welfare: WelfareRepository,
+  getCatalogs: () => Promise<FoundItemCatalogs>,
+): Router {
   const router = Router();
 
   router.get('/welfare/lost-reports', requireRole('WELFARE'), async (_req, res) => {
@@ -115,6 +120,20 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
 
   router.get('/welfare/found-items/in-office', requireRole('WELFARE'), async (_req, res) => {
     res.json((await welfare.listInOffice()).map(toFoundItemView));
+  });
+
+  router.post('/welfare/found-items', requireRole('WELFARE'), async (req, res) => {
+    const validation = validateFoundItemReport(req.body, await getCatalogs());
+    if (!validation.valid) {
+      res.status(400).json({ error: 'Revisa los datos del objeto.', errors: validation.errors });
+      return;
+    }
+    const createdItem = await welfare.registerFoundItem({
+      ...validation.data,
+      receivedById: getCurrentUser(req).id,
+      receivedAt: new Date(),
+    });
+    res.status(201).json(createdItem);
   });
 
   router.get('/welfare/found-items/:code', requireRole('WELFARE'), async (req, res) => {

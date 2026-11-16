@@ -5908,7 +5908,7 @@
     "testId": 134
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4a89f6f3ad9c091c3eb2bedd3f3a8580b59e8f3b",
     "commitName": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
     "commitTimestamp": 1794490958823,
     "testId": 135
@@ -6094,5 +6094,11 @@
     "commitName": "feat(welfare): atender solicitudes de hallazgo",
     "commitTimestamp": 1794764461489,
     "testId": 152
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): registrar objetos directamente en custodia",
+    "commitTimestamp": 1794796092968,
+    "testId": 153
   }
 ]

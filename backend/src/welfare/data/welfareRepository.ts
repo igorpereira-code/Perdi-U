@@ -44,6 +44,17 @@ export type ReceptionCorrection = {
   foundAt: Date;
 };
 
+export type DirectFoundItemRegistration = ReceptionCorrection & {
+  receivedById: string;
+  receivedAt: Date;
+  photoUrl?: string;
+};
+
+export type DirectFoundItemCreated = {
+  code: string;
+  status: 'IN_CUSTODY';
+};
+
 export type WelfareLostReport = {
   id: string;
   code: string;
@@ -64,6 +75,9 @@ export type WelfareRepository = {
   listPending: () => Promise<WelfareFoundItem[]>;
   listInOffice: () => Promise<WelfareFoundItem[]>;
   findFoundItemByCode: (code: string) => Promise<WelfareFoundItem | null>;
+  registerFoundItem: (
+    registration: DirectFoundItemRegistration,
+  ) => Promise<DirectFoundItemCreated>;
   confirmPendingReception: (
     itemId: string,
     receivedById: string,
