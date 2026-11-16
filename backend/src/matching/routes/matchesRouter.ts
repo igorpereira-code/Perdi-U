@@ -4,6 +4,7 @@ import type { MatchStatus } from '@shared/statuses';
 import { getCurrentUser, type CurrentUser } from '../../core/currentUser';
 import type { LostReportToMatch, MatchingRepository } from '../data/matchingRepository';
 import { findSimilarItems } from '../logic/findSimilarItems';
+import { calculateSimilarityScore } from '../logic/similarity';
 import type { SettingsRepository } from '../../core/data/settingsRepository';
 
 export function createMatchesRouter(
@@ -62,6 +63,36 @@ export function createMatchesRouter(
 
   router.post('/matches/:id/pick-up', answerMatch('WILL_PICK_UP', matching.markWillPickUp));
   router.post('/matches/:id/dismiss', answerMatch('DISMISSED', matching.dismiss));
+
+  /**
+   * The owner says a published item is theirs, even if it was never suggested for their report.
+   * Only with their own report, and Bienestar then sees the pickup.
+   */
+  router.post('/catalog/:code/claim', async (req, res) => {
+    const reportCode = req.body?.reportCode;
+    if (typeof reportCode !== 'string' || reportCode.trim() === '') {
+      res.status(400).json({ error: 'reportCode is required' });
+      return;
+    }
+
+    const report = await matching.findOwnLostReport(reportCode, getCurrentUser(req).id);
+    if (!report) {
+      res.status(404).json({ error: 'Lost report not found' });
+      return;
+    }
+    const item = await matching.findFoundItemByCode(req.params.code);
+    if (!item || item.status !== 'PUBLISHED') {
+      res.status(404).json({ error: 'Found item not found' });
+      return;
+    }
+
+    const result = await matching.claimItem(report.id, item.id, calculateSimilarityScore(report, item));
+    if (result === 'REPORT_RECOVERED') {
+      res.status(409).json({ error: 'Lost report already recovered' });
+      return;
+    }
+    res.json({ status: 'WILL_PICK_UP' });
+  });
 
   return router;
 }

@@ -6,6 +6,8 @@ export type MatchesService = {
   getMatches: (reportCode: string) => Promise<MatchView[] | null>;
   pickUp: (matchId: string) => Promise<void>;
   dismiss: (matchId: string) => Promise<void>;
+  /** The owner says a published item is theirs and will pick it up, with one of their lost reports. */
+  claim: (itemCode: string, reportCode: string) => Promise<void>;
   /** Bienestar publishes a found item so the community can see it. */
   publish: (itemCode: string) => Promise<PublishResult>;
 };
@@ -31,6 +33,16 @@ export function createMatchesService(apiFetch: ApiFetch): MatchesService {
         throw new Error('No se pudieron cargar los objetos parecidos. Intenta nuevamente.');
       }
       return response.json();
+    },
+    claim: async (itemCode, reportCode) => {
+      const response = await apiFetch(`/catalog/${itemCode}/claim`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reportCode }),
+      });
+      if (!response.ok) {
+        throw new Error('No se pudo avisar a Bienestar. Intenta nuevamente.');
+      }
     },
     pickUp: (matchId) => sendMatchAnswer(matchId, 'pick-up'),
     dismiss: (matchId) => sendMatchAnswer(matchId, 'dismiss'),

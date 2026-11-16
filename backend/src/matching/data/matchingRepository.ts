@@ -6,6 +6,8 @@ export type LostReportToMatch = LostReportForMatching & { id: string; code: stri
 export type PublishedItem = FoundItemForMatching & { id: string };
 export type Suggestion = { foundItemId: string; similarity: number };
 export type FoundItemToPublish = PublishedItem & { code: string; status: FoundItemStatus };
+/** CLAIMED: Bienestar will see the pickup. REPORT_RECOVERED: the report is closed, so nothing was saved. */
+export type ClaimResult = 'CLAIMED' | 'REPORT_RECOVERED';
 
 /** Where lost reports, published items and matches are read and saved. Tests use a fake one. */
 export type MatchingRepository = {
@@ -25,6 +27,12 @@ export type MatchingRepository = {
   ) => Promise<{ id: string; lostReportId: string } | null>;
   /** The owner will pick the item up: Bienestar sees it in pending pickups. */
   markWillPickUp: (matchId: string) => Promise<void>;
+
+  /**
+   * The owner says a published item is theirs ("Es mío, pasaré a recoger"), even if it was never suggested.
+   * The match is created (or reused), and the report waits for the pickup.
+   */
+  claimItem: (lostReportId: string, foundItemId: string, similarity: number) => Promise<ClaimResult>;
 
   /** "No es mío": the item stops showing up for that report, even when matching runs again. */
   dismiss: (matchId: string) => Promise<void>;

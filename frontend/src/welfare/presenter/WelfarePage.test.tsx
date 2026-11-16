@@ -68,6 +68,7 @@ function publishingService(): MatchesService {
     getMatches: jest.fn().mockResolvedValue([]),
     pickUp: jest.fn(),
     dismiss: jest.fn(),
+     claim: jest.fn(),
     publish: jest.fn().mockResolvedValue({ status: 'PUBLISHED', matchCount: 2 }),
   };
 }

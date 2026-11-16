@@ -14,7 +14,9 @@ export type FakeItem = PublishedItem & {
 export type FakeReport = LostReportToMatch & { ownerId: string; status?: LostReportStatus };
 
 /** In-memory matching repository for tests. It never touches the shared database. */
-export function fakeMatchingRepository(reports: FakeReport[], initialItems: FakeItem[]) {
+export function fakeMatchingRepository(initialReports: FakeReport[], initialItems: FakeItem[]) {
+  // A copy, so a test that claims an item does not change the reports of the next test.
+  const reports = initialReports.map((report) => ({ ...report }));
   // A copy, so a test that publishes an item does not change the items of the next test.
   const items = initialItems.map((item) => ({ ...item }));
   const matches: (MatchView & { lostReportId: string })[] = [];
@@ -61,6 +63,28 @@ export function fakeMatchingRepository(reports: FakeReport[], initialItems: Fake
       setMatchStatus(matchId, 'WILL_PICK_UP');
     },
 
+    claimItem: async (lostReportId, foundItemId, similarity) => {
+      const report = reports.find((r) => r.id === lostReportId);
+      if (!report || report.status === 'RECOVERED') {
+        return 'REPORT_RECOVERED';
+      }
+      const { code, description, photoUrl, category } = itemById(foundItemId);
+      const existing = matches.find((m) => m.lostReportId === lostReportId && m.foundItem.code === code);
+      if (existing) {
+        existing.status = 'WILL_PICK_UP';
+      } else {
+        matches.push({
+          id: `match-${matches.length + 1}`,
+          lostReportId,
+          status: 'WILL_PICK_UP',
+          similarity,
+          foundItem: { code, description, photoUrl, category },
+        });
+      }
+      report.status = 'PENDING_PICKUP';
+      return 'CLAIMED';
+    },
+
     dismiss: async (matchId) => {
       setMatchStatus(matchId, 'DISMISSED');
     },
@@ -102,5 +126,5 @@ export function fakeMatchingRepository(reports: FakeReport[], initialItems: Fake
     return item.status ?? 'PUBLISHED';
   }
 
-  return { repository, matches, items };
+  return { repository, matches, items, reports };
 }

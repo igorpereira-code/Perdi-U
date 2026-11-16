@@ -5962,25 +5962,25 @@
     "testId": 138
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4e8ab44d30b73fe884b380e2ec1072aecf43171e",
     "commitName": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
     "commitTimestamp": 1794491262113,
     "testId": 139
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5119b190d4d2dcb46e33b4792c486aea6b7e5ede",
     "commitName": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
     "commitTimestamp": 1794491307539,
     "testId": 140
   },
   {
-    "commitId": "HEAD",
+    "commitId": "6554e7b5674671af87348625b7bac8e452cd266a",
     "commitName": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
     "commitTimestamp": 1794491360067,
     "testId": 141
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1bf9e5ed9e1100a51b8f2a9c06990f7afd627385",
     "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
     "commitTimestamp": 1794491488766,
     "testId": 142
@@ -6010,7 +6010,7 @@
     "testId": 143
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b387e5c190b506bc992969f9181cec4ff903944b",
     "commitName": "feat(admin): ver las categorías y los lugares del campus",
     "commitTimestamp": 1794495210769,
     "testId": 143
@@ -6394,5 +6394,171 @@
     "commitName": "refactor(owner): renombrar funciones auxiliares de owner",
     "commitTimestamp": 1794758674723,
     "testId": 159
+  },
+  {
+    "numPassedTests": 850,
+    "failedTests": 0,
+    "numTotalTests": 850,
+    "timestamp": 1794771115704,
+    "success": true,
+    "testId": 160
+  },
+  {
+    "numPassedTests": 850,
+    "failedTests": 3,
+    "numTotalTests": 853,
+    "timestamp": 1794771426616,
+    "success": false,
+    "testId": 160
+  },
+  {
+    "numPassedTests": 853,
+    "failedTests": 0,
+    "numTotalTests": 853,
+    "timestamp": 1794771578436,
+    "success": true,
+    "testId": 160
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ofrecer la opción Es mío, pasaré a recoger en el detalle del objeto",
+    "commitTimestamp": 1794771761801,
+    "testId": 160
+  },
+  {
+    "numPassedTests": 853,
+    "failedTests": 4,
+    "numTotalTests": 857,
+    "timestamp": 1794771870573,
+    "success": false,
+    "testId": 161
+  },
+  {
+    "numPassedTests": 857,
+    "failedTests": 0,
+    "numTotalTests": 857,
+    "timestamp": 1794771917444,
+    "success": true,
+    "testId": 161
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): elegir con qué reporte de pérdida se relaciona el objeto que se reclama",
+    "commitTimestamp": 1794772043367,
+    "testId": 161
+  },
+  {
+    "numPassedTests": 857,
+    "failedTests": 7,
+    "numTotalTests": 864,
+    "timestamp": 1794772190909,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 864,
+    "failedTests": 0,
+    "numTotalTests": 864,
+    "timestamp": 1794772272875,
+    "success": true,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 864,
+    "failedTests": 2,
+    "numTotalTests": 866,
+    "timestamp": 1794772358387,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 866,
+    "failedTests": 0,
+    "numTotalTests": 866,
+    "timestamp": 1794772594009,
+    "success": true,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 866,
+    "failedTests": 5,
+    "numTotalTests": 871,
+    "timestamp": 1794772907266,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 856,
+    "failedTests": 1,
+    "numTotalTests": 857,
+    "timestamp": 1794773069945,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 857,
+    "failedTests": 0,
+    "numTotalTests": 857,
+    "timestamp": 1794773341428,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 871,
+    "failedTests": 0,
+    "numTotalTests": 871,
+    "timestamp": 1794773626492,
+    "success": true,
+    "testId": 162
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar a Bienestar que el dueño pasará a recoger un objeto del catálogo",
+    "commitTimestamp": 1794773704804,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 871,
+    "failedTests": 1,
+    "numTotalTests": 872,
+    "timestamp": 1794773767900,
+    "success": false,
+    "testId": 163
+  },
+  {
+    "numPassedTests": 872,
+    "failedTests": 0,
+    "numTotalTests": 872,
+    "timestamp": 1794773836626,
+    "success": true,
+    "testId": 163
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar la ubicación y el horario de Bienestar después de reclamar un objeto",
+    "commitTimestamp": 1794773883301,
+    "testId": 163
+  },
+  {
+    "numPassedTests": 872,
+    "failedTests": 1,
+    "numTotalTests": 873,
+    "timestamp": 1794773965110,
+    "success": false,
+    "testId": 164
+  },
+  {
+    "numPassedTests": 873,
+    "failedTests": 0,
+    "numTotalTests": 873,
+    "timestamp": 1794774066668,
+    "success": true,
+    "testId": 164
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte que debe llevar a Bienestar",
+    "commitTimestamp": 1794774112445,
+    "testId": 164
   }
 ]

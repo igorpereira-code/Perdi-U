@@ -8,18 +8,59 @@ import type { FoundItemsService } from '../../finder/data/foundItemsService';
 import { formatReportDate } from '../../finder/logic/formatReportDate';
 import { FoundItemPhoto } from '../../finder/presenter/FoundItemPhoto';
 import type { CatalogItem, CatalogService } from '../data/catalogService';
+import type { MatchesService } from '../../matching/data/matchesService';
+import { PickUpInstructions } from '../../matching/presenter/MatchesPage';
+import type { MyLostReportsService } from '../data/myLostReportsService';
+import { ClaimItem } from './ClaimItem';
 
 type CatalogItemScreenProps = {
   catalogService: Pick<CatalogService, 'getByCode'>;
   foundItemsService: Pick<FoundItemsService, 'getPhotoUrl'>;
+  myLostReportsService: Pick<MyLostReportsService, 'listMine'>;
+  matchesService: Pick<MatchesService, 'claim'>;
 };
+
+type IsItYoursProps = {
+  item: CatalogItem;
+  myLostReportsService: Pick<MyLostReportsService, 'listMine'>;
+  matchesService: Pick<MatchesService, 'claim'>;
+};
+
+/** Where to ask for the item, or, once the owner claimed it, that they will pick it up. */
+function IsItYours({ item, myLostReportsService, matchesService }: IsItYoursProps) {
+  const [claimedReportCode, setClaimedReportCode] = useState<string>();
+
+  return (
+    <section aria-labelledby="ask-welfare-title" className="space-y-2">
+      <h2 id="ask-welfare-title" className="text-base font-semibold text-blue-700">
+        ¿Es tuyo?
+      </h2>
+      {claimedReportCode ? (
+        <PickUpInstructions reportCode={claimedReportCode} />
+      ) : (
+        <>
+          <p className="text-sm text-neutral-700">
+            Acércate a Bienestar Estudiantil con el código {item.code} para preguntar por él.
+          </p>
+          <WelfareCard />
+          <ClaimItem
+            itemCode={item.code}
+            myLostReportsService={myLostReportsService}
+            matchesService={matchesService}
+            onClaimed={setClaimedReportCode}
+          />
+        </>
+      )}
+    </section>
+  );
+}
 
 type ScreenState = { status: 'loading' } | { status: 'missing' } | { status: 'failed' } | { status: 'ready'; item: CatalogItem };
 
 const BACK_LINK = 'inline-flex text-sm font-semibold text-blue-500';
 
 /** Detail of a published found item. */
-export function CatalogItemScreen({ catalogService, foundItemsService }: CatalogItemScreenProps) {
+export function CatalogItemScreen({ catalogService, foundItemsService, myLostReportsService, matchesService }: CatalogItemScreenProps) {
   const { code = '' } = useParams();
   const [state, setState] = useState<ScreenState>({ status: 'loading' });
 
@@ -85,15 +126,7 @@ export function CatalogItemScreen({ catalogService, foundItemsService }: Catalog
         {item.placeReference && <InfoRow label="Referencia" value={item.placeReference} />}
         <InfoRow label="Fecha" value={formatReportDate(item.foundAt)} />
       </dl>
-      <section aria-labelledby="ask-welfare-title" className="space-y-2">
-        <h2 id="ask-welfare-title" className="text-base font-semibold text-blue-700">
-          ¿Es tuyo?
-        </h2>
-        <p className="text-sm text-neutral-700">
-          Acércate a Bienestar Estudiantil con el código {item.code} para preguntar por él.
-        </p>
-        <WelfareCard />
-      </section>
+      <IsItYours item={item} myLostReportsService={myLostReportsService} matchesService={matchesService} />
     </article>
   );
 }
