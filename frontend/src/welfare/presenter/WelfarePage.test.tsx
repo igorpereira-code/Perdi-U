@@ -71,6 +71,7 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
         classrooms: [],
       }],
     }),
+    registerFoundItem: jest.fn().mockResolvedValue({ code: 'HZ-0042', status: 'IN_CUSTODY' }),
     findFoundItemByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
     confirmReception: jest.fn(),
     deletePending: jest.fn().mockResolvedValue(true),

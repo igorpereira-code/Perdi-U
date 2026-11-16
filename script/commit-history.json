@@ -4788,12 +4788,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "fb44e0a412f067219b9e4dfd377bf86e049b840f",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:45:15.000Z",
       "message": "refactor(core): extraer la carga con reintento a useLoadedData y LoadErrorAlert",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/fb44e0a412f067219b9e4dfd377bf86e049b840f"
     },
     "stats": {
       "total": 188,
@@ -5127,6 +5127,25 @@
     "coverage": 85.45,
     "test_count": 689,
     "failed_tests": 7,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T02:38:02.000Z",
+      "message": "feat(welfare): conectar registro de objetos sin reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 66,
+      "additions": 66,
+      "deletions": 0,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.39,
+    "test_count": 690,
+    "failed_tests": 4,
     "conclusion": "failure"
   }
 ]

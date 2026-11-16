@@ -8,6 +8,8 @@ import type { FoundItemCatalogs, FoundItemPayload } from '../../finder/data/foun
 
 export type ReceptionCorrection = FoundItemPayload;
 
+export type DirectFoundItemCreated = { code: string; status: 'IN_CUSTODY' };
+
 export type WelfareResult =
   | { status: 'FOUND'; item: WelfareFoundItemView }
   | { status: 'NOT_FOUND' }
@@ -39,6 +41,10 @@ export type WelfareService = {
   listPending: () => Promise<WelfareFoundItemView[]>;
   listInOffice: () => Promise<WelfareFoundItemView[]>;
   getCatalogs: () => Promise<FoundItemCatalogs>;
+  registerFoundItem: (
+    registration: FoundItemPayload,
+    photo: File | null,
+  ) => Promise<DirectFoundItemCreated>;
   findFoundItemByCode: (code: string) => Promise<WelfareResult>;
   confirmReception: (code: string, correction?: ReceptionCorrection) => Promise<WelfareResult>;
   deletePending: (code: string) => Promise<boolean>;
@@ -108,6 +114,35 @@ export function createWelfareService(apiFetch: ApiFetch): WelfareService {
         throw new Error('No se pudieron consultar los catálogos');
       }
       return response.json();
+    },
+    registerFoundItem: async (registration, photo) => {
+      let init: RequestInit;
+      if (photo) {
+        const form = new FormData();
+        form.append('report', JSON.stringify(registration));
+        form.append('photo', photo);
+        init = { method: 'POST', body: form };
+      } else {
+        init = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(registration),
+        };
+      }
+      const response = await apiFetch('/welfare/found-items', init);
+      if (!response.ok) {
+        throw new Error('No se pudo registrar el objeto. Intenta nuevamente.');
+      }
+      const createdItem = await response.json();
+      if (
+        response.status !== 201
+        || typeof createdItem?.code !== 'string'
+        || !/^HZ-\d+$/.test(createdItem.code)
+        || createdItem.status !== 'IN_CUSTODY'
+      ) {
+        throw new Error('No se pudo confirmar el código del objeto.');
+      }
+      return createdItem;
     },
     findFoundItemByCode: async (code) =>
       parseFoundItemResponse(await apiFetch(`/welfare/found-items/${normalizeCode(code)}`)),

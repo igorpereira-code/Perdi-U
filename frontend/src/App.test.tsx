@@ -76,6 +76,7 @@ function renderAt(
     listPending: jest.fn().mockResolvedValue([]),
     listInOffice: jest.fn().mockResolvedValue([]),
     getCatalogs: jest.fn().mockResolvedValue({ categories: [], places: [] }),
+    registerFoundItem: jest.fn(),
     findFoundItemByCode: jest.fn(),
     confirmReception: jest.fn(),
     deletePending: jest.fn(),
