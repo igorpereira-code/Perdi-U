@@ -11,14 +11,14 @@ export function FoundItemPhoto({ report, foundItemsService }: FoundItemPhotoProp
   const [photo, setPhoto] = useState<{ code: string; url: string } | null>(null);
 
   useEffect(() => {
-    let active = true;
+    let isRequestActive = true;
     setPhoto(null);
     if (report.hasPhoto) {
       foundItemsService.getPhotoUrl(report.code)
-        .then(({ url }) => { if (active) { setPhoto({ code: report.code, url }); } })
-        .catch(() => { if (active) { setPhoto(null); } });
+        .then(({ url }) => { if (isRequestActive) { setPhoto({ code: report.code, url }); } })
+        .catch(() => { if (isRequestActive) { setPhoto(null); } });
     }
-    return () => { active = false; };
+    return () => { isRequestActive = false; };
   }, [foundItemsService, report.code, report.hasPhoto]);
 
   const photoUrl = report.hasPhoto && photo?.code === report.code ? photo.url : null;
