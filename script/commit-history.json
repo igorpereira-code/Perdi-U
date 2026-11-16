@@ -4864,12 +4864,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ffdcbf73722e337e14315757bc5b95fd567214f7",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:49:19.000Z",
       "message": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/ffdcbf73722e337e14315757bc5b95fd567214f7"
     },
     "stats": {
       "total": 22,
@@ -5202,6 +5202,25 @@
     },
     "coverage": 85.44,
     "test_count": 693,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T03:38:02.000Z",
+      "message": "feat(matching): incluir objetos ocultos en coincidencias",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 37,
+      "additions": 34,
+      "deletions": 3,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.49,
+    "test_count": 694,
     "failed_tests": 0,
     "conclusion": "success"
   }

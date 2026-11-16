@@ -38,7 +38,7 @@ export const prismaMatchingRepository: MatchingRepository = {
 
   listPublishedItems: () =>
     db().foundItem.findMany({
-      where: { status: 'PUBLISHED', visibility: 'VISIBLE' },
+      where: { status: 'PUBLISHED' },
       select: { id: true, categoryId: true, foundAt: true, placeId: true, description: true },
     }),
 
@@ -115,10 +115,10 @@ export const prismaMatchingRepository: MatchingRepository = {
       },
     }),
 
-    publish: async (itemId, publishedById, visibility) => {
+  publish: async (itemId, publishedById, visibility) => {
     await db().foundItem.update({
       where: { id: itemId },
-          data: { status: 'PUBLISHED', visibility, publishedById, publishedAt: new Date() },
+      data: { status: 'PUBLISHED', visibility, publishedById, publishedAt: new Date() },
     });
   },
 

@@ -5944,7 +5944,7 @@
     "testId": 140
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ffdcbf73722e337e14315757bc5b95fd567214f7",
     "commitName": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
     "commitTimestamp": 1794491360067,
     "testId": 141
@@ -6138,5 +6138,11 @@
     "commitName": "feat(welfare): elegir visibilidad al publicar objetos",
     "commitTimestamp": 1794800177121,
     "testId": 158
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): incluir objetos ocultos en coincidencias",
+    "commitTimestamp": 1794800283585,
+    "testId": 159
   }
 ]
