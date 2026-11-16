@@ -7,8 +7,11 @@ export type WelfareFoundItem = {
   description: string;
   photoUrl: string | null;
   category: string;
+  categoryId: number;
   place: string;
+  placeId: number;
   classroom: string | null;
+  classroomId: number | null;
   placeReference: string | null;
   foundAt: Date;
   status: FoundItemStatus;
@@ -32,6 +35,26 @@ export type DeliveryResult =
   | { status: 'ITEM_NOT_AVAILABLE' }
   | { status: 'REPORT_NOT_ELIGIBLE' };
 
+export type ReceptionCorrection = {
+  description: string;
+  categoryId: number;
+  placeId: number;
+  classroomId: number | null;
+  placeReference: string | null;
+  foundAt: Date;
+};
+
+export type DirectFoundItemRegistration = ReceptionCorrection & {
+  receivedById: string;
+  receivedAt: Date;
+  photoUrl?: string;
+};
+
+export type DirectFoundItemCreated = {
+  code: string;
+  status: 'IN_CUSTODY';
+};
+
 export type WelfareLostReport = {
   id: string;
   code: string;
@@ -51,7 +74,16 @@ export type WelfareRepository = {
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItem[]>;
   listInOffice: () => Promise<WelfareFoundItem[]>;
-  findByCode: (code: string) => Promise<WelfareFoundItem | null>;
-  receivePending: (itemId: string, receivedById: string, receivedAt: Date) => Promise<boolean>;
+  findFoundItemByCode: (code: string) => Promise<WelfareFoundItem | null>;
+  registerFoundItem: (
+    registration: DirectFoundItemRegistration,
+  ) => Promise<DirectFoundItemCreated>;
+  confirmPendingReception: (
+    itemId: string,
+    receivedById: string,
+    receivedAt: Date,
+    correction?: ReceptionCorrection,
+  ) => Promise<WelfareFoundItem | null>;
+  deletePending: (itemId: string) => Promise<boolean>;
   deliver: (delivery: DeliveryRegistration) => Promise<DeliveryResult>;
 };

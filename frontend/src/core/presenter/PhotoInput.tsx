@@ -6,13 +6,13 @@ type PhotoInputProps = {
 };
 
 export function PhotoInput({ onChange }: PhotoInputProps) {
-  const [preview, setPreview] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   function selectPhoto(file: File | null) {
-    if (preview) {
-      URL.revokeObjectURL(preview);
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
     }
-    setPreview(file ? URL.createObjectURL(file) : null);
+    setPreviewUrl(file ? URL.createObjectURL(file) : null);
     onChange(file);
   }
 
@@ -20,10 +20,14 @@ export function PhotoInput({ onChange }: PhotoInputProps) {
     selectPhoto(event.target.files?.[0] ?? null);
   }
 
-  if (preview) {
+  if (previewUrl) {
     return (
       <div className="relative h-40 w-full overflow-hidden rounded-xl border border-neutral-300">
-        <img src={preview} alt="Vista previa de la foto" className="h-full w-full object-cover" />
+        <img
+          src={previewUrl}
+          alt="Vista previa de la foto"
+          className="h-full w-full object-cover"
+        />
         <button
           type="button"
           aria-label="Quitar foto"

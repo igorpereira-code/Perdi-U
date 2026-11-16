@@ -14,7 +14,7 @@ describe('Pantalla de ingreso', () => {
   });
 
   it('avisa que solo se permiten cuentas de la universidad', () => {
-    render(<LoginPage onGoogleLogin={jest.fn()} notInstitutional />);
+    render(<LoginPage onGoogleLogin={jest.fn()} isNotInstitutional />);
 
     expect(screen.getByRole('alert')).toHaveTextContent(
       'Solo se permiten cuentas institucionales (@ucb.edu.bo).',

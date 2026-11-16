@@ -1,13 +1,28 @@
+import { useState } from 'react';
 import { LogOut } from 'lucide-react';
 import type { AppUser } from '@shared/user';
 import { Button } from './Button';
 
 type ProfilePageProps = {
   user: AppUser;
-  onSignOut: () => void;
+  onSignOut: () => void | Promise<void>;
 };
 
 export function ProfilePage({ user, onSignOut }: ProfilePageProps) {
+  const [isSigningOut, setIsSigningOut] = useState(false);
+  const [hasFailed, setHasFailed] = useState(false);
+
+  async function handleSignOut() {
+    setIsSigningOut(true);
+    setHasFailed(false);
+    try {
+      await onSignOut();
+    } catch {
+      setHasFailed(true);
+      setIsSigningOut(false);
+    }
+  }
+
   return (
     <div className="space-y-4">
       <section className="flex flex-col items-center gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-6 text-center">
@@ -30,7 +45,18 @@ export function ProfilePage({ user, onSignOut }: ProfilePageProps) {
         <h1 className="text-lg font-semibold text-blue-700">{user.name}</h1>
         <p className="text-sm text-neutral-500">{user.email}</p>
       </section>
-      <Button variant="outline" onClick={onSignOut} className="w-full">
+      {hasFailed && (
+        <p role="alert" className="rounded-xl bg-danger-50 p-3 text-sm text-danger-700">
+          No se pudo cerrar la sesión. Intenta nuevamente.
+        </p>
+      )}
+      <Button
+        variant="outline"
+        onClick={handleSignOut}
+        isLoading={isSigningOut}
+        loadingText="Cerrando sesión…"
+        className="w-full"
+      >
         <LogOut className="h-4 w-4" aria-hidden="true" />
         Cerrar sesión
       </Button>

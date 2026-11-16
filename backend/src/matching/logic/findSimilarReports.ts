@@ -1,6 +1,6 @@
 import { MIN_SIMILARITY } from './findSimilarItems';
 import {
-  similarityScore,
+  calculateSimilarityScore,
   type FoundItemForMatching,
   type LostReportForMatching,
 } from './similarity';
@@ -13,7 +13,7 @@ export function findSimilarReports<T extends LostReportForMatching>(
   reports: T[],
 ): SimilarReport<T>[] {
   return reports
-    .map((report) => ({ report, similarity: similarityScore(report, item) }))
+    .map((report) => ({ report, similarity: calculateSimilarityScore(report, item) }))
     .filter((match) => match.similarity >= MIN_SIMILARITY)
     .sort((a, b) => b.similarity - a.similarity);
 }
