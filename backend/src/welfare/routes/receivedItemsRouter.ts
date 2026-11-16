@@ -1,9 +1,15 @@
-import { Router } from 'express';
+import { randomUUID } from 'node:crypto';
+import { raw, Router, type ErrorRequestHandler } from 'express';
 import type { WelfareFoundItemView, WelfareLostReportView } from '@shared/welfare';
 import { getCurrentUser, requireRole } from '../../core/currentUser';
 import { isInstitutionalEmail } from '../../core/logic/institutionalEmail';
 import type { WelfareFoundItem, WelfareRepository } from '../data/welfareRepository';
 import type { ReceptionCorrection } from '../data/welfareRepository';
+import type { FoundItemCatalogs } from '../../finder/data/foundItemsRepository';
+import { validateFoundItemReport } from '../../finder/logic/validateFoundItemReport';
+import type { FoundItemPhotoStorage } from '../../finder/data/foundItemPhotoStorage';
+import { FoundItemRequestError } from '../../finder/logic/validateFoundItemPhoto';
+import { readFoundItemRequest } from '../../finder/routes/readFoundItemRequest';
 
 function toFoundItemView(foundItem: WelfareFoundItem): WelfareFoundItemView {
   const { id: _id, receivedById: _receivedById, receivedAt: _receivedAt, ...view } = foundItem;
@@ -59,7 +65,11 @@ function readReceptionCorrection(body: unknown): ReceptionCorrection | undefined
   };
 }
 
-export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
+export function createReceivedItemsRouter(
+  welfare: WelfareRepository,
+  getCatalogs: () => Promise<FoundItemCatalogs>,
+  photos: FoundItemPhotoStorage,
+): Router {
   const router = Router();
 
   router.get('/welfare/lost-reports', requireRole('WELFARE'), async (_req, res) => {
@@ -117,6 +127,46 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
     res.json((await welfare.listInOffice()).map(toFoundItemView));
   });
 
+  router.post(
+    '/welfare/found-items',
+    requireRole('WELFARE'),
+    raw({ type: 'multipart/form-data', limit: 6 * 1024 * 1024 }),
+    async (req, res) => {
+      let photoPath: string | undefined;
+      let saved = false;
+      try {
+        const { report, photo } = await readFoundItemRequest(req);
+        const validation = validateFoundItemReport(report, await getCatalogs());
+        if (!validation.valid) {
+          res.status(400).json({ error: 'Revisa los datos del objeto.', errors: validation.errors });
+          return;
+        }
+        const receivedById = getCurrentUser(req).id;
+        if (photo) {
+          photoPath = `${receivedById}/${randomUUID()}.${photo.extension}`;
+          await photos.upload(photoPath, photo.bytes, photo.contentType);
+        }
+        const createdItem = await welfare.registerFoundItem({
+          ...validation.data,
+          receivedById,
+          receivedAt: new Date(),
+          ...(photoPath ? { photoUrl: photoPath } : {}),
+        });
+        saved = true;
+        res.status(201).json(createdItem);
+      } catch (error) {
+        if (photoPath && !saved) {
+          try { await photos.remove(photoPath); } catch { /* No ocultar el error original. */ }
+        }
+        if (error instanceof FoundItemRequestError) {
+          res.status(error.status).json({ error: error.message });
+          return;
+        }
+        res.status(500).json({ error: 'No se pudo registrar el objeto. Intenta nuevamente.' });
+      }
+    },
+  );
+
   router.get('/welfare/found-items/:code', requireRole('WELFARE'), async (req, res) => {
     const foundItemCode = normalizeCode(req.params.code);
     const foundItem = await welfare.findFoundItemByCode(foundItemCode);
@@ -169,6 +219,15 @@ export function createReceivedItemsRouter(welfare: WelfareRepository): Router {
     }
     res.json(toFoundItemView(receivedItem));
   });
+
+  const handlePhotoBodyError: ErrorRequestHandler = (error, _req, res, next) => {
+    if (error?.type === 'entity.too.large') {
+      res.status(413).json({ error: 'La fotografía debe pesar como máximo 5 MiB.' });
+      return;
+    }
+    next(error);
+  };
+  router.use(handlePhotoBodyError);
 
   return router;
 }

@@ -136,6 +136,26 @@ export const prismaWelfareRepository = {
     return foundItemRow ? toWelfareFoundItem(foundItemRow) : null;
   },
 
+  registerFoundItem: async (registration) => {
+    const createdItem = await db().foundItem.create({
+      data: {
+        description: registration.description,
+        photoUrl: registration.photoUrl,
+        categoryId: registration.categoryId,
+        placeId: registration.placeId,
+        classroomId: registration.classroomId,
+        placeReference: registration.placeReference,
+        foundAt: registration.foundAt,
+        status: 'IN_CUSTODY',
+        finderId: null,
+        receivedById: registration.receivedById,
+        receivedAt: registration.receivedAt,
+      },
+      select: { code: true, status: true },
+    });
+    return { code: createdItem.code, status: 'IN_CUSTODY' };
+  },
+
   confirmPendingReception: async (itemId, receivedById, receivedAt, correction) => {
     const updatedItems = await db().foundItem.updateMany({
       where: { id: itemId, status: 'PENDING_DROP_OFF' },

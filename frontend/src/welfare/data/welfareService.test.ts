@@ -22,6 +22,35 @@ const item: WelfareFoundItemView = {
 };
 
 describe('Servicio de recepcion de Bienestar', () => {
+  it('registra un objeto sin reporte previo con su foto opcional', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({
+      ok: true,
+      status: 201,
+      json: async () => ({ code: 'HZ-0042', status: 'IN_CUSTODY' }),
+    });
+    const photo = new File(['foto'], 'paraguas.jpg', { type: 'image/jpeg' });
+    const registration = {
+      description: 'Paraguas negro',
+      categoryId: 1,
+      placeId: 1,
+      classroomId: null,
+      placeReference: null,
+      foundAt: '2026-11-15T14:30:00.000Z',
+    };
+
+    await expect(
+      createWelfareService(apiFetch).registerFoundItem(registration, photo),
+    ).resolves.toEqual({ code: 'HZ-0042', status: 'IN_CUSTODY' });
+
+    expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items', {
+      method: 'POST',
+      body: expect.any(FormData),
+    });
+    const form = apiFetch.mock.calls[0][1].body as FormData;
+    expect(form.get('report')).toBe(JSON.stringify(registration));
+    expect(form.get('photo')).toBe(photo);
+  });
+
   it('busca un reporte de perdida con el codigo normalizado', async () => {
     const report: WelfareLostReportView = {
       code: 'PR-0001',

@@ -4750,12 +4750,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "4a89f6f3ad9c091c3eb2bedd3f3a8580b59e8f3b",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:42:38.000Z",
       "message": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/4a89f6f3ad9c091c3eb2bedd3f3a8580b59e8f3b"
     },
     "stats": {
       "total": 38,
@@ -4769,12 +4769,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "139a2bb3fe7c5e19fdee6d29ee63e39fb909e679",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:43:30.000Z",
       "message": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/139a2bb3fe7c5e19fdee6d29ee63e39fb909e679"
     },
     "stats": {
       "total": 45,
@@ -4788,12 +4788,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "fb44e0a412f067219b9e4dfd377bf86e049b840f",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:45:15.000Z",
       "message": "refactor(core): extraer la carga con reintento a useLoadedData y LoadErrorAlert",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/fb44e0a412f067219b9e4dfd377bf86e049b840f"
     },
     "stats": {
       "total": 188,
@@ -4807,12 +4807,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b26cefe76de4cc832ed738b1c60329a0135592bb",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:46:29.000Z",
       "message": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/b26cefe76de4cc832ed738b1c60329a0135592bb"
     },
     "stats": {
       "total": 218,
@@ -4826,12 +4826,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "962a4e1fa565eae0ca9d343aa05d1c6ff34bcfee",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:47:41.000Z",
       "message": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/962a4e1fa565eae0ca9d343aa05d1c6ff34bcfee"
     },
     "stats": {
       "total": 167,
@@ -5089,6 +5089,101 @@
     "coverage": 85.96,
     "test_count": 687,
     "failed_tests": 6,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T02:28:09.000Z",
+      "message": "feat(welfare): registrar objetos directamente en custodia",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 119,
+      "additions": 117,
+      "deletions": 2,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.65,
+    "test_count": 688,
+    "failed_tests": 9,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T02:32:51.000Z",
+      "message": "feat(welfare): adjuntar foto al registro directo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 110,
+      "additions": 95,
+      "deletions": 15,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.45,
+    "test_count": 689,
+    "failed_tests": 7,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T02:38:02.000Z",
+      "message": "feat(welfare): conectar registro de objetos sin reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 66,
+      "additions": 66,
+      "deletions": 0,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.39,
+    "test_count": 690,
+    "failed_tests": 4,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T02:44:19.000Z",
+      "message": "feat(welfare): mostrar formulario de registro directo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 91,
+      "additions": 81,
+      "deletions": 10,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.4,
+    "test_count": 691,
+    "failed_tests": 2,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T02:49:39.000Z",
+      "message": "test(welfare): registrar verificacion de HU-24",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.4,
+    "test_count": 691,
+    "failed_tests": 2,
     "conclusion": "failure"
   }
 ]

@@ -5908,31 +5908,31 @@
     "testId": 134
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4a89f6f3ad9c091c3eb2bedd3f3a8580b59e8f3b",
     "commitName": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
     "commitTimestamp": 1794490958823,
     "testId": 135
   },
   {
-    "commitId": "HEAD",
+    "commitId": "139a2bb3fe7c5e19fdee6d29ee63e39fb909e679",
     "commitName": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
     "commitTimestamp": 1794491011050,
     "testId": 136
   },
   {
-    "commitId": "HEAD",
+    "commitId": "fb44e0a412f067219b9e4dfd377bf86e049b840f",
     "commitName": "refactor(core): extraer la carga con reintento a useLoadedData y LoadErrorAlert",
     "commitTimestamp": 1794491116150,
     "testId": 137
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b26cefe76de4cc832ed738b1c60329a0135592bb",
     "commitName": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
     "commitTimestamp": 1794491189261,
     "testId": 138
   },
   {
-    "commitId": "HEAD",
+    "commitId": "962a4e1fa565eae0ca9d343aa05d1c6ff34bcfee",
     "commitName": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
     "commitTimestamp": 1794491262113,
     "testId": 139
@@ -6094,5 +6094,43 @@
     "commitName": "feat(welfare): atender solicitudes de hallazgo",
     "commitTimestamp": 1794764461489,
     "testId": 152
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): registrar objetos directamente en custodia",
+    "commitTimestamp": 1794796092968,
+    "testId": 153
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): adjuntar foto al registro directo",
+    "commitTimestamp": 1794796374982,
+    "testId": 154
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): conectar registro de objetos sin reporte",
+    "commitTimestamp": 1794796684987,
+    "testId": 155
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar formulario de registro directo",
+    "commitTimestamp": 1794797060431,
+    "testId": 156
+  },
+  {
+    "numPassedTests": 688,
+    "failedTests": 3,
+    "numTotalTests": 691,
+    "timestamp": 1794797149048,
+    "success": false,
+    "testId": 157
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): registrar verificacion de HU-24",
+    "commitTimestamp": 1794797380799,
+    "testId": 157
   }
 ]

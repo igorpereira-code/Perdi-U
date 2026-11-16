@@ -79,7 +79,7 @@ export function createApp({
   app.use(createMatchesRouter(matching));
   app.use(createPublishRouter(matching));
   app.use(createFoundItemsRouter(foundItems, foundItemPhotos, notifications));
-  app.use(createReceivedItemsRouter(welfare));
+  app.use(createReceivedItemsRouter(welfare, () => foundItems.getCatalogs(), foundItemPhotos));
   app.use(createLostReportsRouter(lostReports, () => foundItems.getCatalogs(), foundItemPhotos));
   app.use(createCatalogRouter(catalog));
   app.use(createMyLostReportsRouter(myLostReports));
