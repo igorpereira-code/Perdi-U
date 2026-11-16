@@ -1,6 +1,16 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
-import { Archive, FileSearch, HandCoins, Inbox, PackageCheck, PackagePlus, Search } from 'lucide-react';
+import {
+  Archive,
+  ClipboardList,
+  FileSearch,
+  HandCoins,
+  Inbox,
+  PackageCheck,
+  PackagePlus,
+  Search,
+} from 'lucide-react';
 import type {
+  WelfareDeliveryView,
   WelfareFoundItemView,
   WelfareLostReportView,
   WelfarePendingPickupView,
@@ -31,7 +41,14 @@ type WelfarePageProps = {
   matchesService: MatchesService;
 };
 
-type WelfareSection = 'reports' | 'requests' | 'register' | 'custody' | 'pickups' | 'delivery';
+type WelfareSection =
+  | 'reports'
+  | 'requests'
+  | 'register'
+  | 'custody'
+  | 'pickups'
+  | 'delivery'
+  | 'deliveries';
 
 function formatDate(value: string): string {
   const [year, month, day] = value.slice(0, 10).split('-');
@@ -78,6 +95,9 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [isLoadingLostReportMatches, setIsLoadingLostReportMatches] = useState(false);
   const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
   const [hasPendingPickupsError, setHasPendingPickupsError] = useState(false);
+  const [deliveries, setDeliveries] = useState<WelfareDeliveryView[] | null>(null);
+  const [hasDeliveriesError, setHasDeliveriesError] = useState(false);
+  const [deliverySearch, setDeliverySearch] = useState('');
   const [pendingItems, setPendingItems] = useState<WelfareFoundItemView[] | null>(null);
   const [hasPendingItemsError, setHasPendingItemsError] = useState(false);
   const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
@@ -232,6 +252,20 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   useEffect(() => {
     void loadPendingPickups();
   }, [loadPendingPickups]);
+
+  const loadDeliveries = useCallback(async () => {
+    setHasDeliveriesError(false);
+    setDeliveries(null);
+    try {
+      setDeliveries(await welfareService.listDeliveries());
+    } catch {
+      setHasDeliveriesError(true);
+    }
+  }, [welfareService]);
+
+  useEffect(() => {
+    void loadDeliveries();
+  }, [loadDeliveries]);
 
   const loadPendingItems = useCallback(async () => {
     setHasPendingItemsError(false);
@@ -409,6 +443,13 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     }
   }
 
+  const normalizedDeliverySearch = deliverySearch.trim().toLocaleLowerCase();
+  const filteredDeliveries = deliveries?.filter((delivery) =>
+    [delivery.foundItem.code, delivery.recipient.name, delivery.recipient.email].some((value) =>
+      value.toLocaleLowerCase().includes(normalizedDeliverySearch),
+    ),
+  );
+
   const navigation: Array<{
     id: WelfareSection;
     label: string;
@@ -431,6 +472,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       count: pendingPickups?.length,
     },
     { id: 'delivery', label: 'Registrar entrega', icon: PackageCheck },
+    { id: 'deliveries', label: 'Entregas realizadas', icon: ClipboardList },
   ];
 
   return (
@@ -1055,6 +1097,86 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
           ) : (
             <SkeletonList label="Cargando formulario" rows={4} />
           ))}
+        </section>
+
+        <section className={activeSection === 'deliveries' ? '' : 'hidden'}>
+          <SectionHeader
+            title="Entregas realizadas"
+            subtitle="Consulta quién recibió cada objeto y cuándo fue entregado."
+          />
+          <label className="mb-4 block max-w-xl">
+            <span className="mb-1 block text-sm font-medium text-neutral-700">
+              Buscar por código, nombre o correo
+            </span>
+            <div className="relative">
+              <Search
+                aria-hidden="true"
+                className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-neutral-400"
+              />
+              <input
+                type="search"
+                aria-label="Buscar entregas"
+                value={deliverySearch}
+                onChange={(event) => setDeliverySearch(event.target.value)}
+                placeholder="Ej. HZ-0008, Luis o correo@ucb.edu.bo"
+                className={`${INPUT_CLASSES} pl-10`}
+              />
+            </div>
+          </label>
+
+          {hasDeliveriesError ? (
+            <LoadErrorAlert
+              message="No pudimos cargar las entregas realizadas"
+              onRetry={() => void loadDeliveries()}
+            />
+          ) : deliveries === null ? (
+            <SkeletonList rows={3} label="Cargando entregas realizadas..." />
+          ) : deliveries.length === 0 ? (
+            <EmptyState
+              title="Todavía no hay entregas realizadas"
+              text="Cuando se registre una entrega, aparecerá en este historial."
+            />
+          ) : filteredDeliveries?.length === 0 ? (
+            <EmptyState
+              title="No encontramos entregas"
+              text="Prueba con otro código, nombre o correo institucional."
+            />
+          ) : (
+            <div className="space-y-3">
+              {filteredDeliveries?.map((delivery) => (
+                <article
+                  key={`${delivery.foundItem.code}-${delivery.deliveredAt}`}
+                  className="grid gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4 sm:grid-cols-[1fr_auto] sm:items-center"
+                >
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <strong className="font-mono text-blue-700">
+                        {delivery.foundItem.code}
+                      </strong>
+                      <span className="text-sm text-neutral-700">
+                        {delivery.foundItem.description}
+                      </span>
+                    </div>
+                    <p className="mt-2 font-medium text-neutral-800">
+                      {delivery.recipient.name}
+                    </p>
+                    <p className="truncate text-sm text-neutral-500">
+                      {delivery.recipient.email}
+                    </p>
+                    <p className="text-xs text-neutral-500">
+                      Código universitario: {delivery.recipient.universityCode}
+                    </p>
+                  </div>
+                  <time
+                    dateTime={delivery.deliveredAt}
+                    className="text-sm font-medium text-neutral-600 sm:text-right"
+                  >
+                    {formatDate(delivery.deliveredAt)}
+                  </time>
+                </article>
+              ))}
+            </div>
+          )}
         </section>
 
         <section className={activeSection === 'delivery' ? '' : 'hidden'}>

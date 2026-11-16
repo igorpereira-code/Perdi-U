@@ -227,6 +227,22 @@ describe('Servicio de recepcion de Bienestar', () => {
     });
   });
 
+  it('carga el historial de entregas realizadas', async () => {
+    const deliveries = [{
+      foundItem: { code: 'HZ-0003', description: 'Mochila negra' },
+      recipient: {
+        name: 'Luis Mamani',
+        email: 'luis.mamani@ucb.edu.bo',
+        universityCode: '20201234',
+      },
+      deliveredAt: '2026-11-16T03:00:00.000Z',
+    }];
+    const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => deliveries });
+
+    await expect(createWelfareService(apiFetch).listDeliveries()).resolves.toEqual(deliveries);
+    expect(apiFetch).toHaveBeenCalledWith('/welfare/deliveries');
+  });
+
   it('edita los datos de un objeto publicado', async () => {
     const correction = {
       description: 'Chamarra azul con cierre negro',

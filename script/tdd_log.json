@@ -6050,7 +6050,7 @@
     "testId": 148
   },
   {
-    "commitId": "HEAD",
+    "commitId": "103c12af996c0e370c703a499b02b0635bcdee0e",
     "commitName": "feat(welfare): avisar nuevas solicitudes de hallazgo",
     "commitTimestamp": 1794762880718,
     "testId": 148
@@ -6180,5 +6180,11 @@
     "commitName": "feat(welfare): consultar historial de entregas",
     "commitTimestamp": 1794802760898,
     "testId": 165
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar y buscar entregas realizadas",
+    "commitTimestamp": 1794803132527,
+    "testId": 166
   }
 ]

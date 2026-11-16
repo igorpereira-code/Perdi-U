@@ -4997,12 +4997,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "103c12af996c0e370c703a499b02b0635bcdee0e",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-15T17:14:38.000Z",
       "message": "feat(welfare): avisar nuevas solicitudes de hallazgo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/103c12af996c0e370c703a499b02b0635bcdee0e"
     },
     "stats": {
       "total": 56,
@@ -5337,5 +5337,24 @@
     "test_count": 705,
     "failed_tests": 0,
     "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T04:25:30.000Z",
+      "message": "feat(welfare): mostrar y buscar entregas realizadas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 198,
+      "additions": 196,
+      "deletions": 2,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.75,
+    "test_count": 710,
+    "failed_tests": 4,
+    "conclusion": "failure"
   }
 ]

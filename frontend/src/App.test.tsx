@@ -73,6 +73,7 @@ function renderAt(
     listActiveLostReports: jest.fn().mockResolvedValue([]),
     findLostReportByCode: jest.fn(),
     listPendingPickups: jest.fn().mockResolvedValue([]),
+    listDeliveries: jest.fn().mockResolvedValue([]),
     listPending: jest.fn().mockResolvedValue([]),
     listInOffice: jest.fn().mockResolvedValue([]),
     getCatalogs: jest.fn().mockResolvedValue({ categories: [], places: [] }),

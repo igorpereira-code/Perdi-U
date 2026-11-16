@@ -1,4 +1,5 @@
 import type {
+  WelfareDeliveryView,
   WelfareFoundItemView,
   WelfareLostReportView,
   WelfarePendingPickupView,
@@ -38,6 +39,7 @@ export type WelfareService = {
   listActiveLostReports: () => Promise<WelfareLostReportView[]>;
   findLostReportByCode: (code: string) => Promise<WelfareLostReportResult>;
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
+  listDeliveries: () => Promise<WelfareDeliveryView[]>;
   listPending: () => Promise<WelfareFoundItemView[]>;
   listInOffice: () => Promise<WelfareFoundItemView[]>;
   getCatalogs: () => Promise<FoundItemCatalogs>;
@@ -99,6 +101,13 @@ export function createWelfareService(apiFetch: ApiFetch): WelfareService {
       const response = await apiFetch('/welfare/pending-pickups');
       if (!response.ok) {
         throw new Error('No se pudo consultar Bienestar');
+      }
+      return response.json();
+    },
+    listDeliveries: async () => {
+      const response = await apiFetch('/welfare/deliveries');
+      if (!response.ok) {
+        throw new Error('No se pudieron consultar las entregas');
       }
       return response.json();
     },
