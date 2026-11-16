@@ -5938,7 +5938,7 @@
     "testId": 139
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0e38520bc37b0c43cb567ad59ffb2ac21b4aabd2",
     "commitName": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
     "commitTimestamp": 1794491307539,
     "testId": 140
@@ -6132,5 +6132,11 @@
     "commitName": "test(welfare): registrar verificacion de HU-24",
     "commitTimestamp": 1794797380799,
     "testId": 157
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): elegir visibilidad al publicar objetos",
+    "commitTimestamp": 1794800177121,
+    "testId": 158
   }
 ]

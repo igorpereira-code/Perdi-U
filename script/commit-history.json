@@ -4845,12 +4845,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "0e38520bc37b0c43cb567ad59ffb2ac21b4aabd2",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:48:27.000Z",
       "message": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/0e38520bc37b0c43cb567ad59ffb2ac21b4aabd2"
     },
     "stats": {
       "total": 15,
@@ -5185,5 +5185,24 @@
     "test_count": 691,
     "failed_tests": 2,
     "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T03:36:16.000Z",
+      "message": "feat(welfare): elegir visibilidad al publicar objetos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 62,
+      "additions": 53,
+      "deletions": 9,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.44,
+    "test_count": 693,
+    "failed_tests": 0,
+    "conclusion": "success"
   }
 ]
