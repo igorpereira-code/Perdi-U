@@ -1,5 +1,5 @@
 import type { FoundItemStatus, LostReportStatus } from '@shared/statuses';
-import type { WelfarePendingPickupView } from '@shared/welfare';
+import type { WelfareDeliveryView, WelfarePendingPickupView } from '@shared/welfare';
 
 export type WelfareFoundItem = {
   id: string;
@@ -73,6 +73,7 @@ export type WelfareRepository = {
   listActiveLostReports: () => Promise<WelfareLostReport[]>;
   findActiveLostReportByCode: (code: string) => Promise<WelfareLostReport | null>;
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
+  listDeliveries: () => Promise<WelfareDeliveryView[]>;
   listPending: () => Promise<WelfareFoundItem[]>;
   listInOffice: () => Promise<WelfareFoundItem[]>;
   findFoundItemByCode: (code: string) => Promise<WelfareFoundItem | null>;

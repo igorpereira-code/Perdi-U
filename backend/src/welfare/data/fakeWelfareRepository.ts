@@ -55,6 +55,26 @@ export function fakeWelfareRepository(
         .map(({ matchStatus: _matchStatus, reportStatus: _reportStatus, ...pendingPickup }) =>
           pendingPickup,
         ),
+    listDeliveries: async () =>
+      [...deliveries]
+        .sort((a, b) => b.deliveredAt.getTime() - a.deliveredAt.getTime())
+        .map((delivery) => {
+          const foundItem = foundItems.find(
+            (candidate) => candidate.code === delivery.foundItemCode,
+          );
+          return {
+            foundItem: {
+              code: delivery.foundItemCode,
+              description: foundItem?.description ?? '',
+            },
+            recipient: {
+              name: delivery.recipientName,
+              email: delivery.recipientEmail,
+              universityCode: delivery.recipientUniversityCode,
+            },
+            deliveredAt: delivery.deliveredAt.toISOString(),
+          };
+        }),
     listPending: async () =>
       foundItems
         .filter((foundItem) => foundItem.status === 'PENDING_DROP_OFF')

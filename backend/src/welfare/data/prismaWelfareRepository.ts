@@ -112,6 +112,28 @@ export const prismaWelfareRepository = {
     }));
   },
 
+  listDeliveries: async () => {
+    const deliveries = await db().delivery.findMany({
+      select: {
+        recipientName: true,
+        recipientEmail: true,
+        recipientUniversityCode: true,
+        deliveredAt: true,
+        foundItem: { select: { code: true, description: true } },
+      },
+      orderBy: { deliveredAt: 'desc' },
+    });
+    return deliveries.map((delivery) => ({
+      foundItem: delivery.foundItem,
+      recipient: {
+        name: delivery.recipientName,
+        email: delivery.recipientEmail,
+        universityCode: delivery.recipientUniversityCode,
+      },
+      deliveredAt: delivery.deliveredAt.toISOString(),
+    }));
+  },
+
   listPending: async () => {
     const pendingItemRows = await db().foundItem.findMany({
       where: { status: 'PENDING_DROP_OFF' },

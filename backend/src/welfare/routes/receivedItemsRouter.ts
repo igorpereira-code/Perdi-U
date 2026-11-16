@@ -89,6 +89,10 @@ export function createReceivedItemsRouter(
     res.json(await welfare.listPendingPickups());
   });
 
+  router.get('/welfare/deliveries', requireRole('WELFARE'), async (_req, res) => {
+    res.json(await welfare.listDeliveries());
+  });
+
   router.post('/welfare/deliveries', requireRole('WELFARE'), async (req, res) => {
     const rawFoundItemCode = requiredText(req.body.foundItemCode);
     const foundItemCode = rawFoundItemCode ? normalizeCode(rawFoundItemCode) : '';

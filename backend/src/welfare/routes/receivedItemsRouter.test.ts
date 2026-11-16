@@ -342,6 +342,37 @@ describe('Recibir objetos encontrados en Bienestar', () => {
     ]);
   });
 
+  it('lista las entregas realizadas con objeto, receptor y fecha', async () => {
+    const { repository } = fakeWelfareRepository([publishedItem]);
+    const app = createApp({ welfare: repository });
+    await request(app)
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        foundItemCode: 'HZ-0003',
+        recipientName: 'Luis Mamani',
+        recipientEmail: 'luis.mamani@ucb.edu.bo',
+        recipientUniversityCode: '20201234',
+      });
+
+    const res = await request(app)
+      .get('/welfare/deliveries')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual([
+      {
+        foundItem: { code: 'HZ-0003', description: 'Mochila negra con cuadernos' },
+        recipient: {
+          name: 'Luis Mamani',
+          email: 'luis.mamani@ucb.edu.bo',
+          universityCode: '20201234',
+        },
+        deliveredAt: expect.any(String),
+      },
+    ]);
+  });
+
   it('protege el registro de entregas para Bienestar', async () => {
     const { repository } = fakeWelfareRepository([]);
     const res = await request(createApp({ welfare: repository })).post('/welfare/deliveries');

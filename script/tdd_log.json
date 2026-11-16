@@ -6036,7 +6036,7 @@
     "testId": 146
   },
   {
-    "commitId": "HEAD",
+    "commitId": "a8c36d54894f63130e09197092bfc3ab546e2785",
     "commitName": "feat(welfare): mostrar carga y reintento en listas",
     "commitTimestamp": 1794520583459,
     "testId": 147
@@ -6174,5 +6174,11 @@
     "commitName": "feat(welfare): avisar recojos pendientes",
     "commitTimestamp": 1794802640389,
     "testId": 164
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): consultar historial de entregas",
+    "commitTimestamp": 1794802760898,
+    "testId": 165
   }
 ]
