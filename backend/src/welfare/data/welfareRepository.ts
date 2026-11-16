@@ -90,5 +90,9 @@ export type WelfareRepository = {
     itemId: string,
     visibility: 'VISIBLE' | 'HIDDEN',
   ) => Promise<boolean>;
+  updatePublishedDetails: (
+    itemId: string,
+    correction: ReceptionCorrection,
+  ) => Promise<WelfareFoundItem | null>;
   deliver: (delivery: DeliveryRegistration) => Promise<DeliveryResult>;
 };

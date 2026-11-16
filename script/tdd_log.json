@@ -5964,7 +5964,7 @@
     "testId": 143
   },
   {
-    "commitId": "HEAD",
+    "commitId": "280e1b0c084d6296748b4685d6c3aec4c170f190",
     "commitName": "chore(welfare): actualizar final-test para resolver el PR",
     "commitTimestamp": 1794509396922,
     "testId": 143
@@ -6150,5 +6150,11 @@
     "commitName": "feat(welfare): cambiar visibilidad de objetos publicados",
     "commitTimestamp": 1794800444330,
     "testId": 160
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): editar objetos publicados",
+    "commitTimestamp": 1794800593939,
+    "testId": 161
   }
 ]

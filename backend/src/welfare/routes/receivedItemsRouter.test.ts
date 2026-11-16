@@ -422,6 +422,56 @@ describe('Recibir objetos encontrados en Bienestar', () => {
     expect(res.body).toEqual({ code: 'ITEM_NOT_PUBLISHED' });
   });
 
+  it('edita los datos de un objeto publicado', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([publishedItem]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .patch('/welfare/found-items/HZ-0003')
+      .set('x-sample-user', 'welfare')
+      .send({
+        description: 'Chamarra azul con cierre negro',
+        categoryId: 2,
+        placeId: 4,
+        classroomId: null,
+        placeReference: 'Recepción del bloque B',
+        foundAt: '2026-10-16T09:30:00.000Z',
+      });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual(expect.objectContaining({
+      code: 'HZ-0003',
+      description: 'Chamarra azul con cierre negro',
+      status: 'PUBLISHED',
+    }));
+    expect(foundItems[0]).toEqual(expect.objectContaining({
+      description: 'Chamarra azul con cierre negro',
+      categoryId: 2,
+      placeId: 4,
+      classroomId: null,
+      placeReference: 'Recepción del bloque B',
+      foundAt: new Date('2026-10-16T09:30:00.000Z'),
+    }));
+  });
+
+  it('no edita como publicado un objeto que solo esta en custodia', async () => {
+    const { repository } = fakeWelfareRepository([receivedItem]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .patch('/welfare/found-items/HZ-0004')
+      .set('x-sample-user', 'welfare')
+      .send({
+        description: 'Calculadora editada',
+        categoryId: 2,
+        placeId: 4,
+        classroomId: null,
+        placeReference: null,
+        foundAt: '2026-10-16T09:30:00.000Z',
+      });
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ code: 'ITEM_NOT_PUBLISHED' });
+  });
+
   it('lista los objetos que aun no fueron entregados', async () => {
     const { repository } = fakeWelfareRepository([pendingItem]);
     const res = await request(createApp({ welfare: repository }))

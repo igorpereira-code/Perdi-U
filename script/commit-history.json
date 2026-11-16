@@ -4902,12 +4902,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "280e1b0c084d6296748b4685d6c3aec4c170f190",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T18:49:55.000Z",
       "message": "chore(welfare): actualizar final-test para resolver el PR",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/280e1b0c084d6296748b4685d6c3aec4c170f190"
     },
     "stats": {
       "total": 910,
@@ -5241,6 +5241,25 @@
     "coverage": 85.29,
     "test_count": 696,
     "failed_tests": 1,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T03:43:12.000Z",
+      "message": "feat(welfare): editar objetos publicados",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 102,
+      "additions": 102,
+      "deletions": 0,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.91,
+    "test_count": 698,
+    "failed_tests": 3,
     "conclusion": "failure"
   }
 ]

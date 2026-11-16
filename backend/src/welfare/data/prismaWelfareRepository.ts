@@ -188,6 +188,21 @@ export const prismaWelfareRepository = {
     return updatedItems.count === 1;
   },
 
+  updatePublishedDetails: async (itemId, correction) => {
+    const updatedItems = await db().foundItem.updateMany({
+      where: { id: itemId, status: 'PUBLISHED' },
+      data: correction,
+    });
+    if (updatedItems.count !== 1) {
+      return null;
+    }
+    const foundItem = await db().foundItem.findUnique({
+      where: { id: itemId },
+      include: foundItemRelations,
+    });
+    return foundItem ? toWelfareFoundItem(foundItem) : null;
+  },
+
   deliver: async (delivery) =>
     db().$transaction(async (transaction) => {
       const foundItem = await transaction.foundItem.findFirst({

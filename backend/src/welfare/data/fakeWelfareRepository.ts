@@ -131,6 +131,16 @@ export function fakeWelfareRepository(
       foundItem.visibility = visibility;
       return true;
     },
+    updatePublishedDetails: async (itemId, correction) => {
+      const foundItem = foundItems.find(
+        (candidate) => candidate.id === itemId && candidate.status === 'PUBLISHED',
+      );
+      if (!foundItem) {
+        return null;
+      }
+      Object.assign(foundItem, correction);
+      return { ...foundItem, finder: foundItem.finder && { ...foundItem.finder } };
+    },
     deliver: async (delivery) => {
       const foundItem = foundItems.find(
         (candidate) => candidate.code === delivery.foundItemCode,
