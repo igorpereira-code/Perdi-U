@@ -5932,7 +5932,7 @@
     "testId": 138
   },
   {
-    "commitId": "HEAD",
+    "commitId": "962a4e1fa565eae0ca9d343aa05d1c6ff34bcfee",
     "commitName": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
     "commitTimestamp": 1794491262113,
     "testId": 139
@@ -6118,5 +6118,19 @@
     "commitName": "feat(welfare): mostrar formulario de registro directo",
     "commitTimestamp": 1794797060431,
     "testId": 156
+  },
+  {
+    "numPassedTests": 688,
+    "failedTests": 3,
+    "numTotalTests": 691,
+    "timestamp": 1794797149048,
+    "success": false,
+    "testId": 157
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): registrar verificacion de HU-24",
+    "commitTimestamp": 1794797380799,
+    "testId": 157
   }
 ]

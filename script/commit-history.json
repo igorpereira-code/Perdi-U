@@ -4826,12 +4826,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "962a4e1fa565eae0ca9d343aa05d1c6ff34bcfee",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:47:41.000Z",
       "message": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/962a4e1fa565eae0ca9d343aa05d1c6ff34bcfee"
     },
     "stats": {
       "total": 167,
@@ -5160,6 +5160,25 @@
       "total": 91,
       "additions": 81,
       "deletions": 10,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.4,
+    "test_count": 691,
+    "failed_tests": 2,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T02:49:39.000Z",
+      "message": "test(welfare): registrar verificacion de HU-24",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
       "date": "2026-11-16"
     },
     "coverage": 85.4,
