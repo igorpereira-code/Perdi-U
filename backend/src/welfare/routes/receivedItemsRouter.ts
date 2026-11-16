@@ -194,6 +194,31 @@ export function createReceivedItemsRouter(
     res.status(204).end();
   });
 
+  router.patch(
+    '/welfare/found-items/:code/visibility',
+    requireRole('WELFARE'),
+    async (req, res) => {
+      const visibility = req.body?.visibility;
+      if (!['VISIBLE', 'HIDDEN'].includes(visibility)) {
+        res.status(400).json({ code: 'INVALID_VISIBILITY' });
+        return;
+      }
+      const foundItem = await welfare.findFoundItemByCode(normalizeCode(req.params.code));
+      if (!foundItem) {
+        res.status(404).json({ code: 'FOUND_ITEM_NOT_FOUND' });
+        return;
+      }
+      if (
+        foundItem.status !== 'PUBLISHED'
+        || !(await welfare.updatePublishedVisibility(foundItem.id, visibility))
+      ) {
+        res.status(409).json({ code: 'ITEM_NOT_PUBLISHED' });
+        return;
+      }
+      res.json({ code: foundItem.code, visibility });
+    },
+  );
+
   router.post('/welfare/found-items/:code/receive', requireRole('WELFARE'), async (req, res) => {
     const foundItemCode = normalizeCode(req.params.code);
     const foundItem = await welfare.findFoundItemByCode(foundItemCode);

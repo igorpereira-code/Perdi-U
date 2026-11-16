@@ -4883,12 +4883,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "e2b27a8e3b93db94c72af1a5aba3756a4187d459",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:51:28.000Z",
       "message": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/e2b27a8e3b93db94c72af1a5aba3756a4187d459"
     },
     "stats": {
       "total": 66,
@@ -5223,5 +5223,24 @@
     "test_count": 694,
     "failed_tests": 0,
     "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T03:40:43.000Z",
+      "message": "feat(welfare): cambiar visibilidad de objetos publicados",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 83,
+      "additions": 82,
+      "deletions": 1,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.29,
+    "test_count": 696,
+    "failed_tests": 1,
+    "conclusion": "failure"
   }
 ]

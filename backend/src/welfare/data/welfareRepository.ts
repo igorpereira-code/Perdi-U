@@ -15,6 +15,7 @@ export type WelfareFoundItem = {
   placeReference: string | null;
   foundAt: Date;
   status: FoundItemStatus;
+  visibility: 'VISIBLE' | 'HIDDEN';
   finder: { name: string; email: string } | null;
   receivedById?: string;
   receivedAt?: Date;
@@ -85,5 +86,9 @@ export type WelfareRepository = {
     correction?: ReceptionCorrection,
   ) => Promise<WelfareFoundItem | null>;
   deletePending: (itemId: string) => Promise<boolean>;
+  updatePublishedVisibility: (
+    itemId: string,
+    visibility: 'VISIBLE' | 'HIDDEN',
+  ) => Promise<boolean>;
   deliver: (delivery: DeliveryRegistration) => Promise<DeliveryResult>;
 };

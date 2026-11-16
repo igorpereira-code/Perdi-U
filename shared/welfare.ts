@@ -13,6 +13,7 @@ export type WelfareFoundItemView = {
   placeReference: string | null;
   foundAt: string;
   status: FoundItemStatus;
+  visibility: 'VISIBLE' | 'HIDDEN';
   finder: { name: string; email: string } | null;
 };
 

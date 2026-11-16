@@ -15,7 +15,8 @@ const item: WelfareFoundItemView = {
   category: 'Mochilas', place: 'Bloque A', classroom: 'Aula 3',
   categoryId: 1, placeId: 1, classroomId: 3,
   placeReference: 'Debajo de una mesa', foundAt: '2026-10-15T14:00:00.000Z',
-  status: 'PENDING_DROP_OFF', finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+  status: 'PENDING_DROP_OFF', visibility: 'VISIBLE',
+  finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
 
 const inCustodyItem: WelfareFoundItemView = {

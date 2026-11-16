@@ -5950,7 +5950,7 @@
     "testId": 141
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e2b27a8e3b93db94c72af1a5aba3756a4187d459",
     "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
     "commitTimestamp": 1794491488766,
     "testId": 142
@@ -6144,5 +6144,11 @@
     "commitName": "feat(matching): incluir objetos ocultos en coincidencias",
     "commitTimestamp": 1794800283585,
     "testId": 159
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): cambiar visibilidad de objetos publicados",
+    "commitTimestamp": 1794800444330,
+    "testId": 160
   }
 ]

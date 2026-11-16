@@ -36,6 +36,7 @@ const pendingItem = {
   placeReference: 'Debajo de una mesa',
   foundAt: new Date('2026-10-15T14:00:00Z'),
   status: 'PENDING_DROP_OFF' as const,
+  visibility: 'VISIBLE' as const,
   finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
 
@@ -396,6 +397,31 @@ describe('Recibir objetos encontrados en Bienestar', () => {
     ]);
   });
 
+  it('cambia la visibilidad de un objeto publicado', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([publishedItem]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .patch('/welfare/found-items/HZ-0003/visibility')
+      .set('x-sample-user', 'welfare')
+      .send({ visibility: 'HIDDEN' });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ code: 'HZ-0003', visibility: 'HIDDEN' });
+    expect(foundItems[0].visibility).toBe('HIDDEN');
+  });
+
+  it('no cambia la visibilidad de un objeto que aun no fue publicado', async () => {
+    const { repository } = fakeWelfareRepository([receivedItem]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .patch('/welfare/found-items/HZ-0004/visibility')
+      .set('x-sample-user', 'welfare')
+      .send({ visibility: 'HIDDEN' });
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ code: 'ITEM_NOT_PUBLISHED' });
+  });
+
   it('lista los objetos que aun no fueron entregados', async () => {
     const { repository } = fakeWelfareRepository([pendingItem]);
     const res = await request(createApp({ welfare: repository }))
@@ -495,6 +521,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
       placeReference: 'Debajo de una mesa',
       foundAt: '2026-10-15T14:00:00.000Z',
       status: 'PENDING_DROP_OFF',
+      visibility: 'VISIBLE',
       finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
     });
   });

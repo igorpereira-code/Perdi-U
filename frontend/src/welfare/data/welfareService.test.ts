@@ -18,6 +18,7 @@ const item: WelfareFoundItemView = {
   placeReference: null,
   foundAt: '2026-10-15T14:00:00.000Z',
   status: 'PENDING_DROP_OFF',
+  visibility: 'VISIBLE',
   finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
 
