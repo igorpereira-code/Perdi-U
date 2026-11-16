@@ -3,6 +3,7 @@ import { createApp } from '../../app';
 import { SAMPLE_USERS } from '../../core/sampleUsers';
 import { fakeWelfareRepository } from '../data/fakeWelfareRepository';
 import type { FoundItemsRepository } from '../../finder/data/foundItemsRepository';
+import type { FoundItemPhotoStorage } from '../../finder/data/foundItemPhotoStorage';
 
 const foundItemsWithCatalogs: FoundItemsRepository = {
   listMine: jest.fn(),
@@ -14,6 +15,12 @@ const foundItemsWithCatalogs: FoundItemsRepository = {
   create: jest.fn(),
   getPhotoByCode: jest.fn(),
 };
+
+const photoStorage = (): jest.Mocked<FoundItemPhotoStorage> => ({
+  upload: jest.fn().mockResolvedValue(undefined),
+  remove: jest.fn().mockResolvedValue(undefined),
+  createSignedUrl: jest.fn(),
+});
 
 const pendingItem = {
   id: 'item-5',
@@ -101,6 +108,39 @@ describe('Recibir objetos encontrados en Bienestar', () => {
         receivedById: SAMPLE_USERS.welfare.id,
       }),
     ]);
+  });
+
+  it('permite adjuntar una foto opcional al objeto registrado', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([]);
+    const photos = photoStorage();
+
+    const res = await request(createApp({
+      welfare: repository,
+      foundItems: foundItemsWithCatalogs,
+      foundItemPhotos: photos,
+    }))
+      .post('/welfare/found-items')
+      .set('x-sample-user', 'welfare')
+      .field('report', JSON.stringify({
+        description: 'Paraguas negro',
+        categoryId: 1,
+        placeId: 1,
+        classroomId: null,
+        placeReference: null,
+        foundAt: '2026-11-15T14:30:00.000Z',
+      }))
+      .attach('photo', Buffer.from([0xff, 0xd8, 0xff, 0xd9]), {
+        filename: 'paraguas.jpg',
+        contentType: 'image/jpeg',
+      });
+
+    expect(res.status).toBe(201);
+    expect(photos.upload).toHaveBeenCalledWith(
+      expect.stringMatching(new RegExp(`^${SAMPLE_USERS.welfare.id}/[a-f0-9-]+\\.jpg$`)),
+      expect.any(Buffer),
+      'image/jpeg',
+    );
+    expect(foundItems[0].photoUrl).toBe(photos.upload.mock.calls[0][0]);
   });
 
   it('impide que una cuenta de comunidad consulte reportes desde Bienestar', async () => {

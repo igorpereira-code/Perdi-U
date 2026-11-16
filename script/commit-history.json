@@ -4769,12 +4769,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "139a2bb3fe7c5e19fdee6d29ee63e39fb909e679",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:43:30.000Z",
       "message": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/139a2bb3fe7c5e19fdee6d29ee63e39fb909e679"
     },
     "stats": {
       "total": 45,
@@ -5108,6 +5108,25 @@
     "coverage": 85.65,
     "test_count": 688,
     "failed_tests": 9,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T02:32:51.000Z",
+      "message": "feat(welfare): adjuntar foto al registro directo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 110,
+      "additions": 95,
+      "deletions": 15,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.45,
+    "test_count": 689,
+    "failed_tests": 7,
     "conclusion": "failure"
   }
 ]

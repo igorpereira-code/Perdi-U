@@ -5914,7 +5914,7 @@
     "testId": 135
   },
   {
-    "commitId": "HEAD",
+    "commitId": "139a2bb3fe7c5e19fdee6d29ee63e39fb909e679",
     "commitName": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
     "commitTimestamp": 1794491011050,
     "testId": 136
@@ -6100,5 +6100,11 @@
     "commitName": "feat(welfare): registrar objetos directamente en custodia",
     "commitTimestamp": 1794796092968,
     "testId": 153
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): adjuntar foto al registro directo",
+    "commitTimestamp": 1794796374982,
+    "testId": 154
   }
 ]
