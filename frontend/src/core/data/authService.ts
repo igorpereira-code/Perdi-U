@@ -11,17 +11,17 @@ export type AuthService = {
   signOut: () => Promise<void>;
 };
 
-type AuthServiceDependencies = {
+type AuthServiceDeps = {
   auth: SupabaseClient['auth'];
   apiUrl: string;
-  sendRequest?: typeof fetch;
+  fetchFn?: typeof fetch;
 };
 
 export function createAuthService({
   auth,
   apiUrl,
-  sendRequest = (url, init) => fetch(url, init),
-}: AuthServiceDependencies): AuthService {
+  fetchFn = (url, init) => fetch(url, init),
+}: AuthServiceDeps): AuthService {
   return {
     getCurrentUser: async () => {
       const { data } = await auth.getSession();
@@ -29,7 +29,7 @@ export function createAuthService({
         return null;
       }
 
-      const response = await sendRequest(`${apiUrl}/me`, {
+      const response = await fetchFn(`${apiUrl}/me`, {
         headers: { Authorization: `Bearer ${data.session.access_token}` },
       });
       if (response.status === 401) {

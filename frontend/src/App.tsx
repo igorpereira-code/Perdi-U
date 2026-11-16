@@ -26,15 +26,6 @@ import { CatalogItemScreen } from './owner/presenter/CatalogItemScreen';
 import type { MyLostReportsService } from './owner/data/myLostReportsService';
 import { MyLostReportsScreen } from './owner/presenter/MyLostReportsScreen';
 import { MyLostReportScreen } from './owner/presenter/MyLostReportScreen';
-import type { NotificationsService } from './core/data/notificationsService';
-import { NotificationsBell } from './core/presenter/NotificationsBell';
-import { NotificationsScreen } from './core/presenter/NotificationsScreen';
-import { AppLoadingScreen } from './core/presenter/AppLoadingScreen';
-import { canManageUsers } from './admin/logic/canManageUsers';
-import { AdminPage } from './admin/presenter/AdminPage';
-import type { AdminUsersService } from './admin/data/adminUsersService';
-import { canUseWelfareOptions } from './core/logic/canUseWelfareOptions';
-import { useRoleRefresh } from './core/presenter/useRoleRefresh';
 
 type AppProps = {
   authService: AuthService;
@@ -45,8 +36,6 @@ type AppProps = {
   lostReportsService: LostReportsService;
   catalogService: CatalogService;
   myLostReportsService: MyLostReportsService;
-  notificationsService?: NotificationsService;
-  adminUsersService?: AdminUsersService;
 };
 
 export default function App({
@@ -58,26 +47,23 @@ export default function App({
   lostReportsService,
   catalogService,
   myLostReportsService,
-  notificationsService,
-  adminUsersService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [user, setUser] = useState<AppUser | null | undefined>(undefined);
-  const [isNotInstitutional, setIsNotInstitutional] = useState(false);
-  const isGuidePending = user ? !user.hasSeenGuide : false;
+  const [notInstitutional, setNotInstitutional] = useState(false);
+  const guidePending = user ? !user.hasSeenGuide : false;
 
   useEffect(() => {
     authService
       .getCurrentUser()
       .then(setUser)
       .catch((error: unknown) => {
-        setIsNotInstitutional(error instanceof NotInstitutionalEmailError);
+        setNotInstitutional(error instanceof NotInstitutionalEmailError);
         setUser(null);
       });
   }, [authService]);
-  useRoleRefresh(authService, setUser);
 
   async function handleSignOut() {
     await authService.signOut();
@@ -90,52 +76,33 @@ export default function App({
   }
 
   /** Pages for signed-in users: inside the blue header and bottom menu. Without a session, go to sign in. */
-  const renderSignedInPage = (page: (signedInUser: AppUser) => ReactNode) => {
+  const signedInPage = (page: (me: AppUser) => ReactNode) => {
     if (user === undefined) {
-      return <AppLoadingScreen />;
+      return null;
     }
     if (user === null) {
       return <Navigate to="/ingresar" replace />;
     }
-    if (isGuidePending && pathname !== '/guia-rapida') {
+    if (guidePending && pathname !== '/guia-rapida') {
       return <Navigate to="/guia-rapida" replace />;
     }
-    return (
-      <AppLayout
-        role={user.role}
-        headerAction={
-          notificationsService && <NotificationsBell notificationsService={notificationsService} />
-        }
-      >
-        {page(user)}
-      </AppLayout>
-    );
+    return <AppLayout role={user.role}>{page(user)}</AppLayout>;
   };
 
   return (
     <Routes>
       <Route
         path="/"
-        element={renderSignedInPage((signedInUser) => (
+        element={signedInPage((me) => (
           <div className="mx-auto max-w-xl space-y-6">
-            <HomePage user={signedInUser} />
+            <HomePage user={me} />
             <div className="grid grid-cols-2 gap-3">
               <FoundItemEntry onClick={() => navigate('/reportar-objeto')} />
               <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link
-                to="/mis-reportes"
-                className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700"
-              >
-                Mis reportes
-              </Link>
-              <Link
-                to="/mis-perdidas"
-                className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700"
-              >
-                Mis reportes de pérdida
-              </Link>
+              <Link to="/mis-reportes" className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700">Mis reportes</Link>
+              <Link to="/mis-perdidas" className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700">Mis reportes de pérdida</Link>
             </div>
             <CatalogSection catalogService={catalogService} foundItemsService={foundItemsService} />
           </div>
@@ -143,107 +110,69 @@ export default function App({
       />
       <Route
         path="/reportar-objeto"
-        element={renderSignedInPage(() => (
-          <FoundItemScreen foundItemsService={foundItemsService} />
-        ))}
+        element={signedInPage(() => <FoundItemScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/reportar-perdida"
-        element={renderSignedInPage(() => (
-          <LostReportScreen
-            foundItemsService={foundItemsService}
-            lostReportsService={lostReportsService}
-          />
+        element={signedInPage(() => (
+          <LostReportScreen foundItemsService={foundItemsService} lostReportsService={lostReportsService} />
         ))}
       />
       <Route
         path="/objetos/:code"
-        element={renderSignedInPage(() => (
-          <CatalogItemScreen
-            catalogService={catalogService}
-            foundItemsService={foundItemsService}
-          />
+        element={signedInPage(() => (
+          <CatalogItemScreen catalogService={catalogService} foundItemsService={foundItemsService} />
         ))}
       />
       <Route
         path="/mis-perdidas"
-        element={renderSignedInPage(() => (
-          <MyLostReportsScreen myLostReportsService={myLostReportsService} />
-        ))}
+        element={signedInPage(() => <MyLostReportsScreen myLostReportsService={myLostReportsService} />)}
       />
       <Route
         path="/mis-perdidas/:code"
-        element={renderSignedInPage(() => (
-          <MyLostReportScreen myLostReportsService={myLostReportsService} />
-        ))}
+        element={signedInPage(() => <MyLostReportScreen myLostReportsService={myLostReportsService} />)}
       />
       <Route
         path="/perfil"
-        element={renderSignedInPage((signedInUser) => (
-          <ProfilePage user={signedInUser} onSignOut={handleSignOut} />
+        element={signedInPage((me) => (
+          <ProfilePage user={me} onSignOut={handleSignOut} />
         ))}
       />
       <Route
         path="/mis-reportes"
-        element={renderSignedInPage(() => (
-          <MyFoundItemsScreen foundItemsService={foundItemsService} />
-        ))}
+        element={signedInPage(() => <MyFoundItemsScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/mis-reportes/encontrados/:code"
-        element={renderSignedInPage(() => (
-          <MyFoundItemScreen foundItemsService={foundItemsService} />
-        ))}
+        element={signedInPage(() => <MyFoundItemScreen foundItemsService={foundItemsService} />)}
       />
       <Route
         path="/mis-reportes/:code/coincidencias"
-        element={renderSignedInPage(() => (
-          <MatchesScreen matchesService={matchesService} />
-        ))}
+        element={signedInPage(() => <MatchesScreen matchesService={matchesService} />)}
       />
-      {notificationsService && (
-        <Route
-          path="/avisos"
-          element={renderSignedInPage(() => (
-            <NotificationsScreen notificationsService={notificationsService} />
-          ))}
-        />
-      )}
       <Route
         path="/guia-rapida"
-        element={renderSignedInPage(() => (
+        element={signedInPage(() => (
           <QuickGuideScreen guideService={guideService} onSeen={handleGuideSeen} />
         ))}
       />
       <Route
         path="/bienestar"
-        element={renderSignedInPage((signedInUser) =>
-          canUseWelfareOptions(signedInUser.role) ? (
+        element={signedInPage((me) =>
+          me.role === 'WELFARE' ? (
             <WelfarePage welfareService={welfareService} matchesService={matchesService} />
           ) : (
             <Navigate to="/" replace />
           ),
         )}
       />
-      {adminUsersService && (
-        <Route
-          path="/administracion"
-          element={renderSignedInPage((signedInUser) =>
-            canManageUsers(signedInUser.role) ? (
-              <AdminPage adminUsersService={adminUsersService} />
-            ) : (
-              <Navigate to="/" replace />
-            ),
-          )}
-        />
-      )}
       <Route
         path="/ingresar"
         element={
-          isGuidePending ? (
+          guidePending ? (
             <Navigate to="/guia-rapida" replace />
           ) : (
-            <LoginPage onGoogleLogin={authService.signIn} isNotInstitutional={isNotInstitutional} />
+            <LoginPage onGoogleLogin={authService.signIn} notInstitutional={notInstitutional} />
           )
         }
       />

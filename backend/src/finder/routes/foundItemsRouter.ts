@@ -7,15 +7,10 @@ import type { FoundItemPhotoStorage } from '../data/foundItemPhotoStorage';
 import { canViewFoundItemPhoto } from '../logic/canViewFoundItemPhoto';
 import { FoundItemRequestError } from '../logic/validateFoundItemPhoto';
 import { readFoundItemRequest } from './readFoundItemRequest';
-import type { NotificationsRepository } from '../../core/data/notificationsRepository';
 
 const PHOTO_URL_TTL_SECONDS = 60;
 
-export function createFoundItemsRouter(
-  foundItems: FoundItemsRepository,
-  photos: FoundItemPhotoStorage,
-  notifications: NotificationsRepository,
-): Router {
+export function createFoundItemsRouter(foundItems: FoundItemsRepository, photos: FoundItemPhotoStorage): Router {
   const router = Router();
 
   router.get('/my-found-items', async (req, res) => {
@@ -102,14 +97,6 @@ export function createFoundItemsRouter(
         ...result.data, finderId, ...(photoPath ? { photoUrl: photoPath } : {}),
       });
       saved = true;
-      try {
-        await notifications.notifyRole('WELFARE', {
-          message: `Nueva solicitud de hallazgo ${item.code}.`,
-          link: '/bienestar',
-        });
-      } catch {
-        // El reporte ya fue guardado: una falla del aviso no debe crear duplicados por reintento.
-      }
       res.status(201).json(item);
     } catch (error) {
       if (photoPath && !saved) {

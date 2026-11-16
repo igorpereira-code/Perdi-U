@@ -5,11 +5,8 @@ export type WelfareFoundItemView = {
   description: string;
   photoUrl: string | null;
   category: string;
-  categoryId: number;
   place: string;
-  placeId: number;
   classroom: string | null;
-  classroomId: number | null;
   placeReference: string | null;
   foundAt: string;
   status: FoundItemStatus;

@@ -14,140 +14,86 @@ type FakePendingPickup = WelfarePendingPickupView & {
 
 /** In-memory welfare repository for tests. It never touches the shared database. */
 export function fakeWelfareRepository(
-  initialFoundItems: WelfareFoundItem[],
-  initialPendingPickups: FakePendingPickup[] = [],
-  initialLostReports: WelfareLostReport[] = [],
+  initialItems: WelfareFoundItem[],
+  initialPickups: FakePendingPickup[] = [],
+  initialReports: WelfareLostReport[] = [],
 ) {
-  const foundItems = initialFoundItems.map((foundItem) => ({
-    ...foundItem,
-    finder: foundItem.finder && { ...foundItem.finder },
-  }));
-  const pendingPickups = initialPendingPickups.map((pendingPickup) => ({
-    ...pendingPickup,
-    owner: { ...pendingPickup.owner },
-    report: { ...pendingPickup.report },
-    foundItem: { ...pendingPickup.foundItem },
+  const items = initialItems.map((item) => ({ ...item, finder: item.finder && { ...item.finder } }));
+  const pickups = initialPickups.map((pickup) => ({
+    ...pickup,
+    owner: { ...pickup.owner },
+    report: { ...pickup.report },
+    foundItem: { ...pickup.foundItem },
   }));
   const deliveries: DeliveryRegistration[] = [];
-  const lostReports = initialLostReports.map((lostReport) => ({
-    ...lostReport,
-    owner: { ...lostReport.owner },
-  }));
+  const reports = initialReports.map((report) => ({ ...report, owner: { ...report.owner } }));
 
   const repository: WelfareRepository = {
     listActiveLostReports: async () =>
-      lostReports
-        .filter((lostReport) => lostReport.status !== 'RECOVERED')
-        .map((lostReport) => ({ ...lostReport, owner: { ...lostReport.owner } })),
+      reports
+        .filter((report) => report.status !== 'RECOVERED')
+        .map((report) => ({ ...report, owner: { ...report.owner } })),
     findActiveLostReportByCode: async (code) => {
-      const lostReport = lostReports.find(
+      const report = reports.find(
         (candidate) => candidate.code === code && candidate.status !== 'RECOVERED',
       );
-      return lostReport ? { ...lostReport, owner: { ...lostReport.owner } } : null;
+      return report ? { ...report, owner: { ...report.owner } } : null;
     },
     listPendingPickups: async () =>
-      pendingPickups
+      pickups
         .filter(
-          (pendingPickup) =>
-            pendingPickup.matchStatus === 'WILL_PICK_UP' &&
-            pendingPickup.reportStatus === 'PENDING_PICKUP',
+          (pickup) =>
+            pickup.matchStatus === 'WILL_PICK_UP' && pickup.reportStatus === 'PENDING_PICKUP',
         )
-        .map(({ matchStatus: _matchStatus, reportStatus: _reportStatus, ...pendingPickup }) =>
-          pendingPickup,
-        ),
+        .map(({ matchStatus: _matchStatus, reportStatus: _reportStatus, ...pickup }) => pickup),
     listPending: async () =>
-      foundItems
-        .filter((foundItem) => foundItem.status === 'PENDING_DROP_OFF')
-        .map((foundItem) => ({
-          ...foundItem,
-          finder: foundItem.finder && { ...foundItem.finder },
-        })),
+      items
+        .filter((item) => item.status === 'PENDING_DROP_OFF')
+        .map((item) => ({ ...item, finder: item.finder && { ...item.finder } })),
     listInOffice: async () =>
-      foundItems
-        .filter(
-          (foundItem) => foundItem.status === 'IN_CUSTODY' || foundItem.status === 'PUBLISHED',
-        )
-        .map((foundItem) => ({
-          ...foundItem,
-          finder: foundItem.finder && { ...foundItem.finder },
-        })),
-    findFoundItemByCode: async (code) => {
-      const foundItem = foundItems.find((candidate) => candidate.code === code);
-      return foundItem
-        ? { ...foundItem, finder: foundItem.finder && { ...foundItem.finder } }
-        : null;
+      items
+        .filter((item) => item.status === 'IN_CUSTODY' || item.status === 'PUBLISHED')
+        .map((item) => ({ ...item, finder: item.finder && { ...item.finder } })),
+    findByCode: async (code) => {
+      const item = items.find((candidate) => candidate.code === code);
+      return item ? { ...item, finder: item.finder && { ...item.finder } } : null;
     },
-    registerFoundItem: async (registration) => {
-      const code = `HZ-${String(foundItems.length + 1).padStart(4, '0')}`;
-      foundItems.push({
-        id: `item-${foundItems.length + 1}`,
-        code,
-        description: registration.description,
-        photoUrl: registration.photoUrl ?? null,
-        category: `Categoría ${registration.categoryId}`,
-        categoryId: registration.categoryId,
-        place: `Lugar ${registration.placeId}`,
-        placeId: registration.placeId,
-        classroom: null,
-        classroomId: registration.classroomId,
-        placeReference: registration.placeReference,
-        foundAt: registration.foundAt,
-        status: 'IN_CUSTODY',
-        finder: null,
-        receivedById: registration.receivedById,
-        receivedAt: registration.receivedAt,
-      });
-      return { code, status: 'IN_CUSTODY' };
-    },
-    confirmPendingReception: async (itemId, receivedById, receivedAt, correction) => {
-      const foundItem = foundItems.find((candidate) => candidate.id === itemId);
-      if (!foundItem || foundItem.status !== 'PENDING_DROP_OFF') {
-        return null;
-      }
-      Object.assign(foundItem, correction);
-      foundItem.status = 'IN_CUSTODY';
-      foundItem.receivedById = receivedById;
-      foundItem.receivedAt = receivedAt;
-      return { ...foundItem, finder: foundItem.finder && { ...foundItem.finder } };
-    },
-    deletePending: async (itemId) => {
-      const index = foundItems.findIndex(
-        (candidate) => candidate.id === itemId && candidate.status === 'PENDING_DROP_OFF',
-      );
-      if (index < 0) {
+    receivePending: async (itemId, receivedById, receivedAt) => {
+      const item = items.find((candidate) => candidate.id === itemId);
+      if (!item || item.status !== 'PENDING_DROP_OFF') {
         return false;
       }
-      foundItems.splice(index, 1);
+      item.status = 'IN_CUSTODY';
+      item.receivedById = receivedById;
+      item.receivedAt = receivedAt;
       return true;
     },
     deliver: async (delivery) => {
-      const foundItem = foundItems.find(
-        (candidate) => candidate.code === delivery.foundItemCode,
-      );
-      if (!foundItem || !['IN_CUSTODY', 'PUBLISHED'].includes(foundItem.status)) {
+      const item = items.find((candidate) => candidate.code === delivery.foundItemCode);
+      if (!item || !['IN_CUSTODY', 'PUBLISHED'].includes(item.status)) {
         return { status: 'ITEM_NOT_AVAILABLE' };
       }
-      const pendingPickup = delivery.lostReportCode
-        ? pendingPickups.find(
+      const pickup = delivery.lostReportCode
+        ? pickups.find(
             (candidate) =>
               candidate.report.code === delivery.lostReportCode &&
-              candidate.foundItem.code === foundItem.code &&
+              candidate.foundItem.code === item.code &&
               candidate.owner.email.toLowerCase() === delivery.recipientEmail &&
               candidate.matchStatus === 'WILL_PICK_UP' &&
               candidate.reportStatus === 'PENDING_PICKUP',
           )
         : null;
-      if (delivery.lostReportCode && !pendingPickup) {
+      if (delivery.lostReportCode && !pickup) {
         return { status: 'REPORT_NOT_ELIGIBLE' };
       }
-      foundItem.status = 'DELIVERED';
-      if (pendingPickup) {
-        pendingPickup.reportStatus = 'RECOVERED';
+      item.status = 'DELIVERED';
+      if (pickup) {
+        pickup.reportStatus = 'RECOVERED';
       }
       deliveries.push({ ...delivery });
-      return { status: 'DELIVERED', foundItemCode: foundItem.code };
+      return { status: 'DELIVERED', foundItemCode: item.code };
     },
   };
 
-  return { repository, foundItems, pendingPickups, deliveries };
+  return { repository, items, pickups, deliveries };
 }

@@ -1,30 +1,19 @@
-import { useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
 import { PhotoInput } from '../../core/presenter/PhotoInput';
-import type { FoundItemCatalogs, FoundItemPayload } from '../data/foundItemsService';
+import type { FoundItemCatalogs, FoundItemCreated, FoundItemsService } from '../data/foundItemsService';
 import { foundAtFromForm } from '../logic/foundAtFromForm';
 import { validateFoundItemForm, type FoundItemFormErrors } from '../logic/validateFoundItemForm';
 import { FoundItemConfirmation } from './FoundItemConfirmation';
 
 type FoundItemFormProps = {
   catalogs: FoundItemCatalogs;
-  onCreate?: (report: FoundItemPayload, photo: File | null) => Promise<{ code: string }>;
-  title?: string;
-  submitLabel?: string;
-  submittingLabel?: string;
-  renderConfirmation?: (code: string) => ReactNode;
+  onCreate?: FoundItemsService['create'];
 };
 
-export function FoundItemForm({
-  catalogs,
-  onCreate,
-  title = 'Reportar objeto encontrado',
-  submitLabel = 'Reportar objeto encontrado',
-  submittingLabel = 'Enviando…',
-  renderConfirmation,
-}: FoundItemFormProps) {
+export function FoundItemForm({ catalogs, onCreate }: FoundItemFormProps) {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [photo, setPhoto] = useState<File | null>(null);
@@ -36,7 +25,7 @@ export function FoundItemForm({
   const [errors, setErrors] = useState<FoundItemFormErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [created, setCreated] = useState<{ code: string } | null>(null);
+  const [created, setCreated] = useState<FoundItemCreated | null>(null);
   const submitLocked = useRef(false);
   const selectedPlace = catalogs.places.find((place) => String(place.id) === placeId);
 
@@ -82,9 +71,7 @@ export function FoundItemForm({
   }
 
   if (created) {
-    return renderConfirmation
-      ? <>{renderConfirmation(created.code)}</>
-      : <FoundItemConfirmation code={created.code} />;
+    return <FoundItemConfirmation code={created.code} />;
   }
 
   return (
@@ -95,7 +82,7 @@ export function FoundItemForm({
       onSubmit={handleSubmit}
     >
       <h1 id="found-item-form-title" className="text-lg font-semibold text-blue-700">
-        {title}
+        Reportar objeto encontrado
       </h1>
       {submitError && <div role="alert"><Alert>{submitError}</Alert></div>}
       <fieldset disabled={submitting} className="space-y-4">
@@ -215,7 +202,7 @@ export function FoundItemForm({
         </Field>
       </fieldset>
       <Button type="submit" className="w-full" disabled={submitting}>
-        {submitting ? submittingLabel : submitLabel}
+        {submitting ? 'Enviando…' : 'Reportar objeto encontrado'}
       </Button>
       </fieldset>
     </form>
