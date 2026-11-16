@@ -6016,7 +6016,7 @@
     "testId": 145
   },
   {
-    "commitId": "HEAD",
+    "commitId": "06a21b22e4bb02cafebfb3fa34654a3a5e2960db",
     "commitName": "feat(welfare): mostrar carga en las busquedas por codigo",
     "commitTimestamp": 1794512274493,
     "testId": 145
@@ -6162,5 +6162,11 @@
     "commitName": "feat(welfare): conectar gestion de objetos publicados",
     "commitTimestamp": 1794800848914,
     "testId": 162
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): gestionar publicaciones desde el panel",
+    "commitTimestamp": 1794802017986,
+    "testId": 163
   }
 ]

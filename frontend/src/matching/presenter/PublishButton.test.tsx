@@ -20,7 +20,7 @@ describe('Botón para publicar un objeto (para el panel de Bienestar)', () => {
 
     await userEvent.click(screen.getByRole('button', { name: 'Publicar' }));
 
-    expect(service.publish).toHaveBeenCalledWith('HZ-0005');
+    expect(service.publish).toHaveBeenCalledWith('HZ-0005', 'VISIBLE');
     expect(await screen.findByRole('alert')).toHaveTextContent(
       'Este objeto todavía no fue recibido en Bienestar.',
     );
@@ -54,6 +54,29 @@ describe('Botón para publicar un objeto (para el panel de Bienestar)', () => {
 
     expect(await screen.findByRole('status')).toHaveTextContent(
       '1 reporte de pérdida se parece a este objeto.',
+    );
+  });
+
+  it('permite publicar el objeto oculto para la comunidad', async () => {
+    const service = fakeService({ status: 'PUBLISHED', matchCount: 1, visibility: 'HIDDEN' });
+    const onPublished = jest.fn();
+    render(
+      <PublishButton
+        itemCode="HZ-0004"
+        matchesService={service}
+        onPublished={onPublished}
+      />,
+    );
+
+    await userEvent.selectOptions(screen.getByRole('combobox', { name: 'Visibilidad' }), 'HIDDEN');
+    await userEvent.click(screen.getByRole('button', { name: 'Publicar' }));
+
+    expect(service.publish).toHaveBeenCalledWith('HZ-0004', 'HIDDEN');
+    expect(onPublished).toHaveBeenCalledWith({
+      status: 'PUBLISHED', matchCount: 1, visibility: 'HIDDEN',
+    });
+    expect(await screen.findByRole('status')).toHaveTextContent(
+      'Publicado como oculto para la comunidad.',
     );
   });
 });

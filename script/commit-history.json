@@ -4940,12 +4940,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "06a21b22e4bb02cafebfb3fa34654a3a5e2960db",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T19:37:47.000Z",
       "message": "feat(welfare): mostrar carga en las busquedas por codigo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/06a21b22e4bb02cafebfb3fa34654a3a5e2960db"
     },
     "stats": {
       "total": 89,
@@ -5280,5 +5280,24 @@
     "test_count": 701,
     "failed_tests": 7,
     "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T04:06:56.000Z",
+      "message": "feat(welfare): gestionar publicaciones desde el panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 271,
+      "additions": 256,
+      "deletions": 15,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.88,
+    "test_count": 704,
+    "failed_tests": 0,
+    "conclusion": "success"
   }
 ]
