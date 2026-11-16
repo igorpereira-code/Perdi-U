@@ -6,6 +6,7 @@ export type LostReportToMatch = LostReportForMatching & { id: string; code: stri
 export type PublishedItem = FoundItemForMatching & { id: string };
 export type Suggestion = { foundItemId: string; similarity: number };
 export type FoundItemToPublish = PublishedItem & { code: string; status: FoundItemStatus };
+export type PublishedVisibility = 'VISIBLE' | 'HIDDEN';
 
 /** Where lost reports, published items and matches are read and saved. Tests use a fake one. */
 export type MatchingRepository = {
@@ -30,8 +31,12 @@ export type MatchingRepository = {
   dismiss: (matchId: string) => Promise<void>;
 
   findFoundItemByCode: (code: string) => Promise<FoundItemToPublish | null>;
-  /** The item becomes visible to the community. */
-  publish: (itemId: string, publishedById: string) => Promise<void>;
+  /** The item is published with the visibility chosen by Bienestar. */
+  publish: (
+    itemId: string,
+    publishedById: string,
+    visibility: PublishedVisibility,
+  ) => Promise<void>;
   /** Lost reports whose owners are still looking: "Buscando" or "Con coincidencias". */
   listActiveLostReports: () => Promise<LostReportToMatch[]>;
 };

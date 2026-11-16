@@ -18,6 +18,7 @@ const item: WelfareFoundItemView = {
   placeReference: null,
   foundAt: '2026-10-15T14:00:00.000Z',
   status: 'PENDING_DROP_OFF',
+  visibility: 'VISIBLE',
   finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
 
@@ -208,6 +209,47 @@ describe('Servicio de recepcion de Bienestar', () => {
     await expect(createWelfareService(apiFetch).getCatalogs()).resolves.toEqual(catalogs);
 
     expect(apiFetch).toHaveBeenCalledWith('/found-items/catalogs');
+  });
+
+  it('cambia la visibilidad de un objeto publicado', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ code: 'HZ-0003', visibility: 'HIDDEN' }),
+    });
+
+    await expect(
+      createWelfareService(apiFetch).setPublishedVisibility(' hz-0003 ', 'HIDDEN'),
+    ).resolves.toEqual({ code: 'HZ-0003', visibility: 'HIDDEN' });
+    expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0003/visibility', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ visibility: 'HIDDEN' }),
+    });
+  });
+
+  it('edita los datos de un objeto publicado', async () => {
+    const correction = {
+      description: 'Chamarra azul con cierre negro',
+      categoryId: 2,
+      placeId: 4,
+      classroomId: null,
+      placeReference: null,
+      foundAt: '2026-10-16T09:30:00.000Z',
+    };
+    const updatedItem = { ...item, ...correction, code: 'HZ-0003', status: 'PUBLISHED' };
+    const apiFetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => updatedItem,
+    });
+
+    await expect(
+      createWelfareService(apiFetch).updatePublishedItem('HZ-0003', correction),
+    ).resolves.toEqual(updatedItem);
+    expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0003', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(correction),
+    });
   });
 
   it('rechaza errores inesperados del servidor', async () => {

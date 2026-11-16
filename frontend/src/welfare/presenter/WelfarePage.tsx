@@ -23,6 +23,7 @@ import { Thumb } from '../../core/presenter/Thumb';
 import type { MatchesService } from '../../matching/data/matchesService';
 import type { MatchView } from '@shared/matching';
 import { PublishButton } from '../../matching/presenter/PublishButton';
+import { formatMatchCount } from '../../matching/logic/formatMatchCount';
 import { FoundItemForm } from '../../finder/presenter/FoundItemForm';
 
 type WelfarePageProps = {
@@ -81,7 +82,10 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
   const [hasPendingItemsError, setHasPendingItemsError] = useState(false);
   const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
   const [hasInOfficeItemsError, setHasInOfficeItemsError] = useState(false);
-  const [publishedCodes, setPublishedCodes] = useState<Set<string>>(new Set());
+  const [editingPublishedCode, setEditingPublishedCode] = useState<string | null>(null);
+  const [publishedDraft, setPublishedDraft] = useState<ReceptionDraft | null>(null);
+  const [isSavingPublishedItem, setIsSavingPublishedItem] = useState(false);
+  const [publicationResults, setPublicationResults] = useState<Record<string, number>>({});
   const [selectedItem, setSelectedItem] = useState<WelfareFoundItemView | null>(null);
   const [searchedItemCode, setSearchedItemCode] = useState('');
   const [isSearchingFoundItem, setIsSearchingFoundItem] = useState(false);
@@ -360,6 +364,48 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       setFeedbackMessage('No pudimos eliminar la solicitud');
     } finally {
       setIsDeleting(false);
+    }
+  }
+
+  function updateOfficeItem(code: string, update: (item: WelfareFoundItemView) => WelfareFoundItemView) {
+    setInOfficeItems((current) =>
+      current?.map((item) => (item.code === code ? update(item) : item)) ?? current,
+    );
+  }
+
+  async function togglePublishedVisibility(item: WelfareFoundItemView) {
+    const visibility = item.visibility === 'VISIBLE' ? 'HIDDEN' : 'VISIBLE';
+    try {
+      await welfareService.setPublishedVisibility(item.code, visibility);
+      updateOfficeItem(item.code, (current) => ({ ...current, visibility }));
+    } catch {
+      setFeedbackMessage('No pudimos cambiar la visibilidad del objeto');
+    }
+  }
+
+  function startPublishedEdit(item: WelfareFoundItemView) {
+    setEditingPublishedCode(item.code);
+    setPublishedDraft(buildReceptionDraft(item));
+  }
+
+  async function savePublishedItem(event: FormEvent) {
+    event.preventDefault();
+    if (!editingPublishedCode || !publishedDraft || isSavingPublishedItem) {
+      return;
+    }
+    setIsSavingPublishedItem(true);
+    try {
+      const updatedItem = await welfareService.updatePublishedItem(editingPublishedCode, {
+        ...publishedDraft,
+        foundAt: new Date(publishedDraft.foundAt).toISOString(),
+      });
+      updateOfficeItem(editingPublishedCode, () => updatedItem);
+      setEditingPublishedCode(null);
+      setPublishedDraft(null);
+    } catch {
+      setFeedbackMessage('No pudimos guardar los cambios del objeto');
+    } finally {
+      setIsSavingPublishedItem(false);
     }
   }
 
@@ -808,31 +854,135 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
           ) : (
             <div className="grid gap-3 md:grid-cols-2">
               {inOfficeItems.map((item) => {
-                const displayedStatus = publishedCodes.has(item.code) ? 'PUBLISHED' : item.status;
+                const isEditing = editingPublishedCode === item.code && publishedDraft;
                 return (
                   <article key={item.code} className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
                     <Thumb category={item.category} photoUrl={item.photoUrl} />
                     <div className="min-w-0 flex-1">
                       <strong className="font-mono text-blue-700">{item.code}</strong>
                       <p className="text-sm text-neutral-700">{item.description}</p>
-                      <div className="mt-2"><StatusChip status={displayedStatus} /></div>
+                      <div className="mt-2"><StatusChip status={item.status} /></div>
                       <p className="mt-1 text-xs text-neutral-500">
-                        {displayedStatus === 'PUBLISHED' ? 'Publicado' : 'No publicado'}
+                        {item.status === 'PUBLISHED'
+                          ? item.visibility === 'VISIBLE'
+                            ? 'Visible para la comunidad'
+                            : 'Oculto para la comunidad'
+                          : 'No publicado'}
                       </p>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {item.status === 'IN_CUSTODY' && (
                           <PublishButton
                             itemCode={item.code}
                             matchesService={matchesService}
-                            onPublished={() =>
-                              setPublishedCodes((current) => new Set(current).add(item.code))
-                            }
+                            onPublished={(result) => {
+                              setPublicationResults((current) => ({
+                                ...current, [item.code]: result.matchCount,
+                              }));
+                              updateOfficeItem(item.code, (current) => ({
+                                ...current, status: 'PUBLISHED', visibility: result.visibility,
+                              }));
+                            }}
                           />
+                        )}
+                        {item.status === 'PUBLISHED' && (
+                          <>
+                            <Button onClick={() => void togglePublishedVisibility(item)} variant="outline">
+                              {item.visibility === 'VISIBLE'
+                                ? 'Ocultar de la comunidad'
+                                : 'Mostrar a la comunidad'}
+                            </Button>
+                            <Button onClick={() => startPublishedEdit(item)} variant="outline">
+                              Editar datos
+                            </Button>
+                          </>
                         )}
                         <Button onClick={() => startItemDelivery(item)} variant="outline">
                           Registrar entrega
                         </Button>
                       </div>
+                      {publicationResults[item.code] !== undefined && (
+                        <div role="status" className="mt-3 rounded-xl bg-success-50 p-2 text-sm text-success-700">
+                          <p className="font-medium">
+                            {item.visibility === 'VISIBLE'
+                              ? 'Publicado: la comunidad ya puede ver este objeto.'
+                              : 'Publicado como oculto para la comunidad.'}
+                          </p>
+                          <p>{formatMatchCount(publicationResults[item.code])}</p>
+                        </div>
+                      )}
+                      {isEditing && (
+                        <form onSubmit={savePublishedItem} className="mt-4 space-y-3 rounded-xl bg-neutral-50 p-3">
+                          <label className="block text-sm font-medium">
+                            Descripción publicada
+                            <textarea
+                              value={publishedDraft.description}
+                              onChange={(event) => setPublishedDraft({ ...publishedDraft, description: event.target.value })}
+                              className="mt-1 w-full rounded-xl border border-neutral-300 p-2"
+                              required
+                            />
+                          </label>
+                          <label className="block text-sm font-medium">
+                            Categoría publicada
+                            <select
+                              value={publishedDraft.categoryId}
+                              onChange={(event) => setPublishedDraft({ ...publishedDraft, categoryId: Number(event.target.value) })}
+                              className="mt-1 min-h-11 w-full rounded-xl border border-neutral-300 bg-neutral-0 px-3"
+                            >
+                              {(catalogs?.categories ?? []).map((category) => (
+                                <option key={category.id} value={category.id}>{category.name}</option>
+                              ))}
+                            </select>
+                          </label>
+                          <label className="block text-sm font-medium">
+                            Lugar publicado
+                            <select
+                              value={publishedDraft.placeId}
+                              onChange={(event) => setPublishedDraft({
+                                ...publishedDraft,
+                                placeId: Number(event.target.value),
+                                classroomId: null,
+                              })}
+                              className="mt-1 min-h-11 w-full rounded-xl border border-neutral-300 bg-neutral-0 px-3"
+                            >
+                              {(catalogs?.places ?? []).map((place) => (
+                                <option key={place.id} value={place.id}>{place.name}</option>
+                              ))}
+                            </select>
+                          </label>
+                          <label className="block text-sm font-medium">
+                            Referencia publicada
+                            <input
+                              value={publishedDraft.placeReference ?? ''}
+                              onChange={(event) => setPublishedDraft({
+                                ...publishedDraft, placeReference: event.target.value || null,
+                              })}
+                              className="mt-1 min-h-11 w-full rounded-xl border border-neutral-300 px-3"
+                            />
+                          </label>
+                          <label className="block text-sm font-medium">
+                            Fecha publicada
+                            <input
+                              type="datetime-local"
+                              value={publishedDraft.foundAt}
+                              onChange={(event) => setPublishedDraft({ ...publishedDraft, foundAt: event.target.value })}
+                              className="mt-1 min-h-11 w-full rounded-xl border border-neutral-300 px-3"
+                              required
+                            />
+                          </label>
+                          <div className="flex gap-2">
+                            <Button type="submit" isLoading={isSavingPublishedItem} loadingText="Guardando…">
+                              Guardar cambios
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              onClick={() => { setEditingPublishedCode(null); setPublishedDraft(null); }}
+                            >
+                              Cancelar
+                            </Button>
+                          </div>
+                        </form>
+                      )}
                     </div>
                   </article>
                 );

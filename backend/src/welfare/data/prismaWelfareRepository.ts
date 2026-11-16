@@ -17,6 +17,7 @@ type FoundItemRow = {
   placeReference: string | null;
   foundAt: Date;
   status: WelfareFoundItem['status'];
+  visibility: WelfareFoundItem['visibility'];
   receivedById: string | null;
   receivedAt: Date | null;
   category: { name: string };
@@ -43,6 +44,7 @@ function toWelfareFoundItem(foundItemRow: FoundItemRow): WelfareFoundItem {
     placeReference: foundItemRow.placeReference,
     foundAt: foundItemRow.foundAt,
     status: foundItemRow.status,
+    visibility: foundItemRow.visibility,
     finder: foundItemRow.finder,
     receivedById: foundItemRow.receivedById ?? undefined,
     receivedAt: foundItemRow.receivedAt ?? undefined,
@@ -176,6 +178,29 @@ export const prismaWelfareRepository = {
       where: { id: itemId, status: 'PENDING_DROP_OFF' },
     });
     return deletedItems.count === 1;
+  },
+
+  updatePublishedVisibility: async (itemId, visibility) => {
+    const updatedItems = await db().foundItem.updateMany({
+      where: { id: itemId, status: 'PUBLISHED' },
+      data: { visibility },
+    });
+    return updatedItems.count === 1;
+  },
+
+  updatePublishedDetails: async (itemId, correction) => {
+    const updatedItems = await db().foundItem.updateMany({
+      where: { id: itemId, status: 'PUBLISHED' },
+      data: correction,
+    });
+    if (updatedItems.count !== 1) {
+      return null;
+    }
+    const foundItem = await db().foundItem.findUnique({
+      where: { id: itemId },
+      include: foundItemRelations,
+    });
+    return foundItem ? toWelfareFoundItem(foundItem) : null;
   },
 
   deliver: async (delivery) =>

@@ -4845,12 +4845,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "0e38520bc37b0c43cb567ad59ffb2ac21b4aabd2",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:48:27.000Z",
       "message": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/0e38520bc37b0c43cb567ad59ffb2ac21b4aabd2"
     },
     "stats": {
       "total": 15,
@@ -4864,12 +4864,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ffdcbf73722e337e14315757bc5b95fd567214f7",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:49:19.000Z",
       "message": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/ffdcbf73722e337e14315757bc5b95fd567214f7"
     },
     "stats": {
       "total": 22,
@@ -4883,12 +4883,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "e2b27a8e3b93db94c72af1a5aba3756a4187d459",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:51:28.000Z",
       "message": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/e2b27a8e3b93db94c72af1a5aba3756a4187d459"
     },
     "stats": {
       "total": 66,
@@ -4902,12 +4902,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "280e1b0c084d6296748b4685d6c3aec4c170f190",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T18:49:55.000Z",
       "message": "chore(welfare): actualizar final-test para resolver el PR",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/280e1b0c084d6296748b4685d6c3aec4c170f190"
     },
     "stats": {
       "total": 910,
@@ -4921,12 +4921,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "08a52bc83878aa87e726e8961ab1e91a56538fff",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T19:29:47.000Z",
       "message": "feat(welfare): mostrar carga al registrar la entrega",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/08a52bc83878aa87e726e8961ab1e91a56538fff"
     },
     "stats": {
       "total": 6,
@@ -4940,12 +4940,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "06a21b22e4bb02cafebfb3fa34654a3a5e2960db",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T19:37:47.000Z",
       "message": "feat(welfare): mostrar carga en las busquedas por codigo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/06a21b22e4bb02cafebfb3fa34654a3a5e2960db"
     },
     "stats": {
       "total": 89,
@@ -5185,5 +5185,119 @@
     "test_count": 691,
     "failed_tests": 2,
     "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T03:36:16.000Z",
+      "message": "feat(welfare): elegir visibilidad al publicar objetos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 62,
+      "additions": 53,
+      "deletions": 9,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.44,
+    "test_count": 693,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T03:38:02.000Z",
+      "message": "feat(matching): incluir objetos ocultos en coincidencias",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 37,
+      "additions": 34,
+      "deletions": 3,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.49,
+    "test_count": 694,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T03:40:43.000Z",
+      "message": "feat(welfare): cambiar visibilidad de objetos publicados",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 83,
+      "additions": 82,
+      "deletions": 1,
+      "date": "2026-11-16"
+    },
+    "coverage": 85.29,
+    "test_count": 696,
+    "failed_tests": 1,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T03:43:12.000Z",
+      "message": "feat(welfare): editar objetos publicados",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 102,
+      "additions": 102,
+      "deletions": 0,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.91,
+    "test_count": 698,
+    "failed_tests": 3,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T03:47:26.000Z",
+      "message": "feat(welfare): conectar gestion de objetos publicados",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 136,
+      "additions": 126,
+      "deletions": 10,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.58,
+    "test_count": 701,
+    "failed_tests": 7,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T04:06:56.000Z",
+      "message": "feat(welfare): gestionar publicaciones desde el panel",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 271,
+      "additions": 256,
+      "deletions": 15,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.88,
+    "test_count": 704,
+    "failed_tests": 0,
+    "conclusion": "success"
   }
 ]

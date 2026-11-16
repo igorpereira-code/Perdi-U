@@ -5938,19 +5938,19 @@
     "testId": 139
   },
   {
-    "commitId": "HEAD",
+    "commitId": "0e38520bc37b0c43cb567ad59ffb2ac21b4aabd2",
     "commitName": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
     "commitTimestamp": 1794491307539,
     "testId": 140
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ffdcbf73722e337e14315757bc5b95fd567214f7",
     "commitName": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
     "commitTimestamp": 1794491360067,
     "testId": 141
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e2b27a8e3b93db94c72af1a5aba3756a4187d459",
     "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
     "commitTimestamp": 1794491488766,
     "testId": 142
@@ -5964,7 +5964,7 @@
     "testId": 143
   },
   {
-    "commitId": "HEAD",
+    "commitId": "280e1b0c084d6296748b4685d6c3aec4c170f190",
     "commitName": "chore(welfare): actualizar final-test para resolver el PR",
     "commitTimestamp": 1794509396922,
     "testId": 143
@@ -5986,7 +5986,7 @@
     "testId": 144
   },
   {
-    "commitId": "HEAD",
+    "commitId": "08a52bc83878aa87e726e8961ab1e91a56538fff",
     "commitName": "feat(welfare): mostrar carga al registrar la entrega",
     "commitTimestamp": 1794511789301,
     "testId": 144
@@ -6016,7 +6016,7 @@
     "testId": 145
   },
   {
-    "commitId": "HEAD",
+    "commitId": "06a21b22e4bb02cafebfb3fa34654a3a5e2960db",
     "commitName": "feat(welfare): mostrar carga en las busquedas por codigo",
     "commitTimestamp": 1794512274493,
     "testId": 145
@@ -6132,5 +6132,41 @@
     "commitName": "test(welfare): registrar verificacion de HU-24",
     "commitTimestamp": 1794797380799,
     "testId": 157
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): elegir visibilidad al publicar objetos",
+    "commitTimestamp": 1794800177121,
+    "testId": 158
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): incluir objetos ocultos en coincidencias",
+    "commitTimestamp": 1794800283585,
+    "testId": 159
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): cambiar visibilidad de objetos publicados",
+    "commitTimestamp": 1794800444330,
+    "testId": 160
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): editar objetos publicados",
+    "commitTimestamp": 1794800593939,
+    "testId": 161
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): conectar gestion de objetos publicados",
+    "commitTimestamp": 1794800848914,
+    "testId": 162
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): gestionar publicaciones desde el panel",
+    "commitTimestamp": 1794802017986,
+    "testId": 163
   }
 ]

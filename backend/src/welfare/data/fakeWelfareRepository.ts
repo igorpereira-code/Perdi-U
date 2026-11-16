@@ -93,6 +93,7 @@ export function fakeWelfareRepository(
         placeReference: registration.placeReference,
         foundAt: registration.foundAt,
         status: 'IN_CUSTODY',
+        visibility: 'VISIBLE',
         finder: null,
         receivedById: registration.receivedById,
         receivedAt: registration.receivedAt,
@@ -119,6 +120,26 @@ export function fakeWelfareRepository(
       }
       foundItems.splice(index, 1);
       return true;
+    },
+    updatePublishedVisibility: async (itemId, visibility) => {
+      const foundItem = foundItems.find(
+        (candidate) => candidate.id === itemId && candidate.status === 'PUBLISHED',
+      );
+      if (!foundItem) {
+        return false;
+      }
+      foundItem.visibility = visibility;
+      return true;
+    },
+    updatePublishedDetails: async (itemId, correction) => {
+      const foundItem = foundItems.find(
+        (candidate) => candidate.id === itemId && candidate.status === 'PUBLISHED',
+      );
+      if (!foundItem) {
+        return null;
+      }
+      Object.assign(foundItem, correction);
+      return { ...foundItem, finder: foundItem.finder && { ...foundItem.finder } };
     },
     deliver: async (delivery) => {
       const foundItem = foundItems.find(

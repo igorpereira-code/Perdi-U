@@ -1,6 +1,7 @@
 import type { MatchView } from '@shared/matching';
 import type { LostReportToMatch, MatchingRepository, PublishedItem } from './matchingRepository';
 import type { FoundItemStatus, LostReportStatus } from '@shared/statuses';
+import type { PublishedVisibility } from './matchingRepository';
 
 /** status is PUBLISHED when not given. */
 export type FakeItem = PublishedItem & {
@@ -8,6 +9,7 @@ export type FakeItem = PublishedItem & {
   photoUrl: string | null;
   category: string;
   status?: FoundItemStatus;
+  visibility?: PublishedVisibility;
   publishedById?: string;
 };
 /** status is SEARCHING when not given. */
@@ -70,11 +72,12 @@ export function fakeMatchingRepository(reports: FakeReport[], initialItems: Fake
       return item ? { ...item, status: statusOf(item) } : null;
     },
 
-    publish: async (itemId, publishedById) => {
+    publish: async (itemId, publishedById, visibility) => {
       const item = items.find((i) => i.id === itemId);
       if (item) {
         item.status = 'PUBLISHED';
         item.publishedById = publishedById;
+        item.visibility = visibility;
       }
     },
 

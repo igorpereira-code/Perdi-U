@@ -48,6 +48,14 @@ export type WelfareService = {
   findFoundItemByCode: (code: string) => Promise<WelfareResult>;
   confirmReception: (code: string, correction?: ReceptionCorrection) => Promise<WelfareResult>;
   deletePending: (code: string) => Promise<boolean>;
+  setPublishedVisibility: (
+    code: string,
+    visibility: 'VISIBLE' | 'HIDDEN',
+  ) => Promise<{ code: string; visibility: 'VISIBLE' | 'HIDDEN' }>;
+  updatePublishedItem: (
+    code: string,
+    correction: ReceptionCorrection,
+  ) => Promise<WelfareFoundItemView>;
   deliver: (delivery: DeliveryInput) => Promise<DeliveryResult>;
 };
 
@@ -167,6 +175,31 @@ export function createWelfareService(apiFetch: ApiFetch): WelfareService {
         return false;
       }
       throw new Error('No se pudo eliminar la solicitud');
+    },
+    setPublishedVisibility: async (code, visibility) => {
+      const response = await apiFetch(
+        `/welfare/found-items/${normalizeCode(code)}/visibility`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ visibility }),
+        },
+      );
+      if (!response.ok) {
+        throw new Error('No se pudo cambiar la visibilidad');
+      }
+      return response.json();
+    },
+    updatePublishedItem: async (code, correction) => {
+      const response = await apiFetch(`/welfare/found-items/${normalizeCode(code)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(correction),
+      });
+      if (!response.ok) {
+        throw new Error('No se pudo actualizar el objeto');
+      }
+      return response.json();
     },
     deliver: async (delivery) => {
       const response = await apiFetch('/welfare/deliveries', {
