@@ -11,12 +11,9 @@ export type StatusTone = 'waiting' | 'info' | 'published' | 'highlight' | 'neutr
 
 export type StatusDisplay = { label: string; tone: StatusTone };
 
-const STATUS_LABELS: Record<Status, string> = {
-  ...FOUND_ITEM_STATUS_LABEL,
-  ...LOST_REPORT_STATUS_LABEL,
-};
+const LABEL: Record<Status, string> = { ...FOUND_ITEM_STATUS_LABEL, ...LOST_REPORT_STATUS_LABEL };
 
-const STATUS_TONES: Record<Status, StatusTone> = {
+const TONE: Record<Status, StatusTone> = {
   PENDING_DROP_OFF: 'waiting',
   IN_CUSTODY: 'info',
   PUBLISHED: 'published',
@@ -28,5 +25,5 @@ const STATUS_TONES: Record<Status, StatusTone> = {
 };
 
 export function getStatusDisplay(status: Status): StatusDisplay {
-  return { label: STATUS_LABELS[status], tone: STATUS_TONES[status] };
+  return { label: LABEL[status], tone: TONE[status] };
 }

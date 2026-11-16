@@ -1,7 +1,6 @@
 import request from 'supertest';
 import { createApp } from '../../app';
 import type { UsersRepository } from '../../core/data/usersRepository';
-import { fakeNotificationsRepository } from '../../core/data/fakeNotificationsRepository';
 import { SAMPLE_USERS } from '../../core/sampleUsers';
 import type { FoundItemCatalogs, FoundItemsRepository } from '../data/foundItemsRepository';
 
@@ -226,25 +225,6 @@ describe('Validaciones del reporte encontrado (POST /found-items)', () => {
 });
 
 describe('Guardar un reporte encontrado (POST /found-items)', () => {
-  it('avisa a Bienestar cuando el hallador registra un objeto', async () => {
-    const foundItems = fakeFoundItems();
-    const notifications = fakeNotificationsRepository([], {
-      WELFARE: [SAMPLE_USERS.welfare.id],
-    });
-
-    const res = await request(createApp({ foundItems, notifications }))
-      .post('/found-items')
-      .send(validReport);
-
-    expect(res.status).toBe(201);
-    await expect(notifications.listForUser(SAMPLE_USERS.welfare.id)).resolves.toEqual([
-      expect.objectContaining({
-        message: 'Nueva solicitud de hallazgo HZ-7321.',
-        link: '/bienestar',
-      }),
-    ]);
-  });
-
   it('guarda una sola vez y devuelve el código entregado por el repositorio', async () => {
     const foundItems = fakeFoundItems();
 

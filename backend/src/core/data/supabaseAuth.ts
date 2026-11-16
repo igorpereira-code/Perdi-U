@@ -10,16 +10,16 @@ function getClient(): SupabaseClient {
 
 /** Asks Supabase who owns the login token. Returns null if the token is not valid. */
 export async function verifySupabaseToken(token: string): Promise<TokenUser | null> {
-  const { data: authResponse, error } = await getClient().auth.getUser(token);
-  if (error || !authResponse.user?.email) {
+  const { data, error } = await getClient().auth.getUser(token);
+  if (error || !data.user?.email) {
     return null;
   }
 
-  const profile = authResponse.user.user_metadata;
+  const profile = data.user.user_metadata;
   return {
-    id: authResponse.user.id,
-    name: profile.full_name ?? profile.name ?? authResponse.user.email,
-    email: authResponse.user.email,
+    id: data.user.id,
+    name: profile.full_name ?? profile.name ?? data.user.email,
+    email: data.user.email,
     photoUrl: profile.avatar_url ?? profile.picture ?? null,
   };
 }

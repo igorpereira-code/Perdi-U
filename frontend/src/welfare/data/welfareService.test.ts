@@ -10,11 +10,8 @@ const item: WelfareFoundItemView = {
   description: 'Mochila negra',
   photoUrl: null,
   category: 'Mochilas',
-  categoryId: 1,
   place: 'Bloque A',
-  placeId: 1,
   classroom: null,
-  classroomId: null,
   placeReference: null,
   foundAt: '2026-10-15T14:00:00.000Z',
   status: 'PENDING_DROP_OFF',
@@ -22,35 +19,6 @@ const item: WelfareFoundItemView = {
 };
 
 describe('Servicio de recepcion de Bienestar', () => {
-  it('registra un objeto sin reporte previo con su foto opcional', async () => {
-    const apiFetch = jest.fn().mockResolvedValue({
-      ok: true,
-      status: 201,
-      json: async () => ({ code: 'HZ-0042', status: 'IN_CUSTODY' }),
-    });
-    const photo = new File(['foto'], 'paraguas.jpg', { type: 'image/jpeg' });
-    const registration = {
-      description: 'Paraguas negro',
-      categoryId: 1,
-      placeId: 1,
-      classroomId: null,
-      placeReference: null,
-      foundAt: '2026-11-15T14:30:00.000Z',
-    };
-
-    await expect(
-      createWelfareService(apiFetch).registerFoundItem(registration, photo),
-    ).resolves.toEqual({ code: 'HZ-0042', status: 'IN_CUSTODY' });
-
-    expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items', {
-      method: 'POST',
-      body: expect.any(FormData),
-    });
-    const form = apiFetch.mock.calls[0][1].body as FormData;
-    expect(form.get('report')).toBe(JSON.stringify(registration));
-    expect(form.get('photo')).toBe(photo);
-  });
-
   it('busca un reporte de perdida con el codigo normalizado', async () => {
     const report: WelfareLostReportView = {
       code: 'PR-0001',
@@ -152,62 +120,31 @@ describe('Servicio de recepcion de Bienestar', () => {
 
   it('busca con el codigo normalizado', async () => {
     const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => item });
-    await expect(createWelfareService(apiFetch).findFoundItemByCode(' hz-0005 ')).resolves.toEqual({ status: 'FOUND', item });
+    await expect(createWelfareService(apiFetch).findByCode(' hz-0005 ')).resolves.toEqual({
+      status: 'FOUND',
+      item,
+    });
     expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0005');
   });
 
-  it.each([[404, 'NOT_FOUND'], [409, 'ALREADY_RECEIVED']] as const)(
-    'traduce el estado HTTP %s a %s', async (httpStatus, status) => {
-      const apiFetch = jest.fn().mockResolvedValue({ ok: false, status: httpStatus });
-      await expect(createWelfareService(apiFetch).findFoundItemByCode('HZ-0005')).resolves.toEqual({ status });
-    },
-  );
+  it.each([
+    [404, 'NOT_FOUND'],
+    [409, 'ALREADY_RECEIVED'],
+  ] as const)('traduce el estado HTTP %s a %s', async (httpStatus, status) => {
+    const apiFetch = jest.fn().mockResolvedValue({ ok: false, status: httpStatus });
+    await expect(createWelfareService(apiFetch).findByCode('HZ-0005')).resolves.toEqual({ status });
+  });
 
   it('confirma la recepcion y devuelve el objeto actualizado', async () => {
     const received = { ...item, status: 'IN_CUSTODY' as const };
     const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => received });
-    await expect(createWelfareService(apiFetch).confirmReception(' hz-0005 ')).resolves.toEqual({ status: 'FOUND', item: received });
-    expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0005/receive', { method: 'POST' });
-  });
-
-  it('envia las correcciones al confirmar la recepcion', async () => {
-    const received = { ...item, status: 'IN_CUSTODY' as const };
-    const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => received });
-    const correction = {
-      description: 'Mochila negra con tres cuadernos',
-      categoryId: 2,
-      placeId: 4,
-      classroomId: null,
-      placeReference: 'Recepción del bloque B',
-      foundAt: '2026-10-16T09:30:00.000Z',
-    };
-
-    await createWelfareService(apiFetch).confirmReception('HZ-0005', correction);
-
+    await expect(createWelfareService(apiFetch).receive(' hz-0005 ')).resolves.toEqual({
+      status: 'FOUND',
+      item: received,
+    });
     expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0005/receive', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(correction),
     });
-  });
-
-  it('elimina una solicitud pendiente', async () => {
-    const apiFetch = jest.fn().mockResolvedValue({ ok: true, status: 204 });
-
-    await expect(createWelfareService(apiFetch).deletePending(' hz-0005 ')).resolves.toBe(true);
-
-    expect(apiFetch).toHaveBeenCalledWith('/welfare/found-items/HZ-0005', {
-      method: 'DELETE',
-    });
-  });
-
-  it('carga los catalogos para corregir categoria y lugar', async () => {
-    const catalogs = { categories: [{ id: 1, name: 'Mochilas' }], places: [] };
-    const apiFetch = jest.fn().mockResolvedValue({ ok: true, json: async () => catalogs });
-
-    await expect(createWelfareService(apiFetch).getCatalogs()).resolves.toEqual(catalogs);
-
-    expect(apiFetch).toHaveBeenCalledWith('/found-items/catalogs');
   });
 
   it('rechaza errores inesperados del servidor', async () => {

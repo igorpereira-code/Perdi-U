@@ -1,7 +1,7 @@
 import express from 'express';
 import request from 'supertest';
 import { createApp } from '../app';
-import { authenticateUser, requireRole } from './currentUser';
+import { currentUser, requireRole } from './currentUser';
 import type { UserProfile, UsersRepository } from './data/usersRepository';
 
 function fakeUsers(welfareEmails: string[] = []) {
@@ -43,7 +43,7 @@ describe('Ver el usuario actual (GET /me)', () => {
 
 describe('Restringir por rol (requireRole)', () => {
   const app = express();
-  app.use(authenticateUser);
+  app.use(currentUser);
   app.get('/welfare-only', requireRole('WELFARE'), (_req, res) => {
     res.json({ ok: true });
   });
