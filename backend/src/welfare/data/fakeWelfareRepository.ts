@@ -77,14 +77,25 @@ export function fakeWelfareRepository(
         ? { ...foundItem, finder: foundItem.finder && { ...foundItem.finder } }
         : null;
     },
-    confirmPendingReception: async (itemId, receivedById, receivedAt) => {
+    confirmPendingReception: async (itemId, receivedById, receivedAt, correction) => {
       const foundItem = foundItems.find((candidate) => candidate.id === itemId);
       if (!foundItem || foundItem.status !== 'PENDING_DROP_OFF') {
-        return false;
+        return null;
       }
+      Object.assign(foundItem, correction);
       foundItem.status = 'IN_CUSTODY';
       foundItem.receivedById = receivedById;
       foundItem.receivedAt = receivedAt;
+      return { ...foundItem, finder: foundItem.finder && { ...foundItem.finder } };
+    },
+    deletePending: async (itemId) => {
+      const index = foundItems.findIndex(
+        (candidate) => candidate.id === itemId && candidate.status === 'PENDING_DROP_OFF',
+      );
+      if (index < 0) {
+        return false;
+      }
+      foundItems.splice(index, 1);
       return true;
     },
     deliver: async (delivery) => {

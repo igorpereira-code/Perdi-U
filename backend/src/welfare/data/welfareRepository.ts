@@ -7,8 +7,11 @@ export type WelfareFoundItem = {
   description: string;
   photoUrl: string | null;
   category: string;
+  categoryId: number;
   place: string;
+  placeId: number;
   classroom: string | null;
+  classroomId: number | null;
   placeReference: string | null;
   foundAt: Date;
   status: FoundItemStatus;
@@ -31,6 +34,15 @@ export type DeliveryResult =
   | { status: 'DELIVERED'; foundItemCode: string }
   | { status: 'ITEM_NOT_AVAILABLE' }
   | { status: 'REPORT_NOT_ELIGIBLE' };
+
+export type ReceptionCorrection = {
+  description: string;
+  categoryId: number;
+  placeId: number;
+  classroomId: number | null;
+  placeReference: string | null;
+  foundAt: Date;
+};
 
 export type WelfareLostReport = {
   id: string;
@@ -56,6 +68,8 @@ export type WelfareRepository = {
     itemId: string,
     receivedById: string,
     receivedAt: Date,
-  ) => Promise<boolean>;
+    correction?: ReceptionCorrection,
+  ) => Promise<WelfareFoundItem | null>;
+  deletePending: (itemId: string) => Promise<boolean>;
   deliver: (delivery: DeliveryRegistration) => Promise<DeliveryResult>;
 };

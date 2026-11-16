@@ -13,6 +13,7 @@ import { WelfarePage } from './WelfarePage';
 const item: WelfareFoundItemView = {
   code: 'HZ-0005', description: 'Mochila negra con cuadernos', photoUrl: null,
   category: 'Mochilas', place: 'Bloque A', classroom: 'Aula 3',
+  categoryId: 1, placeId: 1, classroomId: 3,
   placeReference: 'Debajo de una mesa', foundAt: '2026-10-15T14:00:00.000Z',
   status: 'PENDING_DROP_OFF', finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
@@ -56,8 +57,23 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
     listPendingPickups: jest.fn().mockResolvedValue([]),
     listPending: jest.fn().mockResolvedValue([item]),
     listInOffice: jest.fn().mockResolvedValue([inCustodyItem, publishedItem]),
+    getCatalogs: jest.fn().mockResolvedValue({
+      categories: [{ id: 1, name: 'Mochilas' }, { id: 2, name: 'Otros' }],
+      places: [{
+        id: 1,
+        name: 'Bloque A',
+        type: 'BLOCK',
+        classrooms: [{ id: 3, name: 'Aula 3' }],
+      }, {
+        id: 4,
+        name: 'Biblioteca',
+        type: 'SPACE',
+        classrooms: [],
+      }],
+    }),
     findFoundItemByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
     confirmReception: jest.fn(),
+    deletePending: jest.fn().mockResolvedValue(true),
     deliver: jest.fn(),
     ...overrides,
   };
@@ -476,7 +492,12 @@ describe('Panel de Bienestar', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
 
-    expect(welfareService.confirmReception).toHaveBeenCalledWith('HZ-0005');
+    expect(welfareService.confirmReception).toHaveBeenCalledWith('HZ-0005', expect.objectContaining({
+      description: 'Mochila negra con cuadernos',
+      categoryId: 1,
+      placeId: 1,
+      foundAt: '2026-10-15T14:00:00.000Z',
+    }));
     expect(await screen.findByText('Objeto recibido y puesto en custodia')).toBeInTheDocument();
     expect(within(pendingSection!).queryByText('HZ-0005')).not.toBeInTheDocument();
     await userEvent.click(screen.getByRole('button', { name: 'Objetos en custodia' }));
@@ -487,6 +508,50 @@ describe('Panel de Bienestar', () => {
 
     await act(async () => resolveInOffice([inCustodyItem, publishedItem]));
     expect(within(officeSection!).getByText('HZ-0005')).toBeInTheDocument();
+  });
+
+  it('permite corregir los datos antes de confirmar la recepcion', async () => {
+    const confirmReception = jest.fn().mockResolvedValue({
+      status: 'FOUND',
+      item: { ...item, description: 'Mochila con tres cuadernos', status: 'IN_CUSTODY' },
+    });
+    const welfareService = service({ confirmReception });
+    renderPage(welfareService);
+    await openRequests();
+    await userEvent.click(await screen.findByRole('button', { name: /HZ-0005/ }));
+
+    await userEvent.clear(screen.getByLabelText('Descripción del objeto'));
+    await userEvent.type(screen.getByLabelText('Descripción del objeto'), 'Mochila con tres cuadernos');
+    await userEvent.selectOptions(screen.getByLabelText('Categoría del objeto'), '2');
+    await userEvent.selectOptions(screen.getByLabelText('Lugar del hallazgo'), '4');
+    await userEvent.clear(screen.getByLabelText('Fecha del hallazgo'));
+    await userEvent.type(screen.getByLabelText('Fecha del hallazgo'), '2026-10-16T09:30');
+    await userEvent.click(screen.getByRole('button', { name: 'Confirmar recepción' }));
+
+    expect(confirmReception).toHaveBeenCalledWith('HZ-0005', {
+      description: 'Mochila con tres cuadernos',
+      categoryId: 2,
+      placeId: 4,
+      classroomId: null,
+      placeReference: 'Debajo de una mesa',
+      foundAt: new Date('2026-10-16T09:30').toISOString(),
+    });
+  }, 10_000);
+
+  it('pide confirmar antes de eliminar y quita la solicitud eliminada', async () => {
+    const deletePending = jest.fn().mockResolvedValue(true);
+    renderPage(service({ deletePending }));
+    await openRequests();
+    await userEvent.click(await screen.findByRole('button', { name: /HZ-0005/ }));
+
+    await userEvent.click(screen.getByRole('button', { name: 'Eliminar solicitud' }));
+    expect(deletePending).not.toHaveBeenCalled();
+    expect(screen.getByText('¿Confirmas que el objeto nunca llegó a la oficina?')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Sí, eliminar' }));
+
+    expect(deletePending).toHaveBeenCalledWith('HZ-0005');
+    expect(await screen.findByText('Solicitud eliminada')).toBeInTheDocument();
+    expect(screen.queryByText('HZ-0005')).not.toBeInTheDocument();
   });
 
   it('conserva el objeto recibido si falla la carga inicial de la oficina', async () => {

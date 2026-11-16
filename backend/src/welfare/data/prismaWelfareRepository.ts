@@ -20,8 +20,11 @@ type FoundItemRow = {
   receivedById: string | null;
   receivedAt: Date | null;
   category: { name: string };
+  categoryId: number;
   place: { name: string };
+  placeId: number;
   classroom: { name: string } | null;
+  classroomId: number | null;
   finder: { name: string; email: string } | null;
 };
 
@@ -32,8 +35,11 @@ function toWelfareFoundItem(foundItemRow: FoundItemRow): WelfareFoundItem {
     description: foundItemRow.description,
     photoUrl: foundItemRow.photoUrl,
     category: foundItemRow.category.name,
+    categoryId: foundItemRow.categoryId,
     place: foundItemRow.place.name,
+    placeId: foundItemRow.placeId,
     classroom: foundItemRow.classroom?.name ?? null,
+    classroomId: foundItemRow.classroomId,
     placeReference: foundItemRow.placeReference,
     foundAt: foundItemRow.foundAt,
     status: foundItemRow.status,
@@ -130,12 +136,26 @@ export const prismaWelfareRepository = {
     return foundItemRow ? toWelfareFoundItem(foundItemRow) : null;
   },
 
-  confirmPendingReception: async (itemId, receivedById, receivedAt) => {
+  confirmPendingReception: async (itemId, receivedById, receivedAt, correction) => {
     const updatedItems = await db().foundItem.updateMany({
       where: { id: itemId, status: 'PENDING_DROP_OFF' },
-      data: { status: 'IN_CUSTODY', receivedById, receivedAt },
+      data: { status: 'IN_CUSTODY', receivedById, receivedAt, ...correction },
     });
-    return updatedItems.count === 1;
+    if (updatedItems.count !== 1) {
+      return null;
+    }
+    const foundItem = await db().foundItem.findUnique({
+      where: { id: itemId },
+      include: foundItemRelations,
+    });
+    return foundItem ? toWelfareFoundItem(foundItem) : null;
+  },
+
+  deletePending: async (itemId) => {
+    const deletedItems = await db().foundItem.deleteMany({
+      where: { id: itemId, status: 'PENDING_DROP_OFF' },
+    });
+    return deletedItems.count === 1;
   },
 
   deliver: async (delivery) =>

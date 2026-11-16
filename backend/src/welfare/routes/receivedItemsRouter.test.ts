@@ -9,8 +9,11 @@ const pendingItem = {
   description: 'Mochila negra con cuadernos',
   photoUrl: null,
   category: 'Mochilas',
+  categoryId: 1,
   place: 'Bloque A',
+  placeId: 1,
   classroom: 'Aula 3',
+  classroomId: 3,
   placeReference: 'Debajo de una mesa',
   foundAt: new Date('2026-10-15T14:00:00Z'),
   status: 'PENDING_DROP_OFF' as const,
@@ -338,6 +341,32 @@ describe('Recibir objetos encontrados en Bienestar', () => {
     expect(res.body.map((item: { code: string }) => item.code)).toEqual(['HZ-0005']);
   });
 
+  it('elimina una solicitud cuyo objeto nunca llego y deja de listarla', async () => {
+    const { repository } = fakeWelfareRepository([pendingItem]);
+    const app = createApp({ welfare: repository });
+
+    const deletion = await request(app)
+      .delete('/welfare/found-items/HZ-0005')
+      .set('x-sample-user', 'welfare');
+    const remaining = await request(app)
+      .get('/welfare/found-items/pending')
+      .set('x-sample-user', 'welfare');
+
+    expect(deletion.status).toBe(204);
+    expect(remaining.body).toEqual([]);
+  });
+
+  it('no elimina un objeto que ya fue recibido', async () => {
+    const { repository } = fakeWelfareRepository([receivedItem]);
+
+    const deletion = await request(createApp({ welfare: repository }))
+      .delete('/welfare/found-items/HZ-0004')
+      .set('x-sample-user', 'welfare');
+
+    expect(deletion.status).toBe(409);
+    await expect(repository.listInOffice()).resolves.toHaveLength(1);
+  });
+
   it('solo Bienestar puede consultar los pendientes', async () => {
     const { repository } = fakeWelfareRepository([pendingItem]);
     const res = await request(createApp({ welfare: repository })).get(
@@ -378,8 +407,11 @@ describe('Recibir objetos encontrados en Bienestar', () => {
       description: 'Mochila negra con cuadernos',
       photoUrl: null,
       category: 'Mochilas',
+      categoryId: 1,
       place: 'Bloque A',
+      placeId: 1,
       classroom: 'Aula 3',
+      classroomId: 3,
       placeReference: 'Debajo de una mesa',
       foundAt: '2026-10-15T14:00:00.000Z',
       status: 'PENDING_DROP_OFF',
@@ -414,6 +446,32 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual(expect.objectContaining({ code: 'HZ-0005', status: 'IN_CUSTODY' }));
+  });
+
+  it('guarda las correcciones realizadas por Bienestar al recibir el objeto', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([pendingItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/found-items/HZ-0005/receive')
+      .set('x-sample-user', 'welfare')
+      .send({
+        description: 'Mochila negra con tres cuadernos',
+        categoryId: 2,
+        placeId: 4,
+        classroomId: null,
+        placeReference: 'Recepción del bloque B',
+        foundAt: '2026-10-16T09:30:00.000Z',
+      });
+
+    expect(res.status).toBe(200);
+    expect(foundItems[0]).toEqual(expect.objectContaining({
+      description: 'Mochila negra con tres cuadernos',
+      categoryId: 2,
+      placeId: 4,
+      classroomId: null,
+      placeReference: 'Recepción del bloque B',
+      foundAt: new Date('2026-10-16T09:30:00.000Z'),
+      status: 'IN_CUSTODY',
+    }));
   });
 
   it('registra quien y cuando lo recibio', async () => {

@@ -5870,7 +5870,7 @@
     "testId": 129
   },
   {
-    "commitId": "HEAD",
+    "commitId": "5e500344f9fde960da5e03e0f6d52aae58358655",
     "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
     "commitTimestamp": 1794353525149,
     "testId": 130
@@ -5884,25 +5884,25 @@
     "testId": 131
   },
   {
-    "commitId": "HEAD",
+    "commitId": "20f34924508eda83368aa2b763dae89e0d25440c",
     "commitName": "refactor(core): borrar LoadingState, reemplazado por los esqueletos",
     "commitTimestamp": 1794487631272,
     "testId": 131
   },
   {
-    "commitId": "HEAD",
+    "commitId": "bf259360d85acb7fb32232d4cc9ca30b5aad039b",
     "commitName": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
     "commitTimestamp": 1794490799523,
     "testId": 132
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2464b81fda092f7d8c2f362a9b4c9798d9666633",
     "commitName": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
     "commitTimestamp": 1794490855674,
     "testId": 133
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1f8ceab9446a7b750367738b0505ccc00afca9c7",
     "commitName": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
     "commitTimestamp": 1794490908233,
     "testId": 134
@@ -6040,5 +6040,59 @@
     "commitName": "feat(welfare): mostrar carga y reintento en listas",
     "commitTimestamp": 1794520583459,
     "testId": 147
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794762725009,
+    "success": false,
+    "testId": 148
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): avisar nuevas solicitudes de hallazgo",
+    "commitTimestamp": 1794762880718,
+    "testId": 148
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): corregir datos al recibir un hallazgo",
+    "commitTimestamp": 1794763025959,
+    "testId": 149
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): eliminar solicitudes no recibidas",
+    "commitTimestamp": 1794763125413,
+    "testId": 150
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): conectar atencion de solicitudes",
+    "commitTimestamp": 1794763226446,
+    "testId": 151
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794763532116,
+    "success": false,
+    "testId": 152
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 7,
+    "numTotalTests": 687,
+    "timestamp": 1794764312068,
+    "success": false,
+    "testId": 152
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): atender solicitudes de hallazgo",
+    "commitTimestamp": 1794764461489,
+    "testId": 152
   }
 ]

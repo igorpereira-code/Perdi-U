@@ -4655,12 +4655,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "5e500344f9fde960da5e03e0f6d52aae58358655",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-10T23:32:04.000Z",
       "message": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/5e500344f9fde960da5e03e0f6d52aae58358655"
     },
     "stats": {
       "total": 101,
@@ -4674,12 +4674,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "20f34924508eda83368aa2b763dae89e0d25440c",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T12:47:10.000Z",
       "message": "refactor(core): borrar LoadingState, reemplazado por los esqueletos",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/20f34924508eda83368aa2b763dae89e0d25440c"
     },
     "stats": {
       "total": 19,
@@ -4693,12 +4693,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "bf259360d85acb7fb32232d4cc9ca30b5aad039b",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:39:59.000Z",
       "message": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/bf259360d85acb7fb32232d4cc9ca30b5aad039b"
     },
     "stats": {
       "total": 62,
@@ -4712,12 +4712,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2464b81fda092f7d8c2f362a9b4c9798d9666633",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:40:55.000Z",
       "message": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/2464b81fda092f7d8c2f362a9b4c9798d9666633"
     },
     "stats": {
       "total": 57,
@@ -4731,12 +4731,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "1f8ceab9446a7b750367738b0505ccc00afca9c7",
     "author": "Claude",
     "commit": {
       "date": "2026-11-12T13:41:48.000Z",
       "message": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
-      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/1f8ceab9446a7b750367738b0505ccc00afca9c7"
     },
     "stats": {
       "total": 42,
@@ -4995,5 +4995,100 @@
     "test_count": 678,
     "failed_tests": 0,
     "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-15T17:14:38.000Z",
+      "message": "feat(welfare): avisar nuevas solicitudes de hallazgo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 56,
+      "additions": 53,
+      "deletions": 3,
+      "date": "2026-11-15"
+    },
+    "coverage": 86.38,
+    "test_count": 679,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-15T17:17:04.000Z",
+      "message": "feat(welfare): corregir datos al recibir un hallazgo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 120,
+      "additions": 110,
+      "deletions": 10,
+      "date": "2026-11-15"
+    },
+    "coverage": 86.21,
+    "test_count": 680,
+    "failed_tests": 2,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-15T17:18:44.000Z",
+      "message": "feat(welfare): eliminar solicitudes no recibidas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 57,
+      "additions": 57,
+      "deletions": 0,
+      "date": "2026-11-15"
+    },
+    "coverage": 86.07,
+    "test_count": 682,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-15T17:20:24.000Z",
+      "message": "feat(welfare): conectar atencion de solicitudes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 90,
+      "additions": 87,
+      "deletions": 3,
+      "date": "2026-11-15"
+    },
+    "coverage": 85.94,
+    "test_count": 685,
+    "failed_tests": 1,
+    "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-15T17:40:50.000Z",
+      "message": "feat(welfare): atender solicitudes de hallazgo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 237,
+      "additions": 227,
+      "deletions": 10,
+      "date": "2026-11-15"
+    },
+    "coverage": 85.96,
+    "test_count": 687,
+    "failed_tests": 6,
+    "conclusion": "failure"
   }
 ]

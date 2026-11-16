@@ -4,6 +4,9 @@ import type {
   WelfarePendingPickupView,
 } from '@shared/welfare';
 import type { ApiFetch } from '../../core/data/api';
+import type { FoundItemCatalogs, FoundItemPayload } from '../../finder/data/foundItemsService';
+
+export type ReceptionCorrection = FoundItemPayload;
 
 export type WelfareResult =
   | { status: 'FOUND'; item: WelfareFoundItemView }
@@ -35,8 +38,10 @@ export type WelfareService = {
   listPendingPickups: () => Promise<WelfarePendingPickupView[]>;
   listPending: () => Promise<WelfareFoundItemView[]>;
   listInOffice: () => Promise<WelfareFoundItemView[]>;
+  getCatalogs: () => Promise<FoundItemCatalogs>;
   findFoundItemByCode: (code: string) => Promise<WelfareResult>;
-  confirmReception: (code: string) => Promise<WelfareResult>;
+  confirmReception: (code: string, correction?: ReceptionCorrection) => Promise<WelfareResult>;
+  deletePending: (code: string) => Promise<boolean>;
   deliver: (delivery: DeliveryInput) => Promise<DeliveryResult>;
 };
 
@@ -97,12 +102,37 @@ export function createWelfareService(apiFetch: ApiFetch): WelfareService {
       }
       return response.json();
     },
+    getCatalogs: async () => {
+      const response = await apiFetch('/found-items/catalogs');
+      if (!response.ok) {
+        throw new Error('No se pudieron consultar los catálogos');
+      }
+      return response.json();
+    },
     findFoundItemByCode: async (code) =>
       parseFoundItemResponse(await apiFetch(`/welfare/found-items/${normalizeCode(code)}`)),
-    confirmReception: async (code) =>
+    confirmReception: async (code, correction) =>
       parseFoundItemResponse(
-        await apiFetch(`/welfare/found-items/${normalizeCode(code)}/receive`, { method: 'POST' }),
+        await apiFetch(`/welfare/found-items/${normalizeCode(code)}/receive`, correction
+          ? {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(correction),
+            }
+          : { method: 'POST' }),
       ),
+    deletePending: async (code) => {
+      const response = await apiFetch(`/welfare/found-items/${normalizeCode(code)}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        return true;
+      }
+      if (response.status === 404 || response.status === 409) {
+        return false;
+      }
+      throw new Error('No se pudo eliminar la solicitud');
+    },
     deliver: async (delivery) => {
       const response = await apiFetch('/welfare/deliveries', {
         method: 'POST',
