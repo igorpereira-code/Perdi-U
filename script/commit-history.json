@@ -4959,12 +4959,12 @@
     "conclusion": "failure"
   },
   {
-    "sha": "HEAD",
+    "sha": "d65d78b7b631fff9113112269852e9e75f470618",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T19:49:48.000Z",
       "message": "feat(welfare): mostrar esqueletos al cargar objetos parecidos",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d65d78b7b631fff9113112269852e9e75f470618"
     },
     "stats": {
       "total": 21,
@@ -4978,12 +4978,12 @@
     "conclusion": "failure"
   },
   {
-    "sha": "HEAD",
+    "sha": "a8c36d54894f63130e09197092bfc3ab546e2785",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T21:56:21.000Z",
       "message": "feat(welfare): mostrar carga y reintento en listas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/a8c36d54894f63130e09197092bfc3ab546e2785"
     },
     "stats": {
       "total": 128,
@@ -4997,12 +4997,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "103c12af996c0e370c703a499b02b0635bcdee0e",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-15T17:14:38.000Z",
       "message": "feat(welfare): avisar nuevas solicitudes de hallazgo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/103c12af996c0e370c703a499b02b0635bcdee0e"
     },
     "stats": {
       "total": 56,
@@ -5299,5 +5299,62 @@
     "test_count": 704,
     "failed_tests": 0,
     "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T04:17:19.000Z",
+      "message": "feat(welfare): avisar recojos pendientes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 73,
+      "additions": 65,
+      "deletions": 8,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.85,
+    "test_count": 704,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T04:19:19.000Z",
+      "message": "feat(welfare): consultar historial de entregas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 86,
+      "additions": 85,
+      "deletions": 1,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.73,
+    "test_count": 705,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T04:25:30.000Z",
+      "message": "feat(welfare): mostrar y buscar entregas realizadas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 198,
+      "additions": 196,
+      "deletions": 2,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.75,
+    "test_count": 710,
+    "failed_tests": 4,
+    "conclusion": "failure"
   }
 ]

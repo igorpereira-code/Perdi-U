@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import type { ComponentType } from 'react';
 import type {
   WelfareFoundItemView,
+  WelfareDeliveryView,
   WelfareLostReportView,
   WelfarePendingPickupView,
 } from '@shared/welfare';
@@ -40,6 +41,16 @@ const pendingPickup: WelfarePendingPickupView = {
   foundItem: { code: 'HZ-0001', description: 'Celular Samsung con funda azul' },
 };
 
+const completedDelivery: WelfareDeliveryView = {
+  foundItem: { code: 'HZ-0008', description: 'Paraguas negro' },
+  recipient: {
+    name: 'Luis Mamani',
+    email: 'luis.mamani@ucb.edu.bo',
+    universityCode: '20201234',
+  },
+  deliveredAt: '2026-11-16T03:00:00.000Z',
+};
+
 const activeLostReport: WelfareLostReportView = {
   code: 'PR-0001',
   description: 'Celular Samsung con funda azul',
@@ -56,6 +67,7 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
     listActiveLostReports: jest.fn().mockResolvedValue([]),
     findLostReportByCode: jest.fn(),
     listPendingPickups: jest.fn().mockResolvedValue([]),
+    listDeliveries: jest.fn().mockResolvedValue([completedDelivery]),
     listPending: jest.fn().mockResolvedValue([item]),
     listInOffice: jest.fn().mockResolvedValue([inCustodyItem, publishedItem]),
     getCatalogs: jest.fn().mockResolvedValue({
@@ -389,6 +401,40 @@ describe('Panel de Bienestar', () => {
     expect(
       await screen.findByRole('heading', { name: 'No hay recojos pendientes' }),
     ).toBeInTheDocument();
+  });
+
+  it('muestra las entregas realizadas con objeto receptor y fecha', async () => {
+    renderPage();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Entregas realizadas' }));
+
+    expect(await screen.findByText('HZ-0008')).toBeInTheDocument();
+    expect(screen.getByText('Paraguas negro')).toBeInTheDocument();
+    expect(screen.getByText('Luis Mamani')).toBeInTheDocument();
+    expect(screen.getByText('luis.mamani@ucb.edu.bo')).toBeInTheDocument();
+    expect(screen.getByText('16/11/2026')).toBeInTheDocument();
+  });
+
+  it.each([
+    ['hz-0008', 'HZ-0008'],
+    ['luis mamani', 'Luis Mamani'],
+    ['LUIS.MAMANI@UCB.EDU.BO', 'luis.mamani@ucb.edu.bo'],
+  ])('busca entregas por %s', async (search, expected) => {
+    const otherDelivery: WelfareDeliveryView = {
+      ...completedDelivery,
+      foundItem: { code: 'HZ-0099', description: 'Cuaderno rojo' },
+      recipient: {
+        name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo', universityCode: '20205678',
+      },
+    };
+    renderPage(service({
+      listDeliveries: jest.fn().mockResolvedValue([completedDelivery, otherDelivery]),
+    }));
+    await userEvent.click(screen.getByRole('button', { name: 'Entregas realizadas' }));
+    await userEvent.type(screen.getByRole('searchbox', { name: 'Buscar entregas' }), search);
+
+    expect(await screen.findByText(expected)).toBeInTheDocument();
+    expect(screen.queryByText('HZ-0099')).not.toBeInTheDocument();
   });
 
   it('muestra un aviso cuando no puede cargar los recojos pendientes', async () => {

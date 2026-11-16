@@ -55,7 +55,12 @@ export function fakeMatchingRepository(reports: FakeReport[], initialItems: Fake
       const match = matches.find((m) => m.id === matchId);
       const report = reports.find((r) => r.id === match?.lostReportId);
       return match && report?.ownerId === ownerId
-        ? { id: match.id, lostReportId: match.lostReportId }
+        ? {
+            id: match.id,
+            lostReportId: match.lostReportId,
+            lostReportCode: report.code,
+            foundItemCode: match.foundItem.code,
+          }
         : null;
     },
 

@@ -24,6 +24,12 @@ export type WelfarePendingPickupView = {
   foundItem: { code: string; description: string };
 };
 
+export type WelfareDeliveryView = {
+  foundItem: { code: string; description: string };
+  recipient: { name: string; email: string; universityCode: string };
+  deliveredAt: string;
+};
+
 export type WelfareLostReportView = {
   code: string;
   description: string;

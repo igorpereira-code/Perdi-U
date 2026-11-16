@@ -79,8 +79,23 @@ export const prismaMatchingRepository: MatchingRepository = {
   },
 
   findOwnMatch: async (matchId, ownerId) => {
-    const match = await db().match.findFirst({ where: { id: matchId, lostReport: { ownerId } } });
-    return match ? { id: match.id, lostReportId: match.lostReportId } : null;
+    const match = await db().match.findFirst({
+      where: { id: matchId, lostReport: { ownerId } },
+      select: {
+        id: true,
+        lostReportId: true,
+        lostReport: { select: { code: true } },
+        foundItem: { select: { code: true } },
+      },
+    });
+    return match
+      ? {
+          id: match.id,
+          lostReportId: match.lostReportId,
+          lostReportCode: match.lostReport.code,
+          foundItemCode: match.foundItem.code,
+        }
+      : null;
   },
 
   markWillPickUp: async (matchId) => {

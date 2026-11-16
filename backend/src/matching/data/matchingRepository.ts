@@ -23,7 +23,12 @@ export type MatchingRepository = {
   findOwnMatch: (
     matchId: string,
     ownerId: string,
-  ) => Promise<{ id: string; lostReportId: string } | null>;
+  ) => Promise<{
+    id: string;
+    lostReportId: string;
+    lostReportCode: string;
+    foundItemCode: string;
+  } | null>;
   /** The owner will pick the item up: Bienestar sees it in pending pickups. */
   markWillPickUp: (matchId: string) => Promise<void>;
 
