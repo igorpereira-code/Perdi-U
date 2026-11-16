@@ -5926,7 +5926,7 @@
     "testId": 137
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b26cefe76de4cc832ed738b1c60329a0135592bb",
     "commitName": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
     "commitTimestamp": 1794491189261,
     "testId": 138
@@ -6112,5 +6112,11 @@
     "commitName": "feat(welfare): conectar registro de objetos sin reporte",
     "commitTimestamp": 1794796684987,
     "testId": 155
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar formulario de registro directo",
+    "commitTimestamp": 1794797060431,
+    "testId": 156
   }
 ]

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
-import { Archive, FileSearch, HandCoins, Inbox, PackageCheck, Search } from 'lucide-react';
+import { Archive, FileSearch, HandCoins, Inbox, PackageCheck, PackagePlus, Search } from 'lucide-react';
 import type {
   WelfareFoundItemView,
   WelfareLostReportView,
@@ -23,13 +23,14 @@ import { Thumb } from '../../core/presenter/Thumb';
 import type { MatchesService } from '../../matching/data/matchesService';
 import type { MatchView } from '@shared/matching';
 import { PublishButton } from '../../matching/presenter/PublishButton';
+import { FoundItemForm } from '../../finder/presenter/FoundItemForm';
 
 type WelfarePageProps = {
   welfareService: WelfareService;
   matchesService: MatchesService;
 };
 
-type WelfareSection = 'reports' | 'requests' | 'custody' | 'pickups' | 'delivery';
+type WelfareSection = 'reports' | 'requests' | 'register' | 'custody' | 'pickups' | 'delivery';
 
 function formatDate(value: string): string {
   const [year, month, day] = value.slice(0, 10).split('-');
@@ -375,6 +376,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       icon: Inbox,
       count: pendingItems?.length,
     },
+    { id: 'register', label: 'Registrar objeto', icon: PackagePlus },
     { id: 'custody', label: 'Objetos en custodia', icon: Archive },
     {
       id: 'pickups',
@@ -878,6 +880,31 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
               ))}
             </div>
           )}
+        </section>
+
+        <section className={activeSection === 'register' ? '' : 'hidden'}>
+          {activeSection === 'register' && (catalogs ? (
+            <FoundItemForm
+              catalogs={catalogs}
+              onCreate={welfareService.registerFoundItem}
+              title="Registrar objeto"
+              submitLabel="Registrar objeto"
+              submittingLabel="Registrando objeto…"
+              renderConfirmation={(code) => (
+                <section className="mx-auto max-w-lg space-y-4">
+                  <h2 className="text-lg font-semibold text-blue-700">Objeto registrado</h2>
+                  <p role="status" className="rounded-xl border border-blue-200 bg-blue-50 p-4 text-blue-700">
+                    Código del objeto <strong className="block text-2xl">{code}</strong>
+                  </p>
+                  <p className="text-sm text-neutral-700">
+                    El objeto quedó en custodia y está listo para publicarse.
+                  </p>
+                </section>
+              )}
+            />
+          ) : (
+            <SkeletonList label="Cargando formulario" rows={4} />
+          ))}
         </section>
 
         <section className={activeSection === 'delivery' ? '' : 'hidden'}>
