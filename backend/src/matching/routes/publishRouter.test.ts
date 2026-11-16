@@ -6,6 +6,7 @@ import {
   type FakeItem,
   type FakeReport,
 } from '../data/fakeMatchingRepository';
+import { fakeSettingsRepository } from '../../core/data/fakeSettingsRepository';
 
 const keys: FakeItem = {
   id: 'item-4',
@@ -34,7 +35,9 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('no publica un objeto que Bienestar todavía no recibió', async () => {
     const { repository } = fakeMatchingRepository([], [{ ...keys, status: 'PENDING_DROP_OFF' }]);
 
-    const res = await request(createApp({ matching: repository }))
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    )
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
@@ -45,9 +48,9 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('solo deja publicar a Bienestar', async () => {
     const { repository } = fakeMatchingRepository([], [keys]);
 
-    const res = await request(createApp({ matching: repository })).post(
-      '/found-items/HZ-0004/publish',
-    );
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    ).post('/found-items/HZ-0004/publish');
 
     expect(res.status).toBe(403);
   });
@@ -55,7 +58,9 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('publica un objeto recibido para que la comunidad lo vea', async () => {
     const { repository, items } = fakeMatchingRepository([], [keys]);
 
-    const res = await request(createApp({ matching: repository }))
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    )
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
@@ -72,7 +77,9 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
     ];
     const { repository } = fakeMatchingRepository(reports, [keys]);
 
-    const res = await request(createApp({ matching: repository }))
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    )
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
@@ -82,7 +89,7 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('deja el objeto como posible coincidencia en los reportes parecidos', async () => {
     const { repository, matches } = fakeMatchingRepository([lostKeys], [keys]);
 
-    await request(createApp({ matching: repository }))
+    await request(createApp({ matching: repository, settings: fakeSettingsRepository() }))
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
@@ -93,5 +100,46 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
         foundItem: expect.objectContaining({ code: 'HZ-0004' }),
       }),
     ]);
+  });
+});
+
+describe('Al publicar, las nuevas coincidencias respetan el nivel mínimo', () => {
+  it('con un nivel de 60 no cuenta el reporte que se parece poco', async () => {
+    const almostKeys = {
+      ...lostKeys,
+      id: 'report-almost',
+      code: 'PR-0011',
+      placeIds: [9],
+      description: 'Perdí unas llaves',
+    };
+    const { repository, matches } = fakeMatchingRepository([lostKeys, almostKeys], [keys]);
+    const settings = fakeSettingsRepository();
+    await settings.updateMatchSettings({ minSimilarity: 60 });
+
+    const res = await request(createApp({ matching: repository, settings }))
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1 });
+    expect(matches.map((match) => match.lostReportId)).toEqual(['report-3']);
+  });
+
+  it('con el nivel de siempre (40) también cuenta el reporte que se parece poco', async () => {
+    const almostKeys = {
+      ...lostKeys,
+      id: 'report-almost',
+      code: 'PR-0011',
+      placeIds: [9],
+      description: 'Perdí unas llaves',
+    };
+    const { repository } = fakeMatchingRepository([lostKeys, almostKeys], [keys]);
+
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    )
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 2 });
   });
 });

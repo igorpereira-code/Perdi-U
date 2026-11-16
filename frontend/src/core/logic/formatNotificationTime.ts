@@ -16,6 +16,14 @@ const dateFormat = new Intl.DateTimeFormat('es-BO', {
   timeZone: TIME_ZONE,
 });
 
+function isSameCalendarDay(firstDate: Date, secondDate: Date): boolean {
+  return calendarDayFormat.format(firstDate) === calendarDayFormat.format(secondDate);
+}
+
+function isYesterday(date: Date, now: Date): boolean {
+  return isSameCalendarDay(date, new Date(now.getTime() - ONE_DAY_IN_MS));
+}
+
 /** When a notification happened, in words: "Hace 5 min", "Hace 3 h", "Ayer" or its date. */
 export function formatNotificationTime(createdAt: string, now: Date = new Date()): string {
   const notificationDate = new Date(createdAt);
@@ -27,13 +35,10 @@ export function formatNotificationTime(createdAt: string, now: Date = new Date()
   if (elapsedMs < ONE_HOUR_IN_MS) {
     return `Hace ${Math.floor(elapsedMs / ONE_MINUTE_IN_MS)} min`;
   }
-  if (calendarDayFormat.format(notificationDate) === calendarDayFormat.format(now)) {
+  if (isSameCalendarDay(notificationDate, now)) {
     return `Hace ${Math.floor(elapsedMs / ONE_HOUR_IN_MS)} h`;
   }
-  if (
-    calendarDayFormat.format(notificationDate) ===
-    calendarDayFormat.format(new Date(now.getTime() - ONE_DAY_IN_MS))
-  ) {
+  if (isYesterday(notificationDate, now)) {
     return 'Ayer';
   }
   return dateFormat.format(notificationDate);

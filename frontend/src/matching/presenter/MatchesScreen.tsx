@@ -1,44 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SearchX } from 'lucide-react';
-import type { MatchView } from '@shared/matching';
-import { Alert } from '../../core/presenter/Alert';
-import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
+import { LoadErrorAlert } from '../../core/presenter/LoadErrorAlert';
 import { SkeletonArea, SkeletonCard } from '../../core/presenter/Skeleton';
+import { useLoadedData } from '../../core/presenter/useLoadedData';
 import type { MatchesService } from '../data/matchesService';
 import { MatchesPage, type PendingAnswer } from './MatchesPage';
 
 /** Loads the matches of the report in the address (/mis-reportes/:code/coincidencias) and shows them. */
 export function MatchesScreen({ matchesService }: { matchesService: MatchesService }) {
   const { code = '' } = useParams();
+  const loadMatches = useCallback(() => matchesService.getMatches(code), [matchesService, code]);
   // undefined = still loading; null = the report does not exist or is not the user's.
-  const [matches, setMatches] = useState<MatchView[] | null | undefined>(undefined);
-  const [hasFailed, setHasFailed] = useState(false);
-  const [loadAttempt, setLoadAttempt] = useState(0);
+  const { data: matches, setData: setMatches, hasFailed, retry } = useLoadedData(loadMatches);
   const [pendingAnswer, setPendingAnswer] = useState<PendingAnswer | null>(null);
   const [failedMatchId, setFailedMatchId] = useState<string | null>(null);
-
-  useEffect(() => {
-    let isActive = true;
-    setMatches(undefined);
-    setHasFailed(false);
-    matchesService
-      .getMatches(code)
-      .then((loadedMatches) => {
-        if (isActive) {
-          setMatches(loadedMatches);
-        }
-      })
-      .catch(() => {
-        if (isActive) {
-          setHasFailed(true);
-        }
-      });
-    return () => {
-      isActive = false;
-    };
-  }, [matchesService, code, loadAttempt]);
 
   async function saveAnswer(answer: PendingAnswer, onSaved: () => void) {
     setPendingAnswer(answer);
@@ -73,12 +50,10 @@ export function MatchesScreen({ matchesService }: { matchesService: MatchesServi
 
   if (hasFailed) {
     return (
-      <div className="space-y-3">
-        <div role="alert">
-          <Alert>No se pudieron cargar los objetos parecidos. Intenta nuevamente.</Alert>
-        </div>
-        <Button onClick={() => setLoadAttempt((value) => value + 1)}>Reintentar</Button>
-      </div>
+      <LoadErrorAlert
+        message="No se pudieron cargar los objetos parecidos. Intenta nuevamente."
+        onRetry={retry}
+      />
     );
   }
   if (matches === undefined) {

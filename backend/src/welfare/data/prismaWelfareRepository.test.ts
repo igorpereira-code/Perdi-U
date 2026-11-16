@@ -16,7 +16,11 @@ it('registra un aviso para el hallador al recibir su objeto', async () => {
     $transaction: jest.fn((operation) => operation(transaction)),
   } as unknown as ReturnType<typeof db>);
 
-  const received = await prismaWelfareRepository.receivePending('item-1', 'welfare-1', new Date());
+  const received = await prismaWelfareRepository.confirmPendingReception(
+    'item-1',
+    'welfare-1',
+    new Date(),
+  );
 
   expect(received).toBe(true);
   expect(transaction.notification.create).toHaveBeenCalledWith({
@@ -37,15 +41,19 @@ it('excluye los reportes cancelados de la lista y la búsqueda de Bienestar', as
   jest.mocked(db).mockReturnValue({ foundItem } as unknown as ReturnType<typeof db>);
 
   await expect(prismaWelfareRepository.listPending()).resolves.toEqual([]);
-  expect(foundItem.findMany).toHaveBeenCalledWith(expect.objectContaining({
-    where: { status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
-  }));
+  expect(foundItem.findMany).toHaveBeenCalledWith(
+    expect.objectContaining({
+      where: { status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
+    }),
+  );
 
-  await expect(prismaWelfareRepository.findByCode('HZ-0005')).resolves.toBeNull();
-  expect(foundItem.findFirst).toHaveBeenCalledWith(expect.objectContaining({
-    where: {
-      code: 'HZ-0005',
-      OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }],
-    },
-  }));
+  await expect(prismaWelfareRepository.findFoundItemByCode('HZ-0005')).resolves.toBeNull();
+  expect(foundItem.findFirst).toHaveBeenCalledWith(
+    expect.objectContaining({
+      where: {
+        code: 'HZ-0005',
+        OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }],
+      },
+    }),
+  );
 });

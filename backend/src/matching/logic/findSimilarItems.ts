@@ -6,15 +6,14 @@ import {
 
 export type SimilarItem<T> = { item: T; similarity: number };
 
-/** Below this, an item is not shown as similar. */
-export const MIN_SIMILARITY = 40;
-
+/** The items at least as similar as minSimilarity (from 0 to 100) to the report, most similar first. */
 export function findSimilarItems<T extends FoundItemForMatching>(
   report: LostReportForMatching,
   items: T[],
+  minSimilarity: number,
 ): SimilarItem<T>[] {
   return items
     .map((item) => ({ item, similarity: calculateSimilarityScore(report, item) }))
-    .filter((match) => match.similarity >= MIN_SIMILARITY)
+    .filter((match) => match.similarity >= minSimilarity)
     .sort((a, b) => b.similarity - a.similarity);
 }

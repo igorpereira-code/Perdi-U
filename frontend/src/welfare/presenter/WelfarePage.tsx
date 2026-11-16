@@ -41,22 +41,22 @@ function SectionHeader({ title, subtitle }: { title: string; subtitle: string })
 export function WelfarePage({ welfareService, matchesService }: WelfarePageProps) {
   const [activeSection, setActiveSection] = useState<WelfareSection>('reports');
   const [lostReports, setLostReports] = useState<WelfareLostReportView[] | null>(null);
-  const [lostReportsError, setLostReportsError] = useState(false);
+  const [hasLostReportsError, setHasLostReportsError] = useState(false);
   const [lostReportCode, setLostReportCode] = useState('');
   const [selectedLostReport, setSelectedLostReport] = useState<WelfareLostReportView | null>(null);
   const [lostReportMessage, setLostReportMessage] = useState<string | null>(null);
   const [lostReportMatches, setLostReportMatches] = useState<MatchView[] | null>(null);
   const [pendingPickups, setPendingPickups] = useState<WelfarePendingPickupView[] | null>(null);
-  const [pendingPickupsError, setPendingPickupsError] = useState(false);
-  const [items, setItems] = useState<WelfareFoundItemView[] | null>(null);
+  const [hasPendingPickupsError, setHasPendingPickupsError] = useState(false);
+  const [pendingItems, setPendingItems] = useState<WelfareFoundItemView[] | null>(null);
   const [inOfficeItems, setInOfficeItems] = useState<WelfareFoundItemView[] | null>(null);
   const [publishedCodes, setPublishedCodes] = useState<Set<string>>(new Set());
-  const [selected, setSelected] = useState<WelfareFoundItemView | null>(null);
-  const [code, setCode] = useState('');
-  const [message, setMessage] = useState<string | null>(null);
-  const [receiving, setReceiving] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<WelfareFoundItemView | null>(null);
+  const [searchedItemCode, setSearchedItemCode] = useState('');
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
+  const [isReceiving, setIsReceiving] = useState(false);
   const [deliveryDraft, setDeliveryDraft] = useState<DeliveryInput | null>(null);
-  const [delivering, setDelivering] = useState(false);
+  const [isDelivering, setIsDelivering] = useState(false);
 
   useEffect(() => {
     welfareService
@@ -64,7 +64,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       .then(setLostReports)
       .catch(() => {
         setLostReports([]);
-        setLostReportsError(true);
+        setHasLostReportsError(true);
       });
   }, [welfareService]);
 
@@ -87,9 +87,9 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     event.preventDefault();
     setLostReportMessage(null);
     try {
-      const result = await welfareService.findLostReportByCode(lostReportCode);
-      if (result.status === 'FOUND') {
-        await showLostReport(result.report);
+      const searchResult = await welfareService.findLostReportByCode(lostReportCode);
+      if (searchResult.status === 'FOUND') {
+        await showLostReport(searchResult.report);
         return;
       }
       setSelectedLostReport(null);
@@ -130,38 +130,38 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
 
   async function confirmDelivery(event: FormEvent) {
     event.preventDefault();
-    if (!deliveryDraft || delivering) {
+    if (!deliveryDraft || isDelivering) {
       return;
     }
-    setDelivering(true);
-    setMessage(null);
+    setIsDelivering(true);
+    setFeedbackMessage(null);
     try {
-      const result = await welfareService.deliver(deliveryDraft);
-      if (result.status !== 'DELIVERED') {
-        setMessage(
-          result.status === 'REPORT_NOT_ELIGIBLE'
+      const deliveryResult = await welfareService.deliver(deliveryDraft);
+      if (deliveryResult.status !== 'DELIVERED') {
+        setFeedbackMessage(
+          deliveryResult.status === 'REPORT_NOT_ELIGIBLE'
             ? 'El reporte no corresponde a este objeto o propietario'
-            : result.status === 'ITEM_NOT_AVAILABLE'
+            : deliveryResult.status === 'ITEM_NOT_AVAILABLE'
               ? 'El objeto ya no está disponible para entrega'
-              : result.status === 'INVALID_RECIPIENT_EMAIL'
+              : deliveryResult.status === 'INVALID_RECIPIENT_EMAIL'
                 ? 'Ingresa un correo institucional válido'
                 : 'Completa todos los datos obligatorios',
         );
         return;
       }
       setPendingPickups((current) =>
-        current?.filter((pickup) => pickup.foundItem.code !== result.foundItemCode) ?? [],
+        current?.filter((pickup) => pickup.foundItem.code !== deliveryResult.foundItemCode) ?? [],
       );
       setInOfficeItems((current) =>
-        current?.filter((item) => item.code !== result.foundItemCode) ?? [],
+        current?.filter((item) => item.code !== deliveryResult.foundItemCode) ?? [],
       );
       setDeliveryDraft(null);
       setActiveSection('custody');
-      setMessage('Entrega registrada correctamente');
+      setFeedbackMessage('Entrega registrada correctamente');
     } catch {
-      setMessage('No pudimos registrar la entrega');
+      setFeedbackMessage('No pudimos registrar la entrega');
     } finally {
-      setDelivering(false);
+      setIsDelivering(false);
     }
   }
 
@@ -171,17 +171,17 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       .then(setPendingPickups)
       .catch(() => {
         setPendingPickups([]);
-        setPendingPickupsError(true);
+        setHasPendingPickupsError(true);
       });
   }, [welfareService]);
 
   useEffect(() => {
     welfareService
       .listPending()
-      .then(setItems)
+      .then(setPendingItems)
       .catch(() => {
-        setItems([]);
-        setMessage('No pudimos cargar los objetos pendientes');
+        setPendingItems([]);
+        setFeedbackMessage('No pudimos cargar los objetos pendientes');
       });
   }, [welfareService]);
 
@@ -200,46 +200,48 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       .catch(() => setInOfficeItems((current) => current ?? []));
   }, [welfareService]);
 
-  async function search(event: FormEvent) {
+  async function searchFoundItem(event: FormEvent) {
     event.preventDefault();
-    setMessage(null);
+    setFeedbackMessage(null);
     try {
-      const result = await welfareService.findByCode(code);
-      if (result.status === 'FOUND') {
-        setSelected(result.item);
+      const searchResult = await welfareService.findFoundItemByCode(searchedItemCode);
+      if (searchResult.status === 'FOUND') {
+        setSelectedItem(searchResult.item);
         return;
       }
-      setSelected(null);
-      setMessage(
-        result.status === 'NOT_FOUND'
+      setSelectedItem(null);
+      setFeedbackMessage(
+        searchResult.status === 'NOT_FOUND'
           ? 'No encontramos un objeto con ese código'
           : 'Este objeto ya fue recibido',
       );
     } catch {
-      setMessage('No pudimos buscar el objeto');
+      setFeedbackMessage('No pudimos buscar el objeto');
     }
   }
 
-  async function receive() {
-    if (!selected || receiving) {
+  async function confirmReception() {
+    if (!selectedItem || isReceiving) {
       return;
     }
-    setReceiving(true);
-    setMessage(null);
+    setIsReceiving(true);
+    setFeedbackMessage(null);
     try {
-      const result = await welfareService.receive(selected.code);
-      if (result.status !== 'FOUND') {
-        setMessage('Este objeto ya fue recibido');
+      const receptionResult = await welfareService.confirmReception(selectedItem.code);
+      if (receptionResult.status !== 'FOUND') {
+        setFeedbackMessage('Este objeto ya fue recibido');
         return;
       }
-      setItems((current) => current?.filter((item) => item.code !== selected.code) ?? []);
-      setInOfficeItems((current) => [...(current ?? []), result.item]);
-      setSelected(null);
-      setMessage('Objeto recibido y puesto en custodia');
+      setPendingItems((current) =>
+        current?.filter((item) => item.code !== selectedItem.code) ?? [],
+      );
+      setInOfficeItems((current) => [...(current ?? []), receptionResult.item]);
+      setSelectedItem(null);
+      setFeedbackMessage('Objeto recibido y puesto en custodia');
     } catch {
-      setMessage('No pudimos confirmar la recepción');
+      setFeedbackMessage('No pudimos confirmar la recepción');
     } finally {
-      setReceiving(false);
+      setIsReceiving(false);
     }
   }
 
@@ -250,7 +252,12 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
     count?: number;
   }> = [
     { id: 'reports', label: 'Reportes de pérdida', icon: FileSearch, count: lostReports?.length },
-    { id: 'requests', label: 'Solicitudes de hallazgo', icon: Inbox, count: items?.length },
+    {
+      id: 'requests',
+      label: 'Solicitudes de hallazgo',
+      icon: Inbox,
+      count: pendingItems?.length,
+    },
     { id: 'custody', label: 'Objetos en custodia', icon: Archive },
     {
       id: 'pickups',
@@ -307,7 +314,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
       </aside>
 
       <main className="min-w-0 flex-1">
-        {message && <div className="mb-4"><Alert>{message}</Alert></div>}
+        {feedbackMessage && <div className="mb-4"><Alert>{feedbackMessage}</Alert></div>}
 
         <section className={activeSection === 'reports' ? '' : 'hidden'}>
           <SectionHeader
@@ -333,7 +340,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
 
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
             <div className="space-y-2">
-              {lostReportsError ? (
+              {hasLostReportsError ? (
                 <Alert>No pudimos cargar los reportes de pérdida</Alert>
               ) : lostReports === null ? (
                 <p>Cargando reportes de pérdida...</p>
@@ -445,7 +452,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             title="Solicitudes de hallazgo"
             subtitle="Reportes privados esperando que el hallador traiga el objeto."
           />
-          <form onSubmit={search} className="relative mb-4">
+          <form onSubmit={searchFoundItem} className="relative mb-4">
             <Search
               className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-neutral-500"
               aria-hidden="true"
@@ -454,8 +461,8 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             <input
               id="found-item-code"
               className={`${INPUT_CLASSES} pl-9 font-mono uppercase placeholder:font-sans placeholder:normal-case`}
-              value={code}
-              onChange={(event) => setCode(event.target.value)}
+              value={searchedItemCode}
+              onChange={(event) => setSearchedItemCode(event.target.value)}
               placeholder="Buscar por ID, ej. HZ-0007"
             />
             <button type="submit" className="sr-only">Buscar</button>
@@ -464,18 +471,18 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
             <div className="space-y-2">
               <h2 className="sr-only">Objetos pendientes de recepción</h2>
-              {items === null ? (
+              {pendingItems === null ? (
                 <p>Cargando objetos pendientes...</p>
-              ) : items.length === 0 ? (
+              ) : pendingItems.length === 0 ? (
                 <EmptyState title="No hay objetos pendientes" text="No quedan objetos por recibir en la oficina." />
               ) : (
-                items.map((item) => (
+                pendingItems.map((item) => (
                   <article key={item.code}>
                     <button
                       type="button"
-                      onClick={() => setSelected(item)}
+                      onClick={() => setSelectedItem(item)}
                       className={`flex w-full items-center gap-3 rounded-2xl border bg-neutral-0 p-3 text-left ${
-                        selected?.code === item.code
+                        selectedItem?.code === item.code
                           ? 'border-blue-300 ring-2 ring-blue-300/20'
                           : 'border-neutral-200'
                       }`}
@@ -494,26 +501,33 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             </div>
 
             <div className="lg:sticky lg:top-24 lg:self-start">
-              {selected ? (
+              {selectedItem ? (
                 <section className="space-y-4 rounded-2xl border border-neutral-200 bg-neutral-0 p-5">
                   <div className="flex items-center justify-between gap-3">
-                    <h2 className="font-mono text-2xl font-bold text-blue-700">{selected.code}</h2>
-                    <StatusChip status={selected.status} />
+                    <h2 className="font-mono text-2xl font-bold text-blue-700">{selectedItem.code}</h2>
+                    <StatusChip status={selectedItem.status} />
                   </div>
-                  <Thumb category={selected.category} photoUrl={selected.photoUrl} />
+                  <Thumb category={selectedItem.category} photoUrl={selectedItem.photoUrl} />
                   <dl>
-                    <InfoRow label="Descripción" value={selected.description} />
-                    <InfoRow label="Categoría" value={selected.category} />
-                    <InfoRow label="Lugar" value={selected.place} />
-                    {selected.classroom && <InfoRow label="Aula" value={selected.classroom} />}
-                    {selected.finder && (
+                    <InfoRow label="Descripción" value={selectedItem.description} />
+                    <InfoRow label="Categoría" value={selectedItem.category} />
+                    <InfoRow label="Lugar" value={selectedItem.place} />
+                    {selectedItem.classroom && (
+                      <InfoRow label="Aula" value={selectedItem.classroom} />
+                    )}
+                    {selectedItem.finder && (
                       <>
-                        <InfoRow label="Hallador" value={selected.finder.name} />
-                        <InfoRow label="Correo" value={selected.finder.email} />
+                        <InfoRow label="Hallador" value={selectedItem.finder.name} />
+                        <InfoRow label="Correo" value={selectedItem.finder.email} />
                       </>
                     )}
                   </dl>
-                  <Button onClick={receive} disabled={receiving} className="w-full">
+                  <Button
+                    onClick={confirmReception}
+                    isLoading={isReceiving}
+                    loadingText="Confirmando recepción…"
+                    className="w-full"
+                  >
                     <PackageCheck className="h-4 w-4" aria-hidden="true" />
                     Confirmar recepción
                   </Button>
@@ -578,7 +592,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
             title="Recojos pendientes"
             subtitle="Personas que avisaron que pasarán a recoger un objeto."
           />
-          {pendingPickupsError ? (
+          {hasPendingPickupsError ? (
             <Alert>No pudimos cargar los recojos pendientes</Alert>
           ) : pendingPickups === null ? (
             <p>Cargando recojos pendientes...</p>
@@ -668,7 +682,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
                 Al confirmar, el objeto pasará a <b>Entregado</b>, dejará de verse en el
                 catálogo y el reporte vinculado quedará como <b>Recuperado</b>.
               </div>
-              <Button type="submit" disabled={delivering}>
+              <Button type="submit" disabled={isDelivering}>
                 <PackageCheck className="h-4 w-4" aria-hidden="true" />
                 Confirmar entrega
               </Button>
