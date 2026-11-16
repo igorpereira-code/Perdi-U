@@ -4959,12 +4959,12 @@
     "conclusion": "failure"
   },
   {
-    "sha": "HEAD",
+    "sha": "d65d78b7b631fff9113112269852e9e75f470618",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T19:49:48.000Z",
       "message": "feat(welfare): mostrar esqueletos al cargar objetos parecidos",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/d65d78b7b631fff9113112269852e9e75f470618"
     },
     "stats": {
       "total": 21,
@@ -5296,6 +5296,25 @@
       "date": "2026-11-16"
     },
     "coverage": 84.88,
+    "test_count": 704,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-16T04:17:19.000Z",
+      "message": "feat(welfare): avisar recojos pendientes",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 73,
+      "additions": 65,
+      "deletions": 8,
+      "date": "2026-11-16"
+    },
+    "coverage": 84.85,
     "test_count": 704,
     "failed_tests": 0,
     "conclusion": "success"

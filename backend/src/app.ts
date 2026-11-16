@@ -76,7 +76,7 @@ export function createApp({
     res.json(getCurrentUser(req));
   });
   app.use(createGuideRouter(users));
-  app.use(createMatchesRouter(matching));
+  app.use(createMatchesRouter(matching, notifications));
   app.use(createPublishRouter(matching));
   app.use(createFoundItemsRouter(foundItems, foundItemPhotos, notifications));
   app.use(createReceivedItemsRouter(welfare, () => foundItems.getCatalogs(), foundItemPhotos));

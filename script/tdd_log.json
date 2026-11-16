@@ -6030,7 +6030,7 @@
     "testId": 146
   },
   {
-    "commitId": "HEAD",
+    "commitId": "d65d78b7b631fff9113112269852e9e75f470618",
     "commitName": "feat(welfare): mostrar esqueletos al cargar objetos parecidos",
     "commitTimestamp": 1794512996293,
     "testId": 146
@@ -6168,5 +6168,11 @@
     "commitName": "feat(welfare): gestionar publicaciones desde el panel",
     "commitTimestamp": 1794802017986,
     "testId": 163
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): avisar recojos pendientes",
+    "commitTimestamp": 1794802640389,
+    "testId": 164
   }
 ]
