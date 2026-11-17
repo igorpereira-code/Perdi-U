@@ -4862,6 +4862,12 @@
     "testId": 61
   },
   {
+    "commitId": "e76f2fa0f6333da4c3c82ecd3b8cdb39105a94ac",
+    "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
+    "commitTimestamp": 1792601341695,
+    "testId": 61
+  },
+  {
     "commitId": "3115ce1c12a59df6315d7a4fae2b8adc542b3c79",
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
@@ -4881,6 +4887,12 @@
   },
   {
     "commitId": "eb12025cd1372881cdb2ac08ba21c31f47c0c999",
+    "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+    "commitTimestamp": 1792613220007,
+    "testId": 62
+  },
+  {
+    "commitId": "064d4c4545b6a6c72d83ff36bc1bc0ad94a2ca5d",
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
     "testId": 62
@@ -7596,6 +7608,20 @@
     "testId": 167
   },
   {
+    "numPassedTests": 895,
+    "failedTests": 0,
+    "numTotalTests": 895,
+    "timestamp": 1794921632684,
+    "success": true,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): registra ejecucion de pruebas del merge",
+    "commitTimestamp": 1794922046236,
+    "testId": 168
+  },
+  {
     "numPassedTests": 899,
     "failedTests": 0,
     "numTotalTests": 899,
@@ -7622,5 +7648,11 @@
     "commitName": "chore(welfare): registra ejecucion de pruebas",
     "commitTimestamp": 1794923469842,
     "testId": 169
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): integra welfare en welfare-fotos",
+    "commitTimestamp": 1794923636148,
+    "testId": 170
   }
 ]
