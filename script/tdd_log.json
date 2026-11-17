@@ -6098,7 +6098,7 @@
     "testId": 146
   },
   {
-    "commitId": "HEAD",
+    "commitId": "dad3c6be49a885bffec026e46112c14cf60c1316",
     "commitName": "fix(admin): quitar el repositorio de prueba del router y reiniciar los mocks",
     "commitTimestamp": 1794521204950,
     "testId": 146
@@ -6634,5 +6634,27 @@
     "commitName": "feat(owner): avisar que hay una coincidencia con un objeto no visible",
     "commitTimestamp": 1794883927872,
     "testId": 167
+  },
+  {
+    "numPassedTests": 880,
+    "failedTests": 1,
+    "numTotalTests": 881,
+    "timestamp": 1794884016017,
+    "success": false,
+    "testId": 168
+  },
+  {
+    "numPassedTests": 881,
+    "failedTests": 0,
+    "numTotalTests": 881,
+    "timestamp": 1794884051362,
+    "success": true,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte en una coincidencia no visible",
+    "commitTimestamp": 1794884110138,
+    "testId": 168
   }
 ]

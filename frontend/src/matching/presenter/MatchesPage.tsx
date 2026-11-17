@@ -60,10 +60,13 @@ function MatchCard({
           <p className="text-xs font-semibold text-blue-700">{foundItem.code}</p>
         </div>
       </div>
-            {match.isHidden && (
-        <p className="rounded-xl bg-blue-50 p-2 text-sm font-medium text-blue-700">
-          Hay una coincidencia, acércate a Bienestar
-        </p>
+      {match.isHidden && (
+        <div className="space-y-2">
+          <p className="rounded-xl bg-blue-50 p-2 text-sm font-medium text-blue-700">
+            Hay una coincidencia, acércate a Bienestar
+          </p>
+          <p className="text-sm text-neutral-700">Código de tu reporte: {reportCode}</p>
+        </div>
       )}
       {match.status === 'WILL_PICK_UP' ? (
         <PickUpInstructions reportCode={reportCode} />

@@ -132,3 +132,17 @@ describe('Coincidencia con un objeto que no es visible', () => {
     ).not.toBeInTheDocument();
   });
 });
+
+describe('Código del reporte en una coincidencia con un objeto que no es visible', () => {
+  it('muestra el código de su reporte junto al mensaje', () => {
+    const hiddenMatch: MatchView = {
+      ...match('HZ-0004', 'Celular Samsung con funda azul y vidrio roto'),
+      isHidden: true,
+    };
+
+    renderPage([hiddenMatch], 'PR-0003');
+
+    expect(screen.getByText('Hay una coincidencia, acércate a Bienestar')).toBeInTheDocument();
+    expect(screen.getByText('Código de tu reporte: PR-0003')).toBeInTheDocument();
+  });
+});
