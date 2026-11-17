@@ -3800,12 +3800,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ef4205de087a84197c1d717548025c79fe89b00d",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-21T20:53:51.000Z",
       "message": "chore: integra los últimos cambios de main en core-matching",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ef4205de087a84197c1d717548025c79fe89b00d"
     },
     "stats": {
       "total": 8542,
@@ -4028,12 +4028,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c530dca55bb85cedba12b3e347be33496d5c4ef0",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-22T01:33:06.000Z",
       "message": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c530dca55bb85cedba12b3e347be33496d5c4ef0"
     },
     "stats": {
       "total": 19,
@@ -4085,12 +4085,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c530dca55bb85cedba12b3e347be33496d5c4ef0",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T21:43:57.000Z",
       "message": "feat: Pequeños cambios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c530dca55bb85cedba12b3e347be33496d5c4ef0"
     },
     "stats": {
       "total": 13,
@@ -7750,5 +7750,62 @@
     "test_count": 900,
     "failed_tests": 0,
     "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-17T14:09:07.000Z",
+      "message": "feat(welfare): iniciar directamente en bienestar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 18,
+      "additions": 14,
+      "deletions": 4,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.81,
+    "test_count": 900,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-17T14:21:46.000Z",
+      "message": "refactor(welfare): separar panel por funcionalidad",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 2049,
+      "additions": 877,
+      "deletions": 1172,
+      "date": "2026-11-17"
+    },
+    "coverage": 81.01,
+    "test_count": 900,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-17T14:24:49.000Z",
+      "message": "refactor(welfare): separar panel por funcionalidad",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 2057,
+      "additions": 888,
+      "deletions": 1169,
+      "date": "2026-11-17"
+    },
+    "coverage": 81.01,
+    "test_count": 900,
+    "failed_tests": 2,
+    "conclusion": "failure"
   }
 ]
