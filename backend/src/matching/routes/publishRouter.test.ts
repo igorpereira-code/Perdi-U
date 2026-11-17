@@ -196,6 +196,19 @@ describe('Al publicar, los dueños de reportes parecidos reciben un aviso', () =
     ]);
   });
 
+    it('el aviso lleva a las coincidencias de su reporte', async () => {
+    const { repository } = fakeMatchingRepository([lostKeys], [keys]);
+    const notifications = fakeNotificationsRepository();
+
+    await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository(), notifications }),
+    )
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(notifications.saved[0].link).toBe('/mis-reportes/PR-0003/coincidencias');
+  });
+
   it('no avisa a quien no tiene un reporte parecido ni a quien ya recuperó su objeto', async () => {
     const ana = SAMPLE_USERS.ana.id;
     const reports = [

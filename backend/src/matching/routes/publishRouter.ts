@@ -22,7 +22,8 @@ export function createPublishRouter(
       await matching.saveSuggestions(report.id, [{ foundItemId: item.id, similarity }]);
       await notifications.notify({
         userId: report.ownerId,
-        message: `Hay un objeto parecido a tu reporte ${report.code}`,
+                message: `Hay un objeto parecido a tu reporte ${report.code}`,
+        link: `/mis-reportes/${report.code}/coincidencias`,
       });
     }
     return similarReports.length;

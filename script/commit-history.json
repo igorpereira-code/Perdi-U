@@ -5035,12 +5035,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "274ce64bff0ec770e791378df0c000cf2d517f01",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T18:49:55.000Z",
       "message": "chore(welfare): actualizar final-test para resolver el PR",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/274ce64bff0ec770e791378df0c000cf2d517f01"
     },
     "stats": {
       "total": 910,
@@ -5468,6 +5468,25 @@
     },
     "coverage": 82,
     "test_count": 875,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T02:39:50.000Z",
+      "message": "feat(owner): abrir las coincidencias del reporte al tocar el aviso",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 15,
+      "deletions": 1,
+      "date": "2026-11-17"
+    },
+    "coverage": 82,
+    "test_count": 876,
     "failed_tests": 0,
     "conclusion": "success"
   }

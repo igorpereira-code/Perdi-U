@@ -6054,7 +6054,7 @@
     "testId": 143
   },
   {
-    "commitId": "HEAD",
+    "commitId": "274ce64bff0ec770e791378df0c000cf2d517f01",
     "commitName": "chore(welfare): actualizar final-test para resolver el PR",
     "commitTimestamp": 1794509396922,
     "testId": 143
@@ -6590,5 +6590,27 @@
     "commitName": "feat(owner): avisar al dueño cuando se publica un objeto parecido a su reporte",
     "commitTimestamp": 1794882995602,
     "testId": 165
+  },
+  {
+    "numPassedTests": 875,
+    "failedTests": 1,
+    "numTotalTests": 876,
+    "timestamp": 1794883110670,
+    "success": false,
+    "testId": 166
+  },
+  {
+    "numPassedTests": 876,
+    "failedTests": 0,
+    "numTotalTests": 876,
+    "timestamp": 1794883152614,
+    "success": true,
+    "testId": 166
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): abrir las coincidencias del reporte al tocar el aviso",
+    "commitTimestamp": 1794883191534,
+    "testId": 166
   }
 ]
