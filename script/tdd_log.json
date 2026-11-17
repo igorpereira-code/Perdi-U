@@ -6156,7 +6156,7 @@
     "testId": 149
   },
   {
-    "commitId": "HEAD",
+    "commitId": "9753e2b200ba99f08c594e4878d778339078bff5",
     "commitName": "feat(core): mostrar a los usuarios la ubicación y el horario guardados de Bienestar",
     "commitTimestamp": 1794524024380,
     "testId": 149
@@ -6700,5 +6700,35 @@
     "commitName": "feat(owner): mostrar carga al enviar el reporte de pérdida",
     "commitTimestamp": 1794922862615,
     "testId": 170
+  },
+  {
+    "numPassedTests": 884,
+    "failedTests": 0,
+    "numTotalTests": 884,
+    "timestamp": 1794923391376,
+    "success": true,
+    "testId": 171
+  },
+  {
+    "numPassedTests": 885,
+    "failedTests": 1,
+    "numTotalTests": 886,
+    "timestamp": 1794923455226,
+    "success": false,
+    "testId": 171
+  },
+  {
+    "numPassedTests": 886,
+    "failedTests": 0,
+    "numTotalTests": 886,
+    "timestamp": 1794923520813,
+    "success": true,
+    "testId": 171
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar esqueletos al cargar los objetos encontrados",
+    "commitTimestamp": 1794923652539,
+    "testId": 171
   }
 ]
