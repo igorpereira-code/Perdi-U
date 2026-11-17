@@ -6,11 +6,14 @@ import type { LostReportToMatch, MatchingRepository } from '../data/matchingRepo
 import { findSimilarItems } from '../logic/findSimilarItems';
 import type { NotificationsRepository } from '../../core/data/notificationsRepository';
 import type { SettingsRepository } from '../../core/data/settingsRepository';
+import type { FoundItemPhotoStorage } from '../../finder/data/foundItemPhotoStorage';
+import { signPhotoUrl } from '../../finder/data/signPhotoUrl';
 
 export function createMatchesRouter(
   matching: MatchingRepository,
   settings: SettingsRepository,
   notifications: NotificationsRepository,
+  photos: Pick<FoundItemPhotoStorage, 'createSignedUrl'>,
 ): Router {
   const router = Router();
 
@@ -32,6 +35,11 @@ export function createMatchesRouter(
     );
   }
 
+  async function showMatch(match: MatchView): Promise<MatchView> {
+    const photoUrl = await signPhotoUrl(photos, match.foundItem.photoUrl);
+    return { ...match, foundItem: { ...match.foundItem, photoUrl } };
+  }
+
   async function listMostSimilarFirst(report: LostReportToMatch): Promise<MatchView[]> {
     const matches = await matching.listMatches(report.id);
     return matches.sort((a, b) => b.similarity - a.similarity);
@@ -45,7 +53,7 @@ export function createMatchesRouter(
     }
 
     await suggestSimilarItems(report);
-    res.json(await listMostSimilarFirst(report));
+    res.json(await Promise.all((await listMostSimilarFirst(report)).map(showMatch)));
   });
 
   /** The owner answers a match ("Pasaré a recoger" or "No es mío"). Only the owner of the report can. */

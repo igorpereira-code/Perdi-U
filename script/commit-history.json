@@ -3629,12 +3629,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "e76f2fa0f6333da4c3c82ecd3b8cdb39105a94ac",
+    "sha": "2378b9b2b3a7f24aff1c516e551f1fb8715c4890",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T16:49:00.000Z",
       "message": "style(owner): mostrar las opciones del inicio como tarjetas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/e76f2fa0f6333da4c3c82ecd3b8cdb39105a94ac"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2378b9b2b3a7f24aff1c516e551f1fb8715c4890"
     },
     "stats": {
       "total": 36,
@@ -3654,6 +3654,25 @@
       "date": "2026-10-21T16:49:00.000Z",
       "message": "style(owner): mostrar las opciones del inicio como tarjetas",
       "url": "https://github.com/igorpereira-code/Perdi-U/commit/26020bd64e54bd9435edfa8acf9339376e0421c1"
+    },
+    "stats": {
+      "total": 36,
+      "additions": 23,
+      "deletions": 13,
+      "date": "2026-10-21"
+    },
+    "coverage": 90.04,
+    "test_count": 529,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "e76f2fa0f6333da4c3c82ecd3b8cdb39105a94ac",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-21T16:49:00.000Z",
+      "message": "style(owner): mostrar las opciones del inicio como tarjetas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/e76f2fa0f6333da4c3c82ecd3b8cdb39105a94ac"
     },
     "stats": {
       "total": 36,
@@ -3705,12 +3724,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c7de7826d803452a1c5cc5a332c0e25a29a0c309",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-21T20:06:58.000Z",
       "message": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c7de7826d803452a1c5cc5a332c0e25a29a0c309"
     },
     "stats": {
       "total": 80,
@@ -3730,6 +3749,25 @@
       "date": "2026-10-21T20:06:58.000Z",
       "message": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
       "url": "https://github.com/igorpereira-code/Perdi-U/commit/eb12025cd1372881cdb2ac08ba21c31f47c0c999"
+    },
+    "stats": {
+      "total": 80,
+      "additions": 62,
+      "deletions": 18,
+      "date": "2026-10-21"
+    },
+    "coverage": 90.06,
+    "test_count": 533,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "064d4c4545b6a6c72d83ff36bc1bc0ad94a2ca5d",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-21T20:06:58.000Z",
+      "message": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/064d4c4545b6a6c72d83ff36bc1bc0ad94a2ca5d"
     },
     "stats": {
       "total": 80,
@@ -7653,6 +7691,63 @@
     },
     "coverage": 80.77,
     "test_count": 895,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-17T13:45:18.000Z",
+      "message": "fix(welfare): mostrar las fotos con enlaces temporales",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 108,
+      "additions": 96,
+      "deletions": 12,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.78,
+    "test_count": 900,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-17T13:51:09.000Z",
+      "message": "chore(welfare): registra ejecucion de pruebas",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.85,
+    "test_count": 900,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-17T13:53:55.000Z",
+      "message": "chore(welfare): integra welfare en welfare-fotos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.85,
+    "test_count": 900,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -10,15 +10,16 @@ import { validateFoundItemReport } from '../../finder/logic/validateFoundItemRep
 import type { FoundItemPhotoStorage } from '../../finder/data/foundItemPhotoStorage';
 import { FoundItemRequestError } from '../../finder/logic/validateFoundItemPhoto';
 import { readFoundItemRequest } from '../../finder/routes/readFoundItemRequest';
+import { signPhotoUrl } from '../../finder/data/signPhotoUrl';
 
 function toFoundItemView(foundItem: WelfareFoundItem): WelfareFoundItemView {
   const { id: _id, receivedById: _receivedById, receivedAt: _receivedAt, ...view } = foundItem;
   return { ...view, foundAt: foundItem.foundAt.toISOString() };
 }
 
-function toLostReportView(
-  lostReport: Awaited<ReturnType<WelfareRepository['listActiveLostReports']>>[number],
-): WelfareLostReportView {
+type LostReportToShow = Awaited<ReturnType<WelfareRepository['listActiveLostReports']>>[number];
+
+function toLostReportView(lostReport: LostReportToShow): WelfareLostReportView {
   const { id: _id, ...view } = lostReport;
   return {
     ...view,
@@ -72,8 +73,18 @@ export function createReceivedItemsRouter(
 ): Router {
   const router = Router();
 
+  async function showFoundItem(foundItem: WelfareFoundItem): Promise<WelfareFoundItemView> {
+    const view = toFoundItemView(foundItem);
+    return { ...view, photoUrl: await signPhotoUrl(photos, view.photoUrl) };
+  }
+
+  async function showLostReport(lostReport: LostReportToShow): Promise<WelfareLostReportView> {
+    const view = toLostReportView(lostReport);
+    return { ...view, photoUrl: await signPhotoUrl(photos, view.photoUrl) };
+  }
+
   router.get('/welfare/lost-reports', requireRole('WELFARE'), async (_req, res) => {
-    res.json((await welfare.listActiveLostReports()).map(toLostReportView));
+    res.json(await Promise.all((await welfare.listActiveLostReports()).map(showLostReport)));
   });
 
   router.get('/welfare/lost-reports/:code', requireRole('WELFARE'), async (req, res) => {
@@ -82,7 +93,7 @@ export function createReceivedItemsRouter(
       res.status(404).json({ code: 'LOST_REPORT_NOT_FOUND' });
       return;
     }
-    res.json(toLostReportView(lostReport));
+    res.json(await showLostReport(lostReport));
   });
 
   router.get('/welfare/pending-pickups', requireRole('WELFARE'), async (_req, res) => {
@@ -124,11 +135,11 @@ export function createReceivedItemsRouter(
   });
 
   router.get('/welfare/found-items/pending', requireRole('WELFARE'), async (_req, res) => {
-    res.json((await welfare.listPending()).map(toFoundItemView));
+    res.json(await Promise.all((await welfare.listPending()).map(showFoundItem)));
   });
 
   router.get('/welfare/found-items/in-office', requireRole('WELFARE'), async (_req, res) => {
-    res.json((await welfare.listInOffice()).map(toFoundItemView));
+    res.json(await Promise.all((await welfare.listInOffice()).map(showFoundItem)));
   });
 
   router.post(
@@ -182,7 +193,7 @@ export function createReceivedItemsRouter(
       res.status(409).json({ code: 'ALREADY_RECEIVED' });
       return;
     }
-    res.json(toFoundItemView(foundItem));
+    res.json(await showFoundItem(foundItem));
   });
 
   router.delete('/welfare/found-items/:code', requireRole('WELFARE'), async (req, res) => {
@@ -243,7 +254,7 @@ export function createReceivedItemsRouter(
       res.status(409).json({ code: 'ITEM_NOT_PUBLISHED' });
       return;
     }
-    res.json(toFoundItemView(updatedItem));
+    res.json(await showFoundItem(updatedItem));
   });
 
   router.post('/welfare/found-items/:code/receive', requireRole('WELFARE'), async (req, res) => {
@@ -269,7 +280,7 @@ export function createReceivedItemsRouter(
       res.status(409).json({ code: 'ALREADY_RECEIVED' });
       return;
     }
-    res.json(toFoundItemView(receivedItem));
+    res.json(await showFoundItem(receivedItem));
   });
 
   const handlePhotoBodyError: ErrorRequestHandler = (error, _req, res, next) => {
