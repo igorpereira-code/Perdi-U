@@ -4874,7 +4874,7 @@
     "testId": 62
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c7de7826d803452a1c5cc5a332c0e25a29a0c309",
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
     "testId": 62
@@ -7608,5 +7608,19 @@
     "commitName": "fix(welfare): mostrar las fotos con enlaces temporales",
     "commitTimestamp": 1794923118587,
     "testId": 168
+  },
+  {
+    "numPassedTests": 900,
+    "failedTests": 0,
+    "numTotalTests": 900,
+    "timestamp": 1794923417904,
+    "success": true,
+    "testId": 169
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): registra ejecucion de pruebas",
+    "commitTimestamp": 1794923469842,
+    "testId": 169
   }
 ]
