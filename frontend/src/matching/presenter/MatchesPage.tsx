@@ -41,6 +41,19 @@ type MatchCardProps = {
   hasFailed: boolean;
 };
 
+/** The owner only learns that there is a match: the item is not shown to the community. */
+function HiddenMatchCard({ reportCode }: { reportCode: string }) {
+  return (
+    <li className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-3">
+      <p className="rounded-xl bg-blue-50 p-2 text-sm font-medium text-blue-700">
+        Hay una coincidencia, acércate a Bienestar
+      </p>
+      <WelfareCard />
+      <p className="text-sm text-neutral-700">Código de tu reporte: {reportCode}</p>
+    </li>
+  );
+}
+
 function MatchCard({
   match,
   reportCode,
@@ -49,6 +62,9 @@ function MatchCard({
   pendingAction,
   hasFailed,
 }: MatchCardProps) {
+  if (match.isHidden) {
+    return <HiddenMatchCard reportCode={reportCode} />;
+  }
   const isSaving = pendingAction !== undefined;
   const { foundItem } = match;
   return (

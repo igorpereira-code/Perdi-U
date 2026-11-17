@@ -2,7 +2,11 @@ import type { MatchView } from '@shared/matching';
 import type { FoundItemForMatching, LostReportForMatching } from '../logic/similarity';
 import type { FoundItemStatus } from '@shared/statuses';
 
-export type LostReportToMatch = LostReportForMatching & { id: string; code: string };
+export type LostReportToMatch = LostReportForMatching & {
+  id: string;
+  code: string;
+  ownerId: string;
+};
 export type PublishedItem = FoundItemForMatching & { id: string };
 export type Suggestion = { foundItemId: string; similarity: number };
 export type FoundItemToPublish = PublishedItem & { code: string; status: FoundItemStatus };

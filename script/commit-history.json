@@ -5016,12 +5016,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f21691871198dd5402be2c1775dac8fb543f503e",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T18:42:24.000Z",
       "message": "feat(admin): crear, editar y desactivar categorías",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f21691871198dd5402be2c1775dac8fb543f503e"
     },
     "stats": {
       "total": 771,
@@ -5035,12 +5035,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "274ce64bff0ec770e791378df0c000cf2d517f01",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-12T18:49:55.000Z",
       "message": "chore(welfare): actualizar final-test para resolver el PR",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/274ce64bff0ec770e791378df0c000cf2d517f01"
     },
     "stats": {
       "total": 910,
@@ -5054,12 +5054,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "230f96928a61f8742e6e270e1cc3fd62a5ebaf4c",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T22:02:47.000Z",
       "message": "feat(admin): crear, editar y desactivar lugares y sus aulas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/230f96928a61f8742e6e270e1cc3fd62a5ebaf4c"
     },
     "stats": {
       "total": 1101,
@@ -5073,12 +5073,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "dad3c6be49a885bffec026e46112c14cf60c1316",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T22:06:44.000Z",
       "message": "fix(admin): quitar el repositorio de prueba del router y reiniciar los mocks",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/dad3c6be49a885bffec026e46112c14cf60c1316"
     },
     "stats": {
       "total": 5,
@@ -5092,12 +5092,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7f17b360074abe6608a7fd748c9613c6d58cd0ef",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T22:24:18.000Z",
       "message": "chore(admin): integra final-test en admin",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7f17b360074abe6608a7fd748c9613c6d58cd0ef"
     },
     "stats": {
       "total": 551,
@@ -5449,6 +5449,101 @@
     },
     "coverage": 81.99,
     "test_count": 873,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T02:36:34.000Z",
+      "message": "feat(owner): avisar al dueño cuando se publica un objeto parecido a su reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 119,
+      "additions": 109,
+      "deletions": 10,
+      "date": "2026-11-17"
+    },
+    "coverage": 82,
+    "test_count": 875,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T02:39:50.000Z",
+      "message": "feat(owner): abrir las coincidencias del reporte al tocar el aviso",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 16,
+      "additions": 15,
+      "deletions": 1,
+      "date": "2026-11-17"
+    },
+    "coverage": 82,
+    "test_count": 876,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T02:52:07.000Z",
+      "message": "feat(owner): avisar que hay una coincidencia con un objeto no visible",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 70,
+      "additions": 67,
+      "deletions": 3,
+      "date": "2026-11-17"
+    },
+    "coverage": 82,
+    "test_count": 880,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T02:55:09.000Z",
+      "message": "feat(owner): mostrar el código del reporte en una coincidencia no visible",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 25,
+      "additions": 21,
+      "deletions": 4,
+      "date": "2026-11-17"
+    },
+    "coverage": 82,
+    "test_count": 881,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T03:03:53.000Z",
+      "message": "feat(owner): ocultar la foto y los datos de una coincidencia no visible",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 97,
+      "additions": 85,
+      "deletions": 12,
+      "date": "2026-11-17"
+    },
+    "coverage": 82.06,
+    "test_count": 884,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -8,9 +8,10 @@ export type FakeItem = PublishedItem & {
   photoUrl: string | null;
   category: string;
   status?: FoundItemStatus;
+  visibility?: 'VISIBLE' | 'HIDDEN';
   publishedById?: string;
 };
-/** status is SEARCHING when not given. */
+
 export type FakeReport = LostReportToMatch & { ownerId: string; status?: LostReportStatus };
 
 /** In-memory matching repository for tests. It never touches the shared database. */
@@ -36,13 +37,14 @@ export function fakeMatchingRepository(initialReports: FakeReport[], initialItem
           (m) => m.lostReportId === lostReportId && m.foundItem.code === itemById(foundItemId).code,
         );
         if (!exists) {
-          const { code, description, photoUrl, category } = itemById(foundItemId);
+          const { code, description, photoUrl, category, visibility } = itemById(foundItemId);
           matches.push({
             id: `match-${matches.length + 1}`,
             lostReportId,
             status: 'SUGGESTED',
             similarity,
             foundItem: { code, description, photoUrl, category },
+            isHidden: visibility === 'HIDDEN',
           });
         }
       }

@@ -6040,7 +6040,7 @@
     "testId": 144
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f21691871198dd5402be2c1775dac8fb543f503e",
     "commitName": "feat(admin): crear, editar y desactivar categorías",
     "commitTimestamp": 1794508947528,
     "testId": 144
@@ -6054,7 +6054,7 @@
     "testId": 143
   },
   {
-    "commitId": "HEAD",
+    "commitId": "274ce64bff0ec770e791378df0c000cf2d517f01",
     "commitName": "chore(welfare): actualizar final-test para resolver el PR",
     "commitTimestamp": 1794509396922,
     "testId": 143
@@ -6084,7 +6084,7 @@
     "testId": 145
   },
   {
-    "commitId": "HEAD",
+    "commitId": "230f96928a61f8742e6e270e1cc3fd62a5ebaf4c",
     "commitName": "feat(admin): crear, editar y desactivar lugares y sus aulas",
     "commitTimestamp": 1794520968541,
     "testId": 145
@@ -6098,13 +6098,13 @@
     "testId": 146
   },
   {
-    "commitId": "HEAD",
+    "commitId": "dad3c6be49a885bffec026e46112c14cf60c1316",
     "commitName": "fix(admin): quitar el repositorio de prueba del router y reiniciar los mocks",
     "commitTimestamp": 1794521204950,
     "testId": 146
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7f17b360074abe6608a7fd748c9613c6d58cd0ef",
     "commitName": "chore(admin): integra final-test en admin",
     "commitTimestamp": 1794522258688,
     "testId": 147
@@ -6560,5 +6560,123 @@
     "commitName": "feat(owner): mostrar el código del reporte que debe llevar a Bienestar",
     "commitTimestamp": 1794774112445,
     "testId": 164
+  },
+  {
+    "numPassedTests": 873,
+    "failedTests": 0,
+    "numTotalTests": 873,
+    "timestamp": 1794881708896,
+    "success": true,
+    "testId": 165
+  },
+  {
+    "numPassedTests": 873,
+    "failedTests": 2,
+    "numTotalTests": 875,
+    "timestamp": 1794882447264,
+    "success": false,
+    "testId": 165
+  },
+  {
+    "numPassedTests": 875,
+    "failedTests": 0,
+    "numTotalTests": 875,
+    "timestamp": 1794882670273,
+    "success": true,
+    "testId": 165
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar al dueño cuando se publica un objeto parecido a su reporte",
+    "commitTimestamp": 1794882995602,
+    "testId": 165
+  },
+  {
+    "numPassedTests": 875,
+    "failedTests": 1,
+    "numTotalTests": 876,
+    "timestamp": 1794883110670,
+    "success": false,
+    "testId": 166
+  },
+  {
+    "numPassedTests": 876,
+    "failedTests": 0,
+    "numTotalTests": 876,
+    "timestamp": 1794883152614,
+    "success": true,
+    "testId": 166
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): abrir las coincidencias del reporte al tocar el aviso",
+    "commitTimestamp": 1794883191534,
+    "testId": 166
+  },
+  {
+    "numPassedTests": 877,
+    "failedTests": 3,
+    "numTotalTests": 880,
+    "timestamp": 1794883327738,
+    "success": false,
+    "testId": 167
+  },
+  {
+    "numPassedTests": 880,
+    "failedTests": 0,
+    "numTotalTests": 880,
+    "timestamp": 1794883883920,
+    "success": true,
+    "testId": 167
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar que hay una coincidencia con un objeto no visible",
+    "commitTimestamp": 1794883927872,
+    "testId": 167
+  },
+  {
+    "numPassedTests": 880,
+    "failedTests": 1,
+    "numTotalTests": 881,
+    "timestamp": 1794884016017,
+    "success": false,
+    "testId": 168
+  },
+  {
+    "numPassedTests": 881,
+    "failedTests": 0,
+    "numTotalTests": 881,
+    "timestamp": 1794884051362,
+    "success": true,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte en una coincidencia no visible",
+    "commitTimestamp": 1794884110138,
+    "testId": 168
+  },
+  {
+    "numPassedTests": 882,
+    "failedTests": 2,
+    "numTotalTests": 884,
+    "timestamp": 1794884222874,
+    "success": false,
+    "testId": 169
+  },
+  {
+    "numPassedTests": 884,
+    "failedTests": 0,
+    "numTotalTests": 884,
+    "timestamp": 1794884354656,
+    "success": true,
+    "testId": 169
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ocultar la foto y los datos de una coincidencia no visible",
+    "commitTimestamp": 1794884634689,
+    "testId": 169
   }
 ]

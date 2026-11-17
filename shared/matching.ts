@@ -9,8 +9,9 @@ export type MatchView = {
     code: string;
     description: string;
     photoUrl: string | null;
-    category: string;
+      category: string;
   };
+  isHidden?: boolean;
 };
 
 /** What Bienestar gets after trying to publish a found item. */
