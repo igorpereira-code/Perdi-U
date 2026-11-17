@@ -6104,7 +6104,7 @@
     "testId": 146
   },
   {
-    "commitId": "HEAD",
+    "commitId": "7f17b360074abe6608a7fd748c9613c6d58cd0ef",
     "commitName": "chore(admin): integra final-test en admin",
     "commitTimestamp": 1794522258688,
     "testId": 147
@@ -6656,5 +6656,27 @@
     "commitName": "feat(owner): mostrar el código del reporte en una coincidencia no visible",
     "commitTimestamp": 1794884110138,
     "testId": 168
+  },
+  {
+    "numPassedTests": 882,
+    "failedTests": 2,
+    "numTotalTests": 884,
+    "timestamp": 1794884222874,
+    "success": false,
+    "testId": 169
+  },
+  {
+    "numPassedTests": 884,
+    "failedTests": 0,
+    "numTotalTests": 884,
+    "timestamp": 1794884354656,
+    "success": true,
+    "testId": 169
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ocultar la foto y los datos de una coincidencia no visible",
+    "commitTimestamp": 1794884634689,
+    "testId": 169
   }
 ]

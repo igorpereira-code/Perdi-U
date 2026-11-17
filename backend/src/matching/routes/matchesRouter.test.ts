@@ -291,4 +291,36 @@ describe('Coincidencias con un objeto que no es visible', () => {
 
     expect(res.body.map((match: { isHidden: boolean }) => match.isHidden)).toEqual([false, false]);
   });
+
+  it('el dueño no recibe la foto ni los datos del objeto', async () => {
+    const { repository } = fakeMatchingRepository([anasReport], [hiddenPhone]);
+
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    ).get('/lost-reports/PR-0001/matches');
+
+    expect(res.body[0].foundItem).toEqual({
+      code: '',
+      description: '',
+      photoUrl: null,
+      category: '',
+    });
+  });
+
+  it('Bienestar sí recibe los datos del objeto', async () => {
+    const { repository } = fakeMatchingRepository([anasReport], [hiddenPhone]);
+
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    )
+      .get('/lost-reports/PR-0001/matches')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body[0].foundItem).toEqual({
+      code: 'HZ-0004',
+      description: 'Celular Samsung con funda azul y vidrio roto',
+      photoUrl: 'https://foto.com/celular.jpg',
+      category: 'Electrónicos',
+    });
+  });
 });

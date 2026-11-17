@@ -31,20 +31,34 @@ export function createMatchesRouter(
     );
   }
 
-  async function listMostSimilarFirst(report: LostReportToMatch): Promise<MatchView[]> {
+  /** Only Bienestar sees the photo and the data of an item that is not visible. */
+  function hideDataFromOwner(match: MatchView, user: CurrentUser): MatchView {
+    if (!match.isHidden || user.role === 'WELFARE') {
+      return match;
+    }
+    return { ...match, foundItem: { code: '', description: '', photoUrl: null, category: '' } };
+  }
+
+  async function listMostSimilarFirst(
+    report: LostReportToMatch,
+    user: CurrentUser,
+  ): Promise<MatchView[]> {
     const matches = await matching.listMatches(report.id);
-    return matches.sort((a, b) => b.similarity - a.similarity);
+    return matches
+      .sort((a, b) => b.similarity - a.similarity)
+      .map((match) => hideDataFromOwner(match, user));
   }
 
   router.get('/lost-reports/:code/matches', async (req, res) => {
-    const report = await findVisibleReport(getCurrentUser(req), req.params.code);
+    const user = getCurrentUser(req);
+    const report = await findVisibleReport(user, req.params.code);
     if (!report) {
       res.status(404).json({ error: 'Lost report not found' });
       return;
     }
 
     await suggestSimilarItems(report);
-    res.json(await listMostSimilarFirst(report));
+    res.json(await listMostSimilarFirst(report, user));
   });
 
   /** The owner answers a match ("Pasaré a recoger" or "No es mío"). Only the owner of the report can. */

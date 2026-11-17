@@ -5092,12 +5092,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "7f17b360074abe6608a7fd748c9613c6d58cd0ef",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T22:24:18.000Z",
       "message": "chore(admin): integra final-test en admin",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/7f17b360074abe6608a7fd748c9613c6d58cd0ef"
     },
     "stats": {
       "total": 551,
@@ -5525,6 +5525,25 @@
     },
     "coverage": 82,
     "test_count": 881,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T03:03:53.000Z",
+      "message": "feat(owner): ocultar la foto y los datos de una coincidencia no visible",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 97,
+      "additions": 85,
+      "deletions": 12,
+      "date": "2026-11-17"
+    },
+    "coverage": 82.06,
+    "test_count": 884,
     "failed_tests": 0,
     "conclusion": "success"
   }

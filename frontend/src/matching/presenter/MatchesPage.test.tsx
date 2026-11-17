@@ -146,3 +146,22 @@ describe('Código del reporte en una coincidencia con un objeto que no es visibl
     expect(screen.getByText('Código de tu reporte: PR-0003')).toBeInTheDocument();
   });
 });
+describe('Una coincidencia con un objeto que no es visible no muestra sus datos', () => {
+  it('no muestra la foto, la descripción, el código del objeto ni las respuestas', () => {
+    const hiddenMatch: MatchView = {
+      ...match(
+        'HZ-0004',
+        'Celular Samsung con funda azul y vidrio roto',
+        'https://foto.com/celular.jpg',
+      ),
+      isHidden: true,
+    };
+
+    renderPage([hiddenMatch], 'PR-0003');
+
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    expect(screen.queryByText(/vidrio roto/)).not.toBeInTheDocument();
+    expect(screen.queryByText('HZ-0004')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
+});
