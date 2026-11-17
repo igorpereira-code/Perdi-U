@@ -3629,12 +3629,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2378b9b2b3a7f24aff1c516e551f1fb8715c4890",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T16:49:00.000Z",
       "message": "style(owner): mostrar las opciones del inicio como tarjetas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2378b9b2b3a7f24aff1c516e551f1fb8715c4890"
     },
     "stats": {
       "total": 36,
@@ -7634,6 +7634,25 @@
     },
     "coverage": 80.7,
     "test_count": 895,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-17T13:45:18.000Z",
+      "message": "fix(welfare): mostrar las fotos con enlaces temporales",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 108,
+      "additions": 96,
+      "deletions": 12,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.78,
+    "test_count": 900,
     "failed_tests": 0,
     "conclusion": "success"
   }

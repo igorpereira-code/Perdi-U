@@ -506,6 +506,18 @@ describe('Recibir objetos encontrados en Bienestar', () => {
     expect(res.body).toEqual({ code: 'ITEM_NOT_PUBLISHED' });
   });
 
+  it('muestra la foto del objeto con un enlace temporal', async () => {
+    const { repository } = fakeWelfareRepository([{ ...pendingItem, photoUrl: 'finder-1/foto-5.jpg' }]);
+    const photos = photoStorage();
+    photos.createSignedUrl.mockResolvedValue('https://storage.test/foto-5');
+
+    const res = await request(createApp({ welfare: repository, foundItemPhotos: photos }))
+      .get('/welfare/found-items/pending')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body[0].photoUrl).toBe('https://storage.test/foto-5');
+  });
+
   it('lista los objetos que aun no fueron entregados', async () => {
     const { repository } = fakeWelfareRepository([pendingItem]);
     const res = await request(createApp({ welfare: repository }))
