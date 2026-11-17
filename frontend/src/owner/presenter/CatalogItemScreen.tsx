@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Alert } from '../../core/presenter/Alert';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { InfoRow } from '../../core/presenter/InfoRow';
+import { Skeleton, SkeletonArea } from '../../core/presenter/Skeleton';
 import { WelfareCard } from '../../core/presenter/WelfareCard';
 import type { FoundItemsService } from '../../finder/data/foundItemsService';
 import { formatReportDate } from '../../finder/logic/formatReportDate';
@@ -59,6 +60,35 @@ type ScreenState = { status: 'loading' } | { status: 'missing' } | { status: 'fa
 
 const BACK_LINK = 'inline-flex text-sm font-semibold text-blue-500';
 
+/** How many data rows are shown in gray while the item loads. */
+const SKELETON_ROWS = 4;
+
+/** The shape of the item detail while it loads: photo, description and data rows. */
+function CatalogItemSkeleton() {
+  return (
+    <SkeletonArea label="Cargando el objeto…">
+      <div className="mx-auto max-w-lg space-y-4">
+        <Skeleton className="h-4 w-32" />
+        <div className="flex gap-3">
+          <Skeleton className="h-16 w-16 shrink-0 rounded-xl" />
+          <div className="flex-1 space-y-2 py-1">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-2/3" />
+          </div>
+        </div>
+        <div className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+          {Array.from({ length: SKELETON_ROWS }, (_, rowIndex) => (
+            <div key={rowIndex} className="flex items-center justify-between gap-4">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-4 w-32" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </SkeletonArea>
+  );
+}
+
 /** Detail of a published found item. */
 export function CatalogItemScreen({ catalogService, foundItemsService, myLostReportsService, matchesService }: CatalogItemScreenProps) {
   const { code = '' } = useParams();
@@ -85,7 +115,7 @@ export function CatalogItemScreen({ catalogService, foundItemsService, myLostRep
   }, [catalogService, code]);
 
   if (state.status === 'loading') {
-    return <p role="status" className="text-sm text-neutral-500">Cargando el objeto…</p>;
+    return <CatalogItemSkeleton />;
   }
   if (state.status === 'failed') {
     return (

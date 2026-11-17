@@ -66,3 +66,14 @@ describe('Mostrar el código en Bienestar', () => {
     expect(screen.getByText('Bienestar Estudiantil – Bloque C')).toBeInTheDocument();
   });
 });
+
+describe('Carga del detalle de mi reporte', () => {
+  it('muestra los datos en gris mientras carga el reporte', () => {
+    renderDetail(jest.fn().mockReturnValue(new Promise(() => {})));
+
+    const loading = screen.getByRole('status');
+    expect(loading).toHaveAttribute('aria-busy', 'true');
+    expect(loading).toHaveTextContent('Cargando tu reporte…');
+    expect(loading.querySelectorAll('.animate-pulse').length).toBeGreaterThanOrEqual(3);
+  });
+});

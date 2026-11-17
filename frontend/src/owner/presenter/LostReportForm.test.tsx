@@ -185,3 +185,16 @@ describe('Foto de referencia', () => {
     expect(onCreate).toHaveBeenCalledWith(expect.any(Object), photo);
   });
 });
+
+describe('Carga al enviar el reporte de pérdida', () => {
+  it('muestra el botón de carga mientras se envía el reporte', async () => {
+    renderForm(jest.fn().mockReturnValue(new Promise(() => {})));
+    await fillRequiredFields();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+
+    const sendingButton = await screen.findByRole('button', { name: 'Enviando reporte…' });
+    expect(sendingButton).toHaveAttribute('aria-busy', 'true');
+    expect(sendingButton).toBeDisabled();
+  });
+});

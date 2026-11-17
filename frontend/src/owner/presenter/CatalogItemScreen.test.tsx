@@ -265,3 +265,14 @@ describe('Después de reclamar: el código que debe mostrar en Bienestar', () =>
     expect(await screen.findByText('Lleva el código de tu reporte PR-0002 para recogerlo.')).toBeInTheDocument();
   });
 });
+
+describe('Carga del detalle del objeto', () => {
+  it('muestra la foto y los datos en gris mientras carga el objeto', () => {
+    renderScreen(jest.fn().mockReturnValue(new Promise(() => {})));
+
+    const loading = screen.getByRole('status');
+    expect(loading).toHaveAttribute('aria-busy', 'true');
+    expect(loading).toHaveTextContent('Cargando el objeto…');
+    expect(loading.querySelectorAll('.animate-pulse').length).toBeGreaterThanOrEqual(3);
+  });
+});

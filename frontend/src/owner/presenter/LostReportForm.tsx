@@ -227,8 +227,13 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
           </div>
         </fieldset>
 
-        <Button type="submit" className="w-full">
-          {submitting ? 'Enviando…' : 'Enviar reporte'}
+        <Button
+          type="submit"
+          className="w-full"
+          isLoading={submitting}
+          loadingText="Enviando reporte…"
+        >
+          Enviar reporte
         </Button>
       </fieldset>
     </form>

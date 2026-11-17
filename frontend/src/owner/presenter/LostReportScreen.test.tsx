@@ -34,3 +34,14 @@ describe('Abrir el formulario de pérdida', () => {
     expect(getCatalogs).toHaveBeenCalledTimes(2);
   });
 });
+
+describe('Carga de las categorías y los lugares', () => {
+  it('muestra los campos en gris mientras carga las categorías y los lugares', () => {
+    renderScreen(jest.fn().mockReturnValue(new Promise(() => {})));
+
+    const loading = screen.getByRole('status');
+    expect(loading).toHaveAttribute('aria-busy', 'true');
+    expect(loading).toHaveTextContent('Cargando categorías y lugares…');
+    expect(loading.querySelectorAll('.animate-pulse').length).toBeGreaterThanOrEqual(3);
+  });
+});
