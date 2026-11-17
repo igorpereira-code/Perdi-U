@@ -5192,7 +5192,7 @@
     "testId": 72
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b5579a5fd3d0fc43fbc2b0666803a0ab3cfaff0a",
     "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
     "commitTimestamp": 1792632787536,
     "testId": 72
@@ -7734,5 +7734,11 @@
     "commitName": "chore(welfare): integra final-test en welfare",
     "commitTimestamp": 1794943661546,
     "testId": 175
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor: refactorización de primaWalfareRepository",
+    "commitTimestamp": 1794956803075,
+    "testId": 176
   }
 ]

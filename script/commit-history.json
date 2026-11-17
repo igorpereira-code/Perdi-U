@@ -4104,12 +4104,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b5579a5fd3d0fc43fbc2b0666803a0ab3cfaff0a",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-22T01:33:06.000Z",
       "message": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b5579a5fd3d0fc43fbc2b0666803a0ab3cfaff0a"
     },
     "stats": {
       "total": 19,
@@ -7972,6 +7972,25 @@
       "total": 63,
       "additions": 32,
       "deletions": 31,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.97,
+    "test_count": 900,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-17T23:06:41.000Z",
+      "message": "refactor: refactorización de primaWalfareRepository",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 2,
+      "deletions": 1,
       "date": "2026-11-17"
     },
     "coverage": 80.97,

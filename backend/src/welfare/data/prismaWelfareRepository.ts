@@ -205,7 +205,8 @@ export const prismaWelfareRepository = {
         await transaction.notification.create({
           data: {
             userId: foundItem.finderId,
-            message: 'Bienestar Estudiantil recibió el objeto de tu reporte ' + foundItem.code + '.',
+            message:
+              'Bienestar Estudiantil recibió el objeto de tu reporte ' + foundItem.code + '.',
             link: '/mis-reportes/encontrados/' + encodeURIComponent(foundItem.code),
           },
         });
