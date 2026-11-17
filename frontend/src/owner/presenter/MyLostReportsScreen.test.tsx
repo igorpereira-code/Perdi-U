@@ -63,3 +63,14 @@ describe('Abrir un reporte de la lista', () => {
     );
   });
 });
+
+describe('Carga de mis reportes de pérdida', () => {
+  it('muestra filas grises mientras carga mis reportes', () => {
+    renderList(jest.fn().mockReturnValue(new Promise(() => {})));
+
+    const loading = screen.getByRole('status');
+    expect(loading).toHaveAttribute('aria-busy', 'true');
+    expect(loading).toHaveTextContent('Cargando tus reportes…');
+    expect(loading.querySelectorAll('.animate-pulse').length).toBeGreaterThanOrEqual(3);
+  });
+});
