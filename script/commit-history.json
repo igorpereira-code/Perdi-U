@@ -5111,12 +5111,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2096ff436391f4decf0e5c9cdd6b47d64d25d1b5",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T22:44:31.000Z",
       "message": "feat(admin): editar la ubicación y el horario de Bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/2096ff436391f4decf0e5c9cdd6b47d64d25d1b5"
     },
     "stats": {
       "total": 599,
@@ -5540,6 +5540,25 @@
       "total": 97,
       "additions": 85,
       "deletions": 12,
+      "date": "2026-11-17"
+    },
+    "coverage": 82.06,
+    "test_count": 884,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T13:41:00.000Z",
+      "message": "feat(owner): mostrar carga al enviar el reporte de pérdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 9,
+      "additions": 7,
+      "deletions": 2,
       "date": "2026-11-17"
     },
     "coverage": 82.06,

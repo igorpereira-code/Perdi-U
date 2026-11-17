@@ -6142,7 +6142,7 @@
     "testId": 148
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2096ff436391f4decf0e5c9cdd6b47d64d25d1b5",
     "commitName": "feat(admin): editar la ubicación y el horario de Bienestar",
     "commitTimestamp": 1794523472098,
     "testId": 148
@@ -6678,5 +6678,27 @@
     "commitName": "feat(owner): ocultar la foto y los datos de una coincidencia no visible",
     "commitTimestamp": 1794884634689,
     "testId": 169
+  },
+  {
+    "numPassedTests": 883,
+    "failedTests": 1,
+    "numTotalTests": 884,
+    "timestamp": 1794922450256,
+    "success": false,
+    "testId": 170
+  },
+  {
+    "numPassedTests": 884,
+    "failedTests": 0,
+    "numTotalTests": 884,
+    "timestamp": 1794922628332,
+    "success": true,
+    "testId": 170
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar carga al enviar el reporte de pérdida",
+    "commitTimestamp": 1794922862615,
+    "testId": 170
   }
 ]
