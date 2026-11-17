@@ -91,10 +91,10 @@ export function createApp({
     res.json(getCurrentUser(req));
   });
   app.use(createGuideRouter(users));
-  app.use(createMatchesRouter(matching, settings));
+  app.use(createMatchesRouter(matching, settings, notifications));
   app.use(createPublishRouter(matching, settings));
-  app.use(createFoundItemsRouter(foundItems, foundItemPhotos));
-  app.use(createReceivedItemsRouter(welfare));
+  app.use(createFoundItemsRouter(foundItems, foundItemPhotos, notifications));
+  app.use(createReceivedItemsRouter(welfare, () => foundItems.getCatalogs(), foundItemPhotos));
   app.use(createLostReportsRouter(lostReports, () => foundItems.getCatalogs(), foundItemPhotos));
   app.use(createCatalogRouter(catalog));
   app.use(createMyLostReportsRouter(myLostReports));

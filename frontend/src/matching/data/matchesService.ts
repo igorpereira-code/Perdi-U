@@ -6,8 +6,8 @@ export type MatchesService = {
   getMatches: (reportCode: string) => Promise<MatchView[] | null>;
   pickUp: (matchId: string) => Promise<void>;
   dismiss: (matchId: string) => Promise<void>;
-  /** Bienestar publishes a found item so the community can see it. */
-  publish: (itemCode: string) => Promise<PublishResult>;
+  /** Bienestar publishes a found item with its chosen community visibility. */
+  publish: (itemCode: string, visibility?: 'VISIBLE' | 'HIDDEN') => Promise<PublishResult>;
 };
 
 const REPORT_NOT_FOUND_STATUSES = [403, 404];
@@ -34,16 +34,29 @@ export function createMatchesService(apiFetch: ApiFetch): MatchesService {
     },
     pickUp: (matchId) => sendMatchAnswer(matchId, 'pick-up'),
     dismiss: (matchId) => sendMatchAnswer(matchId, 'dismiss'),
-    publish: async (itemCode) => {
-      const response = await apiFetch(`/found-items/${itemCode}/publish`, { method: 'POST' });
+    publish: async (itemCode, visibility = 'VISIBLE') => {
+      const response = await apiFetch(
+        `/found-items/${itemCode}/publish`,
+        visibility === 'VISIBLE'
+          ? { method: 'POST' }
+          : {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ visibility }),
+            },
+      );
       if (response.status === 409) {
         return { status: 'NOT_RECEIVED' };
       }
       if (!response.ok) {
         throw new Error('No se pudo publicar. Intenta nuevamente.');
       }
-      const { matchCount } = await response.json();
-      return { status: 'PUBLISHED', matchCount };
+      const result = await response.json();
+      return {
+        status: 'PUBLISHED',
+        matchCount: result.matchCount,
+        visibility: result.visibility ?? visibility,
+      };
     },
   };
 }

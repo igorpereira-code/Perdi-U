@@ -38,7 +38,7 @@ export const prismaMatchingRepository: MatchingRepository = {
 
   listPublishedItems: () =>
     db().foundItem.findMany({
-      where: { status: 'PUBLISHED', visibility: 'VISIBLE' },
+      where: { status: 'PUBLISHED' },
       select: { id: true, categoryId: true, foundAt: true, placeId: true, description: true },
     }),
 
@@ -79,8 +79,23 @@ export const prismaMatchingRepository: MatchingRepository = {
   },
 
   findOwnMatch: async (matchId, ownerId) => {
-    const match = await db().match.findFirst({ where: { id: matchId, lostReport: { ownerId } } });
-    return match ? { id: match.id, lostReportId: match.lostReportId } : null;
+    const match = await db().match.findFirst({
+      where: { id: matchId, lostReport: { ownerId } },
+      select: {
+        id: true,
+        lostReportId: true,
+        lostReport: { select: { code: true } },
+        foundItem: { select: { code: true } },
+      },
+    });
+    return match
+      ? {
+          id: match.id,
+          lostReportId: match.lostReportId,
+          lostReportCode: match.lostReport.code,
+          foundItemCode: match.foundItem.code,
+        }
+      : null;
   },
 
   markWillPickUp: async (matchId) => {
@@ -115,10 +130,10 @@ export const prismaMatchingRepository: MatchingRepository = {
       },
     }),
 
-  publish: async (itemId, publishedById) => {
+  publish: async (itemId, publishedById, visibility) => {
     await db().foundItem.update({
       where: { id: itemId },
-      data: { status: 'PUBLISHED', visibility: 'VISIBLE', publishedById, publishedAt: new Date() },
+      data: { status: 'PUBLISHED', visibility, publishedById, publishedAt: new Date() },
     });
   },
 

@@ -4,11 +4,13 @@ import type { MatchStatus } from '@shared/statuses';
 import { getCurrentUser, type CurrentUser } from '../../core/currentUser';
 import type { LostReportToMatch, MatchingRepository } from '../data/matchingRepository';
 import { findSimilarItems } from '../logic/findSimilarItems';
+import type { NotificationsRepository } from '../../core/data/notificationsRepository';
 import type { SettingsRepository } from '../../core/data/settingsRepository';
 
 export function createMatchesRouter(
   matching: MatchingRepository,
   settings: SettingsRepository,
+  notifications: NotificationsRepository,
 ): Router {
   const router = Router();
 
@@ -60,7 +62,24 @@ export function createMatchesRouter(
       res.json({ status });
     };
 
-  router.post('/matches/:id/pick-up', answerMatch('WILL_PICK_UP', matching.markWillPickUp));
+  router.post('/matches/:id/pick-up', async (req, res) => {
+    const user = getCurrentUser(req);
+    const match = await matching.findOwnMatch(String(req.params.id), user.id);
+    if (!match) {
+      res.status(404).json({ error: 'Match not found' });
+      return;
+    }
+    await matching.markWillPickUp(match.id);
+    try {
+      await notifications.notifyRole('WELFARE', {
+        message: `${user.name} pasará a recoger el objeto ${match.foundItemCode} del reporte ${match.lostReportCode}.`,
+        link: '/bienestar',
+      });
+    } catch {
+      // El recojo ya fue guardado: una falla del aviso no debe revertir la decisión del propietario.
+    }
+    res.json({ status: 'WILL_PICK_UP' });
+  });
   router.post('/matches/:id/dismiss', answerMatch('DISMISSED', matching.dismiss));
 
   return router;
