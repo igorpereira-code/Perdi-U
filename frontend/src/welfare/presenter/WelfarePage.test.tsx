@@ -3,18 +3,21 @@ import userEvent from '@testing-library/user-event';
 import type { ComponentType } from 'react';
 import type {
   WelfareFoundItemView,
+  WelfareDeliveryView,
   WelfareLostReportView,
   WelfarePendingPickupView,
 } from '@shared/welfare';
 import type { MatchesService } from '../../matching/data/matchesService';
-import type { WelfareResult, WelfareService } from '../data/welfareService';
+import type { ReceptionCorrection, WelfareResult, WelfareService } from '../data/welfareService';
 import { WelfarePage } from './WelfarePage';
 
 const item: WelfareFoundItemView = {
   code: 'HZ-0005', description: 'Mochila negra con cuadernos', photoUrl: null,
   category: 'Mochilas', place: 'Bloque A', classroom: 'Aula 3',
+  categoryId: 1, placeId: 1, classroomId: 3,
   placeReference: 'Debajo de una mesa', foundAt: '2026-10-15T14:00:00.000Z',
-  status: 'PENDING_DROP_OFF', finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
+  status: 'PENDING_DROP_OFF', visibility: 'VISIBLE',
+  finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
 
 const inCustodyItem: WelfareFoundItemView = {
@@ -38,6 +41,16 @@ const pendingPickup: WelfarePendingPickupView = {
   foundItem: { code: 'HZ-0001', description: 'Celular Samsung con funda azul' },
 };
 
+const completedDelivery: WelfareDeliveryView = {
+  foundItem: { code: 'HZ-0008', description: 'Paraguas negro' },
+  recipient: {
+    name: 'Luis Mamani',
+    email: 'luis.mamani@ucb.edu.bo',
+    universityCode: '20201234',
+  },
+  deliveredAt: '2026-11-16T03:00:00.000Z',
+};
+
 const activeLostReport: WelfareLostReportView = {
   code: 'PR-0001',
   description: 'Celular Samsung con funda azul',
@@ -54,10 +67,29 @@ function service(overrides: Partial<WelfareService> = {}): WelfareService {
     listActiveLostReports: jest.fn().mockResolvedValue([]),
     findLostReportByCode: jest.fn(),
     listPendingPickups: jest.fn().mockResolvedValue([]),
+    listDeliveries: jest.fn().mockResolvedValue([completedDelivery]),
     listPending: jest.fn().mockResolvedValue([item]),
     listInOffice: jest.fn().mockResolvedValue([inCustodyItem, publishedItem]),
+    getCatalogs: jest.fn().mockResolvedValue({
+      categories: [{ id: 1, name: 'Mochilas' }, { id: 2, name: 'Otros' }],
+      places: [{
+        id: 1,
+        name: 'Bloque A',
+        type: 'BLOCK',
+        classrooms: [{ id: 3, name: 'Aula 3' }],
+      }, {
+        id: 4,
+        name: 'Biblioteca',
+        type: 'SPACE',
+        classrooms: [],
+      }],
+    }),
+    registerFoundItem: jest.fn().mockResolvedValue({ code: 'HZ-0042', status: 'IN_CUSTODY' }),
     findFoundItemByCode: jest.fn().mockResolvedValue({ status: 'FOUND', item }),
     confirmReception: jest.fn(),
+    deletePending: jest.fn().mockResolvedValue(true),
+    setPublishedVisibility: jest.fn(),
+    updatePublishedItem: jest.fn(),
     deliver: jest.fn(),
     ...overrides,
   };
@@ -68,7 +100,9 @@ function publishingService(): MatchesService {
     getMatches: jest.fn().mockResolvedValue([]),
     pickUp: jest.fn(),
     dismiss: jest.fn(),
-    publish: jest.fn().mockResolvedValue({ status: 'PUBLISHED', matchCount: 2 }),
+    publish: jest.fn().mockResolvedValue({
+      status: 'PUBLISHED', matchCount: 2, visibility: 'VISIBLE',
+    }),
   };
 }
 
@@ -86,6 +120,37 @@ async function openRequests() {
 }
 
 describe('Panel de Bienestar', () => {
+  it('registra desde el panel un objeto sin reporte previo', async () => {
+    const registerFoundItem = jest.fn().mockResolvedValue({
+      code: 'HZ-0042',
+      status: 'IN_CUSTODY',
+    });
+    renderPage(service({ registerFoundItem }));
+
+    await userEvent.click(screen.getByRole('button', { name: 'Registrar objeto' }));
+    expect(screen.getByRole('heading', { name: 'Registrar objeto' })).toBeInTheDocument();
+
+    await userEvent.type(screen.getByLabelText('Descripción del objeto'), 'Paraguas negro');
+    await userEvent.selectOptions(screen.getByLabelText('Categoría'), '1');
+    await userEvent.selectOptions(screen.getByLabelText('Bloque o espacio'), '4');
+    await userEvent.type(screen.getByLabelText('Fecha del hallazgo'), '2026-11-15');
+    const registrationForm = screen.getByRole('heading', { name: 'Registrar objeto' }).closest('form');
+    await userEvent.click(
+      within(registrationForm!).getByRole('button', { name: 'Registrar objeto' }),
+    );
+
+    expect(registerFoundItem).toHaveBeenCalledWith(
+      expect.objectContaining({
+        description: 'Paraguas negro',
+        categoryId: 1,
+        placeId: 4,
+      }),
+      null,
+    );
+    expect(await screen.findByText('HZ-0042')).toBeInTheDocument();
+    expect(screen.getByText('El objeto quedó en custodia y está listo para publicarse.')).toBeInTheDocument();
+  });
+
   it('explica cuando el codigo no corresponde a un reporte activo', async () => {
     const getMatches = jest.fn();
     renderPage(
@@ -338,6 +403,40 @@ describe('Panel de Bienestar', () => {
     ).toBeInTheDocument();
   });
 
+  it('muestra las entregas realizadas con objeto receptor y fecha', async () => {
+    renderPage();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Entregas realizadas' }));
+
+    expect(await screen.findByText('HZ-0008')).toBeInTheDocument();
+    expect(screen.getByText('Paraguas negro')).toBeInTheDocument();
+    expect(screen.getByText('Luis Mamani')).toBeInTheDocument();
+    expect(screen.getByText('luis.mamani@ucb.edu.bo')).toBeInTheDocument();
+    expect(screen.getByText('16/11/2026')).toBeInTheDocument();
+  });
+
+  it.each([
+    ['hz-0008', 'HZ-0008'],
+    ['luis mamani', 'Luis Mamani'],
+    ['LUIS.MAMANI@UCB.EDU.BO', 'luis.mamani@ucb.edu.bo'],
+  ])('busca entregas por %s', async (search, expected) => {
+    const otherDelivery: WelfareDeliveryView = {
+      ...completedDelivery,
+      foundItem: { code: 'HZ-0099', description: 'Cuaderno rojo' },
+      recipient: {
+        name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo', universityCode: '20205678',
+      },
+    };
+    renderPage(service({
+      listDeliveries: jest.fn().mockResolvedValue([completedDelivery, otherDelivery]),
+    }));
+    await userEvent.click(screen.getByRole('button', { name: 'Entregas realizadas' }));
+    await userEvent.type(screen.getByRole('searchbox', { name: 'Buscar entregas' }), search);
+
+    expect(await screen.findByText(expected)).toBeInTheDocument();
+    expect(screen.queryByText('HZ-0099')).not.toBeInTheDocument();
+  });
+
   it('muestra un aviso cuando no puede cargar los recojos pendientes', async () => {
     renderPage(
       service({ listPendingPickups: jest.fn().mockRejectedValue(new Error('network')) }),
@@ -370,7 +469,8 @@ describe('Panel de Bienestar', () => {
     expect(within(custodyCard!).getByText('2 reportes de pérdida se parecen a este objeto.')).toBeInTheDocument();
     expect(within(custodyCard!).queryByText('En custodia')).not.toBeInTheDocument();
     expect(within(custodyCard!).queryByText('No publicado')).not.toBeInTheDocument();
-    expect(within(custodyCard!).getAllByText('Publicado')).toHaveLength(2);
+    expect(within(custodyCard!).getByText('Publicado')).toBeInTheDocument();
+    expect(within(custodyCard!).getByText('Visible para la comunidad')).toBeInTheDocument();
   });
 
   it('conserva una entrega en curso al cambiar de seccion', async () => {
@@ -403,7 +503,8 @@ describe('Panel de Bienestar', () => {
     expect(within(custodyCard!).getByText('En custodia')).toBeInTheDocument();
     expect(within(custodyCard!).getByText('No publicado')).toBeInTheDocument();
     expect(publishedCard).not.toBeNull();
-    expect(within(publishedCard!).getAllByText('Publicado')).toHaveLength(2);
+    expect(within(publishedCard!).getByText('Publicado')).toBeInTheDocument();
+    expect(within(publishedCard!).getByText('Visible para la comunidad')).toBeInTheDocument();
   });
 
   it('muestra la carga y luego los objetos pendientes', async () => {
@@ -476,7 +577,12 @@ describe('Panel de Bienestar', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Confirmar recepción' }));
 
-    expect(welfareService.confirmReception).toHaveBeenCalledWith('HZ-0005');
+    expect(welfareService.confirmReception).toHaveBeenCalledWith('HZ-0005', expect.objectContaining({
+      description: 'Mochila negra con cuadernos',
+      categoryId: 1,
+      placeId: 1,
+      foundAt: '2026-10-15T14:00:00.000Z',
+    }));
     expect(await screen.findByText('Objeto recibido y puesto en custodia')).toBeInTheDocument();
     expect(within(pendingSection!).queryByText('HZ-0005')).not.toBeInTheDocument();
     await userEvent.click(screen.getByRole('button', { name: 'Objetos en custodia' }));
@@ -487,6 +593,50 @@ describe('Panel de Bienestar', () => {
 
     await act(async () => resolveInOffice([inCustodyItem, publishedItem]));
     expect(within(officeSection!).getByText('HZ-0005')).toBeInTheDocument();
+  });
+
+  it('permite corregir los datos antes de confirmar la recepcion', async () => {
+    const confirmReception = jest.fn().mockResolvedValue({
+      status: 'FOUND',
+      item: { ...item, description: 'Mochila con tres cuadernos', status: 'IN_CUSTODY' },
+    });
+    const welfareService = service({ confirmReception });
+    renderPage(welfareService);
+    await openRequests();
+    await userEvent.click(await screen.findByRole('button', { name: /HZ-0005/ }));
+
+    await userEvent.clear(screen.getByLabelText('Descripción del objeto'));
+    await userEvent.type(screen.getByLabelText('Descripción del objeto'), 'Mochila con tres cuadernos');
+    await userEvent.selectOptions(screen.getByLabelText('Categoría del objeto'), '2');
+    await userEvent.selectOptions(screen.getByLabelText('Lugar del hallazgo'), '4');
+    await userEvent.clear(screen.getByLabelText('Fecha del hallazgo'));
+    await userEvent.type(screen.getByLabelText('Fecha del hallazgo'), '2026-10-16T09:30');
+    await userEvent.click(screen.getByRole('button', { name: 'Confirmar recepción' }));
+
+    expect(confirmReception).toHaveBeenCalledWith('HZ-0005', {
+      description: 'Mochila con tres cuadernos',
+      categoryId: 2,
+      placeId: 4,
+      classroomId: null,
+      placeReference: 'Debajo de una mesa',
+      foundAt: new Date('2026-10-16T09:30').toISOString(),
+    });
+  }, 10_000);
+
+  it('pide confirmar antes de eliminar y quita la solicitud eliminada', async () => {
+    const deletePending = jest.fn().mockResolvedValue(true);
+    renderPage(service({ deletePending }));
+    await openRequests();
+    await userEvent.click(await screen.findByRole('button', { name: /HZ-0005/ }));
+
+    await userEvent.click(screen.getByRole('button', { name: 'Eliminar solicitud' }));
+    expect(deletePending).not.toHaveBeenCalled();
+    expect(screen.getByText('¿Confirmas que el objeto nunca llegó a la oficina?')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Sí, eliminar' }));
+
+    expect(deletePending).toHaveBeenCalledWith('HZ-0005');
+    expect(await screen.findByText('Solicitud eliminada')).toBeInTheDocument();
+    expect(screen.queryByText('HZ-0005')).not.toBeInTheDocument();
   });
 
   it('conserva el objeto recibido si falla la carga inicial de la oficina', async () => {
@@ -540,4 +690,53 @@ describe('Panel de Bienestar', () => {
     expect(await screen.findByText('No pudimos confirmar la recepción')).toBeInTheDocument();
     expect(screen.getAllByText('Mochila negra con cuadernos').length).toBeGreaterThan(0);
   });
+
+  it('permite ocultar un objeto publicado y actualiza su estado en pantalla', async () => {
+    const setPublishedVisibility = jest.fn().mockResolvedValue({
+      code: 'HZ-0003', visibility: 'HIDDEN',
+    });
+    renderPage(service({ setPublishedVisibility }));
+
+    await userEvent.click(screen.getByRole('button', { name: 'Objetos en custodia' }));
+    const card = (await screen.findByText('HZ-0003')).closest('article')!;
+    expect(within(card).getByText('Visible para la comunidad')).toBeInTheDocument();
+    await userEvent.click(within(card).getByRole('button', { name: 'Ocultar de la comunidad' }));
+
+    expect(setPublishedVisibility).toHaveBeenCalledWith('HZ-0003', 'HIDDEN');
+    expect(await within(card).findByText('Oculto para la comunidad')).toBeInTheDocument();
+  });
+
+  it('permite editar los datos de un objeto publicado', async () => {
+    const updatePublishedItem = jest.fn().mockImplementation(
+      async (_code: string, correction: ReceptionCorrection) => ({
+        ...publishedItem,
+        ...correction,
+        description: correction.description,
+      }),
+    );
+    renderPage(service({ updatePublishedItem }));
+
+    await userEvent.click(screen.getByRole('button', { name: 'Objetos en custodia' }));
+    const card = (await screen.findByText('HZ-0003')).closest('article')!;
+    await userEvent.click(within(card).getByRole('button', { name: 'Editar datos' }));
+    await userEvent.clear(within(card).getByLabelText('Descripción publicada'));
+    await userEvent.type(
+      within(card).getByLabelText('Descripción publicada'),
+      'Chamarra azul con cierre negro',
+    );
+    await userEvent.selectOptions(within(card).getByLabelText('Categoría publicada'), '2');
+    await userEvent.selectOptions(within(card).getByLabelText('Lugar publicado'), '4');
+    await userEvent.clear(within(card).getByLabelText('Fecha publicada'));
+    await userEvent.type(within(card).getByLabelText('Fecha publicada'), '2026-10-16T09:30');
+    await userEvent.click(within(card).getByRole('button', { name: 'Guardar cambios' }));
+
+    expect(updatePublishedItem).toHaveBeenCalledWith('HZ-0003', expect.objectContaining({
+      description: 'Chamarra azul con cierre negro',
+      categoryId: 2,
+      placeId: 4,
+      classroomId: null,
+      foundAt: new Date('2026-10-16T09:30').toISOString(),
+    }));
+    expect(await within(card).findByText('Chamarra azul con cierre negro')).toBeInTheDocument();
+  }, 10_000);
 });

@@ -7,6 +7,7 @@ import {
   type FakeItem,
   type FakeReport,
 } from '../data/fakeMatchingRepository';
+import { fakeNotificationsRepository } from '../../core/data/fakeNotificationsRepository';
 
 const anasReport: FakeReport = {
   id: 'report-1',
@@ -112,13 +113,27 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
   describe('Pasaré a recoger (POST /matches/:id/pick-up)', () => {
     it('avisa a Bienestar que el dueño pasará a recoger el objeto', async () => {
       const { repository, matches } = fakeMatchingRepository([anasReport], items);
-      const app = createApp({ matching: repository, settings: fakeSettingsRepository() });
+      const notifications = fakeNotificationsRepository([], {
+        WELFARE: [SAMPLE_USERS.welfare.id],
+      });
+      const app = createApp({
+        matching: repository,
+        settings: fakeSettingsRepository(),
+        notifications,
+      });
       await request(app).get('/lost-reports/PR-0001/matches');
 
       const res = await request(app).post(`/matches/${matches[0].id}/pick-up`);
 
       expect(res.status).toBe(200);
       expect(matches[0].status).toBe('WILL_PICK_UP');
+      await expect(notifications.listForUser(SAMPLE_USERS.welfare.id)).resolves.toEqual([
+        expect.objectContaining({
+          message: 'Ana Rojas pasará a recoger el objeto HZ-0001 del reporte PR-0001.',
+          link: '/bienestar',
+          readAt: null,
+        }),
+      ]);
     });
 
     it('no deja responder por una coincidencia del reporte de otra persona', async () => {

@@ -7,7 +7,26 @@ it('registra un aviso para el hallador al recibir su objeto', async () => {
   const transaction = {
     foundItem: {
       updateMany: jest.fn().mockResolvedValue({ count: 1 }),
-      findUniqueOrThrow: jest.fn().mockResolvedValue({ finderId: 'finder-1', code: 'HZ-0005' }),
+      findUniqueOrThrow: jest.fn().mockResolvedValue({
+        id: 'item-1',
+        code: 'HZ-0005',
+        description: 'Llaves',
+        photoUrl: null,
+        placeReference: null,
+        foundAt: new Date('2026-11-10T12:00:00Z'),
+        status: 'IN_CUSTODY',
+        visibility: 'VISIBLE',
+        receivedById: 'welfare-1',
+        receivedAt: new Date('2026-11-11T12:00:00Z'),
+        finderId: 'finder-1',
+        category: { name: 'Llaves' },
+        categoryId: 1,
+        place: { name: 'Bloque A' },
+        placeId: 1,
+        classroom: null,
+        classroomId: null,
+        finder: { name: 'Ana', email: 'ana@ucb.edu.bo' },
+      }),
     },
     notification: { create: jest.fn().mockResolvedValue({}) },
   };
@@ -22,7 +41,7 @@ it('registra un aviso para el hallador al recibir su objeto', async () => {
     new Date(),
   );
 
-  expect(received).toBe(true);
+  expect(received).toEqual(expect.objectContaining({ code: 'HZ-0005', status: 'IN_CUSTODY' }));
   expect(transaction.notification.create).toHaveBeenCalledWith({
     data: {
       userId: 'finder-1',

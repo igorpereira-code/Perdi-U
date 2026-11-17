@@ -1,8 +1,8 @@
-import { useRef, useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
-import type { FoundItemCatalogs, FoundItemCreated, FoundItemPayload, FoundItemsService } from '../data/foundItemsService';
+import type { FoundItemCatalogs, FoundItemPayload } from '../data/foundItemsService';
 import { buildFoundAt } from '../logic/buildFoundAt';
 import { validateFoundItemForm, type FoundItemFormErrors } from '../logic/validateFoundItemForm';
 import { FoundItemConfirmation } from './FoundItemConfirmation';
@@ -11,15 +11,28 @@ import { FoundItemReview } from './FoundItemReview';
 
 type FoundItemFormProps = {
   catalogs: FoundItemCatalogs;
-  onCreate?: FoundItemsService['create'];
+  onCreate?: (report: FoundItemPayload, photo: File | null) => Promise<{ code: string }>;
   edit?: { initial: FoundItemPayload; onSave: (changes: FoundItemPayload) => Promise<void> };
+  title?: string;
+  submitLabel?: string;
+  submittingLabel?: string;
+  skipReview?: boolean;
+  renderConfirmation?: (code: string) => ReactNode;
 };
 
-export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) {
+export function FoundItemForm({
+  catalogs,
+  onCreate,
+  edit,
+  title = edit ? 'Editar reporte' : 'Reportar objeto encontrado',
+  submitLabel,
+  submittingLabel = 'Enviando…',
+  skipReview = false,
+  renderConfirmation,
+}: FoundItemFormProps) {
   const initial = edit?.initial;
   // El formulario trabaja con fecha y hora de Bolivia.
   const localFoundAt = initial ? new Date(Date.parse(initial.foundAt) - 4 * 60 * 60 * 1000).toISOString() : '';
-  const title = edit ? 'Editar reporte' : 'Reportar objeto encontrado';
   const [description, setDescription] = useState(initial?.description ?? '');
   const [category, setCategory] = useState(initial ? String(initial.categoryId) : '');
   const [photo, setPhoto] = useState<File | null>(null);
@@ -31,7 +44,7 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
   const [errors, setErrors] = useState<FoundItemFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [createdReport, setCreatedReport] = useState<FoundItemCreated | null>(null);
+  const [createdReport, setCreatedReport] = useState<{ code: string } | null>(null);
   const [reportToReview, setReportToReview] = useState<FoundItemPayload | null>(null);
   const isSubmitLockedRef = useRef(false);
   const selectedPlace = catalogs.places.find((place) => String(place.id) === placeId);
@@ -66,6 +79,10 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
         placeReference: placeReference.trim() || null,
         foundAt: buildFoundAt(foundDate, foundTime),
       };
+      if (!edit && skipReview) {
+        await createReport(changes);
+        return;
+      }
       if (!edit) {
         setReportToReview(changes);
         return;
@@ -82,14 +99,20 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
   }
 
   async function handleConfirm() {
-    if (!onCreate || !reportToReview || isSubmitLockedRef.current) {
+    if (reportToReview) {
+      await createReport(reportToReview);
+    }
+  }
+
+  async function createReport(report: FoundItemPayload) {
+    if (!onCreate || isSubmitLockedRef.current) {
       return;
     }
 
     isSubmitLockedRef.current = true;
     setIsSubmitting(true);
     try {
-      const creation = await onCreate(reportToReview, photo);
+      const creation = await onCreate(report, photo);
       setCreatedReport(creation);
     } catch (error) {
       isSubmitLockedRef.current = false;
@@ -101,7 +124,19 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
   }
 
   if (createdReport) {
-    return <FoundItemConfirmation code={createdReport.code} />;
+    return renderConfirmation
+      ? <>{renderConfirmation(createdReport.code)}</>
+      : <FoundItemConfirmation code={createdReport.code} />;
+  }
+
+  function getSubmitText(): string {
+    if (edit) {
+      return isSubmitting ? 'Guardando…' : 'Guardar cambios';
+    }
+    if (submitLabel) {
+      return isSubmitting ? submittingLabel : submitLabel;
+    }
+    return 'Revisar reporte';
   }
 
   const form = (
@@ -233,7 +268,7 @@ export function FoundItemForm({ catalogs, onCreate, edit }: FoundItemFormProps) 
         </Field>
       </fieldset>
       <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {edit ? (isSubmitting ? 'Guardando…' : 'Guardar cambios') : 'Revisar reporte'}
+        {getSubmitText()}
       </Button>
       </fieldset>
     </form>

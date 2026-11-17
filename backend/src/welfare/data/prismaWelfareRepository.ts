@@ -1,5 +1,5 @@
 import { db } from '../../core/data/prisma';
-import type { WelfareFoundItem } from './welfareRepository';
+import type { ReceptionCorrection, WelfareFoundItem } from './welfareRepository';
 import type { WelfareRepository } from './welfareRepository';
 
 const foundItemRelations = {
@@ -17,11 +17,15 @@ type FoundItemRow = {
   placeReference: string | null;
   foundAt: Date;
   status: WelfareFoundItem['status'];
+  visibility: WelfareFoundItem['visibility'];
   receivedById: string | null;
   receivedAt: Date | null;
   category: { name: string };
+  categoryId: number;
   place: { name: string };
+  placeId: number;
   classroom: { name: string } | null;
+  classroomId: number | null;
   finder: { name: string; email: string } | null;
 };
 
@@ -32,11 +36,15 @@ function toWelfareFoundItem(foundItemRow: FoundItemRow): WelfareFoundItem {
     description: foundItemRow.description,
     photoUrl: foundItemRow.photoUrl,
     category: foundItemRow.category.name,
+    categoryId: foundItemRow.categoryId,
     place: foundItemRow.place.name,
+    placeId: foundItemRow.placeId,
     classroom: foundItemRow.classroom?.name ?? null,
+    classroomId: foundItemRow.classroomId,
     placeReference: foundItemRow.placeReference,
     foundAt: foundItemRow.foundAt,
     status: foundItemRow.status,
+    visibility: foundItemRow.visibility,
     finder: foundItemRow.finder,
     receivedById: foundItemRow.receivedById ?? undefined,
     receivedAt: foundItemRow.receivedAt ?? undefined,
@@ -106,6 +114,28 @@ export const prismaWelfareRepository = {
     }));
   },
 
+  listDeliveries: async () => {
+    const deliveries = await db().delivery.findMany({
+      select: {
+        recipientName: true,
+        recipientEmail: true,
+        recipientUniversityCode: true,
+        deliveredAt: true,
+        foundItem: { select: { code: true, description: true } },
+      },
+      orderBy: { deliveredAt: 'desc' },
+    });
+    return deliveries.map((delivery) => ({
+      foundItem: delivery.foundItem,
+      recipient: {
+        name: delivery.recipientName,
+        email: delivery.recipientEmail,
+        universityCode: delivery.recipientUniversityCode,
+      },
+      deliveredAt: delivery.deliveredAt.toISOString(),
+    }));
+  },
+
   listPending: async () => {
     const pendingItemRows = await db().foundItem.findMany({
       where: { status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
@@ -132,31 +162,86 @@ export const prismaWelfareRepository = {
     return foundItemRow ? toWelfareFoundItem(foundItemRow) : null;
   },
 
-  confirmPendingReception: async (itemId, receivedById, receivedAt) =>
+  registerFoundItem: async (registration) => {
+    const createdItem = await db().foundItem.create({
+      data: {
+        description: registration.description,
+        photoUrl: registration.photoUrl,
+        categoryId: registration.categoryId,
+        placeId: registration.placeId,
+        classroomId: registration.classroomId,
+        placeReference: registration.placeReference,
+        foundAt: registration.foundAt,
+        status: 'IN_CUSTODY',
+        finderId: null,
+        receivedById: registration.receivedById,
+        receivedAt: registration.receivedAt,
+      },
+      select: { code: true, status: true },
+    });
+    return { code: createdItem.code, status: 'IN_CUSTODY' };
+  },
+
+  confirmPendingReception: async (
+    itemId: string,
+    receivedById: string,
+    receivedAt: Date,
+    correction?: ReceptionCorrection,
+  ) =>
     db().$transaction(async (transaction) => {
       const updatedItems = await transaction.foundItem.updateMany({
         where: { id: itemId, status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
-        data: { status: 'IN_CUSTODY', receivedById, receivedAt },
+        data: { status: 'IN_CUSTODY', receivedById, receivedAt, ...correction },
       });
       if (updatedItems.count !== 1) {
-        return false;
+        return null;
       }
 
-      const { finderId, code } = await transaction.foundItem.findUniqueOrThrow({
+      const foundItem = await transaction.foundItem.findUniqueOrThrow({
         where: { id: itemId },
-        select: { finderId: true, code: true },
+        include: foundItemRelations,
       });
-      if (finderId) {
+      if (foundItem.finderId) {
         await transaction.notification.create({
           data: {
-            userId: finderId,
-            message: 'Bienestar Estudiantil recibió el objeto de tu reporte ' + code + '.',
-            link: '/mis-reportes/encontrados/' + encodeURIComponent(code),
+            userId: foundItem.finderId,
+            message: 'Bienestar Estudiantil recibió el objeto de tu reporte ' + foundItem.code + '.',
+            link: '/mis-reportes/encontrados/' + encodeURIComponent(foundItem.code),
           },
         });
       }
-      return true;
+      return toWelfareFoundItem(foundItem);
     }),
+
+  deletePending: async (itemId) => {
+    const deletedItems = await db().foundItem.deleteMany({
+      where: { id: itemId, status: 'PENDING_DROP_OFF' },
+    });
+    return deletedItems.count === 1;
+  },
+
+  updatePublishedVisibility: async (itemId, visibility) => {
+    const updatedItems = await db().foundItem.updateMany({
+      where: { id: itemId, status: 'PUBLISHED' },
+      data: { visibility },
+    });
+    return updatedItems.count === 1;
+  },
+
+  updatePublishedDetails: async (itemId, correction) => {
+    const updatedItems = await db().foundItem.updateMany({
+      where: { id: itemId, status: 'PUBLISHED' },
+      data: correction,
+    });
+    if (updatedItems.count !== 1) {
+      return null;
+    }
+    const foundItem = await db().foundItem.findUnique({
+      where: { id: itemId },
+      include: foundItemRelations,
+    });
+    return foundItem ? toWelfareFoundItem(foundItem) : null;
+  },
 
   deliver: async (delivery) =>
     db().$transaction(async (transaction) => {
