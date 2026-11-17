@@ -59,7 +59,7 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
     const { repository } = fakeMatchingRepository([{ ...anasReport, status: 'RECOVERED' }], items);
 
     const res = await request(
-      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+      createApp({ notifications: fakeNotificationsRepository(), matching: repository, settings: fakeSettingsRepository() }),
     )
       .get('/lost-reports/PR-0001/matches')
       .set('x-sample-user', 'welfare');
@@ -71,7 +71,7 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
     const { repository } = fakeMatchingRepository([anasReport], items);
 
     const res = await request(
-      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+      createApp({ notifications: fakeNotificationsRepository(), matching: repository, settings: fakeSettingsRepository() }),
     )
       .get('/lost-reports/PR-0001/matches')
       .set('x-sample-user', 'welfare');
@@ -87,7 +87,7 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
     const { repository } = fakeMatchingRepository([anasReport], items);
 
     const res = await request(
-      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+      createApp({ notifications: fakeNotificationsRepository(), matching: repository, settings: fakeSettingsRepository() }),
     ).get('/lost-reports/PR-0001/matches');
 
     expect(res.status).toBe(200);
@@ -104,7 +104,7 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
     );
 
     const res = await request(
-      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+      createApp({ notifications: fakeNotificationsRepository(), matching: repository, settings: fakeSettingsRepository() }),
     ).get('/lost-reports/PR-0001/matches');
 
     expect(res.status).toBe(404);
@@ -138,7 +138,7 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
 
     it('no deja responder por una coincidencia del reporte de otra persona', async () => {
       const { repository, matches } = fakeMatchingRepository([anasReport], items);
-      const app = createApp({ matching: repository, settings: fakeSettingsRepository() });
+      const app = createApp({ notifications: fakeNotificationsRepository(), matching: repository, settings: fakeSettingsRepository() });
       await request(app).get('/lost-reports/PR-0001/matches');
 
       const res = await request(app)
@@ -153,7 +153,7 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
   describe('No es mío (POST /matches/:id/dismiss)', () => {
     it('quita el objeto de los parecidos a su reporte', async () => {
       const { repository, matches } = fakeMatchingRepository([anasReport], items);
-      const app = createApp({ matching: repository, settings: fakeSettingsRepository() });
+      const app = createApp({ notifications: fakeNotificationsRepository(), matching: repository, settings: fakeSettingsRepository() });
       await request(app).get('/lost-reports/PR-0001/matches');
 
       const res = await request(app).post(`/matches/${matches[0].id}/dismiss`);
@@ -173,7 +173,7 @@ describe('Las nuevas coincidencias respetan el nivel mínimo que guardó el Admi
     const settings = fakeSettingsRepository();
     await settings.updateMatchSettings({ minSimilarity: 60 });
 
-    const res = await request(createApp({ matching: repository, settings })).get(
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), matching: repository, settings })).get(
       '/lost-reports/PR-0001/matches',
     );
 

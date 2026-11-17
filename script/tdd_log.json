@@ -4850,7 +4850,7 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "2378b9b2b3a7f24aff1c516e551f1fb8715c4890",
     "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
     "commitTimestamp": 1792601341695,
     "testId": 61
@@ -7594,5 +7594,19 @@
     "commitName": "chore(welfare): integra final-test en welfare",
     "commitTimestamp": 1794921433179,
     "testId": 167
+  },
+  {
+    "numPassedTests": 895,
+    "failedTests": 0,
+    "numTotalTests": 895,
+    "timestamp": 1794924714656,
+    "success": true,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(core): usar avisos falsos en las pruebas de rutas",
+    "commitTimestamp": 1794924765107,
+    "testId": 168
   }
 ]
