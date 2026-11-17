@@ -4850,7 +4850,7 @@
     "testId": 61
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e76f2fa0f6333da4c3c82ecd3b8cdb39105a94ac",
     "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
     "commitTimestamp": 1792601341695,
     "testId": 61
@@ -7594,5 +7594,19 @@
     "commitName": "chore(welfare): integra final-test en welfare",
     "commitTimestamp": 1794921433179,
     "testId": 167
+  },
+  {
+    "numPassedTests": 895,
+    "failedTests": 0,
+    "numTotalTests": 895,
+    "timestamp": 1794921632684,
+    "success": true,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): registra ejecucion de pruebas del merge",
+    "commitTimestamp": 1794922046236,
+    "testId": 168
   }
 ]

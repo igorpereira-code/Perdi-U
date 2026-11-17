@@ -3629,12 +3629,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "e76f2fa0f6333da4c3c82ecd3b8cdb39105a94ac",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-21T16:49:00.000Z",
       "message": "style(owner): mostrar las opciones del inicio como tarjetas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/e76f2fa0f6333da4c3c82ecd3b8cdb39105a94ac"
     },
     "stats": {
       "total": 36,
@@ -7633,6 +7633,25 @@
       "date": "2026-11-17"
     },
     "coverage": 80.7,
+    "test_count": 895,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-17T13:27:23.000Z",
+      "message": "chore(welfare): registra ejecucion de pruebas del merge",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 0,
+      "additions": 0,
+      "deletions": 0,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.77,
     "test_count": 895,
     "failed_tests": 0,
     "conclusion": "success"
