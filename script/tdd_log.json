@@ -5228,7 +5228,7 @@
     "testId": 74
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c14499d4d7a8d3c062abf0d3555829ef186071e1",
     "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
     "commitTimestamp": 1794003330500,
     "testId": 74
@@ -7672,5 +7672,11 @@
     "commitName": "refactor(welfare): separar panel por funcionalidad",
     "commitTimestamp": 1794925491161,
     "testId": 173
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): separar pruebas por funcionalidad",
+    "commitTimestamp": 1794941930884,
+    "testId": 174
   }
 ]

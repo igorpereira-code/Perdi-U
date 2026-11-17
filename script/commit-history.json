@@ -4142,12 +4142,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c14499d4d7a8d3c062abf0d3555829ef186071e1",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:15:29.000Z",
       "message": "feat(core): agregar la opción de avisos en la pantalla principal",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c14499d4d7a8d3c062abf0d3555829ef186071e1"
     },
     "stats": {
       "total": 552,
@@ -7807,5 +7807,24 @@
     "test_count": 900,
     "failed_tests": 2,
     "conclusion": "failure"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-17T18:58:48.000Z",
+      "message": "refactor(welfare): separar pruebas por funcionalidad",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 1191,
+      "additions": 499,
+      "deletions": 692,
+      "date": "2026-11-17"
+    },
+    "coverage": 81.08,
+    "test_count": 900,
+    "failed_tests": 0,
+    "conclusion": "success"
   }
 ]
