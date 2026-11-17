@@ -8,27 +8,27 @@ import { FoundItemSummary } from './FoundItemSummary';
 
 export function MyFoundItemsScreen({ foundItemsService }: { foundItemsService: FoundItemsService }) {
   const [reports, setReports] = useState<MyFoundItem[] | null>(null);
-  const [failed, setFailed] = useState(false);
-  const [attempt, setAttempt] = useState(0);
+  const [hasFailed, setHasFailed] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
-    let active = true;
+    let isRequestActive = true;
     setReports(null);
-    setFailed(false);
+    setHasFailed(false);
     foundItemsService.listMine()
-      .then((items) => { if (active) { setReports(items); } })
-      .catch(() => { if (active) { setFailed(true); } });
-    return () => { active = false; };
-  }, [foundItemsService, attempt]);
+      .then((loadedReports) => { if (isRequestActive) { setReports(loadedReports); } })
+      .catch(() => { if (isRequestActive) { setHasFailed(true); } });
+    return () => { isRequestActive = false; };
+  }, [foundItemsService, retryCount]);
 
   return (
     <section className="mx-auto max-w-lg space-y-4">
       <h1 className="text-lg font-semibold text-blue-700">Mis reportes</h1>
       <p className="text-sm text-neutral-500">Objetos que encontraste y reportaste, incluidos los pendientes de entrega.</p>
-      {failed ? (
+      {hasFailed ? (
         <div className="space-y-3">
           <div role="alert"><Alert>No se pudieron cargar tus reportes. Intenta nuevamente.</Alert></div>
-          <Button onClick={() => setAttempt((value) => value + 1)}>Reintentar</Button>
+          <Button onClick={() => setRetryCount((previousRetryCount) => previousRetryCount + 1)}>Reintentar</Button>
         </div>
       ) : reports === null ? (
         <p role="status" className="text-sm text-neutral-500">Cargando tus reportes…</p>

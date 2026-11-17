@@ -14,6 +14,9 @@ const foundItemsWithCatalogs: FoundItemsRepository = {
   }),
   create: jest.fn(),
   getPhotoByCode: jest.fn(),
+  getEditable: jest.fn(),
+  cancelPending: jest.fn(),
+  updatePending: jest.fn(),
 };
 
 const photoStorage = (): jest.Mocked<FoundItemPhotoStorage> => ({

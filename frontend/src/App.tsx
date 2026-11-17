@@ -4,11 +4,13 @@ import type { AppUser } from '@shared/user';
 import { NotInstitutionalEmailError, type AuthService } from './core/data/authService';
 import { AppLayout } from './core/presenter/AppLayout';
 import { HomePage } from './core/presenter/HomePage';
+import { Button } from './core/presenter/Button';
 import { LoginPage } from './core/presenter/LoginPage';
 import { ProfilePage } from './core/presenter/ProfilePage';
 import type { MatchesService } from './matching/data/matchesService';
 import { MatchesScreen } from './matching/presenter/MatchesScreen';
 import type { GuideService } from './finder/data/guideService';
+import { QuickGuide } from './finder/presenter/QuickGuide';
 import { QuickGuideScreen } from './finder/presenter/QuickGuideScreen';
 import { FoundItemEntry } from './finder/presenter/FoundItemEntry';
 import { FoundItemScreen } from './finder/presenter/FoundItemScreen';
@@ -33,8 +35,13 @@ import { AppLoadingScreen } from './core/presenter/AppLoadingScreen';
 import { canManageUsers } from './admin/logic/canManageUsers';
 import { AdminPage } from './admin/presenter/AdminPage';
 import type { AdminUsersService } from './admin/data/adminUsersService';
+import type { AdminCatalogService } from './admin/data/adminCatalogService';
 import { canUseWelfareOptions } from './core/logic/canUseWelfareOptions';
 import { useRoleRefresh } from './core/presenter/useRoleRefresh';
+import type { SettingsService } from './core/data/settingsService';
+import { useSavedWelfareOffice, WelfareOfficeContext } from './core/presenter/WelfareOffice';
+import type { StatisticsService } from './admin/data/statisticsService';
+import { useStartPage } from './core/presenter/useStartPage';
 
 type AppProps = {
   authService: AuthService;
@@ -47,6 +54,9 @@ type AppProps = {
   myLostReportsService: MyLostReportsService;
   notificationsService?: NotificationsService;
   adminUsersService?: AdminUsersService;
+  adminCatalogService?: AdminCatalogService;
+  settingsService?: SettingsService;
+  statisticsService?: StatisticsService;
 };
 
 export default function App({
@@ -60,6 +70,9 @@ export default function App({
   myLostReportsService,
   notificationsService,
   adminUsersService,
+  adminCatalogService,
+  settingsService,
+  statisticsService,
 }: AppProps) {
   // undefined = still checking who is signed in; null = nobody is signed in.
   const navigate = useNavigate();
@@ -78,6 +91,8 @@ export default function App({
       });
   }, [authService]);
   useRoleRefresh(authService, setUser);
+  useStartPage(user);
+  const welfareOffice = useSavedWelfareOffice(settingsService, user?.id);
 
   async function handleSignOut() {
     await authService.signOut();
@@ -101,14 +116,18 @@ export default function App({
       return <Navigate to="/guia-rapida" replace />;
     }
     return (
-      <AppLayout
-        role={user.role}
-        headerAction={
-          notificationsService && <NotificationsBell notificationsService={notificationsService} />
-        }
-      >
-        {page(user)}
-      </AppLayout>
+      <WelfareOfficeContext.Provider value={welfareOffice}>
+        <AppLayout
+          role={user.role}
+          headerAction={
+            notificationsService && (
+              <NotificationsBell notificationsService={notificationsService} />
+            )
+          }
+        >
+          {page(user)}
+        </AppLayout>
+      </WelfareOfficeContext.Provider>
     );
   };
 
@@ -124,6 +143,9 @@ export default function App({
               <LostItemEntry onClick={() => navigate('/reportar-perdida')} />
             </div>
             <div className="flex flex-wrap gap-3">
+              <Button variant="outline" onClick={() => navigate('/guia-rapida')}>
+                Ver guía
+              </Button>
               <Link
                 to="/mis-reportes"
                 className="inline-flex min-h-11 items-center rounded-xl border border-neutral-300 px-4 text-sm font-semibold text-blue-700"
@@ -211,9 +233,13 @@ export default function App({
       )}
       <Route
         path="/guia-rapida"
-        element={renderSignedInPage(() => (
-          <QuickGuideScreen guideService={guideService} onSeen={handleGuideSeen} />
-        ))}
+        element={renderSignedInPage((me) =>
+          me.hasSeenGuide ? (
+            <QuickGuide onClose={() => navigate('/', { replace: true })} />
+          ) : (
+            <QuickGuideScreen guideService={guideService} onSeen={handleGuideSeen} />
+          ),
+        )}
       />
       <Route
         path="/bienestar"
@@ -225,12 +251,17 @@ export default function App({
           ),
         )}
       />
-      {adminUsersService && (
+      {adminUsersService && adminCatalogService && settingsService && statisticsService && (
         <Route
           path="/administracion"
           element={renderSignedInPage((signedInUser) =>
             canManageUsers(signedInUser.role) ? (
-              <AdminPage adminUsersService={adminUsersService} />
+              <AdminPage
+                adminUsersService={adminUsersService}
+                adminCatalogService={adminCatalogService}
+                settingsService={settingsService}
+                statisticsService={statisticsService}
+              />
             ) : (
               <Navigate to="/" replace />
             ),

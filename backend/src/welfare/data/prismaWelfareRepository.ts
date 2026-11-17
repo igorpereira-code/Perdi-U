@@ -1,5 +1,5 @@
 import { db } from '../../core/data/prisma';
-import type { WelfareFoundItem } from './welfareRepository';
+import type { ReceptionCorrection, WelfareFoundItem } from './welfareRepository';
 import type { WelfareRepository } from './welfareRepository';
 
 const foundItemRelations = {
@@ -53,26 +53,28 @@ function toWelfareFoundItem(foundItemRow: FoundItemRow): WelfareFoundItem {
 
 export const prismaWelfareRepository = {
   listActiveLostReports: async () =>
-    db().lostReport.findMany({
-      where: { status: { not: 'RECOVERED' } },
-      select: {
-        id: true,
-        code: true,
-        description: true,
-        photoUrl: true,
-        dateFrom: true,
-        dateTo: true,
-        status: true,
-        category: { select: { name: true } },
-        owner: { select: { name: true, email: true } },
-      },
-      orderBy: { createdAt: 'asc' },
-    }).then((lostReports) =>
-      lostReports.map((lostReport) => ({
-        ...lostReport,
-        category: lostReport.category.name,
-      })),
-    ),
+    db()
+      .lostReport.findMany({
+        where: { status: { not: 'RECOVERED' } },
+        select: {
+          id: true,
+          code: true,
+          description: true,
+          photoUrl: true,
+          dateFrom: true,
+          dateTo: true,
+          status: true,
+          category: { select: { name: true } },
+          owner: { select: { name: true, email: true } },
+        },
+        orderBy: { createdAt: 'asc' },
+      })
+      .then((lostReports) =>
+        lostReports.map((lostReport) => ({
+          ...lostReport,
+          category: lostReport.category.name,
+        })),
+      ),
 
   findActiveLostReportByCode: async (code) => {
     const lostReport = await db().lostReport.findFirst({
@@ -136,7 +138,7 @@ export const prismaWelfareRepository = {
 
   listPending: async () => {
     const pendingItemRows = await db().foundItem.findMany({
-      where: { status: 'PENDING_DROP_OFF' },
+      where: { status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
       include: foundItemRelations,
       orderBy: { createdAt: 'asc' },
     });
@@ -153,8 +155,8 @@ export const prismaWelfareRepository = {
   },
 
   findFoundItemByCode: async (code) => {
-    const foundItemRow = await db().foundItem.findUnique({
-      where: { code },
+    const foundItemRow = await db().foundItem.findFirst({
+      where: { code, OR: [{ status: { not: 'PENDING_DROP_OFF' } }, { visibility: 'VISIBLE' }] },
       include: foundItemRelations,
     });
     return foundItemRow ? toWelfareFoundItem(foundItemRow) : null;
@@ -180,20 +182,36 @@ export const prismaWelfareRepository = {
     return { code: createdItem.code, status: 'IN_CUSTODY' };
   },
 
-  confirmPendingReception: async (itemId, receivedById, receivedAt, correction) => {
-    const updatedItems = await db().foundItem.updateMany({
-      where: { id: itemId, status: 'PENDING_DROP_OFF' },
-      data: { status: 'IN_CUSTODY', receivedById, receivedAt, ...correction },
-    });
-    if (updatedItems.count !== 1) {
-      return null;
-    }
-    const foundItem = await db().foundItem.findUnique({
-      where: { id: itemId },
-      include: foundItemRelations,
-    });
-    return foundItem ? toWelfareFoundItem(foundItem) : null;
-  },
+  confirmPendingReception: async (
+    itemId: string,
+    receivedById: string,
+    receivedAt: Date,
+    correction?: ReceptionCorrection,
+  ) =>
+    db().$transaction(async (transaction) => {
+      const updatedItems = await transaction.foundItem.updateMany({
+        where: { id: itemId, status: 'PENDING_DROP_OFF', visibility: 'VISIBLE' },
+        data: { status: 'IN_CUSTODY', receivedById, receivedAt, ...correction },
+      });
+      if (updatedItems.count !== 1) {
+        return null;
+      }
+
+      const foundItem = await transaction.foundItem.findUniqueOrThrow({
+        where: { id: itemId },
+        include: foundItemRelations,
+      });
+      if (foundItem.finderId) {
+        await transaction.notification.create({
+          data: {
+            userId: foundItem.finderId,
+            message: 'Bienestar Estudiantil recibió el objeto de tu reporte ' + foundItem.code + '.',
+            link: '/mis-reportes/encontrados/' + encodeURIComponent(foundItem.code),
+          },
+        });
+      }
+      return toWelfareFoundItem(foundItem);
+    }),
 
   deletePending: async (itemId) => {
     const deletedItems = await db().foundItem.deleteMany({

@@ -1082,6 +1082,7 @@ export function WelfarePage({ welfareService, matchesService }: WelfarePageProps
               title="Registrar objeto"
               submitLabel="Registrar objeto"
               submittingLabel="Registrando objeto…"
+              skipReview
               renderConfirmation={(code) => (
                 <section className="mx-auto max-w-lg space-y-4">
                   <h2 className="text-lg font-semibold text-blue-700">Objeto registrado</h2>
