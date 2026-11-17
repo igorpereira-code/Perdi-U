@@ -11,6 +11,7 @@ function toLostReportToMatch(report: LostReportWithPlaces): LostReportToMatch {
   return {
     id: report.id,
     code: report.code,
+    ownerId: report.ownerId,
     categoryId: report.categoryId,
     dateFrom: report.dateFrom,
     dateTo: report.dateTo,
@@ -129,6 +130,7 @@ export const prismaMatchingRepository: MatchingRepository = {
         id: true,
         code: true,
         status: true,
+        
         categoryId: true,
         foundAt: true,
         placeId: true,

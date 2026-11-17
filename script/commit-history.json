@@ -5016,12 +5016,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f21691871198dd5402be2c1775dac8fb543f503e",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T18:42:24.000Z",
       "message": "feat(admin): crear, editar y desactivar categorías",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f21691871198dd5402be2c1775dac8fb543f503e"
     },
     "stats": {
       "total": 771,
@@ -5449,6 +5449,25 @@
     },
     "coverage": 81.99,
     "test_count": 873,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T02:36:34.000Z",
+      "message": "feat(owner): avisar al dueño cuando se publica un objeto parecido a su reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 119,
+      "additions": 109,
+      "deletions": 10,
+      "date": "2026-11-17"
+    },
+    "coverage": 82,
+    "test_count": 875,
     "failed_tests": 0,
     "conclusion": "success"
   }

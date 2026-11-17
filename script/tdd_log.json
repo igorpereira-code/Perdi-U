@@ -6040,7 +6040,7 @@
     "testId": 144
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f21691871198dd5402be2c1775dac8fb543f503e",
     "commitName": "feat(admin): crear, editar y desactivar categorías",
     "commitTimestamp": 1794508947528,
     "testId": 144
@@ -6560,5 +6560,35 @@
     "commitName": "feat(owner): mostrar el código del reporte que debe llevar a Bienestar",
     "commitTimestamp": 1794774112445,
     "testId": 164
+  },
+  {
+    "numPassedTests": 873,
+    "failedTests": 0,
+    "numTotalTests": 873,
+    "timestamp": 1794881708896,
+    "success": true,
+    "testId": 165
+  },
+  {
+    "numPassedTests": 873,
+    "failedTests": 2,
+    "numTotalTests": 875,
+    "timestamp": 1794882447264,
+    "success": false,
+    "testId": 165
+  },
+  {
+    "numPassedTests": 875,
+    "failedTests": 0,
+    "numTotalTests": 875,
+    "timestamp": 1794882670273,
+    "success": true,
+    "testId": 165
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar al dueño cuando se publica un objeto parecido a su reporte",
+    "commitTimestamp": 1794882995602,
+    "testId": 165
   }
 ]
