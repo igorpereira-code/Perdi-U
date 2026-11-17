@@ -6194,7 +6194,7 @@
     "testId": 150
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f8443fa3f94709634f9767893d74a9ffe60731b1",
     "commitName": "feat(admin): definir el nivel mínimo de similitud de las coincidencias",
     "commitTimestamp": 1794525077848,
     "testId": 150
@@ -6730,5 +6730,51 @@
     "commitName": "feat(owner): mostrar esqueletos al cargar los objetos encontrados",
     "commitTimestamp": 1794923652539,
     "testId": 171
+  },
+  {
+    "numPassedTests": 886,
+    "failedTests": 4,
+    "numTotalTests": 890,
+    "timestamp": 1794924133746,
+    "success": false,
+    "testId": 172
+  },
+  {
+    "numPassedTests": 889,
+    "failedTests": 1,
+    "numTotalTests": 890,
+    "timestamp": 1794924353264,
+    "success": false,
+    "testId": 172
+  },
+  {
+    "numPassedTests": 889,
+    "failedTests": 1,
+    "numTotalTests": 890,
+    "timestamp": 1794924922551,
+    "success": false,
+    "testId": 172
+  },
+  {
+    "numPassedTests": 886,
+    "failedTests": 4,
+    "numTotalTests": 890,
+    "timestamp": 1794925615660,
+    "success": false,
+    "testId": 172
+  },
+  {
+    "numPassedTests": 891,
+    "failedTests": 0,
+    "numTotalTests": 891,
+    "timestamp": 1794933778770,
+    "success": true,
+    "testId": 172
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(owner): cubrir el boton de carga al enviar el reporte de perdida",
+    "commitTimestamp": 1794933880365,
+    "testId": 172
   }
 ]

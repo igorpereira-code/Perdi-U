@@ -5149,12 +5149,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f8443fa3f94709634f9767893d74a9ffe60731b1",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T23:11:17.000Z",
       "message": "feat(admin): definir el nivel mínimo de similitud de las coincidencias",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/f8443fa3f94709634f9767893d74a9ffe60731b1"
     },
     "stats": {
       "total": 462,
@@ -5582,6 +5582,25 @@
     },
     "coverage": 82.07,
     "test_count": 886,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T16:44:39.000Z",
+      "message": "test(owner): cubrir el boton de carga al enviar el reporte de perdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 13,
+      "additions": 13,
+      "deletions": 0,
+      "date": "2026-11-17"
+    },
+    "coverage": 82.22,
+    "test_count": 891,
     "failed_tests": 0,
     "conclusion": "success"
   }
