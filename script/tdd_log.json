@@ -5168,7 +5168,7 @@
     "testId": 72
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c530dca55bb85cedba12b3e347be33496d5c4ef0",
     "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
     "commitTimestamp": 1792632787536,
     "testId": 72
@@ -5186,7 +5186,7 @@
     "testId": 73
   },
   {
-    "commitId": "HEAD",
+    "commitId": "c530dca55bb85cedba12b3e347be33496d5c4ef0",
     "commitName": "feat: Pequeños cambios",
     "commitTimestamp": 1794001438321,
     "testId": 73
@@ -7660,5 +7660,17 @@
     "commitName": "feat(welfare): iniciar directamente en bienestar",
     "commitTimestamp": 1794924549621,
     "testId": 171
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): separar panel por funcionalidad",
+    "commitTimestamp": 1794925308642,
+    "testId": 172
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): separar panel por funcionalidad",
+    "commitTimestamp": 1794925491161,
+    "testId": 173
   }
 ]

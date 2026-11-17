@@ -4028,12 +4028,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c530dca55bb85cedba12b3e347be33496d5c4ef0",
     "author": "javichosGIT",
     "commit": {
       "date": "2026-10-22T01:33:06.000Z",
       "message": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c530dca55bb85cedba12b3e347be33496d5c4ef0"
     },
     "stats": {
       "total": 19,
@@ -4085,12 +4085,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "c530dca55bb85cedba12b3e347be33496d5c4ef0",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T21:43:57.000Z",
       "message": "feat: Pequeños cambios",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c530dca55bb85cedba12b3e347be33496d5c4ef0"
     },
     "stats": {
       "total": 13,
@@ -7769,5 +7769,43 @@
     "test_count": 900,
     "failed_tests": 0,
     "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-17T14:21:46.000Z",
+      "message": "refactor(welfare): separar panel por funcionalidad",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 2049,
+      "additions": 877,
+      "deletions": 1172,
+      "date": "2026-11-17"
+    },
+    "coverage": 81.01,
+    "test_count": 900,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-17T14:24:49.000Z",
+      "message": "refactor(welfare): separar panel por funcionalidad",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 2057,
+      "additions": 888,
+      "deletions": 1169,
+      "date": "2026-11-17"
+    },
+    "coverage": 81.01,
+    "test_count": 900,
+    "failed_tests": 2,
+    "conclusion": "failure"
   }
 ]
