@@ -3781,6 +3781,25 @@
     "conclusion": "success"
   },
   {
+    "sha": "c8c30efdd651c69ff68e0349f6358388911248e5",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-21T20:06:58.000Z",
+      "message": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/c8c30efdd651c69ff68e0349f6358388911248e5"
+    },
+    "stats": {
+      "total": 80,
+      "additions": 62,
+      "deletions": 18,
+      "date": "2026-10-21"
+    },
+    "coverage": 90.06,
+    "test_count": 533,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
     "sha": "65751ebaa0d83e749e57641d0294ead0ca5a8284",
     "author": "igorpereira-code",
     "commit": {
@@ -3825,6 +3844,25 @@
       "date": "2026-10-21T20:53:51.000Z",
       "message": "chore: integra los últimos cambios de main en core-matching",
       "url": "https://github.com/igorpereira-code/Perdi-U/commit/82c6f6e19506de122248b391aacf814e159429c2"
+    },
+    "stats": {
+      "total": 8542,
+      "additions": 8501,
+      "deletions": 41,
+      "date": "2026-10-21"
+    },
+    "coverage": 90.06,
+    "test_count": 533,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "5d19a01822fa9b4380d8fd3df8dd18702445ddb6",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-10-21T20:53:51.000Z",
+      "message": "chore: integra los últimos cambios de main en core-matching",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/5d19a01822fa9b4380d8fd3df8dd18702445ddb6"
     },
     "stats": {
       "total": 8542,
@@ -4066,6 +4104,25 @@
     "conclusion": "success"
   },
   {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-10-22T01:33:06.000Z",
+      "message": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 19,
+      "additions": 19,
+      "deletions": 0,
+      "date": "2026-10-22"
+    },
+    "coverage": 89.82,
+    "test_count": 581,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
     "sha": "beac01bbfca2718e9a304c55eecce315827e30b3",
     "author": "igorpereira-code",
     "commit": {
@@ -4123,6 +4180,25 @@
     "conclusion": "success"
   },
   {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-06T21:43:57.000Z",
+      "message": "feat: Pequeños cambios",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 13,
+      "additions": 2,
+      "deletions": 11,
+      "date": "2026-11-06"
+    },
+    "coverage": 89.82,
+    "test_count": 581,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
     "sha": "8021c5e55075b3a9ae43a71bb2e2f4e65dba4856",
     "author": "igorpereira-code",
     "commit": {
@@ -4167,6 +4243,25 @@
       "date": "2026-11-06T22:15:29.000Z",
       "message": "feat(core): agregar la opción de avisos en la pantalla principal",
       "url": "https://github.com/igorpereira-code/Perdi-U/commit/4ec4f617995dce86dea5d7e232d03259b42e3b94"
+    },
+    "stats": {
+      "total": 552,
+      "additions": 532,
+      "deletions": 20,
+      "date": "2026-11-06"
+    },
+    "coverage": 88.83,
+    "test_count": 591,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-06T22:15:29.000Z",
+      "message": "feat(core): agregar la opción de avisos en la pantalla principal",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
     },
     "stats": {
       "total": 552,
@@ -7772,6 +7867,44 @@
   },
   {
     "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-17T14:12:44.000Z",
+      "message": "test(core): usar avisos falsos en las pruebas de rutas",
+      "url": "https://github.com/igorpereira-code/perdi-u/commit/HEAD"
+    },
+    "stats": {
+      "total": 63,
+      "additions": 32,
+      "deletions": 31,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.59,
+    "test_count": 895,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-17T14:21:45.000Z",
+      "message": "chore(admin): integra final-test en admin",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 108,
+      "additions": 96,
+      "deletions": 12,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.68,
+    "test_count": 900,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
     "author": "Gabriel Troncaso",
     "commit": {
       "date": "2026-11-17T14:21:46.000Z",
@@ -7823,6 +7956,25 @@
       "date": "2026-11-17"
     },
     "coverage": 81.08,
+    "test_count": 900,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "igorpereira-code",
+    "commit": {
+      "date": "2026-11-17T19:27:40.000Z",
+      "message": "chore(welfare): integra final-test en welfare",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 63,
+      "additions": 32,
+      "deletions": 31,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.97,
     "test_count": 900,
     "failed_tests": 0,
     "conclusion": "success"

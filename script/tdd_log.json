@@ -4898,6 +4898,12 @@
     "testId": 62
   },
   {
+    "commitId": "c8c30efdd651c69ff68e0349f6358388911248e5",
+    "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+    "commitTimestamp": 1792613220007,
+    "testId": 62
+  },
+  {
     "commitId": "65751ebaa0d83e749e57641d0294ead0ca5a8284",
     "commitName": "chore: integra los últimos cambios de main en core-matching",
     "commitTimestamp": 1792616032864,
@@ -4911,6 +4917,12 @@
   },
   {
     "commitId": "82c6f6e19506de122248b391aacf814e159429c2",
+    "commitName": "chore: integra los últimos cambios de main en core-matching",
+    "commitTimestamp": 1792616032864,
+    "testId": 63
+  },
+  {
+    "commitId": "5d19a01822fa9b4380d8fd3df8dd18702445ddb6",
     "commitName": "chore: integra los últimos cambios de main en core-matching",
     "commitTimestamp": 1792616032864,
     "testId": 63
@@ -5180,6 +5192,12 @@
     "testId": 72
   },
   {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
+    "commitTimestamp": 1792632787536,
+    "testId": 72
+  },
+  {
     "commitId": "beac01bbfca2718e9a304c55eecce315827e30b3",
     "commitName": "feat: Pequeños cambios",
     "commitTimestamp": 1794001438321,
@@ -5193,6 +5211,12 @@
   },
   {
     "commitId": "fc7a28fd5d4395d149e71f8c27c4586f5d7e1963",
+    "commitName": "feat: Pequeños cambios",
+    "commitTimestamp": 1794001438321,
+    "testId": 73
+  },
+  {
+    "commitId": "HEAD",
     "commitName": "feat: Pequeños cambios",
     "commitTimestamp": 1794001438321,
     "testId": 73
@@ -5235,6 +5259,12 @@
   },
   {
     "commitId": "4ec4f617995dce86dea5d7e232d03259b42e3b94",
+    "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
+    "commitTimestamp": 1794003330500,
+    "testId": 74
+  },
+  {
+    "commitId": "HEAD",
     "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
     "commitTimestamp": 1794003330500,
     "testId": 74
@@ -7662,6 +7692,26 @@
     "testId": 171
   },
   {
+    "numPassedTests": 895,
+    "failedTests": 0,
+    "numTotalTests": 895,
+    "timestamp": 1794924714656,
+    "success": true,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(core): usar avisos falsos en las pruebas de rutas",
+    "commitTimestamp": 1794924765107,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(admin): integra final-test en admin",
+    "commitTimestamp": 1794925305999,
+    "testId": 169
+  },
+  {
     "commitId": "HEAD",
     "commitName": "refactor(welfare): separar panel por funcionalidad",
     "commitTimestamp": 1794925308642,
@@ -7678,5 +7728,11 @@
     "commitName": "refactor(welfare): separar pruebas por funcionalidad",
     "commitTimestamp": 1794941930884,
     "testId": 174
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): integra final-test en welfare",
+    "commitTimestamp": 1794943661546,
+    "testId": 175
   }
 ]
