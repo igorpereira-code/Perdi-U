@@ -4904,7 +4904,7 @@
     "testId": 63
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ef4205de087a84197c1d717548025c79fe89b00d",
     "commitName": "chore: integra los últimos cambios de main en core-matching",
     "commitTimestamp": 1792616032864,
     "testId": 63
@@ -7654,5 +7654,11 @@
     "commitName": "chore(welfare): integra welfare en welfare-fotos",
     "commitTimestamp": 1794923636148,
     "testId": 170
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): iniciar directamente en bienestar",
+    "commitTimestamp": 1794924549621,
+    "testId": 171
   }
 ]

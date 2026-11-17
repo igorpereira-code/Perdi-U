@@ -3800,12 +3800,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ef4205de087a84197c1d717548025c79fe89b00d",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-10-21T20:53:51.000Z",
       "message": "chore: integra los últimos cambios de main en core-matching",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ef4205de087a84197c1d717548025c79fe89b00d"
     },
     "stats": {
       "total": 8542,
@@ -7747,6 +7747,25 @@
       "date": "2026-11-17"
     },
     "coverage": 80.85,
+    "test_count": 900,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Gabriel Troncaso",
+    "commit": {
+      "date": "2026-11-17T14:09:07.000Z",
+      "message": "feat(welfare): iniciar directamente en bienestar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 18,
+      "additions": 14,
+      "deletions": 4,
+      "date": "2026-11-17"
+    },
+    "coverage": 80.81,
     "test_count": 900,
     "failed_tests": 0,
     "conclusion": "success"

@@ -5,7 +5,11 @@ describe('Pantalla de inicio después de ingresar', () => {
     expect(getStartPath('ADMIN')).toBe('/administracion');
   });
 
-  it.each(['COMMUNITY', 'WELFARE'] as const)('un usuario %s entra al inicio', (role) => {
-    expect(getStartPath(role)).toBe('/');
+  it('el personal de Bienestar entra directo a Bienestar', () => {
+    expect(getStartPath('WELFARE')).toBe('/bienestar');
+  });
+
+  it('un usuario de la comunidad entra al inicio', () => {
+    expect(getStartPath('COMMUNITY')).toBe('/');
   });
 });
