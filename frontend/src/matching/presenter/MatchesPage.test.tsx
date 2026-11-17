@@ -111,3 +111,24 @@ describe('Objetos parecidos a mi reporte', () => {
     expect(onDismiss).toHaveBeenCalledWith('HZ-0001');
   });
 });
+
+describe('Coincidencia con un objeto que no es visible', () => {
+  const hiddenMatch: MatchView = {
+    ...match('HZ-0004', 'Celular Samsung con funda azul y vidrio roto'),
+    isHidden: true,
+  };
+
+  it('le avisa que hay una coincidencia y que se acerque a Bienestar', () => {
+    renderPage([hiddenMatch]);
+
+    expect(screen.getByText('Hay una coincidencia, acércate a Bienestar')).toBeInTheDocument();
+  });
+
+  it('no muestra ese aviso en una coincidencia visible', () => {
+    renderPage([match('HZ-0001', 'Celular Samsung con funda azul')]);
+
+    expect(
+      screen.queryByText('Hay una coincidencia, acércate a Bienestar'),
+    ).not.toBeInTheDocument();
+  });
+});

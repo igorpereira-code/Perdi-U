@@ -258,3 +258,37 @@ describe('Reclamar un objeto del catálogo (POST /catalog/:code/claim)', () => {
     expect(matches).toHaveLength(0);
   });
 });
+describe('Coincidencias con un objeto que no es visible', () => {
+  const hiddenPhone: FakeItem = {
+    id: 'i4',
+    code: 'HZ-0004',
+    categoryId: 1,
+    foundAt: foundOn,
+    placeId: 5,
+    description: 'Celular Samsung con funda azul y vidrio roto',
+    photoUrl: 'https://foto.com/celular.jpg',
+    category: 'Electrónicos',
+    visibility: 'HIDDEN',
+  };
+
+  it('el dueño recibe la coincidencia marcada como no visible', async () => {
+    const { repository } = fakeMatchingRepository([anasReport], [hiddenPhone]);
+
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    ).get('/lost-reports/PR-0001/matches');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual([expect.objectContaining({ isHidden: true })]);
+  });
+
+  it('una coincidencia con un objeto visible no se marca como no visible', async () => {
+    const { repository } = fakeMatchingRepository([anasReport], items);
+
+    const res = await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository() }),
+    ).get('/lost-reports/PR-0001/matches');
+
+    expect(res.body.map((match: { isHidden: boolean }) => match.isHidden)).toEqual([false, false]);
+  });
+});

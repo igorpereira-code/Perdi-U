@@ -76,6 +76,7 @@ export const prismaMatchingRepository: MatchingRepository = {
         photoUrl: row.foundItem.photoUrl,
         category: row.foundItem.category.name,
       },
+      isHidden: row.foundItem.visibility === 'HIDDEN',
     }));
   },
 

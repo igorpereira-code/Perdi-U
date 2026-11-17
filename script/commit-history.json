@@ -5054,12 +5054,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "230f96928a61f8742e6e270e1cc3fd62a5ebaf4c",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-12T22:02:47.000Z",
       "message": "feat(admin): crear, editar y desactivar lugares y sus aulas",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/230f96928a61f8742e6e270e1cc3fd62a5ebaf4c"
     },
     "stats": {
       "total": 1101,
@@ -5487,6 +5487,25 @@
     },
     "coverage": 82,
     "test_count": 876,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-17T02:52:07.000Z",
+      "message": "feat(owner): avisar que hay una coincidencia con un objeto no visible",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 70,
+      "additions": 67,
+      "deletions": 3,
+      "date": "2026-11-17"
+    },
+    "coverage": 82,
+    "test_count": 880,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -6084,7 +6084,7 @@
     "testId": 145
   },
   {
-    "commitId": "HEAD",
+    "commitId": "230f96928a61f8742e6e270e1cc3fd62a5ebaf4c",
     "commitName": "feat(admin): crear, editar y desactivar lugares y sus aulas",
     "commitTimestamp": 1794520968541,
     "testId": 145
@@ -6612,5 +6612,27 @@
     "commitName": "feat(owner): abrir las coincidencias del reporte al tocar el aviso",
     "commitTimestamp": 1794883191534,
     "testId": 166
+  },
+  {
+    "numPassedTests": 877,
+    "failedTests": 3,
+    "numTotalTests": 880,
+    "timestamp": 1794883327738,
+    "success": false,
+    "testId": 167
+  },
+  {
+    "numPassedTests": 880,
+    "failedTests": 0,
+    "numTotalTests": 880,
+    "timestamp": 1794883883920,
+    "success": true,
+    "testId": 167
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar que hay una coincidencia con un objeto no visible",
+    "commitTimestamp": 1794883927872,
+    "testId": 167
   }
 ]
