@@ -158,6 +158,16 @@ describe('Reclamar el objeto: elegir con qué reporte relacionarlo', () => {
     expect(screen.queryByText(/PR-0002/)).not.toBeInTheDocument();
   });
 
+  it('no ofrece los reportes que ya fueron cerrados', async () => {
+    const closed: MyLostReport = { ...keysReport, status: 'CLOSED' };
+    renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
+      listMine: jest.fn().mockResolvedValue([phoneReport, closed]),
+    });
+
+    expect(await screen.findByText('Lo relacionaremos con tu reporte PR-0001.')).toBeInTheDocument();
+    expect(screen.queryByText(/PR-0002/)).not.toBeInTheDocument();
+  });
+
   it('si todos sus reportes ya fueron recuperados, lo invita a reportar su pérdida', async () => {
     renderScreen(jest.fn().mockResolvedValue(backpack), '/objetos/HZ-0007', {
       listMine: jest.fn().mockResolvedValue([{ ...phoneReport, status: 'RECOVERED' }]),

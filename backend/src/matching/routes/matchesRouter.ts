@@ -132,6 +132,10 @@ export function createMatchesRouter(
       res.status(409).json({ error: 'Lost report already recovered' });
       return;
     }
+    if (result === 'REPORT_CLOSED') {
+      res.status(409).json({ error: 'Lost report closed' });
+      return;
+    }
     res.json({ status: 'WILL_PICK_UP' });
   });
 

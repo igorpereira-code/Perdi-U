@@ -31,7 +31,7 @@ export const prismaMatchingRepository: MatchingRepository = {
 
   findLostReportByCode: async (code) => {
     const report = await db().lostReport.findFirst({
-      where: { code, status: { not: 'RECOVERED' } },
+      where: { code, status: { notIn: ['RECOVERED', 'CLOSED'] } },
       include: LOST_REPORT_PLACES,
     });
     return report && toLostReportToMatch(report);
@@ -118,6 +118,9 @@ export const prismaMatchingRepository: MatchingRepository = {
     });
     if (!report || report.status === 'RECOVERED') {
       return 'REPORT_RECOVERED';
+    }
+    if (report.status === 'CLOSED') {
+      return 'REPORT_CLOSED';
     }
     const respondedAt = new Date();
     await db().match.upsert({

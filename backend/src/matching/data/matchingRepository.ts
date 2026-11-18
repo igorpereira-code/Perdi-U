@@ -12,8 +12,11 @@ export type Suggestion = { foundItemId: string; similarity: number };
 export type FoundItemToPublish = PublishedItem & { code: string; status: FoundItemStatus };
 export type PublishedVisibility = 'VISIBLE' | 'HIDDEN';
 
-/** CLAIMED: Bienestar will see the pickup. REPORT_RECOVERED: the report is closed, so nothing was saved. */
-export type ClaimResult = 'CLAIMED' | 'REPORT_RECOVERED';
+/**
+ * CLAIMED: Bienestar will see the pickup. REPORT_RECOVERED / REPORT_CLOSED: the report is no longer
+ * active (the owner already got it back, or said they found it), so nothing was saved.
+ */
+export type ClaimResult = 'CLAIMED' | 'REPORT_RECOVERED' | 'REPORT_CLOSED';
 
 /** Where lost reports, published items and matches are read and saved. Tests use a fake one. */
 export type MatchingRepository = {

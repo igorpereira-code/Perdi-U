@@ -67,6 +67,22 @@ describe('Ver los objetos parecidos a mi reporte (GET /lost-reports/:code/matche
     expect(res.status).toBe(404);
   });
 
+  it('no permite que Bienestar consulte coincidencias de un reporte cerrado', async () => {
+    const { repository } = fakeMatchingRepository([{ ...anasReport, status: 'CLOSED' }], items);
+
+    const res = await request(
+      createApp({
+        notifications: fakeNotificationsRepository(),
+        matching: repository,
+        settings: fakeSettingsRepository(),
+      }),
+    )
+      .get('/lost-reports/PR-0001/matches')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(404);
+  });
+
   it('permite que Bienestar consulte el reporte de otra persona', async () => {
     const { repository } = fakeMatchingRepository([anasReport], items);
 
@@ -270,6 +286,21 @@ describe('Reclamar un objeto del catálogo (POST /catalog/:code/claim)', () => {
 
     expect(res.status).toBe(409);
     expect(res.body).toEqual({ error: 'Lost report already recovered' });
+    expect(matches).toHaveLength(0);
+  });
+
+  it('no deja reclamar con un reporte que ya fue cerrado', async () => {
+    const { repository, matches } = fakeMatchingRepository([{ ...anasReport, status: 'CLOSED' }], items);
+    const app = createApp({
+      notifications: fakeNotificationsRepository(),
+      matching: repository,
+      settings: fakeSettingsRepository(),
+    });
+
+    const res = await claim(app, 'HZ-0003');
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ error: 'Lost report closed' });
     expect(matches).toHaveLength(0);
   });
 });

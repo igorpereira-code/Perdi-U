@@ -4465,12 +4465,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "442a984868db18f1e3af0f870d580290f8415c60",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T23:04:17.000Z",
       "message": "feat(core): dejar de contar como nuevos los avisos que ya se abrieron",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/442a984868db18f1e3af0f870d580290f8415c60"
     },
     "stats": {
       "total": 295,
@@ -8679,6 +8679,25 @@
     },
     "coverage": 81.55,
     "test_count": 947,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-18T15:41:12.000Z",
+      "message": "fix(owner): no tratar los reportes cerrados como activos",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 101,
+      "additions": 92,
+      "deletions": 9,
+      "date": "2026-11-18"
+    },
+    "coverage": 81.53,
+    "test_count": 952,
     "failed_tests": 0,
     "conclusion": "success"
   }

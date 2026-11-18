@@ -5410,7 +5410,7 @@
     "testId": 79
   },
   {
-    "commitId": "HEAD",
+    "commitId": "442a984868db18f1e3af0f870d580290f8415c60",
     "commitName": "feat(core): dejar de contar como nuevos los avisos que ya se abrieron",
     "commitTimestamp": 1794006258664,
     "testId": 79
@@ -8348,5 +8348,27 @@
     "commitName": "feat(owner): agregar el estado cerrado al reporte de pérdida",
     "commitTimestamp": 1795015776001,
     "testId": 182
+  },
+  {
+    "numPassedTests": 947,
+    "failedTests": 5,
+    "numTotalTests": 952,
+    "timestamp": 1795016083295,
+    "success": false,
+    "testId": 183
+  },
+  {
+    "numPassedTests": 952,
+    "failedTests": 0,
+    "numTotalTests": 952,
+    "timestamp": 1795016443489,
+    "success": true,
+    "testId": 183
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(owner): no tratar los reportes cerrados como activos",
+    "commitTimestamp": 1795016473190,
+    "testId": 183
   }
 ]

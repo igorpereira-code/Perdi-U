@@ -28,7 +28,10 @@ export function fakeMatchingRepository(initialReports: FakeReport[], initialItem
       reports.find((report) => report.code === code && report.ownerId === ownerId) ?? null,
 
     findLostReportByCode: async (code) =>
-      reports.find((report) => report.code === code && report.status !== 'RECOVERED') ?? null,
+      reports.find(
+        (report) =>
+          report.code === code && report.status !== 'RECOVERED' && report.status !== 'CLOSED',
+      ) ?? null,
 
     listPublishedItems: async () => items.filter((item) => statusOf(item) === 'PUBLISHED'),
 
@@ -75,6 +78,9 @@ export function fakeMatchingRepository(initialReports: FakeReport[], initialItem
       const report = reports.find((r) => r.id === lostReportId);
       if (!report || report.status === 'RECOVERED') {
         return 'REPORT_RECOVERED';
+      }
+      if (report.status === 'CLOSED') {
+        return 'REPORT_CLOSED';
       }
       const { code, description, photoUrl, category } = itemById(foundItemId);
       const existing = matches.find((m) => m.lostReportId === lostReportId && m.foundItem.code === code);

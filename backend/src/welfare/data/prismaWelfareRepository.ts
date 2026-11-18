@@ -55,7 +55,7 @@ export const prismaWelfareRepository = {
   listActiveLostReports: async () =>
     db()
       .lostReport.findMany({
-        where: { status: { not: 'RECOVERED' } },
+        where: { status: { notIn: ['RECOVERED', 'CLOSED'] } },
         select: {
           id: true,
           code: true,
@@ -78,7 +78,7 @@ export const prismaWelfareRepository = {
 
   findActiveLostReportByCode: async (code) => {
     const lostReport = await db().lostReport.findFirst({
-      where: { code, status: { not: 'RECOVERED' } },
+      where: { code, status: { notIn: ['RECOVERED', 'CLOSED'] } },
       select: {
         id: true,
         code: true,
