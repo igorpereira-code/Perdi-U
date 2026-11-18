@@ -93,5 +93,22 @@ export function createMyLostReportsRouter(
     }
   });
 
+  router.post('/my-lost-reports/:code/close', async (req, res) => {
+    try {
+      const result = await reports.closeMine(getCurrentUser(req).id, readCode(req.params.code));
+      if (result === 'NOT_FOUND') {
+        res.status(404).json({ error: NOT_FOUND });
+        return;
+      }
+      if (result === 'ALREADY_FINISHED') {
+        res.status(409).json({ error: 'Este reporte ya fue cerrado o recuperado.' });
+        return;
+      }
+      res.json({ closed: true });
+    } catch {
+      res.status(503).json({ error: 'No se pudo cerrar el reporte. Intenta nuevamente.' });
+    }
+  });
+
   return router;
 }

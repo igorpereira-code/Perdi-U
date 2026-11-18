@@ -5506,7 +5506,7 @@
     "testId": 82
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e1dd997816d0a125c21b4c3982cad557bf2a2df3",
     "commitName": "feat(finder): abrir la guía rápida desde Inicio",
     "commitTimestamp": 1794258117193,
     "testId": 82
@@ -8414,5 +8414,27 @@
     "commitName": "feat(owner): ver las coincidencias actualizadas al editar el reporte",
     "commitTimestamp": 1795019078758,
     "testId": 185
+  },
+  {
+    "numPassedTests": 969,
+    "failedTests": 13,
+    "numTotalTests": 982,
+    "timestamp": 1795019401213,
+    "success": false,
+    "testId": 186
+  },
+  {
+    "numPassedTests": 982,
+    "failedTests": 0,
+    "numTotalTests": 982,
+    "timestamp": 1795019728630,
+    "success": true,
+    "testId": 186
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): cerrar el reporte de pérdida con ya lo encontré",
+    "commitTimestamp": 1795019772942,
+    "testId": 186
   }
 ]

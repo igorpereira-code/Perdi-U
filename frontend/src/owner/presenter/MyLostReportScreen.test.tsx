@@ -24,7 +24,7 @@ function renderDetail(getMine: jest.Mock, path = '/mis-perdidas/PR-0007') {
           path="/mis-perdidas/:code"
           element={
             <MyLostReportScreen
-              myLostReportsService={{ getMine, getEditable: jest.fn(), update: jest.fn() }}
+              myLostReportsService={{ getMine, getEditable: jest.fn(), update: jest.fn(), close: jest.fn() }}
               foundItemsService={{ getCatalogs: jest.fn() }}
             />
           }
@@ -119,6 +119,7 @@ describe('Editar mi reporte de pérdida', () => {
       getMine,
       getEditable: jest.fn().mockResolvedValue(editable),
       update,
+      close: jest.fn(),
     };
     render(
       <MemoryRouter initialEntries={['/mis-perdidas/PR-0007']}>
@@ -172,5 +173,48 @@ describe('Editar mi reporte de pérdida', () => {
 
     expect(await screen.findByRole('heading', { name: 'Detalle de mi reporte' })).toBeInTheDocument();
     expect(service.update).not.toHaveBeenCalled();
+  });
+});
+
+describe('Cerrar mi reporte con "Ya lo encontré"', () => {
+  function renderClosable(getMine: jest.Mock, close: jest.Mock) {
+    render(
+      <MemoryRouter initialEntries={['/mis-perdidas/PR-0007']}>
+        <Routes>
+          <Route
+            path="/mis-perdidas/:code"
+            element={
+              <MyLostReportScreen
+                myLostReportsService={{ getMine, getEditable: jest.fn(), update: jest.fn(), close }}
+                foundItemsService={{ getCatalogs: jest.fn() }}
+              />
+            }
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+  }
+
+  it('cierra el reporte y lo vuelve a mostrar con su nuevo estado', async () => {
+    const getMine = jest
+      .fn()
+      .mockResolvedValueOnce(keys)
+      .mockResolvedValueOnce({ ...keys, status: 'CLOSED' });
+    const close = jest.fn().mockResolvedValue(undefined);
+    renderClosable(getMine, close);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Ya lo encontré' }));
+
+    expect(close).toHaveBeenCalledWith('PR-0007');
+    expect(await screen.findByText('Cerrado')).toBeInTheDocument();
+  });
+
+  it('avisa si no se pudo cerrar el reporte', async () => {
+    const close = jest.fn().mockRejectedValue(new Error('No se pudo cerrar el reporte. Intenta nuevamente.'));
+    renderClosable(jest.fn().mockResolvedValue(keys), close);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Ya lo encontré' }));
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('No se pudo cerrar el reporte. Intenta nuevamente.');
   });
 });

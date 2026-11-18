@@ -15,7 +15,7 @@ import { formatDay } from '../logic/formatDay';
 import { LostReportForm } from './LostReportForm';
 
 type MyLostReportScreenProps = {
-  myLostReportsService: Pick<MyLostReportsService, 'getMine' | 'getEditable' | 'update'>;
+  myLostReportsService: Pick<MyLostReportsService, 'getMine' | 'getEditable' | 'update' | 'close'>;
   foundItemsService: Pick<FoundItemsService, 'getCatalogs'>;
 };
 
@@ -60,6 +60,9 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
   const [reportToEdit, setReportToEdit] = useState<ReportToEdit | null>(null);
   const [isOpeningEdit, setIsOpeningEdit] = useState(false);
   const [editError, setEditError] = useState<string | null>(null);
+  const [reloadCount, setReloadCount] = useState(0);
+  const [isClosing, setIsClosing] = useState(false);
+  const [closeError, setCloseError] = useState<string | null>(null);
 
   async function openEdit() {
     setIsOpeningEdit(true);
@@ -74,6 +77,19 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
       setEditError(error instanceof Error ? error.message : 'No se pudo cargar el reporte para editar.');
     } finally {
       setIsOpeningEdit(false);
+    }
+  }
+
+  async function closeReport() {
+    setIsClosing(true);
+    setCloseError(null);
+    try {
+      await myLostReportsService.close(code);
+      setReloadCount((count) => count + 1);
+    } catch (error) {
+      setCloseError(error instanceof Error ? error.message : 'No se pudo cerrar el reporte.');
+    } finally {
+      setIsClosing(false);
     }
   }
 
@@ -100,7 +116,7 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
     return () => {
       active = false;
     };
-  }, [myLostReportsService, code]);
+  }, [myLostReportsService, code, reloadCount]);
 
   if (reportToEdit) {
     return (
@@ -172,6 +188,14 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
         onClick={openEdit}
       >
         Editar reporte
+      </Button>
+      {closeError && (
+        <div role="alert">
+          <Alert>{closeError}</Alert>
+        </div>
+      )}
+      <Button className="w-full" isLoading={isClosing} loadingText="Cerrando reporte…" onClick={closeReport}>
+        Ya lo encontré
       </Button>
       <WelfareCard />
     </article>

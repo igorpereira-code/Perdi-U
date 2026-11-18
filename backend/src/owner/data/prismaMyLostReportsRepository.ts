@@ -102,4 +102,25 @@ export const prismaMyLostReportsRepository: MyLostReportsRepository = {
       }
       return true;
     }),
+
+  closeMine: (ownerId, code) =>
+    db().$transaction(async (tx) => {
+      const report = await tx.lostReport.findFirst({ where: { ownerId, code }, select: { id: true } });
+      if (!report) {
+        return 'NOT_FOUND';
+      }
+      const closing = await tx.lostReport.updateMany({
+        where: { id: report.id, status: { notIn: ['RECOVERED', 'CLOSED'] } },
+        data: { status: 'CLOSED' },
+      });
+      if (closing.count === 0) {
+        return 'ALREADY_FINISHED';
+      }
+      // The owner will no longer pick it up: the item is free for other reports.
+      await tx.match.updateMany({
+        where: { lostReportId: report.id, status: 'WILL_PICK_UP' },
+        data: { status: 'DISMISSED', respondedAt: new Date() },
+      });
+      return 'CLOSED';
+    }),
 };

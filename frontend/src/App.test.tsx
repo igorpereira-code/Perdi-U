@@ -102,6 +102,7 @@ function renderAt(
       getMine: jest.fn().mockResolvedValue(null),
       getEditable: jest.fn(),
       update: jest.fn(),
+      close: jest.fn(),
     } as MyLostReportsService);
     const rendered = render(
     <MemoryRouter initialEntries={[path]}>
@@ -609,6 +610,7 @@ describe('Reclamar un objeto desde su detalle', () => {
         getMine: jest.fn().mockResolvedValue(null),
         getEditable: jest.fn(),
         update: jest.fn(),
+        close: jest.fn(),
       } as MyLostReportsService,
     });
 

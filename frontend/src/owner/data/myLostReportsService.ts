@@ -19,6 +19,8 @@ export type MyLostReportsService = {
   /** The report as the edit form fills it. */
   getEditable: (code: string) => Promise<LostReportPayload>;
   update: (code: string, changes: LostReportPayload) => Promise<void>;
+  /** "Ya lo encontré": closes the report. */
+  close: (code: string) => Promise<void>;
 };
 
 export function createMyLostReportsService(apiFetch: ApiFetch): MyLostReportsService {
@@ -55,6 +57,15 @@ export function createMyLostReportsService(apiFetch: ApiFetch): MyLostReportsSer
       });
       if (!response.ok) {
         throw new Error('No se pudieron guardar los cambios. Intenta nuevamente.');
+      }
+    },
+    close: async (code) => {
+      const response = await apiFetch(`/my-lost-reports/${encodeURIComponent(code)}/close`, { method: 'POST' });
+      if (response.status === 409) {
+        throw new Error('Este reporte ya fue cerrado o recuperado.');
+      }
+      if (!response.ok) {
+        throw new Error('No se pudo cerrar el reporte. Intenta nuevamente.');
       }
     },
   };

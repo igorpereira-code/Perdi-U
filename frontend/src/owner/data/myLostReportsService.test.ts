@@ -87,3 +87,29 @@ describe('Editar mi reporte de pérdida', () => {
     ).rejects.toThrow('No se pudieron guardar los cambios. Intenta nuevamente.');
   });
 });
+
+describe('Cerrar mi reporte de pérdida', () => {
+  it('pide cerrar el reporte', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(answer(200, { closed: true }));
+
+    await createMyLostReportsService(apiFetch as ApiFetch).close('PR-0007');
+
+    expect(apiFetch).toHaveBeenCalledWith('/my-lost-reports/PR-0007/close', { method: 'POST' });
+  });
+
+  it('avisa si el reporte ya fue cerrado o recuperado', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(answer(409, { error: 'Detalle' }));
+
+    await expect(createMyLostReportsService(apiFetch as ApiFetch).close('PR-0007')).rejects.toThrow(
+      'Este reporte ya fue cerrado o recuperado.',
+    );
+  });
+
+  it('avisa con un mensaje claro si no se pudo cerrar', async () => {
+    const apiFetch = jest.fn().mockResolvedValue(answer(503, { error: 'Detalle' }));
+
+    await expect(createMyLostReportsService(apiFetch as ApiFetch).close('PR-0007')).rejects.toThrow(
+      'No se pudo cerrar el reporte. Intenta nuevamente.',
+    );
+  });
+});

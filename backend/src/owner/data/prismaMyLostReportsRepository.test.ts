@@ -80,3 +80,62 @@ describe('Coincidencias actualizadas al editar un reporte de pérdida', () => {
     expect(transaction.lostReport.update).not.toHaveBeenCalled();
   });
 });
+
+function mockClosing(report: { id: string } | null, closedReports = 1) {
+  const transaction = {
+    lostReport: {
+      findFirst: jest.fn().mockResolvedValue(report),
+      updateMany: jest.fn().mockResolvedValue({ count: closedReports }),
+    },
+    match: { updateMany: jest.fn() },
+  };
+  jest.mocked(db).mockReturnValue({
+    $transaction: jest.fn((operation) => operation(transaction)),
+  } as unknown as ReturnType<typeof db>);
+  return transaction;
+}
+
+describe('Cerrar mi reporte de pérdida ("Ya lo encontré")', () => {
+  it('cierra el reporte del dueño si sigue activo', async () => {
+    const transaction = mockClosing({ id: 'report-1' });
+
+    await expect(prismaMyLostReportsRepository.closeMine('owner-1', 'PR-0007')).resolves.toBe('CLOSED');
+
+    expect(transaction.lostReport.findFirst).toHaveBeenCalledWith({
+      where: { ownerId: 'owner-1', code: 'PR-0007' },
+      select: { id: true },
+    });
+    expect(transaction.lostReport.updateMany).toHaveBeenCalledWith({
+      where: { id: 'report-1', status: { notIn: ['RECOVERED', 'CLOSED'] } },
+      data: { status: 'CLOSED' },
+    });
+  });
+
+  it('en la misma transacción descarta su "Pasaré a recoger", para que el objeto quede libre', async () => {
+    const transaction = mockClosing({ id: 'report-1' });
+
+    await prismaMyLostReportsRepository.closeMine('owner-1', 'PR-0007');
+
+    expect(transaction.match.updateMany).toHaveBeenCalledWith({
+      where: { lostReportId: 'report-1', status: 'WILL_PICK_UP' },
+      data: { status: 'DISMISSED', respondedAt: expect.any(Date) },
+    });
+  });
+
+  it('no cierra un reporte que ya fue recuperado o cerrado', async () => {
+    const transaction = mockClosing({ id: 'report-1' }, 0);
+
+    await expect(prismaMyLostReportsRepository.closeMine('owner-1', 'PR-0007')).resolves.toBe(
+      'ALREADY_FINISHED',
+    );
+    expect(transaction.match.updateMany).not.toHaveBeenCalled();
+  });
+
+  it('solo el dueño puede cerrarlo', async () => {
+    const transaction = mockClosing(null);
+
+    await expect(prismaMyLostReportsRepository.closeMine('owner-2', 'PR-0007')).resolves.toBe('NOT_FOUND');
+    expect(transaction.lostReport.updateMany).not.toHaveBeenCalled();
+    expect(transaction.match.updateMany).not.toHaveBeenCalled();
+  });
+});

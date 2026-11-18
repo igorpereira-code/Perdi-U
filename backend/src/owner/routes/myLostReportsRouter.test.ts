@@ -27,6 +27,7 @@ function fakeReports(reports: MyLostReport[]): jest.Mocked<MyLostReportsReposito
     findMine: jest.fn(async (_ownerId: string, code: string) => reports.find((report) => report.code === code) ?? null),
     findEditable: jest.fn(),
     updateMine: jest.fn(),
+    closeMine: jest.fn(),
   };
 }
 
@@ -139,6 +140,7 @@ function editableReports(): jest.Mocked<MyLostReportsRepository> {
     updateMine: jest.fn(async (ownerId: string, code: string, _changes: ValidLostReport) =>
       isAnasKeys(ownerId, code),
     ),
+    closeMine: jest.fn(),
   };
 }
 
@@ -218,5 +220,50 @@ describe('Editar un reporte de pérdida (GET /my-lost-reports/:code/edit, PATCH 
 
     expect(res.status).toBe(404);
     expect(res.body).toEqual({ error: 'No encontramos este reporte.' });
+  });
+});
+
+describe('Cerrar mi reporte de pérdida (POST /my-lost-reports/:code/close)', () => {
+  it('cierra el reporte de quien inició sesión', async () => {
+    const myLostReports = fakeReports([keys]);
+    myLostReports.closeMine.mockResolvedValue('CLOSED');
+
+    const res = await request(createApp({ myLostReports })).post('/my-lost-reports/pr-0007/close');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ closed: true });
+    expect(myLostReports.closeMine).toHaveBeenCalledWith(SAMPLE_USERS.ana.id, 'PR-0007');
+  });
+
+  it('no cierra el reporte de otra persona', async () => {
+    const myLostReports = fakeReports([keys]);
+    myLostReports.closeMine.mockResolvedValue('NOT_FOUND');
+
+    const res = await request(createApp({ myLostReports }))
+      .post('/my-lost-reports/PR-0007/close')
+      .set('x-sample-user', 'luis');
+
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: 'No encontramos este reporte.' });
+  });
+
+  it('no cierra un reporte que ya fue recuperado o cerrado', async () => {
+    const myLostReports = fakeReports([keys]);
+    myLostReports.closeMine.mockResolvedValue('ALREADY_FINISHED');
+
+    const res = await request(createApp({ myLostReports })).post('/my-lost-reports/PR-0007/close');
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ error: 'Este reporte ya fue cerrado o recuperado.' });
+  });
+
+  it('responde con un error comprensible si no se pudo cerrar', async () => {
+    const myLostReports = fakeReports([keys]);
+    myLostReports.closeMine.mockRejectedValue(new Error('database down'));
+
+    const res = await request(createApp({ myLostReports })).post('/my-lost-reports/PR-0007/close');
+
+    expect(res.status).toBe(503);
+    expect(res.body).toEqual({ error: 'No se pudo cerrar el reporte. Intenta nuevamente.' });
   });
 });
