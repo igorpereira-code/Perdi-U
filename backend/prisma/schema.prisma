@@ -49,6 +49,7 @@ enum LostReportStatus {
   HAS_MATCHES
   PENDING_PICKUP
   RECOVERED
+  CLOSED
 
   @@map("lost_report_status")
 }
@@ -79,6 +80,7 @@ model User {
   lostReports          LostReport[]
   receivedDeliveries   Delivery[]   @relation("DeliveryRecipient")
   registeredDeliveries Delivery[]   @relation("DeliveryRegisteredBy")
+    notifications        Notification[]
 
   @@map("users")
 }
@@ -246,4 +248,33 @@ model Delivery {
   registeredBy  User        @relation("DeliveryRegisteredBy", fields: [registeredById], references: [id])
 
   @@map("deliveries")
+}
+
+
+// ─────────────── Notifications ───────────────
+
+/// In-app notification for one user (2nd deliverable)
+model Notification {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  message   String    @db.VarChar(300)
+  link      String?   @db.VarChar(200) /// Screen to open, e.g. /mis-perdidas/PR-0001
+  createdAt DateTime  @default(now()) @map("created_at")
+  readAt    DateTime? @map("read_at") /// Null while the user has not opened it
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("notifications")
+}
+
+/// Settings the Administrator can change. There is only one row, with id 1.
+model AppSettings {
+  id            Int      @id @default(1)
+  welfarePlace  String   @map("welfare_place") @db.VarChar(120)
+  welfareHours  String   @map("welfare_hours") @db.VarChar(120)
+  minSimilarity Int      @default(40) @map("min_similarity") /// From 0 to 100
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("app_settings")
 }

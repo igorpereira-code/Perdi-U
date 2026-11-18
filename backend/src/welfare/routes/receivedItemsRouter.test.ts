@@ -2,6 +2,28 @@ import request from 'supertest';
 import { createApp } from '../../app';
 import { SAMPLE_USERS } from '../../core/sampleUsers';
 import { fakeWelfareRepository } from '../data/fakeWelfareRepository';
+import type { FoundItemsRepository } from '../../finder/data/foundItemsRepository';
+import type { FoundItemPhotoStorage } from '../../finder/data/foundItemPhotoStorage';
+
+const foundItemsWithCatalogs: FoundItemsRepository = {
+  listMine: jest.fn(),
+  getMineByCode: jest.fn(),
+  getCatalogs: jest.fn().mockResolvedValue({
+    categories: [{ id: 1, name: 'Accesorios' }],
+    places: [{ id: 1, name: 'Recepción', type: 'SPACE', classrooms: [] }],
+  }),
+  create: jest.fn(),
+  getPhotoByCode: jest.fn(),
+  getEditable: jest.fn(),
+  cancelPending: jest.fn(),
+  updatePending: jest.fn(),
+};
+
+const photoStorage = (): jest.Mocked<FoundItemPhotoStorage> => ({
+  upload: jest.fn().mockResolvedValue(undefined),
+  remove: jest.fn().mockResolvedValue(undefined),
+  createSignedUrl: jest.fn(),
+});
 
 const pendingItem = {
   id: 'item-5',
@@ -9,11 +31,15 @@ const pendingItem = {
   description: 'Mochila negra con cuadernos',
   photoUrl: null,
   category: 'Mochilas',
+  categoryId: 1,
   place: 'Bloque A',
+  placeId: 1,
   classroom: 'Aula 3',
+  classroomId: 3,
   placeReference: 'Debajo de una mesa',
   foundAt: new Date('2026-10-15T14:00:00Z'),
   status: 'PENDING_DROP_OFF' as const,
+  visibility: 'VISIBLE' as const,
   finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
 };
 
@@ -60,6 +86,67 @@ const activeLostReport = {
 };
 
 describe('Recibir objetos encontrados en Bienestar', () => {
+  it('registra sin reporte previo un objeto directamente en custodia', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([]);
+
+    const res = await request(createApp({ welfare: repository, foundItems: foundItemsWithCatalogs }))
+      .post('/welfare/found-items')
+      .set('x-sample-user', 'welfare')
+      .send({
+        description: 'Paraguas negro',
+        categoryId: 1,
+        placeId: 1,
+        classroomId: null,
+        placeReference: 'Junto a recepción',
+        foundAt: '2026-11-15T14:30:00.000Z',
+      });
+
+    expect(res.status).toBe(201);
+    expect(res.body).toEqual({ code: 'HZ-0001', status: 'IN_CUSTODY' });
+    expect(foundItems).toEqual([
+      expect.objectContaining({
+        code: 'HZ-0001',
+        description: 'Paraguas negro',
+        status: 'IN_CUSTODY',
+        finder: null,
+        receivedById: SAMPLE_USERS.welfare.id,
+      }),
+    ]);
+  });
+
+  it('permite adjuntar una foto opcional al objeto registrado', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([]);
+    const photos = photoStorage();
+
+    const res = await request(createApp({
+      welfare: repository,
+      foundItems: foundItemsWithCatalogs,
+      foundItemPhotos: photos,
+    }))
+      .post('/welfare/found-items')
+      .set('x-sample-user', 'welfare')
+      .field('report', JSON.stringify({
+        description: 'Paraguas negro',
+        categoryId: 1,
+        placeId: 1,
+        classroomId: null,
+        placeReference: null,
+        foundAt: '2026-11-15T14:30:00.000Z',
+      }))
+      .attach('photo', Buffer.from([0xff, 0xd8, 0xff, 0xd9]), {
+        filename: 'paraguas.jpg',
+        contentType: 'image/jpeg',
+      });
+
+    expect(res.status).toBe(201);
+    expect(photos.upload).toHaveBeenCalledWith(
+      expect.stringMatching(new RegExp(`^${SAMPLE_USERS.welfare.id}/[a-f0-9-]+\\.jpg$`)),
+      expect.any(Buffer),
+      'image/jpeg',
+    );
+    expect(foundItems[0].photoUrl).toBe(photos.upload.mock.calls[0][0]);
+  });
+
   it('impide que una cuenta de comunidad consulte reportes desde Bienestar', async () => {
     const { repository } = fakeWelfareRepository([], [], [activeLostReport]);
 
@@ -118,6 +205,31 @@ describe('Recibir objetos encontrados en Bienestar', () => {
     ]);
   });
 
+  it('responde que no existe si el reporte esta cerrado', async () => {
+    const { repository } = fakeWelfareRepository([], [], [
+      { ...activeLostReport, status: 'CLOSED' },
+    ]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/lost-reports/PR-0001')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(404);
+  });
+
+  it('no lista los reportes de perdida cerrados para Bienestar', async () => {
+    const { repository } = fakeWelfareRepository([], [], [
+      activeLostReport,
+      { ...activeLostReport, id: 'report-4', code: 'PR-0004', status: 'CLOSED' },
+    ]);
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/lost-reports')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body.map((report: { code: string }) => report.code)).toEqual(['PR-0001']);
+  });
+
   it('rechaza una entrega sin codigo de objeto', async () => {
     const { repository, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))
@@ -135,7 +247,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
   });
 
   it('no entrega si el reporte no corresponde al objeto y propietario', async () => {
-    const { repository, items, deliveries } = fakeWelfareRepository(
+    const { repository, foundItems, deliveries } = fakeWelfareRepository(
       [publishedItem],
       [pendingPickup],
     );
@@ -152,7 +264,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(409);
     expect(res.body).toEqual({ code: 'REPORT_NOT_ELIGIBLE' });
-    expect(items[0].status).toBe('PUBLISHED');
+    expect(foundItems[0].status).toBe('PUBLISHED');
     expect(deliveries).toEqual([]);
   });
 
@@ -174,7 +286,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
   });
 
   it('rechaza un correo no institucional para la entrega', async () => {
-    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const { repository, foundItems, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))
       .post('/welfare/deliveries')
       .set('x-sample-user', 'welfare')
@@ -187,12 +299,12 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(400);
     expect(res.body).toEqual({ code: 'INVALID_RECIPIENT_EMAIL' });
-    expect(items[0].status).toBe('PUBLISHED');
+    expect(foundItems[0].status).toBe('PUBLISHED');
     expect(deliveries).toEqual([]);
   });
 
   it('rechaza una entrega si faltan los datos obligatorios del receptor', async () => {
-    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const { repository, foundItems, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))
       .post('/welfare/deliveries')
       .set('x-sample-user', 'welfare')
@@ -200,7 +312,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(400);
     expect(res.body).toEqual({ code: 'INVALID_DELIVERY_DATA' });
-    expect(items[0].status).toBe('PUBLISHED');
+    expect(foundItems[0].status).toBe('PUBLISHED');
     expect(deliveries).toEqual([]);
   });
 
@@ -209,7 +321,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
       ...pendingPickup,
       foundItem: { code: 'HZ-0003', description: publishedItem.description },
     };
-    const { repository, items, pickups, deliveries } = fakeWelfareRepository(
+    const { repository, foundItems, pendingPickups, deliveries } = fakeWelfareRepository(
       [publishedItem],
       [pickupForItem],
     );
@@ -225,13 +337,13 @@ describe('Recibir objetos encontrados en Bienestar', () => {
       });
 
     expect(res.status).toBe(201);
-    expect(items[0].status).toBe('DELIVERED');
-    expect(pickups[0].reportStatus).toBe('RECOVERED');
+    expect(foundItems[0].status).toBe('DELIVERED');
+    expect(pendingPickups[0].reportStatus).toBe('RECOVERED');
     expect(deliveries[0]).toEqual(expect.objectContaining({ lostReportCode: 'PR-0001' }));
   });
 
   it('registra una entrega sin reporte y marca el objeto como entregado', async () => {
-    const { repository, items, deliveries } = fakeWelfareRepository([publishedItem]);
+    const { repository, foundItems, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))
       .post('/welfare/deliveries')
       .set('x-sample-user', 'welfare')
@@ -244,7 +356,7 @@ describe('Recibir objetos encontrados en Bienestar', () => {
 
     expect(res.status).toBe(201);
     expect(res.body).toEqual({ status: 'DELIVERED', foundItemCode: 'HZ-0003' });
-    expect(items[0].status).toBe('DELIVERED');
+    expect(foundItems[0].status).toBe('DELIVERED');
     expect(deliveries).toEqual([
       expect.objectContaining({
         foundItemCode: 'HZ-0003',
@@ -255,6 +367,37 @@ describe('Recibir objetos encontrados en Bienestar', () => {
         registeredById: SAMPLE_USERS.welfare.id,
         deliveredAt: expect.any(Date),
       }),
+    ]);
+  });
+
+  it('lista las entregas realizadas con objeto, receptor y fecha', async () => {
+    const { repository } = fakeWelfareRepository([publishedItem]);
+    const app = createApp({ welfare: repository });
+    await request(app)
+      .post('/welfare/deliveries')
+      .set('x-sample-user', 'welfare')
+      .send({
+        foundItemCode: 'HZ-0003',
+        recipientName: 'Luis Mamani',
+        recipientEmail: 'luis.mamani@ucb.edu.bo',
+        recipientUniversityCode: '20201234',
+      });
+
+    const res = await request(app)
+      .get('/welfare/deliveries')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual([
+      {
+        foundItem: { code: 'HZ-0003', description: 'Mochila negra con cuadernos' },
+        recipient: {
+          name: 'Luis Mamani',
+          email: 'luis.mamani@ucb.edu.bo',
+          universityCode: '20201234',
+        },
+        deliveredAt: expect.any(String),
+      },
     ]);
   });
 
@@ -313,6 +456,93 @@ describe('Recibir objetos encontrados en Bienestar', () => {
     ]);
   });
 
+  it('cambia la visibilidad de un objeto publicado', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([publishedItem]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .patch('/welfare/found-items/HZ-0003/visibility')
+      .set('x-sample-user', 'welfare')
+      .send({ visibility: 'HIDDEN' });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ code: 'HZ-0003', visibility: 'HIDDEN' });
+    expect(foundItems[0].visibility).toBe('HIDDEN');
+  });
+
+  it('no cambia la visibilidad de un objeto que aun no fue publicado', async () => {
+    const { repository } = fakeWelfareRepository([receivedItem]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .patch('/welfare/found-items/HZ-0004/visibility')
+      .set('x-sample-user', 'welfare')
+      .send({ visibility: 'HIDDEN' });
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ code: 'ITEM_NOT_PUBLISHED' });
+  });
+
+  it('edita los datos de un objeto publicado', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([publishedItem]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .patch('/welfare/found-items/HZ-0003')
+      .set('x-sample-user', 'welfare')
+      .send({
+        description: 'Chamarra azul con cierre negro',
+        categoryId: 2,
+        placeId: 4,
+        classroomId: null,
+        placeReference: 'Recepción del bloque B',
+        foundAt: '2026-10-16T09:30:00.000Z',
+      });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual(expect.objectContaining({
+      code: 'HZ-0003',
+      description: 'Chamarra azul con cierre negro',
+      status: 'PUBLISHED',
+    }));
+    expect(foundItems[0]).toEqual(expect.objectContaining({
+      description: 'Chamarra azul con cierre negro',
+      categoryId: 2,
+      placeId: 4,
+      classroomId: null,
+      placeReference: 'Recepción del bloque B',
+      foundAt: new Date('2026-10-16T09:30:00.000Z'),
+    }));
+  });
+
+  it('no edita como publicado un objeto que solo esta en custodia', async () => {
+    const { repository } = fakeWelfareRepository([receivedItem]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .patch('/welfare/found-items/HZ-0004')
+      .set('x-sample-user', 'welfare')
+      .send({
+        description: 'Calculadora editada',
+        categoryId: 2,
+        placeId: 4,
+        classroomId: null,
+        placeReference: null,
+        foundAt: '2026-10-16T09:30:00.000Z',
+      });
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ code: 'ITEM_NOT_PUBLISHED' });
+  });
+
+  it('muestra la foto del objeto con un enlace temporal', async () => {
+    const { repository } = fakeWelfareRepository([{ ...pendingItem, photoUrl: 'finder-1/foto-5.jpg' }]);
+    const photos = photoStorage();
+    photos.createSignedUrl.mockResolvedValue('https://storage.test/foto-5');
+
+    const res = await request(createApp({ welfare: repository, foundItemPhotos: photos }))
+      .get('/welfare/found-items/pending')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body[0].photoUrl).toBe('https://storage.test/foto-5');
+  });
+
   it('lista los objetos que aun no fueron entregados', async () => {
     const { repository } = fakeWelfareRepository([pendingItem]);
     const res = await request(createApp({ welfare: repository }))
@@ -336,6 +566,32 @@ describe('Recibir objetos encontrados en Bienestar', () => {
       .set('x-sample-user', 'welfare');
 
     expect(res.body.map((item: { code: string }) => item.code)).toEqual(['HZ-0005']);
+  });
+
+  it('elimina una solicitud cuyo objeto nunca llego y deja de listarla', async () => {
+    const { repository } = fakeWelfareRepository([pendingItem]);
+    const app = createApp({ welfare: repository });
+
+    const deletion = await request(app)
+      .delete('/welfare/found-items/HZ-0005')
+      .set('x-sample-user', 'welfare');
+    const remaining = await request(app)
+      .get('/welfare/found-items/pending')
+      .set('x-sample-user', 'welfare');
+
+    expect(deletion.status).toBe(204);
+    expect(remaining.body).toEqual([]);
+  });
+
+  it('no elimina un objeto que ya fue recibido', async () => {
+    const { repository } = fakeWelfareRepository([receivedItem]);
+
+    const deletion = await request(createApp({ welfare: repository }))
+      .delete('/welfare/found-items/HZ-0004')
+      .set('x-sample-user', 'welfare');
+
+    expect(deletion.status).toBe(409);
+    await expect(repository.listInOffice()).resolves.toHaveLength(1);
   });
 
   it('solo Bienestar puede consultar los pendientes', async () => {
@@ -378,11 +634,15 @@ describe('Recibir objetos encontrados en Bienestar', () => {
       description: 'Mochila negra con cuadernos',
       photoUrl: null,
       category: 'Mochilas',
+      categoryId: 1,
       place: 'Bloque A',
+      placeId: 1,
       classroom: 'Aula 3',
+      classroomId: 3,
       placeReference: 'Debajo de una mesa',
       foundAt: '2026-10-15T14:00:00.000Z',
       status: 'PENDING_DROP_OFF',
+      visibility: 'VISIBLE',
       finder: { name: 'Ana Rojas', email: 'ana.rojas@ucb.edu.bo' },
     });
   });
@@ -416,13 +676,39 @@ describe('Recibir objetos encontrados en Bienestar', () => {
     expect(res.body).toEqual(expect.objectContaining({ code: 'HZ-0005', status: 'IN_CUSTODY' }));
   });
 
+  it('guarda las correcciones realizadas por Bienestar al recibir el objeto', async () => {
+    const { repository, foundItems } = fakeWelfareRepository([pendingItem]);
+    const res = await request(createApp({ welfare: repository }))
+      .post('/welfare/found-items/HZ-0005/receive')
+      .set('x-sample-user', 'welfare')
+      .send({
+        description: 'Mochila negra con tres cuadernos',
+        categoryId: 2,
+        placeId: 4,
+        classroomId: null,
+        placeReference: 'Recepción del bloque B',
+        foundAt: '2026-10-16T09:30:00.000Z',
+      });
+
+    expect(res.status).toBe(200);
+    expect(foundItems[0]).toEqual(expect.objectContaining({
+      description: 'Mochila negra con tres cuadernos',
+      categoryId: 2,
+      placeId: 4,
+      classroomId: null,
+      placeReference: 'Recepción del bloque B',
+      foundAt: new Date('2026-10-16T09:30:00.000Z'),
+      status: 'IN_CUSTODY',
+    }));
+  });
+
   it('registra quien y cuando lo recibio', async () => {
-    const { repository, items } = fakeWelfareRepository([pendingItem]);
+    const { repository, foundItems } = fakeWelfareRepository([pendingItem]);
     await request(createApp({ welfare: repository }))
       .post('/welfare/found-items/HZ-0005/receive')
       .set('x-sample-user', 'welfare');
 
-    expect(items[0]).toEqual(
+    expect(foundItems[0]).toEqual(
       expect.objectContaining({
         receivedById: SAMPLE_USERS.welfare.id,
         receivedAt: expect.any(Date),
@@ -431,12 +717,12 @@ describe('Recibir objetos encontrados en Bienestar', () => {
   });
 
   it('deja el objeto en custodia', async () => {
-    const { repository, items } = fakeWelfareRepository([pendingItem]);
+    const { repository, foundItems } = fakeWelfareRepository([pendingItem]);
     await request(createApp({ welfare: repository }))
       .post('/welfare/found-items/HZ-0005/receive')
       .set('x-sample-user', 'welfare');
 
-    expect(items[0].status).toBe('IN_CUSTODY');
+    expect(foundItems[0].status).toBe('IN_CUSTODY');
     await expect(repository.listPending()).resolves.toEqual([]);
   });
 

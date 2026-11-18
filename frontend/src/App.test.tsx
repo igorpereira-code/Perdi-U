@@ -10,8 +10,8 @@ import type { GuideService } from './finder/data/guideService';
 import type { FoundItemsService, MyFoundItem } from './finder/data/foundItemsService';
 import type { WelfareService } from './welfare/data/welfareService';
 import type { LostReportsService } from './owner/data/lostReportsService';
-import type { CatalogService } from './owner/data/catalogService';
-import type { MyLostReportsService } from './owner/data/myLostReportsService';
+import type { CatalogItem, CatalogService } from './owner/data/catalogService';
+import type { MyLostReport, MyLostReportsService } from './owner/data/myLostReportsService';
 
 const phone: MatchView = {
   id: 'match-1',
@@ -31,6 +31,7 @@ const igor: AppUser = {
   role: 'COMMUNITY',
   hasSeenGuide: true,
 };
+const firstVisit: AppUser = { ...igor, hasSeenGuide: false };
 const foundReport: MyFoundItem = {
   code: 'HZ-7325',
   description: 'Llaves azules',
@@ -48,6 +49,7 @@ function renderAt(
   matches: MatchView[] | null = [],
   guideService: GuideService = { markSeen: jest.fn().mockResolvedValue(undefined) },
   foundItemsOverrides: Partial<FoundItemsService> = {},
+  ownerOverrides: { catalogService?: CatalogService; myLostReportsService?: MyLostReportsService } = {},
 ) {
   const authService: AuthService = {
     getCurrentUser:
@@ -59,9 +61,13 @@ function renderAt(
     getMatches: jest.fn().mockResolvedValue(matches),
     pickUp: jest.fn(),
     dismiss: jest.fn(),
+    claim: jest.fn(),
     publish: jest.fn(),
   };
   const foundItemsService: FoundItemsService = {
+    cancelPending: jest.fn(),
+    getEditable: jest.fn(),
+    updatePending: jest.fn(),
     listMine: jest.fn().mockResolvedValue([]),
     getMineByCode: jest.fn().mockResolvedValue(null),
     getCatalogs: jest.fn().mockResolvedValue({ categories: [], places: [] }),
@@ -73,16 +79,32 @@ function renderAt(
     listActiveLostReports: jest.fn().mockResolvedValue([]),
     findLostReportByCode: jest.fn(),
     listPendingPickups: jest.fn().mockResolvedValue([]),
+    listDeliveries: jest.fn().mockResolvedValue([]),
     listPending: jest.fn().mockResolvedValue([]),
     listInOffice: jest.fn().mockResolvedValue([]),
-    findByCode: jest.fn(),
-    receive: jest.fn(),
+    getCatalogs: jest.fn().mockResolvedValue({ categories: [], places: [] }),
+    registerFoundItem: jest.fn(),
+    findFoundItemByCode: jest.fn(),
+    confirmReception: jest.fn(),
+    deletePending: jest.fn(),
+    setPublishedVisibility: jest.fn(),
+    updatePublishedItem: jest.fn(),
     deliver: jest.fn(),
   };
   const lostReportsService: LostReportsService = { create: jest.fn() };
-  const catalogService = { list: jest.fn().mockResolvedValue([]), getByCode: jest.fn().mockResolvedValue(null) } as CatalogService;
-  const myLostReportsService = { listMine: jest.fn().mockResolvedValue([]), getMine: jest.fn().mockResolvedValue(null) } as MyLostReportsService;
-  const rendered = render(
+    const catalogService =
+    ownerOverrides.catalogService ??
+    ({ list: jest.fn().mockResolvedValue([]), getByCode: jest.fn().mockResolvedValue(null) } as CatalogService);
+  const myLostReportsService =
+    ownerOverrides.myLostReportsService ??
+    ({
+      listMine: jest.fn().mockResolvedValue([]),
+      getMine: jest.fn().mockResolvedValue(null),
+      getEditable: jest.fn(),
+      update: jest.fn(),
+      close: jest.fn(),
+    } as MyLostReportsService);
+    const rendered = render(
     <MemoryRouter initialEntries={[path]}>
       <App
         authService={authService}
@@ -174,6 +196,19 @@ describe('Navegación de la app', () => {
     renderAt('/', igor);
 
     expect(await screen.findByRole('heading', { name: 'Hola, Igor Pereira' })).toBeInTheDocument();
+    const guideOption = screen.queryByRole('button', { name: 'Ver guía' });
+    expect(guideOption).toBeInTheDocument();
+    expect(guideOption).toBeVisible();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Ver guía' }));
+
+    expect(screen.queryByRole('heading', { name: 'Bienvenido a Perdi-U' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Encuentra el objeto' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Reporta el hallazgo' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Lleva el objeto a Bienestar Estudiantil' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'El dueño lo recoge en Bienestar' })).toBeVisible();
+    expect(screen.getByText(/no debes entregarlo directamente a su dueño/i)).toBeVisible();
+    expect(screen.getByRole('region', { name: 'Ubicación y horario de Bienestar' })).toBeVisible();
   });
 
   it('muestra su perfil en /perfil', async () => {
@@ -248,20 +283,20 @@ describe('Navegación de la app', () => {
     ).toBeInTheDocument();
   });
 
-  it('vuelve al inicio cuando el usuario salta la guía rápida', async () => {
-    renderAt('/guia-rapida', igor);
+  it('cierra la guía abierta desde Inicio y vuelve sin guardar otra vez', async () => {
+    const service = renderAt('/', igor);
 
-    const boton = await screen.findByRole('button', {
-      name: 'Saltar guía',
-    });
-
-    await userEvent.click(boton);
+    await userEvent.click(await screen.findByRole('button', { name: 'Ver guía' }));
+    const closeButton = screen.queryByRole('button', { name: 'Cerrar guía' });
+    expect(closeButton).toBeVisible();
+    await userEvent.click(screen.getByRole('button', { name: 'Cerrar guía' }));
 
     expect(
       await screen.findByRole('heading', {
         name: 'Hola, Igor Pereira',
       }),
     ).toBeInTheDocument();
+    expect(service.markSeen).not.toHaveBeenCalled();
   });
   it('muestra Encontré un objeto en la pantalla principal', async () => {
     renderAt('/', igor);
@@ -300,7 +335,7 @@ describe('Salir de la guía rápida con la decisión guardada', () => {
   it.each(['Saltar guía', 'Empezar a usar Perdi-U'])(
     'guarda la decisión antes de continuar con «%s»',
     async (action) => {
-      const service = renderAt('/guia-rapida', igor);
+      const service = renderAt('/guia-rapida', firstVisit);
 
       await userEvent.click(await screen.findByRole('button', { name: action }));
 
@@ -321,7 +356,7 @@ describe('Salir de la guía rápida con la decisión guardada', () => {
           }),
       ),
     };
-    renderAt('/guia-rapida', igor, [], guideService);
+    renderAt('/guia-rapida', firstVisit, [], guideService);
 
     await userEvent.click(await screen.findByRole('button', { name: 'Saltar guía' }));
 
@@ -346,7 +381,7 @@ describe('Salir de la guía rápida con la decisión guardada', () => {
           .mockRejectedValueOnce(new Error('Sin conexión'))
           .mockResolvedValue(undefined),
       };
-      renderAt('/guia-rapida', igor, [], guideService);
+      renderAt('/guia-rapida', firstVisit, [], guideService);
 
       await userEvent.click(await screen.findByRole('button', { name: action }));
 
@@ -374,8 +409,6 @@ describe('Salir de la guía rápida con la decisión guardada', () => {
 });
 
 describe('Guía automática durante el primer ingreso', () => {
-  const firstVisit: AppUser = { ...igor, hasSeenGuide: false };
-
   it.each(['/', '/perfil', '/mis-reportes/PR-0001/coincidencias', '/guia-rapida', '/ingresar'])(
     'muestra los cuatro pasos y la advertencia al ingresar por %s con la guía pendiente',
     async (path) => {
@@ -544,5 +577,46 @@ describe('Detalle de mi reporte de pérdida', () => {
     renderAt('/mis-perdidas/PR-0007', igor);
 
     expect(await screen.findByRole('heading', { name: 'No encontramos este reporte' })).toBeInTheDocument();
+  });
+});
+describe('Reclamar un objeto desde su detalle', () => {
+  it('permite reclamar el objeto desde su detalle con un reporte de pérdida', async () => {
+    const publishedBackpack: CatalogItem = {
+      code: 'HZ-0007',
+      description: 'Mochila negra con llavero',
+      category: 'Mochilas y bolsos',
+      place: 'Bloque A – Aula A-12',
+      placeReference: null,
+      foundAt: '2026-10-18T12:15:00.000Z',
+      hasPhoto: false,
+    };
+    const lostBackpack: MyLostReport = {
+      code: 'PR-0001',
+      description: 'Mochila negra',
+      category: 'Mochilas y bolsos',
+      status: 'SEARCHING',
+      places: ['Bloque A'],
+      placeDescription: null,
+      dateFrom: '2026-10-10',
+      dateTo: '2026-10-11',
+    };
+    const service = renderAt('/objetos/HZ-0007', igor, [], undefined, {}, {
+      catalogService: {
+        list: jest.fn().mockResolvedValue([]),
+        getByCode: jest.fn().mockResolvedValue(publishedBackpack),
+      } as CatalogService,
+      myLostReportsService: {
+        listMine: jest.fn().mockResolvedValue([lostBackpack]),
+        getMine: jest.fn().mockResolvedValue(null),
+        getEditable: jest.fn(),
+        update: jest.fn(),
+        close: jest.fn(),
+      } as MyLostReportsService,
+    });
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Es mío, pasaré a recoger' }));
+
+    expect(service.claim).toHaveBeenCalledWith('HZ-0007', 'PR-0001');
+    expect(await screen.findByText('Pasarás a recoger este objeto')).toBeInTheDocument();
   });
 });

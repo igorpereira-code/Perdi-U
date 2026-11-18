@@ -1648,6 +1648,24 @@
     "testId": 39
   },
   {
+    "commitId": "91a6ef6522e552e7e1731544af9a5cfca715fc76",
+    "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
+    "commitTimestamp": 1792199780960,
+    "testId": 39
+  },
+  {
+    "commitId": "5a6e080ddc3eaf22246b69e54bd3d814a4b4d1b9",
+    "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
+    "commitTimestamp": 1792199780960,
+    "testId": 39
+  },
+  {
+    "commitId": "9bc040c3e22047725637763ebca383f3cfc705f9",
+    "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
+    "commitTimestamp": 1792199780960,
+    "testId": 39
+  },
+  {
     "numPassedTests": 104,
     "failedTests": 0,
     "numTotalTests": 104,
@@ -1748,72 +1766,6 @@
     "testId": 41
   },
   {
-    "commitId": "6b9b123e916c3b4b2afac85a295b47a7b98193b6",
-    "commitName": "feat(finder): agregar campo para registrar guia vista",
-    "commitTimestamp": 1792337561616,
-    "testId": 42
-  },
-  {
-    "numPassedTests": 113,
-    "failedTests": 14,
-    "numTotalTests": 127,
-    "timestamp": 1792338331360,
-    "success": false,
-    "testId": 43
-  },
-  {
-    "numPassedTests": 127,
-    "failedTests": 0,
-    "numTotalTests": 127,
-    "timestamp": 1792338419559,
-    "success": true,
-    "testId": 43
-  },
-  {
-    "numPassedTests": 127,
-    "failedTests": 0,
-    "numTotalTests": 127,
-    "timestamp": 1792338494133,
-    "success": true,
-    "testId": 43
-  },
-  {
-    "commitId": "2840883a7b237738708d38d0014aa99d1e249dc0",
-    "commitName": "feat(finder): persistir la guia al completarla u omitirla",
-    "commitTimestamp": 1792338828173,
-    "testId": 43
-  },
-  {
-    "numPassedTests": 128,
-    "failedTests": 9,
-    "numTotalTests": 137,
-    "timestamp": 1792338951091,
-    "success": false,
-    "testId": 44
-  },
-  {
-    "numPassedTests": 137,
-    "failedTests": 0,
-    "numTotalTests": 137,
-    "timestamp": 1792339014424,
-    "success": true,
-    "testId": 44
-  },
-  {
-    "numPassedTests": 137,
-    "failedTests": 0,
-    "numTotalTests": 137,
-    "timestamp": 1792339067479,
-    "success": true,
-    "testId": 44
-  },
-  {
-    "commitId": "5145ccdf3b4df470318570191632add9a9361fe0",
-    "commitName": "feat(finder): mostrar la guía automáticamente en el primer ingreso",
-    "commitTimestamp": 1792339348174,
-    "testId": 44
-  },
-  {
     "numPassedTests": 104,
     "failedTests": 1,
     "numTotalTests": 105,
@@ -1846,18 +1798,18 @@
     "testId": 40
   },
   {
-    "commitId": "894a2d22d1b2e3d5cfeddb1044d8bb4f279a2e2c",
-    "commitName": "feat(finder): mostrar opción para reportar objeto encontrado",
-    "commitTimestamp": 1792289681490,
-    "testId": 40
-  },
-  {
     "numPassedTests": 106,
     "failedTests": 0,
     "numTotalTests": 106,
     "timestamp": 1792289569653,
     "success": true,
     "testId": 41
+  },
+  {
+    "commitId": "894a2d22d1b2e3d5cfeddb1044d8bb4f279a2e2c",
+    "commitName": "feat(finder): mostrar opción para reportar objeto encontrado",
+    "commitTimestamp": 1792289681490,
+    "testId": 40
   },
   {
     "numPassedTests": 106,
@@ -1978,516 +1930,6 @@
     "commitName": "feat(finder): permitir seleccionar categoria del objeto encontrado",
     "commitTimestamp": 1792299970179,
     "testId": 44
-  },
-  {
-    "numPassedTests": 116,
-    "failedTests": 8,
-    "numTotalTests": 124,
-    "timestamp": 1792341335044,
-    "success": false,
-    "testId": 45
-  },
-  {
-    "numPassedTests": 124,
-    "failedTests": 0,
-    "numTotalTests": 124,
-    "timestamp": 1792341411577,
-    "success": true,
-    "testId": 45
-  },
-  {
-    "numPassedTests": 124,
-    "failedTests": 0,
-    "numTotalTests": 124,
-    "timestamp": 1792341489045,
-    "success": true,
-    "testId": 45
-  },
-  {
-    "commitId": "6251a540b1d994b8d8bea5899fb78962f7476ead",
-    "commitName": "feat(finder): seleccionar ubicacion del objeto encontrado",
-    "commitTimestamp": 1792342204612,
-    "testId": 45
-  },
-  {
-    "numPassedTests": 124,
-    "failedTests": 3,
-    "numTotalTests": 127,
-    "timestamp": 1792342708644,
-    "success": false,
-    "testId": 46
-  },
-  {
-    "numPassedTests": 127,
-    "failedTests": 0,
-    "numTotalTests": 127,
-    "timestamp": 1792342792964,
-    "success": true,
-    "testId": 46
-  },
-  {
-    "numPassedTests": 127,
-    "failedTests": 0,
-    "numTotalTests": 127,
-    "timestamp": 1792342911889,
-    "success": true,
-    "testId": 46
-  },
-  {
-    "commitId": "b5c724814871b788724b9196ebcfa8bc5143a548",
-    "commitName": "feat(finder): agregar referencia del lugar encontrado",
-    "commitTimestamp": 1792343569448,
-    "testId": 46
-  },
-  {
-    "numPassedTests": 127,
-    "failedTests": 3,
-    "numTotalTests": 130,
-    "timestamp": 1792344064861,
-    "success": false,
-    "testId": 47
-  },
-  {
-    "numPassedTests": 130,
-    "failedTests": 0,
-    "numTotalTests": 130,
-    "timestamp": 1792344119032,
-    "success": true,
-    "testId": 47
-  },
-  {
-    "numPassedTests": 130,
-    "failedTests": 0,
-    "numTotalTests": 130,
-    "timestamp": 1792344194883,
-    "success": true,
-    "testId": 47
-  },
-  {
-    "commitId": "551775be37e8b56cf46a7ccc6f031702e93043b5",
-    "commitName": "feat(finder): permitir indicar fecha y hora del hallazgo",
-    "commitTimestamp": 1792344484094,
-    "testId": 47
-  },
-  {
-    "numPassedTests": 130,
-    "failedTests": 16,
-    "numTotalTests": 146,
-    "timestamp": 1792351247961,
-    "success": false,
-    "testId": 48
-  },
-  {
-    "numPassedTests": 146,
-    "failedTests": 0,
-    "numTotalTests": 146,
-    "timestamp": 1792351324643,
-    "success": true,
-    "testId": 48
-  },
-  {
-    "numPassedTests": 146,
-    "failedTests": 0,
-    "numTotalTests": 146,
-    "timestamp": 1792351417364,
-    "success": true,
-    "testId": 48
-  },
-  {
-    "commitId": "0334bc174dc2541d20d0c831bbb32562e4884d06",
-    "commitName": "feat(finder): validar campos obligatorios del reporte",
-    "commitTimestamp": 1792352317773,
-    "testId": 48
-  },
-  {
-    "numPassedTests": 150,
-    "failedTests": 53,
-    "numTotalTests": 203,
-    "timestamp": 1792433898149,
-    "success": false,
-    "testId": 49
-  },
-  {
-    "numPassedTests": 215,
-    "failedTests": 0,
-    "numTotalTests": 215,
-    "timestamp": 1792434031081,
-    "success": true,
-    "testId": 49
-  },
-  {
-    "numPassedTests": 215,
-    "failedTests": 0,
-    "numTotalTests": 215,
-    "timestamp": 1792434129167,
-    "success": true,
-    "testId": 49
-  },
-  {
-    "commitId": "531c2fcd3057cf808eaa1343ebab2a0223bbc819",
-    "commitName": "feat(finder): implementar backend de reporte encontrado",
-    "commitTimestamp": 1792434427175,
-    "testId": 49
-  },
-  {
-    "numPassedTests": 223,
-    "failedTests": 64,
-    "numTotalTests": 287,
-    "timestamp": 1792437468290,
-    "success": false,
-    "testId": 50
-  },
-  {
-    "numPassedTests": 287,
-    "failedTests": 0,
-    "numTotalTests": 287,
-    "timestamp": 1792437672311,
-    "success": true,
-    "testId": 50
-  },
-  {
-    "numPassedTests": 293,
-    "failedTests": 0,
-    "numTotalTests": 293,
-    "timestamp": 1792437876872,
-    "success": true,
-    "testId": 50
-  },
-  {
-    "numPassedTests": 292,
-    "failedTests": 1,
-    "numTotalTests": 293,
-    "timestamp": 1792438176073,
-    "success": false,
-    "testId": 50
-  },
-  {
-    "numPassedTests": 293,
-    "failedTests": 0,
-    "numTotalTests": 293,
-    "timestamp": 1792438271624,
-    "success": true,
-    "testId": 50
-  },
-  {
-    "numPassedTests": 293,
-    "failedTests": 0,
-    "numTotalTests": 293,
-    "timestamp": 1792438333855,
-    "success": true,
-    "testId": 50
-  },
-  {
-    "commitId": "0914938816ecf78a12b2a32520b4825491152964",
-    "commitName": "feat(finder): completar reporte con fotografías privadas",
-    "commitTimestamp": 1792446680029,
-    "testId": 50
-  },
-  {
-    "numPassedTests": 293,
-    "failedTests": 0,
-    "numTotalTests": 293,
-    "timestamp": 1792449333411,
-    "success": true,
-    "testId": 51
-  },
-  {
-    "numPassedTests": 294,
-    "failedTests": 2,
-    "numTotalTests": 296,
-    "timestamp": 1792449583136,
-    "success": false,
-    "testId": 51
-  },
-  {
-    "numPassedTests": 296,
-    "failedTests": 0,
-    "numTotalTests": 296,
-    "timestamp": 1792449632610,
-    "success": true,
-    "testId": 51
-  },
-  {
-    "numPassedTests": 296,
-    "failedTests": 0,
-    "numTotalTests": 296,
-    "timestamp": 1792449688810,
-    "success": true,
-    "testId": 51
-  },
-  {
-    "commitId": "0e5f6d18d174597f19ff81988e2d422a816a4ade",
-    "commitName": "feat(finder): indicar entrega del objeto en Bienestar Estudiantil",
-    "commitTimestamp": 1792449946911,
-    "testId": 51
-  },
-  {
-    "numPassedTests": 296,
-    "failedTests": 2,
-    "numTotalTests": 298,
-    "timestamp": 1792450019045,
-    "success": false,
-    "testId": 52
-  },
-  {
-    "numPassedTests": 298,
-    "failedTests": 0,
-    "numTotalTests": 298,
-    "timestamp": 1792450068031,
-    "success": true,
-    "testId": 52
-  },
-  {
-    "numPassedTests": 298,
-    "failedTests": 0,
-    "numTotalTests": 298,
-    "timestamp": 1792450122635,
-    "success": true,
-    "testId": 52
-  },
-  {
-    "commitId": "e2be32d7a14cdc7307df0626ace859cfd1e19c06",
-    "commitName": "feat(finder): advertir entrega del objeto en Bienestar",
-    "commitTimestamp": 1792450362316,
-    "testId": 52
-  },
-  {
-    "numPassedTests": 298,
-    "failedTests": 2,
-    "numTotalTests": 300,
-    "timestamp": 1792450439848,
-    "success": false,
-    "testId": 53
-  },
-  {
-    "numPassedTests": 300,
-    "failedTests": 0,
-    "numTotalTests": 300,
-    "timestamp": 1792450501036,
-    "success": true,
-    "testId": 53
-  },
-  {
-    "numPassedTests": 300,
-    "failedTests": 0,
-    "numTotalTests": 300,
-    "timestamp": 1792450559549,
-    "success": true,
-    "testId": 53
-  },
-  {
-    "commitId": "e55b066d6e342850582bc34a835ddbd1a605a662",
-    "commitName": "feat(finder): mostrar ubicación y horario de Bienestar",
-    "commitTimestamp": 1792450848026,
-    "testId": 53
-  },
-  {
-    "numPassedTests": 301,
-    "failedTests": 2,
-    "numTotalTests": 303,
-    "timestamp": 1792458235526,
-    "success": false,
-    "testId": 54
-  },
-  {
-    "numPassedTests": 303,
-    "failedTests": 0,
-    "numTotalTests": 303,
-    "timestamp": 1792458315300,
-    "success": true,
-    "testId": 54
-  },
-  {
-    "numPassedTests": 303,
-    "failedTests": 0,
-    "numTotalTests": 303,
-    "timestamp": 1792458361631,
-    "success": true,
-    "testId": 54
-  },
-  {
-    "commitId": "5e661eb3ca3603ccded1df8bb59dd923cf59cfae",
-    "commitName": "feat(finder): informar privacidad del reporte hasta su recepcion",
-    "commitTimestamp": 1792458822940,
-    "testId": 54
-  },
-  {
-    "numPassedTests": 336,
-    "failedTests": 0,
-    "numTotalTests": 336,
-    "timestamp": 1792466064728,
-    "success": true,
-    "testId": 55
-  },
-  {
-    "numPassedTests": 336,
-    "failedTests": 0,
-    "numTotalTests": 336,
-    "timestamp": 1792466880389,
-    "success": true,
-    "testId": 55
-  },
-  {
-    "commitId": "c4f5e941212147e4cf2c69f25844d832ab7e48a2",
-    "commitName": "chore: integra la HU anterior de finder",
-    "commitTimestamp": 1792468077480,
-    "testId": 55
-  },
-  {
-    "numPassedTests": 337,
-    "failedTests": 13,
-    "numTotalTests": 350,
-    "timestamp": 1792502670424,
-    "success": false,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 350,
-    "failedTests": 0,
-    "numTotalTests": 350,
-    "timestamp": 1792502790587,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 350,
-    "failedTests": 0,
-    "numTotalTests": 350,
-    "timestamp": 1792502850126,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 350,
-    "failedTests": 0,
-    "numTotalTests": 350,
-    "timestamp": 1792503043866,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 349,
-    "failedTests": 16,
-    "numTotalTests": 365,
-    "timestamp": 1792503218896,
-    "success": false,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 365,
-    "failedTests": 0,
-    "numTotalTests": 365,
-    "timestamp": 1792503299649,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 365,
-    "failedTests": 0,
-    "numTotalTests": 365,
-    "timestamp": 1792503351421,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 365,
-    "failedTests": 13,
-    "numTotalTests": 378,
-    "timestamp": 1792503533416,
-    "success": false,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 378,
-    "failedTests": 0,
-    "numTotalTests": 378,
-    "timestamp": 1792503816851,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 378,
-    "failedTests": 0,
-    "numTotalTests": 378,
-    "timestamp": 1792503917729,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 381,
-    "failedTests": 23,
-    "numTotalTests": 404,
-    "timestamp": 1792504136599,
-    "success": false,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 404,
-    "failedTests": 0,
-    "numTotalTests": 404,
-    "timestamp": 1792504242564,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 404,
-    "failedTests": 0,
-    "numTotalTests": 404,
-    "timestamp": 1792504341204,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 404,
-    "failedTests": 4,
-    "numTotalTests": 408,
-    "timestamp": 1792504487498,
-    "success": false,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 408,
-    "failedTests": 0,
-    "numTotalTests": 408,
-    "timestamp": 1792504572378,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 408,
-    "failedTests": 0,
-    "numTotalTests": 408,
-    "timestamp": 1792504669480,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 408,
-    "failedTests": 0,
-    "numTotalTests": 408,
-    "timestamp": 1792524570583,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 408,
-    "failedTests": 0,
-    "numTotalTests": 408,
-    "timestamp": 1792524922970,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "commitId": "050a16deab1989f21f3aeb7fd29b07b7aece112c",
-    "commitName": "feat(finder): implementar HU-4 consulta de reportes propios",
-    "commitTimestamp": 1792525054093,
-    "testId": 56
-  },
-  {
-    "commitId": "91a6ef6522e552e7e1731544af9a5cfca715fc76",
-    "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
-    "commitTimestamp": 1792199780960,
-    "testId": 39
   },
   {
     "numPassedTests": 104,
@@ -2836,6 +2278,96 @@
     "testId": 50
   },
   {
+    "commitId": "6b9b123e916c3b4b2afac85a295b47a7b98193b6",
+    "commitName": "feat(finder): agregar campo para registrar guia vista",
+    "commitTimestamp": 1792337561616,
+    "testId": 42
+  },
+  {
+    "numPassedTests": 113,
+    "failedTests": 14,
+    "numTotalTests": 127,
+    "timestamp": 1792338331360,
+    "success": false,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792338419559,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792338494133,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "commitId": "2840883a7b237738708d38d0014aa99d1e249dc0",
+    "commitName": "feat(finder): persistir la guia al completarla u omitirla",
+    "commitTimestamp": 1792338828173,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 128,
+    "failedTests": 9,
+    "numTotalTests": 137,
+    "timestamp": 1792338951091,
+    "success": false,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 0,
+    "numTotalTests": 137,
+    "timestamp": 1792339014424,
+    "success": true,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 137,
+    "failedTests": 0,
+    "numTotalTests": 137,
+    "timestamp": 1792339067479,
+    "success": true,
+    "testId": 44
+  },
+  {
+    "commitId": "5145ccdf3b4df470318570191632add9a9361fe0",
+    "commitName": "feat(finder): mostrar la guía automáticamente en el primer ingreso",
+    "commitTimestamp": 1792339348174,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 116,
+    "failedTests": 8,
+    "numTotalTests": 124,
+    "timestamp": 1792341335044,
+    "success": false,
+    "testId": 45
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 0,
+    "numTotalTests": 124,
+    "timestamp": 1792341411577,
+    "success": true,
+    "testId": 45
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 0,
+    "numTotalTests": 124,
+    "timestamp": 1792341489045,
+    "success": true,
+    "testId": 45
+  },
+  {
     "commitId": "7fd1f64edb63dac4598377fb99c7440a845d6169",
     "commitName": "feat(welfare): listar objetos que siguen en la oficina",
     "commitTimestamp": 1792341797354,
@@ -2918,12 +2450,26 @@
     "testId": 54
   },
   {
+    "numPassedTests": 104,
+    "failedTests": 0,
+    "numTotalTests": 104,
+    "timestamp": 1792342151865,
+    "success": true,
+    "testId": 40
+  },
+  {
     "numPassedTests": 139,
     "failedTests": 0,
     "numTotalTests": 139,
     "timestamp": 1792342182450,
     "success": true,
     "testId": 54
+  },
+  {
+    "commitId": "6251a540b1d994b8d8bea5899fb78962f7476ead",
+    "commitName": "feat(finder): seleccionar ubicacion del objeto encontrado",
+    "commitTimestamp": 1792342204612,
+    "testId": 45
   },
   {
     "commitId": "7bf40dc112ae47db8ac20b9bb24fe5d26efb0f87",
@@ -2984,6 +2530,22 @@
     "testId": 56
   },
   {
+    "numPassedTests": 124,
+    "failedTests": 3,
+    "numTotalTests": 127,
+    "timestamp": 1792342708644,
+    "success": false,
+    "testId": 46
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792342792964,
+    "success": true,
+    "testId": 46
+  },
+  {
     "numPassedTests": 138,
     "failedTests": 1,
     "numTotalTests": 139,
@@ -3004,6 +2566,94 @@
     "commitName": "fix(welfare): conservar objetos recibidos durante la carga",
     "commitTimestamp": 1792342868470,
     "testId": 57
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 0,
+    "numTotalTests": 127,
+    "timestamp": 1792342911889,
+    "success": true,
+    "testId": 46
+  },
+  {
+    "commitId": "b5c724814871b788724b9196ebcfa8bc5143a548",
+    "commitName": "feat(finder): agregar referencia del lugar encontrado",
+    "commitTimestamp": 1792343569448,
+    "testId": 46
+  },
+  {
+    "numPassedTests": 127,
+    "failedTests": 3,
+    "numTotalTests": 130,
+    "timestamp": 1792344064861,
+    "success": false,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 130,
+    "failedTests": 0,
+    "numTotalTests": 130,
+    "timestamp": 1792344119032,
+    "success": true,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 130,
+    "failedTests": 0,
+    "numTotalTests": 130,
+    "timestamp": 1792344194883,
+    "success": true,
+    "testId": 47
+  },
+  {
+    "commitId": "551775be37e8b56cf46a7ccc6f031702e93043b5",
+    "commitName": "feat(finder): permitir indicar fecha y hora del hallazgo",
+    "commitTimestamp": 1792344484094,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 104,
+    "failedTests": 1,
+    "numTotalTests": 105,
+    "timestamp": 1792344678358,
+    "success": false,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 0,
+    "numTotalTests": 105,
+    "timestamp": 1792344984717,
+    "success": true,
+    "testId": 40
+  },
+  {
+    "commitId": "bdf16550e0889fcee588152bc171a8d652bf00a9",
+    "commitName": "feat: agregar opcion de perdi un objeto en la pantalla principal",
+    "commitTimestamp": 1792345009248,
+    "testId": 40
+  },
+  {
+    "numPassedTests": 105,
+    "failedTests": 0,
+    "numTotalTests": 105,
+    "timestamp": 1792345308124,
+    "success": false,
+    "testId": 41
+  },
+  {
+    "numPassedTests": 107,
+    "failedTests": 0,
+    "numTotalTests": 107,
+    "timestamp": 1792345337636,
+    "success": true,
+    "testId": 41
+  },
+  {
+    "commitId": "07ce2795dd4fadc869e0351aedac28c6831081c9",
+    "commitName": "feat: abrir formulario para reportar objeto perdido",
+    "commitTimestamp": 1792345353704,
+    "testId": 41
   },
   {
     "numPassedTests": 139,
@@ -3182,6 +2832,450 @@
     "commitName": "feat(welfare): avisar errores al cargar recojos",
     "commitTimestamp": 1792349212006,
     "testId": 64
+  },
+  {
+    "numPassedTests": 107,
+    "failedTests": 1,
+    "numTotalTests": 108,
+    "timestamp": 1792350613766,
+    "success": false,
+    "testId": 42
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 0,
+    "numTotalTests": 108,
+    "timestamp": 1792350633904,
+    "success": true,
+    "testId": 42
+  },
+  {
+    "commitId": "53bb053ae62bb80ae5b1bc9e1b99b590ee2ee191",
+    "commitName": "feat: permitir escribir la descripcion del objeto perdido",
+    "commitTimestamp": 1792350723613,
+    "testId": 42
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 1,
+    "numTotalTests": 109,
+    "timestamp": 1792350776067,
+    "success": false,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 108,
+    "failedTests": 1,
+    "numTotalTests": 109,
+    "timestamp": 1792350795592,
+    "success": false,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 109,
+    "failedTests": 0,
+    "numTotalTests": 109,
+    "timestamp": 1792350812248,
+    "success": true,
+    "testId": 43
+  },
+  {
+    "commitId": "9158228a86f245c0bb546aa2cbab4440d02055e5",
+    "commitName": "feat: permitir subir foto de referencia opcional",
+    "commitTimestamp": 1792350827095,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 109,
+    "failedTests": 1,
+    "numTotalTests": 110,
+    "timestamp": 1792351238255,
+    "success": false,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 130,
+    "failedTests": 16,
+    "numTotalTests": 146,
+    "timestamp": 1792351247961,
+    "success": false,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 110,
+    "failedTests": 0,
+    "numTotalTests": 110,
+    "timestamp": 1792351262790,
+    "success": true,
+    "testId": 44
+  },
+  {
+    "commitId": "7a7671d1b13a677e050b5023ad604e562f325d53",
+    "commitName": "feat: permitir elegir la categoria del objeto perdido",
+    "commitTimestamp": 1792351276265,
+    "testId": 44
+  },
+  {
+    "numPassedTests": 146,
+    "failedTests": 0,
+    "numTotalTests": 146,
+    "timestamp": 1792351324643,
+    "success": true,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 146,
+    "failedTests": 0,
+    "numTotalTests": 146,
+    "timestamp": 1792351417364,
+    "success": true,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 110,
+    "failedTests": 1,
+    "numTotalTests": 111,
+    "timestamp": 1792351806342,
+    "success": false,
+    "testId": 45
+  },
+  {
+    "numPassedTests": 110,
+    "failedTests": 1,
+    "numTotalTests": 111,
+    "timestamp": 1792351837069,
+    "success": false,
+    "testId": 45
+  },
+  {
+    "numPassedTests": 111,
+    "failedTests": 0,
+    "numTotalTests": 111,
+    "timestamp": 1792351944366,
+    "success": true,
+    "testId": 45
+  },
+  {
+    "commitId": "c30435bb807be12be4664ca0deaaa4187e9fdb2f",
+    "commitName": "feat: permitir elegir uno o varios lugares con bloque y aula",
+    "commitTimestamp": 1792351963919,
+    "testId": 45
+  },
+  {
+    "numPassedTests": 111,
+    "failedTests": 1,
+    "numTotalTests": 112,
+    "timestamp": 1792352053376,
+    "success": false,
+    "testId": 46
+  },
+  {
+    "numPassedTests": 112,
+    "failedTests": 0,
+    "numTotalTests": 112,
+    "timestamp": 1792352224555,
+    "success": true,
+    "testId": 46
+  },
+  {
+    "commitId": "53f2844195407a55592a3de1457c3a42cbfcbc0c",
+    "commitName": "feat: permitir describir en texto el lugar de perdida",
+    "commitTimestamp": 1792352240962,
+    "testId": 46
+  },
+  {
+    "commitId": "0334bc174dc2541d20d0c831bbb32562e4884d06",
+    "commitName": "feat(finder): validar campos obligatorios del reporte",
+    "commitTimestamp": 1792352317773,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 112,
+    "failedTests": 1,
+    "numTotalTests": 113,
+    "timestamp": 1792352319140,
+    "success": false,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 113,
+    "failedTests": 0,
+    "numTotalTests": 113,
+    "timestamp": 1792352339352,
+    "success": true,
+    "testId": 47
+  },
+  {
+    "commitId": "58cb10f47abd38ddf92e986c62b30bef72209c43",
+    "commitName": "feat: permitir indicar el rango de fechas en que pudo perderse el objeto",
+    "commitTimestamp": 1792352370486,
+    "testId": 47
+  },
+  {
+    "numPassedTests": 113,
+    "failedTests": 2,
+    "numTotalTests": 115,
+    "timestamp": 1792352686475,
+    "success": false,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 115,
+    "failedTests": 0,
+    "numTotalTests": 115,
+    "timestamp": 1792352789593,
+    "success": true,
+    "testId": 48
+  },
+  {
+    "commitId": "1e2eb3157ae02398276a14d588f11f5df96b0d07",
+    "commitName": "feat: validar campos obligatorios antes de enviar el reporte",
+    "commitTimestamp": 1792352830962,
+    "testId": 48
+  },
+  {
+    "numPassedTests": 115,
+    "failedTests": 0,
+    "numTotalTests": 115,
+    "timestamp": 1792352941509,
+    "success": false,
+    "testId": 49
+  },
+  {
+    "commitId": "10740bcb44e4ab5bda17f637cbdef1561a2283fe",
+    "commitName": "feat: mostrar codigo unico en confirmacion de reporte",
+    "commitTimestamp": 1792352969987,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 115,
+    "failedTests": 1,
+    "numTotalTests": 116,
+    "timestamp": 1792353000532,
+    "success": false,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 116,
+    "failedTests": 0,
+    "numTotalTests": 116,
+    "timestamp": 1792353061166,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "commitId": "6d753d6f3fd090ad4d325d2ea1dfd34111744106",
+    "commitName": "feat: mostrar codigo unico en confirmacion de reporte bien",
+    "commitTimestamp": 1792353085360,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 116,
+    "failedTests": 1,
+    "numTotalTests": 117,
+    "timestamp": 1792353702706,
+    "success": false,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 117,
+    "failedTests": 0,
+    "numTotalTests": 117,
+    "timestamp": 1792353721723,
+    "success": true,
+    "testId": 51
+  },
+  {
+    "commitId": "f290f5c2c5e6c5af1b770f0d64aee54a8d6146f0",
+    "commitName": "feat: indicar privacidad del reporte para el usuario y bienestar estudiantil",
+    "commitTimestamp": 1792353747326,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 117,
+    "failedTests": 1,
+    "numTotalTests": 118,
+    "timestamp": 1792353788057,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 117,
+    "failedTests": 1,
+    "numTotalTests": 118,
+    "timestamp": 1792353810726,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 117,
+    "failedTests": 1,
+    "numTotalTests": 118,
+    "timestamp": 1792353983851,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 117,
+    "failedTests": 1,
+    "numTotalTests": 118,
+    "timestamp": 1792354019883,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 118,
+    "failedTests": 0,
+    "numTotalTests": 118,
+    "timestamp": 1792354130346,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "commitId": "dfa3dc57a6e42ab2c0c959e8adcef595e7742970",
+    "commitName": "feat: mostrar estado activo del reporte mientras no aparezca el objeto",
+    "commitTimestamp": 1792354151323,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 118,
+    "failedTests": 0,
+    "numTotalTests": 118,
+    "timestamp": 1792358176900,
+    "success": true,
+    "testId": 53
+  },
+  {
+    "commitId": "7833fbafd2df9118c133c581ae0ed8bf20fa39de",
+    "commitName": "feat: mostrar ultimos objetos publicados en la pantalla de inicio",
+    "commitTimestamp": 1792358210902,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 118,
+    "failedTests": 0,
+    "numTotalTests": 118,
+    "timestamp": 1792359349270,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 119,
+    "failedTests": 1,
+    "numTotalTests": 120,
+    "timestamp": 1792359367060,
+    "success": false,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 120,
+    "failedTests": 0,
+    "numTotalTests": 120,
+    "timestamp": 1792359385737,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "commitId": "8ddc0d8fdff7577c9a50e2896d17abaa63894e3c",
+    "commitName": "feat: permitir buscar objetos por palabras clave",
+    "commitTimestamp": 1792359404079,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 120,
+    "failedTests": 1,
+    "numTotalTests": 121,
+    "timestamp": 1792359484765,
+    "success": false,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 121,
+    "failedTests": 0,
+    "numTotalTests": 121,
+    "timestamp": 1792359506312,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "commitId": "b72377322fbc380f2aa48124fb505d38125b5fc5",
+    "commitName": "feat: permitir filtrar objetos por categoria",
+    "commitTimestamp": 1792359522159,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 121,
+    "failedTests": 2,
+    "numTotalTests": 123,
+    "timestamp": 1792359600515,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 123,
+    "failedTests": 0,
+    "numTotalTests": 123,
+    "timestamp": 1792359639164,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "commitId": "f870ed4eb5d409deede5b41a5da5c3d3ab7c67d3",
+    "commitName": "feat: mostrar detalle completo de un objeto encontrado",
+    "commitTimestamp": 1792359655887,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 123,
+    "failedTests": 1,
+    "numTotalTests": 124,
+    "timestamp": 1792360062064,
+    "success": false,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 122,
+    "failedTests": 2,
+    "numTotalTests": 124,
+    "timestamp": 1792360080399,
+    "success": false,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 0,
+    "numTotalTests": 124,
+    "timestamp": 1792360184441,
+    "success": true,
+    "testId": 57
+  },
+  {
+    "commitId": "9091a3763515fc5e699b51f00a239903f09ebb5b",
+    "commitName": "feat: mostrar ubicacion y horario de bienestar estudiantil en el detalle",
+    "commitTimestamp": 1792360234463,
+    "testId": 57
+  },
+  {
+    "numPassedTests": 124,
+    "failedTests": 1,
+    "numTotalTests": 125,
+    "timestamp": 1792360276619,
+    "success": false,
+    "testId": 58
+  },
+  {
+    "numPassedTests": 125,
+    "failedTests": 0,
+    "numTotalTests": 125,
+    "timestamp": 1792360291805,
+    "success": true,
+    "testId": 58
+  },
+  {
+    "commitId": "48d8273cf23e08a267fc6318d580f1ccf3e19907",
+    "commitName": "feat: excluir objetos entregados del catalogo de exploracion",
+    "commitTimestamp": 1792360378438,
+    "testId": 58
   },
   {
     "numPassedTests": 146,
@@ -3750,28 +3844,10 @@
     "testId": 89
   },
   {
-    "commitId": "5a6e080ddc3eaf22246b69e54bd3d814a4b4d1b9",
-    "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
-    "commitTimestamp": 1792199780960,
-    "testId": 39
-  },
-  {
     "commitId": "1d63dc89809f133fa80f887a87afc6f2086ede7a",
     "commitName": "chore: permite abrir cualquier pantalla al recargar en producción",
     "commitTimestamp": 1792376448779,
     "testId": 40
-  },
-  {
-    "commitId": "d1dabb614071416d5aca5af38892862887957d5f",
-    "commitName": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
-    "commitTimestamp": 1792435668352,
-    "testId": 41
-  },
-  {
-    "commitId": "500cb3b0464bd2d3200b2d98100ba9d838d053e4",
-    "commitName": "chore: integra los últimos cambios de final-test en welfare",
-    "commitTimestamp": 1792455304868,
-    "testId": 42
   },
   {
     "commitId": "243b84f8aca876db499e37a790a59ee987f54d49",
@@ -3780,10 +3856,210 @@
     "testId": 40
   },
   {
+    "numPassedTests": 150,
+    "failedTests": 53,
+    "numTotalTests": 203,
+    "timestamp": 1792433898149,
+    "success": false,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 215,
+    "failedTests": 0,
+    "numTotalTests": 215,
+    "timestamp": 1792434031081,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "numPassedTests": 215,
+    "failedTests": 0,
+    "numTotalTests": 215,
+    "timestamp": 1792434129167,
+    "success": true,
+    "testId": 49
+  },
+  {
+    "commitId": "531c2fcd3057cf808eaa1343ebab2a0223bbc819",
+    "commitName": "feat(finder): implementar backend de reporte encontrado",
+    "commitTimestamp": 1792434427175,
+    "testId": 49
+  },
+  {
     "commitId": "09c6be4927e1d57e24823079505f21aa232dbbe0",
     "commitName": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
     "commitTimestamp": 1792435477583,
     "testId": 41
+  },
+  {
+    "commitId": "d1dabb614071416d5aca5af38892862887957d5f",
+    "commitName": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
+    "commitTimestamp": 1792435668352,
+    "testId": 41
+  },
+  {
+    "commitId": "96477f3046daf215beb38d641ae6c2365cf974d2",
+    "commitName": "chore: agrega la llave secreta de Supabase al ejemplo del entorno",
+    "commitTimestamp": 1792435668352,
+    "testId": 41
+  },
+  {
+    "numPassedTests": 223,
+    "failedTests": 64,
+    "numTotalTests": 287,
+    "timestamp": 1792437468290,
+    "success": false,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 287,
+    "failedTests": 0,
+    "numTotalTests": 287,
+    "timestamp": 1792437672311,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 293,
+    "failedTests": 0,
+    "numTotalTests": 293,
+    "timestamp": 1792437876872,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 292,
+    "failedTests": 1,
+    "numTotalTests": 293,
+    "timestamp": 1792438176073,
+    "success": false,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 293,
+    "failedTests": 0,
+    "numTotalTests": 293,
+    "timestamp": 1792438271624,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 293,
+    "failedTests": 0,
+    "numTotalTests": 293,
+    "timestamp": 1792438333855,
+    "success": true,
+    "testId": 50
+  },
+  {
+    "commitId": "0914938816ecf78a12b2a32520b4825491152964",
+    "commitName": "feat(finder): completar reporte con fotografías privadas",
+    "commitTimestamp": 1792446680029,
+    "testId": 50
+  },
+  {
+    "numPassedTests": 293,
+    "failedTests": 0,
+    "numTotalTests": 293,
+    "timestamp": 1792449333411,
+    "success": true,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 294,
+    "failedTests": 2,
+    "numTotalTests": 296,
+    "timestamp": 1792449583136,
+    "success": false,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 296,
+    "failedTests": 0,
+    "numTotalTests": 296,
+    "timestamp": 1792449632610,
+    "success": true,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 296,
+    "failedTests": 0,
+    "numTotalTests": 296,
+    "timestamp": 1792449688810,
+    "success": true,
+    "testId": 51
+  },
+  {
+    "commitId": "0e5f6d18d174597f19ff81988e2d422a816a4ade",
+    "commitName": "feat(finder): indicar entrega del objeto en Bienestar Estudiantil",
+    "commitTimestamp": 1792449946911,
+    "testId": 51
+  },
+  {
+    "numPassedTests": 296,
+    "failedTests": 2,
+    "numTotalTests": 298,
+    "timestamp": 1792450019045,
+    "success": false,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 298,
+    "failedTests": 0,
+    "numTotalTests": 298,
+    "timestamp": 1792450068031,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 298,
+    "failedTests": 0,
+    "numTotalTests": 298,
+    "timestamp": 1792450122635,
+    "success": true,
+    "testId": 52
+  },
+  {
+    "commitId": "e2be32d7a14cdc7307df0626ace859cfd1e19c06",
+    "commitName": "feat(finder): advertir entrega del objeto en Bienestar",
+    "commitTimestamp": 1792450362316,
+    "testId": 52
+  },
+  {
+    "numPassedTests": 298,
+    "failedTests": 2,
+    "numTotalTests": 300,
+    "timestamp": 1792450439848,
+    "success": false,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 300,
+    "failedTests": 0,
+    "numTotalTests": 300,
+    "timestamp": 1792450501036,
+    "success": true,
+    "testId": 53
+  },
+  {
+    "numPassedTests": 300,
+    "failedTests": 0,
+    "numTotalTests": 300,
+    "timestamp": 1792450559549,
+    "success": true,
+    "testId": 53
+  },
+  {
+    "commitId": "e55b066d6e342850582bc34a835ddbd1a605a662",
+    "commitName": "feat(finder): mostrar ubicación y horario de Bienestar",
+    "commitTimestamp": 1792450848026,
+    "testId": 53
+  },
+  {
+    "commitId": "500cb3b0464bd2d3200b2d98100ba9d838d053e4",
+    "commitName": "chore: integra los últimos cambios de final-test en welfare",
+    "commitTimestamp": 1792455304868,
+    "testId": 42
   },
   {
     "commitId": "281ecf4561a94fb1b6ffdcbb41591c41f15b041c",
@@ -3798,22 +4074,74 @@
     "testId": 42
   },
   {
-    "commitId": "c66c9d37a1deb3e8f5f9cce7890e8d2278543244",
-    "commitName": "chore: integra los últimos cambios de final-test en welfare",
-    "commitTimestamp": 1792467315567,
-    "testId": 43
-  },
-  {
-    "commitId": "fe9c787a6c0f86709996365991596901f3553ee8",
-    "commitName": "style(welfare): actualizar solo el diseño visual del panel",
-    "commitTimestamp": 1792468570160,
-    "testId": 44
-  },
-  {
     "commitId": "e56c7f72772b08fb6cb16445afd2b9373fe8f401",
     "commitName": "chore: integra los últimos cambios de final-test en core-matching",
     "commitTimestamp": 1792457314026,
     "testId": 42
+  },
+  {
+    "commitId": "c9a7b18908e311a880437150ce1cb28023ac53d5",
+    "commitName": "chore: integra los últimos cambios de final-test en core-matching",
+    "commitTimestamp": 1792457314026,
+    "testId": 42
+  },
+  {
+    "commitId": "17322703ea1567cb39f5fa52107070c679395600",
+    "commitName": "chore: cambios de rama core-matching",
+    "commitTimestamp": 1792457610601,
+    "testId": 43
+  },
+  {
+    "numPassedTests": 301,
+    "failedTests": 2,
+    "numTotalTests": 303,
+    "timestamp": 1792458235526,
+    "success": false,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 303,
+    "failedTests": 0,
+    "numTotalTests": 303,
+    "timestamp": 1792458315300,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 303,
+    "failedTests": 0,
+    "numTotalTests": 303,
+    "timestamp": 1792458361631,
+    "success": true,
+    "testId": 54
+  },
+  {
+    "commitId": "5e661eb3ca3603ccded1df8bb59dd923cf59cfae",
+    "commitName": "feat(finder): informar privacidad del reporte hasta su recepcion",
+    "commitTimestamp": 1792458822940,
+    "testId": 54
+  },
+  {
+    "numPassedTests": 336,
+    "failedTests": 0,
+    "numTotalTests": 336,
+    "timestamp": 1792466064728,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "numPassedTests": 336,
+    "failedTests": 0,
+    "numTotalTests": 336,
+    "timestamp": 1792466880389,
+    "success": true,
+    "testId": 55
+  },
+  {
+    "commitId": "c66c9d37a1deb3e8f5f9cce7890e8d2278543244",
+    "commitName": "chore: integra los últimos cambios de final-test en welfare",
+    "commitTimestamp": 1792467315567,
+    "testId": 43
   },
   {
     "commitId": "592ffa6b8954b21516481823ea50ef7aab98cf05",
@@ -3822,494 +4150,22 @@
     "testId": 43
   },
   {
-    "commitId": "ebd056fc8b566349792f41bebaaaa1b4c130407c",
+    "commitId": "c4f5e941212147e4cf2c69f25844d832ab7e48a2",
+    "commitName": "chore: integra la HU anterior de finder",
+    "commitTimestamp": 1792468077480,
+    "testId": 55
+  },
+  {
+    "commitId": "fe9c787a6c0f86709996365991596901f3553ee8",
     "commitName": "style(welfare): actualizar solo el diseño visual del panel",
     "commitTimestamp": 1792468570160,
     "testId": 44
   },
   {
-    "commitId": "63599295538466250b4d0a5743530bba54a9374d",
-    "commitName": "feat(welfare): mostrar acceso en la barra por rol",
-    "commitTimestamp": 1792502988248,
-    "testId": 45
-  },
-  {
-    "commitId": "f56666c1dff7826ab2232b23ba871c4f8dd16929",
-    "commitName": "chore(docs): retirar planes de bienestar",
-    "commitTimestamp": 1792504236519,
-    "testId": 46
-  },
-  {
-    "commitId": "9bc040c3e22047725637763ebca383f3cfc705f9",
-    "commitName": "feat: mostrar el objeto publicado como posible coincidencia a los dueños de reportes parecidos",
-    "commitTimestamp": 1792199780960,
-    "testId": 39
-  },
-  {
-    "numPassedTests": 104,
-    "failedTests": 0,
-    "numTotalTests": 104,
-    "timestamp": 1792342151865,
-    "success": true,
-    "testId": 40
-  },
-  {
-    "numPassedTests": 104,
-    "failedTests": 1,
-    "numTotalTests": 105,
-    "timestamp": 1792344678358,
-    "success": false,
-    "testId": 40
-  },
-  {
-    "numPassedTests": 105,
-    "failedTests": 0,
-    "numTotalTests": 105,
-    "timestamp": 1792344984717,
-    "success": true,
-    "testId": 40
-  },
-  {
-    "commitId": "bdf16550e0889fcee588152bc171a8d652bf00a9",
-    "commitName": "feat: agregar opcion de perdi un objeto en la pantalla principal",
-    "commitTimestamp": 1792345009248,
-    "testId": 40
-  },
-  {
-    "numPassedTests": 105,
-    "failedTests": 0,
-    "numTotalTests": 105,
-    "timestamp": 1792345308124,
-    "success": false,
-    "testId": 41
-  },
-  {
-    "numPassedTests": 107,
-    "failedTests": 0,
-    "numTotalTests": 107,
-    "timestamp": 1792345337636,
-    "success": true,
-    "testId": 41
-  },
-  {
-    "commitId": "07ce2795dd4fadc869e0351aedac28c6831081c9",
-    "commitName": "feat: abrir formulario para reportar objeto perdido",
-    "commitTimestamp": 1792345353704,
-    "testId": 41
-  },
-  {
-    "numPassedTests": 107,
-    "failedTests": 1,
-    "numTotalTests": 108,
-    "timestamp": 1792350613766,
-    "success": false,
-    "testId": 42
-  },
-  {
-    "numPassedTests": 108,
-    "failedTests": 0,
-    "numTotalTests": 108,
-    "timestamp": 1792350633904,
-    "success": true,
-    "testId": 42
-  },
-  {
-    "commitId": "53bb053ae62bb80ae5b1bc9e1b99b590ee2ee191",
-    "commitName": "feat: permitir escribir la descripcion del objeto perdido",
-    "commitTimestamp": 1792350723613,
-    "testId": 42
-  },
-  {
-    "numPassedTests": 108,
-    "failedTests": 1,
-    "numTotalTests": 109,
-    "timestamp": 1792350776067,
-    "success": false,
-    "testId": 43
-  },
-  {
-    "numPassedTests": 108,
-    "failedTests": 1,
-    "numTotalTests": 109,
-    "timestamp": 1792350795592,
-    "success": false,
-    "testId": 43
-  },
-  {
-    "numPassedTests": 109,
-    "failedTests": 0,
-    "numTotalTests": 109,
-    "timestamp": 1792350812248,
-    "success": true,
-    "testId": 43
-  },
-  {
-    "commitId": "9158228a86f245c0bb546aa2cbab4440d02055e5",
-    "commitName": "feat: permitir subir foto de referencia opcional",
-    "commitTimestamp": 1792350827095,
-    "testId": 43
-  },
-  {
-    "numPassedTests": 109,
-    "failedTests": 1,
-    "numTotalTests": 110,
-    "timestamp": 1792351238255,
-    "success": false,
+    "commitId": "ebd056fc8b566349792f41bebaaaa1b4c130407c",
+    "commitName": "style(welfare): actualizar solo el diseño visual del panel",
+    "commitTimestamp": 1792468570160,
     "testId": 44
-  },
-  {
-    "numPassedTests": 110,
-    "failedTests": 0,
-    "numTotalTests": 110,
-    "timestamp": 1792351262790,
-    "success": true,
-    "testId": 44
-  },
-  {
-    "commitId": "7a7671d1b13a677e050b5023ad604e562f325d53",
-    "commitName": "feat: permitir elegir la categoria del objeto perdido",
-    "commitTimestamp": 1792351276265,
-    "testId": 44
-  },
-  {
-    "numPassedTests": 110,
-    "failedTests": 1,
-    "numTotalTests": 111,
-    "timestamp": 1792351806342,
-    "success": false,
-    "testId": 45
-  },
-  {
-    "numPassedTests": 110,
-    "failedTests": 1,
-    "numTotalTests": 111,
-    "timestamp": 1792351837069,
-    "success": false,
-    "testId": 45
-  },
-  {
-    "numPassedTests": 111,
-    "failedTests": 0,
-    "numTotalTests": 111,
-    "timestamp": 1792351944366,
-    "success": true,
-    "testId": 45
-  },
-  {
-    "commitId": "c30435bb807be12be4664ca0deaaa4187e9fdb2f",
-    "commitName": "feat: permitir elegir uno o varios lugares con bloque y aula",
-    "commitTimestamp": 1792351963919,
-    "testId": 45
-  },
-  {
-    "numPassedTests": 111,
-    "failedTests": 1,
-    "numTotalTests": 112,
-    "timestamp": 1792352053376,
-    "success": false,
-    "testId": 46
-  },
-  {
-    "numPassedTests": 112,
-    "failedTests": 0,
-    "numTotalTests": 112,
-    "timestamp": 1792352224555,
-    "success": true,
-    "testId": 46
-  },
-  {
-    "commitId": "53f2844195407a55592a3de1457c3a42cbfcbc0c",
-    "commitName": "feat: permitir describir en texto el lugar de perdida",
-    "commitTimestamp": 1792352240962,
-    "testId": 46
-  },
-  {
-    "numPassedTests": 112,
-    "failedTests": 1,
-    "numTotalTests": 113,
-    "timestamp": 1792352319140,
-    "success": false,
-    "testId": 47
-  },
-  {
-    "numPassedTests": 113,
-    "failedTests": 0,
-    "numTotalTests": 113,
-    "timestamp": 1792352339352,
-    "success": true,
-    "testId": 47
-  },
-  {
-    "commitId": "58cb10f47abd38ddf92e986c62b30bef72209c43",
-    "commitName": "feat: permitir indicar el rango de fechas en que pudo perderse el objeto",
-    "commitTimestamp": 1792352370486,
-    "testId": 47
-  },
-  {
-    "numPassedTests": 113,
-    "failedTests": 2,
-    "numTotalTests": 115,
-    "timestamp": 1792352686475,
-    "success": false,
-    "testId": 48
-  },
-  {
-    "numPassedTests": 115,
-    "failedTests": 0,
-    "numTotalTests": 115,
-    "timestamp": 1792352789593,
-    "success": true,
-    "testId": 48
-  },
-  {
-    "commitId": "1e2eb3157ae02398276a14d588f11f5df96b0d07",
-    "commitName": "feat: validar campos obligatorios antes de enviar el reporte",
-    "commitTimestamp": 1792352830962,
-    "testId": 48
-  },
-  {
-    "numPassedTests": 115,
-    "failedTests": 0,
-    "numTotalTests": 115,
-    "timestamp": 1792352941509,
-    "success": false,
-    "testId": 49
-  },
-  {
-    "commitId": "10740bcb44e4ab5bda17f637cbdef1561a2283fe",
-    "commitName": "feat: mostrar codigo unico en confirmacion de reporte",
-    "commitTimestamp": 1792352969987,
-    "testId": 49
-  },
-  {
-    "numPassedTests": 115,
-    "failedTests": 1,
-    "numTotalTests": 116,
-    "timestamp": 1792353000532,
-    "success": false,
-    "testId": 50
-  },
-  {
-    "numPassedTests": 116,
-    "failedTests": 0,
-    "numTotalTests": 116,
-    "timestamp": 1792353061166,
-    "success": true,
-    "testId": 50
-  },
-  {
-    "commitId": "6d753d6f3fd090ad4d325d2ea1dfd34111744106",
-    "commitName": "feat: mostrar codigo unico en confirmacion de reporte bien",
-    "commitTimestamp": 1792353085360,
-    "testId": 50
-  },
-  {
-    "numPassedTests": 116,
-    "failedTests": 1,
-    "numTotalTests": 117,
-    "timestamp": 1792353702706,
-    "success": false,
-    "testId": 51
-  },
-  {
-    "numPassedTests": 117,
-    "failedTests": 0,
-    "numTotalTests": 117,
-    "timestamp": 1792353721723,
-    "success": true,
-    "testId": 51
-  },
-  {
-    "commitId": "f290f5c2c5e6c5af1b770f0d64aee54a8d6146f0",
-    "commitName": "feat: indicar privacidad del reporte para el usuario y bienestar estudiantil",
-    "commitTimestamp": 1792353747326,
-    "testId": 51
-  },
-  {
-    "numPassedTests": 117,
-    "failedTests": 1,
-    "numTotalTests": 118,
-    "timestamp": 1792353788057,
-    "success": false,
-    "testId": 52
-  },
-  {
-    "numPassedTests": 117,
-    "failedTests": 1,
-    "numTotalTests": 118,
-    "timestamp": 1792353810726,
-    "success": false,
-    "testId": 52
-  },
-  {
-    "numPassedTests": 117,
-    "failedTests": 1,
-    "numTotalTests": 118,
-    "timestamp": 1792353983851,
-    "success": false,
-    "testId": 52
-  },
-  {
-    "numPassedTests": 117,
-    "failedTests": 1,
-    "numTotalTests": 118,
-    "timestamp": 1792354019883,
-    "success": false,
-    "testId": 52
-  },
-  {
-    "numPassedTests": 118,
-    "failedTests": 0,
-    "numTotalTests": 118,
-    "timestamp": 1792354130346,
-    "success": true,
-    "testId": 52
-  },
-  {
-    "commitId": "dfa3dc57a6e42ab2c0c959e8adcef595e7742970",
-    "commitName": "feat: mostrar estado activo del reporte mientras no aparezca el objeto",
-    "commitTimestamp": 1792354151323,
-    "testId": 52
-  },
-  {
-    "numPassedTests": 118,
-    "failedTests": 0,
-    "numTotalTests": 118,
-    "timestamp": 1792358176900,
-    "success": true,
-    "testId": 53
-  },
-  {
-    "commitId": "7833fbafd2df9118c133c581ae0ed8bf20fa39de",
-    "commitName": "feat: mostrar ultimos objetos publicados en la pantalla de inicio",
-    "commitTimestamp": 1792358210902,
-    "testId": 53
-  },
-  {
-    "numPassedTests": 118,
-    "failedTests": 0,
-    "numTotalTests": 118,
-    "timestamp": 1792359349270,
-    "success": true,
-    "testId": 54
-  },
-  {
-    "numPassedTests": 119,
-    "failedTests": 1,
-    "numTotalTests": 120,
-    "timestamp": 1792359367060,
-    "success": false,
-    "testId": 54
-  },
-  {
-    "numPassedTests": 120,
-    "failedTests": 0,
-    "numTotalTests": 120,
-    "timestamp": 1792359385737,
-    "success": true,
-    "testId": 54
-  },
-  {
-    "commitId": "8ddc0d8fdff7577c9a50e2896d17abaa63894e3c",
-    "commitName": "feat: permitir buscar objetos por palabras clave",
-    "commitTimestamp": 1792359404079,
-    "testId": 54
-  },
-  {
-    "numPassedTests": 120,
-    "failedTests": 1,
-    "numTotalTests": 121,
-    "timestamp": 1792359484765,
-    "success": false,
-    "testId": 55
-  },
-  {
-    "numPassedTests": 121,
-    "failedTests": 0,
-    "numTotalTests": 121,
-    "timestamp": 1792359506312,
-    "success": true,
-    "testId": 55
-  },
-  {
-    "commitId": "b72377322fbc380f2aa48124fb505d38125b5fc5",
-    "commitName": "feat: permitir filtrar objetos por categoria",
-    "commitTimestamp": 1792359522159,
-    "testId": 55
-  },
-  {
-    "numPassedTests": 121,
-    "failedTests": 2,
-    "numTotalTests": 123,
-    "timestamp": 1792359600515,
-    "success": false,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 123,
-    "failedTests": 0,
-    "numTotalTests": 123,
-    "timestamp": 1792359639164,
-    "success": true,
-    "testId": 56
-  },
-  {
-    "commitId": "f870ed4eb5d409deede5b41a5da5c3d3ab7c67d3",
-    "commitName": "feat: mostrar detalle completo de un objeto encontrado",
-    "commitTimestamp": 1792359655887,
-    "testId": 56
-  },
-  {
-    "numPassedTests": 123,
-    "failedTests": 1,
-    "numTotalTests": 124,
-    "timestamp": 1792360062064,
-    "success": false,
-    "testId": 57
-  },
-  {
-    "numPassedTests": 122,
-    "failedTests": 2,
-    "numTotalTests": 124,
-    "timestamp": 1792360080399,
-    "success": false,
-    "testId": 57
-  },
-  {
-    "numPassedTests": 124,
-    "failedTests": 0,
-    "numTotalTests": 124,
-    "timestamp": 1792360184441,
-    "success": true,
-    "testId": 57
-  },
-  {
-    "commitId": "9091a3763515fc5e699b51f00a239903f09ebb5b",
-    "commitName": "feat: mostrar ubicacion y horario de bienestar estudiantil en el detalle",
-    "commitTimestamp": 1792360234463,
-    "testId": 57
-  },
-  {
-    "numPassedTests": 124,
-    "failedTests": 1,
-    "numTotalTests": 125,
-    "timestamp": 1792360276619,
-    "success": false,
-    "testId": 58
-  },
-  {
-    "numPassedTests": 125,
-    "failedTests": 0,
-    "numTotalTests": 125,
-    "timestamp": 1792360291805,
-    "success": true,
-    "testId": 58
-  },
-  {
-    "commitId": "48d8273cf23e08a267fc6318d580f1ccf3e19907",
-    "commitName": "feat: excluir objetos entregados del catalogo de exploracion",
-    "commitTimestamp": 1792360378438,
-    "testId": 58
   },
   {
     "commitId": "6cfd72ad3f485fc33234dd9ed5bd5b93a69d7d5c",
@@ -4318,10 +4174,172 @@
     "testId": 45
   },
   {
+    "numPassedTests": 337,
+    "failedTests": 13,
+    "numTotalTests": 350,
+    "timestamp": 1792502670424,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 350,
+    "failedTests": 0,
+    "numTotalTests": 350,
+    "timestamp": 1792502790587,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 350,
+    "failedTests": 0,
+    "numTotalTests": 350,
+    "timestamp": 1792502850126,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "commitId": "63599295538466250b4d0a5743530bba54a9374d",
+    "commitName": "feat(welfare): mostrar acceso en la barra por rol",
+    "commitTimestamp": 1792502988248,
+    "testId": 45
+  },
+  {
+    "numPassedTests": 350,
+    "failedTests": 0,
+    "numTotalTests": 350,
+    "timestamp": 1792503043866,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 349,
+    "failedTests": 16,
+    "numTotalTests": 365,
+    "timestamp": 1792503218896,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 365,
+    "failedTests": 0,
+    "numTotalTests": 365,
+    "timestamp": 1792503299649,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 365,
+    "failedTests": 0,
+    "numTotalTests": 365,
+    "timestamp": 1792503351421,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 365,
+    "failedTests": 13,
+    "numTotalTests": 378,
+    "timestamp": 1792503533416,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 378,
+    "failedTests": 0,
+    "numTotalTests": 378,
+    "timestamp": 1792503816851,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 378,
+    "failedTests": 0,
+    "numTotalTests": 378,
+    "timestamp": 1792503917729,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 381,
+    "failedTests": 23,
+    "numTotalTests": 404,
+    "timestamp": 1792504136599,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "commitId": "f56666c1dff7826ab2232b23ba871c4f8dd16929",
+    "commitName": "chore(docs): retirar planes de bienestar",
+    "commitTimestamp": 1792504236519,
+    "testId": 46
+  },
+  {
+    "numPassedTests": 404,
+    "failedTests": 0,
+    "numTotalTests": 404,
+    "timestamp": 1792504242564,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 404,
+    "failedTests": 0,
+    "numTotalTests": 404,
+    "timestamp": 1792504341204,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 404,
+    "failedTests": 4,
+    "numTotalTests": 408,
+    "timestamp": 1792504487498,
+    "success": false,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 408,
+    "failedTests": 0,
+    "numTotalTests": 408,
+    "timestamp": 1792504572378,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 408,
+    "failedTests": 0,
+    "numTotalTests": 408,
+    "timestamp": 1792504669480,
+    "success": true,
+    "testId": 56
+  },
+  {
     "commitId": "568e0e28552f3d79e035bf5b531a95a67f80ff19",
     "commitName": "chore: integra los últimos cambios de final-test en welfare",
     "commitTimestamp": 1792504909096,
     "testId": 46
+  },
+  {
+    "numPassedTests": 408,
+    "failedTests": 0,
+    "numTotalTests": 408,
+    "timestamp": 1792524570583,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "numPassedTests": 408,
+    "failedTests": 0,
+    "numTotalTests": 408,
+    "timestamp": 1792524922970,
+    "success": true,
+    "testId": 56
+  },
+  {
+    "commitId": "050a16deab1989f21f3aeb7fd29b07b7aece112c",
+    "commitName": "feat(finder): implementar HU-4 consulta de reportes propios",
+    "commitTimestamp": 1792525054093,
+    "testId": 56
   },
   {
     "commitId": "79d03d27ef459b4272e217e86638f4eb44df21db",
@@ -4530,6 +4548,12 @@
     "testId": 55
   },
   {
+    "commitId": "299e4334e90cf0a51f2600d96aeea5743f4b2a6b",
+    "commitName": "feat(owner): permitir indicar el rango de fechas de la pérdida",
+    "commitTimestamp": 1792594501296,
+    "testId": 55
+  },
+  {
     "numPassedTests": 496,
     "failedTests": 14,
     "numTotalTests": 510,
@@ -4584,6 +4608,30 @@
     "testId": 56
   },
   {
+    "commitId": "6fe207b853103a95af54662156d2834a4ee3355a",
+    "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
+    "commitTimestamp": 1792597534262,
+    "testId": 56
+  },
+  {
+    "commitId": "12531eb9fe49ed961867b1c074a49e87103c1c1d",
+    "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
+    "commitTimestamp": 1792597534262,
+    "testId": 56
+  },
+  {
+    "commitId": "0a01ffa8183d14ae2b0daf8c94728b3b26a012f6",
+    "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
+    "commitTimestamp": 1792597534262,
+    "testId": 56
+  },
+  {
+    "commitId": "28f403997e5e299ba03f8ed55471dd7cb8996b5c",
+    "commitName": "feat(owner): enviar el reporte de pérdida y recibir su código único",
+    "commitTimestamp": 1792597534262,
+    "testId": 56
+  },
+  {
     "numPassedTests": 518,
     "failedTests": 3,
     "numTotalTests": 521,
@@ -4601,6 +4649,30 @@
   },
   {
     "commitId": "84c6b6eccaa6488a2ec19bb6a58c35fca21466d2",
+    "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
+    "commitTimestamp": 1792597809312,
+    "testId": 57
+  },
+  {
+    "commitId": "44a334a10605afb41d94b9338e01652a2b373275",
+    "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
+    "commitTimestamp": 1792597809312,
+    "testId": 57
+  },
+  {
+    "commitId": "2bb2b797806d641ca89833ca2cdabf07087a688d",
+    "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
+    "commitTimestamp": 1792597809312,
+    "testId": 57
+  },
+  {
+    "commitId": "9d848402240e2f136a2f3741b71cc3943f83ecaf",
+    "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
+    "commitTimestamp": 1792597809312,
+    "testId": 57
+  },
+  {
+    "commitId": "ac0fa981b0d3c5539cfe4d78a404f732128c0962",
     "commitName": "feat(owner): no permitir enviar el reporte si faltan datos obligatorios",
     "commitTimestamp": 1792597809312,
     "testId": 57
@@ -4628,6 +4700,30 @@
     "testId": 58
   },
   {
+    "commitId": "267c37c90ab0101016c3d6161489632ec8816963",
+    "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
+    "commitTimestamp": 1792598049048,
+    "testId": 58
+  },
+  {
+    "commitId": "eafde7231c7bb169fe15fb89ced567bcb196c6e3",
+    "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
+    "commitTimestamp": 1792598049048,
+    "testId": 58
+  },
+  {
+    "commitId": "07dc6e4f9c4cb75f485499d0bd502ebd828a15bc",
+    "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
+    "commitTimestamp": 1792598049048,
+    "testId": 58
+  },
+  {
+    "commitId": "456a345eb2b85661dda431ab4d0fb0055177f07c",
+    "commitName": "feat(owner): avisar que el reporte de pérdida es privado",
+    "commitTimestamp": 1792598049048,
+    "testId": 58
+  },
+  {
     "numPassedTests": 522,
     "failedTests": 2,
     "numTotalTests": 524,
@@ -4645,6 +4741,30 @@
   },
   {
     "commitId": "e7fd3be423674db2a13d9aab82fd6ae791607a65",
+    "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
+    "commitTimestamp": 1792599362931,
+    "testId": 59
+  },
+  {
+    "commitId": "0086f5360817a53a25f55db4ed97d31ceefc7da1",
+    "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
+    "commitTimestamp": 1792599362931,
+    "testId": 59
+  },
+  {
+    "commitId": "da62bbb24fec2cd460062a16b580dd3aee3d9b1a",
+    "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
+    "commitTimestamp": 1792599362931,
+    "testId": 59
+  },
+  {
+    "commitId": "a94c8d2916d1136512ab06831293ec711065f0f5",
+    "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
+    "commitTimestamp": 1792599362931,
+    "testId": 59
+  },
+  {
+    "commitId": "c6613860ef5794f285049e0d28a1b4c5a1bb45a7",
     "commitName": "feat(owner): avisar que el reporte sigue activo aunque no aparezca el objeto",
     "commitTimestamp": 1792599362931,
     "testId": 59
@@ -4672,6 +4792,30 @@
     "testId": 60
   },
   {
+    "commitId": "55ecdc121e7dddbd6ef415763238ac60548858a2",
+    "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
+    "commitTimestamp": 1792599791806,
+    "testId": 60
+  },
+  {
+    "commitId": "bd9d8f599167b4c8ac39e908ba7ce8384f298768",
+    "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
+    "commitTimestamp": 1792599791806,
+    "testId": 60
+  },
+  {
+    "commitId": "fa3292efc85bb76a7049bdf55ad6da2f76252bb8",
+    "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
+    "commitTimestamp": 1792599791806,
+    "testId": 60
+  },
+  {
+    "commitId": "79f6d22eb9555a970a8950e7d0b1e2632ad9c97f",
+    "commitName": "feat(owner): permitir subir una foto de referencia del objeto perdido",
+    "commitTimestamp": 1792599791806,
+    "testId": 60
+  },
+  {
     "numPassedTests": 529,
     "failedTests": 0,
     "numTotalTests": 529,
@@ -4694,10 +4838,94 @@
     "testId": 61
   },
   {
+    "commitId": "7fd0aa59f1cb775c6cc124d8e8b21b2cb9e49d31",
+    "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
+    "commitTimestamp": 1792601341695,
+    "testId": 61
+  },
+  {
+    "commitId": "0618a3ed080e0cbe6ddd06b799eb281640ed7602",
+    "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
+    "commitTimestamp": 1792601341695,
+    "testId": 61
+  },
+  {
+    "commitId": "2378b9b2b3a7f24aff1c516e551f1fb8715c4890",
+    "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
+    "commitTimestamp": 1792601341695,
+    "testId": 61
+  },
+  {
+    "commitId": "26020bd64e54bd9435edfa8acf9339376e0421c1",
+    "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
+    "commitTimestamp": 1792601341695,
+    "testId": 61
+  },
+  {
+    "commitId": "e76f2fa0f6333da4c3c82ecd3b8cdb39105a94ac",
+    "commitName": "style(owner): mostrar las opciones del inicio como tarjetas",
+    "commitTimestamp": 1792601341695,
+    "testId": 61
+  },
+  {
     "commitId": "3115ce1c12a59df6315d7a4fae2b8adc542b3c79",
     "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
     "commitTimestamp": 1792613220007,
     "testId": 62
+  },
+  {
+    "commitId": "231d46643f596ab380bd5516d532b1ac8f6c1bf8",
+    "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+    "commitTimestamp": 1792613220007,
+    "testId": 62
+  },
+  {
+    "commitId": "c7de7826d803452a1c5cc5a332c0e25a29a0c309",
+    "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+    "commitTimestamp": 1792613220007,
+    "testId": 62
+  },
+  {
+    "commitId": "eb12025cd1372881cdb2ac08ba21c31f47c0c999",
+    "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+    "commitTimestamp": 1792613220007,
+    "testId": 62
+  },
+  {
+    "commitId": "064d4c4545b6a6c72d83ff36bc1bc0ad94a2ca5d",
+    "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+    "commitTimestamp": 1792613220007,
+    "testId": 62
+  },
+  {
+    "commitId": "c8c30efdd651c69ff68e0349f6358388911248e5",
+    "commitName": "fix: mostrar el motivo real cuando no se puede registrar una entrega",
+    "commitTimestamp": 1792613220007,
+    "testId": 62
+  },
+  {
+    "commitId": "65751ebaa0d83e749e57641d0294ead0ca5a8284",
+    "commitName": "chore: integra los últimos cambios de main en core-matching",
+    "commitTimestamp": 1792616032864,
+    "testId": 63
+  },
+  {
+    "commitId": "ef4205de087a84197c1d717548025c79fe89b00d",
+    "commitName": "chore: integra los últimos cambios de main en core-matching",
+    "commitTimestamp": 1792616032864,
+    "testId": 63
+  },
+  {
+    "commitId": "82c6f6e19506de122248b391aacf814e159429c2",
+    "commitName": "chore: integra los últimos cambios de main en core-matching",
+    "commitTimestamp": 1792616032864,
+    "testId": 63
+  },
+  {
+    "commitId": "5d19a01822fa9b4380d8fd3df8dd18702445ddb6",
+    "commitName": "chore: integra los últimos cambios de main en core-matching",
+    "commitTimestamp": 1792616032864,
+    "testId": 63
   },
   {
     "numPassedTests": 533,
@@ -4806,7 +5034,13 @@
     "testId": 66
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ad7a6b0232cb471fc61e0acdd638e3124dfc5387",
+    "commitName": "feat(owner): filtrar los objetos encontrados por categoría",
+    "commitTimestamp": 1792627053808,
+    "testId": 66
+  },
+  {
+    "commitId": "68c9379be115e739735bac03224d923834206d1f",
     "commitName": "feat(owner): filtrar los objetos encontrados por categoría",
     "commitTimestamp": 1792627053808,
     "testId": 66
@@ -4825,6 +5059,12 @@
     "numTotalTests": 560,
     "timestamp": 1792629600788,
     "success": true,
+    "testId": 67
+  },
+  {
+    "commitId": "e0ace0f37e57cf43b23cfdf299c8d5021b117626",
+    "commitName": "feat(owner): ver el detalle de un objeto encontrado",
+    "commitTimestamp": 1792629786506,
     "testId": 67
   },
   {
@@ -4847,6 +5087,12 @@
     "numTotalTests": 561,
     "timestamp": 1792629966303,
     "success": true,
+    "testId": 68
+  },
+  {
+    "commitId": "99a3ad025a9e23f6f9e0ec6822d13924cfe13d8d",
+    "commitName": "feat(owner): mostrar dónde y cuándo preguntar por un objeto en Bienestar",
+    "commitTimestamp": 1792630045127,
     "testId": 68
   },
   {
@@ -4880,6 +5126,12 @@
     "testId": 69
   },
   {
+    "commitId": "19774e58b55f7d8b3f0f121c2537db5092054b0e",
+    "commitName": "feat(owner): ver todos mis reportes de pérdida",
+    "commitTimestamp": 1792631842462,
+    "testId": 69
+  },
+  {
     "commitId": "HEAD",
     "commitName": "feat(owner): ver todos mis reportes de pérdida",
     "commitTimestamp": 1792631842462,
@@ -4899,6 +5151,12 @@
     "numTotalTests": 571,
     "timestamp": 1792632057881,
     "success": true,
+    "testId": 70
+  },
+  {
+    "commitId": "7198dd5dc97df5d540dcd6df0b4878ef39d0df3e",
+    "commitName": "feat(owner): mostrar el código y el estado de cada reporte de pérdida",
+    "commitTimestamp": 1792632095899,
     "testId": 70
   },
   {
@@ -4924,6 +5182,12 @@
     "testId": 71
   },
   {
+    "commitId": "295351309070aa9ce65fca04d819fb35be77ec76",
+    "commitName": "feat(owner): ver el detalle de mi reporte de pérdida",
+    "commitTimestamp": 1792632582953,
+    "testId": 71
+  },
+  {
     "commitId": "HEAD",
     "commitName": "feat(owner): ver el detalle de mi reporte de pérdida",
     "commitTimestamp": 1792632582953,
@@ -4946,15 +5210,3381 @@
     "testId": 72
   },
   {
-    "commitId": "HEAD",
+    "commitId": "25ef8a0ded099f818b118566d3bde61f96fde295",
+    "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
+    "commitTimestamp": 1792632787536,
+    "testId": 72
+  },
+  {
+    "commitId": "c530dca55bb85cedba12b3e347be33496d5c4ef0",
+    "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
+    "commitTimestamp": 1792632787536,
+    "testId": 72
+  },
+  {
+    "commitId": "6041b6ad647fe608c7186eaa5704d9f8eb0bf4bd",
+    "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
+    "commitTimestamp": 1792632787536,
+    "testId": 72
+  },
+  {
+    "commitId": "b5579a5fd3d0fc43fbc2b0666803a0ab3cfaff0a",
     "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
     "commitTimestamp": 1792632787536,
     "testId": 72
   },
   {
     "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
+    "commitTimestamp": 1792632787536,
+    "testId": 72
+  },
+  {
+    "commitId": "beac01bbfca2718e9a304c55eecce315827e30b3",
     "commitName": "feat: Pequeños cambios",
     "commitTimestamp": 1794001438321,
     "testId": 73
+  },
+  {
+    "commitId": "c530dca55bb85cedba12b3e347be33496d5c4ef0",
+    "commitName": "feat: Pequeños cambios",
+    "commitTimestamp": 1794001438321,
+    "testId": 73
+  },
+  {
+    "commitId": "fc7a28fd5d4395d149e71f8c27c4586f5d7e1963",
+    "commitName": "feat: Pequeños cambios",
+    "commitTimestamp": 1794001438321,
+    "testId": 73
+  },
+  {
+    "commitId": "ef2bd6320683eee6b376167dc4527f412e8f411f",
+    "commitName": "feat: Pequeños cambios",
+    "commitTimestamp": 1794001438321,
+    "testId": 73
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat: Pequeños cambios",
+    "commitTimestamp": 1794001438321,
+    "testId": 73
+  },
+  {
+    "numPassedTests": 581,
+    "failedTests": 0,
+    "numTotalTests": 581,
+    "timestamp": 1794001706781,
+    "success": false,
+    "testId": 74
+  },
+  {
+    "numPassedTests": 589,
+    "failedTests": 0,
+    "numTotalTests": 589,
+    "timestamp": 1794002609545,
+    "success": false,
+    "testId": 74
+  },
+  {
+    "numPassedTests": 591,
+    "failedTests": 0,
+    "numTotalTests": 591,
+    "timestamp": 1794003128406,
+    "success": true,
+    "testId": 74
+  },
+  {
+    "commitId": "8021c5e55075b3a9ae43a71bb2e2f4e65dba4856",
+    "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
+    "commitTimestamp": 1794003330500,
+    "testId": 74
+  },
+  {
+    "commitId": "c14499d4d7a8d3c062abf0d3555829ef186071e1",
+    "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
+    "commitTimestamp": 1794003330500,
+    "testId": 74
+  },
+  {
+    "commitId": "4ec4f617995dce86dea5d7e232d03259b42e3b94",
+    "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
+    "commitTimestamp": 1794003330500,
+    "testId": 74
+  },
+  {
+    "commitId": "480a4aae34166e2c5de4a4e1b0a7d43066857f83",
+    "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
+    "commitTimestamp": 1794003330500,
+    "testId": 74
+  },
+  {
+    "numPassedTests": 591,
+    "failedTests": 0,
+    "numTotalTests": 591,
+    "timestamp": 1794004307372,
+    "success": false,
+    "testId": 75
+  },
+  {
+    "numPassedTests": 598,
+    "failedTests": 0,
+    "numTotalTests": 598,
+    "timestamp": 1794004424085,
+    "success": true,
+    "testId": 75
+  },
+  {
+    "commitId": "ea45771e29086d5aa5dd1f034de94bf3124dc02d",
+    "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
+    "commitTimestamp": 1794004502232,
+    "testId": 75
+  },
+  {
+    "commitId": "ac77b980f99419886c093851f9b173fe496a7c38",
+    "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
+    "commitTimestamp": 1794004502232,
+    "testId": 75
+  },
+  {
+    "commitId": "ac7f52313d636d398909897e02ab6b0a05493cce",
+    "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
+    "commitTimestamp": 1794004502232,
+    "testId": 75
+  },
+  {
+    "numPassedTests": 599,
+    "failedTests": 3,
+    "numTotalTests": 602,
+    "timestamp": 1794004943359,
+    "success": false,
+    "testId": 76
+  },
+  {
+    "numPassedTests": 602,
+    "failedTests": 0,
+    "numTotalTests": 602,
+    "timestamp": 1794005055697,
+    "success": true,
+    "testId": 76
+  },
+  {
+    "commitId": "7f842352d2df2a3d75928762844788280d9b13bb",
+    "commitName": "feat(core): mostrar los avisos del más reciente al más antiguo",
+    "commitTimestamp": 1794005105950,
+    "testId": 76
+  },
+  {
+    "commitId": "f09efb449c626a3f98defba266ebb5df06b4f83a",
+    "commitName": "feat(core): mostrar los avisos del más reciente al más antiguo",
+    "commitTimestamp": 1794005105950,
+    "testId": 76
+  },
+  {
+    "numPassedTests": 602,
+    "failedTests": 5,
+    "numTotalTests": 607,
+    "timestamp": 1794005224617,
+    "success": false,
+    "testId": 77
+  },
+  {
+    "numPassedTests": 607,
+    "failedTests": 0,
+    "numTotalTests": 607,
+    "timestamp": 1794005289999,
+    "success": true,
+    "testId": 77
+  },
+  {
+    "commitId": "d696f1199751970ab242326a12845609887065cb",
+    "commitName": "feat(core): mostrar qué pasó y cuándo en cada aviso",
+    "commitTimestamp": 1794005316407,
+    "testId": 77
+  },
+  {
+    "commitId": "55189c7d145de9c77ccc85c14c491a092f9992ae",
+    "commitName": "feat(core): mostrar qué pasó y cuándo en cada aviso",
+    "commitTimestamp": 1794005316407,
+    "testId": 77
+  },
+  {
+    "numPassedTests": 613,
+    "failedTests": 4,
+    "numTotalTests": 617,
+    "timestamp": 1794005680866,
+    "success": false,
+    "testId": 78
+  },
+  {
+    "numPassedTests": 617,
+    "failedTests": 0,
+    "numTotalTests": 617,
+    "timestamp": 1794005784169,
+    "success": true,
+    "testId": 78
+  },
+  {
+    "commitId": "d7e521f088a0d7f397fd5b4b737de56cdb9311b3",
+    "commitName": "feat(core): abrir el reporte u objeto relacionado al tocar un aviso",
+    "commitTimestamp": 1794005817055,
+    "testId": 78
+  },
+  {
+    "commitId": "365a5b7fc58b1393b740b2d3b7641528e69e9c6e",
+    "commitName": "feat(core): abrir el reporte u objeto relacionado al tocar un aviso",
+    "commitTimestamp": 1794005817055,
+    "testId": 78
+  },
+  {
+    "numPassedTests": 622,
+    "failedTests": 7,
+    "numTotalTests": 629,
+    "timestamp": 1794006067815,
+    "success": false,
+    "testId": 79
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794006220533,
+    "success": true,
+    "testId": 79
+  },
+  {
+    "commitId": "09d94deec7f8625acb94b965356b696fe6353bb3",
+    "commitName": "feat(core): dejar de contar como nuevos los avisos que ya se abrieron",
+    "commitTimestamp": 1794006258664,
+    "testId": 79
+  },
+  {
+    "commitId": "442a984868db18f1e3af0f870d580290f8415c60",
+    "commitName": "feat(core): dejar de contar como nuevos los avisos que ya se abrieron",
+    "commitTimestamp": 1794006258664,
+    "testId": 79
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794007110237,
+    "success": true,
+    "testId": 80
+  },
+  {
+    "commitId": "c328a1054b892f726fe26bc300040f112a61a39c",
+    "commitName": "chore: integra los últimos cambios de core-matching en core-matching-hu-15",
+    "commitTimestamp": 1794007200212,
+    "testId": 80
+  },
+  {
+    "commitId": "b355144eebcb4bab26fc4475877c3c0bce3915c5",
+    "commitName": "chore: integra los últimos cambios de core-matching en core-matching-hu-15",
+    "commitTimestamp": 1794007200212,
+    "testId": 80
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794255134205,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794256543324,
+    "success": false,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794256604377,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794256657361,
+    "success": false,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794256688337,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "commitId": "fd578b66a01a8ead4328c45b6df34c64a7220a3c",
+    "commitName": "feat(finder): mostrar la opción Ver guía en Inicio",
+    "commitTimestamp": 1794257369798,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794257731295,
+    "success": false,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794257783884,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794257838524,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "commitId": "e1dd997816d0a125c21b4c3982cad557bf2a2df3",
+    "commitName": "feat(finder): abrir la guía rápida desde Inicio",
+    "commitTimestamp": 1794258117193,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794316364385,
+    "success": false,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794316446192,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794316508757,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "commitId": "e3d9a6ceb2054c96ba38fb671fa8adbccdd1bed9",
+    "commitName": "feat(finder): permitir cerrar la guía y volver a Inicio",
+    "commitTimestamp": 1794316599608,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 628,
+    "failedTests": 1,
+    "numTotalTests": 629,
+    "timestamp": 1794319076639,
+    "success": false,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794319154828,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794319220832,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794319247147,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "commitId": "90c460002c36108a0fc0ae5b5788d9eea8f87f68",
+    "commitName": "feat(core): mostrar en los botones que la app está cargando",
+    "commitTimestamp": 1794319281960,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794319355927,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "commitId": "ead16cff3405c3aa27707997b3e408d15d22f000",
+    "commitName": "feat(core): agregar un indicador de carga único para pantallas y listas",
+    "commitTimestamp": 1794319392159,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794320218176,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794320263089,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794320302924,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794320342955,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794320382066,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794320422082,
+    "success": true,
+    "testId": 81
+  },
+  {
+    "commitId": "fd26a7b9ee06ad502491772cbc6295a9ec350736",
+    "commitName": "refactor(core): renombrar newestFirst a sortNewestFirst",
+    "commitTimestamp": 1794320583160,
+    "testId": 83
+  },
+  {
+    "commitId": "1181d7fff117cecce7fe16d722dd9b90ad485e10",
+    "commitName": "refactor(finder): nombrar buildFoundAt según su propósito",
+    "commitTimestamp": 1794320623056,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794320634852,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "commitId": "dd5540adb0a60eeda754c782de35a8b9c2db46f2",
+    "commitName": "refactor(finder): aclarar los nombres del envío del hallazgo",
+    "commitTimestamp": 1794320686630,
+    "testId": 82
+  },
+  {
+    "commitId": "7d492327c002cf1002a58c80fc9e9cb4e8395c51",
+    "commitName": "refactor(core): renombrar unreadBadge a formatUnreadBadge",
+    "commitTimestamp": 1794320734205,
+    "testId": 84
+  },
+  {
+    "commitId": "4fca922e9a0ba99f35d825b4a76c729e75affb0c",
+    "commitName": "refactor(finder): aclarar los nombres del guardado de la guía",
+    "commitTimestamp": 1794320740203,
+    "testId": 83
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(finder): aclarar los estados de carga y fallo",
+    "commitTimestamp": 1794320791917,
+    "testId": 84
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(finder): aclarar la validación y el guardado del reporte",
+    "commitTimestamp": 1794320842629,
+    "testId": 85
+  },
+  {
+    "commitId": "9fbe1efdf48e34c9e2d19d3be9d08e40b29683c7",
+    "commitName": "refactor(core): renombrar notificationDestination  a getNotificationDestination",
+    "commitTimestamp": 1794320846024,
+    "testId": 85
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(finder): aclarar los nombres al validar las respuestas",
+    "commitTimestamp": 1794320894364,
+    "testId": 86
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794321297086,
+    "success": true,
+    "testId": 86
+  },
+  {
+    "commitId": "35e7da0b4e25599d072a94bd49a45e91adf1bd51",
+    "commitName": "refactor(core): renombrar matchCountText  a formatMatchCount",
+    "commitTimestamp": 1794321332637,
+    "testId": 86
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794337202921,
+    "success": true,
+    "testId": 87
+  },
+  {
+    "commitId": "fdd9b7b54d6384394775fa487dd9135ee4507ee1",
+    "commitName": "refactor(matching): renombrar  createCuurentUser a createUserAuthenticator",
+    "commitTimestamp": 1794337378485,
+    "testId": 87
+  },
+  {
+    "commitId": "281e60d2217e72f5a547a225dc037db2ea2d39a8",
+    "commitName": "refactor(matching): renombrar  currentUser a authenticateUser",
+    "commitTimestamp": 1794337453375,
+    "testId": 88
+  },
+  {
+    "commitId": "4c564ace6e48fd8cfa60280f26d807a20974f835",
+    "commitName": "refactor(matching): renombrar  useSampleUser a signInAsSampleUser",
+    "commitTimestamp": 1794337563885,
+    "testId": 89
+  },
+  {
+    "commitId": "86896c5ba9177dcf091a39ad5b3cac3292e73a79",
+    "commitName": "refactor(matching): renombrar carpetas de backend/src/core/data",
+    "commitTimestamp": 1794337889565,
+    "testId": 90
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794338020352,
+    "success": true,
+    "testId": 91
+  },
+  {
+    "commitId": "b3a230a064e23f92238b8855fd3753d1ea940a08",
+    "commitName": "refactor(core): refactor nombre de archivos, newestFirst y roleForEmail a shortNewestFirst y getRoleForEmail",
+    "commitTimestamp": 1794338123051,
+    "testId": 91
+  },
+  {
+    "commitId": "d72fb50ab312dc58a8c5e40f81f5ced3a6b67e10",
+    "commitName": "refactor(matching): renombrar normalized a normalizedText",
+    "commitTimestamp": 1794338258904,
+    "testId": 92
+  },
+  {
+    "commitId": "c39fedfd38c4ccc552c03916bf1900fca4ff5031",
+    "commitName": "refactor(matching): renombrar setStatus a setMatchStatus",
+    "commitTimestamp": 1794338327349,
+    "testId": 93
+  },
+  {
+    "commitId": "26d6ac5db6f8cb650c7560e588c4dfc30bfc8643",
+    "commitName": "refactor(core): corregir el nombre del archivo de pruebas del correo institucional",
+    "commitTimestamp": 1794338471161,
+    "testId": 94
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794338565401,
+    "success": true,
+    "testId": 95
+  },
+  {
+    "commitId": "1e5dd2993cec31bbaa1a603d51b702c769cd70ff",
+    "commitName": "refactor(core): renombrar ApiFetchDeps a ApiFetchDependencies",
+    "commitTimestamp": 1794338654580,
+    "testId": 95
+  },
+  {
+    "commitId": "8775920b2d738672d30a8e228159e6e51500d149",
+    "commitName": "refactor(core): renombrar fetchFn a sendRequest en api",
+    "commitTimestamp": 1794338726467,
+    "testId": 96
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794338909650,
+    "success": true,
+    "testId": 97
+  },
+  {
+    "commitId": "6e9218fa9815c758238ba374e7c13d82a8965d57",
+    "commitName": "refactor(core): renombrar at a createNotificationAt en las pruebas del orden",
+    "commitTimestamp": 1794338939762,
+    "testId": 97
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339002666,
+    "success": true,
+    "testId": 98
+  },
+  {
+    "commitId": "eabe8e0b1d5f1f030cdf5ae52fabff876ce1e8d1",
+    "commitName": "refactor(core): renombrar AuthServiceDeps y fetchFn en el servicio de sesión",
+    "commitTimestamp": 1794339034706,
+    "testId": 98
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339076295,
+    "success": true,
+    "testId": 99
+  },
+  {
+    "commitId": "87555433838a6d6a4c85f974a21fe9a1f15ee7ce",
+    "commitName": "refactor(core): renombrar answer y received en las pruebas de avisos",
+    "commitTimestamp": 1794339106761,
+    "testId": 99
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339144526,
+    "success": true,
+    "testId": 100
+  },
+  {
+    "commitId": "f9d1ef4d8cd02c62245fd03008cbb5a2fed0f705",
+    "commitName": "refactor(core): renombrar LABEL y TONE a STATUS_LABELS y STATUS_TONES",
+    "commitTimestamp": 1794339175539,
+    "testId": 100
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339212382,
+    "success": true,
+    "testId": 101
+  },
+  {
+    "commitId": "e83a29e607ec2212c2f2213d5f6b4f981ce7739d",
+    "commitName": "refactor(core): indicar en milisegundos las constantes de tiempo",
+    "commitTimestamp": 1794339244588,
+    "testId": 101
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339292857,
+    "success": true,
+    "testId": 102
+  },
+  {
+    "commitId": "92435301aed075c64a4ff75c930dfd53bfa2940a",
+    "commitName": "refactor(core): renombrar dayKey, date y elapsed al calcular el cuándo",
+    "commitTimestamp": 1794339324214,
+    "testId": 102
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339362927,
+    "success": true,
+    "testId": 103
+  },
+  {
+    "commitId": "7ea20b3a980819731044501d254cbb064538aef9",
+    "commitName": "refactor(core): renombrar MAX_SHOWN a MAX_BADGE_COUNT",
+    "commitTimestamp": 1794339394933,
+    "testId": 103
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339434134,
+    "success": true,
+    "testId": 104
+  },
+  {
+    "commitId": "45fe489ec2768f13da7b67f11122344f3f5c2632",
+    "commitName": "refactor(core): renombrar id a openedNotificationId",
+    "commitTimestamp": 1794339467819,
+    "testId": 104
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339514199,
+    "success": true,
+    "testId": 105
+  },
+  {
+    "commitId": "4cc9f3da603b177472990e84a537972d03fa15e3",
+    "commitName": "refactor(core): renombrar el archivo notificationTime a formatNotificationTime",
+    "commitTimestamp": 1794339547482,
+    "testId": 105
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339590926,
+    "success": true,
+    "testId": 106
+  },
+  {
+    "commitId": "f5a360f2b1b6f90555606700afe29f3bd6615424",
+    "commitName": "refactor(core): renombrar el archivo notificationDestination a getNotificationDestination",
+    "commitTimestamp": 1794339625592,
+    "testId": 106
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339674465,
+    "success": true,
+    "testId": 107
+  },
+  {
+    "commitId": "31f930188cf3cd2835e08318687e3c29f558b73d",
+    "commitName": "refactor(core): renombrar BASE y VARIANTS en el botón",
+    "commitTimestamp": 1794339707442,
+    "testId": 107
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339747568,
+    "success": true,
+    "testId": 108
+  },
+  {
+    "commitId": "04ae124e983572159d37ab57d09df13dc5e215b0",
+    "commitName": "refactor(core): renombrar BOX a BOX_CLASSES",
+    "commitTimestamp": 1794339781777,
+    "testId": 108
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339823185,
+    "success": true,
+    "testId": 109
+  },
+  {
+    "commitId": "b92a5bd432136f377cbd7bfecd4fed42a1e58ebc",
+    "commitName": "refactor(core): renombrar preview a previewUrl",
+    "commitTimestamp": 1794339855963,
+    "testId": 109
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339896689,
+    "success": true,
+    "testId": 110
+  },
+  {
+    "commitId": "f0666bbebab2f8c0a809623135a2ad292567f015",
+    "commitName": "refactor(core): renombrar los nombres de la campana de avisos",
+    "commitTimestamp": 1794339929969,
+    "testId": 110
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794339980821,
+    "success": true,
+    "testId": 111
+  },
+  {
+    "commitId": "60dc8a60bb5cdf013fafe1ae45d73d7618a06e58",
+    "commitName": "refactor(core): renombrar attempt, open y data en la pantalla de avisos",
+    "commitTimestamp": 1794340016246,
+    "testId": 111
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340066766,
+    "success": true,
+    "testId": 112
+  },
+  {
+    "commitId": "60dc8a60bb5cdf013fafe1ae45d73d7618a06e58",
+    "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en el login",
+    "commitTimestamp": 1794340099763,
+    "testId": 112
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340139907,
+    "success": true,
+    "testId": 113
+  },
+  {
+    "commitId": "25a8f4f84bc507be2c85b4fb1fc8d77b4da1633b",
+    "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en App",
+    "commitTimestamp": 1794340173522,
+    "testId": 113
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar notInstitutional a isNotInstitutional en App",
+    "commitTimestamp": 1794340173522,
+    "testId": 113
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340214525,
+    "success": true,
+    "testId": 114
+  },
+  {
+    "commitId": "b1066ac2611cec840d8d2f69c7ff29f6537d5188",
+    "commitName": "refactor(core): renombrar guidePending a isGuidePending",
+    "commitTimestamp": 1794340247321,
+    "testId": 114
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar guidePending a isGuidePending",
+    "commitTimestamp": 1794340247321,
+    "testId": 114
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340284076,
+    "success": true,
+    "testId": 115
+  },
+  {
+    "commitId": "6957e217d0cd10a3f7d211eca1c6ce8fd951875c",
+    "commitName": "refactor(core): renombrar signedInPage a renderSignedInPage",
+    "commitTimestamp": 1794340317356,
+    "testId": 115
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): renombrar signedInPage a renderSignedInPage",
+    "commitTimestamp": 1794340317356,
+    "testId": 115
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340366323,
+    "success": true,
+    "testId": 116
+  },
+  {
+    "commitId": "b05400b46a702cfe29329804a04ee7fb361b915a",
+    "commitName": "refactor(matching): renombrar result a publishResult",
+    "commitTimestamp": 1794340400452,
+    "testId": 116
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): renombrar result a publishResult",
+    "commitTimestamp": 1794340400452,
+    "testId": 116
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794340441567,
+    "success": true,
+    "testId": 117
+  },
+  {
+    "commitId": "c0f20362e61668df1787b63b3dd51b9e9b9b5710",
+    "commitName": "refactor(matching): renombrar el archivo matchCountText a formatMatchCount",
+    "commitTimestamp": 1794340476250,
+    "testId": 117
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): renombrar el archivo matchCountText a formatMatchCount",
+    "commitTimestamp": 1794340476250,
+    "testId": 117
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794343673114,
+    "success": true,
+    "testId": 118
+  },
+  {
+    "commitId": "3e9c46e1216bda00683e7af6ca3632233dc34a80",
+    "commitName": "feat(core): mostrar el cursor de carga mientras el botón espera al servidor",
+    "commitTimestamp": 1794343786430,
+    "testId": 118
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar el cursor de carga mientras el botón espera al servidor",
+    "commitTimestamp": 1794343786430,
+    "testId": 118
+  },
+  {
+    "numPassedTests": 627,
+    "failedTests": 2,
+    "numTotalTests": 629,
+    "timestamp": 1794343932729,
+    "success": false,
+    "testId": 119
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794344062022,
+    "success": true,
+    "testId": 119
+  },
+  {
+    "commitId": "01de44676c2c3ea0acea587a8bd4b8530c84333c",
+    "commitName": "feat(core): mostrar esqueletos de carga en lugar del indicador con círculo",
+    "commitTimestamp": 1794344118367,
+    "testId": 119
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar esqueletos de carga en lugar del indicador con círculo",
+    "commitTimestamp": 1794344118367,
+    "testId": 119
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794344807994,
+    "success": true,
+    "testId": 120
+  },
+  {
+    "commitId": "c09c6880807368ee86b987a6494abce06be7f77c",
+    "commitName": "feat(core): mostrar una pantalla de carga al abrir la app",
+    "commitTimestamp": 1794344852072,
+    "testId": 120
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar una pantalla de carga al abrir la app",
+    "commitTimestamp": 1794344852072,
+    "testId": 120
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 0,
+    "numTotalTests": 629,
+    "timestamp": 1794345077720,
+    "success": true,
+    "testId": 121
+  },
+  {
+    "commitId": "953343a4f12a6c1b9302f37ef574064ea23f60fd",
+    "commitName": "feat(core): mostrar la carga al iniciar y cerrar sesión",
+    "commitTimestamp": 1794345106760,
+    "testId": 121
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar la carga al iniciar y cerrar sesión",
+    "commitTimestamp": 1794345106760,
+    "testId": 121
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 2,
+    "numTotalTests": 631,
+    "timestamp": 1794345278397,
+    "success": false,
+    "testId": 122
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 0,
+    "numTotalTests": 631,
+    "timestamp": 1794345366816,
+    "success": true,
+    "testId": 122
+  },
+  {
+    "commitId": "c1fbb91757b8b669dc740e3aabe3d947de959780",
+    "commitName": "feat(matching): mostrar la carga y los errores en las coincidencias del propietario",
+    "commitTimestamp": 1794345395572,
+    "testId": 122
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): mostrar la carga y los errores en las coincidencias del propietario",
+    "commitTimestamp": 1794345395572,
+    "testId": 122
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 1,
+    "numTotalTests": 632,
+    "timestamp": 1794345471768,
+    "success": false,
+    "testId": 123
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 0,
+    "numTotalTests": 632,
+    "timestamp": 1794345618971,
+    "success": true,
+    "testId": 123
+  },
+  {
+    "commitId": "71d21c266c33880f0391aa305b350829b6ffa4c4",
+    "commitName": "feat(matching): mostrar la carga y los errores al publicar un objeto",
+    "commitTimestamp": 1794345653282,
+    "testId": 123
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): mostrar la carga y los errores al publicar un objeto",
+    "commitTimestamp": 1794345653282,
+    "testId": 123
+  },
+  {
+    "numPassedTests": 634,
+    "failedTests": 1,
+    "numTotalTests": 635,
+    "timestamp": 1794346145250,
+    "success": false,
+    "testId": 124
+  },
+  {
+    "numPassedTests": 635,
+    "failedTests": 0,
+    "numTotalTests": 635,
+    "timestamp": 1794346291467,
+    "success": true,
+    "testId": 124
+  },
+  {
+    "commitId": "2099df584873a06d8b8184937fa4103c0d4c20d9",
+    "commitName": "feat(admin): mostrar la opción de administración solo al Administrador",
+    "commitTimestamp": 1794346318231,
+    "testId": 124
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar la opción de administración solo al Administrador",
+    "commitTimestamp": 1794346318231,
+    "testId": 124
+  },
+  {
+    "numPassedTests": 635,
+    "failedTests": 10,
+    "numTotalTests": 645,
+    "timestamp": 1794347357580,
+    "success": false,
+    "testId": 125
+  },
+  {
+    "numPassedTests": 645,
+    "failedTests": 0,
+    "numTotalTests": 645,
+    "timestamp": 1794347624955,
+    "success": true,
+    "testId": 125
+  },
+  {
+    "commitId": "5151a7afd34363a09d89d85891bec070d403f91d",
+    "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
+    "commitTimestamp": 1794347651673,
+    "testId": 125
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
+    "commitTimestamp": 1794347651673,
+    "testId": 125
+  },
+  {
+    "commitId": "fcc14b0c15caa8d596caaec6059c3bd64a85dd7e",
+    "commitName": "feat(admin): mostrar la lista de usuarios con su nombre, correo y rol",
+    "commitTimestamp": 1794347651673,
+    "testId": 125
+  },
+  {
+    "numPassedTests": 646,
+    "failedTests": 4,
+    "numTotalTests": 650,
+    "timestamp": 1794351101343,
+    "success": false,
+    "testId": 126
+  },
+  {
+    "numPassedTests": 650,
+    "failedTests": 0,
+    "numTotalTests": 650,
+    "timestamp": 1794351194074,
+    "success": true,
+    "testId": 126
+  },
+  {
+    "commitId": "28f1803dd74d935a5b4632b69cb7e1e1e2917716",
+    "commitName": "feat(admin): buscar un usuario por su correo institucional",
+    "commitTimestamp": 1794351233083,
+    "testId": 126
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): buscar un usuario por su correo institucional",
+    "commitTimestamp": 1794351233083,
+    "testId": 126
+  },
+  {
+    "commitId": "c62c84c58ab690effa8144a46e9a356430b720a0",
+    "commitName": "feat(admin): buscar un usuario por su correo institucional",
+    "commitTimestamp": 1794351233083,
+    "testId": 126
+  },
+  {
+    "commitId": "5b1ae99d2ea62752df8afaf40961bd32b5e53b8a",
+    "commitName": "feat(admin): buscar un usuario por su correo institucional",
+    "commitTimestamp": 1794351233083,
+    "testId": 126
+  },
+  {
+    "numPassedTests": 654,
+    "failedTests": 12,
+    "numTotalTests": 666,
+    "timestamp": 1794351969564,
+    "success": false,
+    "testId": 127
+  },
+  {
+    "numPassedTests": 666,
+    "failedTests": 0,
+    "numTotalTests": 666,
+    "timestamp": 1794352130821,
+    "success": true,
+    "testId": 127
+  },
+  {
+    "commitId": "aee0a70a9ee8dec3562dc1639448a021eba29b5f",
+    "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352177930,
+    "testId": 127
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352177930,
+    "testId": 127
+  },
+  {
+    "commitId": "6c5f2506a6ab4134800f954860c8232178405133",
+    "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352177930,
+    "testId": 127
+  },
+  {
+    "commitId": "005d984f2e4ee15df6942bfe94d4fbb8aad381fb",
+    "commitName": "feat(admin): asignar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352177930,
+    "testId": 127
+  },
+  {
+    "numPassedTests": 668,
+    "failedTests": 3,
+    "numTotalTests": 671,
+    "timestamp": 1794352326809,
+    "success": false,
+    "testId": 128
+  },
+  {
+    "numPassedTests": 671,
+    "failedTests": 0,
+    "numTotalTests": 671,
+    "timestamp": 1794352392658,
+    "success": true,
+    "testId": 128
+  },
+  {
+    "commitId": "ff9167c8d56432ccb3652977fe77e2226ea045cc",
+    "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352441180,
+    "testId": 128
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352441180,
+    "testId": 128
+  },
+  {
+    "commitId": "2c21080e0de69ef1e2e01d92deaeb8e293e83f86",
+    "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352441180,
+    "testId": 128
+  },
+  {
+    "commitId": "c078cabf5b717990cac98f50005325ca00aa87c8",
+    "commitName": "feat(admin): quitar el rol de Bienestar a un usuario",
+    "commitTimestamp": 1794352441180,
+    "testId": 128
+  },
+  {
+    "numPassedTests": 674,
+    "failedTests": 4,
+    "numTotalTests": 678,
+    "timestamp": 1794352761914,
+    "success": false,
+    "testId": 129
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794352962072,
+    "success": true,
+    "testId": 129
+  },
+  {
+    "commitId": "5387a2201596c2494bf2fb4642f746477d7b0b84",
+    "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+    "commitTimestamp": 1794353175070,
+    "testId": 129
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+    "commitTimestamp": 1794353175070,
+    "testId": 129
+  },
+  {
+    "commitId": "7f066adb30720a66cb1809776f6f34ef55b00d76",
+    "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+    "commitTimestamp": 1794353175070,
+    "testId": 129
+  },
+  {
+    "commitId": "5e500344f9fde960da5e03e0f6d52aae58358655",
+    "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+    "commitTimestamp": 1794353525149,
+    "testId": 130
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+    "commitTimestamp": 1794353525149,
+    "testId": 130
+  },
+  {
+    "commitId": "eabfec82efe2d35f5dd655595a838df8ddd249f5",
+    "commitName": "feat(admin): mostrar las opciones de Bienestar solo mientras el usuario tiene ese rol",
+    "commitTimestamp": 1794353525149,
+    "testId": 130
+  },
+  {
+    "commitId": "3c33c7d607189f07c08656361e214442c36aded0",
+    "commitName": "feat(finder): permitir tomar la foto del hallazgo con la cámara",
+    "commitTimestamp": 1794429242538,
+    "testId": 81
+  },
+  {
+    "numPassedTests": 629,
+    "failedTests": 1,
+    "numTotalTests": 630,
+    "timestamp": 1794429430489,
+    "success": false,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 630,
+    "failedTests": 0,
+    "numTotalTests": 630,
+    "timestamp": 1794429503892,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 630,
+    "failedTests": 0,
+    "numTotalTests": 630,
+    "timestamp": 1794429562570,
+    "success": true,
+    "testId": 82
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir volver a tomar la foto del hallazgo",
+    "commitTimestamp": 1794429946766,
+    "testId": 82
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 0,
+    "numTotalTests": 631,
+    "timestamp": 1794430443564,
+    "success": true,
+    "testId": 83
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(finder): verificar que la galería sigue disponible tras usar la cámara",
+    "commitTimestamp": 1794430487766,
+    "testId": 83
+  },
+  {
+    "numPassedTests": 631,
+    "failedTests": 1,
+    "numTotalTests": 632,
+    "timestamp": 1794430577244,
+    "success": false,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 0,
+    "numTotalTests": 632,
+    "timestamp": 1794430675196,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 0,
+    "numTotalTests": 632,
+    "timestamp": 1794430742518,
+    "success": true,
+    "testId": 84
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): mostrar el resumen del hallazgo antes de enviarlo",
+    "commitTimestamp": 1794435708683,
+    "testId": 84
+  },
+  {
+    "numPassedTests": 632,
+    "failedTests": 1,
+    "numTotalTests": 633,
+    "timestamp": 1794435780227,
+    "success": false,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 633,
+    "failedTests": 0,
+    "numTotalTests": 633,
+    "timestamp": 1794435832570,
+    "success": true,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 633,
+    "failedTests": 0,
+    "numTotalTests": 633,
+    "timestamp": 1794435885146,
+    "success": true,
+    "testId": 85
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): permitir corregir el reporte desde el resumen",
+    "commitTimestamp": 1794436331985,
+    "testId": 85
+  },
+  {
+    "numPassedTests": 633,
+    "failedTests": 0,
+    "numTotalTests": 633,
+    "timestamp": 1794436468677,
+    "success": true,
+    "testId": 86
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(finder): verificar el envío solo al confirmar el resumen",
+    "commitTimestamp": 1794436504406,
+    "testId": 86
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794437904965,
+    "success": true,
+    "testId": 131
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(finder): integrar final-test en finder",
+    "commitTimestamp": 1794437956154,
+    "testId": 131
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 1,
+    "numTotalTests": 679,
+    "timestamp": 1794438854233,
+    "success": false,
+    "testId": 132
+  },
+  {
+    "numPassedTests": 679,
+    "failedTests": 0,
+    "numTotalTests": 679,
+    "timestamp": 1794438921936,
+    "success": true,
+    "testId": 132
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): avisar al hallador cuando Bienestar recibe el objeto",
+    "commitTimestamp": 1794438985717,
+    "testId": 132
+  },
+  {
+    "numPassedTests": 679,
+    "failedTests": 1,
+    "numTotalTests": 680,
+    "timestamp": 1794439072481,
+    "success": false,
+    "testId": 133
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 0,
+    "numTotalTests": 680,
+    "timestamp": 1794439224238,
+    "success": true,
+    "testId": 133
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): editar reportes pendientes de entrega",
+    "commitTimestamp": 1794439281357,
+    "testId": 133
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 1,
+    "numTotalTests": 681,
+    "timestamp": 1794439386004,
+    "success": false,
+    "testId": 134
+  },
+  {
+    "numPassedTests": 681,
+    "failedTests": 0,
+    "numTotalTests": 681,
+    "timestamp": 1794439462297,
+    "success": true,
+    "testId": 134
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): cancelar reportes pendientes de entrega",
+    "commitTimestamp": 1794439503287,
+    "testId": 134
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 1,
+    "numTotalTests": 681,
+    "timestamp": 1794439585783,
+    "success": false,
+    "testId": 135
+  },
+  {
+    "numPassedTests": 681,
+    "failedTests": 0,
+    "numTotalTests": 681,
+    "timestamp": 1794439638468,
+    "success": true,
+    "testId": 135
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): confirmar antes de cancelar un reporte",
+    "commitTimestamp": 1794439678670,
+    "testId": 135
+  },
+  {
+    "numPassedTests": 681,
+    "failedTests": 1,
+    "numTotalTests": 682,
+    "timestamp": 1794439745222,
+    "success": false,
+    "testId": 136
+  },
+  {
+    "numPassedTests": 682,
+    "failedTests": 0,
+    "numTotalTests": 682,
+    "timestamp": 1794439797405,
+    "success": true,
+    "testId": 136
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): excluir cancelados de las solicitudes de Bienestar",
+    "commitTimestamp": 1794439835194,
+    "testId": 136
+  },
+  {
+    "numPassedTests": 682,
+    "failedTests": 2,
+    "numTotalTests": 684,
+    "timestamp": 1794439892268,
+    "success": false,
+    "testId": 137
+  },
+  {
+    "numPassedTests": 687,
+    "failedTests": 0,
+    "numTotalTests": 687,
+    "timestamp": 1794439988756,
+    "success": true,
+    "testId": 137
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(finder): bloquear cambios tras la recepción en Bienestar",
+    "commitTimestamp": 1794440028976,
+    "testId": 137
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794487576213,
+    "success": false,
+    "testId": 131
+  },
+  {
+    "commitId": "20f34924508eda83368aa2b763dae89e0d25440c",
+    "commitName": "refactor(core): borrar LoadingState, reemplazado por los esqueletos",
+    "commitTimestamp": 1794487631272,
+    "testId": 131
+  },
+  {
+    "commitId": "7994a5c428e92ed0e9968560cdc1633c617ff2f2",
+    "commitName": "refactor(core): borrar LoadingState, reemplazado por los esqueletos",
+    "commitTimestamp": 1794487631272,
+    "testId": 131
+  },
+  {
+    "commitId": "bf259360d85acb7fb32232d4cc9ca30b5aad039b",
+    "commitName": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
+    "commitTimestamp": 1794490799523,
+    "testId": 132
+  },
+  {
+    "commitId": "ccd5095a21d3418e925b3cecf8a6e7515119606f",
+    "commitName": "refactor(matching): extraer el mapeo del reporte de pérdida a toLostReportToMatch",
+    "commitTimestamp": 1794490799523,
+    "testId": 132
+  },
+  {
+    "commitId": "2464b81fda092f7d8c2f362a9b4c9798d9666633",
+    "commitName": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
+    "commitTimestamp": 1794490855674,
+    "testId": 133
+  },
+  {
+    "commitId": "f4e87b8a20f2532174fcff2b61e73ff566386b70",
+    "commitName": "refactor(core): dividir createUserAuthenticator y recibir sus opciones en un objeto",
+    "commitTimestamp": 1794490855674,
+    "testId": 133
+  },
+  {
+    "commitId": "1f8ceab9446a7b750367738b0505ccc00afca9c7",
+    "commitName": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
+    "commitTimestamp": 1794490908233,
+    "testId": 134
+  },
+  {
+    "commitId": "1d0d04a59e5521eb81757e1a391e67a8bcd1dac5",
+    "commitName": "refactor(admin): separar en funciones los handlers de usuarios y el cambio de rol",
+    "commitTimestamp": 1794490908233,
+    "testId": 134
+  },
+  {
+    "commitId": "4a89f6f3ad9c091c3eb2bedd3f3a8580b59e8f3b",
+    "commitName": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
+    "commitTimestamp": 1794490958823,
+    "testId": 135
+  },
+  {
+    "commitId": "4befc55bd7ff25ed77dff351bfad7555bf1a0f0c",
+    "commitName": "refactor(matching): dividir la ruta de coincidencias en funciones que hacen una sola cosa",
+    "commitTimestamp": 1794490958823,
+    "testId": 135
+  },
+  {
+    "commitId": "139a2bb3fe7c5e19fdee6d29ee63e39fb909e679",
+    "commitName": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
+    "commitTimestamp": 1794491011050,
+    "testId": 136
+  },
+  {
+    "commitId": "0c10c44a84d68f0db13e08579e219ed3a8f5b406",
+    "commitName": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
+    "commitTimestamp": 1794491011050,
+    "testId": 136
+  },
+  {
+    "commitId": "5ab807dee5535fd00e2263dab8487bad4f0a9a26",
+    "commitName": "refactor(matching): nombrar con verbo las funciones de similitud y separar el cálculo de puntos",
+    "commitTimestamp": 1794491011050,
+    "testId": 136
+  },
+  {
+    "commitId": "fb44e0a412f067219b9e4dfd377bf86e049b840f",
+    "commitName": "refactor(core): extraer la carga con reintento a useLoadedData y LoadErrorAlert",
+    "commitTimestamp": 1794491116150,
+    "testId": 137
+  },
+  {
+    "commitId": "2b07697a05f468d45a86ea7319eea402e2ce7f2b",
+    "commitName": "refactor(core): extraer la carga con reintento a useLoadedData y LoadErrorAlert",
+    "commitTimestamp": 1794491116150,
+    "testId": 137
+  },
+  {
+    "commitId": "b26cefe76de4cc832ed738b1c60329a0135592bb",
+    "commitName": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
+    "commitTimestamp": 1794491189261,
+    "testId": 138
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
+    "commitTimestamp": 1794491189261,
+    "testId": 138
+  },
+  {
+    "commitId": "b4aea2b7c338069681c17ce413a27534f2df9389",
+    "commitName": "refactor(admin): dividir AdminPage en ManagedUserCard y UsersList con retornos tempranos",
+    "commitTimestamp": 1794491189261,
+    "testId": 138
+  },
+  {
+    "commitId": "962a4e1fa565eae0ca9d343aa05d1c6ff34bcfee",
+    "commitName": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
+    "commitTimestamp": 1794491262113,
+    "testId": 139
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
+    "commitTimestamp": 1794491262113,
+    "testId": 139
+  },
+  {
+    "commitId": "4e8ab44d30b73fe884b380e2ec1072aecf43171e",
+    "commitName": "refactor(core): separar openNotification y extraer NotificationItem y NotificationsSkeleton",
+    "commitTimestamp": 1794491262113,
+    "testId": 139
+  },
+  {
+    "commitId": "0e38520bc37b0c43cb567ad59ffb2ac21b4aabd2",
+    "commitName": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
+    "commitTimestamp": 1794491307539,
+    "testId": 140
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
+    "commitTimestamp": 1794491307539,
+    "testId": 140
+  },
+  {
+    "commitId": "5119b190d4d2dcb46e33b4792c486aea6b7e5ede",
+    "commitName": "refactor(core): extraer isSameCalendarDay e isYesterday de formatNotificationTime",
+    "commitTimestamp": 1794491307539,
+    "testId": 140
+  },
+  {
+    "commitId": "ffdcbf73722e337e14315757bc5b95fd567214f7",
+    "commitName": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
+    "commitTimestamp": 1794491360067,
+    "testId": 141
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
+    "commitTimestamp": 1794491360067,
+    "testId": 141
+  },
+  {
+    "commitId": "6554e7b5674671af87348625b7bac8e452cd266a",
+    "commitName": "refactor(matching): unir pickUp y dismiss en sendMatchAnswer",
+    "commitTimestamp": 1794491360067,
+    "testId": 141
+  },
+  {
+    "commitId": "e2b27a8e3b93db94c72af1a5aba3756a4187d459",
+    "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
+    "commitTimestamp": 1794491488766,
+    "testId": 142
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
+    "commitTimestamp": 1794491488766,
+    "testId": 142
+  },
+  {
+    "commitId": "1bf9e5ed9e1100a51b8f2a9c06990f7afd627385",
+    "commitName": "refactor(core): extraer el refresco del rol de App a useRoleRefresh",
+    "commitTimestamp": 1794491488766,
+    "testId": 142
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 9,
+    "numTotalTests": 689,
+    "timestamp": 1794494119920,
+    "success": false,
+    "testId": 143
+  },
+  {
+    "numPassedTests": 689,
+    "failedTests": 0,
+    "numTotalTests": 689,
+    "timestamp": 1794494385126,
+    "success": true,
+    "testId": 143
+  },
+  {
+    "numPassedTests": 689,
+    "failedTests": 0,
+    "numTotalTests": 689,
+    "timestamp": 1794495146981,
+    "success": true,
+    "testId": 143
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): ver las categorías y los lugares del campus",
+    "commitTimestamp": 1794495210769,
+    "testId": 143
+  },
+  {
+    "commitId": "b387e5c190b506bc992969f9181cec4ff903944b",
+    "commitName": "feat(admin): ver las categorías y los lugares del campus",
+    "commitTimestamp": 1794495210769,
+    "testId": 143
+  },
+  {
+    "numPassedTests": 698,
+    "failedTests": 32,
+    "numTotalTests": 730,
+    "timestamp": 1794508588013,
+    "success": false,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 730,
+    "failedTests": 0,
+    "numTotalTests": 730,
+    "timestamp": 1794508783398,
+    "success": true,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 730,
+    "failedTests": 0,
+    "numTotalTests": 730,
+    "timestamp": 1794508877206,
+    "success": true,
+    "testId": 144
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): crear, editar y desactivar categorías",
+    "commitTimestamp": 1794508947528,
+    "testId": 144
+  },
+  {
+    "commitId": "f21691871198dd5402be2c1775dac8fb543f503e",
+    "commitName": "feat(admin): crear, editar y desactivar categorías",
+    "commitTimestamp": 1794508947528,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794509313202,
+    "success": true,
+    "testId": 143
+  },
+  {
+    "commitId": "280e1b0c084d6296748b4685d6c3aec4c170f190",
+    "commitName": "chore(welfare): actualizar final-test para resolver el PR",
+    "commitTimestamp": 1794509396922,
+    "testId": 143
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): actualizar final-test para resolver el PR",
+    "commitTimestamp": 1794509396922,
+    "testId": 143
+  },
+  {
+    "commitId": "274ce64bff0ec770e791378df0c000cf2d517f01",
+    "commitName": "chore(welfare): actualizar final-test para resolver el PR",
+    "commitTimestamp": 1794509396922,
+    "testId": 143
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794511694044,
+    "success": false,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 678,
+    "failedTests": 0,
+    "numTotalTests": 678,
+    "timestamp": 1794511718275,
+    "success": true,
+    "testId": 144
+  },
+  {
+    "commitId": "08a52bc83878aa87e726e8961ab1e91a56538fff",
+    "commitName": "feat(welfare): mostrar carga al registrar la entrega",
+    "commitTimestamp": 1794511789301,
+    "testId": 144
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794511919096,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794511977047,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 677,
+    "failedTests": 1,
+    "numTotalTests": 678,
+    "timestamp": 1794512050396,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "commitId": "06a21b22e4bb02cafebfb3fa34654a3a5e2960db",
+    "commitName": "feat(welfare): mostrar carga en las busquedas por codigo",
+    "commitTimestamp": 1794512274493,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 606,
+    "failedTests": 72,
+    "numTotalTests": 678,
+    "timestamp": 1794512470755,
+    "success": false,
+    "testId": 146
+  },
+  {
+    "commitId": "d65d78b7b631fff9113112269852e9e75f470618",
+    "commitName": "feat(welfare): mostrar esqueletos al cargar objetos parecidos",
+    "commitTimestamp": 1794512996293,
+    "testId": 146
+  },
+  {
+    "commitId": "a8c36d54894f63130e09197092bfc3ab546e2785",
+    "commitName": "feat(welfare): mostrar carga y reintento en listas",
+    "commitTimestamp": 1794520583459,
+    "testId": 147
+  },
+  {
+    "numPassedTests": 735,
+    "failedTests": 29,
+    "numTotalTests": 764,
+    "timestamp": 1794520677688,
+    "success": false,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794520809043,
+    "success": true,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794520876941,
+    "success": true,
+    "testId": 145
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): crear, editar y desactivar lugares y sus aulas",
+    "commitTimestamp": 1794520968541,
+    "testId": 145
+  },
+  {
+    "commitId": "230f96928a61f8742e6e270e1cc3fd62a5ebaf4c",
+    "commitName": "feat(admin): crear, editar y desactivar lugares y sus aulas",
+    "commitTimestamp": 1794520968541,
+    "testId": 145
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794521172724,
+    "success": true,
+    "testId": 146
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(admin): quitar el repositorio de prueba del router y reiniciar los mocks",
+    "commitTimestamp": 1794521204950,
+    "testId": 146
+  },
+  {
+    "commitId": "dad3c6be49a885bffec026e46112c14cf60c1316",
+    "commitName": "fix(admin): quitar el repositorio de prueba del router y reiniciar los mocks",
+    "commitTimestamp": 1794521204950,
+    "testId": 146
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(admin): integra final-test en admin",
+    "commitTimestamp": 1794522258688,
+    "testId": 147
+  },
+  {
+    "commitId": "7f17b360074abe6608a7fd748c9613c6d58cd0ef",
+    "commitName": "chore(admin): integra final-test en admin",
+    "commitTimestamp": 1794522258688,
+    "testId": 147
+  },
+  {
+    "numPassedTests": 764,
+    "failedTests": 0,
+    "numTotalTests": 764,
+    "timestamp": 1794522290339,
+    "success": true,
+    "testId": 148
+  },
+  {
+    "numPassedTests": 766,
+    "failedTests": 18,
+    "numTotalTests": 784,
+    "timestamp": 1794523019633,
+    "success": false,
+    "testId": 148
+  },
+  {
+    "numPassedTests": 784,
+    "failedTests": 0,
+    "numTotalTests": 784,
+    "timestamp": 1794523160000,
+    "success": true,
+    "testId": 148
+  },
+  {
+    "numPassedTests": 784,
+    "failedTests": 0,
+    "numTotalTests": 784,
+    "timestamp": 1794523435870,
+    "success": true,
+    "testId": 148
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): editar la ubicación y el horario de Bienestar",
+    "commitTimestamp": 1794523472098,
+    "testId": 148
+  },
+  {
+    "commitId": "2096ff436391f4decf0e5c9cdd6b47d64d25d1b5",
+    "commitName": "feat(admin): editar la ubicación y el horario de Bienestar",
+    "commitTimestamp": 1794523472098,
+    "testId": 148
+  },
+  {
+    "numPassedTests": 786,
+    "failedTests": 0,
+    "numTotalTests": 786,
+    "timestamp": 1794523986845,
+    "success": true,
+    "testId": 149
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): mostrar a los usuarios la ubicación y el horario guardados de Bienestar",
+    "commitTimestamp": 1794524024380,
+    "testId": 149
+  },
+  {
+    "commitId": "9753e2b200ba99f08c594e4878d778339078bff5",
+    "commitName": "feat(core): mostrar a los usuarios la ubicación y el horario guardados de Bienestar",
+    "commitTimestamp": 1794524024380,
+    "testId": 149
+  },
+  {
+    "numPassedTests": 789,
+    "failedTests": 18,
+    "numTotalTests": 807,
+    "timestamp": 1794524723774,
+    "success": false,
+    "testId": 150
+  },
+  {
+    "numPassedTests": 807,
+    "failedTests": 0,
+    "numTotalTests": 807,
+    "timestamp": 1794524842430,
+    "success": true,
+    "testId": 150
+  },
+  {
+    "numPassedTests": 807,
+    "failedTests": 0,
+    "numTotalTests": 807,
+    "timestamp": 1794524902516,
+    "success": true,
+    "testId": 150
+  },
+  {
+    "numPassedTests": 807,
+    "failedTests": 0,
+    "numTotalTests": 807,
+    "timestamp": 1794525045461,
+    "success": true,
+    "testId": 150
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): definir el nivel mínimo de similitud de las coincidencias",
+    "commitTimestamp": 1794525077848,
+    "testId": 150
+  },
+  {
+    "commitId": "f8443fa3f94709634f9767893d74a9ffe60731b1",
+    "commitName": "feat(admin): definir el nivel mínimo de similitud de las coincidencias",
+    "commitTimestamp": 1794525077848,
+    "testId": 150
+  },
+  {
+    "numPassedTests": 808,
+    "failedTests": 4,
+    "numTotalTests": 812,
+    "timestamp": 1794525858308,
+    "success": false,
+    "testId": 151
+  },
+  {
+    "numPassedTests": 812,
+    "failedTests": 0,
+    "numTotalTests": 812,
+    "timestamp": 1794525998303,
+    "success": true,
+    "testId": 151
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): usar el nivel mínimo de similitud guardado en las coincidencias nuevas",
+    "commitTimestamp": 1794526037578,
+    "testId": 151
+  },
+  {
+    "commitId": "0c95d1cde77a80015420de372428c88df9c5fea7",
+    "commitName": "feat(matching): usar el nivel mínimo de similitud guardado en las coincidencias nuevas",
+    "commitTimestamp": 1794526037578,
+    "testId": 151
+  },
+  {
+    "numPassedTests": 812,
+    "failedTests": 0,
+    "numTotalTests": 812,
+    "timestamp": 1794526846736,
+    "success": true,
+    "testId": 152
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(matching): usar ajustes falsos en los tests de rutas de matching",
+    "commitTimestamp": 1794526901797,
+    "testId": 152
+  },
+  {
+    "numPassedTests": 687,
+    "failedTests": 0,
+    "numTotalTests": 687,
+    "timestamp": 1794536692897,
+    "success": true,
+    "testId": 138
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(finder): integrar finder en HU-16",
+    "commitTimestamp": 1794536739355,
+    "testId": 138
+  },
+  {
+    "numPassedTests": 691,
+    "failedTests": 0,
+    "numTotalTests": 691,
+    "timestamp": 1794536834631,
+    "success": true,
+    "testId": 138
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(finder): integrar finder en HU-17",
+    "commitTimestamp": 1794536875727,
+    "testId": 138
+  },
+  {
+    "numPassedTests": 691,
+    "failedTests": 0,
+    "numTotalTests": 691,
+    "timestamp": 1794537950471,
+    "success": true,
+    "testId": 139
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(finder): integrar HU-16 en la base de HU-17",
+    "commitTimestamp": 1794537998046,
+    "testId": 139
+  },
+  {
+    "numPassedTests": 814,
+    "failedTests": 5,
+    "numTotalTests": 819,
+    "timestamp": 1794538580295,
+    "success": false,
+    "testId": 153
+  },
+  {
+    "numPassedTests": 819,
+    "failedTests": 0,
+    "numTotalTests": 819,
+    "timestamp": 1794538660860,
+    "success": true,
+    "testId": 153
+  },
+  {
+    "numPassedTests": 819,
+    "failedTests": 0,
+    "numTotalTests": 819,
+    "timestamp": 1794538919442,
+    "success": true,
+    "testId": 153
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): ver cuántos objetos se encontraron, perdieron y entregaron",
+    "commitTimestamp": 1794539007437,
+    "testId": 153
+  },
+  {
+    "numPassedTests": 823,
+    "failedTests": 18,
+    "numTotalTests": 841,
+    "timestamp": 1794539526060,
+    "success": false,
+    "testId": 154
+  },
+  {
+    "numPassedTests": 841,
+    "failedTests": 0,
+    "numTotalTests": 841,
+    "timestamp": 1794539661998,
+    "success": true,
+    "testId": 154
+  },
+  {
+    "numPassedTests": 841,
+    "failedTests": 0,
+    "numTotalTests": 841,
+    "timestamp": 1794539734486,
+    "success": true,
+    "testId": 154
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): elegir un rango de fechas para las estadísticas",
+    "commitTimestamp": 1794539837074,
+    "testId": 154
+  },
+  {
+    "numPassedTests": 842,
+    "failedTests": 4,
+    "numTotalTests": 846,
+    "timestamp": 1794540062233,
+    "success": false,
+    "testId": 155
+  },
+  {
+    "numPassedTests": 846,
+    "failedTests": 0,
+    "numTotalTests": 846,
+    "timestamp": 1794540123026,
+    "success": true,
+    "testId": 155
+  },
+  {
+    "numPassedTests": 846,
+    "failedTests": 0,
+    "numTotalTests": 846,
+    "timestamp": 1794540250949,
+    "success": true,
+    "testId": 155
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): actualizar las estadísticas al cambiar el rango de fechas",
+    "commitTimestamp": 1794540316465,
+    "testId": 155
+  },
+  {
+    "numPassedTests": 845,
+    "failedTests": 2,
+    "numTotalTests": 847,
+    "timestamp": 1794540699049,
+    "success": false,
+    "testId": 156
+  },
+  {
+    "numPassedTests": 847,
+    "failedTests": 0,
+    "numTotalTests": 847,
+    "timestamp": 1794540748893,
+    "success": true,
+    "testId": 156
+  },
+  {
+    "numPassedTests": 847,
+    "failedTests": 0,
+    "numTotalTests": 847,
+    "timestamp": 1794540851453,
+    "success": true,
+    "testId": 156
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(admin): ver cuántos objetos hay en custodia sin reclamar",
+    "commitTimestamp": 1794540907908,
+    "testId": 156
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "style(admin): panel lateral en PC y selector de sección en celular",
+    "commitTimestamp": 1794605840815,
+    "testId": 157
+  },
+  {
+    "numPassedTests": 849,
+    "failedTests": 1,
+    "numTotalTests": 850,
+    "timestamp": 1794606141232,
+    "success": false,
+    "testId": 157
+  },
+  {
+    "numPassedTests": 850,
+    "failedTests": 0,
+    "numTotalTests": 850,
+    "timestamp": 1794606260533,
+    "success": true,
+    "testId": 157
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(core): llevar al Administrador directo a Administración al ingresar",
+    "commitTimestamp": 1794606299374,
+    "testId": 157
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(admin): integra final-test en admin",
+    "commitTimestamp": 1794606706650,
+    "testId": 158
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(owner): renombrar funciones auxiliares de owner",
+    "commitTimestamp": 1794758674723,
+    "testId": 159
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794762725009,
+    "success": false,
+    "testId": 148
+  },
+  {
+    "commitId": "103c12af996c0e370c703a499b02b0635bcdee0e",
+    "commitName": "feat(welfare): avisar nuevas solicitudes de hallazgo",
+    "commitTimestamp": 1794762880718,
+    "testId": 148
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): corregir datos al recibir un hallazgo",
+    "commitTimestamp": 1794763025959,
+    "testId": 149
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): eliminar solicitudes no recibidas",
+    "commitTimestamp": 1794763125413,
+    "testId": 150
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): conectar atencion de solicitudes",
+    "commitTimestamp": 1794763226446,
+    "testId": 151
+  },
+  {
+    "numPassedTests": 0,
+    "failedTests": 0,
+    "numTotalTests": 0,
+    "timestamp": 1794763532116,
+    "success": false,
+    "testId": 152
+  },
+  {
+    "numPassedTests": 680,
+    "failedTests": 7,
+    "numTotalTests": 687,
+    "timestamp": 1794764312068,
+    "success": false,
+    "testId": 152
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): atender solicitudes de hallazgo",
+    "commitTimestamp": 1794764461489,
+    "testId": 152
+  },
+  {
+    "numPassedTests": 850,
+    "failedTests": 0,
+    "numTotalTests": 850,
+    "timestamp": 1794771115704,
+    "success": true,
+    "testId": 160
+  },
+  {
+    "numPassedTests": 850,
+    "failedTests": 3,
+    "numTotalTests": 853,
+    "timestamp": 1794771426616,
+    "success": false,
+    "testId": 160
+  },
+  {
+    "numPassedTests": 853,
+    "failedTests": 0,
+    "numTotalTests": 853,
+    "timestamp": 1794771578436,
+    "success": true,
+    "testId": 160
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ofrecer la opción Es mío, pasaré a recoger en el detalle del objeto",
+    "commitTimestamp": 1794771761801,
+    "testId": 160
+  },
+  {
+    "numPassedTests": 853,
+    "failedTests": 4,
+    "numTotalTests": 857,
+    "timestamp": 1794771870573,
+    "success": false,
+    "testId": 161
+  },
+  {
+    "numPassedTests": 857,
+    "failedTests": 0,
+    "numTotalTests": 857,
+    "timestamp": 1794771917444,
+    "success": true,
+    "testId": 161
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): elegir con qué reporte de pérdida se relaciona el objeto que se reclama",
+    "commitTimestamp": 1794772043367,
+    "testId": 161
+  },
+  {
+    "numPassedTests": 857,
+    "failedTests": 7,
+    "numTotalTests": 864,
+    "timestamp": 1794772190909,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 864,
+    "failedTests": 0,
+    "numTotalTests": 864,
+    "timestamp": 1794772272875,
+    "success": true,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 864,
+    "failedTests": 2,
+    "numTotalTests": 866,
+    "timestamp": 1794772358387,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 866,
+    "failedTests": 0,
+    "numTotalTests": 866,
+    "timestamp": 1794772594009,
+    "success": true,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 866,
+    "failedTests": 5,
+    "numTotalTests": 871,
+    "timestamp": 1794772907266,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 856,
+    "failedTests": 1,
+    "numTotalTests": 857,
+    "timestamp": 1794773069945,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 857,
+    "failedTests": 0,
+    "numTotalTests": 857,
+    "timestamp": 1794773341428,
+    "success": false,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 871,
+    "failedTests": 0,
+    "numTotalTests": 871,
+    "timestamp": 1794773626492,
+    "success": true,
+    "testId": 162
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar a Bienestar que el dueño pasará a recoger un objeto del catálogo",
+    "commitTimestamp": 1794773704804,
+    "testId": 162
+  },
+  {
+    "numPassedTests": 871,
+    "failedTests": 1,
+    "numTotalTests": 872,
+    "timestamp": 1794773767900,
+    "success": false,
+    "testId": 163
+  },
+  {
+    "numPassedTests": 872,
+    "failedTests": 0,
+    "numTotalTests": 872,
+    "timestamp": 1794773836626,
+    "success": true,
+    "testId": 163
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar la ubicación y el horario de Bienestar después de reclamar un objeto",
+    "commitTimestamp": 1794773883301,
+    "testId": 163
+  },
+  {
+    "numPassedTests": 872,
+    "failedTests": 1,
+    "numTotalTests": 873,
+    "timestamp": 1794773965110,
+    "success": false,
+    "testId": 164
+  },
+  {
+    "numPassedTests": 873,
+    "failedTests": 0,
+    "numTotalTests": 873,
+    "timestamp": 1794774066668,
+    "success": true,
+    "testId": 164
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte que debe llevar a Bienestar",
+    "commitTimestamp": 1794774112445,
+    "testId": 164
+  },
+  {
+    "numPassedTests": 863,
+    "failedTests": 0,
+    "numTotalTests": 863,
+    "timestamp": 1794788243914,
+    "success": true,
+    "testId": 159
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(finder): integra final-test en finder",
+    "commitTimestamp": 1794788315976,
+    "testId": 159
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): registrar objetos directamente en custodia",
+    "commitTimestamp": 1794796092968,
+    "testId": 153
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): adjuntar foto al registro directo",
+    "commitTimestamp": 1794796374982,
+    "testId": 154
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): conectar registro de objetos sin reporte",
+    "commitTimestamp": 1794796684987,
+    "testId": 155
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar formulario de registro directo",
+    "commitTimestamp": 1794797060431,
+    "testId": 156
+  },
+  {
+    "numPassedTests": 688,
+    "failedTests": 3,
+    "numTotalTests": 691,
+    "timestamp": 1794797149048,
+    "success": false,
+    "testId": 157
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(welfare): registrar verificacion de HU-24",
+    "commitTimestamp": 1794797380799,
+    "testId": 157
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): elegir visibilidad al publicar objetos",
+    "commitTimestamp": 1794800177121,
+    "testId": 158
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(matching): incluir objetos ocultos en coincidencias",
+    "commitTimestamp": 1794800283585,
+    "testId": 159
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): cambiar visibilidad de objetos publicados",
+    "commitTimestamp": 1794800444330,
+    "testId": 160
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): editar objetos publicados",
+    "commitTimestamp": 1794800593939,
+    "testId": 161
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): conectar gestion de objetos publicados",
+    "commitTimestamp": 1794800848914,
+    "testId": 162
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): gestionar publicaciones desde el panel",
+    "commitTimestamp": 1794802017986,
+    "testId": 163
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): avisar recojos pendientes",
+    "commitTimestamp": 1794802640389,
+    "testId": 164
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): consultar historial de entregas",
+    "commitTimestamp": 1794802760898,
+    "testId": 165
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): mostrar y buscar entregas realizadas",
+    "commitTimestamp": 1794803132527,
+    "testId": 166
+  },
+  {
+    "numPassedTests": 873,
+    "failedTests": 0,
+    "numTotalTests": 873,
+    "timestamp": 1794881708896,
+    "success": true,
+    "testId": 165
+  },
+  {
+    "numPassedTests": 873,
+    "failedTests": 2,
+    "numTotalTests": 875,
+    "timestamp": 1794882447264,
+    "success": false,
+    "testId": 165
+  },
+  {
+    "numPassedTests": 875,
+    "failedTests": 0,
+    "numTotalTests": 875,
+    "timestamp": 1794882670273,
+    "success": true,
+    "testId": 165
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar al dueño cuando se publica un objeto parecido a su reporte",
+    "commitTimestamp": 1794882995602,
+    "testId": 165
+  },
+  {
+    "numPassedTests": 875,
+    "failedTests": 1,
+    "numTotalTests": 876,
+    "timestamp": 1794883110670,
+    "success": false,
+    "testId": 166
+  },
+  {
+    "numPassedTests": 876,
+    "failedTests": 0,
+    "numTotalTests": 876,
+    "timestamp": 1794883152614,
+    "success": true,
+    "testId": 166
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): abrir las coincidencias del reporte al tocar el aviso",
+    "commitTimestamp": 1794883191534,
+    "testId": 166
+  },
+  {
+    "numPassedTests": 877,
+    "failedTests": 3,
+    "numTotalTests": 880,
+    "timestamp": 1794883327738,
+    "success": false,
+    "testId": 167
+  },
+  {
+    "numPassedTests": 880,
+    "failedTests": 0,
+    "numTotalTests": 880,
+    "timestamp": 1794883883920,
+    "success": true,
+    "testId": 167
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar que hay una coincidencia con un objeto no visible",
+    "commitTimestamp": 1794883927872,
+    "testId": 167
+  },
+  {
+    "numPassedTests": 880,
+    "failedTests": 1,
+    "numTotalTests": 881,
+    "timestamp": 1794884016017,
+    "success": false,
+    "testId": 168
+  },
+  {
+    "numPassedTests": 881,
+    "failedTests": 0,
+    "numTotalTests": 881,
+    "timestamp": 1794884051362,
+    "success": true,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte en una coincidencia no visible",
+    "commitTimestamp": 1794884110138,
+    "testId": 168
+  },
+  {
+    "numPassedTests": 882,
+    "failedTests": 2,
+    "numTotalTests": 884,
+    "timestamp": 1794884222874,
+    "success": false,
+    "testId": 169
+  },
+  {
+    "numPassedTests": 884,
+    "failedTests": 0,
+    "numTotalTests": 884,
+    "timestamp": 1794884354656,
+    "success": true,
+    "testId": 169
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ocultar la foto y los datos de una coincidencia no visible",
+    "commitTimestamp": 1794884634689,
+    "testId": 169
+  },
+  {
+    "numPassedTests": 892,
+    "failedTests": 3,
+    "numTotalTests": 895,
+    "timestamp": 1794921283494,
+    "success": false,
+    "testId": 167
+  },
+  {
+    "numPassedTests": 895,
+    "failedTests": 0,
+    "numTotalTests": 895,
+    "timestamp": 1794921369406,
+    "success": true,
+    "testId": 167
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): integra final-test en welfare",
+    "commitTimestamp": 1794921433179,
+    "testId": 167
+  },
+  {
+    "numPassedTests": 895,
+    "failedTests": 0,
+    "numTotalTests": 895,
+    "timestamp": 1794921632684,
+    "success": true,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): registra ejecucion de pruebas del merge",
+    "commitTimestamp": 1794922046236,
+    "testId": 168
+  },
+  {
+    "numPassedTests": 883,
+    "failedTests": 1,
+    "numTotalTests": 884,
+    "timestamp": 1794922450256,
+    "success": false,
+    "testId": 170
+  },
+  {
+    "numPassedTests": 884,
+    "failedTests": 0,
+    "numTotalTests": 884,
+    "timestamp": 1794922628332,
+    "success": true,
+    "testId": 170
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar carga al enviar el reporte de pérdida",
+    "commitTimestamp": 1794922862615,
+    "testId": 170
+  },
+  {
+    "numPassedTests": 899,
+    "failedTests": 0,
+    "numTotalTests": 899,
+    "timestamp": 1794923046985,
+    "success": true,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(welfare): mostrar las fotos con enlaces temporales",
+    "commitTimestamp": 1794923118587,
+    "testId": 168
+  },
+  {
+    "numPassedTests": 884,
+    "failedTests": 0,
+    "numTotalTests": 884,
+    "timestamp": 1794923391376,
+    "success": true,
+    "testId": 171
+  },
+  {
+    "numPassedTests": 900,
+    "failedTests": 0,
+    "numTotalTests": 900,
+    "timestamp": 1794923417904,
+    "success": true,
+    "testId": 169
+  },
+  {
+    "numPassedTests": 885,
+    "failedTests": 1,
+    "numTotalTests": 886,
+    "timestamp": 1794923455226,
+    "success": false,
+    "testId": 171
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): registra ejecucion de pruebas",
+    "commitTimestamp": 1794923469842,
+    "testId": 169
+  },
+  {
+    "numPassedTests": 886,
+    "failedTests": 0,
+    "numTotalTests": 886,
+    "timestamp": 1794923520813,
+    "success": true,
+    "testId": 171
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): integra welfare en welfare-fotos",
+    "commitTimestamp": 1794923636148,
+    "testId": 170
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar esqueletos al cargar los objetos encontrados",
+    "commitTimestamp": 1794923652539,
+    "testId": 171
+  },
+  {
+    "numPassedTests": 886,
+    "failedTests": 4,
+    "numTotalTests": 890,
+    "timestamp": 1794924133746,
+    "success": false,
+    "testId": 172
+  },
+  {
+    "numPassedTests": 889,
+    "failedTests": 1,
+    "numTotalTests": 890,
+    "timestamp": 1794924353264,
+    "success": false,
+    "testId": 172
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(welfare): iniciar directamente en bienestar",
+    "commitTimestamp": 1794924549621,
+    "testId": 171
+  },
+  {
+    "numPassedTests": 895,
+    "failedTests": 0,
+    "numTotalTests": 895,
+    "timestamp": 1794924714656,
+    "success": true,
+    "testId": 168
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(core): usar avisos falsos en las pruebas de rutas",
+    "commitTimestamp": 1794924765107,
+    "testId": 168
+  },
+  {
+    "numPassedTests": 889,
+    "failedTests": 1,
+    "numTotalTests": 890,
+    "timestamp": 1794924922551,
+    "success": false,
+    "testId": 172
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(admin): integra final-test en admin",
+    "commitTimestamp": 1794925305999,
+    "testId": 169
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): separar panel por funcionalidad",
+    "commitTimestamp": 1794925308642,
+    "testId": 172
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): separar panel por funcionalidad",
+    "commitTimestamp": 1794925491161,
+    "testId": 173
+  },
+  {
+    "numPassedTests": 886,
+    "failedTests": 4,
+    "numTotalTests": 890,
+    "timestamp": 1794925615660,
+    "success": false,
+    "testId": 172
+  },
+  {
+    "numPassedTests": 891,
+    "failedTests": 0,
+    "numTotalTests": 891,
+    "timestamp": 1794933778770,
+    "success": true,
+    "testId": 172
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "test(owner): cubrir el boton de carga al enviar el reporte de perdida",
+    "commitTimestamp": 1794933880365,
+    "testId": 172
+  },
+  {
+    "numPassedTests": 891,
+    "failedTests": 0,
+    "numTotalTests": 891,
+    "timestamp": 1794934069891,
+    "success": true,
+    "testId": 173
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar esqueletos en las pantallas del propietario",
+    "commitTimestamp": 1794934234296,
+    "testId": 173
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor(welfare): separar pruebas por funcionalidad",
+    "commitTimestamp": 1794941930884,
+    "testId": 174
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(welfare): integra final-test en welfare",
+    "commitTimestamp": 1794943661546,
+    "testId": 175
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "refactor: refactorización de primaWalfareRepository",
+    "commitTimestamp": 1794956803075,
+    "testId": 176
+  },
+  {
+    "numPassedTests": 941,
+    "failedTests": 0,
+    "numTotalTests": 941,
+    "timestamp": 1794965468672,
+    "success": true,
+    "testId": 177
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(owner): integra owner-v3 en owner-v3-hu-19",
+    "commitTimestamp": 1794965574450,
+    "testId": 177
+  },
+  {
+    "numPassedTests": 941,
+    "failedTests": 1,
+    "numTotalTests": 942,
+    "timestamp": 1794966674351,
+    "success": false,
+    "testId": 178
+  },
+  {
+    "numPassedTests": 942,
+    "failedTests": 0,
+    "numTotalTests": 942,
+    "timestamp": 1794966937835,
+    "success": true,
+    "testId": 178
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir tomar la foto de referencia con la cámara del celular",
+    "commitTimestamp": 1794966981070,
+    "testId": 178
+  },
+  {
+    "numPassedTests": 942,
+    "failedTests": 1,
+    "numTotalTests": 943,
+    "timestamp": 1794967135351,
+    "success": false,
+    "testId": 179
+  },
+  {
+    "numPassedTests": 943,
+    "failedTests": 0,
+    "numTotalTests": 943,
+    "timestamp": 1794967364323,
+    "success": true,
+    "testId": 179
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir elegir No sé dónde lo perdí en lugar de los lugares",
+    "commitTimestamp": 1794967398732,
+    "testId": 179
+  },
+  {
+    "numPassedTests": 936,
+    "failedTests": 10,
+    "numTotalTests": 946,
+    "timestamp": 1794967802683,
+    "success": false,
+    "testId": 180
+  },
+  {
+    "numPassedTests": 946,
+    "failedTests": 0,
+    "numTotalTests": 946,
+    "timestamp": 1794968158268,
+    "success": true,
+    "testId": 180
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar un resumen del reporte de pérdida y enviarlo solo al confirmarlo",
+    "commitTimestamp": 1794968187452,
+    "testId": 180
+  },
+  {
+    "numPassedTests": 946,
+    "failedTests": 1,
+    "numTotalTests": 947,
+    "timestamp": 1794968311520,
+    "success": false,
+    "testId": 181
+  },
+  {
+    "numPassedTests": 947,
+    "failedTests": 0,
+    "numTotalTests": 947,
+    "timestamp": 1794968584594,
+    "success": true,
+    "testId": 181
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): volver a corregir el reporte de pérdida desde el resumen sin perder lo llenado",
+    "commitTimestamp": 1794968614479,
+    "testId": 181
+  },
+  {
+    "numPassedTests": 947,
+    "failedTests": 0,
+    "numTotalTests": 947,
+    "timestamp": 1795015686256,
+    "success": true,
+    "testId": 182
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): agregar el estado cerrado al reporte de pérdida",
+    "commitTimestamp": 1795015776001,
+    "testId": 182
+  },
+  {
+    "numPassedTests": 947,
+    "failedTests": 5,
+    "numTotalTests": 952,
+    "timestamp": 1795016083295,
+    "success": false,
+    "testId": 183
+  },
+  {
+    "numPassedTests": 952,
+    "failedTests": 0,
+    "numTotalTests": 952,
+    "timestamp": 1795016443489,
+    "success": true,
+    "testId": 183
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "fix(owner): no tratar los reportes cerrados como activos",
+    "commitTimestamp": 1795016473190,
+    "testId": 183
+  },
+  {
+    "numPassedTests": 952,
+    "failedTests": 12,
+    "numTotalTests": 964,
+    "timestamp": 1795017685411,
+    "success": false,
+    "testId": 184
+  },
+  {
+    "numPassedTests": 964,
+    "failedTests": 0,
+    "numTotalTests": 964,
+    "timestamp": 1795018263498,
+    "success": true,
+    "testId": 184
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): editar un reporte de pérdida activo",
+    "commitTimestamp": 1795018294773,
+    "testId": 184
+  },
+  {
+    "numPassedTests": 965,
+    "failedTests": 4,
+    "numTotalTests": 969,
+    "timestamp": 1795018742971,
+    "success": false,
+    "testId": 185
+  },
+  {
+    "numPassedTests": 969,
+    "failedTests": 0,
+    "numTotalTests": 969,
+    "timestamp": 1795019001147,
+    "success": true,
+    "testId": 185
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ver las coincidencias actualizadas al editar el reporte",
+    "commitTimestamp": 1795019078758,
+    "testId": 185
+  },
+  {
+    "numPassedTests": 969,
+    "failedTests": 13,
+    "numTotalTests": 982,
+    "timestamp": 1795019401213,
+    "success": false,
+    "testId": 186
+  },
+  {
+    "numPassedTests": 982,
+    "failedTests": 0,
+    "numTotalTests": 982,
+    "timestamp": 1795019728630,
+    "success": true,
+    "testId": 186
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): cerrar el reporte de pérdida con ya lo encontré",
+    "commitTimestamp": 1795019772942,
+    "testId": 186
+  },
+  {
+    "numPassedTests": 980,
+    "failedTests": 4,
+    "numTotalTests": 984,
+    "timestamp": 1795019976217,
+    "success": false,
+    "testId": 187
+  },
+  {
+    "numPassedTests": 984,
+    "failedTests": 0,
+    "numTotalTests": 984,
+    "timestamp": 1795020160465,
+    "success": true,
+    "testId": 187
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): confirmar antes de cerrar el reporte de pérdida",
+    "commitTimestamp": 1795020336659,
+    "testId": 187
+  },
+  {
+    "numPassedTests": 985,
+    "failedTests": 2,
+    "numTotalTests": 987,
+    "timestamp": 1795020511827,
+    "success": false,
+    "testId": 188
+  },
+  {
+    "numPassedTests": 934,
+    "failedTests": 0,
+    "numTotalTests": 934,
+    "timestamp": 1795021062357,
+    "success": false,
+    "testId": 188
+  },
+  {
+    "numPassedTests": 987,
+    "failedTests": 0,
+    "numTotalTests": 987,
+    "timestamp": 1795021103924,
+    "success": true,
+    "testId": 188
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el estado cerrado del reporte de pérdida",
+    "commitTimestamp": 1795021139163,
+    "testId": 188
+  },
+  {
+    "numPassedTests": 984,
+    "failedTests": 15,
+    "numTotalTests": 999,
+    "timestamp": 1795021616063,
+    "success": false,
+    "testId": 189
+  },
+  {
+    "numPassedTests": 999,
+    "failedTests": 0,
+    "numTotalTests": 999,
+    "timestamp": 1795022337433,
+    "success": true,
+    "testId": 189
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): un reporte cerrado ya no recibe coincidencias ni se puede editar",
+    "commitTimestamp": 1795022392842,
+    "testId": 189
+  },
+  {
+    "numPassedTests": 1001,
+    "failedTests": 2,
+    "numTotalTests": 1003,
+    "timestamp": 1795022759545,
+    "success": false,
+    "testId": 190
+  },
+  {
+    "numPassedTests": 1003,
+    "failedTests": 0,
+    "numTotalTests": 1003,
+    "timestamp": 1795022997173,
+    "success": true,
+    "testId": 190
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar al dueño cuando Bienestar registra la entrega de su objeto",
+    "commitTimestamp": 1795023055957,
+    "testId": 190
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(release): conserva los registros de pruebas de main",
+    "commitTimestamp": 1795034388938,
+    "testId": 191
   }
 ]

@@ -53,6 +53,15 @@ describe('Código y estado de cada reporte', () => {
   });
 });
 
+describe('Reporte cerrado en mi lista', () => {
+  it('un reporte cerrado aparece con el estado Cerrado', async () => {
+    renderList(jest.fn().mockResolvedValue([{ ...keys, status: 'CLOSED' }]));
+
+    expect(await screen.findByText('PR-0007')).toBeInTheDocument();
+    expect(screen.getByText('Cerrado')).toBeInTheDocument();
+  });
+});
+
 describe('Abrir un reporte de la lista', () => {
   it('cada reporte lleva a su detalle', async () => {
     renderList(jest.fn().mockResolvedValue([keys]));
@@ -61,5 +70,16 @@ describe('Abrir un reporte de la lista', () => {
       'href',
       '/mis-perdidas/PR-0007',
     );
+  });
+});
+
+describe('Carga de mis reportes de pérdida', () => {
+  it('muestra filas grises mientras carga mis reportes', () => {
+    renderList(jest.fn().mockReturnValue(new Promise(() => {})));
+
+    const loading = screen.getByRole('status');
+    expect(loading).toHaveAttribute('aria-busy', 'true');
+    expect(loading).toHaveTextContent('Cargando tus reportes…');
+    expect(loading.querySelectorAll('.animate-pulse').length).toBeGreaterThanOrEqual(3);
   });
 });

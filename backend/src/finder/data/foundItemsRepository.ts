@@ -44,7 +44,12 @@ export type MyFoundItem = {
   receivedAt: Date | null;
 };
 
+type EditableFoundItem = Omit<NewFoundItem, 'finderId' | 'photoUrl'>;
+
 export type FoundItemsRepository = {
+  getEditable: (finderId: string, code: string) => Promise<EditableFoundItem | null>;
+  cancelPending: (finderId: string, code: string) => Promise<boolean>;
+  updatePending: (finderId: string, code: string, changes: EditableFoundItem) => Promise<boolean>;
   listMine: (finderId: string) => Promise<MyFoundItem[]>;
   getMineByCode: (finderId: string, code: string) => Promise<MyFoundItem | null>;
   getCatalogs: () => Promise<FoundItemCatalogs>;

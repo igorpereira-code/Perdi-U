@@ -8,24 +8,24 @@ import { FoundItemForm } from './FoundItemForm';
 export function FoundItemScreen({ foundItemsService }: { foundItemsService: FoundItemsService }) {
   const [catalogs, setCatalogs] = useState<FoundItemCatalogs | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [attempt, setAttempt] = useState(0);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
-    let active = true;
+    let isRequestActive = true;
     setCatalogs(null);
     setError(null);
     foundItemsService.getCatalogs()
-      .then((data) => { if (active) { setCatalogs(data); } })
+      .then((loadedCatalogs) => { if (isRequestActive) { setCatalogs(loadedCatalogs); } })
       .catch((failure: unknown) => {
-        if (active) { setError(failure instanceof Error ? failure.message : 'No se pudieron cargar las categorías y ubicaciones.'); }
+        if (isRequestActive) { setError(failure instanceof Error ? failure.message : 'No se pudieron cargar las categorías y ubicaciones.'); }
       });
-    return () => { active = false; };
-  }, [foundItemsService, attempt]);
+    return () => { isRequestActive = false; };
+  }, [foundItemsService, retryCount]);
 
   if (error) {
     return <div className="mx-auto max-w-lg space-y-4">
       <div role="alert"><Alert>{error}</Alert></div>
-      <Button onClick={() => setAttempt((value) => value + 1)}>Reintentar</Button>
+      <Button onClick={() => setRetryCount((previousRetryCount) => previousRetryCount + 1)}>Reintentar</Button>
     </div>;
   }
   if (!catalogs) {

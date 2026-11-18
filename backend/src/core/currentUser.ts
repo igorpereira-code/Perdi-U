@@ -6,7 +6,7 @@ import { SAMPLE_USERS } from './sampleUsers';
 import { isInstitutionalEmail } from './logic/institutionalEmail';
 import { prismaUsersRepository } from './data/prismaUsersRepository';
 import type { UsersRepository } from './data/usersRepository';
-import { roleForEmail } from './logic/roleForEmail';
+import { getRoleForEmail } from './logic/getRoleForEmail';
 
 export type CurrentUser = AppUser;
 
@@ -34,7 +34,7 @@ const DEFAULT_SAMPLE_USER: SampleUserKey = 'ana';
 const isSampleUserKey = (key: string): key is SampleUserKey => Object.hasOwn(SAMPLE_USERS, key);
 
 /** TEMPORARY sample users, so the team can try the API without signing in with Google. */
-const useSampleUser: RequestHandler = (req, res, next) => {
+const signInAsSampleUser: RequestHandler = (req, res, next) => {
   const key = req.header('x-sample-user') ?? DEFAULT_SAMPLE_USER;
 
   if (!isSampleUserKey(key)) {
@@ -46,34 +46,47 @@ const useSampleUser: RequestHandler = (req, res, next) => {
   next();
 };
 
-/* Returns the user's saved profile.  */
+/** Returns the user's saved profile. The first time they sign in, it is created. */
 async function findOrCreateProfile(
   tokenUser: TokenUser,
   users: UsersRepository,
 ): Promise<CurrentUser> {
   const savedProfile = await users.findById(tokenUser.id);
-  if (savedProfile) {
-    return savedProfile;
-  }
+  return savedProfile ?? createProfile(tokenUser, users);
+}
 
-  const role = roleForEmail(tokenUser.email, await users.listWelfareEmails());
+async function createProfile(tokenUser: TokenUser, users: UsersRepository): Promise<CurrentUser> {
+  const role = getRoleForEmail(tokenUser.email, await users.listWelfareEmails());
   return users.create({ ...tokenUser, photoUrl: tokenUser.photoUrl ?? null, role });
 }
 
-/* Finds out who is making the request: */
-export function createCurrentUser(
-  verifyToken: VerifyToken,
-  users: UsersRepository,
-  allowSampleUsers: boolean,
-): RequestHandler {
+const rejectMissingToken: RequestHandler = (_req, res) => {
+  res.status(401).json({ error: 'Sign in to continue.' });
+};
+
+/** The login token sent in the "Authorization: Bearer <token>" header, if any. */
+function readBearerToken(req: Request): string | undefined {
+  return req.header('authorization')?.replace('Bearer ', '');
+}
+
+export type UserAuthenticatorOptions = {
+  verifyToken: VerifyToken;
+  users: UsersRepository;
+  allowSampleUsers: boolean;
+};
+
+/** Finds out who is making the request and saves it in req.user. */
+export function createUserAuthenticator({
+  verifyToken,
+  users,
+  allowSampleUsers,
+}: UserAuthenticatorOptions): RequestHandler {
+  const handleMissingToken = allowSampleUsers ? signInAsSampleUser : rejectMissingToken;
+
   return async (req, res, next) => {
-    const token = req.header('authorization')?.replace('Bearer ', '');
+    const token = readBearerToken(req);
     if (!token) {
-      if (!allowSampleUsers) {
-        res.status(401).json({ error: 'Sign in to continue.' });
-        return;
-      }
-      useSampleUser(req, res, next);
+      handleMissingToken(req, res, next);
       return;
     }
 
@@ -92,11 +105,11 @@ export function createCurrentUser(
   };
 }
 
-export const currentUser = createCurrentUser(
-  verifySupabaseToken,
-  prismaUsersRepository,
-  process.env.ALLOW_SAMPLE_USERS === 'true',
-);
+export const authenticateUser = createUserAuthenticator({
+  verifyToken: verifySupabaseToken,
+  users: prismaUsersRepository,
+  allowSampleUsers: process.env.ALLOW_SAMPLE_USERS === 'true',
+});
 
 /** Returns the user making the request. Use it inside any route. */
 export function getCurrentUser(req: Request): CurrentUser {

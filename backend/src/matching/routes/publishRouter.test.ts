@@ -6,6 +6,8 @@ import {
   type FakeItem,
   type FakeReport,
 } from '../data/fakeMatchingRepository';
+import { fakeSettingsRepository } from '../../core/data/fakeSettingsRepository';
+import { fakeNotificationsRepository } from '../../core/data/fakeNotificationsRepository';
 
 const keys: FakeItem = {
   id: 'item-4',
@@ -34,7 +36,13 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('no publica un objeto que Bienestar todavía no recibió', async () => {
     const { repository } = fakeMatchingRepository([], [{ ...keys, status: 'PENDING_DROP_OFF' }]);
 
-    const res = await request(createApp({ matching: repository }))
+    const res = await request(
+      createApp({
+        matching: repository,
+        settings: fakeSettingsRepository(),
+        notifications: fakeNotificationsRepository(),
+      }),
+    )
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
@@ -45,9 +53,13 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('solo deja publicar a Bienestar', async () => {
     const { repository } = fakeMatchingRepository([], [keys]);
 
-    const res = await request(createApp({ matching: repository })).post(
-      '/found-items/HZ-0004/publish',
-    );
+    const res = await request(
+      createApp({
+        matching: repository,
+        settings: fakeSettingsRepository(),
+        notifications: fakeNotificationsRepository(),
+      }),
+    ).post('/found-items/HZ-0004/publish');
 
     expect(res.status).toBe(403);
   });
@@ -55,13 +67,51 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
   it('publica un objeto recibido para que la comunidad lo vea', async () => {
     const { repository, items } = fakeMatchingRepository([], [keys]);
 
-    const res = await request(createApp({ matching: repository }))
+    const res = await request(
+      createApp({
+        matching: repository,
+        settings: fakeSettingsRepository(),
+        notifications: fakeNotificationsRepository(),
+      }),
+    )
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
     expect(res.status).toBe(200);
     expect((await repository.listPublishedItems()).map((item) => item.id)).toEqual(['item-4']);
     expect(items[0].publishedById).toBe(SAMPLE_USERS.welfare.id);
+  });
+
+  it('permite publicar un objeto oculto sin quitarlo de las coincidencias', async () => {
+    const { repository, items, matches } = fakeMatchingRepository([lostKeys], [keys]);
+
+    const res = await request(
+      createApp({
+        matching: repository,
+        settings: fakeSettingsRepository(),
+        notifications: fakeNotificationsRepository(),
+      }),
+    )
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare')
+      .send({ visibility: 'HIDDEN' });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1, visibility: 'HIDDEN' });
+    expect(items[0].visibility).toBe('HIDDEN');
+    expect(matches).toHaveLength(1);
+  });
+
+  it('rechaza una visibilidad desconocida', async () => {
+    const { repository } = fakeMatchingRepository([], [keys]);
+
+    const res = await request(createApp({ matching: repository, settings: fakeSettingsRepository() }))
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare')
+      .send({ visibility: 'PRIVATE' });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ error: 'Invalid visibility' });
   });
 
   it('cuenta cuántos reportes de pérdida activos se parecen al objeto publicado', async () => {
@@ -72,17 +122,29 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
     ];
     const { repository } = fakeMatchingRepository(reports, [keys]);
 
-    const res = await request(createApp({ matching: repository }))
+    const res = await request(
+      createApp({
+        matching: repository,
+        settings: fakeSettingsRepository(),
+        notifications: fakeNotificationsRepository(),
+      }),
+    )
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
-    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1 });
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1, visibility: 'VISIBLE' });
   });
 
   it('deja el objeto como posible coincidencia en los reportes parecidos', async () => {
     const { repository, matches } = fakeMatchingRepository([lostKeys], [keys]);
 
-    await request(createApp({ matching: repository }))
+    await request(
+      createApp({
+        matching: repository,
+        settings: fakeSettingsRepository(),
+        notifications: fakeNotificationsRepository(),
+      }),
+    )
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
@@ -92,6 +154,124 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
         status: 'SUGGESTED',
         foundItem: expect.objectContaining({ code: 'HZ-0004' }),
       }),
+    ]);
+  });
+});
+
+describe('Al publicar, las nuevas coincidencias respetan el nivel mínimo', () => {
+  it('con un nivel de 60 no cuenta el reporte que se parece poco', async () => {
+    const almostKeys = {
+      ...lostKeys,
+      id: 'report-almost',
+      code: 'PR-0011',
+      placeIds: [9],
+      description: 'Perdí unas llaves',
+    };
+    const { repository, matches } = fakeMatchingRepository([lostKeys, almostKeys], [keys]);
+    const settings = fakeSettingsRepository();
+    await settings.updateMatchSettings({ minSimilarity: 60 });
+
+    const res = await request(
+      createApp({
+        matching: repository,
+        settings,
+        notifications: fakeNotificationsRepository(),
+      }),
+    )
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1, visibility: 'VISIBLE' });
+    expect(matches.map((match) => match.lostReportId)).toEqual(['report-3']);
+  });
+
+  it('con el nivel de siempre (40) también cuenta el reporte que se parece poco', async () => {
+    const almostKeys = {
+      ...lostKeys,
+      id: 'report-almost',
+      code: 'PR-0011',
+      placeIds: [9],
+      description: 'Perdí unas llaves',
+    };
+    const { repository } = fakeMatchingRepository([lostKeys, almostKeys], [keys]);
+
+    const res = await request(
+      createApp({
+        matching: repository,
+        settings: fakeSettingsRepository(),
+        notifications: fakeNotificationsRepository(),
+      }),
+    )
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 2, visibility: 'VISIBLE' });
+  });
+});
+
+describe('Al publicar, los dueños de reportes parecidos reciben un aviso', () => {
+  it('avisa al dueño de cada reporte activo que se parece al objeto', async () => {
+    const { repository } = fakeMatchingRepository([lostKeys], [keys]);
+    const notifications = fakeNotificationsRepository();
+
+    await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository(), notifications }),
+    )
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(notifications.saved).toEqual([
+      expect.objectContaining({
+        userId: SAMPLE_USERS.luis.id,
+        message: 'Hay un objeto parecido a tu reporte PR-0003',
+      }),
+    ]);
+  });
+
+    it('el aviso lleva a las coincidencias de su reporte', async () => {
+    const { repository } = fakeMatchingRepository([lostKeys], [keys]);
+    const notifications = fakeNotificationsRepository();
+
+    await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository(), notifications }),
+    )
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(notifications.saved[0].link).toBe('/mis-reportes/PR-0003/coincidencias');
+  });
+
+  it('no avisa a quien no tiene un reporte parecido ni a quien ya recuperó su objeto', async () => {
+    const ana = SAMPLE_USERS.ana.id;
+    const reports = [
+      lostKeys,
+      {
+        ...lostKeys,
+        id: 'report-old',
+        code: 'PR-0009',
+        ownerId: ana,
+        status: 'RECOVERED' as const,
+      },
+      {
+        ...lostKeys,
+        id: 'report-phone',
+        code: 'PR-0010',
+        ownerId: ana,
+        categoryId: 1,
+        description: 'Celular',
+      },
+    ];
+    const { repository } = fakeMatchingRepository(reports, [keys]);
+    const notifications = fakeNotificationsRepository();
+
+    await request(
+      createApp({ matching: repository, settings: fakeSettingsRepository(), notifications }),
+    )
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare');
+
+    expect(notifications.saved.map((notification) => notification.userId)).toEqual([
+      SAMPLE_USERS.luis.id,
     ]);
   });
 });

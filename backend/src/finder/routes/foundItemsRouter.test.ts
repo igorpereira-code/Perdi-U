@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { createApp } from '../../app';
 import type { UsersRepository } from '../../core/data/usersRepository';
+import { fakeNotificationsRepository } from '../../core/data/fakeNotificationsRepository';
 import { SAMPLE_USERS } from '../../core/sampleUsers';
 import type { FoundItemCatalogs, FoundItemsRepository } from '../data/foundItemsRepository';
 
@@ -25,6 +26,9 @@ const created = { code: 'HZ-7321', status: 'PENDING_DROP_OFF' };
 
 function fakeFoundItems(): jest.Mocked<FoundItemsRepository> {
   return {
+    cancelPending: jest.fn(),
+    getEditable: jest.fn(),
+    updatePending: jest.fn(),
     listMine: jest.fn().mockResolvedValue([]),
     getMineByCode: jest.fn().mockResolvedValue(null),
     getPhotoByCode: jest.fn().mockResolvedValue(null),
@@ -37,7 +41,7 @@ describe('Catálogos reales del formulario (GET /found-items/catalogs)', () => {
   it('exige una sesión antes de consultar los catálogos', async () => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems, allowSampleUsers: false }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems, allowSampleUsers: false }))
       .get('/found-items/catalogs');
 
     expect(res.status).toBe(401);
@@ -47,7 +51,7 @@ describe('Catálogos reales del formulario (GET /found-items/catalogs)', () => {
   it('devuelve los identificadores de categorías, lugares y aulas entregados por el repositorio', async () => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems })).get('/found-items/catalogs');
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).get('/found-items/catalogs');
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual(catalogs);
@@ -59,7 +63,7 @@ describe('Catálogos reales del formulario (GET /found-items/catalogs)', () => {
     const foundItems = fakeFoundItems();
     foundItems.getCatalogs.mockRejectedValue(new Error('Información interna de Prisma'));
 
-    const res = await request(createApp({ foundItems })).get('/found-items/catalogs');
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).get('/found-items/catalogs');
 
     expect(res.status).toBe(500);
     expect(res.body).toEqual({ error: 'No se pudieron cargar las categorías y ubicaciones. Intenta nuevamente.' });
@@ -71,7 +75,7 @@ describe('Autenticación del hallador (POST /found-items)', () => {
   it('rechaza solicitudes sin sesión cuando los usuarios de prueba están desactivados', async () => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems, allowSampleUsers: false }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems, allowSampleUsers: false }))
       .post('/found-items').send(validReport);
 
     expect(res.status).toBe(401);
@@ -83,7 +87,7 @@ describe('Autenticación del hallador (POST /found-items)', () => {
     const foundItems = fakeFoundItems();
     const verifyToken = jest.fn().mockResolvedValue(null);
 
-    const res = await request(createApp({ foundItems, verifyToken, allowSampleUsers: false }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems, verifyToken, allowSampleUsers: false }))
       .post('/found-items').set('Authorization', 'Bearer token-invalido').send(validReport);
 
     expect(res.status).toBe(401);
@@ -103,7 +107,7 @@ describe('Autenticación del hallador (POST /found-items)', () => {
       listWelfareEmails: jest.fn(),
     };
 
-    const res = await request(createApp({ foundItems, verifyToken, users, allowSampleUsers: false }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems, verifyToken, users, allowSampleUsers: false }))
       .post('/found-items')
       .set('Authorization', 'Bearer token-valido')
       .set('x-sample-user', 'luis')
@@ -118,7 +122,7 @@ describe('Autenticación del hallador (POST /found-items)', () => {
     const foundItems = fakeFoundItems();
     const verifyToken = jest.fn().mockResolvedValue({ ...SAMPLE_USERS.ana, email: 'ana@gmail.com' });
 
-    const res = await request(createApp({ foundItems, verifyToken, allowSampleUsers: false }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems, verifyToken, allowSampleUsers: false }))
       .post('/found-items').set('Authorization', 'Bearer token-externo').send(validReport);
 
     expect(res.status).toBe(403);
@@ -167,7 +171,7 @@ describe('Validaciones del reporte encontrado (POST /found-items)', () => {
   ])('rechaza %s sin guardar el reporte', async (_name, field, value) => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems }))
       .post('/found-items').send({ ...validReport, [field]: value });
 
     expect(res.status).toBe(400);
@@ -179,7 +183,7 @@ describe('Validaciones del reporte encontrado (POST /found-items)', () => {
   it('identifica todos los campos obligatorios cuando el cuerpo está vacío', async () => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems })).post('/found-items').send({});
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).post('/found-items').send({});
 
     expect(res.status).toBe(400);
     expect(Object.keys(res.body.errors).sort()).toEqual(['categoryId', 'description', 'foundAt', 'placeId']);
@@ -194,7 +198,7 @@ describe('Validaciones del reporte encontrado (POST /found-items)', () => {
   ])('rechaza %s según los catálogos activos del repositorio', async (_name, field, value) => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems }))
       .post('/found-items').send({ ...validReport, [field]: value });
 
     expect(res.status).toBe(400);
@@ -206,7 +210,7 @@ describe('Validaciones del reporte encontrado (POST /found-items)', () => {
   it('rechaza un aula al seleccionar un espacio sin aulas', async () => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems }))
       .post('/found-items').send({ ...validReport, placeId: 98 });
 
     expect(res.status).toBe(400);
@@ -217,7 +221,7 @@ describe('Validaciones del reporte encontrado (POST /found-items)', () => {
   it('rechaza un cuerpo que no representa un reporte', async () => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems })).post('/found-items').send([]);
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).post('/found-items').send([]);
 
     expect(res.status).toBe(400);
     expect(foundItems.create).not.toHaveBeenCalled();
@@ -225,10 +229,29 @@ describe('Validaciones del reporte encontrado (POST /found-items)', () => {
 });
 
 describe('Guardar un reporte encontrado (POST /found-items)', () => {
+  it('avisa a Bienestar cuando el hallador registra un objeto', async () => {
+    const foundItems = fakeFoundItems();
+    const notifications = fakeNotificationsRepository([], {
+      WELFARE: [SAMPLE_USERS.welfare.id],
+    });
+
+    const res = await request(createApp({ foundItems, notifications }))
+      .post('/found-items')
+      .send(validReport);
+
+    expect(res.status).toBe(201);
+    await expect(notifications.listForUser(SAMPLE_USERS.welfare.id)).resolves.toEqual([
+      expect.objectContaining({
+        message: 'Nueva solicitud de hallazgo HZ-7321.',
+        link: '/bienestar',
+      }),
+    ]);
+  });
+
   it('guarda una sola vez y devuelve el código entregado por el repositorio', async () => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems })).post('/found-items').send(validReport);
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).post('/found-items').send(validReport);
 
     expect(res.status).toBe(201);
     expect(res.body).toEqual(created);
@@ -247,7 +270,7 @@ describe('Guardar un reporte encontrado (POST /found-items)', () => {
   it('limpia espacios de descripción y referencia sin modificar el contenido', async () => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems })).post('/found-items').send({
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).post('/found-items').send({
       ...validReport,
       description: '  Llaves con llavero azul  ',
       placeReference: '  Sobre la mesa  ',
@@ -268,7 +291,7 @@ describe('Guardar un reporte encontrado (POST /found-items)', () => {
   ])('conserva el instante indicado en %s sin depender de la zona del servidor', async (foundAt, expected) => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems }))
       .post('/found-items').send({ ...validReport, foundAt });
 
     expect(res.status).toBe(201);
@@ -279,7 +302,7 @@ describe('Guardar un reporte encontrado (POST /found-items)', () => {
     const foundItems = fakeFoundItems();
     const { classroomId: _classroom, placeReference: _reference, ...required } = validReport;
 
-    const res = await request(createApp({ foundItems }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems }))
       .post('/found-items').send({ ...required, placeId });
 
     expect(res.status).toBe(201);
@@ -294,7 +317,7 @@ describe('Guardar un reporte encontrado (POST /found-items)', () => {
   it('acepta valores opcionales nulos sin tratar una foto como verificada', async () => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems })).post('/found-items').send({
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).post('/found-items').send({
       ...validReport,
       classroomId: null,
       placeReference: null,
@@ -308,7 +331,7 @@ describe('Guardar un reporte encontrado (POST /found-items)', () => {
   it('no permite que el cliente asigne código, estado ni datos de publicación o recepción', async () => {
     const foundItems = fakeFoundItems();
 
-    const res = await request(createApp({ foundItems })).post('/found-items').send({
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).post('/found-items').send({
       ...validReport,
       code: 'HZ-0000',
       status: 'PUBLISHED',
@@ -333,7 +356,7 @@ describe('Guardar un reporte encontrado (POST /found-items)', () => {
       return { code: 'HZ-9881', status: 'PENDING_DROP_OFF' };
     });
 
-    const res = await request(createApp({ foundItems })).post('/found-items').send(validReport);
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).post('/found-items').send(validReport);
 
     expect(res.status).toBe(201);
     expect(res.body).toEqual({ code: 'HZ-9881', status: 'PENDING_DROP_OFF' });
@@ -343,7 +366,7 @@ describe('Guardar un reporte encontrado (POST /found-items)', () => {
     const foundItems = fakeFoundItems();
     foundItems.create.mockRejectedValue(new Error('Detalle privado de la conexión Prisma'));
 
-    const res = await request(createApp({ foundItems })).post('/found-items').send(validReport);
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).post('/found-items').send(validReport);
 
     expect(res.status).toBe(500);
     expect(res.body).toEqual({ error: 'No se pudo registrar el objeto encontrado. Intenta nuevamente.' });
@@ -355,7 +378,7 @@ describe('Guardar un reporte encontrado (POST /found-items)', () => {
     const foundItems = fakeFoundItems();
     foundItems.getCatalogs.mockRejectedValue(new Error('Detalle privado de la conexión Prisma'));
 
-    const res = await request(createApp({ foundItems })).post('/found-items').send(validReport);
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems })).post('/found-items').send(validReport);
 
     expect(res.status).toBe(500);
     expect(res.body).toEqual({ error: 'No se pudo registrar el objeto encontrado. Intenta nuevamente.' });

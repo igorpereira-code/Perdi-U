@@ -54,7 +54,7 @@ describe('Fotografía opcional del objeto encontrado', () => {
     URL.revokeObjectURL = jest.fn();
   });
 
-  it('permite seleccionar una fotografía desde el formulario y ver su vista previa', async () => {
+  it('permite elegir una foto de la galería o tomarla con la cámara y ver su vista previa', async () => {
     const user = userEvent.setup();
     render(<FoundItemForm catalogs={catalogs} />);
 
@@ -67,6 +67,63 @@ describe('Fotografía opcional del objeto encontrado', () => {
       'blob:foto-del-objeto',
     );
     expect(screen.getByText(photo.name)).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Quitar foto' }));
+
+    expect(screen.queryByLabelText('Tomar foto')).toHaveAttribute('capture', 'environment');
+    const capturedPhoto = new File(['captura'], 'camara.jpg', { type: 'image/jpeg' });
+    await user.upload(screen.getByLabelText('Tomar foto'), capturedPhoto);
+
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeVisible();
+    expect(screen.getByText(capturedPhoto.name)).toBeInTheDocument();
+  });
+
+  it('reemplaza la captura al volver a tomar la foto y conserva la anterior si se cancela', async () => {
+    const user = userEvent.setup();
+    const firstPhoto = new File(['primera captura'], 'primera.jpg', { type: 'image/jpeg' });
+    const replacementPhoto = new File(['segunda captura'], 'segunda.jpg', { type: 'image/jpeg' });
+    jest.mocked(URL.createObjectURL)
+      .mockReturnValueOnce('blob:primera-captura')
+      .mockReturnValueOnce('blob:segunda-captura');
+    render(<FoundItemForm catalogs={catalogs} />);
+
+    await user.upload(screen.getByLabelText('Tomar foto'), firstPhoto);
+
+    expect(screen.queryByLabelText('Volver a tomar foto')).toHaveAttribute('capture', 'environment');
+    const retakeInput = screen.getByLabelText('Volver a tomar foto');
+    fireEvent.change(retakeInput, { target: { files: [] } });
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
+      'src',
+      'blob:primera-captura',
+    );
+    expect(screen.getByText(firstPhoto.name)).toBeInTheDocument();
+
+    await user.upload(retakeInput, replacementPhoto);
+
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toHaveAttribute(
+      'src',
+      'blob:segunda-captura',
+    );
+    expect(screen.getByText(replacementPhoto.name)).toBeInTheDocument();
+    expect(screen.queryByText(firstPhoto.name)).not.toBeInTheDocument();
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:primera-captura');
+  });
+
+  it('permite volver a elegir una foto de la galería después de quitar una captura', async () => {
+    const user = userEvent.setup();
+    const capturedPhoto = new File(['captura'], 'camara.jpg', { type: 'image/jpeg' });
+    render(<FoundItemForm catalogs={catalogs} />);
+
+    await user.upload(screen.getByLabelText('Tomar foto'), capturedPhoto);
+    await user.click(screen.getByRole('button', { name: 'Quitar foto' }));
+
+    const galleryInput = screen.getByLabelText('Foto del objeto');
+    expect(galleryInput).not.toHaveAttribute('capture');
+    await user.upload(galleryInput, photo);
+
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeVisible();
+    expect(screen.getByText(photo.name)).toBeInTheDocument();
+    expect(screen.queryByText(capturedPhoto.name)).not.toBeInTheDocument();
   });
 
   it('indica que la fotografía es opcional y permite escribir la descripción sin seleccionarla', async () => {
@@ -504,11 +561,11 @@ describe('Validación del formulario de hallazgo', () => {
     fireEvent.change(screen.getByLabelText('Fecha del hallazgo'), { target: { value: '2025-05-14' } });
   }
 
-  it('ofrece un botón de envío y señala únicamente los cuatro campos obligatorios sin errores iniciales', () => {
+  it('ofrece un botón de revisión y señala únicamente los cuatro campos obligatorios sin errores iniciales', () => {
     render(<FoundItemForm catalogs={catalogs} />);
 
-    expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Reportar objeto encontrado' })).toHaveAttribute(
+    expect(screen.queryByRole('button', { name: 'Revisar reporte' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Revisar reporte' })).toHaveAttribute(
       'type',
       'submit',
     );
@@ -525,8 +582,8 @@ describe('Validación del formulario de hallazgo', () => {
     const user = userEvent.setup();
     render(<FoundItemForm catalogs={catalogs} />);
 
-    expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    expect(screen.queryByRole('button', { name: 'Revisar reporte' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
 
     expect(screen.getAllByRole('alert')).toHaveLength(4);
     for (const [label, message] of [
@@ -554,8 +611,8 @@ describe('Validación del formulario de hallazgo', () => {
     await fillRequiredFields(user);
     fireEvent.change(screen.getByLabelText(label), { target: { value: '' } });
 
-    expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    expect(screen.queryByRole('button', { name: 'Revisar reporte' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
 
     expect(screen.getAllByRole('alert')).toHaveLength(1);
     expect(screen.getByRole('alert')).toHaveTextContent(message);
@@ -568,8 +625,8 @@ describe('Validación del formulario de hallazgo', () => {
     const user = userEvent.setup();
     render(<FoundItemForm catalogs={catalogs} />);
 
-    expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    expect(screen.queryByRole('button', { name: 'Revisar reporte' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
     expect(screen.getAllByRole('alert')).toHaveLength(4);
     await fillRequiredFields(user, place);
 
@@ -609,8 +666,8 @@ describe('Validación del formulario de hallazgo', () => {
     fireEvent.change(screen.getByLabelText('Fecha del hallazgo'), { target: { value: '2025-05-14' } });
     fireEvent.change(screen.getByLabelText('Hora del hallazgo'), { target: { value: '08:15' } });
 
-    expect(screen.queryByRole('button', { name: 'Reportar objeto encontrado' })).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    expect(screen.queryByRole('button', { name: 'Revisar reporte' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
     rerender(<FoundItemForm catalogs={catalogs} />);
 
     expect(screen.getAllByRole('alert')).toHaveLength(1);
@@ -632,7 +689,7 @@ describe('Validación del formulario de hallazgo', () => {
 
     await user.clear(screen.getByLabelText('Descripción del objeto'));
     await user.type(screen.getByLabelText('Descripción del objeto'), 'Llaves con llavero azul');
-    await user.click(screen.getByRole('button', { name: 'Reportar objeto encontrado' }));
+    await user.click(screen.getByRole('button', { name: 'Revisar reporte' }));
 
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeInTheDocument();

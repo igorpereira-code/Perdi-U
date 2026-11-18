@@ -1,22 +1,45 @@
 import { Router } from 'express';
 import { getCurrentUser, requireRole } from '../../core/currentUser';
-import type { FoundItemToPublish, MatchingRepository } from '../data/matchingRepository';
+import type {
+  FoundItemToPublish,
+  MatchingRepository,
+  PublishedVisibility,
+} from '../data/matchingRepository';
 import { canBePublished } from '../logic/canBePublished';
 import { findSimilarReports } from '../logic/findSimilarReports';
+import type { SettingsRepository } from '../../core/data/settingsRepository';
+import type { NotificationsRepository } from '../../core/data/notificationsRepository';
 
-export function createPublishRouter(matching: MatchingRepository): Router {
+export function createPublishRouter(
+  matching: MatchingRepository,
+  settings: SettingsRepository,
+  notifications: NotificationsRepository,
+): Router {
   const router = Router();
 
-  /** Saves the item as a possible match in every active lost report that looks like it. Returns how many. */
+  /** Saves the item as a possible match in every active lost report that looks like it enough. Returns how many. */
   async function suggestToSimilarReports(item: FoundItemToPublish): Promise<number> {
-    const similarReports = findSimilarReports(item, await matching.listActiveLostReports());
+    const { minSimilarity } = await settings.getMatchSettings();
+    const activeReports = await matching.listActiveLostReports();
+    const similarReports = findSimilarReports(item, activeReports, minSimilarity);
     for (const { report, similarity } of similarReports) {
       await matching.saveSuggestions(report.id, [{ foundItemId: item.id, similarity }]);
+      await notifications.notify({
+        userId: report.ownerId,
+                message: `Hay un objeto parecido a tu reporte ${report.code}`,
+        link: `/mis-reportes/${report.code}/coincidencias`,
+      });
     }
     return similarReports.length;
   }
 
   router.post('/found-items/:code/publish', requireRole('WELFARE'), async (req, res) => {
+    const visibility = (req.body?.visibility ?? 'VISIBLE') as PublishedVisibility;
+    if (!['VISIBLE', 'HIDDEN'].includes(visibility)) {
+      res.status(400).json({ error: 'Invalid visibility' });
+      return;
+    }
+
     const item = await matching.findFoundItemByCode(String(req.params.code));
     if (!item) {
       res.status(404).json({ error: 'Found item not found' });
@@ -27,9 +50,9 @@ export function createPublishRouter(matching: MatchingRepository): Router {
       return;
     }
 
-    await matching.publish(item.id, getCurrentUser(req).id);
+    await matching.publish(item.id, getCurrentUser(req).id, visibility);
     const matchCount = await suggestToSimilarReports(item);
-    res.json({ code: item.code, matchCount });
+    res.json({ code: item.code, matchCount, visibility });
   });
 
   return router;

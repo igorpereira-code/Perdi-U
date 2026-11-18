@@ -1,48 +1,46 @@
 import { db } from '../../core/data/prisma';
-import type { MatchingRepository } from './matchingRepository';
+import type { LostReportToMatch, MatchingRepository } from './matchingRepository';
+
+const LOST_REPORT_PLACES = { places: true } as const;
+
+type LostReportWithPlaces = Omit<LostReportToMatch, 'placeIds'> & {
+  places: { placeId: number }[];
+};
+
+function toLostReportToMatch(report: LostReportWithPlaces): LostReportToMatch {
+  return {
+    id: report.id,
+    code: report.code,
+    ownerId: report.ownerId,
+    status: report.status,
+    categoryId: report.categoryId,
+    dateFrom: report.dateFrom,
+    dateTo: report.dateTo,
+    description: report.description,
+    placeIds: report.places.map((place) => place.placeId),
+  };
+}
 
 export const prismaMatchingRepository: MatchingRepository = {
   findOwnLostReport: async (code, ownerId) => {
     const report = await db().lostReport.findFirst({
       where: { code, ownerId },
-      include: { places: true },
+      include: LOST_REPORT_PLACES,
     });
-    if (!report) {
-      return null;
-    }
-    return {
-      id: report.id,
-      code: report.code,
-      categoryId: report.categoryId,
-      dateFrom: report.dateFrom,
-      dateTo: report.dateTo,
-      description: report.description,
-      placeIds: report.places.map((place) => place.placeId),
-    };
+    return report && toLostReportToMatch(report);
   },
 
   findLostReportByCode: async (code) => {
     const report = await db().lostReport.findFirst({
-      where: { code, status: { not: 'RECOVERED' } },
-      include: { places: true },
+      where: { code, status: { notIn: ['RECOVERED', 'CLOSED'] } },
+      include: LOST_REPORT_PLACES,
     });
-    if (!report) {
-      return null;
-    }
-    return {
-      id: report.id,
-      code: report.code,
-      categoryId: report.categoryId,
-      dateFrom: report.dateFrom,
-      dateTo: report.dateTo,
-      description: report.description,
-      placeIds: report.places.map((place) => place.placeId),
-    };
+    return report && toLostReportToMatch(report);
   },
 
   listPublishedItems: () =>
     db().foundItem.findMany({
-      where: { status: 'PUBLISHED', visibility: 'VISIBLE' },
+      where: { status: 'PUBLISHED' },
       select: { id: true, categoryId: true, foundAt: true, placeId: true, description: true },
     }),
 
@@ -79,12 +77,29 @@ export const prismaMatchingRepository: MatchingRepository = {
         photoUrl: row.foundItem.photoUrl,
         category: row.foundItem.category.name,
       },
+      isHidden: row.foundItem.visibility === 'HIDDEN',
     }));
   },
 
   findOwnMatch: async (matchId, ownerId) => {
-    const match = await db().match.findFirst({ where: { id: matchId, lostReport: { ownerId } } });
-    return match ? { id: match.id, lostReportId: match.lostReportId } : null;
+    const match = await db().match.findFirst({
+      where: { id: matchId, lostReport: { ownerId } },
+      select: {
+        id: true,
+        lostReportId: true,
+        lostReport: { select: { code: true, status: true } },
+        foundItem: { select: { code: true } },
+      },
+    });
+    return match
+      ? {
+          id: match.id,
+          lostReportId: match.lostReportId,
+          lostReportCode: match.lostReport.code,
+          foundItemCode: match.foundItem.code,
+          lostReportStatus: match.lostReport.status,
+        }
+      : null;
   },
 
   markWillPickUp: async (matchId) => {
@@ -96,6 +111,30 @@ export const prismaMatchingRepository: MatchingRepository = {
       where: { id: match.lostReportId },
       data: { status: 'PENDING_PICKUP' },
     });
+  },
+
+  claimItem: async (lostReportId, foundItemId, similarity) => {
+    const report = await db().lostReport.findUnique({
+      where: { id: lostReportId },
+      select: { status: true },
+    });
+    if (!report || report.status === 'RECOVERED') {
+      return 'REPORT_RECOVERED';
+    }
+    if (report.status === 'CLOSED') {
+      return 'REPORT_CLOSED';
+    }
+    const respondedAt = new Date();
+    await db().match.upsert({
+      where: { lostReportId_foundItemId: { lostReportId, foundItemId } },
+      create: { lostReportId, foundItemId, similarity, status: 'WILL_PICK_UP', respondedAt },
+      update: { status: 'WILL_PICK_UP', respondedAt },
+    });
+    await db().lostReport.update({
+      where: { id: lostReportId },
+      data: { status: 'PENDING_PICKUP' },
+    });
+    return 'CLAIMED';
   },
 
   dismiss: async (matchId) => {
@@ -112,6 +151,7 @@ export const prismaMatchingRepository: MatchingRepository = {
         id: true,
         code: true,
         status: true,
+        
         categoryId: true,
         foundAt: true,
         placeId: true,
@@ -119,26 +159,18 @@ export const prismaMatchingRepository: MatchingRepository = {
       },
     }),
 
-  publish: async (itemId, publishedById) => {
+  publish: async (itemId, publishedById, visibility) => {
     await db().foundItem.update({
       where: { id: itemId },
-      data: { status: 'PUBLISHED', visibility: 'VISIBLE', publishedById, publishedAt: new Date() },
+      data: { status: 'PUBLISHED', visibility, publishedById, publishedAt: new Date() },
     });
   },
 
   listActiveLostReports: async () => {
     const reports = await db().lostReport.findMany({
       where: { status: { in: ['SEARCHING', 'HAS_MATCHES'] } },
-      include: { places: true },
+      include: LOST_REPORT_PLACES,
     });
-    return reports.map((report) => ({
-      id: report.id,
-      code: report.code,
-      categoryId: report.categoryId,
-      dateFrom: report.dateFrom,
-      dateTo: report.dateTo,
-      description: report.description,
-      placeIds: report.places.map((place) => place.placeId),
-    }));
+    return reports.map(toLostReportToMatch);
   },
 };

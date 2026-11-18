@@ -4,11 +4,15 @@ import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { INPUT_CLASSES } from '../../core/presenter/Field';
+import { SkeletonArea, SkeletonCard } from '../../core/presenter/Skeleton';
 import type { FoundItemsService } from '../../finder/data/foundItemsService';
 import { formatReportDate } from '../../finder/logic/formatReportDate';
 import { FoundItemPhoto } from '../../finder/presenter/FoundItemPhoto';
 import type { CatalogItem, CatalogService } from '../data/catalogService';
 import { filterCatalog } from '../logic/filterCatalog';
+
+/** How many gray cards are shown while the items load. */
+const SKELETON_CARDS = 3;
 
 type CatalogSectionProps = {
   catalogService: Pick<CatalogService, 'list'>;
@@ -85,9 +89,13 @@ export function CatalogSection({ catalogService, foundItemsService }: CatalogSec
           <Button onClick={() => setAttempt((value) => value + 1)}>Reintentar</Button>
         </div>
       ) : items === null ? (
-        <p role="status" className="text-sm text-neutral-500">
-          Cargando objetos encontrados…
-        </p>
+        <SkeletonArea label="Cargando objetos encontrados…">
+          <div className="space-y-3">
+            {Array.from({ length: SKELETON_CARDS }, (_, cardIndex) => (
+              <SkeletonCard key={cardIndex} />
+            ))}
+          </div>
+        </SkeletonArea>
       ) : items.length === 0 ? (
         <EmptyState
           title="Todavía no hay objetos publicados"

@@ -1,5 +1,5 @@
 import {
-  similarityScore,
+  calculateSimilarityScore,
   type FoundItemForMatching,
   type LostReportForMatching,
 } from './similarity';
@@ -21,29 +21,29 @@ const foundItem: FoundItemForMatching = {
 
 describe('Qué tan parecido es un objeto encontrado a un reporte de pérdida', () => {
   it('suma 40 si se encontró dentro de las fechas en que se perdió', () => {
-    expect(similarityScore(lostPhone, foundItem)).toBe(40);
+    expect(calculateSimilarityScore(lostPhone, foundItem)).toBe(40);
   });
 
   it('no es parecido si es de otra categoría', () => {
-    expect(similarityScore(lostPhone, { ...foundItem, categoryId: 2 })).toBe(0);
+    expect(calculateSimilarityScore(lostPhone, { ...foundItem, categoryId: 2 })).toBe(0);
   });
 
   it('suma 30 si se encontró en uno de los lugares donde pudo perderse', () => {
-    expect(similarityScore(lostPhone, { ...foundItem, placeId: 5 })).toBe(70);
+    expect(calculateSimilarityScore(lostPhone, { ...foundItem, placeId: 5 })).toBe(70);
   });
 
   it('suma 10 por cada palabra en común en la descripción, hasta 30', () => {
     const foundBefore = new Date('2026-10-01');
 
     expect(
-      similarityScore(lostPhone, {
+      calculateSimilarityScore(lostPhone, {
         ...foundItem,
         foundAt: foundBefore,
         description: 'Celular Samsung Galaxy con funda azul',
       }),
     ).toBe(30);
     expect(
-      similarityScore(
+      calculateSimilarityScore(
         { ...lostPhone, description: 'Mi cuaderno de Cálculo' },
         { ...foundItem, foundAt: foundBefore, description: 'CUADERNO con apuntes de calculo' },
       ),
