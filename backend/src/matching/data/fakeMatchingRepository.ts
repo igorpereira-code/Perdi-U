@@ -66,6 +66,7 @@ export function fakeMatchingRepository(initialReports: FakeReport[], initialItem
             lostReportId: match.lostReportId,
             lostReportCode: report.code,
             foundItemCode: match.foundItem.code,
+            lostReportStatus: report.status,
           }
         : null;
     },

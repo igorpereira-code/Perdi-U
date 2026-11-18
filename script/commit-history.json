@@ -4655,12 +4655,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "dd5540adb0a60eeda754c782de35a8b9c2db46f2",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-11-10T14:24:44.000Z",
       "message": "refactor(finder): aclarar los nombres del envío del hallazgo",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/dd5540adb0a60eeda754c782de35a8b9c2db46f2"
     },
     "stats": {
       "total": 30,
@@ -8793,6 +8793,25 @@
     },
     "coverage": 81.99,
     "test_count": 987,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-18T17:19:52.000Z",
+      "message": "feat(owner): un reporte cerrado ya no recibe coincidencias ni se puede editar",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 304,
+      "additions": 243,
+      "deletions": 61,
+      "date": "2026-11-18"
+    },
+    "coverage": 82.22,
+    "test_count": 999,
     "failed_tests": 0,
     "conclusion": "success"
   }

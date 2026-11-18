@@ -370,3 +370,32 @@ describe('Coincidencias con un objeto que no es visible', () => {
     });
   });
 });
+
+describe('Un reporte cerrado ya no recibe coincidencias', () => {
+  it('no busca objetos parecidos para un reporte cerrado', async () => {
+    const { repository, matches } = fakeMatchingRepository([{ ...anasReport, status: 'CLOSED' }], items);
+
+    const res = await request(
+      createApp({ notifications: fakeNotificationsRepository(), matching: repository, settings: fakeSettingsRepository() }),
+    ).get('/lost-reports/PR-0001/matches');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual([]);
+    expect(matches).toHaveLength(0);
+  });
+
+  it('no deja marcar "Pasaré a recoger" en un reporte cerrado', async () => {
+    const { repository, matches, reports } = fakeMatchingRepository([anasReport], items);
+    const notifications = fakeNotificationsRepository([], { WELFARE: [SAMPLE_USERS.welfare.id] });
+    const app = createApp({ matching: repository, settings: fakeSettingsRepository(), notifications });
+    await request(app).get('/lost-reports/PR-0001/matches');
+    reports[0].status = 'CLOSED';
+
+    const res = await request(app).post(`/matches/${matches[0].id}/pick-up`);
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ error: 'Lost report closed' });
+    expect(matches[0].status).toBe('SUGGESTED');
+    await expect(notifications.listForUser(SAMPLE_USERS.welfare.id)).resolves.toEqual([]);
+  });
+});

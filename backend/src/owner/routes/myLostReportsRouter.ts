@@ -9,6 +9,7 @@ import type {
 import { validateLostReport } from '../logic/validateLostReport';
 
 const NOT_FOUND = 'No encontramos este reporte.';
+const NOT_EDITABLE = 'Este reporte ya fue cerrado o recuperado. Ya no se puede editar.';
 
 /** The day of a date, as "YYYY-MM-DD". */
 function toDay(date: Date): string {
@@ -60,7 +61,18 @@ export function createMyLostReportsRouter(
   router.get('/my-lost-reports/:code/edit', async (req, res) => {
     res.set('Cache-Control', 'private, no-store');
     try {
-      const report = await reports.findEditable(getCurrentUser(req).id, readCode(req.params.code));
+      const ownerId = getCurrentUser(req).id;
+      const code = readCode(req.params.code);
+      const mine = await reports.findMine(ownerId, code);
+      if (!mine) {
+        res.status(404).json({ error: NOT_FOUND });
+        return;
+      }
+      if (mine.status === 'RECOVERED' || mine.status === 'CLOSED') {
+        res.status(409).json({ error: NOT_EDITABLE });
+        return;
+      }
+      const report = await reports.findEditable(ownerId, code);
       if (!report) {
         res.status(404).json({ error: NOT_FOUND });
         return;
@@ -83,8 +95,12 @@ export function createMyLostReportsRouter(
         readCode(req.params.code),
         result.data,
       );
-      if (!updated) {
+      if (updated === 'NOT_FOUND') {
         res.status(404).json({ error: NOT_FOUND });
+        return;
+      }
+      if (updated === 'ALREADY_FINISHED') {
+        res.status(409).json({ error: NOT_EDITABLE });
         return;
       }
       res.json({ updated: true });

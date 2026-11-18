@@ -133,12 +133,12 @@ function editableReports(): jest.Mocked<MyLostReportsRepository> {
     ownerId === SAMPLE_USERS.ana.id && code === 'PR-0007';
   return {
     listMine: jest.fn(),
-    findMine: jest.fn(),
+    findMine: jest.fn(async (ownerId: string, code: string) => (isAnasKeys(ownerId, code) ? keys : null)),
     findEditable: jest.fn(async (ownerId: string, code: string) =>
       isAnasKeys(ownerId, code) ? editableKeys : null,
     ),
     updateMine: jest.fn(async (ownerId: string, code: string, _changes: ValidLostReport) =>
-      isAnasKeys(ownerId, code),
+      isAnasKeys(ownerId, code) ? ('UPDATED' as const) : ('NOT_FOUND' as const),
     ),
     closeMine: jest.fn(),
   };
@@ -176,7 +176,7 @@ describe('Editar un reporte de pérdida (GET /my-lost-reports/:code/edit, PATCH 
 
     expect(res.status).toBe(404);
     expect(res.body).toEqual({ error: 'No encontramos este reporte.' });
-    expect(myLostReports.findEditable).toHaveBeenCalledWith(SAMPLE_USERS.luis.id, 'PR-0007');
+    expect(myLostReports.findMine).toHaveBeenCalledWith(SAMPLE_USERS.luis.id, 'PR-0007');
   });
 
   it('guarda los cambios validados del reporte', async () => {
@@ -265,5 +265,30 @@ describe('Cerrar mi reporte de pérdida (POST /my-lost-reports/:code/close)', ()
 
     expect(res.status).toBe(503);
     expect(res.body).toEqual({ error: 'No se pudo cerrar el reporte. Intenta nuevamente.' });
+  });
+});
+
+describe('Un reporte cerrado o recuperado ya no se puede editar', () => {
+  it.each(['CLOSED', 'RECOVERED'] as const)('no deja abrir para editar un reporte %s', async (status) => {
+    const myLostReports = editableReports();
+    myLostReports.findMine.mockResolvedValue({ ...keys, status });
+
+    const res = await request(createApp({ myLostReports, foundItems })).get('/my-lost-reports/PR-0007/edit');
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ error: 'Este reporte ya fue cerrado o recuperado. Ya no se puede editar.' });
+    expect(myLostReports.findEditable).not.toHaveBeenCalled();
+  });
+
+  it('no guarda cambios en un reporte cerrado o recuperado', async () => {
+    const myLostReports = editableReports();
+    myLostReports.updateMine.mockResolvedValue('ALREADY_FINISHED');
+
+    const res = await request(createApp({ myLostReports, foundItems }))
+      .patch('/my-lost-reports/PR-0007')
+      .send(changes);
+
+    expect(res.status).toBe(409);
+    expect(res.body).toEqual({ error: 'Este reporte ya fue cerrado o recuperado. Ya no se puede editar.' });
   });
 });

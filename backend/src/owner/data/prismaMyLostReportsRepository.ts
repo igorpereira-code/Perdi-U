@@ -72,9 +72,15 @@ export const prismaMyLostReportsRepository: MyLostReportsRepository = {
   /** Updates the data and replaces the places in one transaction, so nothing is left half saved. */
   updateMine: (ownerId, code, changes) =>
     db().$transaction(async (tx) => {
-      const report = await tx.lostReport.findFirst({ where: { ownerId, code }, select: { id: true } });
+      const report = await tx.lostReport.findFirst({
+        where: { ownerId, code },
+        select: { id: true, status: true },
+      });
       if (!report) {
-        return false;
+        return 'NOT_FOUND';
+      }
+      if (report.status === 'RECOVERED' || report.status === 'CLOSED') {
+        return 'ALREADY_FINISHED';
       }
       await tx.lostReportPlace.deleteMany({ where: { lostReportId: report.id } });
       await tx.lostReport.update({
@@ -100,7 +106,7 @@ export const prismaMyLostReportsRepository: MyLostReportsRepository = {
           data: { status: 'SEARCHING' },
         });
       }
-      return true;
+      return 'UPDATED';
     }),
 
   closeMine: (ownerId, code) =>

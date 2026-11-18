@@ -5662,7 +5662,7 @@
     "testId": 84
   },
   {
-    "commitId": "HEAD",
+    "commitId": "dd5540adb0a60eeda754c782de35a8b9c2db46f2",
     "commitName": "refactor(finder): aclarar los nombres del envío del hallazgo",
     "commitTimestamp": 1794320686630,
     "testId": 82
@@ -8488,5 +8488,27 @@
     "commitName": "feat(owner): mostrar el estado cerrado del reporte de pérdida",
     "commitTimestamp": 1795021139163,
     "testId": 188
+  },
+  {
+    "numPassedTests": 984,
+    "failedTests": 15,
+    "numTotalTests": 999,
+    "timestamp": 1795021616063,
+    "success": false,
+    "testId": 189
+  },
+  {
+    "numPassedTests": 999,
+    "failedTests": 0,
+    "numTotalTests": 999,
+    "timestamp": 1795022337433,
+    "success": true,
+    "testId": 189
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): un reporte cerrado ya no recibe coincidencias ni se puede editar",
+    "commitTimestamp": 1795022392842,
+    "testId": 189
   }
 ]

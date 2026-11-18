@@ -97,6 +97,31 @@ describe('Estado de un reporte cerrado', () => {
   });
 });
 
+describe('Un reporte cerrado ya no recibe coincidencias ni se puede editar', () => {
+  it('un reporte cerrado ya no se puede editar ni volver a cerrar', async () => {
+    renderDetail(jest.fn().mockResolvedValue({ ...keys, status: 'CLOSED' }));
+
+    expect(await screen.findByText('Cerrado')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Editar reporte' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Ya lo encontré' })).not.toBeInTheDocument();
+  });
+
+  it('un reporte cerrado ya no lleva a ver objetos parecidos', async () => {
+    renderDetail(jest.fn().mockResolvedValue({ ...keys, status: 'CLOSED' }));
+
+    expect(await screen.findByText('Cerrado')).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Ver objetos parecidos' })).not.toBeInTheDocument();
+  });
+
+  it('un reporte recuperado tampoco se puede editar ni cerrar', async () => {
+    renderDetail(jest.fn().mockResolvedValue({ ...keys, status: 'RECOVERED' }));
+
+    expect(await screen.findByText('PR-0007')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Editar reporte' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Ya lo encontré' })).not.toBeInTheDocument();
+  });
+});
+
 describe('Carga del detalle de mi reporte', () => {
   it('muestra los datos en gris mientras carga el reporte', () => {
     renderDetail(jest.fn().mockReturnValue(new Promise(() => {})));

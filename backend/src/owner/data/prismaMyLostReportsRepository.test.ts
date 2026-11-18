@@ -14,7 +14,7 @@ const changes: ValidLostReport = {
   dateTo: new Date('2026-10-18T00:00:00.000Z'),
 };
 
-function mockDatabase(report: { id: string } | null, remainingMatches = 0) {
+function mockDatabase(report: { id: string; status?: string } | null, remainingMatches = 0) {
   const transaction = {
     lostReport: {
       findFirst: jest.fn().mockResolvedValue(report),
@@ -40,7 +40,7 @@ describe('Coincidencias actualizadas al editar un reporte de pérdida', () => {
 
     await expect(
       prismaMyLostReportsRepository.updateMine('owner-1', 'PR-0007', changes),
-    ).resolves.toBe(true);
+    ).resolves.toBe('UPDATED');
 
     expect(transaction.match.deleteMany).toHaveBeenCalledWith({
       where: { lostReportId: 'report-1', status: 'SUGGESTED' },
@@ -74,7 +74,7 @@ describe('Coincidencias actualizadas al editar un reporte de pérdida', () => {
 
     await expect(
       prismaMyLostReportsRepository.updateMine('owner-2', 'PR-0007', changes),
-    ).resolves.toBe(false);
+    ).resolves.toBe('NOT_FOUND');
 
     expect(transaction.match.deleteMany).not.toHaveBeenCalled();
     expect(transaction.lostReport.update).not.toHaveBeenCalled();
@@ -137,5 +137,19 @@ describe('Cerrar mi reporte de pérdida ("Ya lo encontré")', () => {
     await expect(prismaMyLostReportsRepository.closeMine('owner-2', 'PR-0007')).resolves.toBe('NOT_FOUND');
     expect(transaction.lostReport.updateMany).not.toHaveBeenCalled();
     expect(transaction.match.updateMany).not.toHaveBeenCalled();
+  });
+});
+
+describe('Un reporte cerrado o recuperado ya no se puede editar', () => {
+  it.each(['CLOSED', 'RECOVERED'])('no guarda cambios en un reporte %s', async (status) => {
+    const transaction = mockDatabase({ id: 'report-1', status });
+
+    await expect(
+      prismaMyLostReportsRepository.updateMine('owner-1', 'PR-0007', changes),
+    ).resolves.toBe('ALREADY_FINISHED');
+
+    expect(transaction.lostReport.update).not.toHaveBeenCalled();
+    expect(transaction.lostReportPlace.deleteMany).not.toHaveBeenCalled();
+    expect(transaction.match.deleteMany).not.toHaveBeenCalled();
   });
 });

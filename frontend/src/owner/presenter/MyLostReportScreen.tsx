@@ -156,6 +156,8 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
 
   const { report } = state;
   const isClosed = report.status === 'CLOSED';
+  // A closed or recovered report can no longer be edited or closed.
+  const isFinished = isClosed || report.status === 'RECOVERED';
   return (
     <article className="mx-auto max-w-lg space-y-4">
       <Link to="/mis-perdidas" className={BACK_LINK}>
@@ -181,51 +183,55 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
         {report.placeDescription && <InfoRow label="Por dónde" value={report.placeDescription} />}
         <InfoRow label="Fechas" value={`Del ${formatDay(report.dateFrom)} al ${formatDay(report.dateTo)}`} />
       </dl>
-      <SeeMatchesLink reportCode={report.code} />
-      {editError && (
-        <div role="alert">
-          <Alert>{editError}</Alert>
-        </div>
-      )}
-      <Button
-        variant="outline"
-        className="w-full"
-        isLoading={isOpeningEdit}
-        loadingText="Cargando reporte…"
-        onClick={openEdit}
-      >
-        Editar reporte
-      </Button>
-      {closeError && (
-        <div role="alert">
-          <Alert>{closeError}</Alert>
-        </div>
-      )}
-      {isConfirmingClose ? (
-        <section className="space-y-3 rounded-2xl border border-neutral-200 p-4" aria-labelledby="close-report-title">
-          <h2 id="close-report-title" className="font-semibold">
-            ¿Ya encontraste tu objeto?
-          </h2>
-          <p className="text-sm">Si cierras el reporte, ya no recibirás coincidencias ni podrás editarlo.</p>
-          <div className="flex flex-wrap gap-2">
-            <Button variant="outline" onClick={() => setIsConfirmingClose(false)} disabled={isClosing}>
-              Conservar reporte
+      {!isClosed && <SeeMatchesLink reportCode={report.code} />}
+      {!isFinished && (
+        <>
+          {editError && (
+            <div role="alert">
+              <Alert>{editError}</Alert>
+            </div>
+          )}
+          <Button
+            variant="outline"
+            className="w-full"
+            isLoading={isOpeningEdit}
+            loadingText="Cargando reporte…"
+            onClick={openEdit}
+          >
+            Editar reporte
+          </Button>
+          {closeError && (
+            <div role="alert">
+              <Alert>{closeError}</Alert>
+            </div>
+          )}
+          {isConfirmingClose ? (
+            <section className="space-y-3 rounded-2xl border border-neutral-200 p-4" aria-labelledby="close-report-title">
+              <h2 id="close-report-title" className="font-semibold">
+                ¿Ya encontraste tu objeto?
+              </h2>
+              <p className="text-sm">Si cierras el reporte, ya no recibirás coincidencias ni podrás editarlo.</p>
+              <div className="flex flex-wrap gap-2">
+                <Button variant="outline" onClick={() => setIsConfirmingClose(false)} disabled={isClosing}>
+                  Conservar reporte
+                </Button>
+                <Button onClick={closeReport} isLoading={isClosing} loadingText="Cerrando reporte…">
+                  Confirmar cierre
+                </Button>
+              </div>
+            </section>
+          ) : (
+            <Button
+              className="w-full"
+              onClick={() => {
+                setCloseError(null);
+                setIsConfirmingClose(true);
+              }}
+            >
+              Ya lo encontré
             </Button>
-            <Button onClick={closeReport} isLoading={isClosing} loadingText="Cerrando reporte…">
-              Confirmar cierre
-            </Button>
-          </div>
-        </section>
-      ) : (
-        <Button
-          className="w-full"
-          onClick={() => {
-            setCloseError(null);
-            setIsConfirmingClose(true);
-          }}
-        >
-          Ya lo encontré
-        </Button>
+          )}
+        </>
       )}
       {!isClosed && <WelfareCard />}
     </article>

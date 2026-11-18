@@ -12,6 +12,7 @@ function toLostReportToMatch(report: LostReportWithPlaces): LostReportToMatch {
     id: report.id,
     code: report.code,
     ownerId: report.ownerId,
+    status: report.status,
     categoryId: report.categoryId,
     dateFrom: report.dateFrom,
     dateTo: report.dateTo,
@@ -86,7 +87,7 @@ export const prismaMatchingRepository: MatchingRepository = {
       select: {
         id: true,
         lostReportId: true,
-        lostReport: { select: { code: true } },
+        lostReport: { select: { code: true, status: true } },
         foundItem: { select: { code: true } },
       },
     });
@@ -96,6 +97,7 @@ export const prismaMatchingRepository: MatchingRepository = {
           lostReportId: match.lostReportId,
           lostReportCode: match.lostReport.code,
           foundItemCode: match.foundItem.code,
+          lostReportStatus: match.lostReport.status,
         }
       : null;
   },

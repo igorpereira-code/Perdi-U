@@ -67,7 +67,10 @@ export function createMatchesRouter(
       return;
     }
 
-    await suggestSimilarItems(report);
+    // A closed report gets no new matches.
+    if (report.status !== 'CLOSED') {
+      await suggestSimilarItems(report);
+    }
     res.json(await Promise.all((await listMostSimilarFirst(report, user)).map(showMatch)));
   });
 
@@ -90,6 +93,10 @@ export function createMatchesRouter(
     const match = await matching.findOwnMatch(String(req.params.id), user.id);
     if (!match) {
       res.status(404).json({ error: 'Match not found' });
+      return;
+    }
+    if (match.lostReportStatus === 'CLOSED') {
+      res.status(409).json({ error: 'Lost report closed' });
       return;
     }
     await matching.markWillPickUp(match.id);

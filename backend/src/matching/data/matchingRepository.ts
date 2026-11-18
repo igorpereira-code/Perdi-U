@@ -1,11 +1,13 @@
 import type { MatchView } from '@shared/matching';
 import type { FoundItemForMatching, LostReportForMatching } from '../logic/similarity';
-import type { FoundItemStatus } from '@shared/statuses';
+import type { FoundItemStatus, LostReportStatus } from '@shared/statuses';
 
 export type LostReportToMatch = LostReportForMatching & {
   id: string;
   code: string;
   ownerId: string;
+  /** A closed report gets no new matches. */
+  status?: LostReportStatus;
 };
 export type PublishedItem = FoundItemForMatching & { id: string };
 export type Suggestion = { foundItemId: string; similarity: number };
@@ -38,6 +40,8 @@ export type MatchingRepository = {
     lostReportId: string;
     lostReportCode: string;
     foundItemCode: string;
+    /** A match of a closed report can no longer be picked up. */
+    lostReportStatus?: LostReportStatus;
   } | null>;
   /** The owner will pick the item up: Bienestar sees it in pending pickups. */
   markWillPickUp: (matchId: string) => Promise<void>;
