@@ -72,6 +72,7 @@ describe('Traer los objetos parecidos a un reporte', () => {
     await expect(service.publish('HZ-0004')).resolves.toEqual({
       status: 'PUBLISHED',
       matchCount: 2,
+      visibility: 'VISIBLE',
     });
   });
   it('avisa con un error si no se pudieron cargar los objetos parecidos', async () => {

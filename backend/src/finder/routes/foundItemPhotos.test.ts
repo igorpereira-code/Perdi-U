@@ -3,6 +3,7 @@ import { createApp } from '../../app';
 import { SAMPLE_USERS } from '../../core/sampleUsers';
 import type { FoundItemPhotoStorage } from '../data/foundItemPhotoStorage';
 import type { FoundItemPhotoAccess, FoundItemsRepository } from '../data/foundItemsRepository';
+import { fakeNotificationsRepository } from '../../core/data/fakeNotificationsRepository';
 
 // Imagen mínima de prueba. No se accede a Storage ni a la base de datos reales.
 const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScLbtAAAAABJRU5ErkJggg==', 'base64');
@@ -12,6 +13,9 @@ const created = { code: 'HZ-7325', status: 'PENDING_DROP_OFF' };
 
 function setup() {
   const foundItems: jest.Mocked<FoundItemsRepository> = {
+    cancelPending: jest.fn(),
+    getEditable: jest.fn(),
+    updatePending: jest.fn(),
     listMine: jest.fn().mockResolvedValue([]),
     getMineByCode: jest.fn().mockResolvedValue(null),
     getCatalogs: jest.fn().mockResolvedValue({
@@ -28,13 +32,13 @@ function setup() {
     remove: jest.fn().mockResolvedValue(undefined),
     createSignedUrl: jest.fn().mockResolvedValue('https://storage.example/foto-firmada'),
   };
-  return { foundItems, photos, app: createApp({ foundItems, foundItemPhotos: photos }) };
+  return { foundItems, photos, app: createApp({ notifications: fakeNotificationsRepository(), foundItems, foundItemPhotos: photos }) };
 }
 
 describe('Fotografía opcional en el registro del reporte', () => {
   it('exige autenticación antes de subir fotografías', async () => {
     const { foundItems, photos } = setup();
-    const res = await request(createApp({ foundItems, foundItemPhotos: photos, allowSampleUsers: false }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems, foundItemPhotos: photos, allowSampleUsers: false }))
       .post('/found-items').field('report', JSON.stringify(report))
       .attach('photo', png, { filename: 'foto.png', contentType: 'image/png' });
 
@@ -216,7 +220,7 @@ describe('Consulta autorizada de fotografías (GET /found-items/:code/photo)', (
 
   it('rechaza consultas sin sesión antes de buscar el reporte', async () => {
     const { foundItems, photos } = setup();
-    const res = await request(createApp({ foundItems, foundItemPhotos: photos, allowSampleUsers: false }))
+    const res = await request(createApp({ notifications: fakeNotificationsRepository(), foundItems, foundItemPhotos: photos, allowSampleUsers: false }))
       .get('/found-items/HZ-7325/photo');
 
     expect(res.status).toBe(401);

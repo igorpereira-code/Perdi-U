@@ -67,7 +67,7 @@ export function ClaimItem({ itemCode, myLostReportsService, matchesService, onCl
     return <p role="status" className="text-sm text-neutral-500">Cargando tus reportes…</p>;
   }
 
-  const activeReports = reports.filter((report) => report.status !== 'RECOVERED');
+  const activeReports = reports.filter((report) => !['RECOVERED', 'CLOSED'].includes(report.status));
   if (activeReports.length === 0) {
     return (
       <div className="space-y-2">

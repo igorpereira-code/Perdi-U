@@ -1,7 +1,10 @@
 import type { NotificationsRepository, StoredNotification } from './notificationsRepository';
 
 /** In-memory notifications repository for tests. It never touches the shared database. */
-export function fakeNotificationsRepository(initial: StoredNotification[] = []) {
+export function fakeNotificationsRepository(
+  initial: StoredNotification[] = [],
+  roleRecipients: { WELFARE: string[] } = { WELFARE: [] },
+) {
   // A copy, so one test does not change the notifications of the next one.
   const savedNotifications = initial.map((notification) => ({ ...notification }));
 
@@ -18,6 +21,11 @@ export function fakeNotificationsRepository(initial: StoredNotification[] = []) 
         createdAt: new Date(),
         readAt: null,
       });
+    },
+    notifyRole: async (role, { message, link = null }) => {
+      for (const userId of roleRecipients[role]) {
+        await repository.notify({ userId, message, link });
+      }
     },
     markRead: async (id, userId) => {
       const notification = savedNotifications.find(

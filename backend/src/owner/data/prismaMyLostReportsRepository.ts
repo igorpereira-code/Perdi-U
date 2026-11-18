@@ -57,4 +57,76 @@ export const prismaMyLostReportsRepository: MyLostReportsRepository = {
     const report = await db().lostReport.findFirst({ where: { ownerId, code }, select: myLostReportSelect });
     return report ? toMyLostReport(report) : null;
   },
+  findEditable: (ownerId, code) =>
+    db().lostReport.findFirst({
+      where: { ownerId, code },
+      select: {
+        description: true,
+        categoryId: true,
+        placeDescription: true,
+        dateFrom: true,
+        dateTo: true,
+        places: { select: { placeId: true, classroomId: true }, orderBy: { id: 'asc' } },
+      },
+    }),
+  /** Updates the data and replaces the places in one transaction, so nothing is left half saved. */
+  updateMine: (ownerId, code, changes) =>
+    db().$transaction(async (tx) => {
+      const report = await tx.lostReport.findFirst({
+        where: { ownerId, code },
+        select: { id: true, status: true },
+      });
+      if (!report) {
+        return 'NOT_FOUND';
+      }
+      if (report.status === 'RECOVERED' || report.status === 'CLOSED') {
+        return 'ALREADY_FINISHED';
+      }
+      await tx.lostReportPlace.deleteMany({ where: { lostReportId: report.id } });
+      await tx.lostReport.update({
+        where: { id: report.id },
+        data: {
+          description: changes.description,
+          categoryId: changes.categoryId,
+          placeDescription: changes.placeDescription,
+          dateFrom: changes.dateFrom,
+          dateTo: changes.dateTo,
+          places: {
+            create: changes.places.map(({ placeId, classroomId }) => ({ placeId, classroomId })),
+          },
+        },
+      });
+      // Suggestions were computed with the old data: drop the unanswered ones so the
+      // matches screen recalculates them. Answered matches (pick up, dismissed) stay.
+      await tx.match.deleteMany({ where: { lostReportId: report.id, status: 'SUGGESTED' } });
+      const remainingMatches = await tx.match.count({ where: { lostReportId: report.id } });
+      if (remainingMatches === 0) {
+        await tx.lostReport.updateMany({
+          where: { id: report.id, status: 'HAS_MATCHES' },
+          data: { status: 'SEARCHING' },
+        });
+      }
+      return 'UPDATED';
+    }),
+
+  closeMine: (ownerId, code) =>
+    db().$transaction(async (tx) => {
+      const report = await tx.lostReport.findFirst({ where: { ownerId, code }, select: { id: true } });
+      if (!report) {
+        return 'NOT_FOUND';
+      }
+      const closing = await tx.lostReport.updateMany({
+        where: { id: report.id, status: { notIn: ['RECOVERED', 'CLOSED'] } },
+        data: { status: 'CLOSED' },
+      });
+      if (closing.count === 0) {
+        return 'ALREADY_FINISHED';
+      }
+      // The owner will no longer pick it up: the item is free for other reports.
+      await tx.match.updateMany({
+        where: { lostReportId: report.id, status: 'WILL_PICK_UP' },
+        data: { status: 'DISMISSED', respondedAt: new Date() },
+      });
+      return 'CLOSED';
+    }),
 };

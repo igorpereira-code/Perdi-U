@@ -1,16 +1,38 @@
 import { Router } from 'express';
 import { getCurrentUser } from '../../core/currentUser';
-import type { MyLostReport, MyLostReportsRepository } from '../data/myLostReportsRepository';
+import type { FoundItemCatalogs } from '../../finder/data/foundItemsRepository';
+import type {
+  EditableLostReport,
+  MyLostReport,
+  MyLostReportsRepository,
+} from '../data/myLostReportsRepository';
+import { validateLostReport } from '../logic/validateLostReport';
 
-function toMyLostReportView(report: MyLostReport) {
-  return {
-    ...report,
-    dateFrom: report.dateFrom.toISOString().slice(0, 10),
-    dateTo: report.dateTo.toISOString().slice(0, 10),
-  };
+const NOT_FOUND = 'No encontramos este reporte.';
+const NOT_EDITABLE = 'Este reporte ya fue cerrado o recuperado. Ya no se puede editar.';
+
+/** The day of a date, as "YYYY-MM-DD". */
+function toDay(date: Date): string {
+  return date.toISOString().slice(0, 10);
 }
 
-export function createMyLostReportsRouter(reports: MyLostReportsRepository): Router {
+/** The code as the owner may have typed it: " pr-0007 " is PR-0007. */
+function readCode(code: unknown): string {
+  return String(code).trim().toUpperCase();
+}
+
+function toMyLostReportView(report: MyLostReport) {
+  return { ...report, dateFrom: toDay(report.dateFrom), dateTo: toDay(report.dateTo) };
+}
+
+function toEditableView(report: EditableLostReport) {
+  return { ...report, dateFrom: toDay(report.dateFrom), dateTo: toDay(report.dateTo) };
+}
+
+export function createMyLostReportsRouter(
+  reports: MyLostReportsRepository,
+  getCatalogs: () => Promise<FoundItemCatalogs>,
+): Router {
   const router = Router();
 
   router.get('/my-lost-reports', async (req, res) => {
@@ -25,15 +47,82 @@ export function createMyLostReportsRouter(reports: MyLostReportsRepository): Rou
   router.get('/my-lost-reports/:code', async (req, res) => {
     res.set('Cache-Control', 'private, no-store');
     try {
-      const code = String(req.params.code).trim().toUpperCase();
-      const report = await reports.findMine(getCurrentUser(req).id, code);
+      const report = await reports.findMine(getCurrentUser(req).id, readCode(req.params.code));
       if (!report) {
-        res.status(404).json({ error: 'No encontramos este reporte.' });
+        res.status(404).json({ error: NOT_FOUND });
         return;
       }
       res.json(toMyLostReportView(report));
     } catch {
       res.status(503).json({ error: 'No se pudo cargar el reporte. Intenta nuevamente.' });
+    }
+  });
+
+  router.get('/my-lost-reports/:code/edit', async (req, res) => {
+    res.set('Cache-Control', 'private, no-store');
+    try {
+      const ownerId = getCurrentUser(req).id;
+      const code = readCode(req.params.code);
+      const mine = await reports.findMine(ownerId, code);
+      if (!mine) {
+        res.status(404).json({ error: NOT_FOUND });
+        return;
+      }
+      if (mine.status === 'RECOVERED' || mine.status === 'CLOSED') {
+        res.status(409).json({ error: NOT_EDITABLE });
+        return;
+      }
+      const report = await reports.findEditable(ownerId, code);
+      if (!report) {
+        res.status(404).json({ error: NOT_FOUND });
+        return;
+      }
+      res.json(toEditableView(report));
+    } catch {
+      res.status(503).json({ error: 'No se pudo cargar el reporte para editar. Intenta nuevamente.' });
+    }
+  });
+
+  router.patch('/my-lost-reports/:code', async (req, res) => {
+    try {
+      const result = validateLostReport(req.body, await getCatalogs());
+      if (!result.valid) {
+        res.status(400).json({ error: 'Revisa los datos del reporte.', errors: result.errors });
+        return;
+      }
+      const updated = await reports.updateMine(
+        getCurrentUser(req).id,
+        readCode(req.params.code),
+        result.data,
+      );
+      if (updated === 'NOT_FOUND') {
+        res.status(404).json({ error: NOT_FOUND });
+        return;
+      }
+      if (updated === 'ALREADY_FINISHED') {
+        res.status(409).json({ error: NOT_EDITABLE });
+        return;
+      }
+      res.json({ updated: true });
+    } catch {
+      res.status(503).json({ error: 'No se pudieron guardar los cambios. Intenta nuevamente.' });
+    }
+  });
+
+  router.post('/my-lost-reports/:code/close', async (req, res) => {
+    try {
+      const result = await reports.closeMine(getCurrentUser(req).id, readCode(req.params.code));
+      if (result === 'NOT_FOUND') {
+        res.status(404).json({ error: NOT_FOUND });
+        return;
+      }
+      if (result === 'ALREADY_FINISHED') {
+        res.status(409).json({ error: 'Este reporte ya fue cerrado o recuperado.' });
+        return;
+      }
+      res.json({ closed: true });
+    } catch {
+      res.status(503).json({ error: 'No se pudo cerrar el reporte. Intenta nuevamente.' });
     }
   });
 

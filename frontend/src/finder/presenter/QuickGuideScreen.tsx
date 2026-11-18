@@ -8,16 +8,16 @@ type QuickGuideScreenProps = {
 };
 
 export function QuickGuideScreen({ guideService, onSeen }: QuickGuideScreenProps) {
-  const savingRef = useRef(false);
-  const [saving, setSaving] = useState(false);
+  const isSavingRef = useRef(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function finishGuide() {
-    if (savingRef.current) {
+  async function markGuideSeenAndContinue() {
+    if (isSavingRef.current) {
       return;
     }
-    savingRef.current = true;
-    setSaving(true);
+    isSavingRef.current = true;
+    setIsSaving(true);
     setError(null);
 
     try {
@@ -26,10 +26,10 @@ export function QuickGuideScreen({ guideService, onSeen }: QuickGuideScreenProps
     } catch {
       setError(GUIDE_SAVE_ERROR);
     } finally {
-      savingRef.current = false;
-      setSaving(false);
+      isSavingRef.current = false;
+      setIsSaving(false);
     }
   }
 
-  return <QuickGuide onSkip={finishGuide} onComplete={finishGuide} saving={saving} error={error} />;
+  return <QuickGuide onSkip={markGuideSeenAndContinue} onComplete={markGuideSeenAndContinue} isSaving={isSaving} error={error} />;
 }

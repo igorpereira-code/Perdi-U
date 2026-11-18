@@ -16,5 +16,5 @@ export type MatchView = {
 
 /** What Bienestar gets after trying to publish a found item. */
 export type PublishResult =
-  | { status: 'PUBLISHED'; matchCount: number }
+  | { status: 'PUBLISHED'; matchCount: number; visibility: 'VISIBLE' | 'HIDDEN' }
   | { status: 'NOT_RECEIVED' };

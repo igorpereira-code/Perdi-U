@@ -82,6 +82,38 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
     expect(items[0].publishedById).toBe(SAMPLE_USERS.welfare.id);
   });
 
+  it('permite publicar un objeto oculto sin quitarlo de las coincidencias', async () => {
+    const { repository, items, matches } = fakeMatchingRepository([lostKeys], [keys]);
+
+    const res = await request(
+      createApp({
+        matching: repository,
+        settings: fakeSettingsRepository(),
+        notifications: fakeNotificationsRepository(),
+      }),
+    )
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare')
+      .send({ visibility: 'HIDDEN' });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1, visibility: 'HIDDEN' });
+    expect(items[0].visibility).toBe('HIDDEN');
+    expect(matches).toHaveLength(1);
+  });
+
+  it('rechaza una visibilidad desconocida', async () => {
+    const { repository } = fakeMatchingRepository([], [keys]);
+
+    const res = await request(createApp({ matching: repository, settings: fakeSettingsRepository() }))
+      .post('/found-items/HZ-0004/publish')
+      .set('x-sample-user', 'welfare')
+      .send({ visibility: 'PRIVATE' });
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ error: 'Invalid visibility' });
+  });
+
   it('cuenta cuántos reportes de pérdida activos se parecen al objeto publicado', async () => {
     const reports = [
       lostKeys,
@@ -100,7 +132,7 @@ describe('Publicar un objeto encontrado (POST /found-items/:code/publish)', () =
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
-    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1 });
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1, visibility: 'VISIBLE' });
   });
 
   it('deja el objeto como posible coincidencia en los reportes parecidos', async () => {
@@ -149,7 +181,7 @@ describe('Al publicar, las nuevas coincidencias respetan el nivel mínimo', () =
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
-    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1 });
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 1, visibility: 'VISIBLE' });
     expect(matches.map((match) => match.lostReportId)).toEqual(['report-3']);
   });
 
@@ -173,7 +205,7 @@ describe('Al publicar, las nuevas coincidencias respetan el nivel mínimo', () =
       .post('/found-items/HZ-0004/publish')
       .set('x-sample-user', 'welfare');
 
-    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 2 });
+    expect(res.body).toEqual({ code: 'HZ-0004', matchCount: 2, visibility: 'VISIBLE' });
   });
 });
 

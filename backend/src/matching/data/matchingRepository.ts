@@ -1,17 +1,24 @@
 import type { MatchView } from '@shared/matching';
 import type { FoundItemForMatching, LostReportForMatching } from '../logic/similarity';
-import type { FoundItemStatus } from '@shared/statuses';
+import type { FoundItemStatus, LostReportStatus } from '@shared/statuses';
 
 export type LostReportToMatch = LostReportForMatching & {
   id: string;
   code: string;
   ownerId: string;
+  /** A closed report gets no new matches. */
+  status?: LostReportStatus;
 };
 export type PublishedItem = FoundItemForMatching & { id: string };
 export type Suggestion = { foundItemId: string; similarity: number };
 export type FoundItemToPublish = PublishedItem & { code: string; status: FoundItemStatus };
-/** CLAIMED: Bienestar will see the pickup. REPORT_RECOVERED: the report is closed, so nothing was saved. */
-export type ClaimResult = 'CLAIMED' | 'REPORT_RECOVERED';
+export type PublishedVisibility = 'VISIBLE' | 'HIDDEN';
+
+/**
+ * CLAIMED: Bienestar will see the pickup. REPORT_RECOVERED / REPORT_CLOSED: the report is no longer
+ * active (the owner already got it back, or said they found it), so nothing was saved.
+ */
+export type ClaimResult = 'CLAIMED' | 'REPORT_RECOVERED' | 'REPORT_CLOSED';
 
 /** Where lost reports, published items and matches are read and saved. Tests use a fake one. */
 export type MatchingRepository = {
@@ -28,7 +35,14 @@ export type MatchingRepository = {
   findOwnMatch: (
     matchId: string,
     ownerId: string,
-  ) => Promise<{ id: string; lostReportId: string } | null>;
+  ) => Promise<{
+    id: string;
+    lostReportId: string;
+    lostReportCode: string;
+    foundItemCode: string;
+    /** A match of a closed report can no longer be picked up. */
+    lostReportStatus?: LostReportStatus;
+  } | null>;
   /** The owner will pick the item up: Bienestar sees it in pending pickups. */
   markWillPickUp: (matchId: string) => Promise<void>;
 
@@ -42,8 +56,12 @@ export type MatchingRepository = {
   dismiss: (matchId: string) => Promise<void>;
 
   findFoundItemByCode: (code: string) => Promise<FoundItemToPublish | null>;
-  /** The item becomes visible to the community. */
-  publish: (itemId: string, publishedById: string) => Promise<void>;
+  /** The item is published with the visibility chosen by Bienestar. */
+  publish: (
+    itemId: string,
+    publishedById: string,
+    visibility: PublishedVisibility,
+  ) => Promise<void>;
   /** Lost reports whose owners are still looking: "Buscando" or "Con coincidencias". */
   listActiveLostReports: () => Promise<LostReportToMatch[]>;
 };

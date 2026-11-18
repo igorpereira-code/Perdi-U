@@ -4,12 +4,17 @@ import type { MatchStatus } from '@shared/statuses';
 import { getCurrentUser, type CurrentUser } from '../../core/currentUser';
 import type { LostReportToMatch, MatchingRepository } from '../data/matchingRepository';
 import { findSimilarItems } from '../logic/findSimilarItems';
+import type { NotificationsRepository } from '../../core/data/notificationsRepository';
 import { calculateSimilarityScore } from '../logic/similarity';
 import type { SettingsRepository } from '../../core/data/settingsRepository';
+import type { FoundItemPhotoStorage } from '../../finder/data/foundItemPhotoStorage';
+import { signPhotoUrl } from '../../finder/data/signPhotoUrl';
 
 export function createMatchesRouter(
   matching: MatchingRepository,
   settings: SettingsRepository,
+  notifications: NotificationsRepository,
+  photos: Pick<FoundItemPhotoStorage, 'createSignedUrl'>,
 ): Router {
   const router = Router();
 
@@ -29,6 +34,11 @@ export function createMatchesRouter(
       report.id,
       similarItems.map(({ item, similarity }) => ({ foundItemId: item.id, similarity })),
     );
+  }
+
+  async function showMatch(match: MatchView): Promise<MatchView> {
+    const photoUrl = await signPhotoUrl(photos, match.foundItem.photoUrl);
+    return { ...match, foundItem: { ...match.foundItem, photoUrl } };
   }
 
   /** Only Bienestar sees the photo and the data of an item that is not visible. */
@@ -57,8 +67,11 @@ export function createMatchesRouter(
       return;
     }
 
-    await suggestSimilarItems(report);
-    res.json(await listMostSimilarFirst(report, user));
+    // A closed report gets no new matches.
+    if (report.status !== 'CLOSED') {
+      await suggestSimilarItems(report);
+    }
+    res.json(await Promise.all((await listMostSimilarFirst(report, user)).map(showMatch)));
   });
 
   /** The owner answers a match ("Pasaré a recoger" or "No es mío"). Only the owner of the report can. */
@@ -75,7 +88,28 @@ export function createMatchesRouter(
       res.json({ status });
     };
 
-  router.post('/matches/:id/pick-up', answerMatch('WILL_PICK_UP', matching.markWillPickUp));
+  router.post('/matches/:id/pick-up', async (req, res) => {
+    const user = getCurrentUser(req);
+    const match = await matching.findOwnMatch(String(req.params.id), user.id);
+    if (!match) {
+      res.status(404).json({ error: 'Match not found' });
+      return;
+    }
+    if (match.lostReportStatus === 'CLOSED') {
+      res.status(409).json({ error: 'Lost report closed' });
+      return;
+    }
+    await matching.markWillPickUp(match.id);
+    try {
+      await notifications.notifyRole('WELFARE', {
+        message: `${user.name} pasará a recoger el objeto ${match.foundItemCode} del reporte ${match.lostReportCode}.`,
+        link: '/bienestar',
+      });
+    } catch {
+      // El recojo ya fue guardado: una falla del aviso no debe revertir la decisión del propietario.
+    }
+    res.json({ status: 'WILL_PICK_UP' });
+  });
   router.post('/matches/:id/dismiss', answerMatch('DISMISSED', matching.dismiss));
 
   /**
@@ -103,6 +137,10 @@ export function createMatchesRouter(
     const result = await matching.claimItem(report.id, item.id, calculateSimilarityScore(report, item));
     if (result === 'REPORT_RECOVERED') {
       res.status(409).json({ error: 'Lost report already recovered' });
+      return;
+    }
+    if (result === 'REPORT_CLOSED') {
+      res.status(409).json({ error: 'Lost report closed' });
       return;
     }
     res.json({ status: 'WILL_PICK_UP' });

@@ -1,6 +1,7 @@
 import type { MatchView } from '@shared/matching';
 import type { LostReportToMatch, MatchingRepository, PublishedItem } from './matchingRepository';
 import type { FoundItemStatus, LostReportStatus } from '@shared/statuses';
+import type { PublishedVisibility } from './matchingRepository';
 
 /** status is PUBLISHED when not given. */
 export type FakeItem = PublishedItem & {
@@ -8,7 +9,7 @@ export type FakeItem = PublishedItem & {
   photoUrl: string | null;
   category: string;
   status?: FoundItemStatus;
-  visibility?: 'VISIBLE' | 'HIDDEN';
+  visibility?: PublishedVisibility;
   publishedById?: string;
 };
 
@@ -27,7 +28,10 @@ export function fakeMatchingRepository(initialReports: FakeReport[], initialItem
       reports.find((report) => report.code === code && report.ownerId === ownerId) ?? null,
 
     findLostReportByCode: async (code) =>
-      reports.find((report) => report.code === code && report.status !== 'RECOVERED') ?? null,
+      reports.find(
+        (report) =>
+          report.code === code && report.status !== 'RECOVERED' && report.status !== 'CLOSED',
+      ) ?? null,
 
     listPublishedItems: async () => items.filter((item) => statusOf(item) === 'PUBLISHED'),
 
@@ -57,7 +61,13 @@ export function fakeMatchingRepository(initialReports: FakeReport[], initialItem
       const match = matches.find((m) => m.id === matchId);
       const report = reports.find((r) => r.id === match?.lostReportId);
       return match && report?.ownerId === ownerId
-        ? { id: match.id, lostReportId: match.lostReportId }
+        ? {
+            id: match.id,
+            lostReportId: match.lostReportId,
+            lostReportCode: report.code,
+            foundItemCode: match.foundItem.code,
+            lostReportStatus: report.status,
+          }
         : null;
     },
 
@@ -69,6 +79,9 @@ export function fakeMatchingRepository(initialReports: FakeReport[], initialItem
       const report = reports.find((r) => r.id === lostReportId);
       if (!report || report.status === 'RECOVERED') {
         return 'REPORT_RECOVERED';
+      }
+      if (report.status === 'CLOSED') {
+        return 'REPORT_CLOSED';
       }
       const { code, description, photoUrl, category } = itemById(foundItemId);
       const existing = matches.find((m) => m.lostReportId === lostReportId && m.foundItem.code === code);
@@ -96,11 +109,12 @@ export function fakeMatchingRepository(initialReports: FakeReport[], initialItem
       return item ? { ...item, status: statusOf(item) } : null;
     },
 
-    publish: async (itemId, publishedById) => {
+    publish: async (itemId, publishedById, visibility) => {
       const item = items.find((i) => i.id === itemId);
       if (item) {
         item.status = 'PUBLISHED';
         item.publishedById = publishedById;
+        item.visibility = visibility;
       }
     },
 

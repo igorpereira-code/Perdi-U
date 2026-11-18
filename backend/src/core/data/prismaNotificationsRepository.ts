@@ -11,6 +11,12 @@ export const prismaNotificationsRepository: NotificationsRepository = {
   notify: async ({ userId, message, link = null }) => {
     await db().notification.create({ data: { userId, message, link } });
   },
+  notifyRole: async (role, { message, link = null }) => {
+    const recipients = await db().user.findMany({ where: { role }, select: { id: true } });
+    await db().notification.createMany({
+      data: recipients.map(({ id: userId }) => ({ userId, message, link })),
+    });
+  },
   markRead: async (id, userId) => {
     const mine = await db().notification.findFirst({ where: { id, userId }, select: { id: true } });
     if (!mine) {
