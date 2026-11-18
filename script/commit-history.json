@@ -4503,12 +4503,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "b355144eebcb4bab26fc4475877c3c0bce3915c5",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T23:19:59.000Z",
       "message": "chore: integra los últimos cambios de core-matching en core-matching-hu-15",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/b355144eebcb4bab26fc4475877c3c0bce3915c5"
     },
     "stats": {
       "total": 0,
@@ -8698,6 +8698,25 @@
     },
     "coverage": 81.53,
     "test_count": 952,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-18T16:11:33.000Z",
+      "message": "feat(owner): editar un reporte de pérdida activo",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 620,
+      "additions": 574,
+      "deletions": 46,
+      "date": "2026-11-18"
+    },
+    "coverage": 81.48,
+    "test_count": 964,
     "failed_tests": 0,
     "conclusion": "success"
   }

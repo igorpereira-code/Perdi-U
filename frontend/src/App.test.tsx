@@ -97,7 +97,12 @@ function renderAt(
     ({ list: jest.fn().mockResolvedValue([]), getByCode: jest.fn().mockResolvedValue(null) } as CatalogService);
   const myLostReportsService =
     ownerOverrides.myLostReportsService ??
-    ({ listMine: jest.fn().mockResolvedValue([]), getMine: jest.fn().mockResolvedValue(null) } as MyLostReportsService);
+    ({
+      listMine: jest.fn().mockResolvedValue([]),
+      getMine: jest.fn().mockResolvedValue(null),
+      getEditable: jest.fn(),
+      update: jest.fn(),
+    } as MyLostReportsService);
     const rendered = render(
     <MemoryRouter initialEntries={[path]}>
       <App
@@ -602,6 +607,8 @@ describe('Reclamar un objeto desde su detalle', () => {
       myLostReportsService: {
         listMine: jest.fn().mockResolvedValue([lostBackpack]),
         getMine: jest.fn().mockResolvedValue(null),
+        getEditable: jest.fn(),
+        update: jest.fn(),
       } as MyLostReportsService,
     });
 

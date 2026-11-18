@@ -97,7 +97,7 @@ export function createApp({
   app.use(createReceivedItemsRouter(welfare, () => foundItems.getCatalogs(), foundItemPhotos));
   app.use(createLostReportsRouter(lostReports, () => foundItems.getCatalogs(), foundItemPhotos));
   app.use(createCatalogRouter(catalog));
-  app.use(createMyLostReportsRouter(myLostReports));
+  app.use(createMyLostReportsRouter(myLostReports, () => foundItems.getCatalogs()));
   app.use(createNotificationsRouter(notifications));
   app.use(createAdminUsersRouter(adminUsers));
   app.use(createAdminCatalogRouter(adminCatalog));

@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import type { FoundItemCatalogs } from '../../finder/data/foundItemsService';
+import type { LostReportPayload } from '../data/lostReportsService';
 import { LostReportForm } from './LostReportForm';
 
 const catalogs: FoundItemCatalogs = {
@@ -329,5 +330,49 @@ describe('Volver a corregir desde el resumen', () => {
     const summary = screen.getByRole('region', { name: 'Resumen del reporte' });
     expect(within(summary).getByText('Llaves con llavero rojo')).toBeInTheDocument();
     expect(onCreate).not.toHaveBeenCalled();
+  });
+});
+
+describe('Editar el reporte', () => {
+  const initial: LostReportPayload = {
+    description: 'Llaves con llavero azul',
+    categoryId: 47,
+    places: [{ placeId: 83, classroomId: 216 }],
+    placeDescription: 'Cerca de la cafetería',
+    dateFrom: '2026-10-17',
+    dateTo: '2026-10-18',
+  };
+
+  function renderEdit(editInitial = initial, onSave = jest.fn().mockResolvedValue(undefined)) {
+    render(
+      <MemoryRouter>
+        <LostReportForm catalogs={catalogs} edit={{ initial: editInitial, onSave }} />
+      </MemoryRouter>,
+    );
+    return onSave;
+  }
+
+  it('viene lleno, no pide la foto ni muestra el resumen y guarda los cambios directamente', async () => {
+    const onSave = renderEdit();
+
+    expect(screen.getByRole('heading', { name: 'Editar reporte' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Descripción de tu objeto')).toHaveValue('Llaves con llavero azul');
+    expect(screen.getByRole('radio', { name: 'Llaves' })).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByRole('button', { name: 'Bloque A' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByLabelText(/Aula en Bloque A/)).toHaveValue('216');
+    expect(screen.queryByLabelText('Foto del objeto')).not.toBeInTheDocument();
+
+    await userEvent.clear(screen.getByLabelText('Descripción de tu objeto'));
+    await userEvent.type(screen.getByLabelText('Descripción de tu objeto'), 'Llaves con llavero rojo');
+    await userEvent.click(screen.getByRole('button', { name: 'Guardar cambios' }));
+
+    expect(onSave).toHaveBeenCalledWith({ ...initial, description: 'Llaves con llavero rojo' });
+    expect(screen.queryByRole('region', { name: 'Resumen del reporte' })).not.toBeInTheDocument();
+  });
+
+  it('si el reporte no tenía lugares, llega marcado "No sé dónde lo perdí"', () => {
+    renderEdit({ ...initial, places: [], placeDescription: null });
+
+    expect(screen.getByRole('checkbox', { name: 'No sé dónde lo perdí' })).toBeChecked();
   });
 });

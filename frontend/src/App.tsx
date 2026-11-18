@@ -198,7 +198,10 @@ export default function App({
       <Route
         path="/mis-perdidas/:code"
         element={renderSignedInPage(() => (
-          <MyLostReportScreen myLostReportsService={myLostReportsService} />
+          <MyLostReportScreen
+            myLostReportsService={myLostReportsService}
+            foundItemsService={foundItemsService}
+          />
         ))}
       />
       <Route

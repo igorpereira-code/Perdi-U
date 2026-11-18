@@ -15,6 +15,8 @@ type ChosenPlace = { placeId: number; classroomId: number | null };
 type LostReportFormProps = {
   catalogs: FoundItemCatalogs;
   onCreate?: LostReportsService['create'];
+  /** Edits an existing report: it comes filled, without photo or summary, and saves directly. */
+  edit?: { initial: LostReportPayload; onSave: (changes: LostReportPayload) => Promise<void> };
 };
 
 const CHIP = 'rounded-full border px-3.5 py-1.5 text-sm transition';
@@ -41,15 +43,18 @@ function FieldError({ text }: { text?: string }) {
   );
 }
 
-export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
-  const [description, setDescription] = useState('');
+export function LostReportForm({ catalogs, onCreate, edit }: LostReportFormProps) {
+  const initial = edit?.initial;
+  const [description, setDescription] = useState(initial?.description ?? '');
   const [photo, setPhoto] = useState<File | null>(null);
-  const [category, setCategory] = useState('');
-  const [places, setPlaces] = useState<ChosenPlace[]>([]);
-  const [placeDescription, setPlaceDescription] = useState('');
-  const [placeUnknown, setPlaceUnknown] = useState(false);
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
+  const [category, setCategory] = useState(initial ? String(initial.categoryId) : '');
+  const [places, setPlaces] = useState<ChosenPlace[]>(initial?.places ?? []);
+  const [placeDescription, setPlaceDescription] = useState(initial?.placeDescription ?? '');
+  const [placeUnknown, setPlaceUnknown] = useState(
+    initial !== undefined && initial.places.length === 0 && !initial.placeDescription,
+  );
+  const [dateFrom, setDateFrom] = useState(initial?.dateFrom ?? '');
+  const [dateTo, setDateTo] = useState(initial?.dateTo ?? '');
   const [errors, setErrors] = useState<LostReportFormErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -72,23 +77,35 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
     );
   }
 
-  /** Checks the data and shows the summary. Nothing is sent yet. */
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  /** Checks the data. A new report goes to the summary; an edited one is saved directly. */
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitError(null);
     const nextErrors = validateLostReportForm({ description, category, dateFrom, dateTo });
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0 || !onCreate) {
+    if (Object.keys(nextErrors).length > 0 || (!onCreate && !edit)) {
       return;
     }
-    setReportToReview({
+    const report: LostReportPayload = {
       description: description.trim(),
       categoryId: Number(category),
       places: placeUnknown ? [] : places,
       placeDescription: placeUnknown ? null : placeDescription.trim() || null,
       dateFrom,
       dateTo,
-    });
+    };
+    if (!edit) {
+      setReportToReview(report);
+      return;
+    }
+    setSubmitting(true);
+    try {
+      await edit.onSave(report);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'No se pudieron guardar los cambios. Intenta nuevamente.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   /** The report is only sent when the owner confirms the summary. */
@@ -121,7 +138,7 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
         onSubmit={handleSubmit}
       >
         <h1 id="lost-report-title" className="text-lg font-semibold text-blue-700">
-          Reportar objeto perdido
+          {edit ? 'Editar reporte' : 'Reportar objeto perdido'}
         </h1>
         {submitError && <div role="alert"><Alert>{submitError}</Alert></div>}
 
@@ -137,13 +154,15 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
             />
           </Field>
 
-          <fieldset className="space-y-2">
-            <legend className="text-sm font-medium text-neutral-700">
-              Foto de referencia <span className="font-normal text-neutral-500">(opcional)</span>
-            </legend>
-            <FoundItemPhotoPicker photo={photo} onChange={setPhoto} />
-            <p className="text-xs text-neutral-500">JPEG, PNG o WebP, máximo 5 MiB.</p>
-          </fieldset>
+          {!edit && (
+            <fieldset className="space-y-2">
+              <legend className="text-sm font-medium text-neutral-700">
+                Foto de referencia <span className="font-normal text-neutral-500">(opcional)</span>
+              </legend>
+              <FoundItemPhotoPicker photo={photo} onChange={setPhoto} />
+              <p className="text-xs text-neutral-500">JPEG, PNG o WebP, máximo 5 MiB.</p>
+            </fieldset>
+          )}
 
           <fieldset className="space-y-2">
             <legend className="text-sm font-medium text-neutral-700">Categoría</legend>
@@ -267,9 +286,20 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
             </div>
           </fieldset>
 
-          <Button type="submit" className="w-full">
-            Revisar reporte
-          </Button>
+          {edit ? (
+            <Button
+              type="submit"
+              className="w-full"
+              isLoading={submitting}
+              loadingText="Guardando cambios…"
+            >
+              Guardar cambios
+            </Button>
+          ) : (
+            <Button type="submit" className="w-full">
+              Revisar reporte
+            </Button>
+          )}
         </fieldset>
       </form>
       {reportToReview && (

@@ -57,4 +57,39 @@ export const prismaMyLostReportsRepository: MyLostReportsRepository = {
     const report = await db().lostReport.findFirst({ where: { ownerId, code }, select: myLostReportSelect });
     return report ? toMyLostReport(report) : null;
   },
+  findEditable: (ownerId, code) =>
+    db().lostReport.findFirst({
+      where: { ownerId, code },
+      select: {
+        description: true,
+        categoryId: true,
+        placeDescription: true,
+        dateFrom: true,
+        dateTo: true,
+        places: { select: { placeId: true, classroomId: true }, orderBy: { id: 'asc' } },
+      },
+    }),
+  /** Updates the data and replaces the places in one transaction, so nothing is left half saved. */
+  updateMine: (ownerId, code, changes) =>
+    db().$transaction(async (tx) => {
+      const report = await tx.lostReport.findFirst({ where: { ownerId, code }, select: { id: true } });
+      if (!report) {
+        return false;
+      }
+      await tx.lostReportPlace.deleteMany({ where: { lostReportId: report.id } });
+      await tx.lostReport.update({
+        where: { id: report.id },
+        data: {
+          description: changes.description,
+          categoryId: changes.categoryId,
+          placeDescription: changes.placeDescription,
+          dateFrom: changes.dateFrom,
+          dateTo: changes.dateTo,
+          places: {
+            create: changes.places.map(({ placeId, classroomId }) => ({ placeId, classroomId })),
+          },
+        },
+      });
+      return true;
+    }),
 };

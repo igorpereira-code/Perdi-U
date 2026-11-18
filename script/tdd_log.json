@@ -5430,7 +5430,7 @@
     "testId": 80
   },
   {
-    "commitId": "HEAD",
+    "commitId": "b355144eebcb4bab26fc4475877c3c0bce3915c5",
     "commitName": "chore: integra los últimos cambios de core-matching en core-matching-hu-15",
     "commitTimestamp": 1794007200212,
     "testId": 80
@@ -8370,5 +8370,27 @@
     "commitName": "fix(owner): no tratar los reportes cerrados como activos",
     "commitTimestamp": 1795016473190,
     "testId": 183
+  },
+  {
+    "numPassedTests": 952,
+    "failedTests": 12,
+    "numTotalTests": 964,
+    "timestamp": 1795017685411,
+    "success": false,
+    "testId": 184
+  },
+  {
+    "numPassedTests": 964,
+    "failedTests": 0,
+    "numTotalTests": 964,
+    "timestamp": 1795018263498,
+    "success": true,
+    "testId": 184
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): editar un reporte de pérdida activo",
+    "commitTimestamp": 1795018294773,
+    "testId": 184
   }
 ]

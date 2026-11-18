@@ -1,4 +1,6 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import type { FoundItemCatalogs } from '../../finder/data/foundItemsService';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import type { MyLostReport } from '../data/myLostReportsService';
 import { MyLostReportScreen } from './MyLostReportScreen';
@@ -18,7 +20,15 @@ function renderDetail(getMine: jest.Mock, path = '/mis-perdidas/PR-0007') {
   render(
     <MemoryRouter initialEntries={[path]}>
       <Routes>
-        <Route path="/mis-perdidas/:code" element={<MyLostReportScreen myLostReportsService={{ getMine }} />} />
+        <Route
+          path="/mis-perdidas/:code"
+          element={
+            <MyLostReportScreen
+              myLostReportsService={{ getMine, getEditable: jest.fn(), update: jest.fn() }}
+              foundItemsService={{ getCatalogs: jest.fn() }}
+            />
+          }
+        />
       </Routes>
     </MemoryRouter>,
   );
@@ -75,5 +85,82 @@ describe('Carga del detalle de mi reporte', () => {
     expect(loading).toHaveAttribute('aria-busy', 'true');
     expect(loading).toHaveTextContent('Cargando tu reporte…');
     expect(loading.querySelectorAll('.animate-pulse').length).toBeGreaterThanOrEqual(3);
+  });
+});
+
+describe('Editar mi reporte de pérdida', () => {
+  const catalogs: FoundItemCatalogs = {
+    categories: [{ id: 47, name: 'Llaves' }],
+    places: [
+      { id: 83, name: 'Bloque A', type: 'BLOCK', classrooms: [{ id: 216, name: 'Aula A-12' }] },
+      { id: 98, name: 'Biblioteca', type: 'SPACE', classrooms: [] },
+    ],
+  };
+  const editable = {
+    description: 'Llaves con llavero azul',
+    categoryId: 47,
+    places: [
+      { placeId: 83, classroomId: 216 },
+      { placeId: 98, classroomId: null },
+    ],
+    placeDescription: 'Fui de la biblioteca al bloque A',
+    dateFrom: '2026-10-17',
+    dateTo: '2026-10-18',
+  };
+
+  function renderEditable(getMine: jest.Mock, update = jest.fn().mockResolvedValue(undefined)) {
+    const myLostReportsService = {
+      getMine,
+      getEditable: jest.fn().mockResolvedValue(editable),
+      update,
+    };
+    render(
+      <MemoryRouter initialEntries={['/mis-perdidas/PR-0007']}>
+        <Routes>
+          <Route
+            path="/mis-perdidas/:code"
+            element={
+              <MyLostReportScreen
+                myLostReportsService={myLostReportsService}
+                foundItemsService={{ getCatalogs: jest.fn().mockResolvedValue(catalogs) }}
+              />
+            }
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+    return myLostReportsService;
+  }
+
+  it('permite editar un reporte activo y vuelve al detalle con los cambios', async () => {
+    const getMine = jest
+      .fn()
+      .mockResolvedValueOnce(keys)
+      .mockResolvedValueOnce({ ...keys, description: 'Llaves con llavero rojo' });
+    const service = renderEditable(getMine);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Editar reporte' }));
+    expect(await screen.findByRole('heading', { name: 'Editar reporte' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Descripción de tu objeto')).toHaveValue('Llaves con llavero azul');
+    await userEvent.clear(screen.getByLabelText('Descripción de tu objeto'));
+    await userEvent.type(screen.getByLabelText('Descripción de tu objeto'), 'Llaves con llavero rojo');
+    await userEvent.click(screen.getByRole('button', { name: 'Guardar cambios' }));
+
+    expect(service.update).toHaveBeenCalledWith('PR-0007', {
+      ...editable,
+      description: 'Llaves con llavero rojo',
+    });
+    expect(await screen.findByRole('heading', { name: 'Detalle de mi reporte' })).toBeInTheDocument();
+    expect(screen.getByText('Llaves con llavero rojo')).toBeInTheDocument();
+  });
+
+  it('puede volver al detalle sin guardar los cambios', async () => {
+    const service = renderEditable(jest.fn().mockResolvedValue(keys));
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Editar reporte' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Volver al detalle' }));
+
+    expect(await screen.findByRole('heading', { name: 'Detalle de mi reporte' })).toBeInTheDocument();
+    expect(service.update).not.toHaveBeenCalled();
   });
 });

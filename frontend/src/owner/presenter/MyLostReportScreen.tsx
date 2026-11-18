@@ -1,18 +1,25 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Alert } from '../../core/presenter/Alert';
+import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { InfoRow } from '../../core/presenter/InfoRow';
 import { Skeleton, SkeletonArea } from '../../core/presenter/Skeleton';
 import { StatusChip } from '../../core/presenter/StatusChip';
 import { WelfareCard } from '../../core/presenter/WelfareCard';
+import type { FoundItemCatalogs, FoundItemsService } from '../../finder/data/foundItemsService';
 import { SeeMatchesLink } from '../../matching/presenter/SeeMatchesLink';
+import type { LostReportPayload } from '../data/lostReportsService';
 import type { MyLostReport, MyLostReportsService } from '../data/myLostReportsService';
 import { formatDay } from '../logic/formatDay';
+import { LostReportForm } from './LostReportForm';
 
 type MyLostReportScreenProps = {
-  myLostReportsService: Pick<MyLostReportsService, 'getMine'>;
+  myLostReportsService: Pick<MyLostReportsService, 'getMine' | 'getEditable' | 'update'>;
+  foundItemsService: Pick<FoundItemsService, 'getCatalogs'>;
 };
+
+type ReportToEdit = { initial: LostReportPayload; catalogs: FoundItemCatalogs };
 
 type ScreenState = { status: 'loading' } | { status: 'missing' } | { status: 'failed' } | { status: 'ready'; report: MyLostReport };
 
@@ -46,9 +53,35 @@ function MyLostReportSkeleton() {
 }
 
 /** Detail of one of the owner's lost reports. */
-export function MyLostReportScreen({ myLostReportsService }: MyLostReportScreenProps) {
+export function MyLostReportScreen({ myLostReportsService, foundItemsService }: MyLostReportScreenProps) {
   const { code = '' } = useParams();
   const [state, setState] = useState<ScreenState>({ status: 'loading' });
+  const [reloadCount, setReloadCount] = useState(0);
+  const [reportToEdit, setReportToEdit] = useState<ReportToEdit | null>(null);
+  const [isOpeningEdit, setIsOpeningEdit] = useState(false);
+  const [editError, setEditError] = useState<string | null>(null);
+
+  async function openEdit() {
+    setIsOpeningEdit(true);
+    setEditError(null);
+    try {
+      const [initial, catalogs] = await Promise.all([
+        myLostReportsService.getEditable(code),
+        foundItemsService.getCatalogs(),
+      ]);
+      setReportToEdit({ initial, catalogs });
+    } catch (error) {
+      setEditError(error instanceof Error ? error.message : 'No se pudo cargar el reporte para editar.');
+    } finally {
+      setIsOpeningEdit(false);
+    }
+  }
+
+  async function saveChanges(changes: LostReportPayload) {
+    await myLostReportsService.update(code, changes);
+    setReportToEdit(null);
+    setReloadCount((count) => count + 1);
+  }
 
   useEffect(() => {
     let active = true;
@@ -68,8 +101,21 @@ export function MyLostReportScreen({ myLostReportsService }: MyLostReportScreenP
     return () => {
       active = false;
     };
-  }, [myLostReportsService, code]);
+  }, [myLostReportsService, code, reloadCount]);
 
+  if (reportToEdit) {
+    return (
+      <div className="mx-auto max-w-lg space-y-4">
+        <LostReportForm
+          catalogs={reportToEdit.catalogs}
+          edit={{ initial: reportToEdit.initial, onSave: saveChanges }}
+        />
+        <Button variant="outline" className="w-full" onClick={() => setReportToEdit(null)}>
+          Volver al detalle
+        </Button>
+      </div>
+    );
+  }
   if (state.status === 'loading') {
     return <MyLostReportSkeleton />;
   }
@@ -114,6 +160,20 @@ export function MyLostReportScreen({ myLostReportsService }: MyLostReportScreenP
         <InfoRow label="Fechas" value={`Del ${formatDay(report.dateFrom)} al ${formatDay(report.dateTo)}`} />
       </dl>
       <SeeMatchesLink reportCode={report.code} />
+      {editError && (
+        <div role="alert">
+          <Alert>{editError}</Alert>
+        </div>
+      )}
+      <Button
+        variant="outline"
+        className="w-full"
+        isLoading={isOpeningEdit}
+        loadingText="Cargando reporte…"
+        onClick={openEdit}
+      >
+        Editar reporte
+      </Button>
       <WelfareCard />
     </article>
   );
