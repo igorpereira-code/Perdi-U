@@ -5040,6 +5040,12 @@
     "testId": 66
   },
   {
+    "commitId": "68c9379be115e739735bac03224d923834206d1f",
+    "commitName": "feat(owner): filtrar los objetos encontrados por categoría",
+    "commitTimestamp": 1792627053808,
+    "testId": 66
+  },
+  {
     "numPassedTests": 552,
     "failedTests": 6,
     "numTotalTests": 558,
@@ -5062,6 +5068,12 @@
     "testId": 67
   },
   {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ver el detalle de un objeto encontrado",
+    "commitTimestamp": 1792629786506,
+    "testId": 67
+  },
+  {
     "numPassedTests": 560,
     "failedTests": 1,
     "numTotalTests": 561,
@@ -5079,6 +5091,12 @@
   },
   {
     "commitId": "99a3ad025a9e23f6f9e0ec6822d13924cfe13d8d",
+    "commitName": "feat(owner): mostrar dónde y cuándo preguntar por un objeto en Bienestar",
+    "commitTimestamp": 1792630045127,
+    "testId": 68
+  },
+  {
+    "commitId": "HEAD",
     "commitName": "feat(owner): mostrar dónde y cuándo preguntar por un objeto en Bienestar",
     "commitTimestamp": 1792630045127,
     "testId": 68
@@ -5114,6 +5132,12 @@
     "testId": 69
   },
   {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): ver todos mis reportes de pérdida",
+    "commitTimestamp": 1792631842462,
+    "testId": 69
+  },
+  {
     "numPassedTests": 570,
     "failedTests": 1,
     "numTotalTests": 571,
@@ -5136,6 +5160,12 @@
     "testId": 70
   },
   {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código y el estado de cada reporte de pérdida",
+    "commitTimestamp": 1792632095899,
+    "testId": 70
+  },
+  {
     "numPassedTests": 571,
     "failedTests": 9,
     "numTotalTests": 580,
@@ -5153,6 +5183,12 @@
   },
   {
     "commitId": "295351309070aa9ce65fca04d819fb35be77ec76",
+    "commitName": "feat(owner): ver el detalle de mi reporte de pérdida",
+    "commitTimestamp": 1792632582953,
+    "testId": 71
+  },
+  {
+    "commitId": "HEAD",
     "commitName": "feat(owner): ver el detalle de mi reporte de pérdida",
     "commitTimestamp": 1792632582953,
     "testId": 71
@@ -5198,6 +5234,12 @@
     "testId": 72
   },
   {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el código del reporte para presentarlo en Bienestar",
+    "commitTimestamp": 1792632787536,
+    "testId": 72
+  },
+  {
     "commitId": "beac01bbfca2718e9a304c55eecce315827e30b3",
     "commitName": "feat: Pequeños cambios",
     "commitTimestamp": 1794001438321,
@@ -5217,6 +5259,12 @@
   },
   {
     "commitId": "ef2bd6320683eee6b376167dc4527f412e8f411f",
+    "commitName": "feat: Pequeños cambios",
+    "commitTimestamp": 1794001438321,
+    "testId": 73
+  },
+  {
+    "commitId": "HEAD",
     "commitName": "feat: Pequeños cambios",
     "commitTimestamp": 1794001438321,
     "testId": 73
@@ -8532,5 +8580,11 @@
     "commitName": "feat(owner): avisar al dueño cuando Bienestar registra la entrega de su objeto",
     "commitTimestamp": 1795023055957,
     "testId": 190
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "chore(release): conserva los registros de pruebas de main",
+    "commitTimestamp": 1795034388938,
+    "testId": 191
   }
 ]
