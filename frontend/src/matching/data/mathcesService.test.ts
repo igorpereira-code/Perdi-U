@@ -104,3 +104,26 @@ describe('Traer los objetos parecidos a un reporte', () => {
     );
   });
 });
+describe('Reclamar un objeto del catálogo', () => {
+  it('avisa al backend que el dueño pasará a recoger el objeto con su reporte', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({ ok: true });
+    const service = createMatchesService(apiFetch);
+
+    await service.claim('HZ-0007', 'PR-0001');
+
+    expect(apiFetch).toHaveBeenCalledWith('/catalog/HZ-0007/claim', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reportCode: 'PR-0001' }),
+    });
+  });
+
+  it('avisa si no se pudo avisar a Bienestar', async () => {
+    const apiFetch = jest.fn().mockResolvedValue({ ok: false, status: 500 });
+    const service = createMatchesService(apiFetch);
+
+    await expect(service.claim('HZ-0007', 'PR-0001')).rejects.toThrow(
+      'No se pudo avisar a Bienestar. Intenta nuevamente.',
+    );
+  });
+});

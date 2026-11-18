@@ -181,9 +181,11 @@ export default function App({
       <Route
         path="/objetos/:code"
         element={renderSignedInPage(() => (
-          <CatalogItemScreen
+            <CatalogItemScreen
             catalogService={catalogService}
             foundItemsService={foundItemsService}
+            myLostReportsService={myLostReportsService}
+            matchesService={matchesService}
           />
         ))}
       />

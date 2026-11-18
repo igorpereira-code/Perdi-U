@@ -9,6 +9,7 @@ function fakeService(result: PublishResult): MatchesService {
     getMatches: jest.fn(),
     pickUp: jest.fn(),
     dismiss: jest.fn(),
+    claim: jest.fn(),
     publish: jest.fn().mockResolvedValue(result),
   };
 }

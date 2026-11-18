@@ -8,10 +8,12 @@ import type {
 import { canBePublished } from '../logic/canBePublished';
 import { findSimilarReports } from '../logic/findSimilarReports';
 import type { SettingsRepository } from '../../core/data/settingsRepository';
+import type { NotificationsRepository } from '../../core/data/notificationsRepository';
 
 export function createPublishRouter(
   matching: MatchingRepository,
   settings: SettingsRepository,
+  notifications: NotificationsRepository,
 ): Router {
   const router = Router();
 
@@ -22,6 +24,11 @@ export function createPublishRouter(
     const similarReports = findSimilarReports(item, activeReports, minSimilarity);
     for (const { report, similarity } of similarReports) {
       await matching.saveSuggestions(report.id, [{ foundItemId: item.id, similarity }]);
+      await notifications.notify({
+        userId: report.ownerId,
+                message: `Hay un objeto parecido a tu reporte ${report.code}`,
+        link: `/mis-reportes/${report.code}/coincidencias`,
+      });
     }
     return similarReports.length;
   }

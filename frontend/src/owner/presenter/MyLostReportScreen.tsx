@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Alert } from '../../core/presenter/Alert';
 import { EmptyState } from '../../core/presenter/EmptyState';
 import { InfoRow } from '../../core/presenter/InfoRow';
+import { Skeleton, SkeletonArea } from '../../core/presenter/Skeleton';
 import { StatusChip } from '../../core/presenter/StatusChip';
 import { WelfareCard } from '../../core/presenter/WelfareCard';
 import { SeeMatchesLink } from '../../matching/presenter/SeeMatchesLink';
@@ -15,6 +16,33 @@ type MyLostReportScreenProps = {
 type ScreenState = { status: 'loading' } | { status: 'missing' } | { status: 'failed' } | { status: 'ready'; report: MyLostReport };
 
 const BACK_LINK = 'inline-flex text-sm font-semibold text-blue-500';
+
+/** How many data rows are shown in gray while the report loads. */
+const SKELETON_ROWS = 3;
+
+/** The shape of the report detail while it loads: code, description and data rows. */
+function MyLostReportSkeleton() {
+  return (
+    <SkeletonArea label="Cargando tu reporte…">
+      <div className="mx-auto max-w-lg space-y-4">
+        <Skeleton className="h-4 w-40" />
+        <div className="space-y-2 rounded-2xl border border-blue-100 bg-blue-50 p-4">
+          <Skeleton className="mx-auto h-4 w-40" />
+          <Skeleton className="mx-auto h-8 w-32" />
+        </div>
+        <Skeleton className="h-4 w-full" />
+        <div className="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-0 p-4">
+          {Array.from({ length: SKELETON_ROWS }, (_, rowIndex) => (
+            <div key={rowIndex} className="flex items-center justify-between gap-4">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-4 w-32" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </SkeletonArea>
+  );
+}
 
 /** "2026-10-17" is shown as "17/10/2026". */
 function formatDay(day: string): string {
@@ -48,7 +76,7 @@ export function MyLostReportScreen({ myLostReportsService }: MyLostReportScreenP
   }, [myLostReportsService, code]);
 
   if (state.status === 'loading') {
-    return <p role="status" className="text-sm text-neutral-500">Cargando tu reporte…</p>;
+    return <MyLostReportSkeleton />;
   }
   if (state.status === 'failed') {
     return (

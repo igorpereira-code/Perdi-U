@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
+import { SkeletonList } from '../../core/presenter/Skeleton';
 import { StatusChip } from '../../core/presenter/StatusChip';
 import type { MyLostReport, MyLostReportsService } from '../data/myLostReportsService';
+
+/** How many gray rows are shown while the reports load. */
+const SKELETON_ROWS = 3;
 
 type MyLostReportsScreenProps = {
   myLostReportsService: Pick<MyLostReportsService, 'listMine'>;
@@ -48,9 +52,7 @@ export function MyLostReportsScreen({ myLostReportsService }: MyLostReportsScree
           <Button onClick={() => setAttempt((value) => value + 1)}>Reintentar</Button>
         </div>
       ) : reports === null ? (
-        <p role="status" className="text-sm text-neutral-500">
-          Cargando tus reportes…
-        </p>
+        <SkeletonList rows={SKELETON_ROWS} label="Cargando tus reportes…" />
       ) : reports.length === 0 ? (
         <EmptyState
           title="Todavía no reportaste objetos perdidos"

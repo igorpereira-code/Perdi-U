@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
+import { Skeleton, SkeletonArea } from '../../core/presenter/Skeleton';
 import type { FoundItemCatalogs, FoundItemsService } from '../../finder/data/foundItemsService';
 import type { LostReportsService } from '../data/lostReportsService';
 import { LostReportForm } from './LostReportForm';
@@ -9,6 +10,27 @@ type LostReportScreenProps = {
   foundItemsService: Pick<FoundItemsService, 'getCatalogs'>;
   lostReportsService: LostReportsService;
 };
+
+/** How many fields are shown in gray while the catalogs load. */
+const SKELETON_FIELDS = 4;
+
+/** The shape of the form while the categories and places load. */
+function LostReportFormSkeleton() {
+  return (
+    <SkeletonArea label="Cargando categorías y lugares…">
+      <div className="mx-auto max-w-lg space-y-5">
+        <Skeleton className="h-6 w-56" />
+        {Array.from({ length: SKELETON_FIELDS }, (_, fieldIndex) => (
+          <div key={fieldIndex} className="space-y-2">
+            <Skeleton className="h-4 w-40" />
+            <Skeleton className="h-11 w-full rounded-xl" />
+          </div>
+        ))}
+        <Skeleton className="h-11 w-full rounded-xl" />
+      </div>
+    </SkeletonArea>
+  );
+}
 
 /** Loads the categories and places, then shows the lost report form. */
 export function LostReportScreen({ foundItemsService, lostReportsService }: LostReportScreenProps) {
@@ -46,7 +68,7 @@ export function LostReportScreen({ foundItemsService, lostReportsService }: Lost
     );
   }
   if (!catalogs) {
-    return <p role="status" className="text-sm text-neutral-500">Cargando categorías y lugares…</p>;
+    return <LostReportFormSkeleton />;
   }
   return <LostReportForm catalogs={catalogs} onCreate={lostReportsService.create} />;
 }
