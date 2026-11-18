@@ -302,6 +302,21 @@ export const prismaWelfareRepository = {
           data: { status: 'RECOVERED' },
         });
       }
+      if (recipient) {
+        // The owner learns their object was handed over (and, with a report, that it is recovered).
+        const recoveredReportCode = lostReport ? delivery.lostReportCode : null;
+        await transaction.notification.create({
+          data: {
+            userId: recipient.id,
+            message:
+              'Bienestar Estudiantil registró la entrega de tu objeto ' +
+              foundItem.code +
+              '.' +
+              (recoveredReportCode ? ' Tu reporte ' + recoveredReportCode + ' quedó como recuperado.' : ''),
+            link: recoveredReportCode ? '/mis-perdidas/' + encodeURIComponent(recoveredReportCode) : null,
+          },
+        });
+      }
 
       return { status: 'DELIVERED', foundItemCode: foundItem.code } as const;
     }),

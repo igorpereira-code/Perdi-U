@@ -5674,7 +5674,7 @@
     "testId": 84
   },
   {
-    "commitId": "HEAD",
+    "commitId": "4fca922e9a0ba99f35d825b4a76c729e75affb0c",
     "commitName": "refactor(finder): aclarar los nombres del guardado de la guía",
     "commitTimestamp": 1794320740203,
     "testId": 83
@@ -8510,5 +8510,27 @@
     "commitName": "feat(owner): un reporte cerrado ya no recibe coincidencias ni se puede editar",
     "commitTimestamp": 1795022392842,
     "testId": 189
+  },
+  {
+    "numPassedTests": 1001,
+    "failedTests": 2,
+    "numTotalTests": 1003,
+    "timestamp": 1795022759545,
+    "success": false,
+    "testId": 190
+  },
+  {
+    "numPassedTests": 1003,
+    "failedTests": 0,
+    "numTotalTests": 1003,
+    "timestamp": 1795022997173,
+    "success": true,
+    "testId": 190
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): avisar al dueño cuando Bienestar registra la entrega de su objeto",
+    "commitTimestamp": 1795023055957,
+    "testId": 190
   }
 ]

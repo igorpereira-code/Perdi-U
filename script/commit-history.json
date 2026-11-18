@@ -4693,12 +4693,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "4fca922e9a0ba99f35d825b4a76c729e75affb0c",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-11-10T14:25:38.000Z",
       "message": "refactor(finder): aclarar los nombres del guardado de la guía",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/4fca922e9a0ba99f35d825b4a76c729e75affb0c"
     },
     "stats": {
       "total": 30,
@@ -8812,6 +8812,25 @@
     },
     "coverage": 82.22,
     "test_count": 999,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-18T17:30:55.000Z",
+      "message": "feat(owner): avisar al dueño cuando Bienestar registra la entrega de su objeto",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 94,
+      "additions": 94,
+      "deletions": 0,
+      "date": "2026-11-18"
+    },
+    "coverage": 82.61,
+    "test_count": 1003,
     "failed_tests": 0,
     "conclusion": "success"
   }
