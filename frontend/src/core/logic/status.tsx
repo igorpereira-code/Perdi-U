@@ -25,6 +25,7 @@ const STATUS_TONES: Record<Status, StatusTone> = {
   HAS_MATCHES: 'highlight',
   PENDING_PICKUP: 'waiting',
   RECOVERED: 'done',
+  CLOSED: 'neutral',
 };
 
 export function getStatusDisplay(status: Status): StatusDisplay {

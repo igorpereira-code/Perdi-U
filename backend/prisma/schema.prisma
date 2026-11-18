@@ -49,6 +49,7 @@ enum LostReportStatus {
   HAS_MATCHES
   PENDING_PICKUP
   RECOVERED
+  CLOSED
 
   @@map("lost_report_status")
 }

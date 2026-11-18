@@ -5382,7 +5382,7 @@
     "testId": 78
   },
   {
-    "commitId": "HEAD",
+    "commitId": "365a5b7fc58b1393b740b2d3b7641528e69e9c6e",
     "commitName": "feat(core): abrir el reporte u objeto relacionado al tocar un aviso",
     "commitTimestamp": 1794005817055,
     "testId": 78
@@ -8334,5 +8334,19 @@
     "commitName": "feat(owner): volver a corregir el reporte de pérdida desde el resumen sin perder lo llenado",
     "commitTimestamp": 1794968614479,
     "testId": 181
+  },
+  {
+    "numPassedTests": 947,
+    "failedTests": 0,
+    "numTotalTests": 947,
+    "timestamp": 1795015686256,
+    "success": true,
+    "testId": 182
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): agregar el estado cerrado al reporte de pérdida",
+    "commitTimestamp": 1795015776001,
+    "testId": 182
   }
 ]

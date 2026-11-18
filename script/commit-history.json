@@ -4427,12 +4427,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "365a5b7fc58b1393b740b2d3b7641528e69e9c6e",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:56:56.000Z",
       "message": "feat(core): abrir el reporte u objeto relacionado al tocar un aviso",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/365a5b7fc58b1393b740b2d3b7641528e69e9c6e"
     },
     "stats": {
       "total": 80,
@@ -8656,6 +8656,25 @@
       "total": 41,
       "additions": 41,
       "deletions": 0,
+      "date": "2026-11-18"
+    },
+    "coverage": 81.55,
+    "test_count": 947,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-18T15:29:34.000Z",
+      "message": "feat(owner): agregar el estado cerrado al reporte de pérdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 11,
+      "additions": 10,
+      "deletions": 1,
       "date": "2026-11-18"
     },
     "coverage": 81.55,

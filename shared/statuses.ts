@@ -1,6 +1,11 @@
 export type FoundItemStatus = 'PENDING_DROP_OFF' | 'IN_CUSTODY' | 'PUBLISHED' | 'DELIVERED';
 
-export type LostReportStatus = 'SEARCHING' | 'HAS_MATCHES' | 'PENDING_PICKUP' | 'RECOVERED';
+export type LostReportStatus =
+  | 'SEARCHING'
+  | 'HAS_MATCHES'
+  | 'PENDING_PICKUP'
+  | 'RECOVERED'
+  | 'CLOSED';
 
 export type MatchStatus = 'SUGGESTED' | 'WILL_PICK_UP' | 'DISMISSED';
 
@@ -16,4 +21,5 @@ export const LOST_REPORT_STATUS_LABEL: Record<LostReportStatus, string> = {
   HAS_MATCHES: 'Con coincidencias',
   PENDING_PICKUP: 'Pendiente de recojo',
   RECOVERED: 'Recuperado',
+  CLOSED: 'Cerrado',
 };
