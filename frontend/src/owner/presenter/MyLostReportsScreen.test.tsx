@@ -53,6 +53,15 @@ describe('Código y estado de cada reporte', () => {
   });
 });
 
+describe('Reporte cerrado en mi lista', () => {
+  it('un reporte cerrado aparece con el estado Cerrado', async () => {
+    renderList(jest.fn().mockResolvedValue([{ ...keys, status: 'CLOSED' }]));
+
+    expect(await screen.findByText('PR-0007')).toBeInTheDocument();
+    expect(screen.getByText('Cerrado')).toBeInTheDocument();
+  });
+});
+
 describe('Abrir un reporte de la lista', () => {
   it('cada reporte lleva a su detalle', async () => {
     renderList(jest.fn().mockResolvedValue([keys]));

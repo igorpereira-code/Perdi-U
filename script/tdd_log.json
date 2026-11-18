@@ -5648,7 +5648,7 @@
     "testId": 83
   },
   {
-    "commitId": "HEAD",
+    "commitId": "1181d7fff117cecce7fe16d722dd9b90ad485e10",
     "commitName": "refactor(finder): nombrar buildFoundAt según su propósito",
     "commitTimestamp": 1794320623056,
     "testId": 81
@@ -8458,5 +8458,35 @@
     "commitName": "feat(owner): confirmar antes de cerrar el reporte de pérdida",
     "commitTimestamp": 1795020336659,
     "testId": 187
+  },
+  {
+    "numPassedTests": 985,
+    "failedTests": 2,
+    "numTotalTests": 987,
+    "timestamp": 1795020511827,
+    "success": false,
+    "testId": 188
+  },
+  {
+    "numPassedTests": 934,
+    "failedTests": 0,
+    "numTotalTests": 934,
+    "timestamp": 1795021062357,
+    "success": false,
+    "testId": 188
+  },
+  {
+    "numPassedTests": 987,
+    "failedTests": 0,
+    "numTotalTests": 987,
+    "timestamp": 1795021103924,
+    "success": true,
+    "testId": 188
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar el estado cerrado del reporte de pérdida",
+    "commitTimestamp": 1795021139163,
+    "testId": 188
   }
 ]

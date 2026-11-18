@@ -4636,12 +4636,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "1181d7fff117cecce7fe16d722dd9b90ad485e10",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-11-10T14:23:40.000Z",
       "message": "refactor(finder): nombrar buildFoundAt según su propósito",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/1181d7fff117cecce7fe16d722dd9b90ad485e10"
     },
     "stats": {
       "total": 14,
@@ -8774,6 +8774,25 @@
     },
     "coverage": 81.98,
     "test_count": 984,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-18T16:58:58.000Z",
+      "message": "feat(owner): mostrar el estado cerrado del reporte de pérdida",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 38,
+      "additions": 36,
+      "deletions": 2,
+      "date": "2026-11-18"
+    },
+    "coverage": 81.99,
+    "test_count": 987,
     "failed_tests": 0,
     "conclusion": "success"
   }

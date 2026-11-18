@@ -77,6 +77,26 @@ describe('Mostrar el código en Bienestar', () => {
   });
 });
 
+describe('Estado de un reporte cerrado', () => {
+  it('muestra que el reporte está cerrado porque ya encontró su objeto', async () => {
+    renderDetail(jest.fn().mockResolvedValue({ ...keys, status: 'CLOSED' }));
+
+    expect(await screen.findByText('Cerrado')).toBeInTheDocument();
+    expect(screen.getByText('Cerraste este reporte porque ya encontraste tu objeto.')).toBeInTheDocument();
+    expect(screen.getByText('PR-0007')).toBeInTheDocument();
+  });
+
+  it('ya no pide pasar por Bienestar a recoger el objeto', async () => {
+    renderDetail(jest.fn().mockResolvedValue({ ...keys, status: 'CLOSED' }));
+
+    expect(await screen.findByText('Cerrado')).toBeInTheDocument();
+    expect(
+      screen.queryByText('Muestra este código en Bienestar Estudiantil para recoger tu objeto.'),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText('Bienestar Estudiantil – Bloque C')).not.toBeInTheDocument();
+  });
+});
+
 describe('Carga del detalle de mi reporte', () => {
   it('muestra los datos en gris mientras carga el reporte', () => {
     renderDetail(jest.fn().mockReturnValue(new Promise(() => {})));

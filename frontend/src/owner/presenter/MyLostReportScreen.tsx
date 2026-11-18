@@ -155,6 +155,7 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
   }
 
   const { report } = state;
+  const isClosed = report.status === 'CLOSED';
   return (
     <article className="mx-auto max-w-lg space-y-4">
       <Link to="/mis-perdidas" className={BACK_LINK}>
@@ -167,7 +168,11 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
       <div className="space-y-1 rounded-2xl border border-blue-100 bg-blue-50 p-4 text-center">
         <p className="text-sm text-neutral-700">Código de tu reporte</p>
         <p className="font-mono text-2xl font-bold text-blue-700">{report.code}</p>
-        <p className="text-sm text-neutral-700">Muestra este código en Bienestar Estudiantil para recoger tu objeto.</p>
+        <p className="text-sm text-neutral-700">
+          {isClosed
+            ? 'Cerraste este reporte porque ya encontraste tu objeto.'
+            : 'Muestra este código en Bienestar Estudiantil para recoger tu objeto.'}
+        </p>
       </div>
       <p className="break-words text-base text-neutral-900">{report.description}</p>
       <dl className="rounded-2xl border border-neutral-200 bg-neutral-0 px-4">
@@ -222,7 +227,7 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
           Ya lo encontré
         </Button>
       )}
-      <WelfareCard />
+      {!isClosed && <WelfareCard />}
     </article>
   );
 }
