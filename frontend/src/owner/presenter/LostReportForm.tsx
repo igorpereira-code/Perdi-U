@@ -37,6 +37,7 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
   const [category, setCategory] = useState('');
   const [places, setPlaces] = useState<ChosenPlace[]>([]);
   const [placeDescription, setPlaceDescription] = useState('');
+  const [placeUnknown, setPlaceUnknown] = useState(false);
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [errors, setErrors] = useState<LostReportFormErrors>({});
@@ -74,8 +75,8 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
         {
           description: description.trim(),
           categoryId: Number(category),
-          places,
-          placeDescription: placeDescription.trim() || null,
+          places: placeUnknown ? [] : places,
+          placeDescription: placeUnknown ? null : placeDescription.trim() || null,
           dateFrom,
           dateTo,
         },
@@ -150,58 +151,73 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
           <legend className="text-sm font-medium text-neutral-700">
             ¿Dónde pudo perderlo? <span className="font-normal text-neutral-500">(opcional, puedes elegir varios)</span>
           </legend>
-          <div role="group" aria-label="Lugares donde pudo perderlo" className="flex flex-wrap gap-2">
-            {catalogs.places.map((place) => {
-              const selected = places.some((chosen) => chosen.placeId === place.id);
-              return (
-                <button
-                  key={place.id}
-                  type="button"
-                  aria-pressed={selected}
-                  onClick={() => togglePlace(place.id)}
-                  className={`${CHIP} ${selected ? CHIP_ON : CHIP_OFF}`}
-                >
-                  {place.name}
-                </button>
-              );
-            })}
-          </div>
-          {places.map((chosen) => {
-            const place = catalogs.places.find((option) => option.id === chosen.placeId);
-            if (!place || place.type !== 'BLOCK' || place.classrooms.length === 0) {
-              return null;
-            }
-            return (
-              <Field key={place.id} id={`lost-report-classroom-${place.id}`} label={`Aula en ${place.name}`} optional>
-                <select
-                  id={`lost-report-classroom-${place.id}`}
-                  className={INPUT_CLASSES}
-                  value={chosen.classroomId ?? ''}
-                  onChange={(event) => chooseClassroom(place.id, event.target.value)}
-                >
-                  <option value="">Cualquier aula</option>
-                  {place.classrooms.map((classroom) => (
-                    <option key={classroom.id} value={classroom.id}>
-                      {classroom.name}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-            );
-          })}
+          <label className="flex items-center gap-2 text-sm text-neutral-700">
+            <input
+              type="checkbox"
+              className="h-4 w-4 accent-blue-700"
+              checked={placeUnknown}
+              onChange={(event) => setPlaceUnknown(event.target.checked)}
+            />
+            No sé dónde lo perdí
+          </label>
+          {!placeUnknown && (
+            <>
+              <div role="group" aria-label="Lugares donde pudo perderlo" className="flex flex-wrap gap-2">
+                {catalogs.places.map((place) => {
+                  const selected = places.some((chosen) => chosen.placeId === place.id);
+                  return (
+                    <button
+                      key={place.id}
+                      type="button"
+                      aria-pressed={selected}
+                      onClick={() => togglePlace(place.id)}
+                      className={`${CHIP} ${selected ? CHIP_ON : CHIP_OFF}`}
+                    >
+                      {place.name}
+                    </button>
+                  );
+                })}
+              </div>
+              {places.map((chosen) => {
+                const place = catalogs.places.find((option) => option.id === chosen.placeId);
+                if (!place || place.type !== 'BLOCK' || place.classrooms.length === 0) {
+                  return null;
+                }
+                return (
+                  <Field key={place.id} id={`lost-report-classroom-${place.id}`} label={`Aula en ${place.name}`} optional>
+                    <select
+                      id={`lost-report-classroom-${place.id}`}
+                      className={INPUT_CLASSES}
+                      value={chosen.classroomId ?? ''}
+                      onChange={(event) => chooseClassroom(place.id, event.target.value)}
+                    >
+                      <option value="">Cualquier aula</option>
+                      {place.classrooms.map((classroom) => (
+                        <option key={classroom.id} value={classroom.id}>
+                          {classroom.name}
+                        </option>
+                      ))}
+                    </select>
+                  </Field>
+                );
+              })}
+            </>
+          )}
         </fieldset>
 
-        <Field id="lost-report-place-description" label="¿Por dónde pudo perderlo?" optional>
-          <input
-            id="lost-report-place-description"
-            type="text"
-            maxLength={300}
-            className={INPUT_CLASSES}
-            placeholder="Ej. Fui de la biblioteca a la cafetería"
-            value={placeDescription}
-            onChange={(event) => setPlaceDescription(event.target.value)}
-          />
-        </Field>
+        {!placeUnknown && (
+          <Field id="lost-report-place-description" label="¿Por dónde pudo perderlo?" optional>
+            <input
+              id="lost-report-place-description"
+              type="text"
+              maxLength={300}
+              className={INPUT_CLASSES}
+              placeholder="Ej. Fui de la biblioteca a la cafetería"
+              value={placeDescription}
+              onChange={(event) => setPlaceDescription(event.target.value)}
+            />
+          </Field>
+        )}
 
         <fieldset className="space-y-2">
           <legend className="text-sm font-medium text-neutral-700">¿Entre qué fechas pudo perderlo?</legend>

@@ -5292,7 +5292,7 @@
     "testId": 75
   },
   {
-    "commitId": "HEAD",
+    "commitId": "ac77b980f99419886c093851f9b173fe496a7c38",
     "commitName": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
     "commitTimestamp": 1794004502232,
     "testId": 75
@@ -8268,5 +8268,27 @@
     "commitName": "feat(owner): permitir tomar la foto de referencia con la cámara del celular",
     "commitTimestamp": 1794966981070,
     "testId": 178
+  },
+  {
+    "numPassedTests": 942,
+    "failedTests": 1,
+    "numTotalTests": 943,
+    "timestamp": 1794967135351,
+    "success": false,
+    "testId": 179
+  },
+  {
+    "numPassedTests": 943,
+    "failedTests": 0,
+    "numTotalTests": 943,
+    "timestamp": 1794967364323,
+    "success": true,
+    "testId": 179
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir elegir No sé dónde lo perdí en lugar de los lugares",
+    "commitTimestamp": 1794967398732,
+    "testId": 179
   }
 ]

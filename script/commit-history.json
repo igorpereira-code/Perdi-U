@@ -4294,12 +4294,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "ac77b980f99419886c093851f9b173fe496a7c38",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:35:01.000Z",
       "message": "feat(core): mostrar cuántos avisos nuevos tiene el usuario",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/ac77b980f99419886c093851f9b173fe496a7c38"
     },
     "stats": {
       "total": 111,
@@ -8603,6 +8603,25 @@
     },
     "coverage": 81.42,
     "test_count": 942,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-18T02:03:17.000Z",
+      "message": "feat(owner): permitir elegir No sé dónde lo perdí en lugar de los lugares",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 143,
+      "additions": 90,
+      "deletions": 53,
+      "date": "2026-11-18"
+    },
+    "coverage": 81.43,
+    "test_count": 943,
     "failed_tests": 0,
     "conclusion": "success"
   }

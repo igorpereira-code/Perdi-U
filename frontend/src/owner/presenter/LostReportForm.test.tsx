@@ -213,3 +213,24 @@ describe('Carga al enviar el reporte de pérdida', () => {
     expect(sendingButton).toBeDisabled();
   });
 });
+
+describe('No sé dónde lo perdí', () => {
+  it('permite elegir "No sé dónde lo perdí" en lugar de elegir lugares', async () => {
+    const onCreate = renderForm(jest.fn().mockResolvedValue({ code: 'PR-0010' }));
+    await fillRequiredFields();
+    await userEvent.click(screen.getByRole('button', { name: 'Bloque A' }));
+    await userEvent.type(screen.getByLabelText(/¿Por dónde pudo perderlo\?/), 'Cerca de la cafetería');
+
+    await userEvent.click(screen.getByRole('checkbox', { name: 'No sé dónde lo perdí' }));
+
+    expect(screen.queryByRole('group', { name: 'Lugares donde pudo perderlo' })).not.toBeInTheDocument();
+    expect(screen.queryByLabelText(/¿Por dónde pudo perderlo\?/)).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+
+    expect(await screen.findByText('PR-0010')).toBeInTheDocument();
+    expect(onCreate).toHaveBeenCalledWith(
+      expect.objectContaining({ places: [], placeDescription: null }),
+      null,
+    );
+  });
+});
