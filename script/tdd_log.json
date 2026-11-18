@@ -5536,7 +5536,7 @@
     "testId": 83
   },
   {
-    "commitId": "HEAD",
+    "commitId": "e3d9a6ceb2054c96ba38fb671fa8adbccdd1bed9",
     "commitName": "feat(finder): permitir cerrar la guía y volver a Inicio",
     "commitTimestamp": 1794316599608,
     "testId": 83
@@ -8436,5 +8436,27 @@
     "commitName": "feat(owner): cerrar el reporte de pérdida con ya lo encontré",
     "commitTimestamp": 1795019772942,
     "testId": 186
+  },
+  {
+    "numPassedTests": 980,
+    "failedTests": 4,
+    "numTotalTests": 984,
+    "timestamp": 1795019976217,
+    "success": false,
+    "testId": 187
+  },
+  {
+    "numPassedTests": 984,
+    "failedTests": 0,
+    "numTotalTests": 984,
+    "timestamp": 1795020160465,
+    "success": true,
+    "testId": 187
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): confirmar antes de cerrar el reporte de pérdida",
+    "commitTimestamp": 1795020336659,
+    "testId": 187
   }
 ]

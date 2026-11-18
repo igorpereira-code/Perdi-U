@@ -204,6 +204,7 @@ describe('Cerrar mi reporte con "Ya lo encontré"', () => {
     renderClosable(getMine, close);
 
     await userEvent.click(await screen.findByRole('button', { name: 'Ya lo encontré' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Confirmar cierre' }));
 
     expect(close).toHaveBeenCalledWith('PR-0007');
     expect(await screen.findByText('Cerrado')).toBeInTheDocument();
@@ -214,7 +215,58 @@ describe('Cerrar mi reporte con "Ya lo encontré"', () => {
     renderClosable(jest.fn().mockResolvedValue(keys), close);
 
     await userEvent.click(await screen.findByRole('button', { name: 'Ya lo encontré' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Confirmar cierre' }));
 
     expect(await screen.findByRole('alert')).toHaveTextContent('No se pudo cerrar el reporte. Intenta nuevamente.');
+  });
+});
+
+describe('Confirmación antes de cerrar mi reporte', () => {
+  function renderClosable(close: jest.Mock) {
+    render(
+      <MemoryRouter initialEntries={['/mis-perdidas/PR-0007']}>
+        <Routes>
+          <Route
+            path="/mis-perdidas/:code"
+            element={
+              <MyLostReportScreen
+                myLostReportsService={{
+                  getMine: jest.fn().mockResolvedValue(keys),
+                  getEditable: jest.fn(),
+                  update: jest.fn(),
+                  close,
+                }}
+                foundItemsService={{ getCatalogs: jest.fn() }}
+              />
+            }
+          />
+        </Routes>
+      </MemoryRouter>,
+    );
+  }
+
+  it('pide confirmar antes de cerrar el reporte', async () => {
+    const close = jest.fn();
+    renderClosable(close);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Ya lo encontré' }));
+
+    expect(screen.getByRole('heading', { name: '¿Ya encontraste tu objeto?' })).toBeInTheDocument();
+    expect(
+      screen.getByText('Si cierras el reporte, ya no recibirás coincidencias ni podrás editarlo.'),
+    ).toBeInTheDocument();
+    expect(close).not.toHaveBeenCalled();
+  });
+
+  it('puede conservar el reporte sin cerrarlo', async () => {
+    const close = jest.fn();
+    renderClosable(close);
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Ya lo encontré' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Conservar reporte' }));
+
+    expect(screen.queryByRole('heading', { name: '¿Ya encontraste tu objeto?' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Ya lo encontré' })).toBeInTheDocument();
+    expect(close).not.toHaveBeenCalled();
   });
 });

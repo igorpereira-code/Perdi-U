@@ -61,6 +61,7 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
   const [isOpeningEdit, setIsOpeningEdit] = useState(false);
   const [editError, setEditError] = useState<string | null>(null);
   const [reloadCount, setReloadCount] = useState(0);
+  const [isConfirmingClose, setIsConfirmingClose] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [closeError, setCloseError] = useState<string | null>(null);
 
@@ -85,6 +86,7 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
     setCloseError(null);
     try {
       await myLostReportsService.close(code);
+      setIsConfirmingClose(false);
       setReloadCount((count) => count + 1);
     } catch (error) {
       setCloseError(error instanceof Error ? error.message : 'No se pudo cerrar el reporte.');
@@ -194,9 +196,32 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
           <Alert>{closeError}</Alert>
         </div>
       )}
-      <Button className="w-full" isLoading={isClosing} loadingText="Cerrando reporte…" onClick={closeReport}>
-        Ya lo encontré
-      </Button>
+      {isConfirmingClose ? (
+        <section className="space-y-3 rounded-2xl border border-neutral-200 p-4" aria-labelledby="close-report-title">
+          <h2 id="close-report-title" className="font-semibold">
+            ¿Ya encontraste tu objeto?
+          </h2>
+          <p className="text-sm">Si cierras el reporte, ya no recibirás coincidencias ni podrás editarlo.</p>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" onClick={() => setIsConfirmingClose(false)} disabled={isClosing}>
+              Conservar reporte
+            </Button>
+            <Button onClick={closeReport} isLoading={isClosing} loadingText="Cerrando reporte…">
+              Confirmar cierre
+            </Button>
+          </div>
+        </section>
+      ) : (
+        <Button
+          className="w-full"
+          onClick={() => {
+            setCloseError(null);
+            setIsConfirmingClose(true);
+          }}
+        >
+          Ya lo encontré
+        </Button>
+      )}
       <WelfareCard />
     </article>
   );
