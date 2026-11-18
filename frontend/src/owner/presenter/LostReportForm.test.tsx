@@ -184,6 +184,21 @@ describe('Foto de referencia', () => {
     expect(await screen.findByText('PR-0008')).toBeInTheDocument();
     expect(onCreate).toHaveBeenCalledWith(expect.any(Object), photo);
   });
+
+  it('permite tomar la foto con la cámara del celular y la envía con el reporte', async () => {
+    const onCreate = renderForm(jest.fn().mockResolvedValue({ code: 'PR-0009' }));
+    const cameraPhoto = new File(['foto'], 'camara.jpg', { type: 'image/jpeg' });
+
+    const camera = screen.getByLabelText('Tomar foto');
+    expect(camera).toHaveAttribute('capture', 'environment');
+    await userEvent.upload(camera, cameraPhoto);
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeInTheDocument();
+    await fillRequiredFields();
+    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+
+    expect(await screen.findByText('PR-0009')).toBeInTheDocument();
+    expect(onCreate).toHaveBeenCalledWith(expect.any(Object), cameraPhoto);
+  });
 });
 
 describe('Carga al enviar el reporte de pérdida', () => {

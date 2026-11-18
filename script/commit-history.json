@@ -4256,12 +4256,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "480a4aae34166e2c5de4a4e1b0a7d43066857f83",
     "author": "igorpereira-code",
     "commit": {
       "date": "2026-11-06T22:15:29.000Z",
       "message": "feat(core): agregar la opción de avisos en la pantalla principal",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/480a4aae34166e2c5de4a4e1b0a7d43066857f83"
     },
     "stats": {
       "total": 552,
@@ -8584,6 +8584,25 @@
     },
     "coverage": 81.42,
     "test_count": 941,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-18T01:56:19.000Z",
+      "message": "feat(owner): permitir tomar la foto de referencia con la cámara del celular",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 19,
+      "additions": 17,
+      "deletions": 2,
+      "date": "2026-11-18"
+    },
+    "coverage": 81.42,
+    "test_count": 942,
     "failed_tests": 0,
     "conclusion": "success"
   }

@@ -5264,7 +5264,7 @@
     "testId": 74
   },
   {
-    "commitId": "HEAD",
+    "commitId": "480a4aae34166e2c5de4a4e1b0a7d43066857f83",
     "commitName": "feat(core): agregar la opción de avisos en la pantalla principal",
     "commitTimestamp": 1794003330500,
     "testId": 74
@@ -8246,5 +8246,27 @@
     "commitName": "chore(owner): integra owner-v3 en owner-v3-hu-19",
     "commitTimestamp": 1794965574450,
     "testId": 177
+  },
+  {
+    "numPassedTests": 941,
+    "failedTests": 1,
+    "numTotalTests": 942,
+    "timestamp": 1794966674351,
+    "success": false,
+    "testId": 178
+  },
+  {
+    "numPassedTests": 942,
+    "failedTests": 0,
+    "numTotalTests": 942,
+    "timestamp": 1794966937835,
+    "success": true,
+    "testId": 178
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): permitir tomar la foto de referencia con la cámara del celular",
+    "commitTimestamp": 1794966981070,
+    "testId": 178
   }
 ]

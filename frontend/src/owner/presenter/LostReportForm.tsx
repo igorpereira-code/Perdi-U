@@ -2,9 +2,9 @@ import { useState, type FormEvent } from 'react';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { Field, INPUT_CLASSES } from '../../core/presenter/Field';
-import { PhotoInput } from '../../core/presenter/PhotoInput';
 import { getCategoryIcon } from '../../core/presenter/CategoryIcon';
 import type { FoundItemCatalogs } from '../../finder/data/foundItemsService';
+import { FoundItemPhotoPicker } from '../../finder/presenter/FoundItemPhotoPicker';
 import type { LostReportCreated, LostReportsService } from '../data/lostReportsService';
 import { validateLostReportForm, type LostReportFormErrors } from '../logic/validateLostReportForm';
 import { LostReportConfirmation } from './LostReportConfirmation';
@@ -116,7 +116,7 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
           <legend className="text-sm font-medium text-neutral-700">
             Foto de referencia <span className="font-normal text-neutral-500">(opcional)</span>
           </legend>
-          <PhotoInput onChange={setPhoto} />
+          <FoundItemPhotoPicker photo={photo} onChange={setPhoto} />
           <p className="text-xs text-neutral-500">JPEG, PNG o WebP, máximo 5 MiB.</p>
         </fieldset>
 
