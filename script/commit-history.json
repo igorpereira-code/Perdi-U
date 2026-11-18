@@ -4522,12 +4522,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "fd578b66a01a8ead4328c45b6df34c64a7220a3c",
     "author": "Mateo Rojas Campos",
     "commit": {
       "date": "2026-11-09T20:49:27.000Z",
       "message": "feat(finder): mostrar la opción Ver guía en Inicio",
-      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/fd578b66a01a8ead4328c45b6df34c64a7220a3c"
     },
     "stats": {
       "total": 5,
@@ -8717,6 +8717,25 @@
     },
     "coverage": 81.48,
     "test_count": 964,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "javichosGIT",
+    "commit": {
+      "date": "2026-11-18T16:24:38.000Z",
+      "message": "feat(owner): ver las coincidencias actualizadas al editar el reporte",
+      "url": "https://github.com/igorpereira-code/Perdi-U/commit/HEAD"
+    },
+    "stats": {
+      "total": 129,
+      "additions": 115,
+      "deletions": 14,
+      "date": "2026-11-18"
+    },
+    "coverage": 81.75,
+    "test_count": 969,
     "failed_tests": 0,
     "conclusion": "success"
   }

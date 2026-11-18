@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Alert } from '../../core/presenter/Alert';
 import { Button } from '../../core/presenter/Button';
 import { EmptyState } from '../../core/presenter/EmptyState';
@@ -55,8 +55,8 @@ function MyLostReportSkeleton() {
 /** Detail of one of the owner's lost reports. */
 export function MyLostReportScreen({ myLostReportsService, foundItemsService }: MyLostReportScreenProps) {
   const { code = '' } = useParams();
+  const navigate = useNavigate();
   const [state, setState] = useState<ScreenState>({ status: 'loading' });
-  const [reloadCount, setReloadCount] = useState(0);
   const [reportToEdit, setReportToEdit] = useState<ReportToEdit | null>(null);
   const [isOpeningEdit, setIsOpeningEdit] = useState(false);
   const [editError, setEditError] = useState<string | null>(null);
@@ -79,8 +79,7 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
 
   async function saveChanges(changes: LostReportPayload) {
     await myLostReportsService.update(code, changes);
-    setReportToEdit(null);
-    setReloadCount((count) => count + 1);
+    navigate(`/mis-reportes/${code}/coincidencias`);
   }
 
   useEffect(() => {
@@ -101,7 +100,7 @@ export function MyLostReportScreen({ myLostReportsService, foundItemsService }: 
     return () => {
       active = false;
     };
-  }, [myLostReportsService, code, reloadCount]);
+  }, [myLostReportsService, code]);
 
   if (reportToEdit) {
     return (

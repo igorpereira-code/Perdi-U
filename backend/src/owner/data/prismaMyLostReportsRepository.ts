@@ -90,6 +90,16 @@ export const prismaMyLostReportsRepository: MyLostReportsRepository = {
           },
         },
       });
+      // Suggestions were computed with the old data: drop the unanswered ones so the
+      // matches screen recalculates them. Answered matches (pick up, dismissed) stay.
+      await tx.match.deleteMany({ where: { lostReportId: report.id, status: 'SUGGESTED' } });
+      const remainingMatches = await tx.match.count({ where: { lostReportId: report.id } });
+      if (remainingMatches === 0) {
+        await tx.lostReport.updateMany({
+          where: { id: report.id, status: 'HAS_MATCHES' },
+          data: { status: 'SEARCHING' },
+        });
+      }
       return true;
     }),
 };

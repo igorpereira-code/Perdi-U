@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { FoundItemCatalogs } from '../../finder/data/foundItemsService';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { MemoryRouter, Route, Routes, useParams } from 'react-router-dom';
 import type { MyLostReport } from '../data/myLostReportsService';
 import { MyLostReportScreen } from './MyLostReportScreen';
 
@@ -108,6 +108,12 @@ describe('Editar mi reporte de pérdida', () => {
     dateTo: '2026-10-18',
   };
 
+  /** Stands in for the matches screen, to see where the app goes. */
+  function MatchesDestination() {
+    const { code } = useParams();
+    return <p>Coincidencias de {code}</p>;
+  }
+
   function renderEditable(getMine: jest.Mock, update = jest.fn().mockResolvedValue(undefined)) {
     const myLostReportsService = {
       getMine,
@@ -126,18 +132,15 @@ describe('Editar mi reporte de pérdida', () => {
               />
             }
           />
+          <Route path="/mis-reportes/:code/coincidencias" element={<MatchesDestination />} />
         </Routes>
       </MemoryRouter>,
     );
     return myLostReportsService;
   }
 
-  it('permite editar un reporte activo y vuelve al detalle con los cambios', async () => {
-    const getMine = jest
-      .fn()
-      .mockResolvedValueOnce(keys)
-      .mockResolvedValueOnce({ ...keys, description: 'Llaves con llavero rojo' });
-    const service = renderEditable(getMine);
+  it('permite editar un reporte activo y guardar sus cambios', async () => {
+    const service = renderEditable(jest.fn().mockResolvedValue(keys));
 
     await userEvent.click(await screen.findByRole('button', { name: 'Editar reporte' }));
     expect(await screen.findByRole('heading', { name: 'Editar reporte' })).toBeInTheDocument();
@@ -150,8 +153,15 @@ describe('Editar mi reporte de pérdida', () => {
       ...editable,
       description: 'Llaves con llavero rojo',
     });
-    expect(await screen.findByRole('heading', { name: 'Detalle de mi reporte' })).toBeInTheDocument();
-    expect(screen.getByText('Llaves con llavero rojo')).toBeInTheDocument();
+  });
+
+  it('al guardar los cambios lo lleva a ver sus coincidencias actualizadas', async () => {
+    renderEditable(jest.fn().mockResolvedValue(keys));
+
+    await userEvent.click(await screen.findByRole('button', { name: 'Editar reporte' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Guardar cambios' }));
+
+    expect(await screen.findByText('Coincidencias de PR-0007')).toBeInTheDocument();
   });
 
   it('puede volver al detalle sin guardar los cambios', async () => {
