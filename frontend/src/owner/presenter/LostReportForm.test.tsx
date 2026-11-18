@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import type { FoundItemCatalogs } from '../../finder/data/foundItemsService';
@@ -112,6 +112,12 @@ async function fillRequiredFields() {
   await userEvent.type(screen.getByLabelText('Hasta'), '2026-10-18');
 }
 
+/** Goes to the summary and confirms it, which is how the report is sent. */
+async function sendReport() {
+  await userEvent.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+  await userEvent.click(await screen.findByRole('button', { name: 'Confirmar y enviar' }));
+}
+
 describe('Enviar el reporte y recibir su código', () => {
   it('envía los datos elegidos y muestra el código único del reporte', async () => {
     const onCreate = renderForm(jest.fn().mockResolvedValue({ code: 'PR-0007' }));
@@ -121,7 +127,7 @@ describe('Enviar el reporte y recibir su código', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Biblioteca' }));
     await userEvent.type(screen.getByLabelText(/¿Por dónde pudo perderlo\?/), 'Cerca de la cafetería');
 
-    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+    await sendReport();
 
     expect(await screen.findByText('PR-0007')).toBeInTheDocument();
     expect(onCreate).toHaveBeenCalledWith(
@@ -144,7 +150,7 @@ describe('Enviar el reporte y recibir su código', () => {
     renderForm(jest.fn().mockRejectedValue(new Error('No se pudo enviar tu reporte. Intenta nuevamente.')));
     await fillRequiredFields();
 
-    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+    await sendReport();
 
     expect(await screen.findByText('No se pudo enviar tu reporte. Intenta nuevamente.')).toBeInTheDocument();
     expect(screen.getByLabelText('Descripción de tu objeto')).toHaveValue('  Llaves con llavero azul ');
@@ -155,13 +161,14 @@ describe('Datos obligatorios al enviar', () => {
   it('no envía el reporte si falta la descripción, la categoría o el rango de fechas', async () => {
     const onCreate = renderForm();
 
-    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Revisar reporte' }));
 
     expect(screen.getByText('Escribe una descripción de tu objeto.')).toBeInTheDocument();
     expect(screen.getByText('Elige una categoría.')).toBeInTheDocument();
     expect(screen.getByText('Indica desde qué fecha pudo perderse.')).toBeInTheDocument();
     expect(screen.getByText('Indica hasta qué fecha pudo perderse.')).toBeInTheDocument();
     expect(onCreate).not.toHaveBeenCalled();
+    expect(screen.queryByRole('region', { name: 'Resumen del reporte' })).not.toBeInTheDocument();
   });
 });
 
@@ -179,7 +186,7 @@ describe('Foto de referencia', () => {
     await userEvent.upload(screen.getByLabelText('Foto del objeto'), photo);
     expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeInTheDocument();
     await fillRequiredFields();
-    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+    await sendReport();
 
     expect(await screen.findByText('PR-0008')).toBeInTheDocument();
     expect(onCreate).toHaveBeenCalledWith(expect.any(Object), photo);
@@ -194,7 +201,7 @@ describe('Foto de referencia', () => {
     await userEvent.upload(camera, cameraPhoto);
     expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeInTheDocument();
     await fillRequiredFields();
-    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+    await sendReport();
 
     expect(await screen.findByText('PR-0009')).toBeInTheDocument();
     expect(onCreate).toHaveBeenCalledWith(expect.any(Object), cameraPhoto);
@@ -206,7 +213,7 @@ describe('Carga al enviar el reporte de pérdida', () => {
     renderForm(jest.fn().mockReturnValue(new Promise(() => {})));
     await fillRequiredFields();
 
-    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+    await sendReport();
 
     const sendingButton = await screen.findByRole('button', { name: 'Enviando reporte…' });
     expect(sendingButton).toHaveAttribute('aria-busy', 'true');
@@ -225,12 +232,67 @@ describe('No sé dónde lo perdí', () => {
 
     expect(screen.queryByRole('group', { name: 'Lugares donde pudo perderlo' })).not.toBeInTheDocument();
     expect(screen.queryByLabelText(/¿Por dónde pudo perderlo\?/)).not.toBeInTheDocument();
-    await userEvent.click(screen.getByRole('button', { name: 'Enviar reporte' }));
+    await sendReport();
 
     expect(await screen.findByText('PR-0010')).toBeInTheDocument();
     expect(onCreate).toHaveBeenCalledWith(
       expect.objectContaining({ places: [], placeDescription: null }),
       null,
     );
+  });
+});
+
+describe('Resumen antes de enviar', () => {
+  beforeAll(() => {
+    // jsdom no crea vistas previas de imágenes; las simulamos.
+    URL.createObjectURL = jest.fn(() => 'blob:vista-previa');
+    URL.revokeObjectURL = jest.fn();
+  });
+
+  it('muestra un resumen con todos los datos del reporte antes de enviarlo', async () => {
+    const onCreate = renderForm();
+    await fillRequiredFields();
+    await userEvent.click(screen.getByRole('button', { name: 'Bloque A' }));
+    await userEvent.selectOptions(screen.getByLabelText(/Aula en Bloque A/), 'Aula A-12');
+    await userEvent.click(screen.getByRole('button', { name: 'Biblioteca' }));
+    await userEvent.type(screen.getByLabelText(/¿Por dónde pudo perderlo\?/), 'Cerca de la cafetería');
+
+    await userEvent.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+
+    const summary = screen.getByRole('region', { name: 'Resumen del reporte' });
+    expect(within(summary).getByText('Llaves con llavero azul')).toBeInTheDocument();
+    expect(within(summary).getByText('Llaves')).toBeInTheDocument();
+    expect(within(summary).getByText('Bloque A – Aula A-12')).toBeInTheDocument();
+    expect(within(summary).getByText('Biblioteca')).toBeInTheDocument();
+    expect(within(summary).getByText('Cerca de la cafetería')).toBeInTheDocument();
+    expect(within(summary).getByText('Del 17/10/2026 al 18/10/2026')).toBeInTheDocument();
+    expect(within(summary).getByText('Sin fotografía')).toBeInTheDocument();
+    expect(onCreate).not.toHaveBeenCalled();
+  });
+
+  it('en el resumen indica que no sabe dónde lo perdió y muestra la foto elegida', async () => {
+    renderForm();
+    const photo = new File(['foto'], 'llaves.png', { type: 'image/png' });
+    await userEvent.upload(screen.getByLabelText('Foto del objeto'), photo);
+    await fillRequiredFields();
+    await userEvent.click(screen.getByRole('checkbox', { name: 'No sé dónde lo perdí' }));
+
+    await userEvent.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+
+    const summary = screen.getByRole('region', { name: 'Resumen del reporte' });
+    expect(within(summary).getByText('No sé dónde lo perdí')).toBeInTheDocument();
+    expect(within(summary).getByRole('img', { name: 'Foto de referencia' })).toBeInTheDocument();
+  });
+
+  it('solo envía el reporte cuando confirma el resumen', async () => {
+    const onCreate = renderForm(jest.fn().mockResolvedValue({ code: 'PR-0011' }));
+    await fillRequiredFields();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+    expect(onCreate).not.toHaveBeenCalled();
+    await userEvent.click(screen.getByRole('button', { name: 'Confirmar y enviar' }));
+
+    expect(await screen.findByText('PR-0011')).toBeInTheDocument();
+    expect(onCreate).toHaveBeenCalledTimes(1);
   });
 });

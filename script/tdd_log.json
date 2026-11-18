@@ -5326,7 +5326,7 @@
     "testId": 76
   },
   {
-    "commitId": "HEAD",
+    "commitId": "f09efb449c626a3f98defba266ebb5df06b4f83a",
     "commitName": "feat(core): mostrar los avisos del más reciente al más antiguo",
     "commitTimestamp": 1794005105950,
     "testId": 76
@@ -8290,5 +8290,27 @@
     "commitName": "feat(owner): permitir elegir No sé dónde lo perdí en lugar de los lugares",
     "commitTimestamp": 1794967398732,
     "testId": 179
+  },
+  {
+    "numPassedTests": 936,
+    "failedTests": 10,
+    "numTotalTests": 946,
+    "timestamp": 1794967802683,
+    "success": false,
+    "testId": 180
+  },
+  {
+    "numPassedTests": 946,
+    "failedTests": 0,
+    "numTotalTests": 946,
+    "timestamp": 1794968158268,
+    "success": true,
+    "testId": 180
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): mostrar un resumen del reporte de pérdida y enviarlo solo al confirmarlo",
+    "commitTimestamp": 1794968187452,
+    "testId": 180
   }
 ]

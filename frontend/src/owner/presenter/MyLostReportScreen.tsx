@@ -8,6 +8,7 @@ import { StatusChip } from '../../core/presenter/StatusChip';
 import { WelfareCard } from '../../core/presenter/WelfareCard';
 import { SeeMatchesLink } from '../../matching/presenter/SeeMatchesLink';
 import type { MyLostReport, MyLostReportsService } from '../data/myLostReportsService';
+import { formatDay } from '../logic/formatDay';
 
 type MyLostReportScreenProps = {
   myLostReportsService: Pick<MyLostReportsService, 'getMine'>;
@@ -42,12 +43,6 @@ function MyLostReportSkeleton() {
       </div>
     </SkeletonArea>
   );
-}
-
-/** "2026-10-17" is shown as "17/10/2026". */
-function formatDay(day: string): string {
-  const [year, month, date] = day.split('-');
-  return `${date}/${month}/${year}`;
 }
 
 /** Detail of one of the owner's lost reports. */
