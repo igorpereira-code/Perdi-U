@@ -2,7 +2,7 @@ import { Router } from 'express';
 import type { CatalogItem, CatalogRepository } from '../data/catalogRepository';
 import { isInCatalog } from '../logic/isInCatalog';
 
-function toView(item: CatalogItem) {
+function toCatalogItemView(item: CatalogItem) {
   const { status: _status, visibility: _visibility, ...view } = item;
   return { ...view, foundAt: item.foundAt.toISOString() };
 }
@@ -13,7 +13,7 @@ export function createCatalogRouter(catalog: CatalogRepository): Router {
   router.get('/catalog', async (_req, res) => {
     try {
       const items = await catalog.listPublished();
-      res.json(items.filter(isInCatalog).map(toView));
+      res.json(items.filter(isInCatalog).map(toCatalogItemView));
     } catch {
       res.status(503).json({ error: 'No se pudieron cargar los objetos encontrados. Intenta nuevamente.' });
     }
@@ -26,7 +26,7 @@ export function createCatalogRouter(catalog: CatalogRepository): Router {
         res.status(404).json({ error: 'No encontramos este objeto.' });
         return;
       }
-      res.json(toView(item));
+      res.json(toCatalogItemView(item));
     } catch {
       res.status(503).json({ error: 'No se pudo cargar el objeto. Intenta nuevamente.' });
     }

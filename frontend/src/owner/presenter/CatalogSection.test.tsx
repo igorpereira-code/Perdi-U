@@ -82,3 +82,20 @@ describe('Abrir un objeto publicado', () => {
     expect(await screen.findByRole('link', { name: 'Ver objeto HZ-0007' })).toHaveAttribute('href', '/objetos/HZ-0007');
   });
 });
+describe('Carga de los objetos publicados', () => {
+  it('muestra tarjetas grises mientras carga los objetos', () => {
+    renderSection(jest.fn().mockReturnValue(new Promise(() => {})));
+
+    const loading = screen.getByRole('status');
+    expect(loading).toHaveAttribute('aria-busy', 'true');
+    expect(loading).toHaveTextContent('Cargando objetos encontrados…');
+    expect(loading.querySelectorAll('.animate-pulse').length).toBeGreaterThanOrEqual(3);
+  });
+
+  it('reemplaza las tarjetas grises por los objetos cuando llegan', async () => {
+    renderSection(jest.fn().mockResolvedValue([backpack]));
+
+    expect(await screen.findByText('Mochila negra con llavero')).toBeInTheDocument();
+    expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  });
+});

@@ -55,7 +55,7 @@ export const prismaWelfareRepository = {
   listActiveLostReports: async () =>
     db()
       .lostReport.findMany({
-        where: { status: { not: 'RECOVERED' } },
+        where: { status: { notIn: ['RECOVERED', 'CLOSED'] } },
         select: {
           id: true,
           code: true,
@@ -78,7 +78,7 @@ export const prismaWelfareRepository = {
 
   findActiveLostReportByCode: async (code) => {
     const lostReport = await db().lostReport.findFirst({
-      where: { code, status: { not: 'RECOVERED' } },
+      where: { code, status: { notIn: ['RECOVERED', 'CLOSED'] } },
       select: {
         id: true,
         code: true,
@@ -300,6 +300,21 @@ export const prismaWelfareRepository = {
         await transaction.lostReport.update({
           where: { id: lostReport.id },
           data: { status: 'RECOVERED' },
+        });
+      }
+      if (recipient) {
+        // The owner learns their object was handed over (and, with a report, that it is recovered).
+        const recoveredReportCode = lostReport ? delivery.lostReportCode : null;
+        await transaction.notification.create({
+          data: {
+            userId: recipient.id,
+            message:
+              'Bienestar Estudiantil registró la entrega de tu objeto ' +
+              foundItem.code +
+              '.' +
+              (recoveredReportCode ? ' Tu reporte ' + recoveredReportCode + ' quedó como recuperado.' : ''),
+            link: recoveredReportCode ? '/mis-perdidas/' + encodeURIComponent(recoveredReportCode) : null,
+          },
         });
       }
 

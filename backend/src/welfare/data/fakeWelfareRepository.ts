@@ -37,11 +37,12 @@ export function fakeWelfareRepository(
   const repository: WelfareRepository = {
     listActiveLostReports: async () =>
       lostReports
-        .filter((lostReport) => lostReport.status !== 'RECOVERED')
+        .filter((lostReport) => !['RECOVERED', 'CLOSED'].includes(lostReport.status))
         .map((lostReport) => ({ ...lostReport, owner: { ...lostReport.owner } })),
     findActiveLostReportByCode: async (code) => {
       const lostReport = lostReports.find(
-        (candidate) => candidate.code === code && candidate.status !== 'RECOVERED',
+        (candidate) =>
+          candidate.code === code && !['RECOVERED', 'CLOSED'].includes(candidate.status),
       );
       return lostReport ? { ...lostReport, owner: { ...lostReport.owner } } : null;
     },

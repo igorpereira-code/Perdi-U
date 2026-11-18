@@ -181,9 +181,11 @@ export default function App({
       <Route
         path="/objetos/:code"
         element={renderSignedInPage(() => (
-          <CatalogItemScreen
+            <CatalogItemScreen
             catalogService={catalogService}
             foundItemsService={foundItemsService}
+            myLostReportsService={myLostReportsService}
+            matchesService={matchesService}
           />
         ))}
       />
@@ -196,7 +198,10 @@ export default function App({
       <Route
         path="/mis-perdidas/:code"
         element={renderSignedInPage(() => (
-          <MyLostReportScreen myLostReportsService={myLostReportsService} />
+          <MyLostReportScreen
+            myLostReportsService={myLostReportsService}
+            foundItemsService={foundItemsService}
+          />
         ))}
       />
       <Route

@@ -1,12 +1,24 @@
 import type { MatchView } from '@shared/matching';
 import type { FoundItemForMatching, LostReportForMatching } from '../logic/similarity';
-import type { FoundItemStatus } from '@shared/statuses';
+import type { FoundItemStatus, LostReportStatus } from '@shared/statuses';
 
-export type LostReportToMatch = LostReportForMatching & { id: string; code: string };
+export type LostReportToMatch = LostReportForMatching & {
+  id: string;
+  code: string;
+  ownerId: string;
+  /** A closed report gets no new matches. */
+  status?: LostReportStatus;
+};
 export type PublishedItem = FoundItemForMatching & { id: string };
 export type Suggestion = { foundItemId: string; similarity: number };
 export type FoundItemToPublish = PublishedItem & { code: string; status: FoundItemStatus };
 export type PublishedVisibility = 'VISIBLE' | 'HIDDEN';
+
+/**
+ * CLAIMED: Bienestar will see the pickup. REPORT_RECOVERED / REPORT_CLOSED: the report is no longer
+ * active (the owner already got it back, or said they found it), so nothing was saved.
+ */
+export type ClaimResult = 'CLAIMED' | 'REPORT_RECOVERED' | 'REPORT_CLOSED';
 
 /** Where lost reports, published items and matches are read and saved. Tests use a fake one. */
 export type MatchingRepository = {
@@ -28,9 +40,17 @@ export type MatchingRepository = {
     lostReportId: string;
     lostReportCode: string;
     foundItemCode: string;
+    /** A match of a closed report can no longer be picked up. */
+    lostReportStatus?: LostReportStatus;
   } | null>;
   /** The owner will pick the item up: Bienestar sees it in pending pickups. */
   markWillPickUp: (matchId: string) => Promise<void>;
+
+  /**
+   * The owner says a published item is theirs ("Es mío, pasaré a recoger"), even if it was never suggested.
+   * The match is created (or reused), and the report waits for the pickup.
+   */
+  claimItem: (lostReportId: string, foundItemId: string, similarity: number) => Promise<ClaimResult>;
 
   /** "No es mío": the item stops showing up for that report, even when matching runs again. */
   dismiss: (matchId: string) => Promise<void>;

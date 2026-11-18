@@ -92,12 +92,12 @@ export function createApp({
   });
   app.use(createGuideRouter(users));
   app.use(createMatchesRouter(matching, settings, notifications, foundItemPhotos));
-  app.use(createPublishRouter(matching, settings));
+  app.use(createPublishRouter(matching, settings, notifications));
   app.use(createFoundItemsRouter(foundItems, foundItemPhotos, notifications));
   app.use(createReceivedItemsRouter(welfare, () => foundItems.getCatalogs(), foundItemPhotos));
   app.use(createLostReportsRouter(lostReports, () => foundItems.getCatalogs(), foundItemPhotos));
   app.use(createCatalogRouter(catalog));
-  app.use(createMyLostReportsRouter(myLostReports));
+  app.use(createMyLostReportsRouter(myLostReports, () => foundItems.getCatalogs()));
   app.use(createNotificationsRouter(notifications));
   app.use(createAdminUsersRouter(adminUsers));
   app.use(createAdminCatalogRouter(adminCatalog));

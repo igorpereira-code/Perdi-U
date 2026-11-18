@@ -205,6 +205,31 @@ describe('Recibir objetos encontrados en Bienestar', () => {
     ]);
   });
 
+  it('responde que no existe si el reporte esta cerrado', async () => {
+    const { repository } = fakeWelfareRepository([], [], [
+      { ...activeLostReport, status: 'CLOSED' },
+    ]);
+
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/lost-reports/PR-0001')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(404);
+  });
+
+  it('no lista los reportes de perdida cerrados para Bienestar', async () => {
+    const { repository } = fakeWelfareRepository([], [], [
+      activeLostReport,
+      { ...activeLostReport, id: 'report-4', code: 'PR-0004', status: 'CLOSED' },
+    ]);
+    const res = await request(createApp({ welfare: repository }))
+      .get('/welfare/lost-reports')
+      .set('x-sample-user', 'welfare');
+
+    expect(res.status).toBe(200);
+    expect(res.body.map((report: { code: string }) => report.code)).toEqual(['PR-0001']);
+  });
+
   it('rechaza una entrega sin codigo de objeto', async () => {
     const { repository, deliveries } = fakeWelfareRepository([publishedItem]);
     const res = await request(createApp({ welfare: repository }))

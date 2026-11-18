@@ -5,6 +5,7 @@ import { getCurrentUser, type CurrentUser } from '../../core/currentUser';
 import type { LostReportToMatch, MatchingRepository } from '../data/matchingRepository';
 import { findSimilarItems } from '../logic/findSimilarItems';
 import type { NotificationsRepository } from '../../core/data/notificationsRepository';
+import { calculateSimilarityScore } from '../logic/similarity';
 import type { SettingsRepository } from '../../core/data/settingsRepository';
 import type { FoundItemPhotoStorage } from '../../finder/data/foundItemPhotoStorage';
 import { signPhotoUrl } from '../../finder/data/signPhotoUrl';
@@ -40,20 +41,37 @@ export function createMatchesRouter(
     return { ...match, foundItem: { ...match.foundItem, photoUrl } };
   }
 
-  async function listMostSimilarFirst(report: LostReportToMatch): Promise<MatchView[]> {
+  /** Only Bienestar sees the photo and the data of an item that is not visible. */
+  function hideDataFromOwner(match: MatchView, user: CurrentUser): MatchView {
+    if (!match.isHidden || user.role === 'WELFARE') {
+      return match;
+    }
+    return { ...match, foundItem: { code: '', description: '', photoUrl: null, category: '' } };
+  }
+
+  async function listMostSimilarFirst(
+    report: LostReportToMatch,
+    user: CurrentUser,
+  ): Promise<MatchView[]> {
     const matches = await matching.listMatches(report.id);
-    return matches.sort((a, b) => b.similarity - a.similarity);
+    return matches
+      .sort((a, b) => b.similarity - a.similarity)
+      .map((match) => hideDataFromOwner(match, user));
   }
 
   router.get('/lost-reports/:code/matches', async (req, res) => {
-    const report = await findVisibleReport(getCurrentUser(req), req.params.code);
+    const user = getCurrentUser(req);
+    const report = await findVisibleReport(user, req.params.code);
     if (!report) {
       res.status(404).json({ error: 'Lost report not found' });
       return;
     }
 
-    await suggestSimilarItems(report);
-    res.json(await Promise.all((await listMostSimilarFirst(report)).map(showMatch)));
+    // A closed report gets no new matches.
+    if (report.status !== 'CLOSED') {
+      await suggestSimilarItems(report);
+    }
+    res.json(await Promise.all((await listMostSimilarFirst(report, user)).map(showMatch)));
   });
 
   /** The owner answers a match ("Pasaré a recoger" or "No es mío"). Only the owner of the report can. */
@@ -77,6 +95,10 @@ export function createMatchesRouter(
       res.status(404).json({ error: 'Match not found' });
       return;
     }
+    if (match.lostReportStatus === 'CLOSED') {
+      res.status(409).json({ error: 'Lost report closed' });
+      return;
+    }
     await matching.markWillPickUp(match.id);
     try {
       await notifications.notifyRole('WELFARE', {
@@ -89,6 +111,40 @@ export function createMatchesRouter(
     res.json({ status: 'WILL_PICK_UP' });
   });
   router.post('/matches/:id/dismiss', answerMatch('DISMISSED', matching.dismiss));
+
+  /**
+   * The owner says a published item is theirs, even if it was never suggested for their report.
+   * Only with their own report, and Bienestar then sees the pickup.
+   */
+  router.post('/catalog/:code/claim', async (req, res) => {
+    const reportCode = req.body?.reportCode;
+    if (typeof reportCode !== 'string' || reportCode.trim() === '') {
+      res.status(400).json({ error: 'reportCode is required' });
+      return;
+    }
+
+    const report = await matching.findOwnLostReport(reportCode, getCurrentUser(req).id);
+    if (!report) {
+      res.status(404).json({ error: 'Lost report not found' });
+      return;
+    }
+    const item = await matching.findFoundItemByCode(req.params.code);
+    if (!item || item.status !== 'PUBLISHED') {
+      res.status(404).json({ error: 'Found item not found' });
+      return;
+    }
+
+    const result = await matching.claimItem(report.id, item.id, calculateSimilarityScore(report, item));
+    if (result === 'REPORT_RECOVERED') {
+      res.status(409).json({ error: 'Lost report already recovered' });
+      return;
+    }
+    if (result === 'REPORT_CLOSED') {
+      res.status(409).json({ error: 'Lost report closed' });
+      return;
+    }
+    res.json({ status: 'WILL_PICK_UP' });
+  });
 
   return router;
 }
