@@ -5354,7 +5354,7 @@
     "testId": 77
   },
   {
-    "commitId": "HEAD",
+    "commitId": "55189c7d145de9c77ccc85c14c491a092f9992ae",
     "commitName": "feat(core): mostrar qué pasó y cuándo en cada aviso",
     "commitTimestamp": 1794005316407,
     "testId": 77
@@ -8312,5 +8312,27 @@
     "commitName": "feat(owner): mostrar un resumen del reporte de pérdida y enviarlo solo al confirmarlo",
     "commitTimestamp": 1794968187452,
     "testId": 180
+  },
+  {
+    "numPassedTests": 946,
+    "failedTests": 1,
+    "numTotalTests": 947,
+    "timestamp": 1794968311520,
+    "success": false,
+    "testId": 181
+  },
+  {
+    "numPassedTests": 947,
+    "failedTests": 0,
+    "numTotalTests": 947,
+    "timestamp": 1794968584594,
+    "success": true,
+    "testId": 181
+  },
+  {
+    "commitId": "HEAD",
+    "commitName": "feat(owner): volver a corregir el reporte de pérdida desde el resumen sin perder lo llenado",
+    "commitTimestamp": 1794968614479,
+    "testId": 181
   }
 ]

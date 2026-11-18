@@ -11,6 +11,7 @@ type LostReportReviewProps = {
   dateTo: string;
   photo: File | null;
   isSubmitting: boolean;
+  onEdit: () => void;
   onConfirm: () => void;
 };
 
@@ -24,6 +25,7 @@ export function LostReportReview({
   dateTo,
   photo,
   isSubmitting,
+  onEdit,
   onConfirm,
 }: LostReportReviewProps) {
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
@@ -97,6 +99,9 @@ export function LostReportReview({
           <dd>{`Del ${formatDay(dateFrom)} al ${formatDay(dateTo)}`}</dd>
         </div>
       </dl>
+      <Button variant="outline" className="w-full" disabled={isSubmitting} onClick={onEdit}>
+        Volver a editar
+      </Button>
       <Button
         className="w-full"
         isLoading={isSubmitting}

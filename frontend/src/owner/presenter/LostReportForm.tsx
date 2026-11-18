@@ -282,6 +282,7 @@ export function LostReportForm({ catalogs, onCreate }: LostReportFormProps) {
           dateTo={reportToReview.dateTo}
           photo={photo}
           isSubmitting={submitting}
+          onEdit={() => setReportToReview(null)}
           onConfirm={handleConfirm}
         />
       )}

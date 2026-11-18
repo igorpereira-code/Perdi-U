@@ -296,3 +296,38 @@ describe('Resumen antes de enviar', () => {
     expect(onCreate).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('Volver a corregir desde el resumen', () => {
+  beforeAll(() => {
+    // jsdom no crea vistas previas de imágenes; las simulamos.
+    URL.createObjectURL = jest.fn(() => 'blob:vista-previa');
+    URL.revokeObjectURL = jest.fn();
+  });
+
+  it('vuelve al formulario sin perder lo que llenó y el resumen muestra la corrección', async () => {
+    const onCreate = renderForm();
+    const photo = new File(['foto'], 'llaves.png', { type: 'image/png' });
+    await userEvent.upload(screen.getByLabelText('Foto del objeto'), photo);
+    await fillRequiredFields();
+    await userEvent.click(screen.getByRole('button', { name: 'Bloque A' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+
+    await userEvent.click(screen.getByRole('button', { name: 'Volver a editar' }));
+
+    expect(screen.queryByRole('region', { name: 'Resumen del reporte' })).not.toBeInTheDocument();
+    expect(screen.getByLabelText('Descripción de tu objeto')).toHaveValue('  Llaves con llavero azul ');
+    expect(screen.getByRole('radio', { name: 'Llaves' })).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByRole('button', { name: 'Bloque A' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByLabelText('Desde')).toHaveValue('2026-10-17');
+    expect(screen.getByLabelText('Hasta')).toHaveValue('2026-10-18');
+    expect(screen.getByRole('img', { name: 'Vista previa de la foto' })).toBeInTheDocument();
+
+    await userEvent.clear(screen.getByLabelText('Descripción de tu objeto'));
+    await userEvent.type(screen.getByLabelText('Descripción de tu objeto'), 'Llaves con llavero rojo');
+    await userEvent.click(screen.getByRole('button', { name: 'Revisar reporte' }));
+
+    const summary = screen.getByRole('region', { name: 'Resumen del reporte' });
+    expect(within(summary).getByText('Llaves con llavero rojo')).toBeInTheDocument();
+    expect(onCreate).not.toHaveBeenCalled();
+  });
+});
